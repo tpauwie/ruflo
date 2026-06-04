@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -365,7 +365,7 @@
     if(!localStorage.getItem('cf_access')){
       var o=document.createElement('div');
       o.style.cssText='position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
-      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium inhoud</div><p style="color:#666;font-size:.9rem;max-width:320px;">Dit onderdeel is alleen beschikbaar met toegangscode.</p><a href="toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Toegangscode invoeren</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Terug naar home</a>';
+      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="../toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="../index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
       document.body.prepend(o);
     }
   })();
@@ -373,68 +373,68 @@
 
 
   <nav>
-    <a class="nav-logo" href="index.html">Character <span>First</span></a>
+    <a class="nav-logo" href="../index.html">Character <span>First</span></a>
     <div style="display:flex;gap:1.5rem;align-items:center">
-      <a href="index.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Home</a>
-      <a href="library.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Bibliotheek</a>
+      <a href="../index.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Home</a>
+      <a href="../library.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Library</a>
       <a href="season.html" style="color:#f05a28;text-decoration:none;font-size:0.85rem;font-weight:600">The Season</a>
       <a href="week.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">The Week</a>
-      <a href="planbuilder.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Sessieplan</a>
-      <a href="en/season.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #555;padding:.3rem .7rem;border-radius:4px;">EN</a>
+      <a href="../planbuilder.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Session Plan</a>
+      <a href="../season.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #555;padding:.3rem .7rem;border-radius:4px;">NL</a>
     </div>
   </nav>
 
   <section class="hero">
-    <div class="hero-badge">The Season — 8 maanden programma</div>
-    <h1>Bouw aan een <span>betere versie</span> van jezelf</h1>
-    <p>Elke maand een nieuw thema, nieuwe oefeningen en inzichten die je karakter en je bijdrage aan het team versterken.</p>
+    <div class="hero-badge">The Season — 8-month program</div>
+    <h1>Build a <span>better version</span> of yourself</h1>
+    <p>Every month a new theme, new exercises and insights that strengthen your character and your contribution to the team.</p>
   </section>
 
-  <nav class="timeline-nav" aria-label="Maanden">
-    <a class="month-pill active" href="#maand-1">Maand 1</a>
-    <a class="month-pill" href="#maand-2">Maand 2</a>
-    <a class="month-pill" href="#maand-3">Maand 3</a>
-    <a class="month-pill" href="#maand-4">Maand 4</a>
-    <a class="month-pill" href="#maand-5">Maand 5</a>
-    <a class="month-pill" href="#maand-6">Maand 6</a>
-    <a class="month-pill" href="#maand-7">Maand 7</a>
-    <a class="month-pill" href="#maand-8">Maand 8</a>
+  <nav class="timeline-nav" aria-label="Months">
+    <a class="month-pill active" href="#month-1">Month 1</a>
+    <a class="month-pill" href="#month-2">Month 2</a>
+    <a class="month-pill" href="#month-3">Month 3</a>
+    <a class="month-pill" href="#month-4">Month 4</a>
+    <a class="month-pill" href="#month-5">Month 5</a>
+    <a class="month-pill" href="#month-6">Month 6</a>
+    <a class="month-pill" href="#month-7">Month 7</a>
+    <a class="month-pill" href="#month-8">Month 8</a>
   </nav>
 
   <div class="months-container">
 
-    <!-- MAAND 1 -->
-    <section class="month-section" id="maand-1">
+    <!-- MONTH 1 -->
+    <section class="month-section" id="month-1">
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>1</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>1</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Zelfkennis &amp; Identiteit</h2>
+          <div class="theme-label">Theme</div>
+          <h2>Self-Knowledge &amp; Identity</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Wie ben jij als speler en als persoon? Je ontdekt je kernwaarden, je sterke kanten en waar je energie van krijgt. Zelfkennis is de basis van alles wat volgt.</p>
+          <h3>What you learn</h3>
+          <p>Who are you as a player and as a person? You discover your core values, your strengths and what gives you energy. Self-knowledge is the foundation of everything that follows.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Onderzoek van Deci en Ryan (1985) toont aan dat inzicht in je eigen motivatie, zowel intrinsiek als extrinsiek, direct verband houdt met doorzettingsvermogen en welzijn in topsport.</p>
+          <h3>Science</h3>
+          <p>Research by Deci and Ryan (1985) shows that insight into your own motivation, both intrinsic and extrinsic, is directly linked to perseverance and wellbeing in elite sport.</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">🪞</div>
-              <div><strong>Mijn Drie Woorden</strong>Kies drie woorden die jou het best beschrijven als ploegmaat. Vraag ook drie teamgenoten om drie woorden over jou te kiezen en vergelijk.</div>
+              <div><strong>My Three Words</strong>Choose three words that best describe you as a teammate. Also ask three teammates to choose three words about you and compare.</div>
             </li>
             <li>
               <div class="exercise-icon">🔥</div>
-              <div><strong>Energiegever vs Energieslurper</strong>Schrijf op welke momenten in de training je energie krijgt en welke je energie kosten. Bespreek met je coach.</div>
+              <div><strong>Energy Giver vs Energy Drainer</strong>Write down which moments in training give you energy and which cost you energy. Discuss with your coach.</div>
             </li>
             <li>
               <div class="exercise-icon">🗺️</div>
-              <div><strong>Persoonlijke Waardenkompas</strong>Rangschik 12 waarden (loyaliteit, moed, eerlijkheid...) van meest naar minst belangrijk voor jou. Reflecteer: leef je ernaar?</div>
+              <div><strong>Personal Values Compass</strong>Rank 12 values (loyalty, courage, honesty...) from most to least important for you. Reflect: do you live by them?</div>
             </li>
           </ul>
         </div>
@@ -446,82 +446,82 @@
     </section>
     <div class="month-divider"></div>
 
-    <!-- MAAND 2 -->
-    <section class="month-section" id="maand-2">
+    <!-- MONTH 2 -->
+    <section class="month-section" id="month-2">
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>2</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>2</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Druk &amp; Stress</h2>
+          <div class="theme-label">Theme</div>
+          <h2>Pressure &amp; Stress</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Druk voelt voor iedereen anders. Je leert herkennen hoe jouw lichaam en geest reageren op stress, en je ontdekt concrete tools om rustig en gefocust te blijven in moeilijke situaties.</p>
+          <h3>What you learn</h3>
+          <p>Pressure feels different for everyone. You learn to recognise how your body and mind respond to stress, and you discover concrete tools to stay calm and focused in difficult situations.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Lazarus en Folkman (1984) beschrijven twee types copingstijlen: probleemgericht en emotiongericht. Atleten die beide strategieën beheersen presteren stabieler onder druk volgens recent sportpsychologisch onderzoek.</p>
+          <h3>Science</h3>
+          <p>Lazarus and Folkman (1984) describe two types of coping styles: problem-focused and emotion-focused. Athletes who master both strategies perform more consistently under pressure according to recent sport psychology research.</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">🌬️</div>
-              <div><strong>Box Breathing</strong>4 tellen inademen, 4 tellen vasthouden, 4 tellen uitademen, 4 tellen wachten. Oefen voor elke training gedurende 2 minuten.</div>
+              <div><strong>Box Breathing</strong>4 counts inhale, 4 counts hold, 4 counts exhale, 4 counts wait. Practise before every training session for 2 minutes.</div>
             </li>
             <li>
               <div class="exercise-icon">🗒️</div>
-              <div><strong>Stressdagboek</strong>Schrijf 5 minuten na elke wedstrijd: wat voelde ik, wat dacht ik, en wat deed ik? Zoek patronen over een maand.</div>
+              <div><strong>Stress Journal</strong>Write for 5 minutes after every match: what did I feel, what did I think, and what did I do? Look for patterns over a month.</div>
             </li>
             <li>
               <div class="exercise-icon">🎯</div>
-              <div><strong>Worst Case Best Case</strong>Schrijf het ergste dat kan gebeuren en het beste dat kan gebeuren. Dan schrijf je het meest waarschijnlijke. Je brein stopt met catastroferen.</div>
+              <div><strong>Worst Case Best Case</strong>Write down the worst that can happen and the best that can happen. Then write the most likely outcome. Your brain stops catastrophising.</div>
             </li>
           </ul>
         </div>
         <div class="quote-card">
           <p class="quote-text">"Pressure is a privilege. It only comes to those who earn it. The more I learned to breathe and slow down, the faster I actually became."</p>
-          <div class="quote-author">Billie Jean King — 39x Grand Slam winnaar</div>
+          <div class="quote-author">Billie Jean King — 39x Grand Slam winner</div>
         </div>
       </div>
     </section>
     <div class="month-divider"></div>
 
-    <!-- MAAND 3 -->
-    <section class="month-section premium-locked" id="maand-3">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+    <!-- MONTH 3 -->
+    <section class="month-section premium-locked" id="month-3">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>3</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>3</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Mijn Rol in het Team</h2>
+          <div class="theme-label">Theme</div>
+          <h2>My Role in the Team</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Elk team heeft verschillende rollen nodig om te functioneren. Je ontdekt welke rol jij op dit moment speelt, welke rol je wil groeien in, en hoe je die rol zo goed mogelijk vervult.</p>
+          <h3>What you learn</h3>
+          <p>Every team needs different roles to function. You discover which role you currently play, which role you want to grow into, and how to fulfil that role as well as possible.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Carron en Eys (2012) tonen in hun teamcohesiemodel aan dat rolhelderheid, weten wat van je verwacht wordt, een van de sterkste voorspellers is van zowel taaklust als sociale cohesie in sportteams.</p>
+          <h3>Science</h3>
+          <p>Carron and Eys (2012) show in their team cohesion model that role clarity — knowing what is expected of you — is one of the strongest predictors of both task motivation and social cohesion in sports teams.</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">🧭</div>
-              <div><strong>Rolcompass</strong>Verken vier rollen: Leider, Motor, Denker en Stabiele Kracht. Vul een kompas in van 0 tot 10 per rol. Bespreek met een teamgenoot.</div>
+              <div><strong>Role Compass</strong>Explore four roles: Leader, Engine, Thinker and Stable Force. Fill in a compass from 0 to 10 per role. Discuss with a teammate.</div>
             </li>
             <li>
               <div class="exercise-icon">👥</div>
-              <div><strong>Rolcirkel</strong>Het team staat samen in een cirkel. Elke speler benoemt één concrete bijdrage die hij of zij levert aan het team. Daarna mag iemand anders aanvullen.</div>
+              <div><strong>Role Circle</strong>The team stands together in a circle. Each player names one concrete contribution they bring to the team. Then someone else may add to it.</div>
             </li>
             <li>
               <div class="exercise-icon">📋</div>
-              <div><strong>Mijn Top 3 Bijdragen</strong>Schrijf wekelijks drie concrete dingen op die jij hebt bijgedragen aan het team, niet op statistieken, maar op gedrag en houding.</div>
+              <div><strong>My Top 3 Contributions</strong>Write down three concrete things weekly that you contributed to the team — not statistics, but behaviour and attitude.</div>
             </li>
           </ul>
         </div>
@@ -533,39 +533,39 @@
     </section>
     <div class="month-divider"></div>
 
-    <!-- MAAND 4 -->
-    <section class="month-section premium-locked" id="maand-4">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+    <!-- MONTH 4 -->
+    <section class="month-section premium-locked" id="month-4">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>4</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>4</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Communicatie</h2>
+          <div class="theme-label">Theme</div>
+          <h2>Communication</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Hoe je praat bepaalt hoe je samenwerkt. Je leert het verschil tussen reageren en communiceren, hoe je feedback geeft zonder de sfeer te beschadigen, en hoe je moeilijke gesprekken niet vermijdt maar aangaat.</p>
+          <h3>What you learn</h3>
+          <p>How you talk determines how you collaborate. You learn the difference between reacting and communicating, how to give feedback without damaging the atmosphere, and how not to avoid but engage in difficult conversations.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Marshall Rosenberg ontwikkelde Nonviolent Communication (NVC): geweldloze communicatie die focust op behoeften in plaats van verwijten. Sportteams die NVC trainen rapporteren minder conflicten en hogere cohesie (Holt et al., 2020).</p>
+          <h3>Science</h3>
+          <p>Marshall Rosenberg developed Nonviolent Communication (NVC): compassionate communication that focuses on needs rather than blame. Sports teams trained in NVC report fewer conflicts and higher cohesion (Holt et al., 2020).</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">💬</div>
-              <div><strong>Ik Boodschap</strong>Oefen met het model: "Ik zie... Ik voel... Ik heb nodig... Ik vraag je om..." Schrijf drie situaties uit je sportleven om dit te oefenen.</div>
+              <div><strong>I Message</strong>Practise with the model: "I see... I feel... I need... I ask you to..." Write three situations from your sport life to practise this.</div>
             </li>
             <li>
               <div class="exercise-icon">🔄</div>
-              <div><strong>Feedbackronde Trio</strong>In groepen van drie: één persoon geeft feedback, één ontvangt, één observeert op toon en woordkeuze. Wissel na elke ronde van rol.</div>
+              <div><strong>Feedback Round Trio</strong>In groups of three: one person gives feedback, one receives, one observes tone and word choice. Switch roles after each round.</div>
             </li>
             <li>
               <div class="exercise-icon">🤝</div>
-              <div><strong>Moeilijk Gesprek</strong>Schrijf een gesprek op dat je al lang uitstelt met een coach of teamgenoot. Gebruik de ik boodschap en plan het gesprek in binnen 7 dagen.</div>
+              <div><strong>Difficult Conversation</strong>Write down a conversation you have been putting off with a coach or teammate. Use the I message and schedule the conversation within 7 days.</div>
             </li>
           </ul>
         </div>
@@ -577,39 +577,39 @@
     </section>
     <div class="month-divider"></div>
 
-    <!-- MAAND 5 -->
-    <section class="month-section premium-locked" id="maand-5">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+    <!-- MONTH 5 -->
+    <section class="month-section premium-locked" id="month-5">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>5</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>5</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Team Eerst</h2>
+          <div class="theme-label">Theme</div>
+          <h2>Team First</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>De stap van "ik" naar "wij" is de moeilijkste in topsport. Je onderzoekt wat het betekent om persoonlijk belang opzij te zetten, hoe je een cultuur van vertrouwen bouwt, en wat psychologische veiligheid is.</p>
+          <h3>What you learn</h3>
+          <p>The step from "I" to "we" is the hardest in elite sport. You explore what it means to set aside personal interests, how to build a culture of trust, and what psychological safety is.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Amy Edmondson (Harvard, 1999) ontdekte dat de beste teams niet samengesteld zijn uit de beste individuen, maar uit teams met de hoogste psychologische veiligheid: de overtuiging dat je fouten mag maken zonder gestraft te worden.</p>
+          <h3>Science</h3>
+          <p>Amy Edmondson (Harvard, 1999) discovered that the best teams are not composed of the best individuals, but are teams with the highest psychological safety: the conviction that you can make mistakes without being punished.</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">📜</div>
-              <div><strong>Team Contract</strong>Het team stelt samen 5 gedragsregels op die iedereen nakomt. Niet over winnen, maar over gedrag: "Wij geven altijd energie aan wie het moeilijk heeft."</div>
+              <div><strong>Team Contract</strong>The team together sets up 5 behavioural rules that everyone upholds. Not about winning, but about behaviour: "We always give energy to whoever is struggling."</div>
             </li>
             <li>
               <div class="exercise-icon">🙋</div>
-              <div><strong>Hulp Vragen</strong>Oefen om actief hulp te vragen tijdens trainingen. Één keer per training vraag je een teamgenoot om hulp bij iets specifieks.</div>
+              <div><strong>Asking for Help</strong>Practise actively asking for help during training sessions. Once per training session you ask a teammate for help with something specific.</div>
             </li>
             <li>
               <div class="exercise-icon">⭐</div>
-              <div><strong>Onzichtbare Bijdrage</strong>Na elke wedstrijd schrijft iedereen één teamgenoot op die iets deed wat niemand opmerkte maar essentieel was voor het team. Deel het op het einde van de maand.</div>
+              <div><strong>Invisible Contribution</strong>After every match everyone writes down one teammate who did something nobody noticed but was essential for the team. Share at the end of the month.</div>
             </li>
           </ul>
         </div>
@@ -621,39 +621,39 @@
     </section>
     <div class="month-divider"></div>
 
-    <!-- MAAND 6 -->
-    <section class="month-section premium-locked" id="maand-6">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+    <!-- MONTH 6 -->
+    <section class="month-section premium-locked" id="month-6">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>6</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>6</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Veerkracht &amp; Groeimindset</h2>
+          <div class="theme-label">Theme</div>
+          <h2>Resilience &amp; Growth Mindset</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Hoe reageer jij op tegenslagen, fouten en verlies? Je leert het verschil tussen een fixed mindset en een growth mindset en ontwikkelt concrete tools om sneller te herstellen van teleurstellingen.</p>
+          <h3>What you learn</h3>
+          <p>How do you respond to setbacks, mistakes and defeat? You learn the difference between a fixed mindset and a growth mindset and develop concrete tools to recover more quickly from disappointments.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Carol Dweck (Stanford, 2006) bewees dat atleten met een groeimindset, die geloven dat talent ontwikkelbaar is, harder trainen, beter omgaan met feedback en meer plezier hebben in hun sport op de lange termijn.</p>
+          <h3>Science</h3>
+          <p>Carol Dweck (Stanford, 2006) proved that athletes with a growth mindset — who believe talent is developable — train harder, handle feedback better and enjoy their sport more over the long term.</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">🔄</div>
-              <div><strong>Herschrijf de Fout</strong>Schrijf een recente fout op. Verander elke zin met "ik kan het niet" naar "ik kan het nog niet" en schrijf wat je er concreet van kan leren.</div>
+              <div><strong>Rewrite the Mistake</strong>Write down a recent mistake. Change every sentence with "I can't" to "I can't yet" and write what you can concretely learn from it.</div>
             </li>
             <li>
               <div class="exercise-icon">📈</div>
-              <div><strong>Progressielijst</strong>Hou een maandelijkse lijst bij van drie dingen die je beter kunt dan vorige maand. Geen vergelijking met anderen, enkel met jezelf.</div>
+              <div><strong>Progress List</strong>Keep a monthly list of three things you can do better than last month. No comparison with others, only with yourself.</div>
             </li>
             <li>
               <div class="exercise-icon">💪</div>
-              <div><strong>Moeilijkste Moment</strong>Denk terug aan het moeilijkste moment van dit seizoen. Schrijf op wat je deed, wat je leerde en hoe je sterker bent geworden door het door te zetten.</div>
+              <div><strong>Hardest Moment</strong>Think back on the hardest moment of this season. Write down what you did, what you learned and how you became stronger by pushing through.</div>
             </li>
           </ul>
         </div>
@@ -665,39 +665,39 @@
     </section>
     <div class="month-divider"></div>
 
-    <!-- MAAND 7 -->
-    <section class="month-section premium-locked" id="maand-7">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+    <!-- MONTH 7 -->
+    <section class="month-section premium-locked" id="month-7">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>7</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>7</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Leiderschap van Binnenuit</h2>
+          <div class="theme-label">Theme</div>
+          <h2>Leadership from Within</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Leiderschap gaat niet over de aanvoerdersband. Je ontdekt dat elke speler op elk moment kan leiden door zijn of haar gedrag, houding en woorden. Informeel leiderschap is het krachtigste wat er bestaat in een team.</p>
+          <h3>What you learn</h3>
+          <p>Leadership is not about the captain's armband. You discover that every player can lead at every moment through their behaviour, attitude and words. Informal leadership is the most powerful thing in a team.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Côté en Gilbert (2009) onderscheiden drie soorten leiders in sport: formeel, informeel en emotioneel. Informele leiders, spelers zonder officiële rol maar met grote invloed op de teamcultuur, bepalen vaak meer dan de aanvoerder.</p>
+          <h3>Science</h3>
+          <p>Côté and Gilbert (2009) distinguish three types of leaders in sport: formal, informal and emotional. Informal leaders — players without an official role but with great influence on team culture — often determine more than the captain.</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">🔦</div>
-              <div><strong>Wie Volg Ik?</strong>Schrijf op welke drie teamgenoten jij het meest volgt in gedrag, zonder dat ze aanvoerder zijn. Wat doen ze? Wat maakt hen invloedrijk?</div>
+              <div><strong>Who Do I Follow?</strong>Write down which three teammates you follow most in behaviour — without them being captain. What do they do? What makes them influential?</div>
             </li>
             <li>
               <div class="exercise-icon">🗣️</div>
-              <div><strong>De Eerste Stem</strong>Oefen om tijdens teamvergaderingen of time outs als eerste iets positiefs of constructiefs te zeggen. Eén keer per week, één concrete suggestie.</div>
+              <div><strong>The First Voice</strong>Practise being the first to say something positive or constructive during team meetings or time-outs. Once a week, one concrete suggestion.</div>
             </li>
             <li>
               <div class="exercise-icon">🌱</div>
-              <div><strong>Mentor een Jongere Speler</strong>Kies één jongere speler of nieuwe teamgenoot. Besteed elke week 5 minuten om hen iets bij te brengen, technisch of mentaal.</div>
+              <div><strong>Mentor a Younger Player</strong>Choose one younger player or new teammate. Spend 5 minutes each week teaching them something — technical or mental.</div>
             </li>
           </ul>
         </div>
@@ -709,39 +709,39 @@
     </section>
     <div class="month-divider"></div>
 
-    <!-- MAAND 8 -->
-    <section class="month-section premium-locked" id="maand-8">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+    <!-- MONTH 8 -->
+    <section class="month-section premium-locked" id="month-8">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
       <div class="month-header">
-        <div class="month-number"><span>MAAND</span><strong>8</strong></div>
+        <div class="month-number"><span>MONTH</span><strong>8</strong></div>
         <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Nalatenschap &amp; Volgende Stap</h2>
+          <div class="theme-label">Theme</div>
+          <h2>Legacy &amp; Next Step</h2>
         </div>
       </div>
       <div class="month-body">
         <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Wat wil je achterlaten in dit team? Hoe wil je herinnerd worden als speler, als mens en als ploegmaat? Je sluit het seizoen af met reflectie, intenties voor de toekomst en een brief aan jezelf.</p>
+          <h3>What you learn</h3>
+          <p>What do you want to leave behind in this team? How do you want to be remembered as a player, as a person and as a teammate? You close the season with reflection, intentions for the future and a letter to yourself.</p>
         </div>
         <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Positieve psychologie (Seligman, 2011) beschrijft het belang van meaning, zingeving, als een van de vijf pijlers van welzijn. Atleten die bewust nadenken over hun impact en nalatenschap rapporteren hogere motivatie en minder burn out.</p>
+          <h3>Science</h3>
+          <p>Positive psychology (Seligman, 2011) describes the importance of meaning — a sense of purpose — as one of the five pillars of wellbeing. Athletes who consciously reflect on their impact and legacy report higher motivation and less burnout.</p>
         </div>
         <div class="card">
-          <h3>Oefeningen</h3>
+          <h3>Exercises</h3>
           <ul class="exercise-list">
             <li>
               <div class="exercise-icon">✉️</div>
-              <div><strong>Brief aan Mezelf</strong>Schrijf een brief aan jezelf van volgend seizoen. Wat hoop je te hebben geleerd? Welk type ploegmaat wil je zijn geworden? De brief wordt gesloten bewaard.</div>
+              <div><strong>Letter to Myself</strong>Write a letter to yourself for next season. What do you hope to have learned? What kind of teammate do you want to have become? The letter is kept sealed.</div>
             </li>
             <li>
               <div class="exercise-icon">🏆</div>
-              <div><strong>Mijn Bijdrage dit Seizoen</strong>Schrijf vijf concrete momenten op dit seizoen waarop jij iets hebt bijgedragen dat het team sterker maakte. Geen statistieken, enkel gedrag en karakter.</div>
+              <div><strong>My Contribution This Season</strong>Write down five concrete moments this season when you contributed something that made the team stronger. No statistics — only behaviour and character.</div>
             </li>
             <li>
               <div class="exercise-icon">🔮</div>
-              <div><strong>Drie Intenties</strong>Stel drie concrete intenties voor volgend seizoen op. Eén voor jezelf, één voor het team en één voor je coach. Maak ze specifiek en meetbaar in gedrag.</div>
+              <div><strong>Three Intentions</strong>Set three concrete intentions for next season. One for yourself, one for the team and one for your coach. Make them specific and measurable in behaviour.</div>
             </li>
           </ul>
         </div>
@@ -755,8 +755,8 @@
   </div>
 
   <footer>
-    <p><strong>Character First</strong> &mdash; Persoonlijke ontwikkeling voor sporters &mdash; characterfirstbb@gmail.com</p>
-    <p style="margin-top:0.5rem">Alle rechten voorbehouden &copy; 2025</p>
+    <p><strong>Character First</strong> &mdash; Personal development for athletes &mdash; characterfirstbb@gmail.com</p>
+    <p style="margin-top:0.5rem">All rights reserved &copy; 2025</p>
   </footer>
 
   <script>
