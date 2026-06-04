@@ -123,15 +123,27 @@
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../coach-maand.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="../index.html">Character <span>First</span></a>
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
   <div class="nav-links" id="nav-links">
-    <a href="../programma.html">Program</a>
-    <a href="../library.html">Library</a>
-    <a href="../planbuilder.html">Plan Builder</a>
+    <a href="program.html">Program</a>
+    <a href="library.html">Library</a>
+    <a href="planbuilder.html">Plan Builder</a>
     <a href="coach-program.html" class="active">Coach Development</a>
     <a href="../coach-maand.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
     <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
@@ -141,7 +153,7 @@
 
 <!-- PAGE HEADER -->
 <section id="page-header">
-  <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="coach-program.html">Coach Development</a> / Coach Month</div>
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="coach-program.html">Coach Development</a> / Coach Month</div>
   <h1>Coach Month &mdash; 8 Contact Sessions per Season</h1>
   <p>For coaches who want to grow but have little time. One powerful 90-minute session per month &mdash; practical, directly applicable, with immediate impact on your training.</p>
   <div class="page-nav">
@@ -433,10 +445,10 @@
     </div>
     <div class="footer-col">
       <h4>Program</h4>
-      <a href="../programma.html">Overview</a>
+      <a href="program.html">Overview</a>
       <a href="week.html">The Week</a>
       <a href="season.html">The Season</a>
-      <a href="../week-werkbladen.html">Week Worksheets</a>
+      <a href="week-worksheets.html">Week Worksheets</a>
     </div>
     <div class="footer-col">
       <h4>Coach Development</h4>
@@ -446,9 +458,9 @@
     </div>
     <div class="footer-col">
       <h4>Tools</h4>
-      <a href="../planbuilder.html">Plan Builder</a>
-      <a href="../werkbladen.html">Worksheets</a>
-      <a href="../library.html">Library</a>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="worksheets.html">Worksheets</a>
+      <a href="library.html">Library</a>
       <a href="mailto:info@characterfirst.be?subject=Character First">Contact</a>
     </div>
   </div>

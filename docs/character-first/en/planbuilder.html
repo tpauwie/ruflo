@@ -462,16 +462,28 @@
       .slot.locked { display: none; }
     }
   </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../planbuilder.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 
 <nav class="top-nav">
-  <a class="nav-logo" href="../index.html">Character <span>First</span></a>
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
   <div class="nav-links" id="nav-links">
-    <a href="../index.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="library.html">Library</a>
-    <a href="../season.html">The Season</a>
-    <a href="../week.html">The Week</a>
+    <a href="season.html">The Season</a>
+    <a href="week.html">The Week</a>
     <a href="planbuilder.html" class="active">Session Plan</a>
     <a href="../planbuilder.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
   </div>
@@ -551,12 +563,12 @@
 
 <footer>
   <nav>
-    <a href="../index.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="library.html">Library</a>
-    <a href="../oefeningen.html">Exercises</a>
-    <a href="../werkbladen.html">Worksheets</a>
-    <a href="../season.html">The Season</a>
-    <a href="../week.html">The Week</a>
+    <a href="exercises.html">Exercises</a>
+    <a href="worksheets.html">Worksheets</a>
+    <a href="season.html">The Season</a>
+    <a href="week.html">The Week</a>
   </nav>
   <p><strong>Character First</strong> — Character over performance</p>
 </footer>

@@ -213,6 +213,18 @@
       .page { box-shadow: none; border-radius: 0; margin: 0; padding: 28px 36px; min-height: auto; }
     }
   </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='en'){
+      window.location.replace('en/week-worksheets.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','en');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 

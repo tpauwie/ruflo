@@ -152,6 +152,18 @@
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../bestellen.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 
@@ -159,8 +171,8 @@
   <a class="nav-logo" href="index.html">Character <span>First</span></a>
   <div class="nav-links" id="nav-links">
     <a href="program.html">Program</a>
-    <a href="../library.html">Library</a>
-    <a href="../coach-programma.html">Coach Development</a>
+    <a href="library.html">Library</a>
+    <a href="coach-program.html">Coach Development</a>
     <a href="order.html" style="color:var(--orange);font-weight:700;">Order</a>
     <a href="../bestellen.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
     <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
@@ -482,14 +494,14 @@
     <div class="footer-col">
       <h4>Program</h4>
       <a href="program.html">Overview</a>
-      <a href="../week.html">The Week</a>
-      <a href="../season.html">The Season</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
     </div>
     <div class="footer-col">
       <h4>Coaches</h4>
-      <a href="../coach-programma.html">Coach Development</a>
-      <a href="../coach-jaar.html">Coach Year</a>
-      <a href="../coach-maand.html">Coach Month</a>
+      <a href="coach-program.html">Coach Development</a>
+      <a href="coach-year.html">Coach Year</a>
+      <a href="coach-month.html">Coach Month</a>
     </div>
     <div class="footer-col">
       <h4>Order</h4>

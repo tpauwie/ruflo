@@ -218,6 +218,18 @@
     .badge.type { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../oefeningen.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 <script>
@@ -225,7 +237,7 @@
     if(!localStorage.getItem('cf_access')){
       var o=document.createElement('div');
       o.style.cssText='position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
-      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="../toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
+      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="access.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
       document.body.prepend(o);
     }
   })();

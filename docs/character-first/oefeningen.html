@@ -218,6 +218,18 @@
     .badge.type { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='en'){
+      window.location.replace('en/exercises.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','en');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 <script>

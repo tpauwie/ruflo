@@ -158,6 +158,18 @@
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../index.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 
@@ -165,8 +177,8 @@
   <a class="nav-logo" href="index.html">Character <span>First</span></a>
   <div class="nav-links" id="nav-links">
     <a href="program.html">Program</a>
-    <a href="../library.html">Library</a>
-    <a href="../coach-programma.html">Coach Development</a>
+    <a href="library.html">Library</a>
+    <a href="coach-program.html">Coach Development</a>
     <a href="order.html" style="color:var(--orange);font-weight:700;">Order</a>
     <a href="#waitlist">Early access</a>
     <a href="../index.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
@@ -183,7 +195,7 @@
     <p>Character First is an evidence-based character development program for young athletes. We build people, not just performances.</p>
     <div class="hero-btns">
       <a href="program.html" class="btn-primary">Discover the program</a>
-      <a href="../library.html" class="btn-ghost">Exercises library</a>
+      <a href="library.html" class="btn-ghost">Exercises library</a>
     </div>
     <div class="hero-stats">
       <div><div class="stat-num">59</div><div class="stat-label">Fully developed exercises</div></div>
@@ -253,7 +265,7 @@
         <span class="explore-link">View programs</span>
       </div>
     </a>
-    <a class="explore-card" href="../library.html">
+    <a class="explore-card" href="library.html">
       <div class="explore-card-top">
         <div class="explore-icon">&#128218;</div>
         <h3>Exercises Library</h3>
@@ -264,7 +276,7 @@
         <span class="explore-link">Go to library</span>
       </div>
     </a>
-    <a class="explore-card" href="../werkbladen.html">
+    <a class="explore-card" href="worksheets.html">
       <div class="explore-card-top">
         <div class="explore-icon">&#128196;</div>
         <h3>Worksheets</h3>
@@ -275,7 +287,7 @@
         <span class="explore-link">View worksheets</span>
       </div>
     </a>
-    <a class="explore-card featured" href="../coach-programma.html">
+    <a class="explore-card featured" href="coach-program.html">
       <div class="explore-card-top">
         <div class="explore-icon">&#127947;</div>
         <h3>Coach Development</h3>
@@ -335,21 +347,21 @@
     <div class="footer-col">
       <h4>Program</h4>
       <a href="program.html">Overview</a>
-      <a href="../week.html">The Week</a>
-      <a href="../season.html">The Season</a>
-      <a href="../week-werkbladen.html">Week worksheets</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
+      <a href="week-worksheets.html">Week worksheets</a>
     </div>
     <div class="footer-col">
       <h4>Exercises</h4>
-      <a href="../library.html">Library</a>
-      <a href="../oefeningen.html">50 Exercises</a>
-      <a href="../mentale-weerbaarheid.html">Mental resilience</a>
-      <a href="../review-en-taaiheid.html">Physical toughness</a>
+      <a href="library.html">Library</a>
+      <a href="exercises.html">50 Exercises</a>
+      <a href="resilience.html">Mental resilience</a>
+      <a href="review-toughness.html">Physical toughness</a>
     </div>
     <div class="footer-col">
       <h4>Tools</h4>
-      <a href="../planbuilder.html">Plan Builder</a>
-      <a href="../werkbladen.html">Worksheets</a>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="worksheets.html">Worksheets</a>
       <a href="program.html#science">Science</a>
       <a href="mailto:info@characterfirst.be?subject=Character First">Contact</a>
     </div>

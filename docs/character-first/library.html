@@ -225,6 +225,18 @@
   .premium-banner a { color: var(--orange); font-weight: 600; text-decoration: none; }
   .premium-banner a:hover { text-decoration: underline; }
 </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='en'){
+      window.location.replace('en/library.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','en');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 

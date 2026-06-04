@@ -358,6 +358,18 @@
 
     footer strong { color: var(--orange); }
   </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../season.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
 </head>
 <body>
 <script>
@@ -365,7 +377,7 @@
     if(!localStorage.getItem('cf_access')){
       var o=document.createElement('div');
       o.style.cssText='position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
-      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="../toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="../index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
+      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="access.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
       document.body.prepend(o);
     }
   })();
@@ -373,13 +385,13 @@
 
 
   <nav>
-    <a class="nav-logo" href="../index.html">Character <span>First</span></a>
+    <a class="nav-logo" href="index.html">Character <span>First</span></a>
     <div style="display:flex;gap:1.5rem;align-items:center">
-      <a href="../index.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Home</a>
-      <a href="../library.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Library</a>
+      <a href="index.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Home</a>
+      <a href="library.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Library</a>
       <a href="season.html" style="color:#f05a28;text-decoration:none;font-size:0.85rem;font-weight:600">The Season</a>
       <a href="week.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">The Week</a>
-      <a href="../planbuilder.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Session Plan</a>
+      <a href="planbuilder.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Session Plan</a>
       <a href="../season.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #555;padding:.3rem .7rem;border-radius:4px;">NL</a>
     </div>
   </nav>
