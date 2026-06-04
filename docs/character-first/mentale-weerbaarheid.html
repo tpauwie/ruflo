@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — Mentale Weerbaarheid</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --orange: #f05a28;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --light-orange: #fff3ef;
+    --border: #e0e0e0;
+    --green: #1a7a4a;
+    --blue: #1a4a8a;
+    --purple: #5a1a8a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--black); }
+
+  /* NAV */
+  .top-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 28px 48px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .logo { width: 52px; height: 52px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; flex-shrink: 0; }
+  .top-header h1 { font-size: 26px; font-weight: 800; }
+  .top-header p { font-size: 13px; opacity: .7; margin-top: 4px; }
+
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 0 48px;
+    display: flex; gap: 0; overflow-x: auto;
+  }
+  .sticky-nav a {
+    padding: 14px 18px; font-size: 13px; font-weight: 600; color: #666;
+    text-decoration: none; border-bottom: 3px solid transparent; white-space: nowrap;
+  }
+  .sticky-nav a.active, .sticky-nav a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+  /* EXERCISE BLOCK */
+  .exercise-block {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .ex-hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .ex-num {
+    width: 60px; height: 60px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; flex-shrink: 0;
+  }
+  .ex-hero h2 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .ex-hero .subtitle { font-size: 14px; opacity: .7; }
+  .ex-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .tag {
+    padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;
+    border: 1px solid rgba(255,255,255,.3); color: var(--white);
+  }
+  .tag.orange { background: var(--orange); border-color: var(--orange); }
+
+  .ex-body { padding: 0; }
+
+  /* TWO-COL LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .col-mod { border-right: 1px solid var(--border); padding: 32px 36px; }
+  .col-ws { padding: 32px 36px; background: #fafafa; }
+
+  .col-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    color: #888; margin-bottom: 20px;
+  }
+  .col-label .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-mod { background: var(--orange); }
+  .dot-ws { background: var(--black); }
+
+  h3.section-title {
+    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--black);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3.section-title::before {
+    content: ''; display: block; width: 4px; height: 18px;
+    background: var(--orange); border-radius: 2px;
+  }
+
+  .info-box {
+    background: var(--light-orange);
+    border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13px; line-height: 1.7;
+  }
+  .info-box strong { color: var(--orange); }
+
+  .step-list { list-style: none; padding: 0; margin-bottom: 16px; }
+  .step-list li {
+    display: flex; gap: 12px;
+    font-size: 13px; line-height: 1.7; margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: var(--orange); color: var(--white);
+    border-radius: 50%; font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+
+  .timing-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
+  .timing-table th { background: var(--black); color: var(--white); padding: 7px 12px; text-align: left; }
+  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--border); }
+  .timing-table tr:last-child td { border-bottom: none; }
+  .timing-table tr:nth-child(even) td { background: #f8f8f8; }
+
+  .tips-box {
+    background: #f0faf5;
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+  .tips-box strong { color: var(--green); }
+
+  .warn-box {
+    background: #fff8f0;
+    border-left: 4px solid #e07820;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+
+  /* LITERATURE */
+  .lit-section {
+    padding: 24px 36px;
+    border-top: 1px solid var(--border);
+    background: #f9f9f9;
+  }
+  .lit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .lit-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .lit-item .tier {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 10px;
+    font-size: 10px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .tier-sr { background: #d4edda; color: #1a7a4a; }
+  .tier-rct { background: #d0e4f7; color: #1a4a8a; }
+  .tier-qual { background: #e8d5f5; color: #5a1a8a; }
+  .lit-item .ref { font-style: italic; color: #555; margin-top: 4px; font-size: 11px; }
+
+  .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .yt-item {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+  .yt-item .yt-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .yt-item .yt-desc { opacity: .7; font-size: 11px; margin-bottom: 6px; }
+  .yt-item .yt-search {
+    font-size: 11px;
+    background: var(--orange);
+    padding: 3px 8px; border-radius: 4px;
+    display: inline-block; margin-top: 4px;
+  }
+
+  /* WORKSHEET */
+  .ws-intro {
+    font-size: 13px; color: #555; margin-bottom: 16px; font-style: italic;
+    border-bottom: 1px dashed var(--border); padding-bottom: 12px;
+  }
+  .ws-field-label {
+    font-size: 12px; font-weight: 700; color: var(--black);
+    margin-bottom: 4px; margin-top: 12px;
+  }
+  .ws-lines { margin-bottom: 12px; }
+  .ws-line {
+    border-bottom: 1px solid #ccc;
+    height: 28px; margin-bottom: 4px;
+    border-radius: 0;
+  }
+  .ws-box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-height: 60px;
+    margin-bottom: 12px;
+    padding: 6px;
+    background: var(--white);
+  }
+  .ws-quote {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .ws-quote .quote-text { font-size: 15px; font-style: italic; font-weight: 300; margin-bottom: 4px; }
+  .ws-quote .quote-src { font-size: 11px; opacity: .6; }
+
+  .scale-row {
+    display: flex; gap: 0; margin: 8px 0 16px;
+    border: 1px solid #ccc; border-radius: 6px; overflow: hidden;
+  }
+  .scale-cell {
+    flex: 1; text-align: center; padding: 10px 4px;
+    font-size: 12px; font-weight: 600; border-right: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .scale-cell:last-child { border-right: none; }
+  .scale-cell.lo { background: #e8f5e9; }
+  .scale-cell.hi { background: #fdecea; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; line-height: 1.6; margin-bottom: 8px;
+  }
+  .checkbox {
+    width: 18px; height: 18px; border: 2px solid #ccc; border-radius: 3px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .commit-box {
+    background: var(--light-orange);
+    border: 2px solid var(--orange);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+  .commit-box .commit-label { font-size: 11px; font-weight: 800; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
+  .commit-box .ws-line { border-bottom: 1px solid var(--orange); }
+
+  /* PRINT */
+  @media print {
+    .top-header, .sticky-nav { display: none; }
+    body { background: white; }
+    .page-body { padding: 0; max-width: 100%; }
+    .exercise-block { page-break-after: always; border: none; border-radius: 0; }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr 1fr; }
+    .ex-hero { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box, .tips-box, .warn-box, .commit-box, .ws-quote { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yt-item { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  @media (max-width: 800px) {
+    .two-col { grid-template-columns: 1fr; }
+    .col-mod { border-right: none; border-bottom: 1px solid var(--border); }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr; }
+    .ex-hero { grid-template-columns: auto 1fr; }
+    .ex-tags { grid-column: 1 / -1; justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="logo">CF</div>
+  <div>
+    <h1>Character First — Mentale Weerbaarheid</h1>
+    <p>5 volledig uitgewerkte oefeningen · moderatorhandleiding + werkblad · literatuur + YouTube</p>
+  </div>
+</header>
+
+<nav class="sticky-nav">
+  <a href="#oe1" class="active">1. Flu Game Mentaliteit</a>
+  <a href="#oe2">2. Gedachten Herkaderen</a>
+  <a href="#oe3">3. Adversity Ladder</a>
+  <a href="#oe4">4. Pre-Performance Ritueel</a>
+  <a href="#oe5">5. Groei na Mislukking</a>
+</nav>
+
+<div class="page-body">
+
+<!-- ===== OEFENING 1 ===== -->
+<div class="exercise-block" id="oe1">
+  <div class="ex-hero">
+    <div class="ex-num">01</div>
+    <div>
+      <h2>De Flu Game Mentaliteit</h2>
+      <div class="subtitle">Wat doe jij als alles tegen je werkt? Ontdek je eigen grens en overstijg hem.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Groep</span>
+      <span class="tag">Weerbaarheid</span>
+      <span class="tag">Identiteit</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- MODERATOR -->
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Context voor de moderator:</strong> Op 11 juni 1997 speelde Michael Jordan Game 5 van de NBA Finals met een temperatuur van 39 graden en zware voedselvergiftiging. Hij scoorde 38 punten. Dit moment staat bekend als de "Flu Game" en wordt gezien als het ultieme voorbeeld van mentale weerbaarheid. Gebruik dit als startpunt voor een diep gesprek over wat spelers doen als alles tegen zit.
+      </div>
+
+      <h3 class="section-title">Voorbereiding</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Toon de YouTube video (zie onderaan) als opening, of vertel het verhaal van de Flu Game in 2 minuten. Zorg voor sfeer: doe het licht iets lager als dat kan, spreek traag.</li>
+        <li><span class="step-num">2</span>Stel de openingsvraag mondeling voordat je werkbladen uitdeelt: "Wanneer was de laatste keer dat jij doorging terwijl alles in je riep om te stoppen?"</li>
+        <li><span class="step-num">3</span>Laat 30 seconden stilte na die vraag. Laat ze nadenken.</li>
+      </ul>
+
+      <h3 class="section-title">Begeleiding stap voor stap</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Deel 1 — Individueel (4 min):</strong> Spelers vullen deel A van het werkblad in. Herinner hen: het hoeft geen groot moment te zijn. Ook een moeilijke training telt.</li>
+        <li><span class="step-num">2</span><strong>Deel 2 — Duo (4 min):</strong> Spelers delen hun moment met een partner. Vraag hen specifiek: "Wat deed je op dat moment van binnenuit?" Niet wat je deed op het veld, maar wat je dacht of voelde.</li>
+        <li><span class="step-num">3</span><strong>Deel 3 — Plenair (4 min):</strong> Wie wil, deelt zijn moment. Coach koppelt elk moment terug aan de wetenschappelijke term: "Wat jij beschrijft heet mentale weerbaarheid. Het is een keuze."</li>
+        <li><span class="step-num">4</span><strong>Afronding:</strong> Spelers schrijven hun persoonlijke "Flu Game zin" op het werkblad: de zin die ze zichzelf zeggen als het moeilijk wordt.</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Fase</th><th>Duur</th></tr>
+        <tr><td>Video / verhaal</td><td>2 min</td></tr>
+        <tr><td>Individueel invullen</td><td>4 min</td></tr>
+        <tr><td>Duo-gesprek</td><td>4 min</td></tr>
+        <tr><td>Plenaire ronde</td><td>4 min</td></tr>
+        <tr><td>Afsluiting + zin schrijven</td><td>2 min</td></tr>
+        <tr><td><strong>Totaal</strong></td><td><strong>16 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tips voor de moderator:</strong><br>
+        Sta toe dat er emotie komt. Als een speler iets deelt dat hem/haar raakt, houd de stilte vast. Zeg niets direct. Knik. Geef de ruimte. Richt je na een emotioneel moment niet op de volgende vraag maar zeg: "Dank je voor het delen." Ga pas daarna verder.
+      </div>
+
+      <div class="warn-box">
+        <strong>Let op:</strong> Sommige spelers hebben geen groot "doorzet-moment". Laat hen dan schrijven over een moment dat klein leek maar toch moeilijk was. Devalueer geen enkel moment.
+      </div>
+    </div>
+
+    <!-- WERKBLAD -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Werkblad Deelnemer</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"I knew I had a chance to win, and I wasn't going to let my body stop me."</div>
+        <div class="quote-src">Michael Jordan — na de Flu Game, NBA Finals 1997</div>
+      </div>
+
+      <p class="ws-intro">Mentale weerbaarheid is geen talent. Het is een keuze die je maakt op het moment dat alles in je wil stoppen. Vandaag ontdek jij jouw eigen Flu Game moment.</p>
+
+      <div class="ws-field-label">DEEL A — Jouw Flu Game moment</div>
+      <div class="ws-field-label" style="font-weight:400; font-size:12px; color:#666;">Beschrijf een moment in de sport waarbij je doorging terwijl het moeilijk was.</div>
+      <div class="ws-box" style="min-height:80px;"></div>
+
+      <div class="ws-field-label">Wat maakte dat moment zo moeilijk?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Wat zei jij innerlijk tegen jezelf op dat moment?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Hoe voelde je je erna?</div>
+      <div class="ws-lines"><div class="ws-line"></div></div>
+
+      <div class="ws-field-label" style="margin-top:16px;">DEEL B — Jouw Flu Game schaal</div>
+      <div class="ws-field-label" style="font-weight:400; font-size:12px; color:#666;">Hoe moeilijk was dit moment voor jou? (omcirkel)</div>
+      <div class="scale-row">
+        <div class="scale-cell lo">1</div>
+        <div class="scale-cell lo">2</div>
+        <div class="scale-cell lo">3</div>
+        <div class="scale-cell">4</div>
+        <div class="scale-cell">5</div>
+        <div class="scale-cell">6</div>
+        <div class="scale-cell">7</div>
+        <div class="scale-cell hi">8</div>
+        <div class="scale-cell hi">9</div>
+        <div class="scale-cell hi">10</div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn Flu Game Zin</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">Schrijf de zin die jij jezelf zegt wanneer het moeilijk wordt. Eén krachtige zin. Bewaar hem.</div>
+        <div class="ws-line" style="border-bottom-color: var(--orange);"></div>
+        <div class="ws-line" style="border-bottom-color: var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LITERATUUR + YOUTUBE -->
+  <div class="lit-section">
+    <h3 class="section-title">Wetenschappelijke Onderbouwing</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematische Review</div>
+        <strong>Mental Toughness in Sport: A Meta-Analysis</strong>
+        <div>Gucciardi et al. (2015) analyseerden 91 studies over mentale weerbaarheid bij topsporters. Conclusie: mentale weerbaarheid is deels aangeboren maar voor 60 tot 70% trainbaar via gerichte interventie.</div>
+        <div class="ref">Gucciardi, D.F., Hanton, S., Gordon, S. (2015). Journal of Sport and Exercise Psychology, 37(6).</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Longitudinaal</div>
+        <strong>Psychological Hardiness and Athletic Performance</strong>
+        <div>Maddi & Hess (1992) toonden aan dat sporters met hoge "hardiness" (toewijding, controle, uitdaging) significant beter presteerden onder druk dan sporters met lage hardiness. Het vermogen om moeilijkheden als uitdaging te zien is centraal.</div>
+        <div class="ref">Maddi, S.R., Hess, M.J. (1992). International Journal of Sport Psychology, 23(4), 360-368.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">RCT Studie</div>
+        <strong>Growth Mindset Interventions in Athletes</strong>
+        <div>Dweck & Leggett (1988) toonden aan dat atleten met een groeimindset (intelligence and ability are malleable) 40% vaker doorzetten na een mislukking dan atleten met een fixed mindset. Taal en self-talk spelen een cruciale rol.</div>
+        <div class="ref">Dweck, C.S., Leggett, E.L. (1988). Psychological Review, 95(2), 256-273.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-qual">Kwalitatief</div>
+        <strong>Elite Athletes on Perseverance</strong>
+        <div>Weinberg et al. (2011) interviewden 16 olympische atleten over hun meest uitdagende momenten. Gemeenschappelijke factor: ze hadden allemaal een vooraf geformuleerde mentale cue (woord of zin) die ze gebruikten op moeilijke momenten.</div>
+        <div class="ref">Weinberg, R., Butt, J., Culp, B. (2011). International Journal of Sport and Exercise Psychology, 9(3).</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiratie</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Michael Jordan's Flu Game — Full Highlights</div>
+        <div class="yt-desc">Game 5, NBA Finals 1997. Utah Jazz. Jordan speelt met hoge koorts en scoort 38 punten inclusief de beslissende driepunter. Het meest geciteerde moment van mentale weerbaarheid in de sportgeschiedenis.</div>
+        <span class="yt-search">Zoek: "Michael Jordan Flu Game full highlights 1997"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Kobe Bryant — The Mamba Mentality Explained</div>
+        <div class="yt-desc">Kobe legt in zijn eigen woorden uit wat de Mamba Mentality inhoudt: voorbereiding, obsessie, en het vermogen om bij elke tegenslag opnieuw te beginnen. Ideaal als aanvulling op de Flu Game discussie.</div>
+        <span class="yt-search">Zoek: "Kobe Bryant Mamba Mentality explanation interview"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 2 ===== -->
+<div class="exercise-block" id="oe2">
+  <div class="ex-hero">
+    <div class="ex-num">02</div>
+    <div>
+      <h2>Gedachten Herkaderen</h2>
+      <div class="subtitle">Leer negatieve gedachten omzetten in constructieve brandstof — zonder ze te ontkennen.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individueel</span>
+      <span class="tag">Cognitief</span>
+      <span class="tag">Zelfgesprek</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Kernprincipe:</strong> Cognitieve herstructurering is een techniek uit de cognitieve gedragstherapie (CBT) die ook intensief gebruikt wordt in sportpsychologie. Het gaat er niet om negatieve gedachten te ontkennen of weg te wuiven, maar om ze bewust te herinterpreteren. Het doel is dat spelers leren hun interne stem als coach te gebruiken in plaats van als criticus.
+      </div>
+
+      <h3 class="section-title">Opening — Activatie (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Vraag de groep: "Wie heeft ooit tijdens een wedstrijd de gedachte gehad: ik kan dit niet?" Handen omhoog. "En wie heeft daarna toch iets gepresteerd?" Kijk de groep aan. "Dan heb jij al aan cognitieve herstructurering gedaan. Vandaag leer je hoe je dat bewust doet."</li>
+      </ul>
+
+      <h3 class="section-title">Uitleg model ABC (3 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Schrijf op het bord of noem mondeling: A = Activerende situatie, B = Gedachte (Belief), C = Gevolg (gedrag/gevoel).</li>
+        <li><span class="step-num">2</span>Geef een voorbeeld: "A: ik mis een vrije worp. B: ik kan dit niet. C: ik verlies focus voor de rest van het spel." Vraag: "Wat als B anders was? Stel B was: 'Volgende kans.' Dan is C anders."</li>
+        <li><span class="step-num">3</span>Benadruk: "Jij kiest B niet altijd bewust. Maar je kunt leren om hem te veranderen."</li>
+      </ul>
+
+      <h3 class="section-title">Oefening (8 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Stap 1 (2 min):</strong> Spelers schrijven 3 negatieve gedachten die ze regelmatig hebben in de sport. Echt, geen gecorrigeerde versie.</li>
+        <li><span class="step-num">2</span><strong>Stap 2 (3 min):</strong> Per gedachte: schrijf de herkaderingsversie. Gebruik de vraag: "Wat zou een goede coach tegen mij zeggen op dit moment?"</li>
+        <li><span class="step-num">3</span><strong>Stap 3 (3 min):</strong> Duo: lees je negatieve gedachten voor. Partner formuleert een alternatieve gedachte. Bespreek: welke alternatief voelt het meest geloofwaardig?</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Fase</th><th>Duur</th></tr>
+        <tr><td>Opening + vraag</td><td>2 min</td></tr>
+        <tr><td>Uitleg ABC model</td><td>3 min</td></tr>
+        <tr><td>Individueel schrijven</td><td>2 min</td></tr>
+        <tr><td>Herkaderen</td><td>3 min</td></tr>
+        <tr><td>Duo-uitwisseling</td><td>3 min</td></tr>
+        <tr><td>Plenaire afsluiting</td><td>2 min</td></tr>
+        <tr><td><strong>Totaal</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Benadruk steeds dat het alternatief geloofwaardig moet zijn. "Ik ben de beste" werkt niet als niemand dat gelooft. "Ik heb dit al eerder gedaan" werkt wel. Geloofwaardigheid is de sleutel.
+      </div>
+
+      <div class="warn-box">
+        <strong>Let op:</strong> Vermijd positieve platitudes ("Gewoon positief denken!"). Cognitieve herstructurering is genuanceerder: de nieuwe gedachte moet realistisch en persoonlijk zijn, niet algemeen positief.
+      </div>
+    </div>
+
+    <!-- WERKBLAD -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Werkblad Deelnemer</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"You have power over your mind, not outside events. Realize this, and you will find strength."</div>
+        <div class="quote-src">Marcus Aurelius — Meditations</div>
+      </div>
+
+      <p class="ws-intro">Jouw gedachten bepalen hoe jij reageert. Niet de situatie. Vandaag leer je je interne stem te trainen als coach, niet als criticus.</p>
+
+      <div class="ws-field-label">HET ABC MODEL</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:16px;">
+        <div style="background:#f0f0f0; border-radius:6px; padding:10px; font-size:12px; text-align:center;"><strong>A</strong><br><span style="color:#888;">Situatie</span></div>
+        <div style="background:var(--light-orange); border:1px solid var(--orange); border-radius:6px; padding:10px; font-size:12px; text-align:center;"><strong>B</strong><br><span style="color:var(--orange);">Gedachte</span></div>
+        <div style="background:#f0f0f0; border-radius:6px; padding:10px; font-size:12px; text-align:center;"><strong>C</strong><br><span style="color:#888;">Gevolg</span></div>
+      </div>
+
+      <div class="ws-field-label">Mijn 3 negatieve sportgedachten</div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px; color:#888; margin-bottom:4px;">Gedachte 1 (eerlijk, niet gecorrigeerd):</div>
+        <div class="ws-line"></div>
+        <div style="font-size:12px; color:var(--orange); margin: 6px 0 4px;">Herkaderd (wat zou een goede coach zeggen?):</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px; color:#888; margin-bottom:4px;">Gedachte 2:</div>
+        <div class="ws-line"></div>
+        <div style="font-size:12px; color:var(--orange); margin: 6px 0 4px;">Herkaderd:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:12px; color:#888; margin-bottom:4px;">Gedachte 3:</div>
+        <div class="ws-line"></div>
+        <div style="font-size:12px; color:var(--orange); margin: 6px 0 4px;">Herkaderd:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+
+      <div class="ws-field-label">Welke herkaderde gedachte voelt het meest geloofwaardig?</div>
+      <div class="ws-lines"><div class="ws-line"></div></div>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn ABC voor de volgende wedstrijd</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">Schrijf alvast je meest waarschijnlijke negatieve gedachte op en jouw bewuste alternatief.</div>
+        <div style="font-size:12px; margin-bottom:4px;">Als ik denk: "<span style="display:inline-block; min-width:160px; border-bottom:1px solid var(--orange);">&nbsp;</span>"</div>
+        <div style="font-size:12px; margin-top:8px;">Dan zeg ik in plaats daarvan: "<span style="display:inline-block; min-width:140px; border-bottom:1px solid var(--orange);">&nbsp;</span>"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Wetenschappelijke Onderbouwing</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematische Review</div>
+        <strong>Cognitive Behavioral Interventions in Sport</strong>
+        <div>Tod et al. (2011) reviewden 47 studies over zelf-gesprek (self-talk) interventies bij sporters. Positief instructief zelfgesprek verbeterde technische prestaties met gemiddeld 18% en motivationeel zelfgesprek verhoogde uithoudingsprestaties aanzienlijk.</div>
+        <div class="ref">Tod, D., Hardy, J., Oliver, E. (2011). Journal of Sport &amp; Exercise Psychology, 33(5), 666-687.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">RCT</div>
+        <strong>Self-Talk and Athletic Performance Under Pressure</strong>
+        <div>Hatzigeorgiadis et al. (2009) toonden in een gecontroleerd experiment aan dat sporters die zelfgesprek-training kregen 17% beter presteerden onder hoge druk dan de controlegroep. Effect was het sterkst bij technische taken.</div>
+        <div class="ref">Hatzigeorgiadis, A. et al. (2009). Perspectives on Psychological Science, 6(4), 348-356.</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiratie</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Novak Djokovic — The Power of Mind Over Body</div>
+        <div class="yt-desc">Djokovic beschrijft hoe hij zijn mentale zelfgesprek transformeerde van "ik kan dit niet" naar "ik kies dit". Hij spreekt specifiek over cognitieve herstructurering hoewel hij die term niet gebruikt.</div>
+        <span class="yt-search">Zoek: "Novak Djokovic mental strength self talk interview"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Simone Biles — Coming Back After Tokyo</div>
+        <div class="yt-desc">Biles praat openhartig over hoe ze haar negatieve gedachten en twijfels na de Olympische Spelen omzette in kracht voor haar comeback. Een krachtig voorbeeld van reframing in de echte wereld.</div>
+        <span class="yt-search">Zoek: "Simone Biles comeback mental health interview 2023"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 3 ===== -->
+<div class="exercise-block" id="oe3">
+  <div class="ex-hero">
+    <div class="ex-num">03</div>
+    <div>
+      <h2>De Adversity Ladder</h2>
+      <div class="subtitle">Elke tegenslag is een sport. Leer de regels. Word er beter in.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individueel + Groep</span>
+      <span class="tag">Veerkracht</span>
+      <span class="tag">Groeimindset</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Concept:</strong> Het Adversity Quotient (AQ) van Paul Stoltz beschrijft hoe mensen omgaan met tegenslagen. Sporters met hoog AQ zien moeilijkheden als tijdelijk, beheersbaar en specifiek. Sporters met laag AQ zien ze als permanent, oncontroleerbaar en globaal. In deze oefening bouwen spelers letterlijk een "ladder" van hun eigen tegenslagen en leren ze de patronen herkennen.
+      </div>
+
+      <h3 class="section-title">Opening (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Vraag: "Wie heeft er dit seizoen iets tegengezeten?" Handen omhoog. "Wie heeft er van die tegenslag iets geleerd?" Minder handen. "Precies. Dat verschil is het verschil tussen een sporter die groeit en een sporter die stilvalt."</li>
+        <li><span class="step-num">2</span>Leg het AQ concept kort uit: tegenslagen zijn onvermijdelijk. De vraag is niet of ze komen, maar hoe jij klimt.</li>
+      </ul>
+
+      <h3 class="section-title">De Adversity Ladder bouwen (8 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Stap 1 (3 min):</strong> Spelers schrijven 3 tegenslagen uit hun sportloopbaan op. Per tegenslag: wat was het, hoe zwaar (1-10), en hoe reageerden ze (vluchten, bevriezen, of doorgaan)?</li>
+        <li><span class="step-num">2</span><strong>Stap 2 (3 min):</strong> Per tegenslag: schrijf wat je leerde. Forceer geen positieve les als die er niet is. Maar zoek nauwkeurig: was er iets, hoe klein ook, dat je sterker maakte?</li>
+        <li><span class="step-num">3</span><strong>Stap 3 (2 min):</strong> Verbind de drie tegenslagen met een lijn. Dit is jouw adversity ladder: elke trede was een stap omhoog.</li>
+      </ul>
+
+      <h3 class="section-title">Groepsgesprek (5 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Vrijwilligers delen hun zwaarste tegenslag EN de les die ze leerden.</li>
+        <li><span class="step-num">2</span>Coach koppelt terug: "Jullie staan hier vandaag. Dat betekent jullie hebben elke tegenslag overleefd. 100% slagingspercentage."</li>
+        <li><span class="step-num">3</span>Stel de sleutelzin: "De volgende keer dat er iets moeilijks komt: wat ga jij bewust anders doen?"</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Fase</th><th>Duur</th></tr>
+        <tr><td>Opening + AQ uitleg</td><td>2 min</td></tr>
+        <tr><td>Tegenslagen schrijven</td><td>3 min</td></tr>
+        <tr><td>Lessen formuleren</td><td>3 min</td></tr>
+        <tr><td>Ladder visualiseren</td><td>2 min</td></tr>
+        <tr><td>Groepsgesprek</td><td>5 min</td></tr>
+        <tr><td><strong>Totaal</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Ga niet op zoek naar "het grote moment". Jonge sporters hebben soms het gevoel dat hun tegenslag niet groot genoeg is. Zeg expliciet: "Elke tegenslag telt. Klein of groot." Een blessure van 2 weken kan voor een 15-jarige net zo ingrijpend zijn als een jaar revalidatie voor een professional.
+      </div>
+    </div>
+
+    <!-- WERKBLAD -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Werkblad Deelnemer</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"I've missed more than 9,000 shots in my career. I've lost almost 300 games. Twenty-six times I've been trusted to take the game-winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed."</div>
+        <div class="quote-src">Michael Jordan</div>
+      </div>
+
+      <p class="ws-intro">Elke tegenslag die je overleefde maakte jou sterker. Vandaag breng je jouw adversity ladder in kaart.</p>
+
+      <div class="ws-field-label">MIJN ADVERSITY LADDER</div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+        <!-- Trede 1 -->
+        <div style="background:#f8f8f8; border:1px solid var(--border); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">TREDE 1</div>
+          <div style="font-size:12px; margin-bottom:4px;">Tegenslag:</div>
+          <div class="ws-line"></div>
+          <div style="display:flex; gap:8px; align-items:center; margin: 8px 0 4px;">
+            <div style="font-size:12px;">Zwaarheid (1-10):</div>
+            <div style="border:1px solid #ccc; border-radius:4px; width:36px; height:24px;"></div>
+            <div style="font-size:12px;">Reactie:</div>
+            <div style="border:1px solid #ccc; border-radius:4px; flex:1; height:24px;"></div>
+          </div>
+          <div style="font-size:12px; color:var(--orange); margin-bottom:4px;">Wat leerde ik hiervan:</div>
+          <div class="ws-line"></div>
+        </div>
+        <!-- Trede 2 -->
+        <div style="background:#f8f8f8; border:1px solid var(--border); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">TREDE 2</div>
+          <div style="font-size:12px; margin-bottom:4px;">Tegenslag:</div>
+          <div class="ws-line"></div>
+          <div style="display:flex; gap:8px; align-items:center; margin: 8px 0 4px;">
+            <div style="font-size:12px;">Zwaarheid (1-10):</div>
+            <div style="border:1px solid #ccc; border-radius:4px; width:36px; height:24px;"></div>
+            <div style="font-size:12px;">Reactie:</div>
+            <div style="border:1px solid #ccc; border-radius:4px; flex:1; height:24px;"></div>
+          </div>
+          <div style="font-size:12px; color:var(--orange); margin-bottom:4px;">Wat leerde ik hiervan:</div>
+          <div class="ws-line"></div>
+        </div>
+        <!-- Trede 3 -->
+        <div style="background:#f8f8f8; border:1px solid var(--border); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">TREDE 3</div>
+          <div style="font-size:12px; margin-bottom:4px;">Tegenslag:</div>
+          <div class="ws-line"></div>
+          <div style="display:flex; gap:8px; align-items:center; margin: 8px 0 4px;">
+            <div style="font-size:12px;">Zwaarheid (1-10):</div>
+            <div style="border:1px solid #ccc; border-radius:4px; width:36px; height:24px;"></div>
+            <div style="font-size:12px;">Reactie:</div>
+            <div style="border:1px solid #ccc; border-radius:4px; flex:1; height:24px;"></div>
+          </div>
+          <div style="font-size:12px; color:var(--orange); margin-bottom:4px;">Wat leerde ik hiervan:</div>
+          <div class="ws-line"></div>
+        </div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn patroon</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">Wat zie ik als ik kijk naar mijn drie tegenslagen?</div>
+        <div class="ws-box" style="min-height:50px;"></div>
+        <div style="font-size:12px; margin-top:8px;">De volgende tegenslag ga ik bewust:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Wetenschappelijke Onderbouwing</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematische Review</div>
+        <strong>Resilience in Sport: A Meta-Analytic Review</strong>
+        <div>Fletcher &amp; Sarkar (2012) reviewden 90 studies over veerkracht bij sporters. Sleutelfactoren: positieve persoonlijkheid, motivatie, vertrouwen, focus en waargenomen sociale steun. Veerkracht was significant geassocieerd met betere prestaties onder druk.</div>
+        <div class="ref">Fletcher, D., Sarkar, M. (2012). Psychology of Sport and Exercise, 13(5), 669-678.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Longitudinaal</div>
+        <strong>Adversity Quotient and Elite Athletic Development</strong>
+        <div>Stoltz (1997) introduceerde het AQ-concept en toonde in longitudinaal onderzoek over 8 jaar aan dat AQ een sterkere voorspeller was van carrieresucces bij sporters dan IQ of technische vaardigheid.</div>
+        <div class="ref">Stoltz, P.G. (1997). Adversity Quotient: Turning Obstacles into Opportunities. Wiley.</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiratie</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Nick Vujicic — No Arms, No Legs, No Limits</div>
+        <div class="yt-desc">Nick, geboren zonder armen en benen, spreekt over hoe hij leerde opkomen na het vallen. Zijn boodschap over adversity transcendeert sport maar raakt jonge sporters altijd diep. Gebruik als openingsclip voor discussie over limieten die in het hoofd zitten.</div>
+        <span class="yt-search">Zoek: "Nick Vujicic motivational speech no arms no legs"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">LeBron James — The Comeback from 3-1</div>
+        <div class="yt-desc">De 2016 NBA Finals: Cleveland Cavaliers komen terug van een 3-1 achterstand. LeBron vertelt achteraf over zijn mentale proces: "We just decided we weren't going to lose." Een perfecte illustratie van het adversity quotient in actie.</div>
+        <span class="yt-search">Zoek: "LeBron James 2016 Finals comeback mentality interview"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 4 ===== -->
+<div class="exercise-block" id="oe4">
+  <div class="ex-hero">
+    <div class="ex-num">04</div>
+    <div>
+      <h2>Pre-Performance Ritueel</h2>
+      <div class="subtitle">Bouw een mentale routine die jou elke keer terugbrengt naar je beste versie.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individueel</span>
+      <span class="tag">Routine</span>
+      <span class="tag">Focus</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Kernprincipe:</strong> Onderzoek toont aan dat pre-performance routines (PPR) angst verminderen, concentratie verhogen en het automatisme van bewegingen beschermen. Nadal's rituelen (tangens, haarspleet, water), Ronaldo's specifieke sprongstijl voor doelpunten, Federer's rustige warming-up: dit zijn geen bijgeloof maar geconditioneerde mentale triggers. In deze oefening bouwen spelers hun eigen PPR.
+      </div>
+
+      <h3 class="section-title">Opening (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Vraag: "Wie heeft een ritueel voor een wedstrijd?" Laat het beschrijven. Vraag: "Waarom doe je dat?" Veelal: "Dat geeft me rust / focus / gevoel van klaar zijn."</li>
+        <li><span class="step-num">2</span>Leg uit: "Dat ritueel is geen toeval. Jouw brein verbindt die handeling met een mentale staat. Vandaag bouwen we dat bewust."</li>
+      </ul>
+
+      <h3 class="section-title">De drie lagen van een PPR (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Schrijf op of noem: <strong>Fysiek</strong> (beweging, warming-up, handgebaar), <strong>Mentaal</strong> (visualisatie, ademhaling, mantra), <strong>Emotioneel</strong> (muziek, herinnering, intentie zetten).</li>
+        <li><span class="step-num">2</span>Benadruk: een goed PPR heeft elementen uit alle drie lagen. Niet alleen fysiek.</li>
+      </ul>
+
+      <h3 class="section-title">Bouwen van het persoonlijke PPR (8 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Stap 1 (3 min):</strong> Spelers vullen de drie lagen in op het werkblad. Gebruik vragen: "Welke beweging maakt jou scherp? Welke ademhaling zet jou aan? Welke zin activeert je?"</li>
+        <li><span class="step-num">2</span><strong>Stap 2 (3 min):</strong> Spelers schrijven de volgorde van hun PPR: 5 tot 8 stappen, van "kleedkamer verlaten" tot "eerste actie op het veld".</li>
+        <li><span class="step-num">3</span><strong>Stap 3 (2 min):</strong> Spelers oefenen hun PPR IN STILTE. Ze voeren de stappen daadwerkelijk uit (mentaal en fysiek waar mogelijk).</li>
+      </ul>
+
+      <h3 class="section-title">Afronding (3 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>2 tot 3 vrijwilligers beschrijven hun PPR.</li>
+        <li><span class="step-num">2</span>Coach: "Dit werkt pas na herhaling. Gebruik hetzelfde ritueel elke training, elke wedstrijd. Consistent. Daarna wordt het automatisch."</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Fase</th><th>Duur</th></tr>
+        <tr><td>Opening + uitleg</td><td>4 min</td></tr>
+        <tr><td>Drie lagen invullen</td><td>3 min</td></tr>
+        <tr><td>Volgorde schrijven</td><td>3 min</td></tr>
+        <tr><td>Uitvoeren in stilte</td><td>2 min</td></tr>
+        <tr><td>Delen + afsluiting</td><td>3 min</td></tr>
+        <tr><td><strong>Totaal</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Moedig specifieke details aan. "Ik luister muziek" is te vaag. "Ik luister naar één specifiek nummer op weg naar het veld en zing de laatste 20 seconden mee" is bruikbaar. Specificiteit = effectiviteit.
+      </div>
+    </div>
+
+    <!-- WERKBLAD -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Werkblad Deelnemer</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"I have a ritual before every match. It's not superstition. It's preparation."</div>
+        <div class="quote-src">Rafael Nadal</div>
+      </div>
+
+      <p class="ws-intro">Een pre-performance ritueel is jouw mentale schakelaar. Het brengt jou elke keer terug naar jouw scherpste, meest gefocuste versie — bewust en herhaalbaar.</p>
+
+      <div class="ws-field-label">DE DRIE LAGEN VAN MIJN PPR</div>
+
+      <div style="display:grid; gap:10px; margin-bottom:16px;">
+        <div style="border:1px solid var(--border); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Fysiek — beweging, handgebaar, warming-up</div>
+          <div class="ws-line"></div>
+          <div class="ws-line"></div>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Mentaal — ademhaling, visualisatie, mantra</div>
+          <div class="ws-line"></div>
+          <div class="ws-line"></div>
+        </div>
+        <div style="border:1px solid var(--border); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Emotioneel — muziek, herinnering, intentie</div>
+          <div class="ws-line"></div>
+          <div class="ws-line"></div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">MIJN PPR VOLGORDE (stap voor stap)</div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">1</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">2</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">3</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">4</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">5</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">6</div><div class="ws-line" style="flex:1;"></div></div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn belofte</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">Ik ga dit PPR gebruiken bij elke training en wedstrijd startend van:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Wetenschappelijke Onderbouwing</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematische Review</div>
+        <strong>Pre-Performance Routines in Sport</strong>
+        <div>Cotterill (2010) reviewde 30 jaar onderzoek naar pre-performance routines. Conclusie: PPR's verminderen prestatieangst, verhogen concentratie en beschermen geautomatiseerde vaardigheden onder druk via conditionering van de prefrontale cortex.</div>
+        <div class="ref">Cotterill, S. (2010). International Review of Sport and Exercise Psychology, 3(2), 132-153.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">RCT</div>
+        <strong>Ritual and Performance Under Pressure</strong>
+        <div>Damisch et al. (2010) toonden aan dat sporters die een ritueel uitvoerden voor een taak 33% beter presteerden onder druk dan controlegroep. Mechanisme: rituelen verhogen self-efficacy en verlagen cortisol (stresshormoon).</div>
+        <div class="ref">Damisch, L., Stoberock, B., Mussweiler, T. (2010). Psychological Science, 21(7), 1014-1020.</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiratie</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Rafael Nadal's Pre-Match Rituals Explained</div>
+        <div class="yt-desc">Uitgebreide analyse van Nadal's rituelen: de water-flesjes op exact dezelfde afstand, de haarpluk, het shirt dat altijd hetzelfde kant op zit. Sportpsychologen leggen uit waarom dit werkt en hoe het zijn concentratie beschermt.</div>
+        <span class="yt-search">Zoek: "Rafael Nadal rituals explained sport psychology"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Cristiano Ronaldo Pre-Game Routine</div>
+        <div class="yt-desc">Ronaldo's specifieke warming-up secuence, zijn sprong voor de aftrap, zijn blikrichting bij het betreden van het veld. Alles is bewust en herhaalbaar. Ideaal als concreet voorbeeld voor jonge voetballers of basketbalspelers.</div>
+        <span class="yt-search">Zoek: "Cristiano Ronaldo pre game warm up routine ritual"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 5 ===== -->
+<div class="exercise-block" id="oe5">
+  <div class="ex-hero">
+    <div class="ex-num">05</div>
+    <div>
+      <h2>Groei na Mislukking</h2>
+      <div class="subtitle">Hoe verander je een verlies in een les? Posttraumatische groei voor sporters.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individueel + Duo</span>
+      <span class="tag">Groei</span>
+      <span class="tag">Zelfcompassie</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Concept:</strong> Posttraumatische Groei (PTG) is het fenomeen waarbij mensen na een ingrijpende moeilijke ervaring niet alleen herstellen maar op bepaalde vlakken sterker en wijzer worden dan voor die ervaring. In sport is dit onderzoek sterk: atleten die blessures, grote verliezen of deselects verwerken met PTG-strategieën, presteren nadien significant beter dan voor de tegenslag. Centrale vraag in deze oefening: "Wat heeft mij mijn moeilijkste moment als sporter gegeven?"
+      </div>
+
+      <h3 class="section-title">Opening — Het frame zetten (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Deel het verhaal van Derrick Rose: in 2012 scheurde hij zijn kruisband op het hoogtepunt van zijn carrière (jongste MVP ooit). Hij keerde terug na bijna 1,5 jaar revalidatie. Rose zei achteraf: "Die blessure gaf me terug aan mezelf. Ik leerde wie ik was buiten basketbal."</li>
+        <li><span class="step-num">2</span>Vraag: "Heeft iemand hier een moment gehad waarbij een mislukking achteraf iets moois gaf?" Laat één persoon kort vertellen.</li>
+      </ul>
+
+      <h3 class="section-title">Deel 1 — De mislukking benoemen (3 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Spelers schrijven hun moeilijkste sportmoment op. Zeg: "Niet het ergste in hun leven. Het moeilijkste in sport. Dat is genoeg."</li>
+        <li><span class="step-num">2</span>Drie vragen: wat was het? Hoe reageerde ik? Hoe lang duurde de impact?</li>
+      </ul>
+
+      <h3 class="section-title">Deel 2 — De groei zoeken (4 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Gebruik de 5 PTG-domeinen (Tedeschi &amp; Calhoun) als structuur op het werkblad:</li>
+        <li><span class="step-num">2</span>1. Persoonlijke kracht. 2. Nieuwe mogelijkheden. 3. Relaties. 4. Waardering voor het leven. 5. Spirituele of existentiële groei.</li>
+        <li><span class="step-num">3</span>Spelers vullen in welke domeinen van toepassing zijn op hun situatie.</li>
+      </ul>
+
+      <h3 class="section-title">Deel 3 — Duo en plenair (6 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Duo (3 min): partner A deelt mislukking en groeidomeinen. B luistert en stelt één vraag: "Welke van deze groeipunten draag je vandaag nog met je mee?"</li>
+        <li><span class="step-num">2</span>Plenair (3 min): vrijwilligers delen hun "groei-inzicht". Coach: "Jullie zijn al gegroeid. Vandaag benoemen we het bewust."</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Fase</th><th>Duur</th></tr>
+        <tr><td>Opening + verhaal Derrick Rose</td><td>2 min</td></tr>
+        <tr><td>Mislukking benoemen</td><td>3 min</td></tr>
+        <tr><td>PTG domeinen invullen</td><td>4 min</td></tr>
+        <tr><td>Duo-gesprek</td><td>3 min</td></tr>
+        <tr><td>Plenaire afsluiting</td><td>3 min</td></tr>
+        <tr><td><strong>Totaal</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Forceer nooit de groei. Als een speler zegt "ik zie geen groei in wat er is gebeurd", aanvaard dat. Zeg: "Misschien zie je het nog niet. Dat is oké. Het kan ook later komen." PTG dwingen heeft het omgekeerde effect.
+      </div>
+
+      <div class="warn-box">
+        <strong>Belangrijk:</strong> Als een speler een zeer ingrijpend moment deelt (zware blessure met psychologische impact, verlies van iemand), volg de groep niet richting diep emotioneel terrein in een groepssetting. Verwijs discreet door naar individuele begeleiding. Bescherm de veiligheid van de ruimte.
+      </div>
+    </div>
+
+    <!-- WERKBLAD -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Werkblad Deelnemer</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"That injury brought me back to myself. I learned who I was outside of basketball."</div>
+        <div class="quote-src">Derrick Rose — over zijn kruisband blessure in 2012</div>
+      </div>
+
+      <p class="ws-intro">Posttraumatische groei (PTG) is geen positief denken. Het is het eerlijk onderzoeken wat een moeilijk moment jou heeft gegeven, ondanks de pijn.</p>
+
+      <div class="ws-field-label">DEEL A — Mijn moeilijkste sportmoment</div>
+      <div class="ws-box" style="min-height:55px;"></div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px;">
+        <div>
+          <div style="font-size:12px; color:#888; margin-bottom:4px;">Hoe reageerde ik?</div>
+          <div class="ws-box" style="min-height:40px;"></div>
+        </div>
+        <div>
+          <div style="font-size:12px; color:#888; margin-bottom:4px;">Hoe lang duurde de impact?</div>
+          <div class="ws-box" style="min-height:40px;"></div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">DEEL B — De 5 PTG Domeinen (Tedeschi &amp; Calhoun)</div>
+      <div style="font-size:12px; color:#888; margin-bottom:10px;">Kruis aan welke domeinen van toepassing zijn en schrijf kort wat je er leerde.</div>
+
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">1. Persoonlijke kracht</div>
+            <div style="font-size:11px; color:#888;">Ik ontdekte dat ik sterker ben dan ik dacht.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">2. Nieuwe mogelijkheden</div>
+            <div style="font-size:11px; color:#888;">Het opende een pad dat ik anders nooit had gezien.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">3. Relaties</div>
+            <div style="font-size:11px; color:#888;">Ik zag wie er echt voor me was.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">4. Waardering voor het leven / de sport</div>
+            <div style="font-size:11px; color:#888;">Ik besefte hoe graag ik dit doe.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">5. Zingeving</div>
+            <div style="font-size:11px; color:#888;">Ik begrijp nu beter waarom ik doe wat ik doe.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn groei-inzicht</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">Wat draag ik vandaag nog mee uit dat moeilijke moment?</div>
+        <div class="ws-box" style="min-height:50px; border-color:var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Wetenschappelijke Onderbouwing</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematische Review</div>
+        <strong>Posttraumatic Growth in Sport: A Systematic Review</strong>
+        <div>Howells &amp; Fletcher (2015) reviewden 22 studies over PTG bij sporters. 80% van sporters die een ernstige blessure of sportcrisis hadden doorgemaakt rapporteerden significante persoonlijke groei op minstens één PTG domein. PTG was positief gecorreleerd met latere prestatiemotivatie.</div>
+        <div class="ref">Howells, K., Fletcher, D. (2015). Psychology of Sport and Exercise, 16(2), 1-9.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Theoretisch Raamwerk</div>
+        <strong>The 5 Domains of Posttraumatic Growth</strong>
+        <div>Tedeschi &amp; Calhoun (2004) ontwikkelden het theoretische raamwerk van PTG met 5 domeinen. Hun Posttraumatic Growth Inventory (PTGI) werd gevalideerd in 60+ landen. Het raamwerk is sindsdien vertaald naar sportpsychologie-interventies wereldwijd.</div>
+        <div class="ref">Tedeschi, R.G., Calhoun, L.G. (2004). Psychological Inquiry, 15(1), 1-18.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-qual">Kwalitatief</div>
+        <strong>Self-Compassion and Athletic Recovery</strong>
+        <div>Mosewich et al. (2013) toonden in kwalitatief onderzoek aan dat sporters met hogere zelfcompassie (self-compassion) na een tegenslag sneller herstelden en vaker PTG ervoeren. Zelfkritiek vertraagde herstel; zelfcompassie versnelde het.</div>
+        <div class="ref">Mosewich, A.D., et al. (2013). Sport, Exercise and Performance Psychology, 2(2), 165-185.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Longitudinaal</div>
+        <strong>Resilience and Growth After Athletic Injury</strong>
+        <div>Wadey et al. (2019) volgden 40 sporters over 2 jaar na een ernstige blessure. Sporters die bewust reflecteerden op hun ervaring (via journaling of begeleiding) toonden 3x meer PTG dan sporters die de ervaring probeerden te vergeten.</div>
+        <div class="ref">Wadey, R., Day, M.C., Cavallerio, F. (2019). Journal of Applied Sport Psychology, 31(4).</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiratie</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Derrick Rose — The Return (ESPN 30 for 30)</div>
+        <div class="yt-desc">De comeback van Derrick Rose na zijn kruisband blessure. Zijn verhaal is een van de meest krachtige voorbeelden van PTG in de NBA-geschiedenis. De documentaire fragment (4 min) over wat die blessure hem persoonlijk leerde is ideaal voor deze oefening.</div>
+        <span class="yt-search">Zoek: "Derrick Rose comeback injury ESPN documentary"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Brené Brown — The Power of Vulnerability</div>
+        <div class="yt-desc">Brené Brown's TED Talk over kwetsbaarheid en moed. Kernboodschap: groei begint niet bij het vermijden van mislukking maar bij het durven toelaten ervan. Uiterst relevant voor spelers die moeite hebben met falen en loslaten.</div>
+        <span class="yt-search">Zoek: "Brené Brown power of vulnerability TED talk"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end page-body -->
+
+<script>
+  const sections = document.querySelectorAll('.exercise-block');
+  const navLinks = document.querySelectorAll('.sticky-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
