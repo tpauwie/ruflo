@@ -247,7 +247,7 @@
               <li class="muted">Coach Development programma</li>
               <li class="muted">Maandelijkse check-ins</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('The Week','€ 699 per groep (excl. btw)','the-week')">Bestel The Week</button>
+            <button class="btn-order secondary" onclick="openModal('The Week','the-week')">Meer informatie</button>
           </div>
         </div>
 
@@ -269,7 +269,7 @@
               <li>Plan Builder toegang voor coach</li>
               <li>Onboarding sessie (60 min)</li>
             </ul>
-            <button class="btn-order primary" onclick="openModal('The Season','€ 999 per seizoen (excl. btw)','the-season')">Bestel The Season</button>
+            <button class="btn-order primary" onclick="openModal('The Season','the-season')">Meer informatie</button>
           </div>
         </div>
 
@@ -288,7 +288,7 @@
               <li>2 extra check-in momenten</li>
               <li>Eerste toegang tot coach programma</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('Week + Season Pakket','€ 1.499 per jaar (excl. btw)','week-season')">Bestel Compleet Pakket</button>
+            <button class="btn-order secondary" onclick="openModal('Week + Season Pakket','week-season')">Meer informatie</button>
           </div>
         </div>
 
@@ -313,11 +313,7 @@
             <div class="price-sub">8 contactmomenten per seizoen</div>
           </div>
           <div class="price-body">
-            <div class="price-amount">
-              <span class="amount">€ 49</span>
-              <span class="period">/ maand</span>
-              <span class="vat">excl. btw · opzegbaar per maand</span>
-            </div>
+            <div class="price-amount"><span class="amount" style="font-size:1.1rem;color:#888;">Prijs op aanvraag</span></div>
             <ul class="price-features">
               <li>1 sessie per maand (90 min)</li>
               <li>Sessiewerkbladen (print of digitaal)</li>
@@ -327,7 +323,7 @@
               <li class="muted">Volledige oefeningen bibliotheek</li>
               <li class="muted">Plan Builder</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('Coach Maand','€ 49/maand (excl. btw)','coach-maand')">Start Coach Maand</button>
+            <button class="btn-order secondary" onclick="openModal('Coach Maand','coach-maand')">Meer informatie</button>
           </div>
         </div>
 
@@ -338,11 +334,7 @@
             <div class="price-sub">10-maands diepgaand programma</div>
           </div>
           <div class="price-body">
-            <div class="price-amount">
-              <span class="amount">€ 299</span>
-              <span class="period">/ jaar</span>
-              <span class="vat">excl. btw <span class="savings-badge">Bespaar € 193</span></span>
-            </div>
+            <div class="price-amount"><span class="amount" style="font-size:1.1rem;color:#888;">Prijs op aanvraag</span></div>
             <ul class="price-features">
               <li>10 maandmodules (volledig uitgewerkt)</li>
               <li>Diepe zelfanalyse per module</li>
@@ -353,7 +345,7 @@
               <li>1-op-1 intakegesprek (30 min)</li>
               <li>Certificaat na afronding</li>
             </ul>
-            <button class="btn-order primary" onclick="openModal('Coach Jaar','€ 299/jaar (excl. btw)','coach-jaar')">Start Coach Jaar</button>
+            <button class="btn-order primary" onclick="openModal('Coach Jaar','coach-jaar')">Meer informatie</button>
           </div>
         </div>
 
@@ -363,11 +355,7 @@
             <div class="price-sub">Coach Jaar + The Season</div>
           </div>
           <div class="price-body">
-            <div class="price-amount">
-              <span class="amount">€ 1.199</span>
-              <span class="period">/ jaar</span>
-              <span class="vat">excl. btw <span class="savings-badge">Bespaar € 99</span></span>
-            </div>
+            <div class="price-amount"><span class="amount" style="font-size:1.1rem;color:#888;">Prijs op aanvraag</span></div>
             <ul class="price-features">
               <li>Alles van Coach Jaar</li>
               <li>Alles van The Season (voor jouw team)</li>
@@ -375,7 +363,7 @@
               <li>Gezamenlijke onboarding (60 min)</li>
               <li>Gedeelde terminologie team + coach</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('Coach + Team Pakket','€ 1.199/jaar (excl. btw)','coach-team')">Bestel Coach + Team</button>
+            <button class="btn-order secondary" onclick="openModal('Coach + Team Pakket','coach-team')">Meer informatie</button>
           </div>
         </div>
 
@@ -523,13 +511,13 @@
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal()">&#x2715;</button>
-      <h3 id="modal-title">Bestelling plaatsen</h3>
-      <p id="modal-sub">Vul je gegevens in — we nemen binnen 24u contact op.</p>
+      <h3 id="modal-title">Meer informatie aanvragen</h3>
+      <p id="modal-sub">Vul je gegevens in — we nemen binnen 24u contact op met een gepersonaliseerde offerte.</p>
     </div>
     <div class="modal-body">
       <div class="modal-price-row">
         <span class="label" id="modal-product">Product</span>
-        <span class="price" id="modal-price">€ 0</span>
+        <span class="price" id="modal-price" style="font-size:.95rem;color:#888;font-weight:700;">Prijs op aanvraag</span>
       </div>
       <div class="form-grid">
         <div class="form-row">
@@ -557,8 +545,8 @@
         <label>Opmerkingen of vragen</label>
         <textarea id="f-opmerking" placeholder="Bijv. startdatum, groepsgrootte, specifieke noden..."></textarea>
       </div>
-      <button class="modal-submit" id="modal-submit" onclick="submitOrder()">Bestelling bevestigen &rarr;</button>
-      <p class="modal-note">Je gegevens worden alleen gebruikt voor de verwerking van je bestelling. Na bevestiging ontvang je een factuur en toegangscode per e-mail.</p>
+      <button class="modal-submit" id="modal-submit" onclick="submitOrder()">Vraag offerte aan &rarr;</button>
+      <p class="modal-note">Je gegevens worden enkel gebruikt om je aanvraag te behandelen. We nemen binnen 24u contact op met een gepersonaliseerde offerte.</p>
     </div>
   </div>
 </div>
@@ -586,10 +574,10 @@
   }
 
   let currentProduct = '';
-  function openModal(title, price, product) {
-    document.getElementById('modal-title').textContent = title + ' — Bestelling';
+  function openModal(title, product) {
+    document.getElementById('modal-title').textContent = title + ' — Offerte aanvragen';
     document.getElementById('modal-product').textContent = title;
-    document.getElementById('modal-price').textContent = price;
+    document.getElementById('modal-price').textContent = 'Prijs op aanvraag';
     currentProduct = product;
     document.getElementById('modal').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -620,11 +608,10 @@
     const sport = document.getElementById('f-sport').value.trim();
     const opmerking = document.getElementById('f-opmerking').value.trim();
 
-    const subject = encodeURIComponent('Bestelling: ' + product);
+    const subject = encodeURIComponent('Offerteaanvraag: ' + product);
     const body = encodeURIComponent(
-      'BESTELLING CHARACTER FIRST\n\n' +
-      'Product: ' + product + '\n' +
-      'Prijs: ' + prijs + '\n\n' +
+      'OFFERTEAANVRAAG CHARACTER FIRST\n\n' +
+      'Product: ' + product + '\n\n' +
       'Naam: ' + naam + ' ' + anaam + '\n' +
       'E-mail: ' + email + '\n' +
       (club ? 'Club: ' + club + '\n' : '') +
@@ -635,7 +622,7 @@
     window.location.href = 'mailto:info@characterfirst.be?subject=' + subject + '&body=' + body;
 
     const btn = document.getElementById('modal-submit');
-    btn.textContent = '✓ Bestelling verstuurd!';
+    btn.textContent = '✓ Aanvraag verstuurd!';
     btn.style.background = '#1a7a4a';
     setTimeout(() => closeModal(), 2000);
   }

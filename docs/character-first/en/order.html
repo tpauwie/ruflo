@@ -237,7 +237,7 @@
               <li class="muted">Coach Development program</li>
               <li class="muted">Monthly check-ins</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('The Week','€ 699 per group (excl. VAT)','the-week')">Order The Week</button>
+            <button class="btn-order secondary" onclick="openModal('The Week','the-week')">More information</button>
           </div>
         </div>
 
@@ -259,7 +259,7 @@
               <li>Plan Builder access for coach</li>
               <li>Onboarding session (60 min)</li>
             </ul>
-            <button class="btn-order primary" onclick="openModal('The Season','€ 999 per season (excl. VAT)','the-season')">Order The Season</button>
+            <button class="btn-order primary" onclick="openModal('The Season','the-season')">More information</button>
           </div>
         </div>
 
@@ -278,7 +278,7 @@
               <li>2 extra check-in sessions</li>
               <li>First access to coach program</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('Week + Season Package','€ 1.499 per year (excl. VAT)','week-season')">Order Complete Package</button>
+            <button class="btn-order secondary" onclick="openModal('Week + Season Package','week-season')">More information</button>
           </div>
         </div>
 
@@ -303,11 +303,7 @@
             <div class="price-sub">8 contact moments per season</div>
           </div>
           <div class="price-body">
-            <div class="price-amount">
-              <span class="amount">€ 49</span>
-              <span class="period">/ month</span>
-              <span class="vat">excl. VAT · cancel monthly</span>
-            </div>
+            <div class="price-amount"><span class="amount" style="font-size:1.1rem;color:#888;">Price on request</span></div>
             <ul class="price-features">
               <li>1 session per month (90 min)</li>
               <li>Session worksheets (print or digital)</li>
@@ -317,7 +313,7 @@
               <li class="muted">Full exercises library</li>
               <li class="muted">Plan Builder</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('Coach Month','€ 49/month (excl. VAT)','coach-month')">Start Coach Month</button>
+            <button class="btn-order secondary" onclick="openModal('Coach Month','coach-month')">More information</button>
           </div>
         </div>
 
@@ -328,11 +324,7 @@
             <div class="price-sub">10-month in-depth program</div>
           </div>
           <div class="price-body">
-            <div class="price-amount">
-              <span class="amount">€ 299</span>
-              <span class="period">/ year</span>
-              <span class="vat">excl. VAT <span class="savings-badge">Save € 193</span></span>
-            </div>
+            <div class="price-amount"><span class="amount" style="font-size:1.1rem;color:#888;">Price on request</span></div>
             <ul class="price-features">
               <li>10 monthly modules (fully developed)</li>
               <li>In-depth self-analysis per module</li>
@@ -343,7 +335,7 @@
               <li>1-on-1 intake call (30 min)</li>
               <li>Certificate upon completion</li>
             </ul>
-            <button class="btn-order primary" onclick="openModal('Coach Year','€ 299/year (excl. VAT)','coach-year')">Start Coach Year</button>
+            <button class="btn-order primary" onclick="openModal('Coach Year','coach-year')">More information</button>
           </div>
         </div>
 
@@ -353,11 +345,7 @@
             <div class="price-sub">Coach Year + The Season</div>
           </div>
           <div class="price-body">
-            <div class="price-amount">
-              <span class="amount">€ 1.199</span>
-              <span class="period">/ year</span>
-              <span class="vat">excl. VAT <span class="savings-badge">Save € 99</span></span>
-            </div>
+            <div class="price-amount"><span class="amount" style="font-size:1.1rem;color:#888;">Price on request</span></div>
             <ul class="price-features">
               <li>Everything from Coach Year</li>
               <li>Everything from The Season (for your team)</li>
@@ -365,7 +353,7 @@
               <li>Joint onboarding (60 min)</li>
               <li>Shared terminology team + coach</li>
             </ul>
-            <button class="btn-order secondary" onclick="openModal('Coach + Team Package','€ 1.199/year (excl. VAT)','coach-team')">Order Coach + Team</button>
+            <button class="btn-order secondary" onclick="openModal('Coach + Team Package','coach-team')">More information</button>
           </div>
         </div>
 
@@ -513,13 +501,13 @@
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal()">&#x2715;</button>
-      <h3 id="modal-title">Place order</h3>
-      <p id="modal-sub">Fill in your details — we'll get in touch within 24h.</p>
+      <h3 id="modal-title">Request more information</h3>
+      <p id="modal-sub">Fill in your details — we'll get in touch within 24h with a personalised quote.</p>
     </div>
     <div class="modal-body">
       <div class="modal-price-row">
         <span class="label" id="modal-product">Product</span>
-        <span class="price" id="modal-price">€ 0</span>
+        <span class="price" id="modal-price" style="font-size:.95rem;color:#888;font-weight:700;">Price on request</span>
       </div>
       <div class="form-grid">
         <div class="form-row">
@@ -547,8 +535,8 @@
         <label>Comments or questions</label>
         <textarea id="f-opmerking" placeholder="E.g. start date, group size, specific needs..."></textarea>
       </div>
-      <button class="modal-submit" id="modal-submit" onclick="submitOrder()">Confirm order &rarr;</button>
-      <p class="modal-note">Your details will only be used to process your order. After confirmation you will receive an invoice and access code by email.</p>
+      <button class="modal-submit" id="modal-submit" onclick="submitOrder()">Request a quote &rarr;</button>
+      <p class="modal-note">Your details will only be used to handle your enquiry. We will get in touch within 24h with a personalised quote.</p>
     </div>
   </div>
 </div>
@@ -576,10 +564,10 @@
   }
 
   let currentProduct = '';
-  function openModal(title, price, product) {
-    document.getElementById('modal-title').textContent = title + ' — Order';
+  function openModal(title, product) {
+    document.getElementById('modal-title').textContent = title + ' — Request a quote';
     document.getElementById('modal-product').textContent = title;
-    document.getElementById('modal-price').textContent = price;
+    document.getElementById('modal-price').textContent = 'Price on request';
     currentProduct = product;
     document.getElementById('modal').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -610,11 +598,10 @@
     const sport = document.getElementById('f-sport').value.trim();
     const opmerking = document.getElementById('f-opmerking').value.trim();
 
-    const subject = encodeURIComponent('Order: ' + product);
+    const subject = encodeURIComponent('Quote request: ' + product);
     const body = encodeURIComponent(
-      'ORDER CHARACTER FIRST\n\n' +
-      'Product: ' + product + '\n' +
-      'Price: ' + prijs + '\n\n' +
+      'QUOTE REQUEST CHARACTER FIRST\n\n' +
+      'Product: ' + product + '\n\n' +
       'Name: ' + naam + ' ' + anaam + '\n' +
       'Email: ' + email + '\n' +
       (club ? 'Club: ' + club + '\n' : '') +
@@ -625,7 +612,7 @@
     window.location.href = 'mailto:info@characterfirst.be?subject=' + subject + '&body=' + body;
 
     const btn = document.getElementById('modal-submit');
-    btn.textContent = '✓ Order sent!';
+    btn.textContent = '✓ Enquiry sent!';
     btn.style.background = '#1a7a4a';
     setTimeout(() => closeModal(), 2000);
   }
