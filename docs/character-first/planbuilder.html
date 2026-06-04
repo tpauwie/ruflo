@@ -466,14 +466,15 @@
 <body>
 
 <nav class="top-nav">
-  <div class="nav-logo">Character <span>First</span></div>
-  <div class="nav-links">
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="library.html">Bibliotheek</a>
     <a href="season.html">The Season</a>
     <a href="week.html">The Week</a>
     <a href="planbuilder.html" class="active">Sessieplan</a>
   </div>
+<div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
 <div class="page-wrap">
@@ -560,6 +561,10 @@
 </footer>
 
 <script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
   const exercises = [
     // Zelfkennis
     { id: 10, name: "Twee Waarheden Één Leugen", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 8, desc: "Zelfopenbaring via een spelformaat met lage drempel." },
