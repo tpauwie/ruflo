@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --gray: #f4f4f4; --text: #1a1a1a; --muted: #666; --border: #e0e0e0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 64px; background: rgba(10,10,10,.94);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--orange2) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    /* FADE */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; background: var(--black);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; padding: 120px 5% 80px;
+    }
+    .hero-tag { display: inline-flex; align-items: center; gap: .5rem; background: rgba(240,90,40,.15); border: 1px solid rgba(240,90,40,.35); color: var(--orange); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 20px; margin-bottom: 1.6rem; }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    #hero h1 { font-size: clamp(2.4rem, 4.5vw, 3.8rem); color: var(--white); font-weight: 900; line-height: 1.08; margin-bottom: 1.4rem; }
+    #hero h1 span { color: var(--orange); }
+    #hero p { font-size: 1.1rem; color: #999; max-width: 500px; margin-bottom: 2.2rem; line-height: 1.75; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary { background: var(--orange); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: background .2s, transform .15s; display: inline-block; }
+    .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
+    .btn-ghost { border: 1.5px solid #333; color: #aaa; padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: .95rem; transition: all .2s; display: inline-block; }
+    .btn-ghost:hover { border-color: #666; color: var(--white); }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid #1e1e1e; }
+    .stat-num { font-size: 1.9rem; font-weight: 900; color: var(--orange); line-height: 1; }
+    .stat-label { font-size: .78rem; color: #666; margin-top: .2rem; }
+    .hero-visual { display: flex; flex-direction: column; gap: 12px; }
+    .hero-card { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 18px 20px; transition: transform .3s; }
+    .hero-card:hover { transform: translateY(-3px); }
+    .hero-card.accent { border-color: rgba(240,90,40,.3); }
+    .hero-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .hero-card-num { background: var(--orange); color: var(--white); font-size: 11px; font-weight: 900; padding: 2px 7px; border-radius: 3px; }
+    .hero-card-title { font-size: 14px; font-weight: 800; color: var(--white); }
+    .hero-card-desc { font-size: 12px; color: #666; line-height: 1.6; margin-bottom: 10px; }
+    .hero-card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .htag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 8px; }
+    .htag-theme { background: rgba(240,90,40,.15); color: var(--orange); border: 1px solid rgba(240,90,40,.25); }
+    .htag-age { background: rgba(26,122,74,.15); color: #1a7a4a; border: 1px solid rgba(26,122,74,.25); }
+    .htag-time { background: #1e1e1e; color: #888; border: 1px solid #2a2a2a; }
+    @media (max-width: 900px) { #hero { grid-template-columns: 1fr; } .hero-visual { display: none; } }
+
+    /* MISSION & VISION */
+    #mission { background: var(--black); padding: clamp(60px,8vw,100px) 5%; }
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
+    .mv-card { padding: 2.5rem; }
+    .mv-card.mission-card { background: var(--orange); }
+    .mv-card.vision-card { background: #141414; border: 1px solid #222; }
+    .mv-label { font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .8rem; }
+    .mv-card.mission-card .mv-label { color: rgba(255,255,255,.7); }
+    .mv-card.vision-card .mv-label { color: var(--orange); }
+    .mv-card h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 900; line-height: 1.35; color: var(--white); margin-bottom: .8rem; }
+    .mv-card.mission-card p { color: rgba(255,255,255,.85); font-size: .92rem; line-height: 1.75; }
+    .mv-card.vision-card p { color: #888; font-size: .92rem; line-height: 1.75; }
+    .mv-draft { display: inline-block; background: rgba(255,255,255,.18); color: var(--white); font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+    @media (max-width: 640px) { .mv-grid { grid-template-columns: 1fr; } }
+
+    /* EXPLORE SECTION */
+    #explore { padding: clamp(60px,8vw,100px) 5%; background: var(--gray); }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .explore-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+    .explore-card { background: var(--white); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: box-shadow .2s, transform .15s; }
+    .explore-card:hover { box-shadow: 0 10px 32px rgba(0,0,0,.1); transform: translateY(-4px); }
+    .explore-card-top { background: var(--black); padding: 24px 24px 20px; }
+    .explore-icon { font-size: 2rem; margin-bottom: .6rem; }
+    .explore-card-top h3 { font-size: 1.05rem; font-weight: 900; color: var(--white); margin-bottom: .3rem; }
+    .explore-card-top p { font-size: .82rem; color: #666; line-height: 1.5; }
+    .explore-card-body { padding: 20px 24px; flex: 1; }
+    .explore-card-body p { font-size: .87rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .explore-link { font-size: .83rem; font-weight: 700; color: var(--orange); display: inline-flex; align-items: center; gap: .3rem; }
+    .explore-link::after { content: '\2192'; }
+    .explore-card.featured .explore-card-top { background: var(--orange); }
+
+    /* WAITLIST SECTION */
+    #waitlist { background: var(--black); padding: clamp(60px,8vw,100px) 5%; }
+    .waitlist-inner { max-width: 560px; margin: 0 auto; text-align: center; }
+    #waitlist .section-tag { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); }
+    #waitlist h2 { color: var(--white); margin-bottom: .7rem; }
+    #waitlist .section-sub { margin: 0 auto 2.2rem; }
+    .waitlist-form { display: flex; gap: .7rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+    .waitlist-input {
+      flex: 1 1 240px; background: #111; border: 1px solid #2a2a2a;
+      color: var(--white); font-size: .95rem; padding: .75rem 1.1rem;
+      border-radius: 7px; outline: none; transition: border-color .2s;
+      font-family: inherit; min-width: 0;
+    }
+    .waitlist-input:focus { border-color: var(--orange); }
+    .waitlist-input::placeholder { color: #444; }
+    .waitlist-btn {
+      background: var(--orange); color: var(--white); border: none;
+      padding: .75rem 1.6rem; border-radius: 7px; font-size: .95rem;
+      font-weight: 800; cursor: pointer; transition: background .2s, transform .15s;
+      font-family: inherit; white-space: nowrap;
+    }
+    .waitlist-btn:hover { background: var(--orange2); transform: translateY(-2px); }
+    .waitlist-btn:active { transform: none; }
+    .waitlist-trust { display: flex; gap: 1.4rem; justify-content: center; flex-wrap: wrap; }
+    .trust-item { font-size: .78rem; color: #444; display: flex; align-items: center; gap: .35rem; }
+    .trust-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); opacity: .6; flex-shrink: 0; }
+
+    /* CTA BAND */
+    #cta-band { background: var(--black); padding: 80px 5%; text-align: center; border-top: 1px solid #161616; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: .8rem; }
+    #cta-band p { color: #555; font-size: 1.05rem; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-orange { background: var(--orange); color: var(--white); padding: .9rem 2.2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: background .2s, transform .15s; }
+    .btn-orange:hover { background: var(--orange2); transform: translateY(-2px); }
+    .btn-outline { border: 1.5px solid #333; color: #aaa; padding: .9rem 2.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: .95rem; transition: all .2s; }
+    .btn-outline:hover { border-color: #666; color: var(--white); }
+
+    /* FOOTER */
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="program.html">Program</a>
+    <a href="../library.html">Library</a>
+    <a href="../coach-programma.html">Coach Development</a>
+    <a href="order.html" style="color:var(--orange);font-weight:700;">Order</a>
+    <a href="#waitlist">Early access</a>
+    <a href="../index.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+    <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left fade-in">
+    <div class="hero-tag">Sports development for U14 to Senior</div>
+    <h1>Win the person.<br><span>Win the team.</span></h1>
+    <p>Character First is an evidence-based character development program for young athletes. We build people, not just performances.</p>
+    <div class="hero-btns">
+      <a href="program.html" class="btn-primary">Discover the program</a>
+      <a href="../library.html" class="btn-ghost">Exercises library</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">59</div><div class="stat-label">Fully developed exercises</div></div>
+      <div><div class="stat-num">7</div><div class="stat-label">Themes</div></div>
+      <div><div class="stat-num">2</div><div class="stat-label">Tracks</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">Age groups</div></div>
+    </div>
+  </div>
+  <div class="hero-visual fade-in" style="transition-delay:.2s">
+    <div class="hero-card accent">
+      <div class="hero-card-top"><span class="hero-card-num">56</span><span class="hero-card-title">Wall Squat Challenge</span></div>
+      <p class="hero-card-desc">Solo, then team encouragement, then together. The time difference proves the power of motivational climate.</p>
+      <div class="hero-card-tags"><span class="htag htag-theme">Physical</span><span class="htag htag-age">U14+</span><span class="htag htag-time">15 min</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-top"><span class="hero-card-num">11</span><span class="hero-card-title">Box Breathing</span></div>
+      <p class="hero-card-desc">Calming the nervous system through controlled 4-4-4-4 breathing. Used by Navy SEALs and elite athletes worldwide.</p>
+      <div class="hero-card-tags"><span class="htag htag-theme">Pressure &amp; Stress</span><span class="htag htag-age">U14+</span><span class="htag htag-time">5 min</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-top"><span class="hero-card-num">51</span><span class="hero-card-title">The Flu Game Mentality</span></div>
+      <p class="hero-card-desc">Players discover their own perseverance moment and formulate their personal Flu Game sentence.</p>
+      <div class="hero-card-tags"><span class="htag htag-theme">Resilience</span><span class="htag htag-age">U14+</span><span class="htag htag-time">15 min</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section id="mission">
+  <div class="fade-in">
+    <span class="section-tag" style="background:transparent;color:var(--orange);border:1.5px solid var(--orange);">Who we are</span>
+    <h2 style="color:var(--white)">Mission &amp; Vision</h2>
+    <p class="section-sub" style="color:#555;">Why we do what we do and where we want to go.</p>
+  </div>
+  <div class="mv-grid fade-in">
+    <div class="mv-card mission-card">
+      <span class="mv-draft">Draft</span>
+      <div class="mv-label">Mission</div>
+      <h3>Giving every young athlete the opportunity to grow as a person, not just as an athlete.</h3>
+      <p>Character First believes that sport is the perfect platform for developing life values. We offer coaches and clubs an evidence-based framework to train mental resilience, team spirit, self-awareness and leadership alongside technical skills.</p>
+    </div>
+    <div class="mv-card vision-card">
+      <span class="mv-draft">Draft</span>
+      <div class="mv-label">Vision</div>
+      <h3>A generation of athletes who win on the field and in life.</h3>
+      <p>We envision a future where character is trained as systematically as technique and tactics. Where coaches are not only judged on results but on the people they shape. Where Character First is the standard, not the exception.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE -->
+<section id="explore">
+  <div class="fade-in">
+    <span class="section-tag">Explore</span>
+    <h2>Everything in one place</h2>
+    <p class="section-sub">Choose where you want to start. Every section is fully developed and ready to use immediately.</p>
+  </div>
+  <div class="explore-grid fade-in">
+    <a class="explore-card featured" href="program.html">
+      <div class="explore-card-top">
+        <div class="explore-icon">&#127942;</div>
+        <h3>The Programs</h3>
+        <p>The Week &amp; The Season</p>
+      </div>
+      <div class="explore-card-body">
+        <p>A 5-day intensive camp or an 8-month season program. Both fully developed with daily schedules, worksheets and scientific foundation.</p>
+        <span class="explore-link">View programs</span>
+      </div>
+    </a>
+    <a class="explore-card" href="../library.html">
+      <div class="explore-card-top">
+        <div class="explore-icon">&#128218;</div>
+        <h3>Exercises Library</h3>
+        <p>59 fully developed exercises</p>
+      </div>
+      <div class="explore-card-body">
+        <p>Filterable by age group (U14 / U16 / Senior), theme, duration and type. Every exercise with moderator guide and worksheet.</p>
+        <span class="explore-link">Go to library</span>
+      </div>
+    </a>
+    <a class="explore-card" href="../werkbladen.html">
+      <div class="explore-card-top">
+        <div class="explore-icon">&#128196;</div>
+        <h3>Worksheets</h3>
+        <p>Print-ready for players &amp; coaches</p>
+      </div>
+      <div class="explore-card-body">
+        <p>16 A4 worksheets: 8 for players and 8 coach guides. With scientific literature and evidence-tier badges.</p>
+        <span class="explore-link">View worksheets</span>
+      </div>
+    </a>
+    <a class="explore-card featured" href="../coach-programma.html">
+      <div class="explore-card-top">
+        <div class="explore-icon">&#127947;</div>
+        <h3>Coach Development</h3>
+        <p>Grow as a coach &amp; as a person</p>
+      </div>
+      <div class="explore-card-body">
+        <p>A yearly or monthly program specifically for coaches. Motivational climate, player relationships, personal growth and coaching identity — evidence-based.</p>
+        <span class="explore-link">View coach programs</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section id="waitlist">
+  <div class="waitlist-inner fade-in">
+    <span class="section-tag">Early access</span>
+    <h2>Be the first to know</h2>
+    <p class="section-sub">Character First launches soon. Sign up and receive early access, exclusive materials and the launch discount.</p>
+    <div class="waitlist-form">
+      <input
+        class="waitlist-input"
+        type="email"
+        id="waitlist-email"
+        placeholder="your@email.com"
+        autocomplete="email"
+      />
+      <button class="waitlist-btn" id="waitlist-submit">Sign me up</button>
+    </div>
+    <div class="waitlist-trust">
+      <span class="trust-item"><span class="trust-dot"></span>Free</span>
+      <span class="trust-item"><span class="trust-dot"></span>No spam</span>
+      <span class="trust-item"><span class="trust-dot"></span>Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <div class="fade-in">
+    <h2>Ready to get started?</h2>
+    <p>Join the coaches and clubs already working on character, not just performance.</p>
+    <div class="cta-btns">
+      <a href="mailto:info@characterfirst.be?subject=Character First - Interest" class="btn-orange">Get in touch</a>
+      <a href="program.html" class="btn-outline">More about the programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based character development for athletes from U14 to Senior. Win the person. Win the team.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Program</h4>
+      <a href="program.html">Overview</a>
+      <a href="../week.html">The Week</a>
+      <a href="../season.html">The Season</a>
+      <a href="../week-werkbladen.html">Week worksheets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Exercises</h4>
+      <a href="../library.html">Library</a>
+      <a href="../oefeningen.html">50 Exercises</a>
+      <a href="../mentale-weerbaarheid.html">Mental resilience</a>
+      <a href="../review-en-taaiheid.html">Physical toughness</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="../planbuilder.html">Plan Builder</a>
+      <a href="../werkbladen.html">Worksheets</a>
+      <a href="program.html#science">Science</a>
+      <a href="mailto:info@characterfirst.be?subject=Character First">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. All rights reserved.</p>
+    <p>Evidence-based sports psychology.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Waitlist form
+  document.getElementById('waitlist-submit').addEventListener('click', () => {
+    const email = document.getElementById('waitlist-email').value.trim();
+    const subject = encodeURIComponent('Waitlist Character First');
+    const body = encodeURIComponent('I would like to join the waitlist for Character First.\n\nMy email address: ') + encodeURIComponent(email);
+    window.location.href = 'mailto:info@characterfirst.be?subject=' + subject + '&body=' + body;
+  });
+  document.getElementById('waitlist-email').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('waitlist-submit').click();
+  });
+</script>
+</body>
+</html>
