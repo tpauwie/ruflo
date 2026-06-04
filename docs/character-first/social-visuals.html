@@ -829,8 +829,8 @@
         <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1080&h=1080&fit=crop')"></div>
         <div class="content">
           <span class="quote-mark">"</span>
-          <div class="quote-text" data-nl="Win de persoon. Win het team." data-en="Win the person. Win the team.">
-            Win de persoon.<br>Win het team.
+          <div class="quote-text" data-nl="Vorm de persoon.<br>Bouw het team." data-en="Shape the person.<br>Build the team.">
+            Vorm de persoon.<br>Bouw het team.
           </div>
           <div class="quote-footer">
             <div class="attribution">
@@ -949,7 +949,7 @@
         <div class="content">
           <span class="quote-mark">"</span>
           <div class="quote-text">
-            Druk is een privilege — het komt alleen bij degenen die het verdient hebben.
+            Druk is een privilege — het komt alleen bij wie het verdient.
           </div>
           <div class="quote-footer">
             <div class="attribution">
@@ -1037,7 +1037,7 @@
           <span class="story-tag">Team Story</span>
           <div class="story-body">
             <div class="story-line"></div>
-            <div class="story-headline">Wat gebeurt er als een team karakter traint — niet alleen skills?</div>
+            <div class="story-headline">Een team dat karakter traint wint anders.</div>
             <div class="story-sub">Meer gesprekken na de training. Meer verantwoordelijkheid op het veld. Minder drama in de kleedkamer.</div>
             <div class="story-footer">
               <div class="cf-logo">
@@ -1153,7 +1153,7 @@
         <div class="cta-deco-1"></div>
         <div class="cta-deco-2"></div>
         <div class="cta-label">Early Access</div>
-        <div class="cta-headline">Vroege toegang<br>nu open.</div>
+        <div class="cta-headline">Jouw eerste<br>oefening begint<br>vandaag.</div>
         <div class="cta-sub">Het programma dat coaches helpt karakter te bouwen — wetenschappelijk onderbouwd, praktisch toepasbaar.</div>
         <div class="cta-btn">Ga naar characterfirst.be →</div>
         <div class="cta-url">characterfirst.be</div>
@@ -1414,7 +1414,7 @@
         <div class="content">
           <span class="quote-mark">"</span>
           <div class="quote-text">
-            Hart is wat de goede van de groten onderscheidt.
+            Talent wint wedstrijden. Karakter wint kampioenschappen.
           </div>
           <div class="quote-footer">
             <div class="attribution">
@@ -1534,8 +1534,8 @@
         <div class="cta-deco-1"></div>
         <div class="cta-deco-2"></div>
         <div class="cta-label">Gratis bibliotheek</div>
-        <div class="cta-headline">Probeer één<br>oefening<br>deze week.</div>
-        <div class="cta-sub">Onze bibliotheek bevat 60+ evidence-based oefeningen. Gratis toegankelijk.</div>
+        <div class="cta-headline">7 minuten.<br>Eén oefening.<br>Echt verschil.</div>
+        <div class="cta-sub">59 evidence-based oefeningen. Gratis te bekijken op characterfirst.be</div>
         <div class="cta-btn">Bekijk de bibliotheek →</div>
         <div class="cta-url">characterfirst.be/bibliotheek</div>
         <div class="cf-logo cta-logo">
@@ -1733,7 +1733,7 @@
         <div class="content">
           <span class="quote-mark">"</span>
           <div class="quote-text" style="font-size:24px;">
-            Vergelijk je begin niet met iemand anders zijn midden.
+            Vergelijk je begin niet met andermans midden.
           </div>
           <div class="quote-footer">
             <div class="attribution">
@@ -2060,8 +2060,13 @@ ${cardHTML}
     if (screenshotActive) {
       hide.forEach(sel => document.querySelectorAll(sel)
                                .forEach(el => el.style.display = 'none'));
-      document.body.style.background = '#000';
+      document.body.style.background = '#111';
       document.body.style.padding = '0';
+      // Orange frame around every card so screenshot crop is obvious
+      document.querySelectorAll('.card').forEach(function(c) {
+        c.style.outline = '3px solid #f05a28';
+        c.style.outlineOffset = '6px';
+      });
       const exit = document.createElement('button');
       exit.id = 'exit-screenshot';
       exit.style.cssText = 'position:fixed;top:12px;right:12px;z-index:9999;background:#f05a28;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit;';
@@ -2073,6 +2078,10 @@ ${cardHTML}
                                .forEach(el => el.style.display = ''));
       document.body.style.background = '';
       document.body.style.padding = '';
+      document.querySelectorAll('.card').forEach(function(c) {
+        c.style.outline = '';
+        c.style.outlineOffset = '';
+      });
       const exit = document.getElementById('exit-screenshot');
       if (exit) exit.remove();
     }
