@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Character First — Instagram Visuals</title>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <style>
   :root {
     --black: #0a0a0a;
@@ -677,9 +678,34 @@
     }
   }
 
-  /* Print: kept minimal — use Screenshot Mode for clean exports */
+  /* Download button per card */
+  .dl-btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0 4px;
+    padding: 9px 12px;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    color: #777;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .dl-btn:hover { background: #f05a28; color: #fff; border-color: #f05a28; }
+  .dl-btn:disabled { opacity: 0.5; cursor: wait; }
+
+  /* Print: full page — every card on its own page */
   @media print {
-    .page-header, .controls { display: none; }
+    .page-header, .controls, .month-header, .post-caption, .post-number,
+    .post-type-badge, .dl-btn { display: none !important; }
+    body { background: #000; margin: 0; padding: 0; }
+    .post-grid { display: block; }
+    .post-wrap { width: 100%; page-break-after: always; margin: 0; padding: 0; }
+    .card { width: 100vmin; height: 100vmin; border-radius: 0; }
   }
 </style>
 </head>
@@ -693,6 +719,7 @@
   </div>
   <div class="controls">
     <button class="ctrl-btn" id="screenshot-btn" onclick="toggleScreenshotMode()">📸 Screenshot Mode</button>
+    <button class="ctrl-btn" onclick="window.print()" title="Print alle kaarten naar PDF — elke kaart op eigen pagina">🖨 PDF (alle)</button>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-nl" onclick="setLang('nl')">NL</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
@@ -1940,28 +1967,70 @@
 </div>
 
 <script>
-  // Screenshot mode: hide all chrome, show only the card grid clean
+  // ── Download individual card as PNG (1080×1080) ───────────────────────
+  async function downloadCard(card, postId) {
+    const btn = card.nextElementSibling;
+    const orig = btn.textContent;
+    btn.textContent = '⏳ Bezig...';
+    btn.disabled = true;
+    try {
+      const canvas = await html2canvas(card, {
+        scale: 2,          // 540 × 2 = 1080px
+        useCORS: true,
+        allowTaint: true,
+        width: 540,
+        height: 540,
+        backgroundColor: null,
+        logging: false
+      });
+      const link = document.createElement('a');
+      link.download = 'CharacterFirst-' + postId + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (e) {
+      alert('Download mislukt. Tip: gebruik rechtermuisknop → "Opslaan als afbeelding" op de kaart, of gebruik de PDF-knop.');
+      console.error(e);
+    } finally {
+      btn.textContent = orig;
+      btn.disabled = false;
+    }
+  }
+
+  // ── Inject Download PNG button under every card ───────────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.post-wrap').forEach(function (wrap) {
+      const card = wrap.querySelector('.card');
+      if (!card) return;
+      const num = wrap.querySelector('.post-number');
+      const postId = num ? num.textContent.trim() : 'post';
+      const btn = document.createElement('button');
+      btn.className = 'dl-btn';
+      btn.textContent = '⬇ Download PNG (1080×1080)';
+      btn.onclick = function () { downloadCard(card, postId); };
+      card.insertAdjacentElement('afterend', btn);
+    });
+  });
+
+  // ── Screenshot mode: clean grid view, hide chrome ────────────────────
   let screenshotActive = false;
   function toggleScreenshotMode() {
     screenshotActive = !screenshotActive;
-    const btn = document.getElementById('screenshot-btn');
+    const hide = [
+      '.page-header', '.month-header', '.post-caption',
+      '.post-number', '.post-type-badge', '.dl-btn'
+    ];
     if (screenshotActive) {
-      document.querySelector('.page-header').style.display = 'none';
-      document.querySelectorAll('.month-header').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.post-caption').forEach(el => el.style.display = 'none');
+      hide.forEach(sel => document.querySelectorAll(sel).forEach(el => el.style.display = 'none'));
       document.body.style.background = '#000';
       document.body.style.padding = '0';
-      // Show exit button fixed at top
-      const exit = document.createElement('div');
+      const exit = document.createElement('button');
       exit.id = 'exit-screenshot';
       exit.style.cssText = 'position:fixed;top:12px;right:12px;z-index:9999;background:#f05a28;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit;';
       exit.textContent = '✕ Exit Screenshot Mode';
       exit.onclick = toggleScreenshotMode;
       document.body.appendChild(exit);
     } else {
-      document.querySelector('.page-header').style.display = '';
-      document.querySelectorAll('.month-header').forEach(el => el.style.display = '');
-      document.querySelectorAll('.post-caption').forEach(el => el.style.display = '');
+      hide.forEach(sel => document.querySelectorAll(sel).forEach(el => el.style.display = ''));
       document.body.style.background = '';
       document.body.style.padding = '';
       const exit = document.getElementById('exit-screenshot');
@@ -1969,18 +2038,14 @@
     }
   }
 
+  // ── Language toggle ───────────────────────────────────────────────────
   function setLang(lang) {
     document.body.classList.toggle('lang-en', lang === 'en');
     document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-    // Switch text in all data-nl / data-en elements
     document.querySelectorAll('[data-nl]').forEach(el => {
-      if (lang === 'en' && el.dataset.en) {
-        el.textContent = el.dataset.en;
-      } else if (lang === 'nl' && el.dataset.nl) {
-        el.textContent = el.dataset.nl;
-      }
+      if (lang === 'en' && el.dataset.en) el.innerHTML = el.dataset.en;
+      else if (lang === 'nl' && el.dataset.nl) el.innerHTML = el.dataset.nl;
     });
   }
 </script>
