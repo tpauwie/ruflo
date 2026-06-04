@@ -71,8 +71,17 @@
     .nav-links a:hover,
     .nav-links a.active { color: var(--orange); }
 
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
     @media (max-width: 600px) {
-      .nav-links { display: none; }
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 20px; gap: 1rem; border-bottom: 1px solid var(--gray-700); z-index: 99; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .page-wrap { padding: 80px 1rem 3rem; }
+      .builder-card { padding: 1.5rem; }
+      .generate-btn { min-height: 44px; }
+      .radio-group label span, .check-group label span { min-height: 44px; display: flex; align-items: center; }
     }
 
     /* PAGE LAYOUT */

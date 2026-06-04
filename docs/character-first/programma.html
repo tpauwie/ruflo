@@ -158,6 +158,16 @@
     .footer-bottom p { font-size: .78rem; color: #333; }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .prog-tabs { flex-wrap: wrap; }
+      .prog-tab { min-height: 44px; flex: 1 1 auto; text-align: center; }
+      .prog-header { padding: 1.5rem 1.5rem; }
+      .prog-days { padding: 1.5rem 1.5rem; }
+      .prog-cta { padding: 1rem 1.5rem; flex-direction: column; }
+      .prog-cta a { text-align: center; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .month-grid { padding: 1.5rem; grid-template-columns: 1fr 1fr; }
+      .day-row { gap: 1rem; }
+    }
   </style>
 <script>/* cf_lang_persist */
   (function(){

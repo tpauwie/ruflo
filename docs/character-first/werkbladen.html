@@ -549,6 +549,18 @@
       pointer-events: all;
     }
 
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .screen-bar { padding: 0.75rem 1rem; }
+      .screen-bar h1 { font-size: 0.9rem; }
+      .pages { padding: 0 0.5rem 2rem; margin: 1rem auto; }
+      .page { padding: 28px 20px; min-height: auto; }
+      .two-col { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; gap: 8px; }
+      .page-header-right { text-align: left; }
+      .print-btn { min-height: 44px; }
+    }
+
     /* PRINT */
     @media print {
       body { background: white; }

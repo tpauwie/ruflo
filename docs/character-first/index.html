@@ -73,6 +73,12 @@
     .htag-age { background: rgba(26,122,74,.15); color: #1a7a4a; border: 1px solid rgba(26,122,74,.25); }
     .htag-time { background: #1e1e1e; color: #888; border: 1px solid #2a2a2a; }
     @media (max-width: 900px) { #hero { grid-template-columns: 1fr; } .hero-visual { display: none; } }
+    @media (max-width: 768px) {
+      #hero { padding: 100px 5% 60px; gap: 2rem; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; text-align: center; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .hero-stats { gap: 1.5rem; }
+    }
 
     /* MISSION & VISION */
     #mission { background: var(--black); padding: clamp(60px,8vw,100px) 5%; }
@@ -157,6 +163,10 @@
     .footer-bottom p { font-size: .78rem; color: #333; }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .waitlist-form { flex-direction: column; }
+      .waitlist-input, .waitlist-btn { width: 100%; min-height: 44px; }
+    }
   </style>
 <script>/* cf_lang_persist */
   (function(){

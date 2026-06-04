@@ -206,6 +206,13 @@
   }
 
   /* PRINT */
+  @media (max-width: 768px) {
+    .screen-header { padding: 20px 16px; }
+    .screen-nav { padding: 0 8px; }
+    .screen-body { padding: 24px 12px; }
+    .exercises-grid { grid-template-columns: 1fr; }
+  }
+
   @media print {
     .screen-header, .screen-nav { display: none; }
     body { background: white; }

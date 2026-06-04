@@ -206,6 +206,15 @@
     .page-footer span { font-size: 0.65rem; color: var(--gray-400); }
 
     /* ─── PRINT ─── */
+    @media (max-width: 600px) {
+      .screen-bar { padding: 0.75rem 1rem; flex-wrap: wrap; }
+      .pages { padding: 0 0.5rem 2rem; margin: 1rem auto; }
+      .page { padding: 28px 16px; min-height: auto; }
+      .two-col { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; gap: 8px; }
+      .page-header-right { text-align: left; }
+    }
+
     @media print {
       body { background: white; }
       .screen-bar { display: none !important; }
