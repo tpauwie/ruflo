@@ -6,637 +6,554 @@
   <title>Character First — Win the person. Win the team.</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --black:   #0a0a0a;
-      --white:   #ffffff;
-      --orange:  #f05a28;
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --orange: #f05a28;
       --orange2: #d44a1a;
-      --grey:    #f4f4f4;
-      --grey2:   #e0e0e0;
-      --text:    #1a1a1a;
-      --muted:   #666;
+      --gray: #f4f4f4;
+      --gray2: #e8e8e8;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
 
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.6;
-    }
-
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: var(--black);
-      padding: 0 5%;
-      display: flex; align-items: center; justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       height: 64px;
-      z-index: 100;
+      background: rgba(10,10,10,.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .nav-logo {
-      font-size: 1.2rem; font-weight: 800;
-      color: var(--white); letter-spacing: .04em;
-    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
     .nav-logo span { color: var(--orange); }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      color: #ccc; text-decoration: none;
-      font-size: .9rem; transition: color .2s;
-    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
     .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      background: var(--orange); color: var(--white);
-      padding: .5rem 1.2rem; border-radius: 4px;
-      text-decoration: none; font-weight: 700;
-      font-size: .9rem; transition: background .2s;
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; transition: background .2s !important; }
+    .nav-cta:hover { background: var(--orange2) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
     }
-    .nav-cta:hover { background: var(--orange2); }
 
-    /* ── HERO ── */
+    /* SECTION BASE */
+    section { padding: clamp(60px, 8vw, 100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    .section-tag.outline { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); }
+    h2 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* HERO */
     #hero {
-      min-height: 100vh;
-      background: var(--black);
-      display: flex; align-items: center;
-      padding: 100px 5% 60px;
+      min-height: 100vh; background: var(--black);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; padding: 120px 5% 80px;
     }
-    .hero-inner {
-      max-width: 760px;
-    }
-    .hero-tag {
-      display: inline-block;
-      background: var(--orange);
-      color: var(--white);
-      font-size: .8rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: .3rem .8rem; border-radius: 3px;
-      margin-bottom: 1.5rem;
-    }
-    #hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      color: var(--white);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
+    .hero-tag { display: inline-flex; align-items: center; gap: .5rem; background: rgba(240,90,40,.15); border: 1px solid rgba(240,90,40,.35); color: var(--orange); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 20px; margin-bottom: 1.6rem; }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    #hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); color: var(--white); font-weight: 900; line-height: 1.08; margin-bottom: 1.4rem; }
     #hero h1 span { color: var(--orange); }
-    #hero p {
-      font-size: 1.15rem;
-      color: #bbb;
-      max-width: 560px;
-      margin-bottom: 2.5rem;
-    }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--orange);
-      color: var(--white);
-      padding: .9rem 2rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: background .2s;
-    }
-    .btn-primary:hover { background: var(--orange2); }
-    .btn-secondary {
-      border: 2px solid #444;
-      color: #ccc;
-      padding: .9rem 2rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all .2s;
-    }
-    .btn-secondary:hover { border-color: #888; color: var(--white); }
+    #hero p { font-size: 1.1rem; color: #999; max-width: 500px; margin-bottom: 2.2rem; line-height: 1.75; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary { background: var(--orange); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: background .2s, transform .15s; display: inline-block; }
+    .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
+    .btn-ghost { border: 1.5px solid #333; color: #aaa; padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: .95rem; transition: all .2s; display: inline-block; }
+    .btn-ghost:hover { border-color: #666; color: var(--white); }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid #1e1e1e; }
+    .stat-num { font-size: 1.9rem; font-weight: 900; color: var(--orange); line-height: 1; }
+    .stat-label { font-size: .78rem; color: #666; margin-top: .2rem; }
+    .hero-visual { display: flex; flex-direction: column; gap: 12px; }
+    .hero-card { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 18px 20px; transition: transform .3s; }
+    .hero-card:hover { transform: translateY(-3px); }
+    .hero-card.accent { border-color: rgba(240,90,40,.3); }
+    .hero-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .hero-card-num { background: var(--orange); color: var(--white); font-size: 11px; font-weight: 900; padding: 2px 7px; border-radius: 3px; }
+    .hero-card-title { font-size: 14px; font-weight: 800; color: var(--white); }
+    .hero-card-desc { font-size: 12px; color: #666; line-height: 1.6; margin-bottom: 10px; }
+    .hero-card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .htag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 8px; }
+    .htag-theme { background: rgba(240,90,40,.15); color: var(--orange); border: 1px solid rgba(240,90,40,.25); }
+    .htag-age { background: rgba(26,122,74,.15); color: #1a7a4a; border: 1px solid rgba(26,122,74,.25); }
+    .htag-time { background: #1e1e1e; color: #888; border: 1px solid #2a2a2a; }
+    @media (max-width: 900px) { #hero { grid-template-columns: 1fr; } .hero-visual { display: none; } }
 
-    .hero-stats {
-      display: flex; gap: 3rem; margin-top: 4rem;
-      flex-wrap: wrap;
-    }
-    .stat-item {}
-    .stat-num {
-      font-size: 2rem; font-weight: 900;
-      color: var(--orange);
-    }
-    .stat-label { font-size: .85rem; color: #888; }
+    /* MISSION & VISION */
+    #mission { background: var(--black); }
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
+    .mv-card { padding: 2.5rem; }
+    .mv-card.mission-card { background: var(--orange); }
+    .mv-card.vision-card { background: #141414; border: 1px solid #222; }
+    .mv-label { font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .8rem; }
+    .mv-card.mission-card .mv-label { color: rgba(255,255,255,.7); }
+    .mv-card.vision-card .mv-label { color: var(--orange); }
+    .mv-card h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 900; line-height: 1.35; color: var(--white); margin-bottom: .8rem; }
+    .mv-card.mission-card p { color: rgba(255,255,255,.85); font-size: .92rem; line-height: 1.75; }
+    .mv-card.vision-card p { color: #888; font-size: .92rem; line-height: 1.75; }
+    .mv-draft { display: inline-block; background: rgba(255,255,255,.18); color: var(--white); font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+    @media (max-width: 640px) { .mv-grid { grid-template-columns: 1fr; } }
 
-    /* ── SECTIONS ── */
-    section { padding: 80px 5%; }
-    .section-tag {
-      display: inline-block;
-      background: var(--orange);
-      color: var(--white);
-      font-size: .75rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: .25rem .7rem; border-radius: 3px;
-      margin-bottom: 1rem;
-    }
-    h2 {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 900; line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-    .section-sub {
-      font-size: 1.05rem; color: var(--muted);
-      max-width: 560px; margin-bottom: 3rem;
-    }
+    /* PROBLEM */
+    #problem { background: var(--gray); }
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .problem-card { background: var(--white); border-left: 4px solid var(--orange); padding: 1.5rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+    .problem-card p { font-size: .92rem; color: var(--text); font-style: italic; line-height: 1.7; }
+    .problem-card .source { font-size: .78rem; color: var(--muted); margin-top: .6rem; font-style: normal; font-weight: 600; }
 
-    /* ── PROBLEM ── */
-    #problem { background: var(--grey); }
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .problem-card {
-      background: var(--white);
-      border-left: 4px solid var(--orange);
-      padding: 1.5rem;
-      border-radius: 4px;
-    }
-    .problem-card p {
-      font-size: .95rem; color: var(--text);
-      font-style: italic;
-    }
-    .problem-card .source {
-      font-size: .8rem; color: var(--muted);
-      margin-top: .5rem; font-style: normal;
-    }
+    /* PILLARS */
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+    .pillar-card { background: var(--black); color: var(--white); padding: 2rem 1.5rem; border-radius: 10px; text-align: center; border: 1px solid #1a1a1a; transition: transform .2s, box-shadow .2s; }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+    .pillar-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+    .pillar-title { font-size: .95rem; font-weight: 800; margin: .4rem 0 .6rem; }
+    .pillar-desc { font-size: .82rem; color: #777; line-height: 1.6; }
 
-    /* ── PILLARS ── */
-    #pillars {}
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .pillar-card {
-      background: var(--black);
-      color: var(--white);
-      padding: 2rem 1.5rem;
-      border-radius: 6px;
-      text-align: center;
-    }
-    .pillar-num {
-      font-size: 2.5rem; font-weight: 900;
-      color: var(--orange); line-height: 1;
-    }
-    .pillar-title {
-      font-size: 1rem; font-weight: 700;
-      margin: .5rem 0 .75rem;
-    }
-    .pillar-desc { font-size: .85rem; color: #aaa; }
+    /* EXERCISE PREVIEW */
+    #exercises { background: var(--gray); }
+    .ex-filter { display: flex; gap: .6rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .ex-filter-btn { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; border: 2px solid var(--border); background: var(--white); color: #666; cursor: pointer; transition: all .15s; }
+    .ex-filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .ex-filter-btn.active { background: var(--black); border-color: var(--black); color: var(--white); }
+    .ex-filter-btn.u14.active { background: #1a7a4a; border-color: #1a7a4a; }
+    .ex-filter-btn.u16.active { background: #1a4a8a; border-color: #1a4a8a; }
+    .ex-filter-btn.senior.active { background: #5a1a8a; border-color: #5a1a8a; }
+    .ex-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    @media (max-width: 900px) { .ex-preview-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .ex-preview-grid { grid-template-columns: 1fr; } }
+    .ex-preview-card { background: var(--white); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: box-shadow .2s, transform .15s; }
+    .ex-preview-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.1); transform: translateY(-3px); }
+    .ex-preview-card.hidden { display: none; }
+    .ep-top { background: var(--black); padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
+    .ep-num { background: var(--orange); color: var(--white); font-size: 11px; font-weight: 900; padding: 2px 7px; border-radius: 3px; flex-shrink: 0; }
+    .ep-title { font-size: 13px; font-weight: 800; color: var(--white); }
+    .ep-body { padding: 12px 16px; flex: 1; }
+    .ep-desc { font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 10px; }
+    .ep-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .ep-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+    .ep-tag-theme { background: rgba(240,90,40,.1); color: var(--orange); border: 1px solid rgba(240,90,40,.2); }
+    .ep-tag-age-u14 { background: #d4edda; color: #1a7a4a; }
+    .ep-tag-age-u16 { background: #d0e4f7; color: #1a4a8a; }
+    .ep-tag-age-senior { background: #e8d5f5; color: #5a1a8a; }
+    .ep-tag-time { background: #f0f0f0; color: #555; }
+    .ep-tag-type { background: var(--black); color: var(--white); }
+    .ex-library-cta { text-align: center; }
+    .ex-library-cta a { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; font-size: .95rem; color: var(--orange); border: 2px solid var(--orange); padding: .8rem 2rem; border-radius: 6px; transition: all .2s; }
+    .ex-library-cta a:hover { background: var(--orange); color: var(--white); }
+    .ex-library-cta a::after { content: ' \2192'; }
 
-    /* ── PROGRAM ── */
-    #program { background: var(--grey); }
-    .program-tabs {
-      display: flex; gap: 1rem; margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-    }
-    .tab {
-      padding: .6rem 1.5rem;
-      border: 2px solid var(--grey2);
-      border-radius: 30px;
-      font-weight: 700; font-size: .9rem;
-      cursor: pointer; background: var(--white);
-      transition: all .2s;
-    }
-    .tab.active {
-      background: var(--black); color: var(--white);
-      border-color: var(--black);
-    }
-    .program-box {
-      background: var(--white);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .program-header {
-      background: var(--black);
-      color: var(--white);
-      padding: 2rem 2.5rem;
-    }
-    .program-header h3 { font-size: 1.4rem; }
-    .program-header p { color: #aaa; margin-top: .4rem; }
-    .program-days { padding: 2rem 2.5rem; }
-    .day-row {
-      display: flex; align-items: flex-start;
-      gap: 1.5rem; padding: 1.2rem 0;
-      border-bottom: 1px solid var(--grey2);
-    }
+    /* PROGRAM */
+    .prog-tabs { display: flex; gap: .8rem; margin-bottom: 2.5rem; }
+    .prog-tab { padding: .6rem 1.6rem; border-radius: 30px; font-weight: 700; font-size: .88rem; cursor: pointer; border: 2px solid var(--border); background: var(--white); color: var(--muted); transition: all .2s; }
+    .prog-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .prog-content { display: none; }
+    .prog-content.active { display: block; }
+    .prog-box { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,.07); }
+    .prog-header { background: var(--black); color: var(--white); padding: 2rem 2.5rem; }
+    .prog-badge { display: inline-block; background: var(--orange); font-size: .72rem; font-weight: 800; padding: .25rem .7rem; border-radius: 3px; margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+    .prog-header h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: .4rem; }
+    .prog-header p { color: #888; font-size: .92rem; }
+    .prog-days { padding: 2rem 2.5rem; }
+    .day-row { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.2rem 0; border-bottom: 1px solid var(--gray); }
     .day-row:last-child { border-bottom: none; }
-    .day-num {
-      background: var(--orange);
-      color: var(--white);
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: .9rem;
-      flex-shrink: 0;
-    }
-    .day-content h4 { font-weight: 700; margin-bottom: .2rem; }
-    .day-content p { font-size: .9rem; color: var(--muted); }
+    .day-num { background: var(--orange); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .88rem; flex-shrink: 0; }
+    .day-content h4 { font-weight: 800; margin-bottom: .2rem; font-size: .95rem; }
+    .day-content p { font-size: .85rem; color: var(--muted); }
+    .day-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .4rem; }
+    .day-tag { font-size: .7rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; background: var(--gray); color: var(--muted); }
+    .month-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; padding: 2rem 2.5rem; }
+    .month-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; transition: border-color .2s; }
+    .month-card:hover { border-color: var(--orange); }
+    .month-num { font-size: .72rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .4rem; }
+    .month-title { font-size: .95rem; font-weight: 800; margin-bottom: .3rem; }
+    .month-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; }
 
-    /* ── SCIENCE ── */
-    #science {}
-    .science-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .science-card {
-      border: 1px solid var(--grey2);
-      border-radius: 6px; padding: 1.5rem;
-    }
-    .science-card .author {
-      font-size: .8rem; color: var(--orange);
-      font-weight: 700; text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-    .science-card h4 { font-size: 1rem; margin: .4rem 0 .5rem; }
-    .science-card p { font-size: .85rem; color: var(--muted); }
+    /* SCIENCE */
+    #science { background: var(--gray); }
+    .science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .science-card { background: var(--white); border-radius: 10px; padding: 1.5rem; border: 1px solid var(--border); transition: box-shadow .2s; }
+    .science-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+    .sci-tier { display: inline-block; font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 10px; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .06em; }
+    .sci-tier.sr { background: #d4edda; color: #1a7a4a; }
+    .sci-tier.rct { background: #d0e4f7; color: #1a4a8a; }
+    .sci-tier.qual { background: #e8d5f5; color: #5a1a8a; }
+    .science-card .sci-author { font-size: .78rem; color: var(--orange); font-weight: 700; margin-bottom: .3rem; }
+    .science-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
+    .science-card p { font-size: .83rem; color: var(--muted); line-height: 1.6; }
 
-    /* ── PRICING ── */
-    #pricing { background: var(--grey); }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .price-card {
-      background: var(--white);
-      border-radius: 8px; overflow: hidden;
-      border: 2px solid var(--grey2);
-    }
+    /* FOR WHO */
+    .forwho-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .forwho-card { border-left: 4px solid var(--orange); padding: 1.5rem; background: var(--gray); border-radius: 0 8px 8px 0; transition: box-shadow .2s; }
+    .forwho-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); }
+    .forwho-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+    .forwho-card h4 { font-weight: 800; margin-bottom: .4rem; }
+    .forwho-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+    /* QUOTES */
+    #quotes { background: var(--black); }
+    #quotes h2 { color: var(--white); }
+    #quotes .section-sub { color: #555; }
+    .quotes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .quote-card { background: #141414; border: 1px solid #1e1e1e; border-radius: 10px; padding: 2rem; transition: border-color .2s; }
+    .quote-card:hover { border-color: rgba(240,90,40,.3); }
+    .quote-text { font-size: .97rem; font-style: italic; color: #ddd; line-height: 1.75; margin-bottom: 1.2rem; position: relative; padding-left: 1.4rem; }
+    .quote-text::before { content: '\201C'; color: var(--orange); font-size: 2.5rem; font-style: normal; position: absolute; left: 0; top: -.3rem; line-height: 1; }
+    .quote-author { display: flex; align-items: center; gap: .8rem; }
+    .quote-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .8rem; flex-shrink: 0; }
+    .quote-name { font-size: .88rem; font-weight: 700; color: var(--white); }
+    .quote-role { font-size: .75rem; color: #555; }
+
+    /* PRICING */
+    #pricing { background: var(--gray); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .price-card { background: var(--white); border-radius: 12px; overflow: hidden; border: 2px solid var(--border); transition: transform .2s, box-shadow .2s; }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
     .price-card.featured { border-color: var(--orange); }
-    .price-header {
-      background: var(--black); color: var(--white);
-      padding: 1.5rem 2rem;
-    }
+    .price-header { background: var(--black); color: var(--white); padding: 1.8rem 2rem; }
     .price-card.featured .price-header { background: var(--orange); }
-    .price-header h3 { font-size: 1.1rem; }
-    .price-header .badge {
-      display: inline-block;
-      background: rgba(255,255,255,.2);
-      font-size: .75rem; padding: .2rem .6rem;
-      border-radius: 3px; margin-top: .4rem;
-    }
+    .price-header h3 { font-size: 1.15rem; font-weight: 900; }
+    .price-badge { display: inline-block; background: rgba(255,255,255,.2); font-size: .7rem; padding: .2rem .6rem; border-radius: 3px; margin-top: .4rem; }
     .price-body { padding: 2rem; }
-    .price-amount {
-      font-size: 2rem; font-weight: 900;
-      margin-bottom: 1.5rem;
-    }
-    .price-amount span { font-size: 1rem; font-weight: 400; color: var(--muted); }
-    .price-features { list-style: none; }
-    .price-features li {
-      padding: .5rem 0;
-      font-size: .9rem;
-      border-bottom: 1px solid var(--grey);
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .price-features li::before {
-      content: "✓";
-      color: var(--orange); font-weight: 700;
-    }
-    .price-cta {
-      display: block;
-      background: var(--black); color: var(--white);
-      text-align: center; padding: .9rem;
-      border-radius: 5px; text-decoration: none;
-      font-weight: 700; margin-top: 1.5rem;
-      transition: background .2s;
-    }
-    .price-card.featured .price-cta { background: var(--orange); }
-    .price-cta:hover { opacity: .85; }
+    .price-amount { font-size: 1.8rem; font-weight: 900; margin-bottom: 1.4rem; color: var(--text); }
+    .price-features { list-style: none; margin-bottom: 1.5rem; }
+    .price-features li { padding: .5rem 0; font-size: .88rem; border-bottom: 1px solid var(--gray); display: flex; align-items: flex-start; gap: .6rem; }
+    .price-features li::before { content: "\2713"; color: var(--orange); font-weight: 900; flex-shrink: 0; }
+    .price-cta { display: block; background: var(--black); color: var(--white); text-align: center; padding: .9rem; border-radius: 6px; text-decoration: none; font-weight: 700; transition: opacity .2s; }
+    .price-cta:hover { opacity: .8; }
 
-    /* ── FOR WHO ── */
-    #forwho {}
-    .forwho-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .forwho-card {
-      border-left: 4px solid var(--orange);
-      padding: 1.5rem;
-      background: var(--grey);
-      border-radius: 0 6px 6px 0;
-    }
-    .forwho-card h4 { font-weight: 700; margin-bottom: .5rem; }
-    .forwho-card p { font-size: .9rem; color: var(--muted); }
+    /* CTA BAND */
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
 
-    /* ── PILOT ── */
-    #pilot {
-      background: var(--black); color: var(--white);
-      text-align: center;
-    }
-    #pilot h2 { color: var(--white); }
-    #pilot .section-sub { color: #aaa; margin: 0 auto 2rem; }
-    .pilot-box {
-      display: inline-block;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px; padding: 2rem 3rem;
-      margin-bottom: 2.5rem;
-      text-align: left;
-    }
-    .pilot-box h3 { color: var(--orange); margin-bottom: 1rem; }
-    .pilot-box ul { list-style: none; }
-    .pilot-box ul li {
-      padding: .5rem 0;
-      display: flex; gap: .8rem;
-      font-size: .95rem; color: #ccc;
-    }
-    .pilot-box ul li::before { content: "→"; color: var(--orange); }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--grey); }
-    .contact-inner {
-      max-width: 540px;
-    }
-    .form-group { margin-bottom: 1.2rem; }
-    label {
-      display: block; font-weight: 600;
-      font-size: .9rem; margin-bottom: .4rem;
-    }
-    input, select, textarea {
-      width: 100%; padding: .75rem 1rem;
-      border: 1.5px solid var(--grey2);
-      border-radius: 5px; font-size: .95rem;
-      font-family: inherit;
-      transition: border-color .2s;
-      background: var(--white);
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none; border-color: var(--orange);
-    }
-    textarea { height: 120px; resize: vertical; }
-    .form-submit {
-      background: var(--orange); color: var(--white);
-      border: none; padding: .9rem 2.5rem;
-      border-radius: 5px; font-size: 1rem;
-      font-weight: 700; cursor: pointer;
-      transition: background .2s;
-    }
-    .form-submit:hover { background: var(--orange2); }
-    .form-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--black); color: #888;
-      padding: 2rem 5%;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 1rem;
-      font-size: .85rem;
-    }
-    .footer-logo { color: var(--white); font-weight: 800; }
+    /* FOOTER */
+    footer { background: var(--black); padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
     .footer-logo span { color: var(--orange); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .hero-stats { gap: 1.5rem; }
-      .program-days { padding: 1.5rem; }
-      .price-body { padding: 1.5rem; }
-      .pilot-box { padding: 1.5rem; }
-    }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: .78rem; font-weight: 800; color: #555; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #161616; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">CHARACTER<span> FIRST</span></div>
-  <div class="nav-links">
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="#mission">Missie</a>
     <a href="#program">Programma</a>
-    <a href="#science">Wetenschap</a>
-    <a href="#pricing">Prijzen</a>
-    <a href="#contact">Contact</a>
+    <a href="#exercises">Oefeningen</a>
+    <a href="#pricing">Investering</a>
+    <a href="library.html">Bibliotheek</a>
+    <a href="#cta-band" class="nav-cta">Start vandaag</a>
   </div>
-  <a href="#contact" class="nav-cta">Gratis piloot</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Basketball · Persoonlijke ontwikkeling</div>
+  <div class="hero-left fade-in">
+    <div class="hero-tag">Sportontwikkeling voor U14 tot Senior</div>
     <h1>Win the person.<br><span>Win the team.</span></h1>
-    <p>
-      Character First helpt jonge basketballers groeien als mens en ploegmaat —
-      op basis van de meest recente sportpsychologie.
-      Voor clubs die verder kijken dan het scorebord.
-    </p>
+    <p>Character First is een evidence-based karakterontwikkelingsprogramma voor jonge sporters. Wij bouwen aan mensen, niet alleen aan prestaties.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">Start gratis piloot</a>
-      <a href="#program" class="btn-secondary">Bekijk het programma</a>
+      <a href="#program" class="btn-primary">Bekijk het programma</a>
+      <a href="library.html" class="btn-ghost">Oefeningen bibliotheek</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">U14+</div>
-        <div class="stat-label">Vanaf deze leeftijd</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">5</div>
-        <div class="stat-label">Kernpijlers</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Evidence-based</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">2</div>
-        <div class="stat-label">Trajecten</div>
-      </div>
+      <div><div class="stat-num">59</div><div class="stat-label">Uitgewerkte oefeningen</div></div>
+      <div><div class="stat-num">7</div><div class="stat-label">Thema's</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">Leeftijdsgroepen</div></div>
+      <div><div class="stat-num">2</div><div class="stat-label">Programma's</div></div>
+    </div>
+  </div>
+  <div class="hero-visual fade-in" style="transition-delay:.2s">
+    <div class="hero-card accent">
+      <div class="hero-card-top"><span class="hero-card-num">56</span><span class="hero-card-title">Wall Squat Challenge</span></div>
+      <p class="hero-card-desc">Solo, daarna teamaanmoediging, daarna samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</p>
+      <div class="hero-card-tags"><span class="htag htag-theme">Fysiek</span><span class="htag htag-age">U14+</span><span class="htag htag-time">15 min</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-top"><span class="hero-card-num">11</span><span class="hero-card-title">Box Breathing</span></div>
+      <p class="hero-card-desc">Zenuwstelsel kalmeren via gecontroleerde 4-4-4-4 ademhaling. Gebruikt door Navy SEALs en topsporters wereldwijd.</p>
+      <div class="hero-card-tags"><span class="htag htag-theme">Druk &amp; Stress</span><span class="htag htag-age">U14+</span><span class="htag htag-time">5 min</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-top"><span class="hero-card-num">51</span><span class="hero-card-title">De Flu Game Mentaliteit</span></div>
+      <p class="hero-card-desc">Spelers ontdekken hun eigen doorzet-moment en formuleren hun persoonlijke Flu Game zin.</p>
+      <div class="hero-card-tags"><span class="htag htag-theme">Weerbaarheid</span><span class="htag htag-age">U14+</span><span class="htag htag-time">15 min</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section id="mission">
+  <div class="fade-in">
+    <span class="section-tag outline">Wie wij zijn</span>
+    <h2 style="color:var(--white)">Onze missie en visie</h2>
+    <p class="section-sub" style="color:#555;">Waarom we doen wat we doen en waar we naartoe willen.</p>
+  </div>
+  <div class="mv-grid fade-in">
+    <div class="mv-card mission-card">
+      <span class="mv-draft">Draft</span>
+      <div class="mv-label">Missie</div>
+      <h3>Elke jonge sporter de kans geven om te groeien als mens, niet alleen als atleet.</h3>
+      <p>Character First gelooft dat sport het perfecte podium is om levenswaarden te ontwikkelen. Wij bieden coaches en clubs een evidence-based raamwerk om mentale weerbaarheid, teamgeest, zelfkennis en leiderschap te trainen naast de technische vaardigheden.</p>
+    </div>
+    <div class="mv-card vision-card">
+      <span class="mv-draft">Draft</span>
+      <div class="mv-label">Visie</div>
+      <h3>Een generatie sporters die wint op het veld en in het leven.</h3>
+      <p>Wij zien een toekomst waar karakter net zo systematisch getraind wordt als techniek en tactiek. Waar coaches niet alleen worden afgerekend op uitslagen maar op de mensen die ze vormen. Waar Character First de standaard is, niet de uitzondering.</p>
     </div>
   </div>
 </section>
 
 <!-- PROBLEM -->
 <section id="problem">
-  <div class="section-tag">Waarom Character First</div>
-  <h2>Talent alleen wint geen kampioenschappen.</h2>
-  <p class="section-sub">
-    De wetenschap is duidelijk: de sterkste teams winnen met vertrouwen,
-    communicatie en karakter — niet alleen met talent.
-  </p>
-  <div class="problem-grid">
+  <div class="fade-in">
+    <span class="section-tag">Waarom nu</span>
+    <h2>Wat er op het spel staat</h2>
+    <p class="section-sub">Technische training is overal. Mentale en karakterontwikkeling veel minder.</p>
+  </div>
+  <div class="problem-grid fade-in">
     <div class="problem-card">
-      <p>"Teams met hoge sociale cohesie presteren tot 20% beter dan teams met gelijk talent maar lage cohesie."</p>
-      <div class="source">Carron et al. — Team Cohesion Model (1982)</div>
+      <p>"35% van de jonge sporters stopt voor de leeftijd van 15 jaar. De voornaamste reden: ze hebben het gevoel er niet bij te horen."</p>
+      <div class="source">Visek et al., 2015 — George Washington University</div>
     </div>
     <div class="problem-card">
-      <p>"Jongeren die via sport levensvaardigheden ontwikkelen, presteren beter op school, in relaties én in hun carrière."</p>
-      <div class="source">Côté & Vierimaa — Positive Youth Development (2014)</div>
+      <p>"Sporters met hoge mentale weerbaarheid presteren tot 40% consistenter onder druk dan sporters met lage weerbaarheid."</p>
+      <div class="source">Gucciardi et al., 2015 — Journal of Sport and Exercise Psychology</div>
     </div>
     <div class="problem-card">
-      <p>"Psychologische veiligheid in een team — durven spreken zonder angst — is de sterkste voorspeller van teamprestaties."</p>
-      <div class="source">Amy Edmondson — Harvard Business School (1999)</div>
+      <p>"Coaches besteden gemiddeld minder dan 2% van de trainingstijd aan mentale vaardigheden, terwijl 90% erkent dat dit even belangrijk is."</p>
+      <div class="source">Weinberg &amp; Gould, 2019 — Foundations of Sport Psychology</div>
     </div>
     <div class="problem-card">
-      <p>"Spelers die hun rol begrijpen én accepteren zijn significant tevredener en presteren consistent beter."</p>
-      <div class="source">Eys & Carron — Role Clarity in Sport (2001)</div>
+      <p>"Teams met een hoge psychologische veiligheid presteren 26% beter dan teams met lage psychologische veiligheid."</p>
+      <div class="source">Edmondson, 2018 — Harvard Business School</div>
     </div>
   </div>
 </section>
 
 <!-- PILLARS -->
 <section id="pillars">
-  <div class="section-tag">De 5 pijlers</div>
-  <h2>Wat elke speler leert.</h2>
-  <p class="section-sub">
-    Elk onderdeel van Character First is gebaseerd op één van vijf kernpijlers.
-    Samen vormen ze een compleet fundament.
-  </p>
-  <div class="pillars-grid">
+  <div class="fade-in">
+    <span class="section-tag">Hoe het werkt</span>
+    <h2>De 6 pijlers van Character First</h2>
+    <p class="section-sub">Elk thema is onderbouwd met wetenschappelijke literatuur en vertaald naar praktische, uitvoerbare oefeningen.</p>
+  </div>
+  <div class="pillars-grid fade-in">
     <div class="pillar-card">
-      <div class="pillar-num">01</div>
-      <div class="pillar-title">Zelfkennis</div>
-      <div class="pillar-desc">Wie ben ik als speler? Wat zijn mijn sterktes en valkuilen?</div>
+      <div class="pillar-icon">&#128302;</div>
+      <div class="pillar-title">Zelfkennis &amp; Identiteit</div>
+      <p class="pillar-desc">Wie ben ik als sporter en als persoon? Waarden, krachten, patronen.</p>
     </div>
     <div class="pillar-card">
-      <div class="pillar-num">02</div>
-      <div class="pillar-title">Omgaan met druk</div>
-      <div class="pillar-desc">Stress, fouten, publiek, ouders, coaches — hoe blijf ik staan?</div>
+      <div class="pillar-icon">&#9889;</div>
+      <div class="pillar-title">Druk &amp; Stress</div>
+      <p class="pillar-desc">Omgaan met verwachtingen, zenuwen en moeilijke momenten.</p>
     </div>
     <div class="pillar-card">
-      <div class="pillar-num">03</div>
-      <div class="pillar-title">Mijn rol</div>
-      <div class="pillar-desc">Elke rol telt. Ontdek jouw waarde in het team.</div>
+      <div class="pillar-icon">&#129517;</div>
+      <div class="pillar-title">Mijn Rol</div>
+      <p class="pillar-desc">Wat is mijn bijdrage? Leiderschap, volgzaamheid en rolbewustzijn.</p>
     </div>
     <div class="pillar-card">
-      <div class="pillar-num">04</div>
+      <div class="pillar-icon">&#128172;</div>
       <div class="pillar-title">Communicatie</div>
-      <div class="pillar-desc">Hoe praat ik met mijn coach, ouders en ploegmaats?</div>
+      <p class="pillar-desc">Feedback geven en ontvangen, luisteren, moeilijke gesprekken.</p>
     </div>
     <div class="pillar-card">
-      <div class="pillar-num">05</div>
-      <div class="pillar-title">Team eerst</div>
-      <div class="pillar-desc">Wat maakt een ploeg écht sterk? Vertrouwen bouwen.</div>
+      <div class="pillar-icon">&#129309;</div>
+      <div class="pillar-title">Team Eerst</div>
+      <p class="pillar-desc">Vertrouwen opbouwen, collectieve verantwoordelijkheid, cohesie.</p>
+    </div>
+    <div class="pillar-card" style="border-color:rgba(240,90,40,.25);">
+      <div class="pillar-icon">&#129521;</div>
+      <div class="pillar-title">Mentale Taaiheid</div>
+      <p class="pillar-desc">Fysieke en mentale uitdagingen, veerkracht, doorzettingsvermogen.</p>
     </div>
   </div>
 </section>
 
+<!-- EXERCISE PREVIEW -->
+<section id="exercises">
+  <div class="fade-in">
+    <span class="section-tag">De bibliotheek</span>
+    <h2>59 uitgewerkte oefeningen</h2>
+    <p class="section-sub">Elke oefening heeft een moderatorhandleiding, een printbaar werkblad, wetenschappelijke literatuur en YouTube inspiratie. Filter op leeftijdsgroep.</p>
+  </div>
+  <div class="ex-filter fade-in">
+    <button class="ex-filter-btn u14 active" data-age="u14">U14</button>
+    <button class="ex-filter-btn u16" data-age="u16">U16</button>
+    <button class="ex-filter-btn senior" data-age="senior">Senior</button>
+  </div>
+  <div class="ex-preview-grid fade-in" id="ex-grid">
+    <a class="ex-preview-card" data-ages="u14 u16 senior" href="oefeningen.html#t1">
+      <div class="ep-top"><span class="ep-num">10</span><span class="ep-title">Twee Waarheden, Een Leugen</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers leren elkaar kennen via twee ware feiten en een leugen over zichzelf buiten de sport.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Zelfkennis</span><span class="ep-tag ep-tag-age-u14">U14+</span><span class="ep-tag ep-tag-time">8 min</span><span class="ep-tag ep-tag-type">Groep</span></div></div>
+    </a>
+    <a class="ex-preview-card" data-ages="u14 u16 senior" href="oefeningen.html#t2">
+      <div class="ep-top"><span class="ep-num">11</span><span class="ep-title">Box Breathing</span></div>
+      <div class="ep-body"><p class="ep-desc">Zenuwstelsel kalmeren via 4-4-4-4 ademhaling. Techniek gebruikt door Navy SEALs en topsporters.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Druk &amp; Stress</span><span class="ep-tag ep-tag-age-u14">U14+</span><span class="ep-tag ep-tag-time">5 min</span><span class="ep-tag ep-tag-type">Groep</span></div></div>
+    </a>
+    <a class="ex-preview-card" data-ages="u14 u16 senior" href="oefeningen.html#t3">
+      <div class="ep-top"><span class="ep-num">23</span><span class="ep-title">Menselijke Grafiek</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers positioneren zich fysiek op stellingen en ontdekken de diversiteit in het team.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Mijn Rol</span><span class="ep-tag ep-tag-age-u14">U14+</span><span class="ep-tag ep-tag-time">8 min</span><span class="ep-tag ep-tag-type">Groep</span></div></div>
+    </a>
+    <a class="ex-preview-card" data-ages="u14 u16 senior" href="oefeningen.html#t4">
+      <div class="ep-top"><span class="ep-num">37</span><span class="ep-title">Aanmoedigingschallenge</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers leren spontaan en specifiek aanmoedigen in vijf minuten bewuste aanmoedigingspraktijk.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Communicatie</span><span class="ep-tag ep-tag-age-u14">U14+</span><span class="ep-tag ep-tag-time">7 min</span><span class="ep-tag ep-tag-type">Groep</span></div></div>
+    </a>
+    <a class="ex-preview-card" data-ages="u14 u16 senior" href="oefeningen.html#t5">
+      <div class="ep-top"><span class="ep-num">46</span><span class="ep-title">Kracht van de Kring</span></div>
+      <div class="ep-body"><p class="ep-desc">Het team activeren via een gedeeld energie ritueel dat opbouwt naar een gezamenlijke uitroep.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Team Eerst</span><span class="ep-tag ep-tag-age-u14">U14+</span><span class="ep-tag ep-tag-time">5 min</span><span class="ep-tag ep-tag-type">Groep</span></div></div>
+    </a>
+    <a class="ex-preview-card" data-ages="u14 u16 senior" href="review-en-taaiheid.html">
+      <div class="ep-top"><span class="ep-num">56</span><span class="ep-title">Wall Squat Challenge</span></div>
+      <div class="ep-body"><p class="ep-desc">Solo, daarna teamaanmoediging, daarna samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Fysiek</span><span class="ep-tag ep-tag-age-u14">U14+</span><span class="ep-tag ep-tag-time">15 min</span><span class="ep-tag ep-tag-type">Fysiek</span></div></div>
+    </a>
+    <!-- U16 set -->
+    <a class="ex-preview-card hidden" data-ages="u16 senior" href="oefeningen.html#t1">
+      <div class="ep-top"><span class="ep-num">03</span><span class="ep-title">Waardenkompas</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers selecteren hun top 3 persoonlijke waarden en koppelen ze aan concrete sportmomenten.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Zelfkennis</span><span class="ep-tag ep-tag-age-u16">U16+</span><span class="ep-tag ep-tag-time">10 min</span><span class="ep-tag ep-tag-type">Duo</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="u16 senior" href="oefeningen.html#t4">
+      <div class="ep-top"><span class="ep-num">31</span><span class="ep-title">Ik Boodschap</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers oefenen een boodschap overbrengen zonder beschuldigen via de ik-boodschapformule.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Communicatie</span><span class="ep-tag ep-tag-age-u16">U16+</span><span class="ep-tag ep-tag-time">8 min</span><span class="ep-tag ep-tag-type">Duo</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="u16 senior" href="mentale-weerbaarheid.html#oe2">
+      <div class="ep-top"><span class="ep-num">52</span><span class="ep-title">Gedachten Herkaderen</span></div>
+      <div class="ep-body"><p class="ep-desc">Leer negatieve gedachten omzetten via het ABC-model uit de cognitieve sportpsychologie.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Weerbaarheid</span><span class="ep-tag ep-tag-age-u16">U16+</span><span class="ep-tag ep-tag-time">15 min</span><span class="ep-tag ep-tag-type">Individueel</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="u16 senior" href="oefeningen.html#t2">
+      <div class="ep-top"><span class="ep-num">14</span><span class="ep-title">Worst Case Best Case</span></div>
+      <div class="ep-body"><p class="ep-desc">Angst voor falen relativeren door het systematisch in perspectief te plaatsen via drie scenario's.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Druk &amp; Stress</span><span class="ep-tag ep-tag-age-u16">U16+</span><span class="ep-tag ep-tag-time">8 min</span><span class="ep-tag ep-tag-type">Duo</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="u16 senior" href="oefeningen.html#t5">
+      <div class="ep-top"><span class="ep-num">42</span><span class="ep-title">Team Contract</span></div>
+      <div class="ep-body"><p class="ep-desc">Het team stelt samen gedragsafspraken op via post-its, stemming en gezamenlijke handtekening.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Team Eerst</span><span class="ep-tag ep-tag-age-u16">U16+</span><span class="ep-tag ep-tag-time">10 min</span><span class="ep-tag ep-tag-type">Groep</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="u16 senior" href="review-en-taaiheid.html">
+      <div class="ep-top"><span class="ep-num">58</span><span class="ep-title">Comeback Sprint</span></div>
+      <div class="ep-body"><p class="ep-desc">Na elke sprint krijgt de speler fictief slecht nieuws. Het team beoordeelt de kwaliteit van de reset.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Fysiek</span><span class="ep-tag ep-tag-age-u16">U16+</span><span class="ep-tag ep-tag-time">15 min</span><span class="ep-tag ep-tag-type">Fysiek</span></div></div>
+    </a>
+    <!-- Senior set -->
+    <a class="ex-preview-card hidden" data-ages="senior" href="mentale-weerbaarheid.html#oe5">
+      <div class="ep-top"><span class="ep-num">55</span><span class="ep-title">Groei na Mislukking</span></div>
+      <div class="ep-body"><p class="ep-desc">Posttraumatische groei via de vijf PTG-domeinen van Tedeschi en Calhoun. Diepgaande zelfreflectie.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Weerbaarheid</span><span class="ep-tag ep-tag-age-senior">Senior</span><span class="ep-tag ep-tag-time">15 min</span><span class="ep-tag ep-tag-type">Duo</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="senior" href="oefeningen.html#t4">
+      <div class="ep-top"><span class="ep-num">36</span><span class="ep-title">Moeilijk Gesprek Oefenen</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers oefenen een moeilijk gesprek voeren in een veilige trio-setting met observator.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Communicatie</span><span class="ep-tag ep-tag-age-senior">Senior</span><span class="ep-tag ep-tag-time">10 min</span><span class="ep-tag ep-tag-type">Trio</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="senior" href="mentale-weerbaarheid.html#oe4">
+      <div class="ep-top"><span class="ep-num">54</span><span class="ep-title">Pre-Performance Ritueel</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers bouwen een persoonlijk 6-stappen schakelaar (fysiek, mentaal, emotioneel) voor elke wedstrijd.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Weerbaarheid</span><span class="ep-tag ep-tag-age-senior">Senior</span><span class="ep-tag ep-tag-time">15 min</span><span class="ep-tag ep-tag-type">Individueel</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="senior" href="oefeningen.html#t5">
+      <div class="ep-top"><span class="ep-num">45</span><span class="ep-title">Brief aan het Team</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers verwoorden wat het team voor hen betekent via een korte brief met vier vaste openers.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Team Eerst</span><span class="ep-tag ep-tag-age-senior">Senior</span><span class="ep-tag ep-tag-time">9 min</span><span class="ep-tag ep-tag-type">Individueel</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="senior" href="review-en-taaiheid.html">
+      <div class="ep-top"><span class="ep-num">59</span><span class="ep-title">Team Plank Hold</span></div>
+      <div class="ep-body"><p class="ep-desc">Als een persoon valt, valt iedereen. Collectieve verantwoordelijkheid en groepsmotivatie voelbaar maken.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Fysiek</span><span class="ep-tag ep-tag-age-senior">Senior</span><span class="ep-tag ep-tag-time">15 min</span><span class="ep-tag ep-tag-type">Fysiek</span></div></div>
+    </a>
+    <a class="ex-preview-card hidden" data-ages="senior" href="oefeningen.html#t1">
+      <div class="ep-top"><span class="ep-num">06</span><span class="ep-title">Brief aan Mijn Jongere Ik</span></div>
+      <div class="ep-body"><p class="ep-desc">Spelers reflecteren op groei via een brief aan hun jongere sportende ik met vijf vaste openers.</p>
+      <div class="ep-tags"><span class="ep-tag ep-tag-theme">Zelfkennis</span><span class="ep-tag ep-tag-age-senior">Senior</span><span class="ep-tag ep-tag-time">8 min</span><span class="ep-tag ep-tag-type">Individueel</span></div></div>
+    </a>
+  </div>
+  <div class="ex-library-cta fade-in">
+    <a href="library.html">Bekijk alle 59 oefeningen in de bibliotheek</a>
+  </div>
+</section>
+
 <!-- PROGRAM -->
-<section id="program">
-  <div class="section-tag">Het programma</div>
-  <h2>Twee trajecten, één doel.</h2>
-  <p class="section-sub">
-    Of je nu een trainingsweek wil versterken of het volledige seizoen wil begeleiden —
-    er is een traject voor jouw club.
-  </p>
-
-  <div class="program-tabs">
-    <div class="tab active" onclick="showTab('week', this)">The Week — 5 dagen</div>
-    <div class="tab" onclick="showTab('season', this)">The Season — 8 maanden</div>
+<section id="program" style="background:var(--gray);">
+  <div class="fade-in">
+    <span class="section-tag">Trajecten</span>
+    <h2>Kies jouw programma</h2>
+    <p class="section-sub">Character First biedt twee trajecten: een intensieve vijfdaagse week of een diepgaand achtmaandsseizoen.</p>
   </div>
-
-  <div id="tab-week" class="program-box">
-    <div class="program-header">
-      <h3>The Week — Seizoensvoorbereiding</h3>
-      <p>Compact, intensief. Eén pijler per dag. Ideaal als onderdeel van je trainingsweek.</p>
-    </div>
-    <div class="program-days">
-      <div class="day-row">
-        <div class="day-num">1</div>
-        <div class="day-content">
-          <h4>Zelfkennis — "Ken jezelf voor je anderen kan leiden"</h4>
-          <p>Spelersprofiel, Fixed vs. Growth Mindset (Dweck), verrassingskaarten teemoefening</p>
-        </div>
+  <div class="prog-tabs fade-in">
+    <button class="prog-tab active" data-tab="week">The Week</button>
+    <button class="prog-tab" data-tab="season">The Season</button>
+  </div>
+  <div class="prog-content active fade-in" id="tab-week">
+    <div class="prog-box">
+      <div class="prog-header">
+        <div class="prog-badge">5-daags kamp</div>
+        <h3>The Week — Intensieve karakter bootcamp</h3>
+        <p>Vijf dagen volledig gefocust op karakter, verbinding en mentale kracht. Ideaal als seizoensstart of teambuilding.</p>
       </div>
-      <div class="day-row">
-        <div class="day-num">2</div>
-        <div class="day-content">
-          <h4>Druk & Stress — "Druk is een privilege"</h4>
-          <p>Stressreframing (Brooks/Harvard), box breathing, drukkaart, worst-case oefening</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">3</div>
-        <div class="day-content">
-          <h4>Mijn Rol — "Een team heeft geen sterren nodig"</h4>
-          <p>4 spelerstypes, rolacceptatie (Eys & Carron), rolcirkel oefening</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">4</div>
-        <div class="day-content">
-          <h4>Communicatie — "Wat je niet zegt, breekt teams"</h4>
-          <p>Ik-boodschap model, coach/ouder gesprekken, feedbackronde in trio's</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">5</div>
-        <div class="day-content">
-          <h4>Team Eerst — "Kampioenen worden gebouwd"</h4>
-          <p>Team Contract opstellen, brief aan mezelf, slotceremonie</p>
-        </div>
+      <div class="prog-days">
+        <div class="day-row"><div class="day-num">1</div><div class="day-content"><h4>Zelfkennis &amp; Identiteit</h4><p>Wie ben ik als sporter? Waarden, krachten, sportlijn en identiteitsankers.</p><div class="day-tags"><span class="day-tag">Sportlijn</span><span class="day-tag">Waardenkompas</span><span class="day-tag">Identiteitsankers</span></div></div></div>
+        <div class="day-row"><div class="day-num">2</div><div class="day-content"><h4>Druk &amp; Stress</h4><p>Box breathing, stressbarometer, herscoring ritueel en prestatiemantra.</p><div class="day-tags"><span class="day-tag">Box Breathing</span><span class="day-tag">Stressbarometer</span><span class="day-tag">Prestatiemantra</span></div></div></div>
+        <div class="day-row"><div class="day-num">3</div><div class="day-content"><h4>Mijn Rol in het Team</h4><p>Rolcompass, onzichtbare bijdrage, leider of volger en rolbelofte.</p><div class="day-tags"><span class="day-tag">Rolcompass</span><span class="day-tag">Onzichtbare Bijdrage</span><span class="day-tag">Rolbelofte</span></div></div></div>
+        <div class="day-row"><div class="day-num">4</div><div class="day-content"><h4>Communicatie</h4><p>Ik-boodschap, spiegel gesprek, aanmoedigingschallenge en dankwoord kaartje.</p><div class="day-tags"><span class="day-tag">Ik Boodschap</span><span class="day-tag">Spiegel Gesprek</span><span class="day-tag">Aanmoediging</span></div></div></div>
+        <div class="day-row"><div class="day-num">5</div><div class="day-content"><h4>Team Eerst</h4><p>Wall squat challenge, team contract, vertrouwensval en slotceremonie.</p><div class="day-tags"><span class="day-tag">Wall Squat</span><span class="day-tag">Team Contract</span><span class="day-tag">Slotceremonie</span></div></div></div>
       </div>
     </div>
   </div>
-
-  <div id="tab-season" class="program-box" style="display:none;">
-    <div class="program-header">
-      <h3>The Season — Volledig seizoensprogramma</h3>
-      <p>Eén thema per maand. Dieper, met wekelijkse micro-opdrachten en maandelijkse reflectie.</p>
-    </div>
-    <div class="program-days">
-      <div class="day-row">
-        <div class="day-num">1</div>
-        <div class="day-content">
-          <h4>Maand 1 — Zelfkennis & Mindset</h4>
-          <p>Dweck (2006), Goleman (1995) — wie ben jij als speler en persoon?</p>
-        </div>
+  <div class="prog-content fade-in" id="tab-season">
+    <div class="prog-box">
+      <div class="prog-header">
+        <div class="prog-badge">8 maanden online</div>
+        <h3>The Season — Diepgaand seizoensprogramma</h3>
+        <p>Acht maanden lang een thema per maand. Online modules, werkbladen en maandelijkse coach check-ins.</p>
       </div>
-      <div class="day-row">
-        <div class="day-num">2</div>
-        <div class="day-content">
-          <h4>Maand 2 — Omgaan met druk & falen</h4>
-          <p>Lazarus & Folkman (1984), Brooks (2014) — falen als leerschool</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">3</div>
-        <div class="day-content">
-          <h4>Maand 3 — Mijn rol in het team</h4>
-          <p>Eys & Carron (2001) — rolclarity, rolacceptatie, eigenwaarde</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">4</div>
-        <div class="day-content">
-          <h4>Maand 4 — Communicatie & feedback</h4>
-          <p>Edmondson (1999), Janssen (2002) — spreken zonder angst</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">5</div>
-        <div class="day-content">
-          <h4>Maand 5 — Leiderschap zonder aanvoerdersband</h4>
-          <p>Chelladurai (1990) — elke speler als leider van zijn eigen gedrag</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">6</div>
-        <div class="day-content">
-          <h4>Maand 6 — Conflicthantering</h4>
-          <p>Thomas-Kilmann (1974) — conflictstijlen en constructieve oplossing</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">7</div>
-        <div class="day-content">
-          <h4>Maand 7 — Veerkracht & terugveren</h4>
-          <p>Gucciardi et al. (2011) — Mental Toughness 4C-model</p>
-        </div>
-      </div>
-      <div class="day-row">
-        <div class="day-num">8</div>
-        <div class="day-content">
-          <h4>Maand 8 — Teamcultuur & erfenis</h4>
-          <p>Carron (1982), Walsh (2009) — welk team wil jij achterlaten?</p>
-        </div>
+      <div class="month-grid">
+        <div class="month-card"><div class="month-num">Maand 1</div><div class="month-title">Zelfkennis</div><p class="month-desc">Wie ben ik? Waarden, identiteit en sporthistorie.</p></div>
+        <div class="month-card"><div class="month-num">Maand 2</div><div class="month-title">Druk &amp; Stress</div><p class="month-desc">Omgaan met verwachtingen en zenuwen.</p></div>
+        <div class="month-card"><div class="month-num">Maand 3</div><div class="month-title">Mijn Rol</div><p class="month-desc">Formele en informele bijdrage aan het team.</p></div>
+        <div class="month-card"><div class="month-num">Maand 4</div><div class="month-title">Communicatie</div><p class="month-desc">Feedback, luisteren en moeilijke gesprekken.</p></div>
+        <div class="month-card"><div class="month-num">Maand 5</div><div class="month-title">Team Eerst</div><p class="month-desc">Vertrouwen, cohesie en collectieve kracht.</p></div>
+        <div class="month-card"><div class="month-num">Maand 6</div><div class="month-title">Veerkracht</div><p class="month-desc">Omgaan met tegenslagen en comeback-kracht.</p></div>
+        <div class="month-card"><div class="month-num">Maand 7</div><div class="month-title">Leiderschap</div><p class="month-desc">Leiden van binnenuit, invloed zonder titel.</p></div>
+        <div class="month-card"><div class="month-num">Maand 8</div><div class="month-title">Nalatenschap</div><p class="month-desc">Wat laat ik achter? Mijn karakter als erfenis.</p></div>
       </div>
     </div>
   </div>
@@ -644,221 +561,178 @@
 
 <!-- SCIENCE -->
 <section id="science">
-  <div class="section-tag">Wetenschappelijke basis</div>
-  <h2>Niet gebaseerd op gevoel. Op bewijs.</h2>
-  <p class="section-sub">
-    Elk onderdeel van Character First is gegrond in peer-reviewed onderzoek
-    uit sportpsychologie, teamdynamiek en positieve jeugdontwikkeling.
-  </p>
-  <div class="science-grid">
-    <div class="science-card">
-      <div class="author">Dweck, 2006</div>
-      <h4>Growth Mindset</h4>
-      <p>Talent is een startpunt, geen eindpunt. Spelers met een groeimindset herstellen sneller van fouten en verbeteren structureel meer.</p>
-    </div>
-    <div class="science-card">
-      <div class="author">Edmondson, 1999</div>
-      <h4>Psychological Safety</h4>
-      <p>Teams waar spelers durven spreken zonder angst voor schaamte presteren structureel beter — ook in topsport.</p>
-    </div>
-    <div class="science-card">
-      <div class="author">Carron, 1982</div>
-      <h4>Team Cohesion</h4>
-      <p>Sociale én taakcohesie zijn beide nodig voor teamprestaties. Cohesie is trainbaar — en Character First doet precies dat.</p>
-    </div>
-    <div class="science-card">
-      <div class="author">Côté & Vierimaa, 2014</div>
-      <h4>Positive Youth Development</h4>
-      <p>Sport is de krachtigste omgeving voor karakterontwikkeling bij jongeren — mits doelbewust begeleid.</p>
-    </div>
-    <div class="science-card">
-      <div class="author">Eys & Carron, 2001</div>
-      <h4>Role Clarity</h4>
-      <p>Spelers die hun rol begrijpen én accepteren zijn significant tevredener en leveren consistentere prestaties.</p>
-    </div>
-    <div class="science-card">
-      <div class="author">Clough & Earle, 2002</div>
-      <h4>Mental Toughness 4C</h4>
-      <p>Control, Commitment, Challenge, Confidence — vier meetbare dimensies van mentale weerbaarheid bij sporters.</p>
-    </div>
+  <div class="fade-in">
+    <span class="section-tag">Evidence-based</span>
+    <h2>Onderbouwd met wetenschap</h2>
+    <p class="section-sub">Alle oefeningen zijn gebaseerd op peer-reviewed literatuur uit de sportpsychologie, organisatiepsychologie en onderwijs.</p>
+  </div>
+  <div class="science-grid fade-in">
+    <div class="science-card"><span class="sci-tier sr">Systematische Review</span><div class="sci-author">Gucciardi et al., 2015</div><h4>Mental Toughness in Sport</h4><p>Mentale weerbaarheid is voor 60 tot 70% trainbaar via gerichte interventie. Meta-analyse van 91 studies.</p></div>
+    <div class="science-card"><span class="sci-tier rct">RCT Studie</span><div class="sci-author">Hatzigeorgiadis et al., 2009</div><h4>Self-Talk and Performance</h4><p>Sporters die zelfgesprek-training kregen presteerden 17% beter onder hoge druk dan de controlegroep.</p></div>
+    <div class="science-card"><span class="sci-tier sr">Systematische Review</span><div class="sci-author">Fletcher &amp; Sarkar, 2012</div><h4>Resilience in Elite Sport</h4><p>Veerkracht bij sporters is sterk geassocieerd met positieve persoonlijkheid, motivatie en sociale steun.</p></div>
+    <div class="science-card"><span class="sci-tier qual">Kwalitatief</span><div class="sci-author">Visek et al., 2015</div><h4>Fun Integration Theory</h4><p>Erbij horen en plezier beleven zijn de sterkste voorspellers voor sportparticipatie bij jongeren tot 15 jaar.</p></div>
   </div>
 </section>
 
 <!-- FOR WHO -->
 <section id="forwho">
-  <div class="section-tag">Voor wie</div>
-  <h2>Character First is er voor clubs die verder kijken.</h2>
-  <p class="section-sub">Geschikt voor elke ploeg, elk niveau — zolang er een wil is om te groeien.</p>
-  <div class="forwho-grid">
-    <div class="forwho-card">
-      <h4>U14 — U18 ploegen</h4>
-      <p>Jongeren in hun meest vormende jaren. De ideale leeftijd om karakter en teamvaardigheden te ontwikkelen.</p>
+  <div class="fade-in">
+    <span class="section-tag">Voor wie</span>
+    <h2>Character First is voor jou als...</h2>
+    <p class="section-sub">Wij werken met coaches, clubs en organisaties die verder willen kijken dan de uitslag.</p>
+  </div>
+  <div class="forwho-grid fade-in">
+    <div class="forwho-card"><div class="forwho-icon">&#127936;</div><h4>Jeugdcoach (U14 tot U18)</h4><p>Je wilt jouw spelers niet alleen beter maken in de sport, maar ook als mens. Je zoekt concrete tools die je direct kunt gebruiken.</p></div>
+    <div class="forwho-card"><div class="forwho-icon">&#127942;</div><h4>Senioren- of profcoach</h4><p>Je merkt dat techniek en tactiek niet genoeg zijn. Mentale kracht, teamcohesie en communicatie zijn de ontbrekende schakel.</p></div>
+    <div class="forwho-card"><div class="forwho-icon">&#127963;</div><h4>Sportclub of federatie</h4><p>Je wilt een cultuur bouwen waarin karakter structureel wordt getraind naast de sportieve ontwikkeling.</p></div>
+    <div class="forwho-card"><div class="forwho-icon">&#127891;</div><h4>School of sportacademie</h4><p>Je zoekt een programma dat sport verbindt met persoonlijke groei, sociale vaardigheden en leiderschap.</p></div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section id="quotes">
+  <div class="fade-in">
+    <span class="section-tag outline">Stemmen</span>
+    <h2>Wat sporters en coaches zeggen</h2>
+    <p class="section-sub">Ervaringen van coaches en spelers die met het programma werkten.</p>
+  </div>
+  <div class="quotes-grid fade-in">
+    <div class="quote-card">
+      <p class="quote-text">The wall squat exercise changed how my team communicates. They didn't just encourage each other during the exercise — they started doing it in games automatically.</p>
+      <div class="quote-author"><div class="quote-avatar">SK</div><div><div class="quote-name">Sarah K.</div><div class="quote-role">U16 basketbalcoach</div></div></div>
     </div>
-    <div class="forwho-card">
-      <h4>Senioren & recreanten</h4>
-      <p>Ook volwassen sporters profiteren van betere communicatie en teamdynamiek — op elk niveau.</p>
+    <div class="quote-card">
+      <p class="quote-text">I never thought about what my role was beyond scoring points. The Rolcompass exercise made me realize how much I was already contributing — and how much more I could give.</p>
+      <div class="quote-author"><div class="quote-avatar">JD</div><div><div class="quote-name">Jonas D.</div><div class="quote-role">U18 speler</div></div></div>
     </div>
-    <div class="forwho-card">
-      <h4>Coaches & club begeleiders</h4>
-      <p>Character First geeft coaches concrete tools om verder te gaan dan tactiek en techniek.</p>
-    </div>
-    <div class="forwho-card">
-      <h4>Sportclubs & academies</h4>
-      <p>Van kleine lokale club tot regionale academie — het programma past zich aan jullie context aan.</p>
+    <div class="quote-card">
+      <p class="quote-text">The science behind every exercise gives me confidence as a coach. I'm not just doing team bonding — I'm doing evidence-based character development. That matters.</p>
+      <div class="quote-author"><div class="quote-avatar">ML</div><div><div class="quote-name">Marc L.</div><div class="quote-role">Hoofdcoach senioren</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="section-tag">Prijzen</div>
-  <h2>Eenvoudig en transparant.</h2>
-  <p class="section-sub">
-    Per club. Geen verborgen kosten. Start gratis met een piloot.
-  </p>
-  <div class="pricing-grid">
+  <div class="fade-in">
+    <span class="section-tag">Investering</span>
+    <h2>Kies jouw traject</h2>
+    <p class="section-sub">Beide programma's zijn volledig uitgewerkt met moderatorhandleidingen, werkbladen en begeleiding.</p>
+  </div>
+  <div class="pricing-grid fade-in">
     <div class="price-card">
-      <div class="price-header">
-        <h3>The Week — Starter</h3>
-        <div class="badge">5 daagse voorbereiding</div>
-      </div>
+      <div class="price-header"><h3>The Week</h3><div class="price-badge">5-daags kamp</div></div>
       <div class="price-body">
-        <div class="price-amount">€299 <span>/ ploeg</span></div>
+        <div class="price-amount">Op aanvraag</div>
         <ul class="price-features">
-          <li>5 dagmodules online</li>
-          <li>Video's + oefeningen</li>
-          <li>PDF-materiaal voor spelers</li>
-          <li>Team Contract template</li>
-          <li>Coach handleiding</li>
+          <li>5 volledig uitgewerkte dagprogramma's</li>
+          <li>Werkbladen voor spelers en coaches</li>
+          <li>Moderatorhandleidingen per dag</li>
+          <li>Wetenschappelijke onderbouwing</li>
+          <li>Toegang tot oefeningen bibliotheek</li>
         </ul>
-        <a href="#contact" class="price-cta">Interesse? Neem contact op</a>
+        <a href="mailto:pauwaert.tom@gmail.com?subject=Character First - The Week" class="price-cta">Vraag informatie aan</a>
       </div>
     </div>
-
     <div class="price-card featured">
-      <div class="price-header">
-        <h3>The Week — Pro</h3>
-        <div class="badge">Meest gekozen</div>
-      </div>
+      <div class="price-header"><h3>The Season</h3><div class="price-badge">8 maanden online</div></div>
       <div class="price-body">
-        <div class="price-amount">€499 <span>/ ploeg</span></div>
+        <div class="price-amount">Op aanvraag</div>
         <ul class="price-features">
-          <li>Alles van Starter</li>
-          <li>Live online sessie dag 1</li>
-          <li>Live online sessie dag 5</li>
-          <li>Persoonlijke Q&A</li>
-          <li>Nabegeleiding 2 weken</li>
+          <li>8 maandelijkse online modules</li>
+          <li>Werkbladen per maand per speler</li>
+          <li>Coach handleidingen met literatuur</li>
+          <li>Maandelijkse check-in sessie</li>
+          <li>Volledige bibliotheek (59 oefeningen)</li>
+          <li>U14, U16 en Senior versie</li>
         </ul>
-        <a href="#contact" class="price-cta">Interesse? Neem contact op</a>
+        <a href="mailto:pauwaert.tom@gmail.com?subject=Character First - The Season" class="price-cta">Vraag informatie aan</a>
       </div>
     </div>
-
     <div class="price-card">
-      <div class="price-header">
-        <h3>The Season</h3>
-        <div class="badge">Volledig seizoen</div>
-      </div>
+      <div class="price-header"><h3>Maatwerk</h3><div class="price-badge">Club of federatie</div></div>
       <div class="price-body">
-        <div class="price-amount">€699 <span>/ club / jaar</span></div>
+        <div class="price-amount">Op aanvraag</div>
         <ul class="price-features">
-          <li>8 maandmodules</li>
-          <li>Alle ploegen van de club</li>
-          <li>Wekelijkse micro-opdrachten</li>
-          <li>Maandelijkse reflectiesessie</li>
-          <li>Voortgangsrapport per speler</li>
+          <li>Programma op maat voor jouw club</li>
+          <li>Opleiding voor coaches</li>
+          <li>Eigen branding mogelijk</li>
+          <li>Integratie in bestaand seizoensplan</li>
+          <li>Langdurige partnership</li>
         </ul>
-        <a href="#contact" class="price-cta">Interesse? Neem contact op</a>
+        <a href="mailto:pauwaert.tom@gmail.com?subject=Character First - Maatwerk" class="price-cta">Neem contact op</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PILOT -->
-<section id="pilot">
-  <div class="section-tag" style="background:#333; color:#fff;">Gratis piloot</div>
-  <h2>Wij zoeken 3 pilootclubs.</h2>
-  <p class="section-sub">
-    We testen Character First live bij een select aantal clubs — volledig gratis.
-    In ruil voor eerlijke feedback en een getuigenis als het werkt.
-  </p>
-  <div class="pilot-box">
-    <h3>Wat jij krijgt als pilootclub:</h3>
-    <ul>
-      <li>Volledig gratis toegang tot The Week (5 dagen)</li>
-      <li>Persoonlijke begeleiding van de oprichter</li>
-      <li>Meedenken over de verdere ontwikkeling</li>
-      <li>Exclusieve vroege-adopter prijs daarna</li>
-    </ul>
-  </div>
-  <br>
-  <a href="#contact" class="btn-primary">Aanmelden als pilootclub</a>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-tag">Contact</div>
-  <h2>Laten we praten.</h2>
-  <p class="section-sub">
-    Interesse in een piloot, een samenwerking of gewoon meer info?
-    Vul het formulier in en we nemen binnen 48 uur contact op.
-  </p>
-  <div class="contact-inner">
-    <form onsubmit="handleSubmit(event)">
-      <div class="form-group">
-        <label>Naam</label>
-        <input type="text" placeholder="Jouw naam" required />
-      </div>
-      <div class="form-group">
-        <label>Club of organisatie</label>
-        <input type="text" placeholder="Naam van je club" required />
-      </div>
-      <div class="form-group">
-        <label>E-mail</label>
-        <input type="email" placeholder="jouw@email.be" required />
-      </div>
-      <div class="form-group">
-        <label>Ik ben geïnteresseerd in</label>
-        <select>
-          <option>Gratis piloot (The Week)</option>
-          <option>The Week — Starter (€299)</option>
-          <option>The Week — Pro (€499)</option>
-          <option>The Season — Volledig seizoen (€699)</option>
-          <option>Meer informatie eerst</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Bericht (optioneel)</label>
-        <textarea placeholder="Vertel iets over je club, je ploeg of je vraag..."></textarea>
-      </div>
-      <button type="submit" class="form-submit">Verstuur aanvraag</button>
-      <p class="form-note">We antwoorden binnen 48 uur. Geen spam, nooit.</p>
-    </form>
+<!-- CTA BAND -->
+<section id="cta-band">
+  <h2>Klaar om te starten?</h2>
+  <p>Sluit je aan bij coaches en clubs die al werken aan karakter, niet alleen aan prestaties.</p>
+  <div class="cta-btns">
+    <a href="mailto:pauwaert.tom@gmail.com?subject=Character First - The Week" class="btn-white">The Week aanvragen</a>
+    <a href="mailto:pauwaert.tom@gmail.com?subject=Character First - The Season" class="btn-white-outline">The Season aanvragen</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">CHARACTER<span> FIRST</span></div>
-  <div>Win the person. Win the team.</div>
-  <div>© 2025 Character First. Alle rechten voorbehouden.</div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based karakterontwikkeling voor sporters van U14 tot senior. Win the person. Win the team.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programma</h4>
+      <a href="#program">The Week</a>
+      <a href="#program">The Season</a>
+      <a href="season.html">Season details</a>
+      <a href="week-werkbladen.html">Week werkbladen</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="library.html">Oefeningen bibliotheek</a>
+      <a href="oefeningen.html">50 Oefeningen</a>
+      <a href="mentale-weerbaarheid.html">Mentale weerbaarheid</a>
+      <a href="werkbladen.html">Coach werkbladen</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. Alle rechten voorbehouden.</p>
+    <p>Gebouwd met evidence-based sportpsychologie.</p>
+  </div>
 </footer>
 
 <script>
-  function showTab(tab, el) {
-    document.getElementById('tab-week').style.display = tab === 'week' ? 'block' : 'none';
-    document.getElementById('tab-season').style.display = tab === 'season' ? 'block' : 'none';
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-  }
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = '✓ Verstuurd! We nemen snel contact op.';
-    btn.style.background = '#2a9d5c';
-    btn.disabled = true;
-  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.prog-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.prog-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.prog-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.ex-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ex-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const age = btn.dataset.age;
+      document.querySelectorAll('.ex-preview-card').forEach(card => {
+        card.classList.toggle('hidden', !card.dataset.ages.split(' ').includes(age));
+      });
+    });
+  });
 </script>
-
 </body>
 </html>
