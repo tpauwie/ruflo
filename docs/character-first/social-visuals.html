@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — Instagram Visuals</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --orange: #f05a28;
+    --white: #ffffff;
+    --gray: #888888;
+    --dark-gray: #1a1a1a;
+    --mid-gray: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #fff;
+    padding: 24px;
+  }
+
+  /* Page Header */
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 24px 32px;
+    background: #1a1a1a;
+    border-radius: 16px;
+    border-left: 4px solid var(--orange);
+  }
+  .page-title { font-size: 28px; font-weight: 800; }
+  .page-title span { color: var(--orange); }
+  .page-meta { color: var(--gray); font-size: 14px; margin-top: 4px; }
+
+  /* Language Toggle */
+  .lang-toggle {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #0a0a0a;
+    padding: 8px;
+    border-radius: 12px;
+  }
+  .lang-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    color: var(--gray);
+  }
+  .lang-btn.active {
+    background: var(--orange);
+    color: #fff;
+  }
+
+  /* Month Sections */
+  .month-section {
+    margin-bottom: 56px;
+  }
+  .month-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .month-badge {
+    background: var(--orange);
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .month-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .month-subtitle {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  /* Post Grid */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 540px);
+    gap: 24px;
+    justify-content: start;
+  }
+
+  /* Post Wrapper */
+  .post-wrap {
+    position: relative;
+    width: 540px;
+  }
+  .post-number {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    z-index: 10;
+    background: var(--orange);
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(240,90,40,0.5);
+  }
+  .post-type-badge {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    z-index: 10;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: var(--gray);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* CARD — Base */
+  .card {
+    width: 540px;
+    height: 540px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+  }
+  .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    z-index: 5;
+  }
+
+  /* Logo Component */
+  .cf-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1;
+  }
+  .cf-logo .logo-top {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .cf-logo .logo-bottom {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  /* ==================== TYPE 1: QUOTE CARD ==================== */
+  .card-quote {
+    background: var(--black);
+  }
+  .card-quote .bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    filter: grayscale(100%);
+  }
+  .card-quote .content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 44px 48px;
+  }
+  .card-quote .quote-mark {
+    font-size: 120px;
+    font-family: Georgia, serif;
+    color: var(--orange);
+    line-height: 0.7;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .card-quote .quote-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .card-quote .quote-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+  .card-quote .attribution {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-quote .attr-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .card-quote .attr-name {
+    font-size: 14px;
+    color: var(--orange);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ==================== TYPE 2: EXERCISE SPOTLIGHT ==================== */
+  .card-exercise {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+  }
+  .card-exercise .ex-photo {
+    height: 260px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .card-exercise .ex-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(transparent, var(--black));
+  }
+  .card-exercise .ex-body {
+    flex: 1;
+    background: var(--black);
+    padding: 20px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-exercise .ex-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    align-self: flex-start;
+  }
+  .card-exercise .ex-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+  .card-exercise .ex-sub {
+    font-size: 14px;
+    color: var(--gray);
+    font-style: italic;
+    margin-top: -6px;
+  }
+  .card-exercise .ex-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 4px;
+  }
+  .card-exercise .ex-bullet {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #ccc;
+  }
+  .card-exercise .ex-bullet .bullet-icon {
+    font-size: 16px;
+    width: 24px;
+    text-align: center;
+  }
+  .card-exercise .ex-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+  }
+
+  /* ==================== TYPE 3: SCIENCE FACT ==================== */
+  .card-science {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-science .sci-gradient {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(240,90,40,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .card-science .sci-gradient-2 {
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(240,90,40,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .card-science .content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 44px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card-science .sci-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .card-science .sci-stat {
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 0.9;
+    letter-spacing: -3px;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-science .sci-fact {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.45;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .card-science .sci-source {
+    font-size: 12px;
+    color: var(--gray);
+    font-style: italic;
+  }
+  .card-science .sci-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+  .sci-tier {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .sci-tier.green { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+  .sci-tier.blue { background: rgba(59,130,246,0.15); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); }
+  .sci-tier .tier-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  /* ==================== TYPE 4: COACH TIP ==================== */
+  .card-coach {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-coach .coach-top-bar {
+    background: var(--orange);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .card-coach .coach-top-bar .bar-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .card-coach .coach-body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  .card-coach .coach-left {
+    width: 160px;
+    flex-shrink: 0;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card-coach .coach-number {
+    font-size: 88px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.25);
+    line-height: 1;
+    letter-spacing: -4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-coach .coach-right {
+    flex: 1;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+  }
+  .card-coach .coach-tip-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.55;
+  }
+  .card-coach .coach-bottom {
+    padding: 16px 32px;
+    border-top: 1px solid #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .card-coach .coach-url {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+  }
+
+  /* ==================== TYPE 5: TEAM STORY ==================== */
+  .card-story {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-story .story-photo {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .card-story .story-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.15) 0%,
+      rgba(10,10,10,0.2) 40%,
+      rgba(10,10,10,0.85) 70%,
+      rgba(10,10,10,0.97) 100%
+    );
+  }
+  .card-story .story-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 40px;
+  }
+  .card-story .story-tag {
+    align-self: flex-start;
+    background: rgba(240,90,40,0.9);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 4px;
+  }
+  .card-story .story-body {
+    margin-top: auto;
+  }
+  .card-story .story-line {
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 16px;
+    border-radius: 2px;
+  }
+  .card-story .story-headline {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .card-story .story-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .card-story .story-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ==================== TYPE 6: CTA ==================== */
+  .card-cta {
+    background: var(--orange);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 52px;
+    text-align: center;
+    gap: 0;
+  }
+  .card-cta .cta-deco-1 {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 40px solid rgba(0,0,0,0.08);
+  }
+  .card-cta .cta-deco-2 {
+    position: absolute;
+    bottom: -100px;
+    left: -60px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 50px solid rgba(0,0,0,0.06);
+  }
+  .card-cta .cta-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 16px;
+  }
+  .card-cta .cta-headline {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+  }
+  .card-cta .cta-sub {
+    font-size: 18px;
+    color: rgba(0,0,0,0.65);
+    line-height: 1.5;
+    max-width: 380px;
+    margin-bottom: 40px;
+  }
+  .card-cta .cta-btn {
+    background: var(--black);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 16px 40px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .card-cta .cta-url {
+    font-size: 13px;
+    color: rgba(0,0,0,0.55);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+  }
+  .card-cta .cta-logo {
+    position: absolute;
+    bottom: 28px;
+    right: 36px;
+    z-index: 2;
+  }
+  .card-cta .cta-logo .logo-top { color: var(--black); opacity: 0.6; }
+  .card-cta .cta-logo .logo-bottom { color: var(--black); opacity: 0.9; }
+
+  /* Print mode */
+  .controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .ctrl-btn {
+    background: #2a2a2a;
+    color: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ctrl-btn:hover { background: var(--orange); color: #fff; }
+
+  /* Caption area below card */
+  .post-caption {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 12px 16px;
+  }
+  .caption-text {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  .caption-text[data-lang="nl"] { display: block; }
+  .caption-text[data-lang="en"] { display: none; }
+  body.lang-en .caption-text[data-lang="nl"] { display: none; }
+  body.lang-en .caption-text[data-lang="en"] { display: block; }
+
+  /* Responsive scrollable on small screens */
+  @media (max-width: 1180px) {
+    .post-grid {
+      grid-template-columns: 540px;
+    }
+  }
+
+  @media print {
+    .page-header, .month-header, .post-caption, .controls { display: none; }
+    .post-wrap { break-inside: avoid; }
+    .card { transform: none !important; }
+    body { background: #000; padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div>
+    <div class="page-title">Character <span>First</span> — Instagram Visuals</div>
+    <div class="page-meta">36 posts · 3 maanden · 6 template types · 1080×1080px</div>
+  </div>
+  <div class="controls">
+    <button class="ctrl-btn" onclick="window.print()">🖨 Print / Screenshot Mode</button>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-nl" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MONTH 1 — AWARENESS
+     ================================================================ -->
+<div class="month-section">
+  <div class="month-header">
+    <span class="month-badge">Maand 1</span>
+    <div>
+      <div class="month-title">Bewustwording / Awareness</div>
+      <div class="month-subtitle">Posts 1–12 · Introductie van het programma &amp; kernboodschap</div>
+    </div>
+  </div>
+
+  <div class="post-grid">
+
+    <!-- POST 1 — Quote -->
+    <div class="post-wrap">
+      <div class="post-number">1</div>
+      <div class="post-type-badge">Quote</div>
+      <div class="card card-quote">
+        <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1080&h=1080&fit=crop')"></div>
+        <div class="content">
+          <span class="quote-mark">"</span>
+          <div class="quote-text" data-nl="Win de persoon. Win het team." data-en="Win the person. Win the team.">
+            Win de persoon.<br>Win het team.
+          </div>
+          <div class="quote-footer">
+            <div class="attribution">
+              <div class="attr-dot"></div>
+              <div class="attr-name">Character First</div>
+            </div>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Techniek wint wedstrijden. Karakter wint kampioenschappen. 🔥 #CharacterFirst #Sportpsychologie #JongerenSport</div>
+        <div class="caption-text" data-lang="en">Technique wins games. Character wins championships. 🔥 #CharacterFirst #SportPsychology #YouthSports</div>
+      </div>
+    </div>
+
+    <!-- POST 2 — Exercise -->
+    <div class="post-wrap">
+      <div class="post-number">2</div>
+      <div class="post-type-badge">Oefening</div>
+      <div class="card card-exercise">
+        <div class="ex-photo" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=540&fit=crop')"></div>
+        <div class="ex-body">
+          <span class="ex-badge">Oefening #11</span>
+          <div class="ex-name">Box Breathing</div>
+          <div class="ex-sub">Kalm onder druk</div>
+          <div class="ex-bullets">
+            <div class="ex-bullet"><span class="bullet-icon">🎯</span> <span data-nl="Stressregulatie voor prestaties" data-en="Stress regulation for performance">Stressregulatie voor prestaties</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">⏱</span> <span data-nl="5–8 minuten" data-en="5–8 minutes">5–8 minuten</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">👥</span> <span data-nl="U10 tot senior" data-en="U10 to senior">U10 tot senior</span></div>
+          </div>
+          <div class="ex-footer">
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">4 tellen in – 4 houden – 4 uit – 4 houden. Deze simpele oefening activeert je parasympathisch zenuwstelsel. 💨 #BoxBreathing #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">4 counts in – 4 hold – 4 out – 4 hold. This simple exercise activates your parasympathetic nervous system. 💨 #BoxBreathing #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 3 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">3</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label" data-nl="Wist je dat?" data-en="Did you know?">Wist je dat?</div>
+          <div class="sci-stat">35%</div>
+          <div class="sci-fact" data-nl="van jonge sporters stopt voor hun 15e — coachgedrag is de #1 reden" data-en="of young athletes quit before age 15 — coaching behaviour is the #1 reason">
+            van jonge sporters stopt voor hun 15e — coachgedrag is de #1 reden
+          </div>
+          <div class="sci-source">Bron: Holt et al. (2020) · International Journal of Sport Psychology</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier green"><span class="tier-dot"></span>Systematische review</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Uitval stoppen begint bij de coach. Niet bij het kind. 📊 Wat doet jouw coaching met jouw spelers? #Sportuitval #CoachOntwikkeling #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Dropout starts with the coach. Not the child. 📊 What does your coaching do to your players? #SportDropout #CoachDevelopment #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 4 — Coach Tip -->
+    <div class="post-wrap">
+      <div class="post-number">4</div>
+      <div class="post-type-badge">Coach Tip</div>
+      <div class="card card-coach">
+        <div class="coach-top-bar">
+          <span class="bar-label">Coach Tip</span>
+        </div>
+        <div class="coach-body">
+          <div class="coach-left">
+            <div class="coach-number">01</div>
+          </div>
+          <div class="coach-right">
+            <div class="coach-tip-text" data-nl="Stop met punten tellen. Begin met karaktermomenten tellen." data-en="Stop counting points. Start counting character moments.">
+              Stop met punten tellen.<br>Begin met<br><strong style="color:var(--orange)">karaktermomenten</strong><br>tellen.
+            </div>
+          </div>
+        </div>
+        <div class="coach-bottom">
+          <div class="coach-url">characterfirst.be</div>
+          <div class="cf-logo">
+            <span class="logo-top">Character</span>
+            <span class="logo-bottom">First</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Elke training heeft karaktermomenten: doorzetten, eerlijk zijn, een ploeggenoot helpen. Tel ze. Benoem ze. Versterk ze. 💪 #CharacterFirst #Coaching</div>
+        <div class="caption-text" data-lang="en">Every session has character moments: persevere, be honest, help a teammate. Count them. Name them. Reinforce them. 💪 #CharacterFirst #Coaching</div>
+      </div>
+    </div>
+
+    <!-- POST 5 — Quote -->
+    <div class="post-wrap">
+      <div class="post-number">5</div>
+      <div class="post-type-badge">Quote</div>
+      <div class="card card-quote">
+        <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1517960413843-0bc3e7dc19e3?w=1080&h=1080&fit=crop')"></div>
+        <div class="content">
+          <span class="quote-mark">"</span>
+          <div class="quote-text">
+            Druk is een privilege — het komt alleen bij degenen die het verdient hebben.
+          </div>
+          <div class="quote-footer">
+            <div class="attribution">
+              <div class="attr-dot"></div>
+              <div class="attr-name">Billie Jean King</div>
+            </div>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Druk is geen last — het is een teken dat je ertoe doet. 🏆 Leer je spelers dat om te keren. #MindsetCoaching #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Pressure is not a burden — it's a sign that you matter. 🏆 Teach your athletes to flip that script. #MindsetCoaching #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 6 — Exercise -->
+    <div class="post-wrap">
+      <div class="post-number">6</div>
+      <div class="post-type-badge">Oefening</div>
+      <div class="card card-exercise">
+        <div class="ex-photo" style="background-image:url('https://images.unsplash.com/photo-1529900748604-07360bb13da3?w=1080&h=540&fit=crop')"></div>
+        <div class="ex-body">
+          <span class="ex-badge">Oefening #56</span>
+          <div class="ex-name">Wall Squat Challenge</div>
+          <div class="ex-sub">Het tijdsverschil bewijst de kracht van het team</div>
+          <div class="ex-bullets">
+            <div class="ex-bullet"><span class="bullet-icon">🎯</span> <span>Teamdynamiek &amp; collectieve veerkracht</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">⏱</span> <span>10–15 minuten</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">👥</span> <span>U12 tot senior</span></div>
+          </div>
+          <div class="ex-footer">
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Solo doe je het gemiddeld 47 seconden. Als team? 2 minuten+. Dat is geen toeval. Dat is verbondenheid. 🔥 #WallSquatChallenge #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Solo average: 47 seconds. As a team? 2 minutes+. That's not luck. That's connection. 🔥 #WallSquatChallenge #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 7 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">7</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label">Wist je dat?</div>
+          <div class="sci-fact" style="font-size:20px; align-items:flex-start; padding-top:16px;">
+            De <span style="color:var(--orange); font-weight:900">coach-sporter relatie</span> is de #1 voorspeller van intrinsieke motivatie — niet talent, niet winst, niet faciliteiten.
+          </div>
+          <div class="sci-source">Bron: Jowett &amp; Ntoumanis (2004) · Journal of Sport &amp; Exercise Psychology</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier blue"><span class="tier-dot"></span>Gerandomiseerde studie</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Jij bent de variabele. Niet het veld, niet het budget. De relatie die jij bouwt bepaalt of een kind blijft sporten. 🧠 #SportWetenschap #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">You are the variable. Not the field, not the budget. The relationship you build determines whether a child keeps playing. 🧠 #SportScience #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 8 — Team Story -->
+    <div class="post-wrap">
+      <div class="post-number">8</div>
+      <div class="post-type-badge">Team Story</div>
+      <div class="card card-story">
+        <div class="story-photo" style="background-image:url('https://images.unsplash.com/photo-1543357530-8622b50cd15f?w=1080&h=1080&fit=crop')"></div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <span class="story-tag">Team Story</span>
+          <div class="story-body">
+            <div class="story-line"></div>
+            <div class="story-headline">Wat gebeurt er als een team karakter traint — niet alleen skills?</div>
+            <div class="story-sub">Meer gesprekken na de training. Meer verantwoordelijkheid op het veld. Minder drama in de kleedkamer.</div>
+            <div class="story-footer">
+              <div class="cf-logo">
+                <span class="logo-top">Character</span>
+                <span class="logo-bottom">First</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Eén oefening. Zeven minuten. En de kleedkamer klinkt anders. 👀 Wat zou er veranderen bij jouw team? #CharacterFirst #TeamCultuur</div>
+        <div class="caption-text" data-lang="en">One exercise. Seven minutes. And the locker room sounds different. 👀 What would change in your team? #CharacterFirst #TeamCulture</div>
+      </div>
+    </div>
+
+    <!-- POST 9 — Quote -->
+    <div class="post-wrap">
+      <div class="post-number">9</div>
+      <div class="post-type-badge">Quote</div>
+      <div class="card card-quote">
+        <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68ffbc446b00?w=1080&h=1080&fit=crop')"></div>
+        <div class="content">
+          <span class="quote-mark">"</span>
+          <div class="quote-text" style="font-size:22px;">
+            Ik heb meer dan 9.000 shots gemist. Ik heb bijna 300 wedstrijden verloren. Dat is waarom ik slaag.
+          </div>
+          <div class="quote-footer">
+            <div class="attribution">
+              <div class="attr-dot"></div>
+              <div class="attr-name">Michael Jordan</div>
+            </div>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Falen is geen eindpunt — het is training. Hoe ga jij als coach om met fouten? #Veerkracht #CharacterFirst #MichaelJordan</div>
+        <div class="caption-text" data-lang="en">Failure is not an endpoint — it's training. How do you as a coach respond to mistakes? #Resilience #CharacterFirst #MichaelJordan</div>
+      </div>
+    </div>
+
+    <!-- POST 10 — Coach Tip -->
+    <div class="post-wrap">
+      <div class="post-number">10</div>
+      <div class="post-type-badge">Coach Tip</div>
+      <div class="card card-coach">
+        <div class="coach-top-bar">
+          <span class="bar-label">Coach Tip</span>
+        </div>
+        <div class="coach-body">
+          <div class="coach-left">
+            <div class="coach-number">02</div>
+          </div>
+          <div class="coach-right">
+            <div class="coach-tip-text">
+              Stel vragen.<br>Geef geen antwoorden.<br><br>
+              <span style="color:var(--orange); font-weight:900;">De speler die zelf het antwoord vindt, onthoudt het.</span>
+            </div>
+          </div>
+        </div>
+        <div class="coach-bottom">
+          <div class="coach-url">characterfirst.be</div>
+          <div class="cf-logo">
+            <span class="logo-top">Character</span>
+            <span class="logo-bottom">First</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">"Wat deed je goed?" werkt beter dan "Doe dit anders." Vraaggestuurd coachen is de toekomst. 💡 #VraaggestuurdCoachen #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">"What did you do well?" works better than "Do this differently." Question-driven coaching is the future. 💡 #QuestionDrivenCoaching #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 11 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">11</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label">Wist je dat?</div>
+          <div class="sci-stat">3×</div>
+          <div class="sci-fact">
+            meer intrinsieke motivatie bij sporters in een <span style="color:var(--orange);">masteryomgeving</span> versus een performanceklimaat
+          </div>
+          <div class="sci-source">Bron: Ntoumanis &amp; Biddle (1999) · Journal of Sports Sciences</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier green"><span class="tier-dot"></span>Meta-analyse</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Leer spelers te groeien — niet te winnen ten koste van alles. Het resultaat? Meer plezier, meer doorzetting, minder uitval. 📈 #Masteryclimaat #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Teach athletes to grow — not to win at all costs. The result? More joy, more persistence, less dropout. 📈 #MasteryClimate #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 12 — CTA -->
+    <div class="post-wrap">
+      <div class="post-number">12</div>
+      <div class="post-type-badge">CTA</div>
+      <div class="card card-cta">
+        <div class="cta-deco-1"></div>
+        <div class="cta-deco-2"></div>
+        <div class="cta-label">Early Access</div>
+        <div class="cta-headline">Vroege toegang<br>nu open.</div>
+        <div class="cta-sub">Het programma dat coaches helpt karakter te bouwen — wetenschappelijk onderbouwd, praktisch toepasbaar.</div>
+        <div class="cta-btn">Ga naar characterfirst.be →</div>
+        <div class="cta-url">characterfirst.be</div>
+        <div class="cf-logo cta-logo">
+          <span class="logo-top">Character</span>
+          <span class="logo-bottom">First</span>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Vroege toegang nu open 🚀 Meld je aan op characterfirst.be en start met bouwen aan karakter. #CharacterFirst #Lancering</div>
+        <div class="caption-text" data-lang="en">Early access now open 🚀 Sign up at characterfirst.be and start building character. #CharacterFirst #Launch</div>
+      </div>
+    </div>
+
+  </div><!-- /post-grid month 1 -->
+</div><!-- /month 1 -->
+
+
+<!-- ================================================================
+     MONTH 2 — EDUCATION
+     ================================================================ -->
+<div class="month-section">
+  <div class="month-header">
+    <span class="month-badge">Maand 2</span>
+    <div>
+      <div class="month-title">Educatie / Education</div>
+      <div class="month-subtitle">Posts 13–24 · Diepere kennis &amp; evidence-based methoden</div>
+    </div>
+  </div>
+
+  <div class="post-grid">
+
+    <!-- POST 13 — Exercise -->
+    <div class="post-wrap">
+      <div class="post-number">13</div>
+      <div class="post-type-badge">Oefening</div>
+      <div class="card card-exercise">
+        <div class="ex-photo" style="background-image:url('https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=1080&h=540&fit=crop')"></div>
+        <div class="ex-body">
+          <span class="ex-badge">Oefening #51</span>
+          <div class="ex-name">Flu Game Mentaliteit</div>
+          <div class="ex-sub">Jouw persoonlijke doorzettingsmoment</div>
+          <div class="ex-bullets">
+            <div class="ex-bullet"><span class="bullet-icon">🎯</span> <span>Veerkracht &amp; mentale sterkte ontdekken</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">⏱</span> <span>12–20 minuten</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">👥</span> <span>U14 tot senior</span></div>
+          </div>
+          <div class="ex-footer">
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Iedereen heeft een "flu game" — een moment waarop ze door het onmogelijke heen braken. Laat je team die momenten delen. 🔥 #FluGame #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Everyone has a "flu game" — a moment when they pushed through the impossible. Let your team share those moments. 🔥 #FluGame #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 14 — Quote -->
+    <div class="post-wrap">
+      <div class="post-number">14</div>
+      <div class="post-type-badge">Quote</div>
+      <div class="card card-quote">
+        <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1506126613408-eka0cb8ad57e?w=1080&h=1080&fit=crop')"></div>
+        <div class="content">
+          <span class="quote-mark">"</span>
+          <div class="quote-text" style="font-size:23px;">
+            Als je niet kunt controleren wat er gebeurt, controleer dan de manier waarop je reageert.
+          </div>
+          <div class="quote-footer">
+            <div class="attribution">
+              <div class="attr-dot"></div>
+              <div class="attr-name">Jay Shetty</div>
+            </div>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">De scheidsrechter, het veld, de tegenstander — dat controleer je niet. Je reactie wel. Train dat. 🧘 #Mindset #CharacterFirst #JayShetty</div>
+        <div class="caption-text" data-lang="en">The referee, the field, the opponent — you can't control those. Your response, you can. Train that. 🧘 #Mindset #CharacterFirst #JayShetty</div>
+      </div>
+    </div>
+
+    <!-- POST 15 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">15</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label">De wetenschap achter Box Breathing</div>
+          <div class="sci-fact" style="font-size:19px; padding-top:8px;">
+            4-4-4-4 ademhaling activeert het <span style="color:var(--orange);">parasympathisch zenuwstelsel</span> — verlaagt cortisol, verhoogt focusconcentratie en resettet de hartslag in minder dan 90 seconden.
+          </div>
+          <div style="margin-top:16px; padding:16px; background:#1a1a1a; border-radius:8px; display:flex; gap:16px; justify-content:space-around;">
+            <div style="text-align:center;">
+              <div style="font-size:28px; font-weight:900; color:var(--orange);">↓</div>
+              <div style="font-size:11px; color:var(--gray);">Cortisol</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:28px; font-weight:900; color:var(--orange);">↑</div>
+              <div style="font-size:11px; color:var(--gray);">Focus</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:28px; font-weight:900; color:var(--orange);">90s</div>
+              <div style="font-size:11px; color:var(--gray);">Reset</div>
+            </div>
+          </div>
+          <div class="sci-source" style="margin-top:12px;">Bron: Zaccaro et al. (2018) · Frontiers in Human Neuroscience</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier blue"><span class="tier-dot"></span>RCT</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Geen gadget. Geen app. Gewoon ademhalen — en de wetenschap doet de rest. 🌬️ #BoxBreathing #Neuroscience #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">No gadget. No app. Just breathing — and science does the rest. 🌬️ #BoxBreathing #Neuroscience #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 16 — Coach Tip -->
+    <div class="post-wrap">
+      <div class="post-number">16</div>
+      <div class="post-type-badge">Coach Tip</div>
+      <div class="card card-coach">
+        <div class="coach-top-bar">
+          <span class="bar-label">Coach Tip</span>
+        </div>
+        <div class="coach-body">
+          <div class="coach-left">
+            <div class="coach-number">03</div>
+          </div>
+          <div class="coach-right">
+            <div class="coach-tip-text">
+              Debrief met <span style="color:var(--orange); font-weight:900;">3 vragen:</span><br><br>
+              Wat werkte?<br>Wat was moeilijk?<br>Wat nemen we mee?
+            </div>
+          </div>
+        </div>
+        <div class="coach-bottom">
+          <div class="coach-url">characterfirst.be</div>
+          <div class="cf-logo">
+            <span class="logo-top">Character</span>
+            <span class="logo-bottom">First</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">De laatste 5 minuten van training zijn goud. Gebruik ze voor reflectie — niet voor extra sprints. 🧠 #Debrief #CharacterFirst #ReflectieCoaching</div>
+        <div class="caption-text" data-lang="en">The last 5 minutes of training are gold. Use them for reflection — not extra sprints. 🧠 #Debrief #CharacterFirst #ReflectionCoaching</div>
+      </div>
+    </div>
+
+    <!-- POST 17 — Exercise -->
+    <div class="post-wrap">
+      <div class="post-number">17</div>
+      <div class="post-type-badge">Oefening</div>
+      <div class="card card-exercise">
+        <div class="ex-photo" style="background-image:url('https://images.unsplash.com/photo-1612872087818-7b296b6fe1d0?w=1080&h=540&fit=crop')"></div>
+        <div class="ex-body">
+          <span class="ex-badge">Oefening #23</span>
+          <div class="ex-name">Rolkompas</div>
+          <div class="ex-sub">Elke speler heeft meer rollen dan scorer</div>
+          <div class="ex-bullets">
+            <div class="ex-bullet"><span class="bullet-icon">🎯</span> <span>Rolidentiteit &amp; teamwaarde verkennen</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">⏱</span> <span>15–25 minuten</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">👥</span> <span>U12 tot senior</span></div>
+          </div>
+          <div class="ex-footer">
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">De aanvoerder. De motivator. De stilste speler. Elk van hen is onmisbaar. Het Rolkompas maakt dat zichtbaar. 🧭 #Rolkompas #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">The captain. The motivator. The quietest player. Each is essential. The Role Compass makes that visible. 🧭 #RoleCompass #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 18 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">18</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label">Wist je dat?</div>
+          <div class="sci-stat">17%</div>
+          <div class="sci-fact">
+            betere prestaties door <span style="color:var(--orange);">zelfspraak-interventie</span> — zelfs een eenvoudige aanmoedigingszin verandert de output
+          </div>
+          <div class="sci-source">Bron: Hatzigeorgiadis et al. (2011) · Perspectives on Psychological Science</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier green"><span class="tier-dot"></span>Meta-analyse (32 studies)</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Wat een speler zichzelf vertelt tijdens een wedstrijd telt mee. Leer ze de juiste zin. 12–17% verbetering staat er in de literatuur op. 🗣️ #Zelfspraak #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">What an athlete tells themselves during a game matters. Teach them the right phrase. 12–17% improvement is documented in the literature. 🗣️ #SelfTalk #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 19 — Team Story -->
+    <div class="post-wrap">
+      <div class="post-number">19</div>
+      <div class="post-type-badge">Team Story</div>
+      <div class="card card-story">
+        <div class="story-photo" style="background-image:url('https://images.unsplash.com/photo-1556075798-9bc35af8b7e8?w=1080&h=1080&fit=crop')"></div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <span class="story-tag">Behind The Scenes</span>
+          <div class="story-body">
+            <div class="story-line"></div>
+            <div class="story-headline">De oefening die veranderde hoe ons team communiceert.</div>
+            <div class="story-sub">Na de Rolkompas-sessie spraken spelers voor het eerst open over hun rol in het team. De coach hoefde niets te zeggen.</div>
+            <div class="story-footer">
+              <div class="cf-logo">
+                <span class="logo-top">Character</span>
+                <span class="logo-bottom">First</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Soms hoef je als coach alleen de ruimte te maken. De spelers doen de rest. 🎙️ #TeamCommunicatie #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Sometimes as a coach you just need to create the space. The athletes do the rest. 🎙️ #TeamCommunication #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 20 — Quote -->
+    <div class="post-wrap">
+      <div class="post-number">20</div>
+      <div class="post-type-badge">Quote</div>
+      <div class="card card-quote">
+        <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1534438327431-18fead7ed2d5?w=1080&h=1080&fit=crop')"></div>
+        <div class="content">
+          <span class="quote-mark">"</span>
+          <div class="quote-text">
+            Hart is wat de goede van de groten onderscheidt.
+          </div>
+          <div class="quote-footer">
+            <div class="attribution">
+              <div class="attr-dot"></div>
+              <div class="attr-name">Michael Jordan</div>
+            </div>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Talent brengt je tot aan de deur. Karakter laat je erdoor. ❤️🔥 #Hart #CharacterFirst #MichaelJordan</div>
+        <div class="caption-text" data-lang="en">Talent gets you to the door. Character gets you through it. ❤️🔥 #Heart #CharacterFirst #MichaelJordan</div>
+      </div>
+    </div>
+
+    <!-- POST 21 — Coach Tip -->
+    <div class="post-wrap">
+      <div class="post-number">21</div>
+      <div class="post-type-badge">Coach Tip</div>
+      <div class="card card-coach">
+        <div class="coach-top-bar">
+          <span class="bar-label">Coach Tip</span>
+        </div>
+        <div class="coach-body">
+          <div class="coach-left">
+            <div class="coach-number">04</div>
+          </div>
+          <div class="coach-right">
+            <div class="coach-tip-text">
+              Hernoem fouten.<br><br>
+              In Character First noemen we ze<br>
+              <span style="color:var(--orange); font-weight:900; font-size:24px;">'leerherhaling'.</span>
+            </div>
+          </div>
+        </div>
+        <div class="coach-bottom">
+          <div class="coach-url">characterfirst.be</div>
+          <div class="cf-logo">
+            <span class="logo-top">Character</span>
+            <span class="logo-bottom">First</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Taal vormt cultuur. "Fout" roept schaamte op. "Leerherhaling" roept nieuwsgierigheid op. Welke cultuur kies jij? 💬 #TaalVanCoaching #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Language shapes culture. "Mistake" triggers shame. "Learning rep" triggers curiosity. Which culture do you choose? 💬 #LanguageOfCoaching #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 22 — Exercise -->
+    <div class="post-wrap">
+      <div class="post-number">22</div>
+      <div class="post-type-badge">Oefening</div>
+      <div class="card card-exercise">
+        <div class="ex-photo" style="background-image:url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1080&h=540&fit=crop')"></div>
+        <div class="ex-body">
+          <span class="ex-badge">Oefening #37</span>
+          <div class="ex-name">Aanmoedigingschallenge</div>
+          <div class="ex-sub">Aanmoediging verandert de fysiologie</div>
+          <div class="ex-bullets">
+            <div class="ex-bullet"><span class="bullet-icon">🎯</span> <span>Positieve teamcultuur &amp; cohesie</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">⏱</span> <span>7–10 minuten</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">👥</span> <span>U10 tot senior</span></div>
+          </div>
+          <div class="ex-footer">
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Een aanmoediging van een ploeggenoot verhoogt de hartcoherentie en verlaagt cortisol. Dat is geen psychologie — dat is biologie. 🧬 #Aanmoediging #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Encouragement from a teammate increases heart coherence and lowers cortisol. That's not psychology — that's biology. 🧬 #Encouragement #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 23 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">23</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label">Wist je dat?</div>
+          <div class="sci-stat">40%</div>
+          <div class="sci-fact">
+            meer leerrisico's nemen sporters in een <span style="color:var(--orange);">psychologisch veilig team</span> — ze proberen meer, falen beter, groeien sneller
+          </div>
+          <div class="sci-source">Bron: Edmondson (1999) · Administrative Science Quarterly</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier blue"><span class="tier-dot"></span>RCT · Team safety</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Veiligheid is de basis van alle groei. Hoe veilig voelen jouw spelers zich om te falen? 🛡️ #PsychologischeVeiligheid #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Safety is the foundation of all growth. How safe do your players feel to fail? 🛡️ #PsychologicalSafety #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 24 — CTA -->
+    <div class="post-wrap">
+      <div class="post-number">24</div>
+      <div class="post-type-badge">CTA</div>
+      <div class="card card-cta">
+        <div class="cta-deco-1"></div>
+        <div class="cta-deco-2"></div>
+        <div class="cta-label">Gratis bibliotheek</div>
+        <div class="cta-headline">Probeer één<br>oefening<br>deze week.</div>
+        <div class="cta-sub">Onze bibliotheek bevat 60+ evidence-based oefeningen. Gratis toegankelijk.</div>
+        <div class="cta-btn">Bekijk de bibliotheek →</div>
+        <div class="cta-url">characterfirst.be/bibliotheek</div>
+        <div class="cf-logo cta-logo">
+          <span class="logo-top">Character</span>
+          <span class="logo-bottom">First</span>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Geen abonnement nodig voor de eerste stap. Kies een oefening — 7 minuten — en zie wat er gebeurt. 👇 characterfirst.be #CharacterFirst #Gratis</div>
+        <div class="caption-text" data-lang="en">No subscription needed for the first step. Pick an exercise — 7 minutes — and see what happens. 👇 characterfirst.be #CharacterFirst #Free</div>
+      </div>
+    </div>
+
+  </div><!-- /post-grid month 2 -->
+</div><!-- /month 2 -->
+
+
+<!-- ================================================================
+     MONTH 3 — SOCIAL PROOF + CTA
+     ================================================================ -->
+<div class="month-section">
+  <div class="month-header">
+    <span class="month-badge">Maand 3</span>
+    <div>
+      <div class="month-title">Social Proof + CTA</div>
+      <div class="month-subtitle">Posts 25–36 · Testimonials, resultaten &amp; conversie</div>
+    </div>
+  </div>
+
+  <div class="post-grid">
+
+    <!-- POST 25 — Quote -->
+    <div class="post-wrap">
+      <div class="post-number">25</div>
+      <div class="post-type-badge">Quote</div>
+      <div class="card card-quote">
+        <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1529900748604-07360bb13da3?w=1080&h=1080&fit=crop')"></div>
+        <div class="content">
+          <span class="quote-mark">"</span>
+          <div class="quote-text">
+            De kracht van het team is elk individueel lid. De kracht van elk lid is het team.
+          </div>
+          <div class="quote-footer">
+            <div class="attribution">
+              <div class="attr-dot"></div>
+              <div class="attr-name">Phil Jackson</div>
+            </div>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">11 NBA titels. Phil Jackson coachte niet alleen basketball — hij coachte karakter. 🏆 #PhilJackson #TeamKarakter #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">11 NBA titles. Phil Jackson didn't just coach basketball — he coached character. 🏆 #PhilJackson #TeamCharacter #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 26 — Team Story -->
+    <div class="post-wrap">
+      <div class="post-number">26</div>
+      <div class="post-type-badge">Team Story</div>
+      <div class="card card-story">
+        <div class="story-photo" style="background-image:url('https://images.unsplash.com/photo-1571019614242-c58de9aeebca?w=1080&h=1080&fit=crop')"></div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <span class="story-tag">Coach Verhaal</span>
+          <div class="story-body">
+            <div class="story-line"></div>
+            <div class="story-headline">De eerste sessie van een coach met Character First.</div>
+            <div class="story-sub">"Ik verwachtte een theoriecursus. Ik kreeg een gesprek dat ik nog nooit met mijn team had gevoerd."</div>
+            <div class="story-footer">
+              <div class="cf-logo">
+                <span class="logo-top">Character</span>
+                <span class="logo-bottom">First</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Praktisch. Onmiddellijk toepasbaar. Zonder jargon. Dat is Character First. 💬 Wat zou jij anders doen na één sessie? #CharacterFirst #CoachOntdekking</div>
+        <div class="caption-text" data-lang="en">Practical. Immediately applicable. Without jargon. That is Character First. 💬 What would you do differently after one session? #CharacterFirst #CoachDiscovery</div>
+      </div>
+    </div>
+
+    <!-- POST 27 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">27</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label">Eindeseizoen reflectie</div>
+          <div class="sci-fact" style="font-size:20px; padding-top:8px;">
+            Sporters die het seizoen <span style="color:var(--orange);">reflecteren</span> tonen significant hogere intrinsieke motivatie het volgende seizoen — en minder burnout.
+          </div>
+          <div style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:#1a1a1a; border-radius:8px; padding:14px; text-align:center;">
+              <div style="font-size:24px; font-weight:900; color:var(--orange);">↑ 28%</div>
+              <div style="font-size:11px; color:var(--gray); margin-top:4px;">Motivatie volgend seizoen</div>
+            </div>
+            <div style="background:#1a1a1a; border-radius:8px; padding:14px; text-align:center;">
+              <div style="font-size:24px; font-weight:900; color:var(--orange);">↓ 41%</div>
+              <div style="font-size:11px; color:var(--gray); margin-top:4px;">Burnout risico</div>
+            </div>
+          </div>
+          <div class="sci-source" style="margin-top:12px;">Bron: Coakley (2011) · Sociology of Sport Journal</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier green"><span class="tier-dot"></span>Longitudinale studie</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Het seizoen afsluiten met reflectie is geen soft idee — het is wetenschappelijk onderbouwde preventie. 📊 #Reflectie #CharacterFirst #SportWetenschap</div>
+        <div class="caption-text" data-lang="en">Closing the season with reflection is not a soft idea — it's scientifically backed prevention. 📊 #Reflection #CharacterFirst #SportScience</div>
+      </div>
+    </div>
+
+    <!-- POST 28 — Coach Tip -->
+    <div class="post-wrap">
+      <div class="post-number">28</div>
+      <div class="post-type-badge">Coach Tip</div>
+      <div class="card card-coach">
+        <div class="coach-top-bar">
+          <span class="bar-label">Coach Tip</span>
+        </div>
+        <div class="coach-body">
+          <div class="coach-left">
+            <div class="coach-number">05</div>
+          </div>
+          <div class="coach-right">
+            <div class="coach-tip-text">
+              De laatste <span style="color:var(--orange); font-weight:900;">5 minuten</span> van training zijn even belangrijk als de eerste oefening.<br><br>
+              Gebruik ze.
+            </div>
+          </div>
+        </div>
+        <div class="coach-bottom">
+          <div class="coach-url">characterfirst.be</div>
+          <div class="cf-logo">
+            <span class="logo-top">Character</span>
+            <span class="logo-bottom">First</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Sluit elke training af met één vraag: "Wat neem jij mee van vandaag?" Vijf minuten die het verschil maken. ⏱ #Afsluiting #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Close every session with one question: "What are you taking with you from today?" Five minutes that make the difference. ⏱ #Closing #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 29 — Exercise -->
+    <div class="post-wrap">
+      <div class="post-number">29</div>
+      <div class="post-type-badge">Oefening</div>
+      <div class="card card-exercise">
+        <div class="ex-photo" style="background-image:url('https://images.unsplash.com/photo-1543357530-8622b50cd15f?w=1080&h=540&fit=crop')"></div>
+        <div class="ex-body">
+          <span class="ex-badge">Oefening #46</span>
+          <div class="ex-name">Kracht van de Kring</div>
+          <div class="ex-sub">Team energie ritueel</div>
+          <div class="ex-bullets">
+            <div class="ex-bullet"><span class="bullet-icon">🎯</span> <span>Teamcohesie &amp; gedeeld eigenaarschap</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">⏱</span> <span>5–8 minuten</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">👥</span> <span>U8 tot senior</span></div>
+          </div>
+          <div class="ex-footer">
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Een kring is meer dan een cirkel. Het is een signaal: we zijn één. 🔴 Rituelen bouwen cultuur — gebruik ze bewust. #KrachtVanDeKring #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">A circle is more than a shape. It's a signal: we are one. 🔴 Rituals build culture — use them intentionally. #CircleStrength #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 30 — Quote -->
+    <div class="post-wrap">
+      <div class="post-number">30</div>
+      <div class="post-type-badge">Quote</div>
+      <div class="card card-quote">
+        <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1506126613408-eka0cb8ad57e?w=1080&h=1080&fit=crop')"></div>
+        <div class="content">
+          <span class="quote-mark">"</span>
+          <div class="quote-text" style="font-size:24px;">
+            Vergelijk je begin niet met iemand anders zijn midden.
+          </div>
+          <div class="quote-footer">
+            <div class="attribution">
+              <div class="attr-dot"></div>
+              <div class="attr-name">Jay Shetty</div>
+            </div>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Elke speler heeft zijn eigen tijdlijn. Elke coach ook. Focus op groei — niet op vergelijking. 🌱 #EigenTijdlijn #CharacterFirst #JayShetty</div>
+        <div class="caption-text" data-lang="en">Every athlete has their own timeline. Every coach too. Focus on growth — not comparison. 🌱 #YourTimeline #CharacterFirst #JayShetty</div>
+      </div>
+    </div>
+
+    <!-- POST 31 — Team Story -->
+    <div class="post-wrap">
+      <div class="post-number">31</div>
+      <div class="post-type-badge">Team Story</div>
+      <div class="card card-story">
+        <div class="story-photo" style="background-image:url('https://images.unsplash.com/photo-1529900748604-07360bb13da3?w=1080&h=1080&fit=crop')"></div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <span class="story-tag">Spelers Aan Het Woord</span>
+          <div class="story-body">
+            <div class="story-line"></div>
+            <div class="story-headline">Wat U16-spelers zeggen na de Wall Squat Challenge.</div>
+            <div class="story-sub">"Ik besefte dat ik het nooit alleen had kunnen. Mijn team hield me recht." — U16 basketbal, Brussel</div>
+            <div class="story-footer">
+              <div class="cf-logo">
+                <span class="logo-top">Character</span>
+                <span class="logo-bottom">First</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Dat is geen les over de muur-squat. Dat is een les over het leven. 🤝 #WallSquat #U16 #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">That's not a lesson about the wall squat. That's a lesson about life. 🤝 #WallSquat #U16 #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 32 — Science -->
+    <div class="post-wrap">
+      <div class="post-number">32</div>
+      <div class="post-type-badge">Wetenschap</div>
+      <div class="card card-science">
+        <div class="sci-gradient"></div>
+        <div class="sci-gradient-2"></div>
+        <div class="content">
+          <div class="sci-label">Wist je dat?</div>
+          <div class="sci-fact" style="font-size:20px; padding-top:8px;">
+            Teams met <span style="color:var(--orange);">3 of meer informele leiders</span> presteren consequent beter dan teams met één sterke centrale leider.
+          </div>
+          <div style="margin-top:20px; padding:16px; background:#1a1a1a; border-radius:8px;">
+            <div style="font-size:13px; color:var(--gray); margin-bottom:10px;">Prestatie-index (schaal 1–10)</div>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <div style="font-size:12px; color:#ccc; width:120px;">1 leider</div>
+              <div style="flex:1; background:#2a2a2a; border-radius:4px; height:12px; overflow:hidden;"><div style="width:55%; height:100%; background:var(--gray); border-radius:4px;"></div></div>
+              <div style="font-size:13px; font-weight:700; color:var(--gray); width:30px; text-align:right;">5.5</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="font-size:12px; color:#ccc; width:120px;">3+ leiders</div>
+              <div style="flex:1; background:#2a2a2a; border-radius:4px; height:12px; overflow:hidden;"><div style="width:82%; height:100%; background:var(--orange); border-radius:4px;"></div></div>
+              <div style="font-size:13px; font-weight:700; color:var(--orange); width:30px; text-align:right;">8.2</div>
+            </div>
+          </div>
+          <div class="sci-source" style="margin-top:12px;">Bron: Fransen et al. (2015) · Journal of Sport &amp; Exercise Psychology</div>
+          <div class="sci-badge-row">
+            <span class="sci-tier green"><span class="tier-dot"></span>Veldonderzoek</span>
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Leiderschap verspreiden — niet concentreren. Character First helpt elk lid van het team eigenaarschap te nemen. 👑 #GedeeldLeiderschap #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Distribute leadership — don't concentrate it. Character First helps every team member take ownership. 👑 #SharedLeadership #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 33 — Coach Tip -->
+    <div class="post-wrap">
+      <div class="post-number">33</div>
+      <div class="post-type-badge">Coach Tip</div>
+      <div class="card card-coach">
+        <div class="coach-top-bar">
+          <span class="bar-label">Coach Tip</span>
+        </div>
+        <div class="coach-body">
+          <div class="coach-left">
+            <div class="coach-number">06</div>
+          </div>
+          <div class="coach-right">
+            <div class="coach-tip-text">
+              Evidence-based ≠ ingewikkeld.<br><br>
+              <span style="color:var(--orange); font-weight:900;">Één oefening.</span><br>
+              7 minuten.<br>
+              Een écht gesprek.
+            </div>
+          </div>
+        </div>
+        <div class="coach-bottom">
+          <div class="coach-url">characterfirst.be</div>
+          <div class="cf-logo">
+            <span class="logo-top">Character</span>
+            <span class="logo-bottom">First</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">De wetenschap hoeft niet moeilijk te zijn om te werken. Character First maakt het toegankelijk voor elke coach. 🎓 #EvidenceBased #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Science doesn't have to be complicated to work. Character First makes it accessible for every coach. 🎓 #EvidenceBased #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 34 — Exercise -->
+    <div class="post-wrap">
+      <div class="post-number">34</div>
+      <div class="post-type-badge">Oefening</div>
+      <div class="card card-exercise">
+        <div class="ex-photo" style="background-image:url('https://images.unsplash.com/photo-1506126613408-eka0cb8ad57e?w=1080&h=540&fit=crop')"></div>
+        <div class="ex-body">
+          <span class="ex-badge">Seizoen Afsluiting</span>
+          <div class="ex-name">Brief aan Mezelf</div>
+          <div class="ex-sub">De oefening die iets achterlaat</div>
+          <div class="ex-bullets">
+            <div class="ex-bullet"><span class="bullet-icon">🎯</span> <span>Zelfreflectie &amp; intentie voor het volgende seizoen</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">⏱</span> <span>20–30 minuten</span></div>
+            <div class="ex-bullet"><span class="bullet-icon">👥</span> <span>U14 tot senior</span></div>
+          </div>
+          <div class="ex-footer">
+            <div class="cf-logo">
+              <span class="logo-top">Character</span>
+              <span class="logo-bottom">First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Elke speler schrijft een brief aan zichzelf. Opgeborgen. Te openen aan het begin van het volgend seizoen. Sommigen huilen. Allemaal groeien. ✉️ #BriefAanMezelf #CharacterFirst</div>
+        <div class="caption-text" data-lang="en">Every athlete writes a letter to themselves. Sealed. To be opened at the start of next season. Some cry. All grow. ✉️ #LetterToMyself #CharacterFirst</div>
+      </div>
+    </div>
+
+    <!-- POST 35 — Team Story -->
+    <div class="post-wrap">
+      <div class="post-number">35</div>
+      <div class="post-type-badge">Team Story</div>
+      <div class="card card-story">
+        <div class="story-photo" style="background-image:url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1080&h=1080&fit=crop')"></div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+          <span class="story-tag">Character First in België</span>
+          <div class="story-body">
+            <div class="story-line"></div>
+            <div class="story-headline">Voetbal. Basketball. Volleybal.</div>
+            <div class="story-sub">Character First werkt in elke sport — want karakter is universeel. Coaches uit 3 disciplines, dezelfde gesprekken.</div>
+            <div class="story-footer">
+              <div style="display:flex; gap:16px; align-items:center;">
+                <span style="font-size:22px;">⚽</span>
+                <span style="font-size:22px;">🏀</span>
+                <span style="font-size:22px;">🏐</span>
+              </div>
+              <div class="cf-logo">
+                <span class="logo-top">Character</span>
+                <span class="logo-bottom">First</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Belgische coaches van 3 sporten — dezelfde methode, dezelfde resultaten. Character is not sport-specific. 🇧🇪 #CharacterFirstBelgium #Multisport</div>
+        <div class="caption-text" data-lang="en">Belgian coaches from 3 sports — same method, same results. Character is not sport-specific. 🇧🇪 #CharacterFirstBelgium #Multisport</div>
+      </div>
+    </div>
+
+    <!-- POST 36 — CTA (BIG) -->
+    <div class="post-wrap">
+      <div class="post-number">36</div>
+      <div class="post-type-badge">CTA Final</div>
+      <div class="card card-cta" style="padding: 48px 44px; gap: 4px;">
+        <div class="cta-deco-1"></div>
+        <div class="cta-deco-2"></div>
+        <div class="cta-label">Start vandaag</div>
+        <div class="cta-headline" style="font-size:40px;">Kies jouw<br>startpunt.</div>
+        <div style="display:grid; grid-template-columns:1fr; gap:10px; margin:20px 0; width:100%; max-width:380px; position:relative; z-index:2;">
+          <div style="background:rgba(0,0,0,0.12); border-radius:8px; padding:12px 16px; text-align:left;">
+            <div style="font-weight:800; color:#0a0a0a; font-size:15px;">De Week</div>
+            <div style="font-size:13px; color:rgba(0,0,0,0.6); margin-top:2px;">7 oefeningen · introductie voor elk team</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.12); border-radius:8px; padding:12px 16px; text-align:left;">
+            <div style="font-weight:800; color:#0a0a0a; font-size:15px;">Het Seizoen</div>
+            <div style="font-size:13px; color:rgba(0,0,0,0.6); margin-top:2px;">Volledig jaarplan · 60+ oefeningen</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.12); border-radius:8px; padding:12px 16px; text-align:left;">
+            <div style="font-weight:800; color:#0a0a0a; font-size:15px;">Coach Ontwikkeling</div>
+            <div style="font-size:13px; color:rgba(0,0,0,0.6); margin-top:2px;">1-op-1 begeleiding · certificering</div>
+          </div>
+        </div>
+        <div class="cta-btn" style="font-size:15px;">Neem contact op →</div>
+        <div class="cta-url" style="font-size:14px; font-weight:700; margin-top:8px;">characterfirst.be</div>
+        <div class="cf-logo cta-logo">
+          <span class="logo-top">Character</span>
+          <span class="logo-bottom">First</span>
+        </div>
+      </div>
+      <div class="post-caption">
+        <div class="caption-text" data-lang="nl">Klaar om te beginnen? Kies jouw pad 👆 De Week · Het Seizoen · Coach Ontwikkeling. Neem contact op via characterfirst.be 🚀 #CharacterFirst #Lancering #CoachOntwikkeling</div>
+        <div class="caption-text" data-lang="en">Ready to start? Choose your path 👆 The Week · The Season · Coach Development. Contact us at characterfirst.be 🚀 #CharacterFirst #Launch #CoachDevelopment</div>
+      </div>
+    </div>
+
+  </div><!-- /post-grid month 3 -->
+</div><!-- /month 3 -->
+
+<!-- Footer -->
+<div style="text-align:center; padding:40px; color:#444; font-size:13px;">
+  Character First · 36 Instagram Posts · characterfirst.be<br>
+  <span style="color:#2a2a2a;">Alle visuele assets zijn 1080×1080px ready. Rechtsklik op een kaart → "Opslaan als afbeelding" of gebruik Screenshot Mode.</span>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // Switch text in all data-nl / data-en elements
+    document.querySelectorAll('[data-nl]').forEach(el => {
+      if (lang === 'en' && el.dataset.en) {
+        el.textContent = el.dataset.en;
+      } else if (lang === 'nl' && el.dataset.nl) {
+        el.textContent = el.dataset.nl;
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
