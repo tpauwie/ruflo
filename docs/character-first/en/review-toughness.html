@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — Review &amp; Physical Mental Toughness</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --orange: #f05a28;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --light-orange: #fff3ef;
+    --border: #e0e0e0;
+    --green: #1a7a4a;
+    --blue: #1a4a8a;
+    --purple: #5a1a8a;
+    --red: #b91c1c;
+    --red-light: #fef2f2;
+    --green-light: #f0faf5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--black); }
+
+  /* HEADER */
+  .top-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 28px 48px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .logo { width: 52px; height: 52px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; flex-shrink: 0; }
+  .top-header h1 { font-size: 26px; font-weight: 800; }
+  .top-header p { font-size: 13px; opacity: .7; margin-top: 4px; }
+
+  /* NAV */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 0 48px;
+    display: flex; gap: 0; overflow-x: auto;
+  }
+  .sticky-nav a {
+    padding: 14px 18px; font-size: 13px; font-weight: 600; color: #666;
+    text-decoration: none; border-bottom: 3px solid transparent; white-space: nowrap;
+  }
+  .sticky-nav a.active, .sticky-nav a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+  /* ===========================
+     REVIEW SECTION (Part 1)
+     =========================== */
+  .review-banner {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 12px 12px 0 0;
+    padding: 24px 36px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .review-banner .badge {
+    background: var(--red);
+    color: var(--white);
+    font-size: 11px; font-weight: 800;
+    padding: 4px 12px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .review-banner h2 { font-size: 22px; font-weight: 800; }
+  .review-banner p { font-size: 13px; opacity: .7; margin-top: 4px; }
+
+  .review-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 0 0 16px 16px;
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+
+  .review-intro {
+    padding: 20px 36px;
+    background: #fffbf0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.8;
+    border-left: 4px solid var(--orange);
+  }
+  .review-intro strong { color: var(--orange); }
+
+  /* Category review cards */
+  .review-category {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 36px;
+  }
+  .review-category:last-child { border-bottom: none; }
+
+  .cat-header {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  }
+  .cat-num {
+    width: 40px; height: 40px;
+    background: var(--orange); color: var(--white);
+    border-radius: 50%; font-size: 16px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cat-header h3 { font-size: 18px; font-weight: 800; }
+  .cat-header .cat-sub { font-size: 12px; color: #888; margin-top: 2px; }
+
+  .sim-box {
+    background: #f0f4ff;
+    border-left: 4px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px; line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .sim-box strong { color: var(--blue); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .flags-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .flag-item {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .flag-item .flag-label {
+    font-size: 10px; font-weight: 800; color: var(--red);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .fix-item {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .fix-item .fix-label {
+    font-size: 10px; font-weight: 800; color: var(--green);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .fixes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .section-label-sm {
+    font-size: 11px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.8px; color: #666; margin-bottom: 8px; margin-top: 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .section-label-sm .dot-red { width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+  .section-label-sm .dot-green { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+  /* ===========================
+     EXERCISE BLOCKS (Part 2)
+     =========================== */
+  .section-divider {
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 36px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-divider h2 { font-size: 20px; font-weight: 800; }
+  .section-divider p { font-size: 13px; opacity: .7; margin-top: 4px; }
+  .section-divider .badge-part {
+    background: var(--orange);
+    font-size: 11px; font-weight: 800;
+    padding: 4px 12px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .exercise-block {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .ex-hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .ex-num {
+    width: 60px; height: 60px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; flex-shrink: 0;
+  }
+  .ex-hero h2 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .ex-hero .subtitle { font-size: 14px; opacity: .7; }
+  .ex-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .tag {
+    padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;
+    border: 1px solid rgba(255,255,255,.3); color: var(--white);
+  }
+  .tag.orange { background: var(--orange); border-color: var(--orange); }
+
+  /* TWO-COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .col-mod { border-right: 1px solid var(--border); padding: 32px 36px; }
+  .col-ws { padding: 32px 36px; background: #fafafa; }
+
+  .col-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    color: #888; margin-bottom: 20px;
+  }
+  .col-label .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-mod { background: var(--orange); }
+  .dot-ws { background: var(--black); }
+
+  h3.section-title {
+    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--black);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3.section-title::before {
+    content: ''; display: block; width: 4px; height: 18px;
+    background: var(--orange); border-radius: 2px;
+  }
+
+  .info-box {
+    background: var(--light-orange);
+    border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13px; line-height: 1.7;
+  }
+  .info-box strong { color: var(--orange); }
+
+  .step-list { list-style: none; padding: 0; margin-bottom: 16px; }
+  .step-list li {
+    display: flex; gap: 12px;
+    font-size: 13px; line-height: 1.7; margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: var(--orange); color: var(--white);
+    border-radius: 50%; font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .step-phase {
+    flex-shrink: 0;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 800;
+    background: var(--black); color: var(--white);
+    margin-top: 2px; white-space: nowrap;
+  }
+
+  .timing-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
+  .timing-table th { background: var(--black); color: var(--white); padding: 7px 12px; text-align: left; }
+  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--border); }
+  .timing-table tr:last-child td { border-bottom: none; }
+  .timing-table tr:nth-child(even) td { background: #f8f8f8; }
+
+  .tips-box {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+  .tips-box strong { color: var(--green); }
+
+  .warn-box {
+    background: #fff8f0;
+    border-left: 4px solid #e07820;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+  .warn-box strong { color: #b45309; }
+
+  .phase-block {
+    background: var(--gray);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+  }
+  .phase-block .phase-title {
+    font-size: 13px; font-weight: 800; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .phase-block .phase-title .phase-badge {
+    background: var(--orange); color: var(--white);
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    font-weight: 800; text-transform: uppercase;
+  }
+  .phase-block ul {
+    padding-left: 16px; font-size: 12px; line-height: 1.8;
+  }
+  .phase-block ul li { margin-bottom: 4px; }
+
+  /* LITERATURE */
+  .lit-section {
+    padding: 24px 36px;
+    border-top: 1px solid var(--border);
+    background: #f9f9f9;
+  }
+  .lit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .lit-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .lit-item .tier {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 10px;
+    font-size: 10px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .tier-sr { background: #d4edda; color: #1a7a4a; }
+  .tier-rct { background: #d0e4f7; color: #1a4a8a; }
+  .tier-qual { background: #e8d5f5; color: #5a1a8a; }
+  .lit-item .ref { font-style: italic; color: #555; margin-top: 4px; font-size: 11px; }
+
+  .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .yt-item {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+  .yt-item .yt-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .yt-item .yt-desc { opacity: .7; font-size: 11px; margin-bottom: 6px; }
+  .yt-item .yt-search {
+    font-size: 11px;
+    background: var(--orange);
+    padding: 3px 8px; border-radius: 4px;
+    display: inline-block; margin-top: 4px;
+  }
+
+  /* WORKSHEET */
+  .ws-intro {
+    font-size: 13px; color: #555; margin-bottom: 16px; font-style: italic;
+    border-bottom: 1px dashed var(--border); padding-bottom: 12px;
+  }
+  .ws-field-label {
+    font-size: 12px; font-weight: 700; color: var(--black);
+    margin-bottom: 4px; margin-top: 12px;
+  }
+  .ws-lines { margin-bottom: 12px; }
+  .ws-line {
+    border-bottom: 1px solid #ccc;
+    height: 28px; margin-bottom: 4px;
+  }
+  .ws-box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-height: 60px;
+    margin-bottom: 12px;
+    padding: 6px;
+    background: var(--white);
+  }
+  .ws-quote {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .ws-quote .quote-text { font-size: 15px; font-style: italic; font-weight: 300; margin-bottom: 4px; }
+  .ws-quote .quote-src { font-size: 11px; opacity: .6; }
+
+  .data-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .data-cell {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .data-cell .data-label { font-size: 10px; font-weight: 800; color: #888; text-transform: uppercase; margin-bottom: 6px; }
+  .data-cell .data-value { font-size: 22px; font-weight: 900; color: var(--orange); }
+  .data-cell .data-unit { font-size: 10px; color: #999; }
+  .data-cell.diff { border-color: var(--orange); background: var(--light-orange); }
+  .data-cell.diff .data-value { color: var(--orange); }
+
+  .scale-row {
+    display: flex; gap: 0; margin: 8px 0 16px;
+    border: 1px solid #ccc; border-radius: 6px; overflow: hidden;
+  }
+  .scale-cell {
+    flex: 1; text-align: center; padding: 10px 4px;
+    font-size: 12px; font-weight: 600; border-right: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .scale-cell:last-child { border-right: none; }
+  .scale-cell.lo { background: #e8f5e9; }
+  .scale-cell.hi { background: #fdecea; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; line-height: 1.6; margin-bottom: 8px;
+  }
+  .checkbox {
+    width: 18px; height: 18px; border: 2px solid #ccc; border-radius: 3px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .commit-box {
+    background: var(--light-orange);
+    border: 2px solid var(--orange);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+  .commit-box .commit-label { font-size: 11px; font-weight: 800; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
+  .commit-box .ws-line { border-bottom: 1px solid var(--orange); }
+
+  /* PRINT */
+  @media print {
+    .top-header, .sticky-nav { display: none; }
+    body { background: white; }
+    .page-body { padding: 0; max-width: 100%; }
+    .exercise-block { page-break-after: always; border: none; border-radius: 0; }
+    .review-block { page-break-after: always; }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr 1fr; }
+    .flags-grid, .fixes-grid { grid-template-columns: 1fr 1fr; }
+    .ex-hero { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .review-banner { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box, .tips-box, .warn-box, .commit-box, .ws-quote, .flag-item, .fix-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yt-item { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  @media (max-width: 800px) {
+    .two-col { grid-template-columns: 1fr; }
+    .col-mod { border-right: none; border-bottom: 1px solid var(--border); }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr; }
+    .flags-grid, .fixes-grid { grid-template-columns: 1fr; }
+    .ex-hero { grid-template-columns: auto 1fr; }
+    .ex-tags { grid-column: 1 / -1; justify-content: flex-start; }
+    .data-compare { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="logo">CF</div>
+  <div>
+    <h1>Character First — Review &amp; Physical Mental Toughness</h1>
+    <p>Critical simulation review of all exercise categories + 4 new physical toughness blocks for U14 basketball</p>
+  </div>
+</header>
+
+<nav class="sticky-nav">
+  <a href="#review" class="active">Critical Review</a>
+  <a href="#oe1">1. Wall Squat Challenge</a>
+  <a href="#oe2">2. Pressure Breathing</a>
+  <a href="#oe3">3. Comeback Sprint</a>
+  <a href="#oe4">4. Team Plank Hold</a>
+  <a href="../review-en-taaiheid.html" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;margin-left:auto;align-self:center;">NL</a>
+</nav>
+
+<div class="page-body">
+
+<!-- ===========================
+     PART 1: CRITICAL REVIEW
+     =========================== -->
+<div id="review">
+  <div class="review-banner">
+    <div>
+      <div class="badge">For coach / moderator only</div>
+    </div>
+    <div>
+      <h2>Critical Simulation Review</h2>
+      <p>Hypothetical group: 12 U14 basketball players, mixed motivation, first session together, low psychological safety</p>
+    </div>
+  </div>
+
+  <div class="review-block">
+    <div class="review-intro">
+      <strong>Purpose of this document:</strong> This is an honest test report. Each category is examined through a realistic mental simulation of 12 young basketball players who barely know each other. The goal is not to dismiss exercises, but to spot problems early so that adjustments can increase impact. Red flags are opportunities, not verdicts.
+    </div>
+
+    <!-- CATEGORY 1: SELF-KNOWLEDGE -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">01</div>
+        <div>
+          <h3>Self-Knowledge Exercises</h3>
+          <div class="cat-sub">Three Words, Sports Timeline, Values Compass, Letter to Younger Self</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulation scenario</strong><br>
+        Coach explains Three Words. The group is silent. Two players (extroverted types) quickly call out words like "fast" and "strong". Three players write nothing and wait. One player turns his sheet over. Four players look at their phones. The sports timeline asks players to identify a low point. Two players become visibly uncomfortable. A third names something trivial to get through the exercise.
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problems identified</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Psychological safety</div>
+          Three Words requires self-disclosure in a group that doesn't trust each other. With low safety, players choose socially desirable words ("hard worker", "team player") instead of genuine self-knowledge.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Age appropriateness</div>
+          The Sports Timeline asks players to order memories by impact. U14 players have limited metacognitive development. An abstract timeline requires cognitive skills that cannot be assumed to be present.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Timing</div>
+          Letter to Younger Self: the estimated 15 minutes is too optimistic. In a real group, just understanding the assignment takes 5 minutes, after which many players write only 3 lines and stop.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Level of abstraction</div>
+          Values Compass assumes understanding of abstract values ("integrity", "perseverance"). U14 thinks concretely. The connection to sport is too often missing from the framing.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Suggested adjustments</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 1</div>
+          Always start Three Words more anonymously: first write individually on paper without sharing. Only share after everyone has written. Optionally share in pairs before sharing with the group.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 2</div>
+          Sports Timeline: limit to sports moments, not personal life. Two moments per player maximum. The moderator models first with an honest example to set the norm.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 3</div>
+          Letter to Younger Self: provide three concrete opening sentences to make the blank page less intimidating. Maximum 5 minutes writing time. Not required to share.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 4</div>
+          Values Compass: replace abstract values with "what do you do when nobody is watching during training?" Concrete behavior as an entry point to values works better for this age group.
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 2: PRESSURE & STRESS -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">02</div>
+        <div>
+          <h3>Pressure &amp; Stress Exercises</h3>
+          <div class="cat-sub">Box Breathing, Stress Barometer, Worst Case Best Case</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulation scenario</strong><br>
+        Coach asks the group to close their eyes for Box Breathing. Three players giggle. Two refuse to close their eyes. The exercise starts already broken. After it ends, the moderator asks what they felt. "Nothing" is the most common answer. The Stress Barometer asks players to name personal stressors. Two players write "losing a match". The rest fill in nothing or write "don't know".
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problems identified</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Social resistance</div>
+          Closing eyes in a group that doesn't know each other feels vulnerable. This is the normal reaction of adolescents, not a sign of a bad group. The instruction triggers giggling that breaks the atmosphere.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Transfer problem</div>
+          Box Breathing in a quiet room is useful, but the transfer to a match situation is rarely made explicit. Players learn it as a relaxation technique, not as a performance tool.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Worst Case too theoretical</div>
+          Worst Case Best Case is a cognitive reframing technique that works for adults with self-regulation. U14 players quickly move toward catastrophizing or use humor as a defense when thinking about "worst case".
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Stress barometer timing</div>
+          The stress barometer only works if players are willing to honestly assess their stress level. In session 1, social pressure to appear "strong" is high. Results are then socially desirable, not honest.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Suggested adjustments</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 1</div>
+          Box Breathing: start with open eyes and feet flat on the floor. No eyes closed in session 1. Say explicitly: "this might feel strange, that's normal." Proactively normalize the discomfort.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 2</div>
+          Always link the breathing to a concrete sports moment: "you're at the free-throw line, it's the last second." Context makes the transfer visible.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 3</div>
+          Worst Case Best Case: change to "what can go maximally wrong vs. what can go maximally well in the next match?" A concrete sports frame reduces resistance to abstraction.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 4</div>
+          Stress Barometer: use physical stress indicators instead of self-assessment. "How fast is your heart beating now? Where do you feel tension in your body?" The body as an anchor is less threatening than naming an emotion.
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 3: COMMUNICATION -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">03</div>
+        <div>
+          <h3>Communication Exercises</h3>
+          <div class="cat-sub">Feedback Round Trio, Mirror Conversation, Difficult Conversation</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulation scenario</strong><br>
+        Coach announces the Feedback Round Trio. Three players who are friends immediately sit together. Two less popular players stand waiting awkwardly. The feedback given is almost exclusively positive: "You're a good player." Nobody gives constructive feedback in session 1 to someone they barely know. The Difficult Conversation is avoided even more.
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problems identified</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Feedback quality session 1</div>
+          Real feedback requires psychological safety. In session 1, all feedback is socially positive and without substance. The exercise gives a false picture of the group's ability to give feedback.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Social dynamics</div>
+          Free choice of feedback partners reproduces the existing hierarchy. Popular players pair up. Less connected players are implicitly excluded. This widens the gap rather than closing it.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Difficult Conversation too early</div>
+          An exercise focused on having difficult conversations assumes existing relationships with enough depth to handle friction. In session 1, that relationship base is completely absent.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Mirror Conversation abstraction</div>
+          The Mirror Conversation requires empathic listening and mirroring emotions. These are skills that even adults need practice for. With U14 in session 1, the result is shallow paraphrasing.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Suggested adjustments</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 1</div>
+          Always assign trios yourself as moderator — never free choice in session 1. Use an explicit structure: "I call names, everyone goes directly to their trio." Eliminate social uncertainty about the grouping.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 2</div>
+          Limit feedback in session 1 to behavior-specific: "name one moment you observed today." No character feedback, no personal feedback. Low-threshold observation as a starting point.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 3</div>
+          Difficult Conversation: plan this exercise no earlier than session 3. First require trust within the group. Replace in session 1 with a role-play with fictional players: "imagine your teammate X..."
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 4</div>
+          Mirror Conversation: introduce via humor as a bridge. Have players first mirror an absurd conversation ("your coach says you have to eat a banana every day") before mirroring real conversations.
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 4: MENTAL RESILIENCE -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">04</div>
+        <div>
+          <h3>Mental Resilience Exercises</h3>
+          <div class="cat-sub">Flu Game, ABC Model, Adversity Ladder, PPR, PTG</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulation scenario</strong><br>
+        Coach tells the Flu Game story of Michael Jordan. Players listen. Three players already know the story and are enthusiastic. Four players show polite interest. The rest shrug. During the ABC model, the group writes letters on paper but doesn't believe a thought can change a feeling. "That doesn't work in real life" someone says out loud. The Adversity Ladder works better: concrete and visual. The PPR exercise takes too long for the U14 attention span.
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problems identified</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Flu Game: relevance gap</div>
+          Michael Jordan is not a reference for every U14 player. Some don't know him. The emotional impact of the story varies widely. Players unfamiliar with NBA culture miss the context that makes the story powerful.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">ABC Model: cognitive overload</div>
+          The ABC model (Activating event, Belief, Consequence) is a therapeutic cognitive model normally explained over multiple sessions. In a single 15-minute exercise, this leads to superficial treatment and skepticism.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">PPR too long</div>
+          Pre-Performance Ritual of 15 minutes is 5 minutes too long for U14 in session 1. After 10 minutes, visible loss of concentration. The final phase of the PPR is then poorly executed.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">PTG too heavy for session 1</div>
+          Post-Traumatic Growth assumes that a real setback has occurred that can be discussed. In session 1, the group has no shared memories. The PTG exercise is powerful but belongs in later sessions.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Suggested adjustments</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 1</div>
+          Flu Game: always add a local or European equivalent alongside Jordan. Ask the group: "Do you know someone who did something like that?" Personal examples activate more than stories about heroes who feel distant.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 2</div>
+          ABC Model: reduce to one concrete match situation. Provide the A already (a referee decision going wrong). Focus only on B vs. C. Avoid the meta-explanation of the model in session 1.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 3</div>
+          PPR: reduce to a maximum of 10 minutes. Three steps max: breathe, phrase, movement. Repeat the phrase no more than three times. Quality over completeness.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Adjustment 4</div>
+          PTG: plan only after session 4. Replace in session 1 with a shorter "learning from failure" exercise: discuss one lost match as a group, focus on what you learned in maximum 8 minutes.
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERALL RECOMMENDATIONS -->
+    <div class="review-category" style="background: #fafafa;">
+      <div class="cat-header">
+        <div class="cat-num" style="background: var(--black);">!</div>
+        <div>
+          <h3>Overarching recommendations for session 1</h3>
+          <div class="cat-sub">Apply to all categories</div>
+        </div>
+      </div>
+      <div class="fixes-grid" style="margin-top: 0;">
+        <div class="fix-item">
+          <div class="fix-label">Set the norm first</div>
+          Begin every first session with a 5-minute "group contract": what can you say here, what stays here, how do we handle someone sharing something difficult. Without this contract, psychological safety is a gamble.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Moderator always models first</div>
+          Before every exercise that asks for self-disclosure, the moderator shares an honest personal example. This sets the norm for vulnerability and lowers the threshold for the group.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Body before mind</div>
+          In session 1, physical exercises work better than cognitive ones. Movement, tension, breathing. Thinking exercises need more trust. Plan the heavy self-knowledge exercises after session 3.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Halve all timings for session 1</div>
+          All time estimates are based on a warm, safe group. Multiply all debrief durations by 1.5 for sessions 1 and 2. Plan fewer exercises than you think you need.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end review-block -->
+</div><!-- end review section -->
+
+
+<!-- ===========================
+     PART 2: PHYSICAL EXERCISES
+     =========================== -->
+<div class="section-divider">
+  <div class="badge-part">Part 2</div>
+  <div>
+    <h2>Physical Mental Toughness</h2>
+    <p>4 exercises that make mental resilience visible through the body</p>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 1: WALL SQUAT CHALLENGE ===== -->
+<div class="exercise-block" id="oe1">
+  <div class="ex-hero">
+    <div class="ex-num">01</div>
+    <div>
+      <h2>Wall Squat Challenge</h2>
+      <div class="subtitle">Three phases, one proof: how a team takes you further than you can go alone.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Physical</span>
+      <span class="tag">Team</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderator guide</div>
+
+      <div class="info-box">
+        <strong>Purpose of the exercise:</strong> Players experience through their own bodies how motivational climate affects performance. They measure the difference between solo, encouragement support, and collective effort. The evidence is in their own times.
+      </div>
+
+      <h3 class="section-title">Setup (2 min before start)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Find a free wall without obstacles at least 3 meters wide. Each player needs 60 cm of wall space for phase 3 (group simultaneously).</li>
+        <li><span class="step-num">2</span>Correct position: back fully flat against the wall, feet 30 cm from the wall, knees at 90 degrees, thighs parallel to the floor. Demonstrate yourself.</li>
+        <li><span class="step-num">3</span>Anyone with knee problems or injuries: chair squat alternative (described below). Ask this proactively BEFORE the exercise, not during.</li>
+        <li><span class="step-num">4</span>Do not reveal the three phases yet. Only announce phase 1 when you start it. This increases the impact experience of phases 2 and 3.</li>
+      </ul>
+
+      <h3 class="section-title">Phase 1: Solo (no support)</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Phase 1</span> Individual</div>
+        <ul>
+          <li>Each player does a wall squat, one at a time or in pairs so the moderator can record the time.</li>
+          <li>Instruction: "Get in position. I'm recording your time. No encouragement from teammates is permitted. Silence."</li>
+          <li>Actively enforce the silence: if someone starts encouraging, say calmly but directly "not now". This isn't strict, it's fair because you're measuring something.</li>
+          <li>Record the time on a sheet or whiteboard. Each player sees their own time.</li>
+          <li>If someone stops early: no comment, no reaction from the moderator. Only say "thank you, I'm recording your time."</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Phase 2: Solo with team encouragement</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Phase 2</span> One at a time</div>
+        <ul>
+          <li>One player at a time does a wall squat. The ENTIRE team stands in front of them and must ACTIVELY encourage.</li>
+          <li>Crucial moderator rule: <strong>vague encouragement is not allowed.</strong> "Come on" is not permitted. Players must be SPECIFIC. The moderator interrupts vague encouragement and asks: "What's behind that? What do you see specifically?"</li>
+          <li>Good examples to model: "Your legs are stronger than you think", "You've been through this before in training", "Breathe through it, you're more than halfway".</li>
+          <li>Record the time next to phase 1 on the board.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Phase 3: Group simultaneously</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Phase 3</span> Collective</div>
+        <ul>
+          <li>Everyone in position at the same time. No instruction about encouraging: let the dynamics emerge spontaneously.</li>
+          <li>You stand in front of the group and say nothing. Observe what happens organically. Who takes the encourager role? Who looks to others for support?</li>
+          <li>If someone stops, say softly: "Look at your team, they're still going." This normalizes persisting without applying pressure.</li>
+          <li>Stop the exercise when more than half have stopped or after a maximum of 3 minutes.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Injury modification</h3>
+      <div class="tips-box">
+        <strong>Chair squat alternative:</strong> Player sits on the edge of a chair, back straight, feet flat on the floor, hands on knees. Moderator starts the timer. Player holds the position as long as possible. Identical protocol, identical three phases. Say this with the same tone as the normal instruction: don't make a big deal of it.
+      </div>
+
+      <h3 class="section-title">Preventing it from becoming a competition</h3>
+      <div class="warn-box">
+        <strong>Watch out:</strong> Wall Squat Challenge draws competitive players toward ego-driven behavior ("I'll hold it the longest"). Before starting, say explicitly: "We're not measuring a winner. We're measuring what a team does for one person. The interesting question isn't who can go the longest, but how much longer you go with support." If two players start competing in phase 3, normalize this with humor: "This is good — but also look at your neighbor."
+      </div>
+
+      <h3 class="section-title">When someone stops early</h3>
+      <div class="tips-box">
+        <strong>Protocol for early stoppers:</strong> No reaction expected from the team. Moderator says: "Good that you know your limit. We'll see what changes." No sympathy, no encouragement afterward. Neutral tone. This normalizes stopping and keeps the focus on the data, not the person.
+      </div>
+
+      <h3 class="section-title">Timing overview</h3>
+      <table class="timing-table">
+        <thead><tr><th>Phase</th><th>Activity</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>Setup</td><td>Explanation + positioning</td><td>2 min</td></tr>
+          <tr><td>Phase 1</td><td>Solo wall squats (12 players)</td><td>4 min</td></tr>
+          <tr><td>Phase 2</td><td>Encouragement per player (sample of 4)</td><td>3 min</td></tr>
+          <tr><td>Phase 3</td><td>Group simultaneously</td><td>2 min</td></tr>
+          <tr><td>Debrief</td><td>Discussion + science link</td><td>4 min</td></tr>
+          <tr><td><strong>Total</strong></td><td></td><td><strong>15 min</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="section-title">Debrief: making the science visible</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Write the average solo time vs. average team time on the board. The difference is the data. Don't ask "what did you think of it" but: "What explains this difference?"</li>
+        <li><span class="step-num">2</span>Then name it: this is called the motivational climate effect. Robert Zajonc showed in 1965 that the presence of others changes performance. Carron et al. (1988) showed that group cohesion is directly performance-related in sport.</li>
+        <li><span class="step-num">3</span>Key question: "Which words of encouragement helped you the most?" Let at least four players answer. Write the words on the board: this becomes your team's encouragement vocabulary.</li>
+        <li><span class="step-num">4</span>Close: "This isn't a trick. This is how your brain works. Use it."</li>
+      </ol>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Player worksheet</div>
+
+      <div class="ws-intro">Name: __________________________ &nbsp;&nbsp; Date: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"You can't always control what goes on outside. But you can always control what goes on inside."</div>
+        <div class="quote-src">Wayne Dyer</div>
+      </div>
+
+      <div class="ws-field-label">My results per phase:</div>
+      <div class="data-compare">
+        <div class="data-cell">
+          <div class="data-label">Phase 1 Solo</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-label">Phase 2 Team</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+        <div class="data-cell diff">
+          <div class="data-label">Difference</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds more</div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">What was going through my mind during phase 1 (solo)?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">Which words or phrases of encouragement helped me most in phase 2 or 3?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Why did those words help? What made them different from "come on"?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">What was it like to encourage someone else? What did you find difficult?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">My encourager score for myself today (circle):</div>
+      <div class="scale-row">
+        <div class="scale-cell lo">1</div>
+        <div class="scale-cell lo">2</div>
+        <div class="scale-cell">3</div>
+        <div class="scale-cell">4</div>
+        <div class="scale-cell">5</div>
+        <div class="scale-cell">6</div>
+        <div class="scale-cell hi">7</div>
+        <div class="scale-cell hi">8</div>
+        <div class="scale-cell hi">9</div>
+        <div class="scale-cell hi">10</div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">My concrete commitment</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">In the next training session I will encourage one teammate at this specific moment:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div style="font-size: 12px; margin: 8px 0 4px;">With these specific words:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Scientific basis</div>
+    <div style="font-size: 12px; color: #666; margin-bottom: 12px;">Research underpinning this exercise:</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematic Review</span>
+        <div><strong>Motivational climate in sport</strong></div>
+        <div>Ames (1992) distinguished two climates: task-oriented (learning central) vs. ego-oriented (winning central). In a task-oriented climate, efforts last longer and performance anxiety levels are lower.</div>
+        <div class="ref">Ames, C. (1992). Achievement goals, motivational climate, and motivational processes. In G. Roberts (Ed.), Motivation in Sport and Exercise (pp. 161–176). Human Kinetics.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinal research</span>
+        <div><strong>Social facilitation in sport</strong></div>
+        <div>Zajonc (1965) proved that the presence of others increases physiological arousal. For learned tasks this leads to better performance — exactly what a wall squat is after the first time.</div>
+        <div class="ref">Zajonc, R.B. (1965). Social facilitation. Science, 149(3681), 269–274.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT / Experiment</span>
+        <div><strong>Group cohesion and performance</strong></div>
+        <div>Carron, Widmeyer &amp; Brawley (1988) showed that higher group cohesion in sport is directly related to greater individual effort. Members of cohesive teams give more because they know it counts for everyone.</div>
+        <div class="ref">Carron, A.V., Widmeyer, W.N., &amp; Brawley, L.R. (1988). Group cohesion and individual adherence to physical activity. Journal of Sport &amp; Exercise Psychology, 10(2), 127–138.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Qualitative</span>
+        <div><strong>Specific vs. general encouragement</strong></div>
+        <div>Dweck (2006) showed that specific process-focused feedback is more motivating than general praise. "Your legs are stronger than you think" works differently from "well done" because it activates an internal attribute.</div>
+        <div class="ref">Dweck, C.S. (2006). Mindset: The New Psychology of Success. Random House.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Search Terms</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Motivational Climate Sport</div>
+        <div class="yt-desc">Explanation of the difference between task- and ego-oriented climate for coaches</div>
+        <div class="yt-search">motivational climate youth sport Ames</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Social Facilitation Zajonc</div>
+        <div class="yt-desc">Classic experiment explained for students and coaches</div>
+        <div class="yt-search">social facilitation experiment Zajonc explained</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 2: PRESSURE BREATHING ===== -->
+<div class="exercise-block" id="oe2">
+  <div class="ex-hero">
+    <div class="ex-num">02</div>
+    <div>
+      <h2>Pressure Breathing</h2>
+      <div class="subtitle">Mental simulation of pressure: learn the difference between pain and danger while your body is working.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">12 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Physical</span>
+      <span class="tag">Individual</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderator guide</div>
+
+      <div class="info-box">
+        <strong>Core message:</strong> No cold water. No pain. But tension. This exercise uses a short plank hold as a physiological stressor while players simultaneously learn to apply breathing techniques. They learn in the moment of discomfort to distinguish between "this hurts" (information) and "I'm in danger" (alarm).
+      </div>
+
+      <h3 class="section-title">Part 1: Visualization (3 min)</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Have players sit upright, hands on knees. Say: "I'm going to ask you something that sounds strange but has a reason."</li>
+        <li><span class="step-num">2</span>Use this text: "Imagine your hands going into a bucket of ice water. You can see it. How do your hands feel now?" Pause for 20 seconds. Ask two players: "What did you feel?" This demonstrates that imagination triggers a physiological response.</li>
+        <li><span class="step-num">3</span>Explain: "Your brain makes no distinction between real and imagined when it comes to feeling pressure. That's useful. We're going to use that now."</li>
+      </ol>
+
+      <h3 class="section-title">Part 2: Plank with breathing (6 min)</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Round 1</span> Plank without technique</div>
+        <ul>
+          <li>Everyone in plank position (forearms on the floor as alternative). 45 seconds maximum or as long as possible.</li>
+          <li>No breathing instruction. Let it happen naturally. Mentally note who starts gasping or holding their breath.</li>
+          <li>Afterward: "What did your breathing do?" Let players describe it themselves.</li>
+        </ul>
+      </div>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Round 2</span> Plank with box breathing</div>
+        <ul>
+          <li>Explain box breathing: inhale 4 counts, hold 4 counts, exhale 4 counts, hold 4 counts. Practice once standing up.</li>
+          <li>Everyone in plank position. You count aloud: "in 2 3 4, hold 2 3 4, out 2 3 4, hold 2 3 4."</li>
+          <li>Do this for two cycles while the plank is active. Observe how body tension changes.</li>
+          <li>Goal is 45 seconds or more. Compare with round 1 immediately afterward.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Part 3: Pain vs. Danger (3 min debrief)</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Write on the board: PAIN vs. DANGER. Ask: "Did your body do anything during the plank that was dangerous?" The answer is no. "Did it hurt or was it uncomfortable?" The answer is yes.</li>
+        <li><span class="step-num">2</span>Say: "Your brain sends an alarm signal with every form of tension. That alarm is either a signal that you're in danger, or information that you're working. They are different messages that feel the same."</li>
+        <li><span class="step-num">3</span>Key question: "In which sports situations does your brain send a false alarm?" Let three players answer. Record their answers: these are personal triggers that will come back in other exercises.</li>
+      </ol>
+
+      <div class="warn-box">
+        <strong>Health check before starting:</strong> Proactively ask if anyone has shoulder, back, or wrist problems. Alternative to the plank: standing, press both palms together at chest height as hard as possible for 45 seconds. Identical breathing protocol. Never force anyone to stay in a painful position.
+      </div>
+
+      <table class="timing-table">
+        <thead><tr><th>Part</th><th>Activity</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Ice water visualization</td><td>3 min</td></tr>
+          <tr><td>2</td><td>Two rounds of plank</td><td>6 min</td></tr>
+          <tr><td>3</td><td>Debrief pain vs. danger</td><td>3 min</td></tr>
+          <tr><td><strong>Total</strong></td><td></td><td><strong>12 min</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Player worksheet</div>
+
+      <div class="ws-intro">Name: __________________________ &nbsp;&nbsp; Date: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"It's supposed to be hard. If it wasn't hard, everyone would do it. The hard is what makes it great."</div>
+        <div class="quote-src">Jimmy Dugan — A League of Their Own</div>
+      </div>
+
+      <div class="ws-field-label">Visualization: What did I feel at the thought of ice water in my hands?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">My plank times:</div>
+      <div class="data-compare">
+        <div class="data-cell">
+          <div class="data-label">Round 1</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-label">Round 2</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+        <div class="data-cell diff">
+          <div class="data-label">Difference</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">What changed in my breathing between round 1 and round 2?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">My personal "false alarm" moments in basketball (when does my brain send pressure signals that are actually information, not danger?):</div>
+      <ul class="checklist" style="margin-bottom: 12px;">
+        <li><span class="checkbox"></span> Free throws in the final seconds</li>
+        <li><span class="checkbox"></span> After making a mistake</li>
+        <li><span class="checkbox"></span> Opponent plays aggressively</li>
+        <li><span class="checkbox"></span> Coach looks in my direction</li>
+        <li><span class="checkbox"></span> My own: ______________________________</li>
+      </ul>
+
+      <div class="ws-field-label">What is the difference between PAIN and DANGER in my sport? (in my own words)</div>
+      <div class="ws-box" style="min-height: 60px;"></div>
+
+      <div class="commit-box">
+        <div class="commit-label">My commitment</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">The next time I feel a false alarm, I will do this:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Scientific basis</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematic Review</span>
+        <div><strong>Breathing and performance regulation</strong></div>
+        <div>Zaccaro et al. (2018) showed in a systematic review that slow controlled breathing modulates the autonomic nervous system, reduces cortisol levels, and improves cognitive performance under stress.</div>
+        <div class="ref">Zaccaro, A., et al. (2018). How breath-control can change your life: A systematic review on psycho-physiological correlates of slow breathing. Frontiers in Human Neuroscience, 12, 353.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT</span>
+        <div><strong>Cognitive appraisal of stress</strong></div>
+        <div>Lazarus and Folkman (1984) introduced the appraisal model: stress is not an external factor but the product of how someone evaluates a situation. Reframing pain as information changes the stress response.</div>
+        <div class="ref">Lazarus, R.S., &amp; Folkman, S. (1984). Stress, Appraisal, and Coping. Springer.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Qualitative</span>
+        <div><strong>Mental imagery and physiology</strong></div>
+        <div>Holmes and Collins (2001) showed that vivid mental visualization produces identical neural activation patterns as actual movement. The visualization response in this exercise has direct empirical basis.</div>
+        <div class="ref">Holmes, P.S., &amp; Collins, D.J. (2001). The PETTLEP approach to motor imagery. Journal of Applied Sport Psychology, 13(1), 60–83.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinal</span>
+        <div><strong>Pain tolerance and mental training</strong></div>
+        <div>Meier et al. (2020) showed that mentally reframing pain as a signal rather than a threat significantly increases tolerance time, even without physical training. Exactly the mechanism of this exercise.</div>
+        <div class="ref">Meier, M., et al. (2020). Reappraisal and suppression mediate the relationship between pain catastrophizing and pain intensity. Pain, 161(3), 605–614.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Search Terms</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Box Breathing Navy SEAL</div>
+        <div class="yt-desc">Explanation by Mark Divine about box breathing under extreme stress</div>
+        <div class="yt-search">box breathing Navy SEAL stress performance</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Pain vs Danger Athlete Mindset</div>
+        <div class="yt-desc">Cognitive evaluation of pain in athletes: training vs. injury</div>
+        <div class="yt-search">athlete pain vs danger mindset reframing sport</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 3: COMEBACK SPRINT ===== -->
+<div class="exercise-block" id="oe3">
+  <div class="ex-hero">
+    <div class="ex-num">03</div>
+    <div>
+      <h2>The Comeback Sprint</h2>
+      <div class="subtitle">Mental reset after a mistake: the team observes and scores your recovery, not your speed.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Physical</span>
+      <span class="tag">Team</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderator guide</div>
+
+      <div class="info-box">
+        <strong>Core principle:</strong> Each player does four 20-meter sprints. After each sprint they receive a "bad news message" from the moderator. The player must visibly reset before the next sprint. The team observes and scores the RESET QUALITY, not the sprint speed. Speed is irrelevant in this exercise. Stating this clearly is crucial.
+      </div>
+
+      <h3 class="section-title">Setup and preparation</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Mark a sprint distance of 20 meters with cones or lines on a field or gym floor.</li>
+        <li><span class="step-num">2</span>First teach the group three RESET techniques they may choose for their personal ritual:</li>
+      </ol>
+
+      <div class="phase-block">
+        <div class="phase-title">Reset Technique A: Breath + Posture</div>
+        <ul>
+          <li>One deep breath in, slowly out. Actively lower shoulders.</li>
+          <li>Body language of "I'm ready for this", not "I'm frustrated".</li>
+        </ul>
+      </div>
+      <div class="phase-block">
+        <div class="phase-title">Reset Technique B: Mantra</div>
+        <ul>
+          <li>One personal phrase that acts as a restart signal. Examples: "next play", "next chance", "this is my moment".</li>
+          <li>Player chooses their own phrase before starting. Moderator notes it per player.</li>
+        </ul>
+      </div>
+      <div class="phase-block">
+        <div class="phase-title">Reset Technique C: Movement ritual</div>
+        <ul>
+          <li>A brief physical action: both hands on knees, clap hands, plant feet firmly.</li>
+          <li>It's about the signal to the body: this chapter is closed, new chapter begins.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">The four bad news messages</h3>
+      <div class="warn-box">
+        <strong>Moderator script:</strong> Use fictional sports scenarios, not personal attacks. Always in sports form. The player knows it's scripted, but the physical state is real. That's what counts.
+        <br><br>
+        Message 1: "Your last pass was a turnover. You gave it away."<br>
+        Message 2: "The coach has designated you as substitute. You're on the bench for the next three minutes."<br>
+        Message 3: "You've just committed your fifth foul. One more and you're out."<br>
+        Message 4: "The referee called a foul on you that you didn't commit. No explanation."
+      </div>
+
+      <h3 class="section-title">Observation instruction for the team</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>The team stands on the sideline. They observe each player who sprints.</li>
+        <li><span class="step-num">2</span>After the sprint and bad news, they have 10 seconds to write on a card: "Did I see the reset? Yes or No. What exactly did I see?"</li>
+        <li><span class="step-num">3</span>No scoring of speed or technique. Only the reset. This changes the viewing frame of the entire team.</li>
+        <li><span class="step-num">4</span>After all players have gone: read three observations aloud, anonymously. Discuss: what did the team notice?</li>
+      </ol>
+
+      <h3 class="section-title">Debrief key questions</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>"Which bad news message was hardest to let go of? Why?"</li>
+        <li><span class="step-num">2</span>"What worked as a reset? What didn't work?"</li>
+        <li><span class="step-num">3</span>"What percentage of a match is actually about responding to adversity?"</li>
+        <li><span class="step-num">4</span>"When you observe another player who has a good reset: what do you want to say to them?"</li>
+      </ol>
+
+      <table class="timing-table">
+        <thead><tr><th>Phase</th><th>Activity</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>Explanation</td><td>Choose technique + observation team instruction</td><td>4 min</td></tr>
+          <tr><td>Execution</td><td>Sprints + bad news (all 12 players)</td><td>7 min</td></tr>
+          <tr><td>Debrief</td><td>Observation results + key questions</td><td>4 min</td></tr>
+          <tr><td><strong>Total</strong></td><td></td><td><strong>15 min</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip for the moderator:</strong> Deliver the bad news message in a neutral, non-dramatic tone. Exaggeration removes credibility. You are not an actor, you are a stressor delivering information. The player decides how they handle it.
+      </div>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Player worksheet</div>
+
+      <div class="ws-intro">Name: __________________________ &nbsp;&nbsp; Date: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"You have power over your mind, not outside events. Realize this, and you will find strength."</div>
+        <div class="quote-src">Marcus Aurelius</div>
+      </div>
+
+      <div class="ws-field-label">My chosen reset technique for today:</div>
+      <ul class="checklist" style="margin-bottom: 12px;">
+        <li><span class="checkbox"></span> Technique A: Breath and posture</li>
+        <li><span class="checkbox"></span> Technique B: Mantra (my phrase: ________________)</li>
+        <li><span class="checkbox"></span> Technique C: Movement ritual (my movement: ________________)</li>
+      </ul>
+
+      <div class="ws-field-label">My experiences per sprint:</div>
+      <table style="width:100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px;">
+        <thead>
+          <tr style="background: var(--black); color: var(--white);">
+            <th style="padding: 6px 10px; text-align: left;">Message</th>
+            <th style="padding: 6px 10px; text-align: left;">Reset successful?</th>
+            <th style="padding: 6px 10px; text-align: left;">What I felt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 6px 10px;">Turnover</td>
+            <td style="padding: 6px 10px;">Yes / No / Partly</td>
+            <td style="padding: 6px 10px; min-width: 120px;"></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border); background: #f8f8f8;">
+            <td style="padding: 6px 10px;">Bench</td>
+            <td style="padding: 6px 10px;">Yes / No / Partly</td>
+            <td style="padding: 6px 10px;"></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 6px 10px;">Fifth foul</td>
+            <td style="padding: 6px 10px;">Yes / No / Partly</td>
+            <td style="padding: 6px 10px;"></td>
+          </tr>
+          <tr style="background: #f8f8f8;">
+            <td style="padding: 6px 10px;">Phantom call</td>
+            <td style="padding: 6px 10px;">Yes / No / Partly</td>
+            <td style="padding: 6px 10px;"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ws-field-label">Which message was hardest to let go of? Why?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">What did I notice about a teammate who had a good reset?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">My personal reset ritual (definitive choice after today):</div>
+      <div style="font-size: 12px; margin-bottom: 6px;">Step 1:</div>
+      <div class="ws-line"></div>
+      <div style="font-size: 12px; margin: 6px 0;">Step 2:</div>
+      <div class="ws-line"></div>
+
+      <div class="commit-box">
+        <div class="commit-label">My commitment</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">I will use my reset ritual when:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Scientific basis</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematic Review</span>
+        <div><strong>Error recovery in elite sport</strong></div>
+        <div>Jordet and Hartman (2008) studied penalty kicks in World Cup finals: the time between a missed penalty and the next task was the strongest predictor of subsequent performance. Quick resetting, not processing, is the skill.</div>
+        <div class="ref">Jordet, G., &amp; Hartman, E. (2008). Avoidance motivation and choking under pressure in soccer penalty shootouts. Journal of Sport &amp; Exercise Psychology, 30(4), 450–457.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT</span>
+        <div><strong>Pre-performance routines</strong></div>
+        <div>Moran (1996) showed that consistent pre-performance rituals direct attention, reduce uncertainty, and lower cognitive load. The ritual is not superstition but a cognitive anchoring technique.</div>
+        <div class="ref">Moran, A.P. (1996). The Psychology of Concentration in Sport Performers. Psychology Press.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Qualitative</span>
+        <div><strong>Self-talk after mistakes</strong></div>
+        <div>Hardy, Hall and Alexander (2001) showed that the content of internal self-talk after a mistake is decisive for recovery time. Instructional self-talk ("shoulders down, next ball") works better than motivational slogans.</div>
+        <div class="ref">Hardy, J., Hall, C.R., &amp; Alexander, M.R. (2001). Exploring self-talk and affective states in sport. Journal of Sports Sciences, 19(7), 469–475.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinal</span>
+        <div><strong>Emotion regulation and sport performance</strong></div>
+        <div>Tamminen and Holt (2012) showed through longitudinal interviews that young athletes who learn explicit emotion regulation strategies (not just suppression) perform more consistently under pressure than control groups.</div>
+        <div class="ref">Tamminen, K.A., &amp; Holt, N.L. (2012). Adolescent athletes' learning about coping and the roles of parents and teammates. Journal of Sport Sciences, 30(3), 221–234.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Search Terms</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">NBA next play mentality</div>
+        <div class="yt-desc">Professional basketball players on letting go of mistakes and resetting</div>
+        <div class="yt-search">NBA player next play mentality mistake recovery</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Pre-performance routine sport youth</div>
+        <div class="yt-desc">How young athletes build a recovery ritual</div>
+        <div class="yt-search">pre performance routine youth athlete reset ritual</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 4: TEAM PLANK HOLD ===== -->
+<div class="exercise-block" id="oe4">
+  <div class="ex-hero">
+    <div class="ex-num">04</div>
+    <div>
+      <h2>Team Plank Hold</h2>
+      <div class="subtitle">Collective responsibility: if one person stops, the whole team stops. Together or not at all.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">12 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Physical</span>
+      <span class="tag">Team</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderator guide</div>
+
+      <div class="info-box">
+        <strong>Core principle:</strong> The plank is the medium, not the goal. The goal is to feel how collective responsibility changes individual effort. When players know that their stopping stops the entire team, their internal conversation changes. That is the exercise.
+      </div>
+
+      <h3 class="section-title">Round 1: Classic group plank (reference)</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Everyone in plank position. No specific rule about stopping. Just hold as long as possible. Record the time until the first person stops and the time until more than half have stopped.</li>
+        <li><span class="step-num">2</span>Encouragement is MANDATORY: everyone still holding must encourage those who are struggling. This is not optional. The moderator intervenes if someone is silent: "You're still up, use your voice."</li>
+        <li><span class="step-num">3</span>Record the resulting time on the board.</li>
+      </ol>
+
+      <h3 class="section-title">Round 2: Collective plank with stop penalty</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">New rule</span> If one stops, everyone stops</div>
+        <ul>
+          <li>Explain the rule precisely: "If one person drops their knees, I say STOP and the timer stops for everyone. We start over."</li>
+          <li>This is not a punishment for the person who stops. It is a team rule. State this explicitly: "It's not one person's fault. It's a team situation."</li>
+          <li>Give the team 30 seconds to discuss before the plank starts: "How are you going to communicate? Who calls a warning when they're struggling?"</li>
+          <li>Start the timer. Observe how the communication pattern changes compared to round 1.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Moderator roles during the plank</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Timekeeper: you hold the stopwatch, you decide when the timer stops. Show the time every 20 seconds: "20 seconds, strong."</li>
+        <li><span class="step-num">2</span>Stimulator: if it's quiet, give a gentle prompt: "Look left and right. Your team is still there."</li>
+        <li><span class="step-num">3</span>After a stopper: when someone stops, immediately say STOP in a neutral tone. No drama. "We note the time. We do it again." Give the team 15 seconds of rest and informal discussion.</li>
+        <li><span class="step-num">4</span>Third attempt max: do no more than three attempts in round 2. Fatigue then works against the exercise. Always end on a successful attempt if possible.</li>
+      </ol>
+
+      <h3 class="section-title">Debrief key questions</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>"What changed in how you encouraged others when you knew their stopping would end your plank?"</li>
+        <li><span class="step-num">2</span>"What changed in your own internal conversation when you knew the team stops if you stop?"</li>
+        <li><span class="step-num">3</span>"Is this a fair rule? Or is it too harsh? Why?"</li>
+        <li><span class="step-num">4</span>"In a real match: which moments feel like 'team plank with stop penalty'?"</li>
+        <li><span class="step-num">5</span>"Collective responsibility can feel heavy. When is it powerful and when is it toxic?"</li>
+      </ol>
+
+      <div class="warn-box">
+        <strong>Important warning about collective pressure:</strong> Collective accountability can tip into social pressure and shame if the moderator does not guard against this. If the group starts pointing at an individual after a stop (subtly or directly), intervene immediately: "We don't point fingers. We communicate. What could the team have done differently?" The focus is always on the system, never on the weakest link.
+      </div>
+
+      <div class="tips-box">
+        <strong>Injury modification:</strong> Anyone who cannot plank may place one knee down (half plank). The time measurement continues. The principle remains intact. Say this before starting: nobody needs to be in pain to participate.
+      </div>
+
+      <table class="timing-table">
+        <thead><tr><th>Round</th><th>Activity</th><th>Duration</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Reference plank + encouragement</td><td>3 min</td></tr>
+          <tr><td>2</td><td>Collective plank (maximum 3 attempts)</td><td>5 min</td></tr>
+          <tr><td>Debrief</td><td>Key questions + feedback</td><td>4 min</td></tr>
+          <tr><td><strong>Total</strong></td><td></td><td><strong>12 min</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Player worksheet</div>
+
+      <div class="ws-intro">Name: __________________________ &nbsp;&nbsp; Date: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"Individual commitment to a group effort — that is what makes a team work, a company work, a society work, a civilization work."</div>
+        <div class="quote-src">Vince Lombardi</div>
+      </div>
+
+      <div class="ws-field-label">Our results:</div>
+      <div class="data-compare">
+        <div class="data-cell">
+          <div class="data-label">Round 1</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-label">Best attempt R2</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+        <div class="data-cell diff">
+          <div class="data-label">Difference</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconds</div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">What changed in you when you knew that stopping would stop the team?</div>
+      <div class="ws-box" style="min-height: 60px;"></div>
+
+      <div class="ws-field-label">How did the team communicate differently in round 2 compared to round 1?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Is collective responsibility fair? Circle and explain:</div>
+      <ul class="checklist" style="margin-bottom: 8px;">
+        <li><span class="checkbox"></span> Yes, because:</li>
+        <li><span class="checkbox"></span> No, because:</li>
+        <li><span class="checkbox"></span> Sometimes, because:</li>
+      </ul>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Which basketball moment does this resemble most?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">When does collective responsibility become powerful vs. toxic?</div>
+      <table style="width:100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px;">
+        <thead>
+          <tr style="background: var(--black); color: var(--white);">
+            <th style="padding: 7px 12px; text-align: left;">Powerful when...</th>
+            <th style="padding: 7px 12px; text-align: left;">Toxic when...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 12px; height: 32px;"></td>
+            <td style="padding: 8px 12px; height: 32px;"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="commit-box">
+        <div class="commit-label">My commitment to the team</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">In the next match I will support my teammates at this specific moment:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div style="font-size: 12px; margin: 8px 0 4px;">In this way:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Scientific basis</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematic Review</span>
+        <div><strong>Collective efficacy in sport</strong></div>
+        <div>Bandura (1997) introduced collective efficacy as the team equivalent of self-confidence. The higher the shared belief that the team succeeds, the more individual members contribute. The plank rule directly activates this mechanism.</div>
+        <div class="ref">Bandura, A. (1997). Self-efficacy: The exercise of control. W.H. Freeman.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT</span>
+        <div><strong>Social loafing and identification</strong></div>
+        <div>Karau and Williams (1993) showed that social loafing (working less hard in groups) disappears when individual contribution is visible and measurable. The stop penalty makes contribution maximally visible.</div>
+        <div class="ref">Karau, S.J., &amp; Williams, K.D. (1993). Social loafing: A meta-analytic review and theoretical integration. Journal of Personality and Social Psychology, 65(4), 681–706.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Qualitative</span>
+        <div><strong>Shared responsibility in youth teams</strong></div>
+        <div>Holt et al. (2008) showed through qualitative research that young athletes in teams with explicit collective norms score higher on perseverance and have lower burnout rates than teams with only individual norms.</div>
+        <div class="ref">Holt, N.L., et al. (2008). A grounded theory of positive youth development through sport based on results from a qualitative meta-study. International Review of Sport and Exercise Psychology, 1(2), 113–124.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinal</span>
+        <div><strong>Encouragement and pain tolerance</strong></div>
+        <div>Cohen, Ejsmond-Frey, Knight and Dunbar (2010) showed that team membership and actively encouraging others significantly increases pain tolerance through endorphin release. Encouraging is not soft behavior but physiology.</div>
+        <div class="ref">Cohen, E.E., Ejsmond-Frey, R., Knight, N., &amp; Dunbar, R.I. (2010). Rowers' high: Behavioural synchrony is correlated with elevated pain thresholds. Biology Letters, 6(1), 106–108.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Search Terms</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Collective accountability team sport</div>
+        <div class="yt-desc">How top teams build collective responsibility without a blame culture</div>
+        <div class="yt-search">collective accountability team sport culture psychology</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Social loafing in sport</div>
+        <div class="yt-desc">Practical explanation of social loafing in teams and how to break through it</div>
+        <div class="yt-search">social loafing sport team individual accountability</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end page-body -->
+</body>
+</html>
