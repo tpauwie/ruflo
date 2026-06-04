@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Character First — Instagram Visuals</title>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <style>
   :root {
     --black: #0a0a0a;
@@ -719,7 +718,6 @@
   </div>
   <div class="controls">
     <button class="ctrl-btn" id="screenshot-btn" onclick="toggleScreenshotMode()">📸 Screenshot Mode</button>
-    <button class="ctrl-btn" onclick="window.print()" title="Print alle kaarten naar PDF — elke kaart op eigen pagina">🖨 PDF (alle)</button>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-nl" onclick="setLang('nl')">NL</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
@@ -1963,64 +1961,93 @@
 <!-- Footer -->
 <div style="text-align:center; padding:40px; color:#444; font-size:13px;">
   Character First · 36 Instagram Posts · characterfirst.be<br>
-  <span style="color:#2a2a2a;">Alle visuele assets zijn 1080×1080px ready. Rechtsklik op een kaart → "Opslaan als afbeelding" of gebruik Screenshot Mode.</span>
+  <span style="color:#2a2a2a;">Klik op "↗ Openen & opslaan" onder elke kaart → popup opent → "🖨 Opslaan als PDF" → kies Square/A4 → sla op.</span>
 </div>
 
 <script>
-  // ── Download individual card as PNG (1080×1080) ───────────────────────
-  async function downloadCard(card, postId) {
-    const btn = card.nextElementSibling;
-    const orig = btn.textContent;
-    btn.textContent = '⏳ Bezig...';
-    btn.disabled = true;
-    try {
-      const canvas = await html2canvas(card, {
-        scale: 2,          // 540 × 2 = 1080px
-        useCORS: true,
-        allowTaint: true,
-        width: 540,
-        height: 540,
-        backgroundColor: null,
-        logging: false
-      });
-      const link = document.createElement('a');
-      link.download = 'CharacterFirst-' + postId + '.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    } catch (e) {
-      alert('Download mislukt. Tip: gebruik rechtermuisknop → "Opslaan als afbeelding" op de kaart, of gebruik de PDF-knop.');
-      console.error(e);
-    } finally {
-      btn.textContent = orig;
-      btn.disabled = false;
-    }
+  // ── Open single card in clean popup ─────────────────────────────────
+  // Copies all inline CSS from the page into a new window so the card
+  // renders identically. User can then:
+  //   • Print → Save as PDF  (one card, perfect square page)
+  //   • Or use browser screenshot (clean, nothing else on screen)
+  function openCard(wrap) {
+    const card = wrap.querySelector('.card');
+    const num  = wrap.querySelector('.post-number');
+    const postId = num ? num.textContent.trim() : 'post';
+
+    // Collect all inline <style> blocks from the current page
+    const css = Array.from(document.querySelectorAll('style'))
+                     .map(s => s.textContent).join('\n');
+
+    const html = `<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Post ${postId} — Character First</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0a0a0a;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;min-height:100vh;
+  font-family:'Inter','Helvetica Neue',sans-serif;gap:0;padding:0}
+${css}
+/* Override layout styles that don't belong in popup */
+.card{transform:none!important;cursor:default;border-radius:0;
+      width:540px!important;height:540px!important;flex-shrink:0}
+/* Save bar */
+#savebar{display:flex;gap:8px;padding:12px;background:#111;
+  width:540px;border-top:1px solid #1e1e1e}
+#savebar button{flex:1;padding:10px;border:none;border-radius:6px;
+  font-weight:700;font-size:13px;cursor:pointer;font-family:inherit}
+.btn-pdf{background:#f05a28;color:#fff}
+.btn-cl{background:#1a1a1a;border:1px solid #333!important;color:#888}
+/* Print: card fills page, no chrome */
+@media print{
+  body{display:block;background:#000;padding:0}
+  #savebar{display:none}
+  .card{width:100vmin!important;height:100vmin!important;
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    margin:auto}
+  @page{size:square;margin:0}
+}
+</style>
+</head>
+<body>
+${card.outerHTML}
+<div id="savebar">
+  <button class="btn-pdf" onclick="window.print()">🖨 Opslaan als PDF</button>
+  <button class="btn-cl" onclick="window.close()">✕ Sluiten</button>
+</div>
+</body>
+</html>`;
+
+    const blob = new Blob([html], {type: 'text/html'});
+    const url  = URL.createObjectURL(blob);
+    window.open(url, '_blank', 'width=560,height=620,menubar=no,toolbar=no,location=no');
+    // Revoke after delay so the new window has time to load
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
   }
 
-  // ── Inject Download PNG button under every card ───────────────────────
+  // ── Inject "Opslaan" button under every card ─────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.post-wrap').forEach(function (wrap) {
-      const card = wrap.querySelector('.card');
-      if (!card) return;
-      const num = wrap.querySelector('.post-number');
-      const postId = num ? num.textContent.trim() : 'post';
+      if (!wrap.querySelector('.card')) return;
       const btn = document.createElement('button');
       btn.className = 'dl-btn';
-      btn.textContent = '⬇ Download PNG (1080×1080)';
-      btn.onclick = function () { downloadCard(card, postId); };
-      card.insertAdjacentElement('afterend', btn);
+      btn.textContent = '↗ Openen & opslaan';
+      btn.onclick = function () { openCard(wrap); };
+      wrap.querySelector('.card').insertAdjacentElement('afterend', btn);
     });
   });
 
-  // ── Screenshot mode: clean grid view, hide chrome ────────────────────
+  // ── Screenshot mode: clean grid view ─────────────────────────────────
   let screenshotActive = false;
   function toggleScreenshotMode() {
     screenshotActive = !screenshotActive;
-    const hide = [
-      '.page-header', '.month-header', '.post-caption',
-      '.post-number', '.post-type-badge', '.dl-btn'
-    ];
+    const hide = ['.page-header','.month-header','.post-caption',
+                  '.post-number','.post-type-badge','.dl-btn'];
     if (screenshotActive) {
-      hide.forEach(sel => document.querySelectorAll(sel).forEach(el => el.style.display = 'none'));
+      hide.forEach(sel => document.querySelectorAll(sel)
+                               .forEach(el => el.style.display = 'none'));
       document.body.style.background = '#000';
       document.body.style.padding = '0';
       const exit = document.createElement('button');
@@ -2030,7 +2057,8 @@
       exit.onclick = toggleScreenshotMode;
       document.body.appendChild(exit);
     } else {
-      hide.forEach(sel => document.querySelectorAll(sel).forEach(el => el.style.display = ''));
+      hide.forEach(sel => document.querySelectorAll(sel)
+                               .forEach(el => el.style.display = ''));
       document.body.style.background = '';
       document.body.style.padding = '';
       const exit = document.getElementById('exit-screenshot');
