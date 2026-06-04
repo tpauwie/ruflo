@@ -512,6 +512,43 @@
       top: 2px;
     }
 
+    /* PREMIUM LOCK SYSTEM */
+    .premium-locked {
+      position: relative;
+      pointer-events: none;
+    }
+    .premium-locked > *:not(.premium-lock) {
+      filter: blur(4px);
+      user-select: none;
+    }
+    .premium-lock {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,10,10,0.7);
+      border-radius: inherit;
+      z-index: 10;
+      pointer-events: all;
+      gap: 0.5rem;
+      color: white;
+      text-align: center;
+    }
+    .premium-lock .lock-icon { font-size: 2rem; }
+    .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+    .premium-lock .lock-cta {
+      background: #f05a28;
+      color: white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      pointer-events: all;
+    }
+
     /* PRINT */
     @media print {
       body { background: white; }
@@ -865,7 +902,8 @@
   </div>
 
   <!-- ========== MAAND 3 SPELER ========== -->
-  <div class="page" id="m3">
+  <div class="page premium-locked" id="m3">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Maand 3 — Spelerswerkblad</div>
@@ -1031,7 +1069,8 @@
   </div>
 
   <!-- ========== MAAND 4 SPELER ========== -->
-  <div class="page" id="m4">
+  <div class="page premium-locked" id="m4">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Maand 4 — Spelerswerkblad</div>
@@ -1168,7 +1207,8 @@
   </div>
 
   <!-- ========== MAAND 5 SPELER ========== -->
-  <div class="page" id="m5">
+  <div class="page premium-locked" id="m5">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Maand 5 — Spelerswerkblad</div>
@@ -1326,7 +1366,8 @@
   </div>
 
   <!-- ========== MAAND 6 SPELER ========== -->
-  <div class="page" id="m6">
+  <div class="page premium-locked" id="m6">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Maand 6 — Spelerswerkblad</div>
@@ -1464,7 +1505,8 @@
   </div>
 
   <!-- ========== MAAND 7 SPELER ========== -->
-  <div class="page" id="m7">
+  <div class="page premium-locked" id="m7">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Maand 7 — Spelerswerkblad</div>
@@ -1605,7 +1647,8 @@
   </div>
 
   <!-- ========== MAAND 8 SPELER ========== -->
-  <div class="page" id="m8">
+  <div class="page premium-locked" id="m8">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Maand 8 — Spelerswerkblad</div>

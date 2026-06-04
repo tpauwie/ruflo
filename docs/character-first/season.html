@@ -306,6 +306,43 @@
       margin-bottom: 5rem;
     }
 
+    /* PREMIUM LOCK SYSTEM */
+    .premium-locked {
+      position: relative;
+      pointer-events: none;
+    }
+    .premium-locked > *:not(.premium-lock) {
+      filter: blur(4px);
+      user-select: none;
+    }
+    .premium-lock {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,10,10,0.7);
+      border-radius: 16px;
+      z-index: 10;
+      pointer-events: all;
+      gap: 0.5rem;
+      color: white;
+      text-align: center;
+    }
+    .premium-lock .lock-icon { font-size: 2rem; }
+    .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+    .premium-lock .lock-cta {
+      background: #f05a28;
+      color: white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      pointer-events: all;
+    }
+
     /* FOOTER */
     footer {
       background: var(--gray-900);
@@ -326,7 +363,13 @@
 
   <nav>
     <div class="nav-logo">Character <span>First</span></div>
-    <a href="index.html" class="nav-back">&#8592; Terug naar overzicht</a>
+    <div style="display:flex;gap:1.5rem;align-items:center">
+      <a href="index.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Home</a>
+      <a href="library.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Bibliotheek</a>
+      <a href="season.html" style="color:#f05a28;text-decoration:none;font-size:0.85rem;font-weight:600">The Season</a>
+      <a href="week.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">The Week</a>
+      <a href="planbuilder.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Sessieplan</a>
+    </div>
   </nav>
 
   <section class="hero">
@@ -435,7 +478,8 @@
     <div class="month-divider"></div>
 
     <!-- MAAND 3 -->
-    <section class="month-section" id="maand-3">
+    <section class="month-section premium-locked" id="maand-3">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>3</strong></div>
         <div class="month-meta">
@@ -478,7 +522,8 @@
     <div class="month-divider"></div>
 
     <!-- MAAND 4 -->
-    <section class="month-section" id="maand-4">
+    <section class="month-section premium-locked" id="maand-4">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>4</strong></div>
         <div class="month-meta">
@@ -521,7 +566,8 @@
     <div class="month-divider"></div>
 
     <!-- MAAND 5 -->
-    <section class="month-section" id="maand-5">
+    <section class="month-section premium-locked" id="maand-5">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>5</strong></div>
         <div class="month-meta">
@@ -564,7 +610,8 @@
     <div class="month-divider"></div>
 
     <!-- MAAND 6 -->
-    <section class="month-section" id="maand-6">
+    <section class="month-section premium-locked" id="maand-6">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>6</strong></div>
         <div class="month-meta">
@@ -607,7 +654,8 @@
     <div class="month-divider"></div>
 
     <!-- MAAND 7 -->
-    <section class="month-section" id="maand-7">
+    <section class="month-section premium-locked" id="maand-7">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>7</strong></div>
         <div class="month-meta">
@@ -650,7 +698,8 @@
     <div class="month-divider"></div>
 
     <!-- MAAND 8 -->
-    <section class="month-section" id="maand-8">
+    <section class="month-section premium-locked" id="maand-8">
+      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>8</strong></div>
         <div class="month-meta">

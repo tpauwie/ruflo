@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sessieplan Builder — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --orange: #f05a28;
+      --orange-light: #ff7a4d;
+      --white: #ffffff;
+      --gray-900: #111111;
+      --gray-800: #1a1a1a;
+      --gray-700: #2a2a2a;
+      --gray-600: #3a3a3a;
+      --gray-400: #666666;
+      --gray-200: #cccccc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav.top-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(240,90,40,0.2);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--gray-200);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--orange); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* PAGE LAYOUT */
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 96px 2rem 4rem;
+    }
+
+    /* HERO */
+    .page-hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-hero .badge {
+      display: inline-block;
+      background: rgba(240,90,40,0.15);
+      color: var(--orange);
+      border: 1px solid rgba(240,90,40,0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-hero h1 span { color: var(--orange); }
+
+    .page-hero p {
+      font-size: 1.05rem;
+      color: var(--gray-200);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* BUILDER FORM */
+    .builder-card {
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .field-group {
+      margin-bottom: 2rem;
+    }
+
+    .field-group:last-child { margin-bottom: 0; }
+
+    .field-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .radio-group,
+    .check-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .radio-group label,
+    .check-group label {
+      cursor: pointer;
+    }
+
+    .radio-group input,
+    .check-group input {
+      display: none;
+    }
+
+    .radio-group label span,
+    .check-group label span {
+      display: block;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 2px solid var(--gray-600);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gray-200);
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .radio-group input:checked + span,
+    .check-group input:checked + span {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+    }
+
+    .radio-group label:hover span,
+    .check-group label:hover span {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .check-note {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      margin-top: 0.5rem;
+    }
+
+    .generate-btn {
+      display: block;
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      padding: 1.1rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+      margin-top: 2rem;
+    }
+
+    .generate-btn:hover {
+      background: var(--orange-light);
+      transform: translateY(-2px);
+    }
+
+    /* OUTPUT */
+    #output { display: none; }
+
+    .plan-header {
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .plan-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .plan-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(240,90,40,0.15);
+      border: 1px solid rgba(240,90,40,0.3);
+      color: var(--orange);
+    }
+
+    .plan-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .action-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: 2px solid var(--gray-600);
+      background: transparent;
+      color: var(--gray-200);
+    }
+
+    .action-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .action-btn.primary {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+    }
+
+    .action-btn.primary:hover {
+      background: var(--orange-light);
+      border-color: var(--orange-light);
+    }
+
+    /* PLAN SLOTS */
+    .plan-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .slot {
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .slot.special {
+      background: var(--gray-900);
+      border-color: rgba(240,90,40,0.3);
+    }
+
+    .slot.locked {
+      position: relative;
+      pointer-events: none;
+    }
+
+    .slot.locked > *:not(.slot-lock) {
+      filter: blur(4px);
+      user-select: none;
+    }
+
+    .slot-lock {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,10,10,0.75);
+      border-radius: 13px;
+      z-index: 10;
+      pointer-events: all;
+      gap: 0.4rem;
+      color: white;
+      text-align: center;
+    }
+
+    .slot-lock .lock-icon { font-size: 1.5rem; }
+    .slot-lock p { margin: 0; font-size: 0.85rem; opacity: 0.8; }
+    .slot-lock .lock-cta {
+      background: #f05a28;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+      pointer-events: all;
+    }
+
+    .slot-time {
+      flex-shrink: 0;
+      background: rgba(240,90,40,0.15);
+      border: 1px solid rgba(240,90,40,0.3);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--orange);
+      white-space: nowrap;
+      min-width: 70px;
+      text-align: center;
+    }
+
+    .slot-content { flex: 1; }
+
+    .slot-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 0.2rem;
+    }
+
+    .slot-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .slot-desc {
+      font-size: 0.85rem;
+      color: var(--gray-200);
+      line-height: 1.5;
+    }
+
+    .slot-theme {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(240,90,40,0.1);
+      color: var(--orange);
+      border: 1px solid rgba(240,90,40,0.25);
+      margin-top: 0.4rem;
+    }
+
+    .slot-duration {
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gray-400);
+      white-space: nowrap;
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--gray-400);
+    }
+
+    .empty-state p { font-size: 1rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--gray-900);
+      border-top: 1px solid var(--gray-700);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    footer nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    footer nav a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    footer nav a:hover { color: var(--orange); }
+
+    footer p {
+      color: var(--gray-400);
+      font-size: 0.82rem;
+    }
+
+    footer strong { color: var(--orange); }
+
+    @media print {
+      nav.top-nav, .builder-card, .page-hero, .plan-actions, footer { display: none !important; }
+      body { background: white; color: black; }
+      .page-wrap { padding: 1rem; }
+      #output { display: block !important; }
+      .plan-header { background: white; border: 1px solid #ccc; color: black; }
+      .plan-title { color: black; }
+      .slot { background: white; border: 1px solid #ccc; }
+      .slot-name { color: black; }
+      .slot-desc { color: #333; }
+      .slot-num { color: #888; }
+      .slot.locked { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-logo">Character <span>First</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="library.html">Bibliotheek</a>
+    <a href="season.html">The Season</a>
+    <a href="week.html">The Week</a>
+    <a href="planbuilder.html" class="active">Sessieplan</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-hero">
+    <div class="badge">Coach Tool</div>
+    <h1>Sessieplan <span>Builder</span></h1>
+    <p>Stel je leeftijdsgroep, thema's en duur in en krijg direct een op maat gemaakt sessieplan.</p>
+  </div>
+
+  <!-- BUILDER FORM -->
+  <div class="builder-card">
+
+    <div class="field-group">
+      <span class="field-label">Leeftijdsgroep</span>
+      <div class="radio-group">
+        <label><input type="radio" name="age" value="U14" checked><span>U14</span></label>
+        <label><input type="radio" name="age" value="U16"><span>U16</span></label>
+        <label><input type="radio" name="age" value="Senior"><span>Senior</span></label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <span class="field-label">Thema's (max. 3)</span>
+      <div class="check-group" id="theme-checks">
+        <label><input type="checkbox" name="theme" value="Zelfkennis"><span>Zelfkennis</span></label>
+        <label><input type="checkbox" name="theme" value="Druk &amp; Stress"><span>Druk &amp; Stress</span></label>
+        <label><input type="checkbox" name="theme" value="Mijn Rol"><span>Mijn Rol</span></label>
+        <label><input type="checkbox" name="theme" value="Communicatie"><span>Communicatie</span></label>
+        <label><input type="checkbox" name="theme" value="Team Eerst"><span>Team Eerst</span></label>
+        <label><input type="checkbox" name="theme" value="Mentale Weerbaarheid"><span>Mentale Weerbaarheid</span></label>
+        <label><input type="checkbox" name="theme" value="Fysiek"><span>Fysiek</span></label>
+      </div>
+      <p class="check-note">Selecteer 1 tot 3 thema's voor jouw sessie.</p>
+    </div>
+
+    <div class="field-group">
+      <span class="field-label">Sessieduur</span>
+      <div class="radio-group">
+        <label><input type="radio" name="duration" value="30" checked><span>30 min</span></label>
+        <label><input type="radio" name="duration" value="45"><span>45 min</span></label>
+        <label><input type="radio" name="duration" value="60"><span>60 min</span></label>
+        <label><input type="radio" name="duration" value="90"><span>90 min</span></label>
+      </div>
+    </div>
+
+    <button class="generate-btn" id="generate-btn">Genereer Sessieplan →</button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div id="output">
+
+    <div class="plan-header">
+      <div>
+        <div class="plan-title" id="plan-title">Sessieplan</div>
+        <div class="plan-meta" id="plan-meta"></div>
+      </div>
+      <div class="plan-actions">
+        <button class="action-btn primary" onclick="window.print()">&#128438; Download als PDF</button>
+        <button class="action-btn" id="reset-btn">Opnieuw beginnen</button>
+      </div>
+    </div>
+
+    <div class="plan-slots" id="plan-slots"></div>
+
+    <div class="empty-state" id="empty-state" style="display:none">
+      <p>Geen oefeningen gevonden voor de geselecteerde combinatie. Probeer andere thema's.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="library.html">Bibliotheek</a>
+    <a href="oefeningen.html">Oefeningen</a>
+    <a href="werkbladen.html">Werkbladen</a>
+    <a href="season.html">The Season</a>
+    <a href="week.html">The Week</a>
+  </nav>
+  <p><strong>Character First</strong> — Karakter boven prestatie</p>
+</footer>
+
+<script>
+  const exercises = [
+    // Zelfkennis
+    { id: 10, name: "Twee Waarheden Één Leugen", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 8, desc: "Zelfopenbaring via een spelformaat met lage drempel." },
+    { id: 1, name: "Mijn Sportersprofiel", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 10, desc: "Visuele zelfanalyse via een radargrafiek." },
+    { id: 3, name: "Waardenveiling", theme: "Zelfkennis", ages: ["U16","Senior"], duration: 10, desc: "Prioriteiten stellen via een veiling van kernwaarden." },
+    { id: 5, name: "Brief aan Jongere Ik", theme: "Zelfkennis", ages: ["Senior"], duration: 10, desc: "Reflectie op groei en lessen via een brief." },
+    { id: 2, name: "Sportlijn", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 8, desc: "Visualiseer je sporttraject met hoogte- en dieptepunten." },
+    { id: 7, name: "Identiteitsankers", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 7, desc: "Verankeren van een positieve identiteitsuitspraak via visualisatie." },
+    // Druk & Stress
+    { id: 11, name: "Box Breathing", theme: "Druk & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Reguleer je zenuwstelsel voor prestaties onder druk." },
+    { id: 12, name: "Stressladder", theme: "Druk & Stress", ages: ["U14","U16","Senior"], duration: 8, desc: "Identificeer en rangschik persoonlijke stressoren." },
+    { id: 14, name: "Drukscenario Roleplay", theme: "Druk & Stress", ages: ["U16","Senior"], duration: 10, desc: "Simuleer hoge-druk situaties en oefen reacties." },
+    { id: 15, name: "Herscoring Ritueel", theme: "Druk & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Na een verlies of fout bewust resetten en opnieuw beginnen." },
+    // Mijn Rol
+    { id: 23, name: "Menselijke Grafiek", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 8, desc: "Visueel in kaart brengen van teamrollen en posities." },
+    { id: 24, name: "Rollenspel Wissel", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 10, desc: "Ervaar de rol van een ploegmaat." },
+    { id: 26, name: "Leiderschap Spectrum", theme: "Mijn Rol", ages: ["U16","Senior"], duration: 10, desc: "Ontdek jouw leiderschapsstijl op een continuüm." },
+    { id: 21, name: "Rolcompass", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 8, desc: "Begrijp formele en informele rol via een kompas." },
+    // Communicatie
+    { id: 37, name: "Aanmoedigingschallenge", theme: "Communicatie", ages: ["U14","U16","Senior"], duration: 7, desc: "Oefen positieve en specifieke aanmoediging onder tijdsdruk." },
+    { id: 38, name: "Actief Luisteren Duo", theme: "Communicatie", ages: ["U14","U16","Senior"], duration: 8, desc: "Verdiep luistervaardigheden via gestructureerd partnerwerk." },
+    { id: 40, name: "Feedback Driehoek", theme: "Communicatie", ages: ["U16","Senior"], duration: 10, desc: "Gestructureerde feedbackronde met drie perspectieven." },
+    { id: 31, name: "Ik Boodschap", theme: "Communicatie", ages: ["U16","Senior"], duration: 8, desc: "Een boodschap overbrengen zonder beschuldigen." },
+    // Team Eerst
+    { id: 46, name: "Kracht van de Kring", theme: "Team Eerst", ages: ["U14","U16","Senior"], duration: 5, desc: "Ervaar collectieve energie en intentie via een ritueel." },
+    { id: 47, name: "Vertrouwensval", theme: "Team Eerst", ages: ["U14","U16","Senior"], duration: 8, desc: "Fysiek vertrouwen opbouwen in een veilige setting." },
+    { id: 49, name: "Teamcontract", theme: "Team Eerst", ages: ["U16","Senior"], duration: 10, desc: "Gezamenlijk opstellen van gedragsnormen." },
+    { id: 43, name: "Week Terugblik", theme: "Team Eerst", ages: ["U14","U16","Senior"], duration: 7, desc: "Team reflecteert samen via drie vragen over de week." },
+    // Mentale Weerbaarheid
+    { id: 51, name: "Flu Game Mentaliteit", theme: "Mentale Weerbaarheid", ages: ["U14","U16","Senior"], duration: 10, desc: "Analyseer veerkracht via iconische sportmomenten." },
+    { id: 52, name: "Gedachten Herkaderen", theme: "Mentale Weerbaarheid", ages: ["U14","U16","Senior"], duration: 10, desc: "ABC-model om negatieve gedachten om te buigen." },
+    { id: 53, name: "Adversity Ladder", theme: "Mentale Weerbaarheid", ages: ["U16","Senior"], duration: 10, desc: "Bouw veerkracht door tegenslag te herkaderen als groeikans." },
+    // Fysiek
+    { id: 56, name: "Wall Squat Challenge", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 15, desc: "Ervaar het verschil van aanmoediging op fysieke prestatie." },
+    { id: 57, name: "Druk Ademhaling", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 10, desc: "Plankhouding met en zonder ademhalingstechniek." },
+    { id: 58, name: "Comeback Sprint", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 12, desc: "Kwaliteit van herstel na mentale terugslag meten." },
+    { id: 59, name: "Team Plank Hold", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 8, desc: "Collectieve verantwoordelijkheid via gedeelde fysieke uitdaging." },
+  ];
+
+  const slotCounts = { 30: 3, 45: 4, 60: 5, 90: 6 };
+
+  // Limit theme selection to max 3
+  const themeChecks = document.querySelectorAll('input[name="theme"]');
+  themeChecks.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const checked = [...themeChecks].filter(c => c.checked);
+      if (checked.length > 3) {
+        cb.checked = false;
+      }
+    });
+  });
+
+  document.getElementById('generate-btn').addEventListener('click', generatePlan);
+  document.getElementById('reset-btn').addEventListener('click', resetBuilder);
+
+  function generatePlan() {
+    const age = document.querySelector('input[name="age"]:checked').value;
+    const duration = parseInt(document.querySelector('input[name="duration"]:checked').value);
+    const selectedThemes = [...document.querySelectorAll('input[name="theme"]:checked')].map(c => c.value);
+
+    if (selectedThemes.length === 0) {
+      alert('Selecteer minstens één thema.');
+      return;
+    }
+
+    // Filter exercises
+    let pool = exercises.filter(e =>
+      e.ages.includes(age) && selectedThemes.includes(e.theme)
+    );
+
+    // Sort by duration ascending
+    pool.sort((a, b) => a.duration - b.duration);
+
+    // Opening ritual (always Kracht van de Kring)
+    const openingRitual = {
+      id: 'opening',
+      name: 'Kracht van de Kring',
+      theme: 'Team Eerst',
+      ages: ["U14","U16","Senior"],
+      duration: 5,
+      desc: 'Activeer het team via een gedeeld energie ritueel dat opbouwt naar een gezamenlijke uitroep.',
+      special: true,
+      label: 'Opening'
+    };
+
+    // Closing reflection
+    const closingRitual = {
+      id: 'closing',
+      name: 'Slotreflectie',
+      theme: 'Team Eerst',
+      ages: ["U14","U16","Senior"],
+      duration: 5,
+      desc: 'Sluit de sessie af: elk lid deelt één woord dat de sessie samenvat.',
+      special: true,
+      label: 'Afsluiting'
+    };
+
+    const maxSlots = slotCounts[duration] || 4;
+    const contentSlots = maxSlots - 2; // subtract opening + closing
+    const availableDuration = duration - 10; // minus 5 opening + 5 closing
+
+    // Pick exercises to fill content slots within available duration
+    const picked = [];
+    let usedDuration = 0;
+    for (const ex of pool) {
+      if (picked.length >= contentSlots) break;
+      if (usedDuration + ex.duration > availableDuration + 5) continue; // slight tolerance
+      picked.push(ex);
+      usedDuration += ex.duration;
+    }
+
+    // Build full plan
+    const plan = [openingRitual, ...picked, closingRitual];
+
+    // Render
+    renderPlan(plan, age, duration, selectedThemes);
+
+    // Show output
+    document.getElementById('output').style.display = 'block';
+    document.getElementById('output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderPlan(plan, age, duration, themes) {
+    // Title and meta
+    document.getElementById('plan-title').textContent = `Sessieplan — ${age} · ${duration} min`;
+    const metaEl = document.getElementById('plan-meta');
+    metaEl.innerHTML = '';
+    themes.forEach(t => {
+      const pill = document.createElement('span');
+      pill.className = 'plan-pill';
+      pill.textContent = t;
+      metaEl.appendChild(pill);
+    });
+
+    // Slots
+    const slotsEl = document.getElementById('plan-slots');
+    slotsEl.innerHTML = '';
+    const emptyState = document.getElementById('empty-state');
+
+    const contentExercises = plan.filter(e => !e.special);
+    if (contentExercises.length === 0) {
+      emptyState.style.display = 'block';
+      return;
+    }
+    emptyState.style.display = 'none';
+
+    let currentTime = 0;
+
+    plan.forEach((ex, idx) => {
+      const isLocked = !ex.special && idx > 2; // first 2 content exercises free (positions 1 and 2 after opening)
+      const slot = document.createElement('div');
+      slot.className = 'slot' + (ex.special ? ' special' : '') + (isLocked ? ' locked' : '');
+
+      const timeLabel = `${currentTime}–${currentTime + ex.duration} min`;
+      currentTime += ex.duration;
+
+      const lockHTML = isLocked ? `<div class="slot-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>` : '';
+
+      slot.innerHTML = `
+        ${lockHTML}
+        <div class="slot-time">${timeLabel}</div>
+        <div class="slot-content">
+          <div class="slot-num">${ex.special ? ex.label : `Oefening ${String(idx).padStart(2,'0')}`}</div>
+          <div class="slot-name">${ex.name}</div>
+          <div class="slot-desc">${ex.desc}</div>
+          ${!ex.special ? `<span class="slot-theme">${ex.theme}</span>` : ''}
+        </div>
+        <div class="slot-duration">${ex.duration} min</div>
+      `;
+
+      slotsEl.appendChild(slot);
+    });
+  }
+
+  function resetBuilder() {
+    document.getElementById('output').style.display = 'none';
+    document.getElementById('plan-slots').innerHTML = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

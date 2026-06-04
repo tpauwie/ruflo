@@ -267,6 +267,43 @@
   .commit-box .commit-label { font-size: 11px; font-weight: 800; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
   .commit-box .ws-line { border-bottom: 1px solid var(--orange); }
 
+  /* PREMIUM LOCK SYSTEM */
+  .premium-locked {
+    position: relative;
+    pointer-events: none;
+  }
+  .premium-locked > *:not(.premium-lock) {
+    filter: blur(4px);
+    user-select: none;
+  }
+  .premium-lock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,10,10,0.7);
+    border-radius: inherit;
+    z-index: 10;
+    pointer-events: all;
+    gap: 0.5rem;
+    color: white;
+    text-align: center;
+  }
+  .premium-lock .lock-icon { font-size: 2rem; }
+  .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+  .premium-lock .lock-cta {
+    background: #f05a28;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    pointer-events: all;
+  }
+
   /* PRINT */
   @media print {
     .top-header, .sticky-nav { display: none; }
@@ -465,7 +502,8 @@
 
 
 <!-- ===== OEFENING 2 ===== -->
-<div class="exercise-block" id="oe2">
+<div class="exercise-block premium-locked" id="oe2">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
   <div class="ex-hero">
     <div class="ex-num">02</div>
     <div>
@@ -612,7 +650,8 @@
 
 
 <!-- ===== OEFENING 3 ===== -->
-<div class="exercise-block" id="oe3">
+<div class="exercise-block premium-locked" id="oe3">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
   <div class="ex-hero">
     <div class="ex-num">03</div>
     <div>
@@ -773,7 +812,8 @@
 
 
 <!-- ===== OEFENING 4 ===== -->
-<div class="exercise-block" id="oe4">
+<div class="exercise-block premium-locked" id="oe4">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
   <div class="ex-hero">
     <div class="ex-num">04</div>
     <div>
@@ -920,7 +960,8 @@
 
 
 <!-- ===== OEFENING 5 ===== -->
-<div class="exercise-block" id="oe5">
+<div class="exercise-block premium-locked" id="oe5">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
   <div class="ex-hero">
     <div class="ex-num">05</div>
     <div>
