@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — Oefeningen Bibliotheek</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --orange: #f05a28;
+    --white: #ffffff;
+    --gray: #f4f4f4;
+    --border: #e0e0e0;
+    --light-orange: #fff3ef;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--black); }
+
+  /* HEADER */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 32px 48px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .logo {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 22px; flex-shrink: 0;
+  }
+  .header h1 { font-size: 28px; font-weight: 800; }
+  .header p { font-size: 14px; opacity: .65; margin-top: 4px; }
+  .header-stats { margin-left: auto; display: flex; gap: 24px; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 900; color: var(--orange); }
+  .stat-label { font-size: 11px; opacity: .6; }
+
+  /* FILTER BAR */
+  .filter-bar {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 48px;
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .filter-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: #888; margin-right: 4px; }
+  .filter-sep { width: 1px; height: 28px; background: var(--border); margin: 0 8px; }
+  .filter-btn {
+    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
+    border: 2px solid var(--border); background: var(--white); color: #555;
+    cursor: pointer; transition: all .15s; white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+  .filter-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
+  .filter-btn.age-u14.active { background: #1a7a4a; border-color: #1a7a4a; }
+  .filter-btn.age-u16.active { background: #1a4a8a; border-color: #1a4a8a; }
+  .filter-btn.age-senior.active { background: #5a1a8a; border-color: #5a1a8a; }
+  .search-wrap { margin-left: auto; position: relative; }
+  .search-wrap input {
+    padding: 7px 14px 7px 34px; border-radius: 20px; border: 2px solid var(--border);
+    font-size: 13px; outline: none; width: 200px;
+  }
+  .search-wrap input:focus { border-color: var(--orange); }
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #aaa; }
+
+  /* RESULTS BAR */
+  .results-bar {
+    padding: 16px 48px 8px;
+    font-size: 13px; color: #888;
+    display: flex; align-items: center; gap: 12px;
+  }
+  #results-count { font-weight: 700; color: var(--black); }
+  .clear-btn {
+    font-size: 12px; color: var(--orange); cursor: pointer; font-weight: 600;
+    border: none; background: none; padding: 0;
+  }
+  .clear-btn:hover { text-decoration: underline; }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 8px 48px 48px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow .2s, transform .15s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex; flex-direction: column;
+  }
+  .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.12); transform: translateY(-2px); }
+  .card.hidden { display: none; }
+
+  .card-top {
+    background: var(--black);
+    padding: 14px 16px 12px;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .card-num {
+    background: var(--orange); color: var(--white);
+    font-size: 11px; font-weight: 900;
+    padding: 3px 7px; border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+  }
+  .card-title { font-size: 15px; font-weight: 800; color: var(--white); line-height: 1.3; }
+
+  .card-body { padding: 12px 16px; flex: 1; }
+  .card-doel { font-size: 12px; color: #555; font-style: italic; line-height: 1.5; margin-bottom: 10px; }
+
+  .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+  .tag {
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .tag-theme   { background: var(--light-orange); color: var(--orange); border-color: #f7c4b3; }
+  .tag-age-u14   { background: #d4edda; color: #1a7a4a; border-color: #b2dfcc; }
+  .tag-age-u16   { background: #d0e4f7; color: #1a4a8a; border-color: #a8c8ed; }
+  .tag-age-senior { background: #e8d5f5; color: #5a1a8a; border-color: #d0aae8; }
+  .tag-type-fysiek  { background: var(--black); color: var(--white); border-color: var(--black); }
+  .tag-time  { background: #f0f0f0; color: #444; border-color: var(--border); }
+  .tag-group { background: #f0f0f0; color: #444; border-color: var(--border); }
+
+  .card-footer {
+    padding: 8px 16px 12px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .card-link {
+    font-size: 11px; font-weight: 700; color: var(--orange);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .card-link::after { content: '→'; }
+
+  /* NO RESULTS */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center; padding: 60px 20px; color: #aaa;
+    font-size: 16px;
+  }
+  .no-results strong { color: #555; }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; gap: 16px;
+    padding: 8px 0 4px;
+  }
+  .section-divider h2 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #888; white-space: nowrap; }
+  .section-divider hr { flex: 1; border: none; border-top: 2px solid var(--border); }
+
+  @media (max-width: 700px) {
+    .header { padding: 20px 20px; }
+    .header-stats { display: none; }
+    .filter-bar { padding: 12px 16px; }
+    .grid { padding: 8px 16px 32px; grid-template-columns: 1fr; }
+    .results-bar { padding: 12px 16px 4px; }
+    .search-wrap input { width: 140px; }
+  }
+
+  @media print {
+    .filter-bar, .results-bar, .search-wrap { display: none; }
+    .grid { padding: 0; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .card { break-inside: avoid; }
+    .card-top { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">CF</div>
+  <div>
+    <h1>Character First — Oefeningen Bibliotheek</h1>
+    <p>Filterbaar op leeftijd, thema, duur en type · U14 tot Senior</p>
+  </div>
+  <div class="header-stats">
+    <div><div class="stat-num">59</div><div class="stat-label">Oefeningen</div></div>
+    <div><div class="stat-num">7</div><div class="stat-label">Thema's</div></div>
+    <div><div class="stat-num">3</div><div class="stat-label">Leeftijden</div></div>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <span class="filter-label">Leeftijd</span>
+  <button class="filter-btn age-u14" data-filter="u14">U14</button>
+  <button class="filter-btn age-u16" data-filter="u16">U16</button>
+  <button class="filter-btn age-senior" data-filter="senior">Senior</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-label">Thema</span>
+  <button class="filter-btn" data-filter="zelfkennis">Zelfkennis</button>
+  <button class="filter-btn" data-filter="stress">Druk &amp; Stress</button>
+  <button class="filter-btn" data-filter="rol">Mijn Rol</button>
+  <button class="filter-btn" data-filter="communicatie">Communicatie</button>
+  <button class="filter-btn" data-filter="team">Team Eerst</button>
+  <button class="filter-btn" data-filter="weerbaarheid">Weerbaarheid</button>
+  <button class="filter-btn" data-filter="fysiek">Fysiek</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-label">Duur</span>
+  <button class="filter-btn" data-filter="kort">max 5 min</button>
+  <button class="filter-btn" data-filter="middel">5-10 min</button>
+  <button class="filter-btn" data-filter="lang">10-15 min</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-label">Type</span>
+  <button class="filter-btn" data-filter="individueel">Individueel</button>
+  <button class="filter-btn" data-filter="duo">Duo</button>
+  <button class="filter-btn" data-filter="groep">Groep</button>
+  <button class="filter-btn" data-filter="fysiek-type">Fysiek</button>
+  <button class="filter-btn" data-filter="reflectie">Reflectie</button>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Zoek oefening...">
+  </div>
+</div>
+
+<div class="results-bar">
+  <span>Toont <span id="results-count">59</span> van 59 oefeningen</span>
+  <button class="clear-btn" id="clear-btn" style="display:none">Filters wissen</button>
+</div>
+
+<div class="grid" id="grid">
+
+  <!-- ===== ZELFKENNIS ===== -->
+  <div class="section-divider"><h2>Zelfkennis &amp; Identiteit</h2><hr></div>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">01</span><div class="card-title">Drie Woorden</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers verwoorden wie ze zijn zonder na te denken via post-its en een korte plenaire ronde.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">5 min</span><span class="tag tag-group">Groep</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie individueel u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">02</span><div class="card-title">Sportlijn</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers visualiseren hun sporttraject en ontdekken vormende hoogte- en dieptepunten op een tijdlijn.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">8 min</span><span class="tag tag-group">Individueel + Duo</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie individueel duo u16 senior lang">
+    <div class="card-top"><span class="card-num">03</span><div class="card-title">Waardenkompas</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers selecteren hun top 3 persoonlijke waarden uit een lijst van 20 en koppelen ze aan concrete sportmomenten.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">10 min</span><span class="tag tag-group">Duo</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie individueel u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">04</span><div class="card-title">Energiegever of Energievreeter</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers schrijven wat hen energie geeft en kost en herkennen hun eigen patroon in de sport.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie duo u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">05</span><div class="card-title">Mijn Superpower</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers benoemen elkaars sterkste eigenschap via externe feedback in een duo-oefening.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">6 min</span><span class="tag tag-group">Duo</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie individueel u16 senior lang">
+    <div class="card-top"><span class="card-num">06</span><div class="card-title">Brief aan Mijn Jongere Ik</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers reflecteren op groei door een brief te schrijven aan hun jongere sportende ik via vijf openers.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">8 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie individueel u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">07</span><div class="card-title">Identiteitsankers</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers verankeren een positieve identiteitsuitspraak via visualisatie en lichaamsbewustzijn.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">08</span><div class="card-title">Wie Inspireert Jou?</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers koppelen externe rolmodellen aan interne kwaliteiten via drie bewonderde eigenschappen.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">6 min</span><span class="tag tag-group">Groep</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie individueel u14 u16 senior kort">
+    <div class="card-top"><span class="card-num">09</span><div class="card-title">Lichaamsscan Check-in</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers verbinden met hun huidige toestand via een geleide bodyscan van voeten naar hoofd.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">5 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t1"
+     data-tags="zelfkennis reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">10</span><div class="card-title">Twee Waarheden, Één Leugen</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers leren elkaar kennen via twee ware feiten en één leugen over zichzelf buiten de sport.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Zelfkennis</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">8 min</span><span class="tag tag-group">Groep</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <!-- ===== DRUK & STRESS ===== -->
+  <div class="section-divider"><h2>Druk &amp; Stress</h2><hr></div>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie groep u14 u16 senior kort">
+    <div class="card-top"><span class="card-num">11</span><div class="card-title">Box Breathing</div></div>
+    <div class="card-body">
+      <p class="card-doel">Zenuwstelsel kalmeren via 4-4-4-4 ademhaling. Techniek gebruikt door topsporters en Navy SEALs.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">5 min</span><span class="tag tag-group">Groep</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie individueel u16 senior kort">
+    <div class="card-top"><span class="card-num">12</span><div class="card-title">4-7-8 Adem Ontspanning</div></div>
+    <div class="card-body">
+      <p class="card-doel">Diepe ontspanning activeren via parasympathisch zenuwstelsel met de 4-7-8 ademtechniek.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">5 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie individueel u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">13</span><div class="card-title">Stressbarometer</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers leren hun eigen stresspeil herkennen en benoemen via een getekende thermometer.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">6 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie duo u16 senior lang">
+    <div class="card-top"><span class="card-num">14</span><div class="card-title">Worst Case Best Case</div></div>
+    <div class="card-body">
+      <p class="card-doel">Angst voor falen relativeren door het in perspectief te plaatsen via drie scenario-analyses.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">8 min</span><span class="tag tag-group">Duo</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie groep u14 u16 senior kort">
+    <div class="card-top"><span class="card-num">15</span><div class="card-title">Herscoring Ritueel</div></div>
+    <div class="card-body">
+      <p class="card-doel">Na een verlies of fout bewust resetten en opnieuw beginnen via een gezamenlijk teamritueel.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">5 min</span><span class="tag tag-group">Groep</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie individueel u16 senior middel">
+    <div class="card-top"><span class="card-num">16</span><div class="card-title">Drukkaart</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers maken een persoonlijk A4-kaart met stressoren, signalen, hulpmiddelen en een reset-zin.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie groep u14 u16 senior kort">
+    <div class="card-top"><span class="card-num">17</span><div class="card-title">5-4-3-2-1 Grounding</div></div>
+    <div class="card-body">
+      <p class="card-doel">Angst doorbreken via zintuiglijke grounding: 5 zien, 4 aanraken, 3 horen, 2 ruiken, 1 proeven.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">5 min</span><span class="tag tag-group">Groep</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie individueel u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">18</span><div class="card-title">Prestatiemantra Schrijven</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers creëren een persoonlijke mentale cue van één zin voor gebruik onder prestatiedruk.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie individueel u16 senior kort">
+    <div class="card-top"><span class="card-num">19</span><div class="card-title">Stressdagboek 3 Minuten</div></div>
+    <div class="card-body">
+      <p class="card-doel">Stresspatronen herkennen door dagelijks drie vragen te beantwoorden in maximaal vijf minuten.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">5 min</span><span class="tag tag-group">Individueel</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t2"
+     data-tags="stress reflectie groep u16 senior lang">
+    <div class="card-top"><span class="card-num">20</span><div class="card-title">Progressief Ontspannen</div></div>
+    <div class="card-body">
+      <p class="card-doel">Fysieke spanning bewust loslaten via progressieve spierontspanning van voeten tot gezicht.</p>
+      <div class="card-tags">
+        <span class="tag tag-theme">Druk &amp; Stress</span>
+        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
+        <span class="tag tag-time">8 min</span><span class="tag tag-group">Groep</span>
+      </div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <!-- ===== MIJN ROL ===== -->
+  <div class="section-divider"><h2>Mijn Rol in het Team</h2><hr></div>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie individueel duo u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">21</span><div class="card-title">Rolcompass</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers begrijpen hun formele en informele rol via een kompas met vier richtingen.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie duo u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">22</span><div class="card-title">Onzichtbare Bijdrage</div></div>
+    <div class="card-body">
+      <p class="card-doel">Bijdragen benoemen die niet in statistieken staan maar het team sterker maken.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">23</span><div class="card-title">Menselijke Grafiek</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers positioneren zichzelf fysiek op stellingen en ontdekken diversiteit in het team.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie individueel u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">24</span><div class="card-title">Top 3 Bijdragen</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers formuleren de drie bijdragen waarmee zij het team dit seizoen het meest helpen.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Individueel</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">25</span><div class="card-title">Rolbelofte</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers maken een publieke belofte over hun gedragsbijdrage aan het team in de kring.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie individueel u16 senior lang">
+    <div class="card-top"><span class="card-num">26</span><div class="card-title">Rolcirkel</div></div>
+    <div class="card-body">
+      <p class="card-doel">Drie concentrische cirkels visualiseren kerntaak, secundaire bijdragen en groeipotentieel.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Individueel</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie duo u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">27</span><div class="card-title">Groeipunt Formuleren</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers formuleren een concreet groeipunt positief en wisselen het uit met een partner.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">28</span><div class="card-title">Leider of Volger?</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers begrijpen dat leiderschap en volgzaamheid beide waardevolle en noodzakelijke rollen zijn.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">29</span><div class="card-title">Teamkaart Invullen</div></div>
+    <div class="card-body">
+      <p class="card-doel">Het team brengt samen zijn kwaliteiten in kaart via een gedeeld groot vel met alle namen.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">9 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t3" data-tags="rol reflectie individueel u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">30</span><div class="card-title">Als Ik Niet Speel</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers die niet starten leren hun rol als supporters en actieve teamgenoten te definiëren.</p>
+      <div class="card-tags"><span class="tag tag-theme">Mijn Rol</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Individueel</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <!-- ===== COMMUNICATIE ===== -->
+  <div class="section-divider"><h2>Communicatie</h2><hr></div>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie duo u16 senior lang">
+    <div class="card-top"><span class="card-num">31</span><div class="card-title">Ik Boodschap</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers oefenen een boodschap overbrengen zonder beschuldigen via de ik-boodschapformule.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie groep u16 senior lang">
+    <div class="card-top"><span class="card-num">32</span><div class="card-title">Feedbackronde Trio</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers oefenen geven en ontvangen van constructieve feedback in groepen van drie met observator.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">9 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie duo u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">33</span><div class="card-title">Spiegel Gesprek</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers ervaren hoe het voelt echt gehoord te worden via actief luisteren zonder antwoorden.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">34</span><div class="card-title">Kapot Telefoon Analyse</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers ontdekken hoe communicatie vervormt en wat de gevolgen zijn in een team.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie individueel u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">35</span><div class="card-title">Dankwoord Kaartje</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers uiten dankbaarheid concreet en specifiek aan een teamgenoot via een persoonlijk kaartje.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Individueel</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie groep u16 senior lang">
+    <div class="card-top"><span class="card-num">36</span><div class="card-title">Moeilijk Gesprek Oefenen</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers oefenen een moeilijk gesprek voeren in een veilige trio-setting met observator.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">10 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">37</span><div class="card-title">Aanmoedigingschallenge</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers leren spontaan en specifiek aanmoedigen in vijf minuten bewuste aanmoedigingspraktijk.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">38</span><div class="card-title">Stil vs. Luid Communiceren</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers ontdekken de kracht van non-verbale communicatie door een opdracht in stilte te doen.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">39</span><div class="card-title">Compliment Escalator</div></div>
+    <div class="card-body">
+      <p class="card-doel">Een cultuur van echte waardering opbouwen: elke speler staat 30 seconden in het midden van de kring.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t4" data-tags="communicatie reflectie duo u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">40</span><div class="card-title">Vraag Eerst</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers leren vragen stellen voor ze een oordeel vormen over een teamgenoot die slecht speelde.</p>
+      <div class="card-tags"><span class="tag tag-theme">Communicatie</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <!-- ===== TEAM EERST ===== -->
+  <div class="section-divider"><h2>Team Eerst</h2><hr></div>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team fysiek-type duo u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">41</span><div class="card-title">Vertrouwensval</div></div>
+    <div class="card-body">
+      <p class="card-doel">Fysiek ervaren wat vertrouwen betekent door te vallen en gevangen te worden door een partner.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-type-fysiek">Fysiek</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">42</span><div class="card-title">Team Contract</div></div>
+    <div class="card-body">
+      <p class="card-doel">Het team stelt samen gedragsafspraken op via post-its en stemming, resulterend in een gesigneerd contract.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">10 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">43</span><div class="card-title">Week Terugblik</div></div>
+    <div class="card-body">
+      <p class="card-doel">Team reflecteert samen via drie vragen: wat ging goed, wat was moeilijk, wat nemen we mee.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team fysiek-type duo u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">44</span><div class="card-title">Blinde Gids</div></div>
+    <div class="card-body">
+      <p class="card-doel">Ervaren dat communicatie en vertrouwen onlosmakelijk samenhangen via een parcours zonder zicht.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-type-fysiek">Fysiek</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team reflectie individueel u16 senior lang">
+    <div class="card-top"><span class="card-num">45</span><div class="card-title">Brief aan het Team</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers verwoorden wat het team voor hen betekent via een korte brief met vier vaste openers.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">9 min</span><span class="tag tag-group">Individueel</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team fysiek-type groep u14 u16 senior kort">
+    <div class="card-top"><span class="card-num">46</span><div class="card-title">Kracht van de Kring</div></div>
+    <div class="card-body">
+      <p class="card-doel">Het team activeren via een gedeeld energie ritueel dat opbouwt naar een gezamenlijke uitroep.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-type-fysiek">Fysiek</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">5 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">47</span><div class="card-title">Dankbaarheidscirkel</div></div>
+    <div class="card-body">
+      <p class="card-doel">Positieve teamsfeer opbouwen door specifieke dankbaarheid te uiten voor teamgenoten in de kring.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">48</span><div class="card-title">Teamvisualisatie</div></div>
+    <div class="card-body">
+      <p class="card-doel">Het team visualiseert samen een geweldige prestatie om collectieve mentale kracht op te bouwen.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior middel">
+    <div class="card-top"><span class="card-num">49</span><div class="card-title">Ik Heb Jou Nodig</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers uiten kwetsbaarheid door hun behoefte aan het team publiek te benoemen in de kring.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">50</span><div class="card-title">Slotceremonie</div></div>
+    <div class="card-body">
+      <p class="card-doel">Een programma afsluiten met drie kringronden: één woord, één les, één wens voor het team.</p>
+      <div class="card-tags"><span class="tag tag-theme">Team Eerst</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">10 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <!-- ===== MENTALE WEERBAARHEID ===== -->
+  <div class="section-divider"><h2>Mentale Weerbaarheid</h2><hr></div>
+
+  <a class="card" href="mentale-weerbaarheid.html#oe1" data-tags="weerbaarheid reflectie individueel groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">51</span><div class="card-title">De Flu Game Mentaliteit</div></div>
+    <div class="card-body">
+      <p class="card-doel">Wat doe jij als alles tegen je werkt? Spelers schrijven hun eigen doorzet-moment en Flu Game zin.</p>
+      <div class="card-tags"><span class="tag tag-theme">Weerbaarheid</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="mentale-weerbaarheid.html#oe2" data-tags="weerbaarheid reflectie individueel duo u16 senior lang">
+    <div class="card-top"><span class="card-num">52</span><div class="card-title">Gedachten Herkaderen</div></div>
+    <div class="card-body">
+      <p class="card-doel">Leer negatieve gedachten omzetten in constructieve brandstof via het ABC-model uit de sportpsychologie.</p>
+      <div class="card-tags"><span class="tag tag-theme">Weerbaarheid</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="mentale-weerbaarheid.html#oe3" data-tags="weerbaarheid reflectie individueel groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">53</span><div class="card-title">De Adversity Ladder</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers brengen drie tegenslagen in kaart en ontdekken hun persoonlijk adversity quotient patroon.</p>
+      <div class="card-tags"><span class="tag tag-theme">Weerbaarheid</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="mentale-weerbaarheid.html#oe4" data-tags="weerbaarheid reflectie individueel u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">54</span><div class="card-title">Pre-Performance Ritueel</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers bouwen een persoonlijk 6-stappenschakelaar (fysiek, mentaal, emotioneel) voor voor elke wedstrijd.</p>
+      <div class="card-tags"><span class="tag tag-theme">Weerbaarheid</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Individueel</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="mentale-weerbaarheid.html#oe5" data-tags="weerbaarheid reflectie individueel duo u16 senior lang">
+    <div class="card-top"><span class="card-num">55</span><div class="card-title">Groei na Mislukking</div></div>
+    <div class="card-body">
+      <p class="card-doel">Spelers verkennen posttraumatische groei via de vijf PTG-domeinen van Tedeschi en Calhoun.</p>
+      <div class="card-tags"><span class="tag tag-theme">Weerbaarheid</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Duo</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <!-- ===== MENTALE TAAIHEID FYSIEK ===== -->
+  <div class="section-divider"><h2>Mentale Taaiheid — Fysiek</h2><hr></div>
+
+  <a class="card" href="review-en-taaiheid.html" data-tags="fysiek fysiek-type team groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">56</span><div class="card-title">Wall Squat Challenge</div></div>
+    <div class="card-body">
+      <p class="card-doel">Drie fasen: solo, teamaanmoediging per persoon, iedereen samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</p>
+      <div class="card-tags"><span class="tag tag-theme">Fysiek</span><span class="tag tag-type-fysiek">Fysiek</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="review-en-taaiheid.html" data-tags="fysiek fysiek-type stress individueel groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">57</span><div class="card-title">Druk Ademhaling</div></div>
+    <div class="card-body">
+      <p class="card-doel">Plank hold met en zonder ademtechniek: spelers voelen zelf het verschil tussen pijn en gevaar.</p>
+      <div class="card-tags"><span class="tag tag-theme">Fysiek</span><span class="tag tag-type-fysiek">Fysiek</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="review-en-taaiheid.html" data-tags="fysiek fysiek-type weerbaarheid groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">58</span><div class="card-title">Comeback Sprint</div></div>
+    <div class="card-body">
+      <p class="card-doel">Na elke sprint krijgt de speler fictief slecht nieuws. Het team beoordeelt de kwaliteit van de reset, niet de snelheid.</p>
+      <div class="card-tags"><span class="tag tag-theme">Fysiek</span><span class="tag tag-type-fysiek">Fysiek</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <a class="card" href="review-en-taaiheid.html" data-tags="fysiek fysiek-type team groep u14 u16 senior lang">
+    <div class="card-top"><span class="card-num">59</span><div class="card-title">Team Plank Hold</div></div>
+    <div class="card-body">
+      <p class="card-doel">Als één persoon valt, valt iedereen. Collectieve verantwoordelijkheid en groepsmotivatie voelbaar maken.</p>
+      <div class="card-tags"><span class="tag tag-theme">Fysiek</span><span class="tag tag-type-fysiek">Fysiek</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Groep</span></div>
+    </div>
+    <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
+  </a>
+
+  <div class="no-results" id="no-results" style="display:none">
+    <strong>Geen oefeningen gevonden</strong><br>Probeer andere filters of wis de selectie.
+  </div>
+
+</div><!-- end grid -->
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const dividers = document.querySelectorAll('.section-divider');
+  const countEl = document.getElementById('results-count');
+  const clearBtn = document.getElementById('clear-btn');
+  const noResults = document.getElementById('no-results');
+  const searchInput = document.getElementById('search');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  let activeFilters = new Set();
+  let searchTerm = '';
+
+  function applyFilters() {
+    let visible = 0;
+
+    cards.forEach(card => {
+      const tags = (card.dataset.tags || '').split(' ');
+      const title = card.querySelector('.card-title').textContent.toLowerCase();
+      const doel = (card.querySelector('.card-doel') || {}).textContent?.toLowerCase() || '';
+
+      const matchesSearch = !searchTerm ||
+        title.includes(searchTerm) || doel.includes(searchTerm);
+
+      const matchesFilters = activeFilters.size === 0 ||
+        [...activeFilters].every(f => tags.includes(f));
+
+      const show = matchesSearch && matchesFilters;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+
+    // hide empty section dividers
+    dividers.forEach(div => {
+      let next = div.nextElementSibling;
+      let hasVisible = false;
+      while (next && !next.classList.contains('section-divider')) {
+        if (!next.classList.contains('hidden') && next.classList.contains('card')) hasVisible = true;
+        next = next.nextElementSibling;
+      }
+      div.classList.toggle('hidden', !hasVisible);
+    });
+
+    countEl.textContent = visible;
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+    clearBtn.style.display = (activeFilters.size > 0 || searchTerm) ? 'inline' : 'none';
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      if (activeFilters.has(f)) {
+        activeFilters.delete(f);
+        btn.classList.remove('active');
+      } else {
+        activeFilters.add(f);
+        btn.classList.add('active');
+      }
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', () => {
+    searchTerm = searchInput.value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    activeFilters.clear();
+    searchTerm = '';
+    searchInput.value = '';
+    filterBtns.forEach(b => b.classList.remove('active'));
+    applyFilters();
+  });
+</script>
+</body>
+</html>
