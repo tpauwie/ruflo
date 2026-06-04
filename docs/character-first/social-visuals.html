@@ -677,11 +677,9 @@
     }
   }
 
+  /* Print: kept minimal — use Screenshot Mode for clean exports */
   @media print {
-    .page-header, .month-header, .post-caption, .controls { display: none; }
-    .post-wrap { break-inside: avoid; }
-    .card { transform: none !important; }
-    body { background: #000; padding: 0; }
+    .page-header, .controls { display: none; }
   }
 </style>
 </head>
@@ -694,12 +692,94 @@
     <div class="page-meta">36 posts · 3 maanden · 6 template types · 1080×1080px</div>
   </div>
   <div class="controls">
-    <button class="ctrl-btn" onclick="window.print()">🖨 Print / Screenshot Mode</button>
+    <button class="ctrl-btn" id="screenshot-btn" onclick="toggleScreenshotMode()">📸 Screenshot Mode</button>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-nl" onclick="setLang('nl')">NL</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
   </div>
+</div>
+
+<!-- ================================================================
+     LAUNCH POSTS — Pre-launch teaser (post before Month 1)
+     ================================================================ -->
+<div class="month-section">
+  <div class="month-header" style="background:linear-gradient(135deg,#1a0a00,#0a0a0a);border-left:4px solid #f05a28;">
+    <span class="month-badge" style="background:#f05a28;">🚀 Launch</span>
+    <div class="month-title" style="color:#f05a28;">Account Launch — 3 Teaser Posts</div>
+    <div class="month-subtitle">Post these FIRST before the content calendar starts — build suspense &amp; introduce the brand</div>
+  </div>
+</div>
+
+<div class="post-grid">
+
+  <!-- LAUNCH POST 1 — Coming soon / mystery -->
+  <div class="post-wrap">
+    <div class="post-number" style="background:#f05a28;">L1</div>
+    <div class="post-type-badge">Teaser</div>
+    <div class="card card-quote" style="background:#0a0a0a;">
+      <div class="bg-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68ffbc446b00?w=1080&h=1080&fit=crop');opacity:0.08;"></div>
+      <div class="content" style="justify-content:center;text-align:center;padding:60px 48px;">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#f05a28;margin-bottom:32px;">COMING SOON</div>
+        <div style="font-size:52px;font-weight:900;color:#fff;line-height:1.05;margin-bottom:28px;" data-nl="Er komt iets.<br>Voor de sporters<br>die meer willen<br>dan winnen." data-en="Something is coming.<br>For the athletes<br>who want more<br>than winning.">Er komt iets.<br>Voor de sporters<br>die meer willen<br>dan winnen.</div>
+        <div style="width:48px;height:3px;background:#f05a28;margin:0 auto 32px;"></div>
+        <div style="font-size:15px;color:#555;letter-spacing:.08em;font-weight:700;">CHARACTER FIRST</div>
+      </div>
+    </div>
+    <div class="post-caption">
+      <div class="caption-text" data-lang="nl">Iets is in de maak. Niet voor iedereen — maar misschien wel voor jou. 🔒 Volg ons voor de eerste release. #CharacterFirst #ComingSoon #JongerenSport #SportPsychologie #Lancering</div>
+      <div class="caption-text" data-lang="en">Something is in the making. Not for everyone — but maybe for you. 🔒 Follow us for the first release. #CharacterFirst #ComingSoon #YouthSport #SportPsychology #Launch</div>
+    </div>
+  </div>
+
+  <!-- LAUNCH POST 2 — Reveal who we are -->
+  <div class="post-wrap">
+    <div class="post-number" style="background:#f05a28;">L2</div>
+    <div class="post-type-badge">Introductie</div>
+    <div class="card card-science" style="position:relative;overflow:hidden;">
+      <div class="sci-gradient"></div>
+      <div class="content" style="padding:52px 44px;display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+        <div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#f05a28;margin-bottom:20px;">WIE ZIJN WIJ</div>
+          <div style="font-size:36px;font-weight:900;color:#fff;line-height:1.15;margin-bottom:24px;" data-nl="We trainen geen skills.<br>We trainen mensen." data-en="We don't train skills.<br>We train people.">We trainen geen skills.<br>We trainen mensen.</div>
+          <div style="font-size:15px;color:#999;line-height:1.7;margin-bottom:32px;" data-nl="Character First is een evidence-based programma voor jongeren in sport. Gebouwd op wetenschap. Ontworpen voor coaches. Gemaakt voor spelers." data-en="Character First is an evidence-based programme for young athletes. Built on science. Designed for coaches. Made for players.">Character First is een evidence-based programma voor jongeren in sport. Gebouwd op wetenschap. Ontworpen voor coaches. Gemaakt voor spelers.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+          <div style="display:flex;gap:8px;">
+            <span style="background:rgba(240,90,40,.15);border:1px solid rgba(240,90,40,.35);color:#f05a28;font-size:11px;font-weight:800;padding:4px 10px;border-radius:12px;">59 oefeningen</span>
+            <span style="background:rgba(240,90,40,.15);border:1px solid rgba(240,90,40,.35);color:#f05a28;font-size:11px;font-weight:800;padding:4px 10px;border-radius:12px;">7 thema's</span>
+            <span style="background:rgba(240,90,40,.15);border:1px solid rgba(240,90,40,.35);color:#f05a28;font-size:11px;font-weight:800;padding:4px 10px;border-radius:12px;">U14 → Senior</span>
+          </div>
+          <div class="cf-logo" style="margin-left:auto;"><span class="logo-top">Character</span><span class="logo-bottom">First</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="post-caption">
+      <div class="caption-text" data-lang="nl">Welkom. 👋 Character First is een evidence-based karakter­ontwikkelings­programma voor jongeren in sport. We combineren sportpsychologie, praktische oefeningen en wetenschappelijk onderzoek om coaches te helpen mensen te vormen — niet alleen sporters. Volg ons voor wekelijkse oefeningen, inzichten en achter-de-schermen content. 🔶 #CharacterFirst #Introductie #SportPsychologie #Coaching #JongerenSport #EvidenceBased #Karakter</div>
+      <div class="caption-text" data-lang="en">Welcome. 👋 Character First is an evidence-based character development programme for young athletes. We combine sport psychology, practical exercises, and scientific research to help coaches develop people — not just athletes. Follow us for weekly exercises, insights, and behind-the-scenes content. 🔶 #CharacterFirst #Introduction #SportPsychology #Coaching #YouthSport #EvidenceBased #Character</div>
+    </div>
+  </div>
+
+  <!-- LAUNCH POST 3 — The problem / hook -->
+  <div class="post-wrap">
+    <div class="post-number" style="background:#f05a28;">L3</div>
+    <div class="post-type-badge">Provocatie</div>
+    <div class="card card-cta" style="background:#f05a28;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(0,0,0,.15);"></div>
+      <div style="position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(0,0,0,.1);"></div>
+      <div class="content" style="padding:60px 48px;display:flex;flex-direction:column;justify-content:center;height:100%;position:relative;z-index:1;">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,.5);margin-bottom:24px;">DE VRAAG</div>
+        <div style="font-size:48px;font-weight:900;color:#000;line-height:1.08;margin-bottom:28px;" data-nl="Wat als je<br>team meer kon<br>zijn dan goed?" data-en="What if your<br>team could be<br>more than good?">Wat als je<br>team meer kon<br>zijn dan goed?</div>
+        <div style="font-size:16px;color:rgba(0,0,0,.65);line-height:1.65;margin-bottom:36px;" data-nl="35% van jongeren stopt met sporten voor hun 15e. Niet door gebrek aan talent — maar door gebrek aan verbinding, veiligheid en identiteit. Wij bouwen het anders." data-en="35% of young athletes quit before 15. Not from lack of talent — but from lack of connection, safety, and identity. We build it differently.">35% van jongeren stopt met sporten voor hun 15e. Niet door gebrek aan talent — maar door gebrek aan verbinding, veiligheid en identiteit. Wij bouwen het anders.</div>
+        <div style="background:#000;color:#fff;padding:14px 28px;border-radius:8px;font-weight:800;font-size:15px;display:inline-block;letter-spacing:.03em;" data-nl="characterfirst.be →" data-en="characterfirst.be →">characterfirst.be →</div>
+      </div>
+    </div>
+    <div class="post-caption">
+      <div class="caption-text" data-lang="nl">35% van jongeren stopt met sporten voor hun 15e. 😔 Niet door gebrek aan talent. Door gebrek aan verbinding. Door coaches die alleen focussen op de score. Door teams waar je je niet veilig voelt om te falen. Character First is gebouwd om dat te veranderen. Evidence-based. Praktisch. Voor elke sport, elke leeftijd. 🔶 Meer weten? characterfirst.be #CharacterFirst #SportuitvalJongeren #Coaching #SportPsychologie #Verbinding #TeamCultuur</div>
+      <div class="caption-text" data-lang="en">35% of young people quit sport before the age of 15. 😔 Not because of a lack of talent. Because of a lack of connection. Because coaches only focus on the score. Because teams don't feel safe enough to fail. Character First is built to change that. Evidence-based. Practical. For every sport, every age. 🔶 Want to know more? characterfirst.be #CharacterFirst #YouthDropout #Coaching #SportPsychology #Connection #TeamCulture</div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ================================================================
@@ -1860,6 +1940,35 @@
 </div>
 
 <script>
+  // Screenshot mode: hide all chrome, show only the card grid clean
+  let screenshotActive = false;
+  function toggleScreenshotMode() {
+    screenshotActive = !screenshotActive;
+    const btn = document.getElementById('screenshot-btn');
+    if (screenshotActive) {
+      document.querySelector('.page-header').style.display = 'none';
+      document.querySelectorAll('.month-header').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.post-caption').forEach(el => el.style.display = 'none');
+      document.body.style.background = '#000';
+      document.body.style.padding = '0';
+      // Show exit button fixed at top
+      const exit = document.createElement('div');
+      exit.id = 'exit-screenshot';
+      exit.style.cssText = 'position:fixed;top:12px;right:12px;z-index:9999;background:#f05a28;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit;';
+      exit.textContent = '✕ Exit Screenshot Mode';
+      exit.onclick = toggleScreenshotMode;
+      document.body.appendChild(exit);
+    } else {
+      document.querySelector('.page-header').style.display = '';
+      document.querySelectorAll('.month-header').forEach(el => el.style.display = '');
+      document.querySelectorAll('.post-caption').forEach(el => el.style.display = '');
+      document.body.style.background = '';
+      document.body.style.padding = '';
+      const exit = document.getElementById('exit-screenshot');
+      if (exit) exit.remove();
+    }
+  }
+
   function setLang(lang) {
     document.body.classList.toggle('lang-en', lang === 'en');
     document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
