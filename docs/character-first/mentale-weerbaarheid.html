@@ -327,6 +327,17 @@
 </style>
 </head>
 <body>
+<script>
+  (function(){
+    if(!localStorage.getItem('cf_access')){
+      var o=document.createElement('div');
+      o.style.cssText='position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
+      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium inhoud</div><p style="color:#666;font-size:.9rem;max-width:320px;">Dit onderdeel is alleen beschikbaar met toegangscode.</p><a href="toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Toegangscode invoeren</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Terug naar home</a>';
+      document.body.prepend(o);
+    }
+  })();
+</script>
+
 
 <header class="top-header">
   <div class="logo">CF</div>
