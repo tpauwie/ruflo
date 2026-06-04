@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — Social Media Content Package</title>
+<style>
+  :root {
+    --orange: #f05a28;
+    --orange-light: #ff7a48;
+    --orange-dark: #c94415;
+    --black: #0a0a0a;
+    --dark: #111111;
+    --dark2: #1a1a1a;
+    --dark3: #222222;
+    --gray: #888888;
+    --light-gray: #f4f4f4;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --border: #e0e0e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  /* ---- HEADER ---- */
+  .site-header {
+    background: var(--black);
+    padding: 40px 40px 32px;
+    border-bottom: 4px solid var(--orange);
+  }
+  .site-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .logo-mark {
+    width: 52px; height: 52px;
+    background: var(--orange);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 900; color: #fff;
+    letter-spacing: -1px;
+  }
+  .site-header h1 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+  }
+  .site-header h1 span { color: var(--orange); }
+  .tagline {
+    color: var(--gray);
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header-meta {
+    margin-top: 16px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-meta span {
+    color: #aaa;
+    font-size: 13px;
+  }
+  .header-meta strong { color: var(--orange); }
+
+  /* ---- NAV ---- */
+  .main-nav {
+    background: var(--dark2);
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .main-nav a {
+    color: #888;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 14px 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .main-nav a:hover, .main-nav a.active {
+    color: #fff;
+    border-bottom-color: var(--orange);
+  }
+
+  /* ---- SECTIONS ---- */
+  .section {
+    display: none;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section.active { display: block; }
+
+  .section-header {
+    background: var(--dark);
+    color: #fff;
+    padding: 28px 32px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    border-left: 6px solid var(--orange);
+  }
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .section-header p {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .section-header .month-label {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  /* ---- WEEK HEADERS ---- */
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0 16px;
+  }
+  .week-header h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .week-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+  }
+
+  /* ---- POST CARDS ---- */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 20px;
+    margin-bottom: 8px;
+  }
+
+  .post-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .post-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+
+  .post-card-header {
+    background: var(--black);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .post-card-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .post-type-badge {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .badge-exercise { background: #7c3aed; color: #fff; }
+  .badge-science { background: #0891b2; color: #fff; }
+  .badge-coach { background: #059669; color: #fff; }
+  .badge-quote { background: var(--orange); color: #fff; }
+  .badge-bts { background: #d97706; color: #fff; }
+  .badge-story { background: #dc2626; color: #fff; }
+  .badge-faq { background: #374151; color: #fff; }
+
+  .post-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .platform-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+  .platform-ig { background: #e1306c22; color: #e1306c; border: 1px solid #e1306c55; }
+  .platform-li { background: #0077b522; color: #0077b5; border: 1px solid #0077b555; }
+  .time-badge {
+    font-size: 10px;
+    color: #888;
+    background: #f5f5f5;
+    border-radius: 3px;
+    padding: 2px 7px;
+  }
+
+  .post-card-body {
+    padding: 0;
+  }
+
+  /* Tabs inside card */
+  .lang-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+  }
+  .lang-tab {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+    cursor: pointer;
+    background: #fafafa;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .lang-tab.active {
+    background: #fff;
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+
+  .lang-content { display: none; padding: 16px; }
+  .lang-content.active { display: block; }
+
+  .caption-text {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #333;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--orange);
+    background: transparent;
+    border: 2px solid var(--orange);
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.15s;
+  }
+  .copy-btn:hover {
+    background: var(--orange);
+    color: #fff;
+  }
+  .copy-btn.copied {
+    background: #059669;
+    border-color: #059669;
+    color: #fff;
+  }
+
+  /* Visual description */
+  .visual-desc {
+    margin-top: 12px;
+    background: #fff8f5;
+    border: 1px solid #ffe0d0;
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+  .visual-desc-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .visual-desc p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ---- EMAIL SECTION ---- */
+  .section-divider {
+    border: none;
+    border-top: 4px solid var(--orange);
+    margin: 48px 0;
+    opacity: 0.4;
+  }
+
+  .email-sequence {
+    margin-bottom: 48px;
+  }
+  .email-sequence-header {
+    background: var(--dark);
+    color: #fff;
+    padding: 20px 28px;
+    border-radius: 10px 10px 0 0;
+    border-left: 6px solid var(--orange);
+  }
+  .email-sequence-header h3 {
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .email-sequence-header p {
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .email-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 28px 32px;
+  }
+  .email-card:last-child {
+    border-radius: 0 0 10px 10px;
+  }
+  .email-card + .email-card {
+    border-top: 1px solid #eee;
+  }
+
+  .email-day-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .email-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .email-meta-item label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #888;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .email-meta-item .val {
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+  }
+  .email-meta-item .val-nl { color: #222; }
+  .email-meta-item .val-en { color: #555; font-style: italic; }
+
+  .email-body-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 0;
+    border-bottom: 2px solid #eee;
+  }
+  .email-body-tab {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.15s;
+  }
+  .email-body-tab.active {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+  .email-body-content {
+    display: none;
+    padding: 20px 0 0;
+  }
+  .email-body-content.active { display: block; }
+  .email-body-content pre {
+    font-family: inherit;
+    font-size: 13.5px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    color: #333;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 16px 18px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .cta-box {
+    margin-top: 14px;
+    background: #fff8f5;
+    border: 1px solid var(--orange);
+    border-radius: 6px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cta-box .cta-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    white-space: nowrap;
+  }
+  .cta-box .cta-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .read-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #888;
+    margin-top: 10px;
+  }
+
+  /* ---- PRINT ---- */
+  @media print {
+    .main-nav, .copy-btn, .lang-tabs { display: none !important; }
+    .section { display: block !important; page-break-before: always; }
+    .lang-content { display: block !important; }
+    .post-card { page-break-inside: avoid; }
+    body { background: #fff; }
+    .section { padding: 20px; }
+    .posts-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    .section { padding: 16px; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .site-header { padding: 24px 16px; }
+    .main-nav { padding: 0 16px; overflow-x: auto; }
+    .email-meta-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="brand">
+    <div class="logo-mark">CF</div>
+    <div>
+      <h1>Character <span>First</span></h1>
+      <div class="tagline">Win the person. Win the team.</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span><strong>Program:</strong> Evidence-Based Sports Character Development</span>
+    <span><strong>Sports:</strong> Basketball · Football · Volleyball</span>
+    <span><strong>Age:</strong> U14 → Senior</span>
+    <span><strong>Region:</strong> Belgium</span>
+    <span><strong>Contact:</strong> info@characterfirst.be</span>
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+  <a href="#" class="active" onclick="showSection('month1', this)">Month 1 — Awareness</a>
+  <a href="#" onclick="showSection('month2', this)">Month 2 — Education</a>
+  <a href="#" onclick="showSection('month3', this)">Month 3 — Social Proof</a>
+  <a href="#" onclick="showSection('emails', this)">Email Sequences</a>
+</nav>
+
+<!-- ================================================================
+     MONTH 1: AWARENESS
+================================================================ -->
+<section id="month1" class="section active">
+  <div class="section-header">
+    <div class="month-label">Month 1 · Weeks 1–4</div>
+    <h2>Awareness — Introduce the Concept</h2>
+    <p>Themes: What is character? Why sport is a perfect classroom. The problem with pure performance focus. Introducing the 7 themes.</p>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-header"><h3>Week 1 — What is Character?</h3></div>
+  <div class="posts-grid">
+
+    <!-- Post 1 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-quote">Quote Card</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Tue · 18:30</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">Karakter wordt niet gebouwd in de kleedkamer. Het wordt gebouwd wanneer het hard gaat. In de laatste minuut. Als je verliest. Als niemand kijkt.
+
+Dat is precies waarom sport zo'n krachtige omgeving is voor jongeren.
+
+Niet om kampioenen te kweken. Maar om mensen te vormen die klaar zijn voor het leven.
+
+Dit is Character First.
+Win the person. Win the team.
+
+#characterfirst #karakterontwikkeling #jeugdsport #sportpsychologie #mentalekracht #basketbal #topsport #coachontwikkeling</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Bold black background. Large orange quote marks. White text centered. CF logo bottom-right. Clean, typographic — no photo needed.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">Character isn't built in the locker room. It's built when things get hard. In the final minute. When you lose. When nobody's watching.
+
+That's exactly why sport is such a powerful environment for young people.
+
+Not to manufacture champions. But to shape people who are ready for life.
+
+This is Character First.
+Win the person. Win the team.
+
+#characterfirst #youthsport #sportspsychology #mentalperformance #mindset #athletedevelopment #coachinglife #evidencebased</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Bold black background. Large orange quote marks. White text centered. CF logo bottom-right. Clean, typographic — no photo needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 2 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-science">Science Fact</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Thu · 12:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">🔬 Wetenschapsfeit #1
+
+Onderzoek van Côté & Fraser-Thomas (2007) toont aan dat georganiseerde sport één van de krachtigste omgevingen is voor karakterontwikkeling bij jongeren — maar alleen als het programma bewust is ontworpen.
+
+Spontane sport: je leert karakter.
+Slecht gecoachte sport: je leert strategieën om regels te omzeilen.
+
+Het verschil zit niet in de sport. Het zit in de coach.
+
+Character First geeft coaches de tools om bewust te bouwen aan veerkracht, zelfdiscipline en teamgeest — met oefeningen die werken.
+
+Meer weten? Link in bio.
+
+#characterfirst #sportpsychologie #jeugdsport #coachontwikkeling #sporteducatie #evidencebased #mentalekracht</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Clean white card, dark header with "Science Fact #1" in orange. Simple bar chart graphic showing "intentional vs unintentional coaching outcomes." Professional, academic feel.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">🔬 Science Fact #1
+
+Research by Côté & Fraser-Thomas (2007) shows that organised sport is one of the most powerful environments for character development in youth — but only when the program is deliberately designed.
+
+Pick-up sport: you might learn character.
+Poorly coached sport: you learn how to bend the rules.
+
+The difference isn't the sport. It's the coach.
+
+Character First gives coaches the tools to intentionally build resilience, self-discipline and team cohesion — with exercises that actually work.
+
+Want to know more? Link in bio.
+
+#characterfirst #sportspsychology #youthsport #coachinglife #evidencebased #athletedevelopment #mentalperformance</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Clean white card, dark header with "Science Fact #1" in orange. Simple bar chart graphic. Professional, academic feel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 3 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-faq">FAQ</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="time-badge">Sat · 10:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">❓ "Is Character First alleen voor topsporters?"
+
+Nee. Absoluut niet.
+
+Ons programma is ontworpen voor iedereen van U14 tot senior — van recreatieve teams tot competitieve clubs.
+
+Karakter heeft geen ranking nodig.
+
+Een speler die elke training 100% geeft, zijn teamgenoten ondersteunt en verantwoordelijkheid neemt als het misloopt — dát is het soort atleet dat Character First bouwt.
+
+Of ze later prof worden of niet: de skills die ze hier leren, gebruiken ze hun hele leven.
+
+Basketbal eerst. Maar ook voetbal en volleybal.
+Klaar om te starten? → info@characterfirst.be
+
+#characterfirst #jeugdsport #basketbal #voetbal #volleybal #karakterontwikkeling #mentalekracht #teambuilding</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Split image: young U14 player on left, senior athlete on right. Large "?" graphic in orange center. White caption space below. Instagram carousel format.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">❓ "Is Character First only for elite athletes?"
+
+No. Not at all.
+
+Our program is designed for everyone from U14 to senior — from recreational teams to competitive clubs.
+
+Character doesn't need a ranking.
+
+A player who gives 100% every training, supports teammates and takes responsibility when things go wrong — that's the kind of athlete Character First builds.
+
+Whether they go pro or not: the skills they learn here, they use for life.
+
+Basketball first. But also football and volleyball.
+Ready to start? → info@characterfirst.be
+
+#characterfirst #youthsport #basketball #football #volleyball #athletedevelopment #mindset #teambuilding</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Split image: young U14 player on left, senior athlete on right. Large "?" graphic in orange center.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end posts-grid week 1 -->
+
+  <!-- WEEK 2 -->
+  <div class="week-header"><h3>Week 2 — Sport as a Classroom</h3></div>
+  <div class="posts-grid">
+
+    <!-- Post 4 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-coach">Coach Tip</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Tue · 18:30</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">🎯 Coach Tip van de Week
+
+Na een verlieswedstrijd zeggen de meeste coaches: "Dat was niet goed genoeg."
+
+Probeer dit eens:
+
+"Wat deed je goed vandaag — ook al verloren we?"
+"Wat was het moeilijkste moment?"
+"Wat ga je volgende week anders doen?"
+
+Drie vragen. Vijf minuten. En je verandert een verlies in een leermoment.
+
+Dat is niet soft. Dat is slim coachen.
+
+De wetenschap noemt dit een mastery motivational climate — en het leidt aantoonbaar tot meer veerkracht, meer intrinsieke motivatie en betere prestaties op lange termijn.
+
+Sla dit op voor je volgende wedstrijd. 📌
+
+#characterfirst #coachontwikkeling #sportpsychologie #jeugdsport #mentalekracht #topsport #winnaar #basketbal</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Dark background, coach silhouette talking to team huddle. Three numbered questions overlaid in white text. Orange accent line on left. "Coach Tip" badge top-left.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">🎯 Coach Tip of the Week
+
+After a losing game, most coaches say: "That wasn't good enough."
+
+Try this instead:
+
+"What did you do well today — even though we lost?"
+"What was the hardest moment?"
+"What will you do differently next week?"
+
+Three questions. Five minutes. And you turn a loss into a learning moment.
+
+That's not soft. That's smart coaching.
+
+Science calls this a mastery motivational climate — and it demonstrably leads to more resilience, more intrinsic motivation, and better long-term performance.
+
+Save this for your next match. 📌
+
+#characterfirst #coachinglife #sportspsychology #youthsport #mentalperformance #evidencebased #mindset #athletedevelopment</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Dark background, coach silhouette talking to team huddle. Three numbered questions overlaid in white text. Orange accent line on left.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 5 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-bts">Behind the Scenes</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="time-badge">Thu · 19:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">👀 Behind the Scenes
+
+Zo begon Character First.
+
+Ik zat aan de zijlijn bij een U16 basketbalwedstrijd. Eén van de beste spelers van het team maakte een fout. De coach riep hem eruit. Publiekelijk. Hard.
+
+De jongen keek naar de grond. Hij speelde de rest van de wedstrijd niet meer.
+
+Ik dacht: we leren kinderen springen, verdedigen, dribbelen. Maar niemand leert coaches hoe ze dat moment aanpakken. Dat moment dat iemand maakt of breekt.
+
+Character First is het antwoord op dat moment.
+
+Volg ons om te zien hoe we het anders doen.
+
+#characterfirst #jeugdsport #coachontwikkeling #basketbal #sporteducatie #mentalekracht #karakterontwikkeling</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Authentic photo or illustration: bench scene, young player looking down. Slightly desaturated. Orange vignette overlay. Handwritten-style caption text. Genuine, not staged.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">👀 Behind the Scenes
+
+This is how Character First started.
+
+I was sitting on the sideline at a U16 basketball game. One of the best players made a mistake. The coach pulled him out. Publicly. Hard.
+
+The kid stared at the floor. He didn't play again for the rest of the match.
+
+I thought: we teach kids to jump, defend, dribble. But nobody teaches coaches how to handle that moment. The moment that makes or breaks someone.
+
+Character First is the answer to that moment.
+
+Follow us to see how we do it differently.
+
+#characterfirst #youthsport #coachinglife #basketball #athletedevelopment #mentalperformance #mindset</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Authentic bench scene, young player looking down. Slightly desaturated. Orange vignette overlay. Genuine, not staged.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 6 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-quote">Quote Card</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Sat · 11:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">"Elke training is een kans om iemand iets te leren over zichzelf."
+
+Dat klinkt groot. Maar het begint klein.
+
+Een speler die leert om te gaan met frustratie.
+Een aanvoerder die zijn teamgenoot oppakt na een fout.
+Een jongere die doorzet als het moeilijk wordt.
+
+Dit zijn geen soft skills. Dit zijn levensskills.
+
+En sport is de ideale plek om ze te oefenen — elke week, onder druk, met echte gevolgen.
+
+Character First. Win the person. Win the team.
+
+#characterfirst #jeugdsport #mentalekracht #sporteducatie #karakterontwikkeling #topsport #basketbal #coachontwikkeling</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Orange background, large white quote text. Three small icons below representing the three examples (frustration, teammate support, persistence). CF logo centered bottom.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">"Every training is an opportunity to teach someone something about themselves."
+
+That sounds big. But it starts small.
+
+A player who learns to deal with frustration.
+A captain who picks up a teammate after a mistake.
+A young athlete who pushes through when it gets tough.
+
+These aren't soft skills. These are life skills.
+
+And sport is the ideal place to practise them — every week, under pressure, with real consequences.
+
+Character First. Win the person. Win the team.
+
+#characterfirst #youthsport #mentalperformance #athletedevelopment #mindset #coachinglife #evidencebased #winningculture</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Orange background, large white quote text. Three small icons below. CF logo centered bottom.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end week 2 -->
+
+  <!-- WEEK 3 -->
+  <div class="week-header"><h3>Week 3 — The Problem with Performance-Only Focus</h3></div>
+  <div class="posts-grid">
+
+    <!-- Post 7 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-science">Science Fact</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Tue · 08:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">📊 Het probleem met winnen als enige doel
+
+Studie: Smoll & Smith (2006) onderzocht ruim 500 jeugdcoaches.
+
+Resultaat: Coaches die uitsluitend op resultaat focusten, hadden spelers met:
+→ Hogere angst voor falen
+→ Lagere sportcontinuïteit (meer uitval)
+→ Minder teamcohesie
+
+Coaches die bewust werkten aan mastery climate hadden het omgekeerde effect.
+
+Het gaat niet om winnen of verliezen.
+Het gaat om hoe je wint en verliest.
+
+Character First is gebouwd op deze evidentie. Geen motivatiespeech. Geen plakkaat met clichés. Concrete oefeningen die bewijs hebben.
+
+#characterfirst #sportpsychologie #jeugdsport #coachontwikkeling #evidencebased #mentalekracht #sporteducatie</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>LinkedIn-style infographic. Two columns: "Performance-only" vs "Mastery climate" with bullet outcomes. Orange/dark color scheme. Study citation at bottom in small text.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">📊 The problem with winning as the only goal
+
+Study: Smoll & Smith (2006) researched over 500 youth coaches.
+
+Finding: Coaches focused solely on results had players with:
+→ Higher fear of failure
+→ Lower sport continuation (more dropout)
+→ Less team cohesion
+
+Coaches who deliberately worked on mastery climate had the opposite effect.
+
+It's not about winning or losing.
+It's about how you win and how you lose.
+
+Character First is built on this evidence. No motivational speech. No cliché poster. Concrete exercises with a scientific basis.
+
+#characterfirst #sportspsychology #youthsport #coachinglife #evidencebased #mentalperformance #athletedevelopment</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>LinkedIn infographic. Two columns comparison. Orange/dark. Study citation at bottom.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 8 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-story">Team Story</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="time-badge">Thu · 19:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">📖 Een verhaal over prioriteiten
+
+Een U16 basketbalteam. Talentvol. Maar elke wedstrijd dezelfde problemen: te veel ego, te weinig communicatie.
+
+De coach veranderde één ding: hij begon elke training met een "teammoment" van 5 minuten. Geen tactiek. Geen oefeningen. Gewoon: wat merk je bij jezelf? Wat merk je bij je teamgenoot?
+
+Na 6 weken: minder conflicten. Meer communicatie op het veld. En ja — betere resultaten.
+
+Niet omdat ze beter hadden geoefend. Omdat ze beter hadden geleerd luisteren.
+
+Dat is Character First in de praktijk.
+
+👉 Sla dit op als je er meer over wil weten.
+
+#characterfirst #basketbal #teambuilding #jeugdsport #coachontwikkeling #sporteducatie #mentalekracht</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Carousel: slide 1 = team huddle photo. Slide 2 = "One change" text slide. Slide 3 = results. Warm, authentic photography. Orange accents throughout.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">📖 A story about priorities
+
+A U16 basketball team. Talented. But every game the same problems: too much ego, too little communication.
+
+The coach changed one thing: he started every training with a 5-minute "team moment." No tactics. No drills. Just: what do you notice about yourself? What do you notice about your teammate?
+
+After 6 weeks: fewer conflicts. More communication on the court. And yes — better results.
+
+Not because they had practised harder. Because they had learned to listen better.
+
+That's Character First in practice.
+
+👉 Save this if you want to know more.
+
+#characterfirst #basketball #teambuilding #youthsport #coachinglife #athletedevelopment #mentalperformance</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Carousel: team huddle photo → "One change" text slide → results. Warm, authentic photography. Orange accents.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 9 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-faq">FAQ</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Sat · 10:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">❓ "Gaat Character First ten koste van trainingskwaliteit?"
+
+Het meest gestelde vraag. En de eerlijkste.
+
+Antwoord: nee — als je het goed doet.
+
+Character First-oefeningen zijn geïntegreerd in normale trainingen. Ze kosten geen extra tijd. Ze veranderen hoe je de tijd gebruikt.
+
+Box Breathing voor een wedstrijd: 3 minuten.
+Een reflectievraag na een moeizame oefening: 2 minuten.
+Een intentiesetting aan het begin van de training: 1 minuut.
+
+Totaal: 6 minuten. Per training. Voor atleten die beter kunnen omgaan met druk, falen en samenwerken.
+
+Is dat de moeite waard?
+
+Wij denken van wel. De wetenschap ook.
+
+#characterfirst #sporteducatie #coachontwikkeling #jeugdsport #basketbal #mentalekracht #topsport</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Timer graphic showing 6-minute breakdown. Dark background, orange time blocks. FAQ badge. Clean, functional design.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">❓ "Does Character First come at the cost of training quality?"
+
+The most asked question. And the most honest one.
+
+Answer: no — if you do it right.
+
+Character First exercises are integrated into normal training sessions. They don't cost extra time. They change how you use the time.
+
+Box Breathing before a game: 3 minutes.
+A reflection question after a tough drill: 2 minutes.
+An intention-setting at the start of training: 1 minute.
+
+Total: 6 minutes. Per session. For athletes who handle pressure, failure and teamwork better.
+
+Worth it?
+
+We think so. So does the science.
+
+#characterfirst #athletedevelopment #coachinglife #youthsport #basketball #mentalperformance #evidencebased</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Timer graphic showing 6-minute breakdown. Dark background, orange time blocks. FAQ badge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end week 3 -->
+
+  <!-- WEEK 4 -->
+  <div class="week-header"><h3>Week 4 — The 7 Character Themes</h3></div>
+  <div class="posts-grid">
+
+    <!-- Post 10 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-quote">Quote Card</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Tue · 18:30</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">7 thema's. Één doel: de persoon achter de atleet.
+
+Character First is opgebouwd rond 7 kernthema's:
+
+1. Veerkracht — omgaan met tegenslagen
+2. Zelfdiscipline — doen wat nodig is, ook zonder toezicht
+3. Teamgeest — meer dan samenwerking
+4. Communicatie — wat je zegt én hoe je het zegt
+5. Groei Mindset — falen als input, niet als eindpunt
+6. Emotieregulatie — kalm blijven als het heet wordt
+7. Leiderschap — ook als je geen aanvoerder bent
+
+Elke week. Elke training. Elke sport.
+
+Welk thema wil jij als eerste aanpakken? ⬇️
+
+#characterfirst #mentalekracht #jeugdsport #coachontwikkeling #sporteducatie #basketbal #karakterontwikkeling #topsport</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Carousel: cover slide with "7 Themes" title + orange numbers. Then one slide per theme with short description. Dark/orange brand colors. Icons for each theme.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">7 themes. One goal: the person behind the athlete.
+
+Character First is built around 7 core themes:
+
+1. Resilience — handling setbacks
+2. Self-discipline — doing what's needed, even without supervision
+3. Team spirit — more than just cooperation
+4. Communication — what you say AND how you say it
+5. Growth Mindset — failure as input, not endpoint
+6. Emotion regulation — staying calm when things heat up
+7. Leadership — even when you're not the captain
+
+Every week. Every training. Every sport.
+
+Which theme do you want to tackle first? ⬇️
+
+#characterfirst #mentalperformance #youthsport #coachinglife #evidencebased #basketball #athletedevelopment #mindset</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Carousel: cover slide "7 Themes" + orange numbers. One slide per theme. Dark/orange brand colors.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 11 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-coach">Coach Tip</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="time-badge">Thu · 19:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">🎯 Leiderschap — ook zonder aanvoerder
+
+Vraag eens aan je team: "Wie is er leider vandaag geweest — zonder het te zeggen?"
+
+Leiderschap is geen titel. Het is gedrag.
+
+De speler die de nieuwe jongen aanspreekt.
+De aanvaller die terugloopt om te verdedigen.
+De wisselspeler die enthousiast blijft op de bank.
+
+Dat zijn leiders.
+
+Gebruik deze vraag elke vrijdag na de training. Drie minuten. En je ziet iets veranderen in de groepsdynamiek — gegarandeerd.
+
+Character First Thema #7: Leiderschap.
+
+📌 Sla op voor je volgende training.
+
+#characterfirst #coachontwikkeling #jeugdsport #leiderschap #basketbal #teambuilding #mentalekracht</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Photo of bench player cheering, NOT the star. Caption overlay. "Theme #7: Leadership" badge. Authentic sports photography.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">🎯 Leadership — without the armband
+
+Ask your team: "Who was a leader today — without saying so?"
+
+Leadership isn't a title. It's behaviour.
+
+The player who reaches out to the new kid.
+The forward who tracks back to defend.
+The substitute who stays energetic on the bench.
+
+Those are leaders.
+
+Use this question every Friday after training. Three minutes. And you'll see something shift in the group dynamic — guaranteed.
+
+Character First Theme #7: Leadership.
+
+📌 Save for your next session.
+
+#characterfirst #coachinglife #youthsport #leadership #basketball #teambuilding #mentalperformance</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Photo of bench player cheering, not the star. Caption overlay. "Theme #7: Leadership" badge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 12 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-bts">Behind the Scenes</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Sat · 10:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">📦 Hoe we Character First bouwen
+
+Elke oefening in ons programma doorloopt dezelfde stappen:
+
+1. Wetenschappelijke basis — we starten bij peer-reviewed onderzoek
+2. Praktische vertaling — we testen met echte coaches en teams
+3. Iteratie — we passen aan op basis van feedback uit de zaal
+4. Integratie — we verwerken het in een bestaande training
+
+Geen "doe maar eens iets leuks"-aanpak.
+Geen motivatieguru.
+Gewoon: wat werkt, en waarom.
+
+Volgende maand beginnen we de oefeningen te delen. Een per week. Volledig gratis.
+
+Zet notificaties aan om niets te missen. 🔔
+
+#characterfirst #sporteducatie #jeugdsport #coachontwikkeling #basketbal #evidencebased #mentalekracht</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Process diagram: 4 steps with icons. Clean white background, orange step numbers. Feels like a product roadmap. Professional.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">📦 How we build Character First
+
+Every exercise in our program goes through the same steps:
+
+1. Scientific basis — we start with peer-reviewed research
+2. Practical translation — we test with real coaches and teams
+3. Iteration — we adjust based on feedback from the court
+4. Integration — we embed it into existing training sessions
+
+No "let's do something fun" approach.
+No motivation guru.
+Just: what works, and why.
+
+Next month we start sharing the exercises. One per week. Completely free.
+
+Turn on notifications so you don't miss it. 🔔
+
+#characterfirst #athletedevelopment #youthsport #coachinglife #basketball #evidencebased #mentalperformance</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual Description</div>
+            <p>Process diagram: 4 steps with icons. Clean white background, orange step numbers. Professional product-roadmap feel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end week 4 -->
+</section>
