@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sessieplan Builder — Character First</title>
+  <title>Session Plan Builder — Character First</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -466,14 +466,14 @@
 <body>
 
 <nav class="top-nav">
-  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <a class="nav-logo" href="../index.html">Character <span>First</span></a>
   <div class="nav-links" id="nav-links">
-    <a href="index.html">Home</a>
-    <a href="library.html">Bibliotheek</a>
-    <a href="season.html">The Season</a>
-    <a href="week.html">The Week</a>
-    <a href="planbuilder.html" class="active">Sessieplan</a>
-    <a href="en/planbuilder.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">EN</a>
+    <a href="../index.html">Home</a>
+    <a href="library.html">Library</a>
+    <a href="../season.html">The Season</a>
+    <a href="../week.html">The Week</a>
+    <a href="planbuilder.html" class="active">Session Plan</a>
+    <a href="../planbuilder.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
   </div>
 <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
@@ -482,15 +482,15 @@
 
   <div class="page-hero">
     <div class="badge">Coach Tool</div>
-    <h1>Sessieplan <span>Builder</span></h1>
-    <p>Stel je leeftijdsgroep, thema's en duur in en krijg direct een op maat gemaakt sessieplan.</p>
+    <h1>Session Plan <span>Builder</span></h1>
+    <p>Set your age group, themes and duration and instantly receive a custom-made session plan.</p>
   </div>
 
   <!-- BUILDER FORM -->
   <div class="builder-card">
 
     <div class="field-group">
-      <span class="field-label">Leeftijdsgroep</span>
+      <span class="field-label">Age Group</span>
       <div class="radio-group">
         <label><input type="radio" name="age" value="U14" checked><span>U14</span></label>
         <label><input type="radio" name="age" value="U16"><span>U16</span></label>
@@ -499,21 +499,21 @@
     </div>
 
     <div class="field-group">
-      <span class="field-label">Thema's (max. 3)</span>
+      <span class="field-label">Themes (max. 3)</span>
       <div class="check-group" id="theme-checks">
-        <label><input type="checkbox" name="theme" value="Zelfkennis"><span>Zelfkennis</span></label>
-        <label><input type="checkbox" name="theme" value="Druk &amp; Stress"><span>Druk &amp; Stress</span></label>
-        <label><input type="checkbox" name="theme" value="Mijn Rol"><span>Mijn Rol</span></label>
-        <label><input type="checkbox" name="theme" value="Communicatie"><span>Communicatie</span></label>
-        <label><input type="checkbox" name="theme" value="Team Eerst"><span>Team Eerst</span></label>
-        <label><input type="checkbox" name="theme" value="Mentale Weerbaarheid"><span>Mentale Weerbaarheid</span></label>
-        <label><input type="checkbox" name="theme" value="Fysiek"><span>Fysiek</span></label>
+        <label><input type="checkbox" name="theme" value="Self-Knowledge"><span>Self-Knowledge</span></label>
+        <label><input type="checkbox" name="theme" value="Pressure &amp; Stress"><span>Pressure &amp; Stress</span></label>
+        <label><input type="checkbox" name="theme" value="My Role"><span>My Role</span></label>
+        <label><input type="checkbox" name="theme" value="Communication"><span>Communication</span></label>
+        <label><input type="checkbox" name="theme" value="Team First"><span>Team First</span></label>
+        <label><input type="checkbox" name="theme" value="Mental Resilience"><span>Mental Resilience</span></label>
+        <label><input type="checkbox" name="theme" value="Physical"><span>Physical</span></label>
       </div>
-      <p class="check-note">Selecteer 1 tot 3 thema's voor jouw sessie.</p>
+      <p class="check-note">Select 1 to 3 themes for your session.</p>
     </div>
 
     <div class="field-group">
-      <span class="field-label">Sessieduur</span>
+      <span class="field-label">Session Duration</span>
       <div class="radio-group">
         <label><input type="radio" name="duration" value="30" checked><span>30 min</span></label>
         <label><input type="radio" name="duration" value="45"><span>45 min</span></label>
@@ -522,7 +522,7 @@
       </div>
     </div>
 
-    <button class="generate-btn" id="generate-btn">Genereer Sessieplan →</button>
+    <button class="generate-btn" id="generate-btn">Generate Session Plan →</button>
   </div>
 
   <!-- OUTPUT -->
@@ -530,19 +530,19 @@
 
     <div class="plan-header">
       <div>
-        <div class="plan-title" id="plan-title">Sessieplan</div>
+        <div class="plan-title" id="plan-title">Session Plan</div>
         <div class="plan-meta" id="plan-meta"></div>
       </div>
       <div class="plan-actions">
-        <button class="action-btn primary" onclick="window.print()">&#128438; Download als PDF</button>
-        <button class="action-btn" id="reset-btn">Opnieuw beginnen</button>
+        <button class="action-btn primary" onclick="window.print()">&#128438; Download as PDF</button>
+        <button class="action-btn" id="reset-btn">Start over</button>
       </div>
     </div>
 
     <div class="plan-slots" id="plan-slots"></div>
 
     <div class="empty-state" id="empty-state" style="display:none">
-      <p>Geen oefeningen gevonden voor de geselecteerde combinatie. Probeer andere thema's.</p>
+      <p>No exercises found for the selected combination. Try different themes.</p>
     </div>
 
   </div>
@@ -551,14 +551,14 @@
 
 <footer>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="library.html">Bibliotheek</a>
-    <a href="oefeningen.html">Oefeningen</a>
-    <a href="werkbladen.html">Werkbladen</a>
-    <a href="season.html">The Season</a>
-    <a href="week.html">The Week</a>
+    <a href="../index.html">Home</a>
+    <a href="library.html">Library</a>
+    <a href="../oefeningen.html">Exercises</a>
+    <a href="../werkbladen.html">Worksheets</a>
+    <a href="../season.html">The Season</a>
+    <a href="../week.html">The Week</a>
   </nav>
-  <p><strong>Character First</strong> — Karakter boven prestatie</p>
+  <p><strong>Character First</strong> — Character over performance</p>
 </footer>
 
 <script>
@@ -567,42 +567,42 @@
   });
 
   const exercises = [
-    // Zelfkennis
-    { id: 10, name: "Twee Waarheden Één Leugen", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 8, desc: "Zelfopenbaring via een spelformaat met lage drempel." },
-    { id: 1, name: "Mijn Sportersprofiel", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 10, desc: "Visuele zelfanalyse via een radargrafiek." },
-    { id: 3, name: "Waardenveiling", theme: "Zelfkennis", ages: ["U16","Senior"], duration: 10, desc: "Prioriteiten stellen via een veiling van kernwaarden." },
-    { id: 5, name: "Brief aan Jongere Ik", theme: "Zelfkennis", ages: ["Senior"], duration: 10, desc: "Reflectie op groei en lessen via een brief." },
-    { id: 2, name: "Sportlijn", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 8, desc: "Visualiseer je sporttraject met hoogte- en dieptepunten." },
-    { id: 7, name: "Identiteitsankers", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 7, desc: "Verankeren van een positieve identiteitsuitspraak via visualisatie." },
-    // Druk & Stress
-    { id: 11, name: "Box Breathing", theme: "Druk & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Reguleer je zenuwstelsel voor prestaties onder druk." },
-    { id: 12, name: "Stressladder", theme: "Druk & Stress", ages: ["U14","U16","Senior"], duration: 8, desc: "Identificeer en rangschik persoonlijke stressoren." },
-    { id: 14, name: "Drukscenario Roleplay", theme: "Druk & Stress", ages: ["U16","Senior"], duration: 10, desc: "Simuleer hoge-druk situaties en oefen reacties." },
-    { id: 15, name: "Herscoring Ritueel", theme: "Druk & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Na een verlies of fout bewust resetten en opnieuw beginnen." },
-    // Mijn Rol
-    { id: 23, name: "Menselijke Grafiek", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 8, desc: "Visueel in kaart brengen van teamrollen en posities." },
-    { id: 24, name: "Rollenspel Wissel", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 10, desc: "Ervaar de rol van een ploegmaat." },
-    { id: 26, name: "Leiderschap Spectrum", theme: "Mijn Rol", ages: ["U16","Senior"], duration: 10, desc: "Ontdek jouw leiderschapsstijl op een continuüm." },
-    { id: 21, name: "Rolcompass", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 8, desc: "Begrijp formele en informele rol via een kompas." },
-    // Communicatie
-    { id: 37, name: "Aanmoedigingschallenge", theme: "Communicatie", ages: ["U14","U16","Senior"], duration: 7, desc: "Oefen positieve en specifieke aanmoediging onder tijdsdruk." },
-    { id: 38, name: "Actief Luisteren Duo", theme: "Communicatie", ages: ["U14","U16","Senior"], duration: 8, desc: "Verdiep luistervaardigheden via gestructureerd partnerwerk." },
-    { id: 40, name: "Feedback Driehoek", theme: "Communicatie", ages: ["U16","Senior"], duration: 10, desc: "Gestructureerde feedbackronde met drie perspectieven." },
-    { id: 31, name: "Ik Boodschap", theme: "Communicatie", ages: ["U16","Senior"], duration: 8, desc: "Een boodschap overbrengen zonder beschuldigen." },
-    // Team Eerst
-    { id: 46, name: "Kracht van de Kring", theme: "Team Eerst", ages: ["U14","U16","Senior"], duration: 5, desc: "Ervaar collectieve energie en intentie via een ritueel." },
-    { id: 47, name: "Vertrouwensval", theme: "Team Eerst", ages: ["U14","U16","Senior"], duration: 8, desc: "Fysiek vertrouwen opbouwen in een veilige setting." },
-    { id: 49, name: "Teamcontract", theme: "Team Eerst", ages: ["U16","Senior"], duration: 10, desc: "Gezamenlijk opstellen van gedragsnormen." },
-    { id: 43, name: "Week Terugblik", theme: "Team Eerst", ages: ["U14","U16","Senior"], duration: 7, desc: "Team reflecteert samen via drie vragen over de week." },
-    // Mentale Weerbaarheid
-    { id: 51, name: "Flu Game Mentaliteit", theme: "Mentale Weerbaarheid", ages: ["U14","U16","Senior"], duration: 10, desc: "Analyseer veerkracht via iconische sportmomenten." },
-    { id: 52, name: "Gedachten Herkaderen", theme: "Mentale Weerbaarheid", ages: ["U14","U16","Senior"], duration: 10, desc: "ABC-model om negatieve gedachten om te buigen." },
-    { id: 53, name: "Adversity Ladder", theme: "Mentale Weerbaarheid", ages: ["U16","Senior"], duration: 10, desc: "Bouw veerkracht door tegenslag te herkaderen als groeikans." },
-    // Fysiek
-    { id: 56, name: "Wall Squat Challenge", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 15, desc: "Ervaar het verschil van aanmoediging op fysieke prestatie." },
-    { id: 57, name: "Druk Ademhaling", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 10, desc: "Plankhouding met en zonder ademhalingstechniek." },
-    { id: 58, name: "Comeback Sprint", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 12, desc: "Kwaliteit van herstel na mentale terugslag meten." },
-    { id: 59, name: "Team Plank Hold", theme: "Fysiek", ages: ["U14","U16","Senior"], duration: 8, desc: "Collectieve verantwoordelijkheid via gedeelde fysieke uitdaging." },
+    // Self-Knowledge
+    { id: 10, name: "Two Truths One Lie", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 8, desc: "Self-disclosure through a low-barrier game format." },
+    { id: 1, name: "My Athlete Profile", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 10, desc: "Visual self-analysis through a radar chart." },
+    { id: 3, name: "Values Auction", theme: "Self-Knowledge", ages: ["U16","Senior"], duration: 10, desc: "Set priorities through an auction of core values." },
+    { id: 5, name: "Letter to My Younger Self", theme: "Self-Knowledge", ages: ["Senior"], duration: 10, desc: "Reflect on growth and lessons through a letter." },
+    { id: 2, name: "Athlete Timeline", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 8, desc: "Visualize your athletic journey with highs and lows." },
+    { id: 7, name: "Identity Anchors", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 7, desc: "Anchor a positive identity statement through visualization." },
+    // Pressure & Stress
+    { id: 11, name: "Box Breathing", theme: "Pressure & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Regulate your nervous system for performance under pressure." },
+    { id: 12, name: "Stress Ladder", theme: "Pressure & Stress", ages: ["U14","U16","Senior"], duration: 8, desc: "Identify and rank personal stressors." },
+    { id: 14, name: "Pressure Scenario Roleplay", theme: "Pressure & Stress", ages: ["U16","Senior"], duration: 10, desc: "Simulate high-pressure situations and practice responses." },
+    { id: 15, name: "Rescoring Ritual", theme: "Pressure & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Consciously reset and start fresh after a loss or mistake." },
+    // My Role
+    { id: 23, name: "Human Graph", theme: "My Role", ages: ["U14","U16","Senior"], duration: 8, desc: "Visually map team roles and positions." },
+    { id: 24, name: "Role Swap", theme: "My Role", ages: ["U14","U16","Senior"], duration: 10, desc: "Experience the role of a teammate." },
+    { id: 26, name: "Leadership Spectrum", theme: "My Role", ages: ["U16","Senior"], duration: 10, desc: "Discover your leadership style on a continuum." },
+    { id: 21, name: "Role Compass", theme: "My Role", ages: ["U14","U16","Senior"], duration: 8, desc: "Understand formal and informal role through a compass." },
+    // Communication
+    { id: 37, name: "Encouragement Challenge", theme: "Communication", ages: ["U14","U16","Senior"], duration: 7, desc: "Practice positive and specific encouragement under time pressure." },
+    { id: 38, name: "Active Listening Duo", theme: "Communication", ages: ["U14","U16","Senior"], duration: 8, desc: "Deepen listening skills through structured partner work." },
+    { id: 40, name: "Feedback Triangle", theme: "Communication", ages: ["U16","Senior"], duration: 10, desc: "Structured feedback round with three perspectives." },
+    { id: 31, name: "I-Message", theme: "Communication", ages: ["U16","Senior"], duration: 8, desc: "Convey a message without blame." },
+    // Team First
+    { id: 46, name: "Power of the Circle", theme: "Team First", ages: ["U14","U16","Senior"], duration: 5, desc: "Experience collective energy and intention through a team ritual." },
+    { id: 47, name: "Trust Fall", theme: "Team First", ages: ["U14","U16","Senior"], duration: 8, desc: "Build physical trust in a safe setting." },
+    { id: 49, name: "Team Contract", theme: "Team First", ages: ["U16","Senior"], duration: 10, desc: "Collectively establish behavioral standards." },
+    { id: 43, name: "Weekly Review", theme: "Team First", ages: ["U14","U16","Senior"], duration: 7, desc: "Team reflects together on three questions about the week." },
+    // Mental Resilience
+    { id: 51, name: "Flu Game Mentality", theme: "Mental Resilience", ages: ["U14","U16","Senior"], duration: 10, desc: "Analyze resilience through iconic sports moments." },
+    { id: 52, name: "Reframing Thoughts", theme: "Mental Resilience", ages: ["U14","U16","Senior"], duration: 10, desc: "ABC model to redirect negative thoughts." },
+    { id: 53, name: "Adversity Ladder", theme: "Mental Resilience", ages: ["U16","Senior"], duration: 10, desc: "Build resilience by reframing setbacks as growth opportunities." },
+    // Physical
+    { id: 56, name: "Wall Squat Challenge", theme: "Physical", ages: ["U14","U16","Senior"], duration: 15, desc: "Experience the difference encouragement makes on physical performance." },
+    { id: 57, name: "Pressure Breathing", theme: "Physical", ages: ["U14","U16","Senior"], duration: 10, desc: "Plank hold with and without breathing technique." },
+    { id: 58, name: "Comeback Sprint", theme: "Physical", ages: ["U14","U16","Senior"], duration: 12, desc: "Measure quality of recovery after a mental setback." },
+    { id: 59, name: "Team Plank Hold", theme: "Physical", ages: ["U14","U16","Senior"], duration: 8, desc: "Collective responsibility through a shared physical challenge." },
   ];
 
   const slotCounts = { 30: 3, 45: 4, 60: 5, 90: 6 };
@@ -627,7 +627,7 @@
     const selectedThemes = [...document.querySelectorAll('input[name="theme"]:checked')].map(c => c.value);
 
     if (selectedThemes.length === 0) {
-      alert('Selecteer minstens één thema.');
+      alert('Please select at least one theme.');
       return;
     }
 
@@ -639,28 +639,28 @@
     // Sort by duration ascending
     pool.sort((a, b) => a.duration - b.duration);
 
-    // Opening ritual (always Kracht van de Kring)
+    // Opening ritual (always Power of the Circle)
     const openingRitual = {
       id: 'opening',
-      name: 'Kracht van de Kring',
-      theme: 'Team Eerst',
+      name: 'Power of the Circle',
+      theme: 'Team First',
       ages: ["U14","U16","Senior"],
       duration: 5,
-      desc: 'Activeer het team via een gedeeld energie ritueel dat opbouwt naar een gezamenlijke uitroep.',
+      desc: 'Activate the team through a shared energy ritual that builds toward a collective chant.',
       special: true,
-      label: 'Opening'
+      label: 'Opening Ritual'
     };
 
     // Closing reflection
     const closingRitual = {
       id: 'closing',
-      name: 'Slotreflectie',
-      theme: 'Team Eerst',
+      name: 'Closing Reflection',
+      theme: 'Team First',
       ages: ["U14","U16","Senior"],
       duration: 5,
-      desc: 'Sluit de sessie af: elk lid deelt één woord dat de sessie samenvat.',
+      desc: 'Close the session: each member shares one word that summarizes the session.',
       special: true,
-      label: 'Afsluiting'
+      label: 'Closing'
     };
 
     const maxSlots = slotCounts[duration] || 4;
@@ -690,7 +690,7 @@
 
   function renderPlan(plan, age, duration, themes) {
     // Title and meta
-    document.getElementById('plan-title').textContent = `Sessieplan — ${age} · ${duration} min`;
+    document.getElementById('plan-title').textContent = `Session Plan — ${age} · ${duration} min`;
     const metaEl = document.getElementById('plan-meta');
     metaEl.innerHTML = '';
     themes.forEach(t => {
@@ -722,13 +722,13 @@
       const timeLabel = `${currentTime}–${currentTime + ex.duration} min`;
       currentTime += ex.duration;
 
-      const lockHTML = isLocked ? `<div class="slot-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>` : '';
+      const lockHTML = isLocked ? `<div class="slot-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>` : '';
 
       slot.innerHTML = `
         ${lockHTML}
         <div class="slot-time">${timeLabel}</div>
         <div class="slot-content">
-          <div class="slot-num">${ex.special ? ex.label : `Oefening ${String(idx).padStart(2,'0')}`}</div>
+          <div class="slot-num">${ex.special ? ex.label : `Exercise ${String(idx).padStart(2,'0')}`}</div>
           <div class="slot-name">${ex.name}</div>
           <div class="slot-desc">${ex.desc}</div>
           ${!ex.special ? `<span class="slot-theme">${ex.theme}</span>` : ''}

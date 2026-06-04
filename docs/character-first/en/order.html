@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --gray: #f4f4f4; --text: #1a1a1a; --muted: #666; --border: #e0e0e0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(10,10,10,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* PAGE HEADER */
+    #page-header { background: var(--black); padding: 110px 5% 60px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(2rem,4vw,3rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1rem; color: #777; max-width: 520px; line-height: 1.75; }
+    .category-tabs { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 2rem; }
+    .cat-tab { padding: .5rem 1.4rem; border-radius: 20px; font-size: .83rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; cursor: pointer; background: transparent; transition: all .2s; font-family: inherit; }
+    .cat-tab:hover, .cat-tab.active { border-color: var(--orange); color: var(--orange); background: rgba(240,90,40,.08); }
+
+    /* GUARANTEE STRIP */
+    .guarantee-strip { background: #111; border-top: 1px solid #1e1e1e; border-bottom: 1px solid #1e1e1e; padding: 16px 5%; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+    .g-item { display: flex; align-items: center; gap: .6rem; font-size: .82rem; color: #666; }
+    .g-icon { color: var(--orange); font-size: 1rem; }
+
+    /* PRICING SECTIONS */
+    .pricing-category { margin-bottom: 4rem; scroll-margin-top: 90px; }
+    .cat-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--gray); }
+    .cat-icon { font-size: 1.8rem; }
+    .cat-header h3 { font-size: 1.3rem; font-weight: 900; }
+    .cat-header p { font-size: .88rem; color: var(--muted); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+
+    /* PRICE CARDS */
+    .price-card { background: var(--white); border-radius: 14px; border: 2px solid var(--border); overflow: hidden; transition: transform .2s, box-shadow .2s; display: flex; flex-direction: column; }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.1); }
+    .price-card.featured { border-color: var(--orange); }
+    .price-card.featured .price-header { background: var(--orange); }
+    .price-header { background: var(--black); color: var(--white); padding: 1.6rem 2rem; position: relative; }
+    .price-badge-top { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,.2); color: var(--white); font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .06em; }
+    .price-header h3 { font-size: 1.1rem; font-weight: 900; margin-bottom: .25rem; }
+    .price-header .price-sub { font-size: .8rem; opacity: .7; }
+    .price-body { padding: 1.8rem 2rem; flex: 1; display: flex; flex-direction: column; }
+    .price-amount { margin-bottom: 1.5rem; }
+    .price-amount .amount { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1; }
+    .price-amount .period { font-size: .82rem; color: var(--muted); margin-left: .3rem; }
+    .price-amount .vat { font-size: .72rem; color: var(--muted); display: block; margin-top: .2rem; }
+    .price-features { list-style: none; margin-bottom: 1.8rem; flex: 1; }
+    .price-features li { padding: .45rem 0; font-size: .87rem; border-bottom: 1px solid var(--gray); display: flex; align-items: flex-start; gap: .6rem; color: var(--text); }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li::before { content: "✓"; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: .05rem; }
+    .price-features li.muted { color: #bbb; }
+    .price-features li.muted::before { content: "·"; color: #ccc; }
+    .btn-order { display: block; text-align: center; padding: .9rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: .92rem; transition: all .2s; cursor: pointer; border: none; font-family: inherit; }
+    .btn-order.primary { background: var(--orange); color: var(--white); }
+    .btn-order.primary:hover { background: var(--orange2); transform: translateY(-1px); }
+    .btn-order.secondary { background: var(--black); color: var(--white); }
+    .btn-order.secondary:hover { background: #1a1a1a; }
+    .btn-order.outline { border: 2px solid var(--border); color: var(--muted); background: transparent; }
+    .btn-order.outline:hover { border-color: var(--orange); color: var(--orange); }
+    .savings-badge { background: #d4edda; color: #1a7a4a; font-size: .7rem; font-weight: 800; padding: .15rem .5rem; border-radius: 3px; margin-left: .5rem; vertical-align: middle; }
+
+    /* ORDER MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 500; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--white); border-radius: 16px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; }
+    .modal-header { background: var(--black); color: var(--white); padding: 1.8rem 2rem 1.5rem; border-radius: 16px 16px 0 0; position: relative; }
+    .modal-header h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: .25rem; }
+    .modal-header p { font-size: .83rem; color: #888; }
+    .modal-close { position: absolute; top: 1.2rem; right: 1.5rem; background: transparent; border: none; color: #888; font-size: 1.4rem; cursor: pointer; line-height: 1; }
+    .modal-body { padding: 2rem; }
+    .modal-price-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--gray); border-radius: 8px; margin-bottom: 1.5rem; }
+    .modal-price-row .label { font-size: .88rem; font-weight: 700; }
+    .modal-price-row .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); }
+    .form-row { margin-bottom: 1.1rem; }
+    .form-row label { display: block; font-size: .75rem; font-weight: 700; color: #888; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .4rem; }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 8px; padding: .7rem 1rem;
+      font-size: .92rem; font-family: inherit; color: var(--text); background: var(--white); transition: border-color .2s; outline: none;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--orange); }
+    .form-row textarea { resize: vertical; min-height: 80px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
+    .modal-submit { width: 100%; background: var(--orange); color: var(--white); border: none; padding: 1rem; border-radius: 8px; font-size: .95rem; font-weight: 800; cursor: pointer; font-family: inherit; transition: background .2s; margin-top: .5rem; }
+    .modal-submit:hover { background: var(--orange2); }
+    .modal-note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: .8rem; line-height: 1.6; }
+
+    /* FAQ */
+    #faq { background: var(--gray); }
+    .faq-list { max-width: 680px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; font-weight: 700; font-size: .95rem; cursor: pointer; gap: 1rem; }
+    .faq-q .chevron { font-size: .7rem; color: var(--orange); transition: transform .2s; flex-shrink: 0; }
+    .faq-q.open .chevron { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 0 1.2rem; font-size: .9rem; color: var(--muted); line-height: 1.75; }
+    .faq-a.open { display: block; }
+
+    /* CTA BAND */
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; transition: background .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); }
+
+    /* FOOTER */
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="program.html">Program</a>
+    <a href="../library.html">Library</a>
+    <a href="../coach-programma.html">Coach Development</a>
+    <a href="order.html" style="color:var(--orange);font-weight:700;">Order</a>
+    <a href="../bestellen.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+    <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Order</div>
+  <h1>Choose your track</h1>
+  <p>Transparent pricing. No hidden costs. Immediate access after confirmation. For both teams and individual coaches.</p>
+  <div class="category-tabs">
+    <button class="cat-tab active" onclick="scrollTo('teams')">For Teams</button>
+    <button class="cat-tab" onclick="scrollTo('coaches')">For Coaches</button>
+    <button class="cat-tab" onclick="scrollTo('custom')">Custom</button>
+  </div>
+</section>
+
+<!-- GUARANTEE STRIP -->
+<div class="guarantee-strip">
+  <div class="g-item"><span class="g-icon">&#128274;</span> Secure order</div>
+  <div class="g-item"><span class="g-icon">&#9889;</span> Access within 24h</div>
+  <div class="g-item"><span class="g-icon">&#128203;</span> All worksheets included</div>
+  <div class="g-item"><span class="g-icon">&#128172;</span> Personal onboarding session</div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing" style="padding-top: clamp(50px,6vw,80px);">
+  <div class="fade-in">
+
+    <!-- TEAMS -->
+    <div class="pricing-category" id="teams">
+      <div class="cat-header">
+        <span class="cat-icon">&#127963;</span>
+        <div>
+          <h3>For Teams &amp; Clubs</h3>
+          <p>Complete program for a group of up to 25 players</p>
+        </div>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <div class="price-header">
+            <span class="price-badge-top">5 days</span>
+            <h3>The Week</h3>
+            <div class="price-sub">Intensive 5-day camp</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">€ 699</span>
+              <span class="period">per group</span>
+              <span class="vat">excl. VAT · max. 25 players</span>
+            </div>
+            <ul class="price-features">
+              <li>5 fully developed daily programs</li>
+              <li>Worksheets for every player (print-ready)</li>
+              <li>Moderator guides per day</li>
+              <li>Scientific foundation per exercise</li>
+              <li>Access to exercises library (1 season)</li>
+              <li>Onboarding session with moderator (30 min)</li>
+              <li class="muted">Coach Development program</li>
+              <li class="muted">Monthly check-ins</li>
+            </ul>
+            <button class="btn-order secondary" onclick="openModal('The Week','€ 699 per group (excl. VAT)','the-week')">Order The Week</button>
+          </div>
+        </div>
+
+        <div class="price-card featured">
+          <div class="price-header">
+            <span class="price-badge-top">Most popular</span>
+            <h3>The Season</h3>
+            <div class="price-sub">8-month season program</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">€ 999</span>
+              <span class="period">per season</span>
+              <span class="vat">excl. VAT · max. 25 players</span>
+            </div>
+            <ul class="price-features">
+              <li>8 monthly online modules</li>
+              <li>Worksheets per month per player</li>
+              <li>Coach guides with literature</li>
+              <li>Monthly check-in session (30 min)</li>
+              <li>Full library (59 exercises)</li>
+              <li>U14, U16 and Senior version included</li>
+              <li>Plan Builder access for coach</li>
+              <li>Onboarding session (60 min)</li>
+            </ul>
+            <button class="btn-order primary" onclick="openModal('The Season','€ 999 per season (excl. VAT)','the-season')">Order The Season</button>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-header">
+            <h3>Week + Season</h3>
+            <div class="price-sub">Complete annual package</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">€ 1.499</span>
+              <span class="period">per year</span>
+              <span class="vat">excl. VAT <span class="savings-badge">Save € 199</span></span>
+            </div>
+            <ul class="price-features">
+              <li>Everything from The Week</li>
+              <li>Everything from The Season</li>
+              <li>Priority access to new materials</li>
+              <li>Extended onboarding (90 min)</li>
+              <li>2 extra check-in sessions</li>
+              <li>First access to coach program</li>
+            </ul>
+            <button class="btn-order secondary" onclick="openModal('Week + Season Package','€ 1.499 per year (excl. VAT)','week-season')">Order Complete Package</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COACHES -->
+    <div class="pricing-category" id="coaches">
+      <div class="cat-header">
+        <span class="cat-icon">&#127947;</span>
+        <div>
+          <h3>For Coaches (Individual)</h3>
+          <p>Personal growth as a coach and as a person — regardless of your team</p>
+        </div>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <div class="price-header">
+            <span class="price-badge-top">Flexible</span>
+            <h3>Coach Month</h3>
+            <div class="price-sub">8 contact moments per season</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">€ 49</span>
+              <span class="period">/ month</span>
+              <span class="vat">excl. VAT · cancel monthly</span>
+            </div>
+            <ul class="price-features">
+              <li>1 session per month (90 min)</li>
+              <li>Session worksheets (print or digital)</li>
+              <li>Practical application tips per theme</li>
+              <li>Personal action plan every session</li>
+              <li>Community of coaches</li>
+              <li class="muted">Full exercises library</li>
+              <li class="muted">Plan Builder</li>
+            </ul>
+            <button class="btn-order secondary" onclick="openModal('Coach Month','€ 49/month (excl. VAT)','coach-month')">Start Coach Month</button>
+          </div>
+        </div>
+
+        <div class="price-card featured">
+          <div class="price-header">
+            <span class="price-badge-top">Best value</span>
+            <h3>Coach Year</h3>
+            <div class="price-sub">10-month in-depth program</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">€ 299</span>
+              <span class="period">/ year</span>
+              <span class="vat">excl. VAT <span class="savings-badge">Save € 193</span></span>
+            </div>
+            <ul class="price-features">
+              <li>10 monthly modules (fully developed)</li>
+              <li>In-depth self-analysis per module</li>
+              <li>Scientific foundation</li>
+              <li>Formulate personal coaching philosophy</li>
+              <li>Full exercises library</li>
+              <li>Plan Builder access</li>
+              <li>1-on-1 intake call (30 min)</li>
+              <li>Certificate upon completion</li>
+            </ul>
+            <button class="btn-order primary" onclick="openModal('Coach Year','€ 299/year (excl. VAT)','coach-year')">Start Coach Year</button>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-header">
+            <h3>Coach + Team</h3>
+            <div class="price-sub">Coach Year + The Season</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">€ 1.199</span>
+              <span class="period">/ year</span>
+              <span class="vat">excl. VAT <span class="savings-badge">Save € 99</span></span>
+            </div>
+            <ul class="price-features">
+              <li>Everything from Coach Year</li>
+              <li>Everything from The Season (for your team)</li>
+              <li>Coach and players grow together</li>
+              <li>Joint onboarding (60 min)</li>
+              <li>Shared terminology team + coach</li>
+            </ul>
+            <button class="btn-order secondary" onclick="openModal('Coach + Team Package','€ 1.199/year (excl. VAT)','coach-team')">Order Coach + Team</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CUSTOM -->
+    <div class="pricing-category" id="custom">
+      <div class="cat-header">
+        <span class="cat-icon">&#127963;</span>
+        <div>
+          <h3>Custom</h3>
+          <p>For clubs, federations and schools with multiple teams or coaches</p>
+        </div>
+      </div>
+      <div class="pricing-grid" style="max-width:700px;">
+        <div class="price-card">
+          <div class="price-header">
+            <h3>Club Licence</h3>
+            <div class="price-sub">Multiple teams or coaches</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">On request</span>
+            </div>
+            <ul class="price-features">
+              <li>Unlimited number of teams within the club</li>
+              <li>Training for internal coaches</li>
+              <li>Custom branding possible</li>
+              <li>Integration into existing season plan</li>
+              <li>Quarterly reporting &amp; evaluation</li>
+              <li>Long-term partnership</li>
+            </ul>
+            <a href="mailto:info@characterfirst.be?subject=Character First - Club Licence request" class="btn-order outline">Request a quote</a>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-header">
+            <h3>School / Academy</h3>
+            <div class="price-sub">Sport + personal growth</div>
+          </div>
+          <div class="price-body">
+            <div class="price-amount">
+              <span class="amount">On request</span>
+            </div>
+            <ul class="price-features">
+              <li>Curricula integrated into lesson program</li>
+              <li>Suitable for multiple classes</li>
+              <li>Teacher/coach training included</li>
+              <li>Adapted for school context</li>
+              <li>Reporting for management</li>
+            </ul>
+            <a href="mailto:info@characterfirst.be?subject=Character First - School request" class="btn-order outline">Request a quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="fade-in">
+    <span class="section-tag">Frequently asked questions</span>
+    <h2>Everything you want to know</h2>
+    <p class="section-sub">Don't see your question? Send an email to <a href="mailto:info@characterfirst.be" style="color:var(--orange);">info@characterfirst.be</a></p>
+  </div>
+  <div class="faq-list fade-in">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">When do I get access after my order? <span class="chevron">▼</span></div>
+      <div class="faq-a">You will receive a confirmation email within 24 hours with your personal access code. Use that code to log in to the secure environment.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I try the program first? <span class="chevron">▼</span></div>
+      <div class="faq-a">Yes. The first exercises of each section are freely available on the site. You can also request a no-obligation introductory call via info@characterfirst.be.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Which sports is this program suited for? <span class="chevron">▼</span></div>
+      <div class="faq-a">Character First was developed from a basketball context but is 100% sport-agnostic. The exercises have been used in football, volleyball, hockey, athletics and schools. The principles are universal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need a background in psychology as a coach? <span class="chevron">▼</span></div>
+      <div class="faq-a">No. Every exercise has a detailed moderator guide. You don't need to be an expert — the program guides you step by step.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the minimum group size for The Week or The Season? <span class="chevron">▼</span></div>
+      <div class="faq-a">The program works best with at least 8 players. The maximum is 25. For larger groups, please get in touch for a tailored approach.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I cancel Coach Month whenever I want? <span class="chevron">▼</span></div>
+      <div class="faq-a">Yes, Coach Month can be cancelled monthly with no notice period. Coach Year is an annual licence and is not renewed automatically.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is the price per team or per player? <span class="chevron">▼</span></div>
+      <div class="faq-a">The team price (The Week / The Season) is per group of up to 25 players — not per player. This keeps it affordable for clubs of every level.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <h2>Still unsure? Talk to us.</h2>
+  <p>Schedule a free 20-minute introductory call. No obligations.</p>
+  <div class="cta-btns">
+    <a href="mailto:info@characterfirst.be?subject=Introductory call Character First" class="btn-white">Schedule introductory call</a>
+    <a href="program.html" class="btn-white-outline">More about the programs</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based character development for athletes from U14 to Senior.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Program</h4>
+      <a href="program.html">Overview</a>
+      <a href="../week.html">The Week</a>
+      <a href="../season.html">The Season</a>
+    </div>
+    <div class="footer-col">
+      <h4>Coaches</h4>
+      <a href="../coach-programma.html">Coach Development</a>
+      <a href="../coach-jaar.html">Coach Year</a>
+      <a href="../coach-maand.html">Coach Month</a>
+    </div>
+    <div class="footer-col">
+      <h4>Order</h4>
+      <a href="order.html">Pricing</a>
+      <a href="access.html">Log in</a>
+      <a href="mailto:info@characterfirst.be?subject=Character First">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. All rights reserved.</p>
+    <p>VAT BE — info@characterfirst.be</p>
+  </div>
+</footer>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      <h3 id="modal-title">Place order</h3>
+      <p id="modal-sub">Fill in your details — we'll get in touch within 24h.</p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-price-row">
+        <span class="label" id="modal-product">Product</span>
+        <span class="price" id="modal-price">€ 0</span>
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>First name *</label>
+          <input type="text" id="f-naam" placeholder="John" />
+        </div>
+        <div class="form-row">
+          <label>Last name *</label>
+          <input type="text" id="f-anaam" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Email address *</label>
+        <input type="email" id="f-email" placeholder="john@clubname.com" />
+      </div>
+      <div class="form-row">
+        <label>Club / Organisation</label>
+        <input type="text" id="f-club" placeholder="Name of your club or school" />
+      </div>
+      <div class="form-row">
+        <label>Sport &amp; Age group</label>
+        <input type="text" id="f-sport" placeholder="e.g. Basketball U16" />
+      </div>
+      <div class="form-row">
+        <label>Comments or questions</label>
+        <textarea id="f-opmerking" placeholder="E.g. start date, group size, specific needs..."></textarea>
+      </div>
+      <button class="modal-submit" id="modal-submit" onclick="submitOrder()">Confirm order &rarr;</button>
+      <p class="modal-note">Your details will only be used to process your order. After confirmation you will receive an invoice and access code by email.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  function toggleFaq(el) {
+    const ans = el.nextElementSibling;
+    el.classList.toggle('open');
+    ans.classList.toggle('open');
+  }
+
+  let currentProduct = '';
+  function openModal(title, price, product) {
+    document.getElementById('modal-title').textContent = title + ' — Order';
+    document.getElementById('modal-product').textContent = title;
+    document.getElementById('modal-price').textContent = price;
+    currentProduct = product;
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function submitOrder() {
+    const naam = document.getElementById('f-naam').value.trim();
+    const anaam = document.getElementById('f-anaam').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    if (!naam || !anaam || !email) {
+      alert('Please fill in at least first name, last name and email address.');
+      return;
+    }
+    const product = document.getElementById('modal-product').textContent;
+    const prijs = document.getElementById('modal-price').textContent;
+    const club = document.getElementById('f-club').value.trim();
+    const sport = document.getElementById('f-sport').value.trim();
+    const opmerking = document.getElementById('f-opmerking').value.trim();
+
+    const subject = encodeURIComponent('Order: ' + product);
+    const body = encodeURIComponent(
+      'ORDER CHARACTER FIRST\n\n' +
+      'Product: ' + product + '\n' +
+      'Price: ' + prijs + '\n\n' +
+      'Name: ' + naam + ' ' + anaam + '\n' +
+      'Email: ' + email + '\n' +
+      (club ? 'Club: ' + club + '\n' : '') +
+      (sport ? 'Sport/age group: ' + sport + '\n' : '') +
+      (opmerking ? '\nComments:\n' + opmerking : '')
+    );
+
+    window.location.href = 'mailto:info@characterfirst.be?subject=' + subject + '&body=' + body;
+
+    const btn = document.getElementById('modal-submit');
+    btn.textContent = '✓ Order sent!';
+    btn.style.background = '#1a7a4a';
+    setTimeout(() => closeModal(), 2000);
+  }
+</script>
+</body>
+</html>

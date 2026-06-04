@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Week — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --orange: #f05a28;
+      --orange-light: #ff7a4d;
+      --white: #ffffff;
+      --gray-900: #111111;
+      --gray-800: #1a1a1a;
+      --gray-700: #2a2a2a;
+      --gray-400: #666666;
+      --gray-200: #cccccc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(240,90,40,0.2);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--gray-200);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--orange); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 120px 2rem 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(240,90,40,0.15);
+      color: var(--orange);
+      border: 1px solid rgba(240,90,40,0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--gray-200);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .hero-stat {
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 12px;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .hero-stat span {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* SECTION */
+    section.content-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* DAY TIMELINE */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 5rem;
+    }
+
+    @media (max-width: 900px) {
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .day-card {
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .day-header {
+      background: var(--gray-900);
+      border-bottom: 1px solid var(--gray-700);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .day-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+      display: block;
+    }
+
+    .day-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-top: 0.25rem;
+    }
+
+    .day-theme {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-top: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .day-question {
+      font-size: 0.78rem;
+      color: var(--orange);
+      font-style: italic;
+      margin-top: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .day-body {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .day-activities {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .day-activities li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--gray-200);
+      line-height: 1.4;
+    }
+
+    .day-activities li::before {
+      content: "▸";
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    .day-rhythm {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--gray-700);
+      padding-top: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .rhythm-pill {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--gray-700);
+      color: var(--gray-400);
+    }
+
+    .rhythm-pill.active {
+      background: rgba(240,90,40,0.15);
+      border-color: rgba(240,90,40,0.4);
+      color: var(--orange);
+    }
+
+    /* WHAT'S INCLUDED */
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 5rem;
+    }
+
+    .included-card {
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .included-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .included-card h3 {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+
+    .included-card p {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      line-height: 1.5;
+    }
+
+    /* FOR WHO */
+    .forwho-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 5rem;
+    }
+
+    @media (max-width: 700px) {
+      .forwho-grid { grid-template-columns: 1fr; }
+    }
+
+    .forwho-card {
+      background: var(--gray-900);
+      border: 1px solid rgba(240,90,40,0.2);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .forwho-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .forwho-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .forwho-card p {
+      font-size: 0.88rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, var(--gray-900), #1a0800);
+      border: 1px solid rgba(240,90,40,0.3);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .cta-block h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .cta-block p {
+      color: var(--gray-200);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .cta-btn:hover {
+      background: var(--orange-light);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--gray-900);
+      border-top: 1px solid var(--gray-700);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    footer nav {
+      position: static;
+      background: none;
+      border: none;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      padding: 0;
+    }
+
+    footer nav a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    footer nav a:hover { color: var(--orange); }
+
+    footer p {
+      color: var(--gray-400);
+      font-size: 0.82rem;
+    }
+
+    footer strong { color: var(--orange); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../library.html">Library</a>
+    <a href="season.html">The Season</a>
+    <a href="week.html" class="active">The Week</a>
+    <a href="../planbuilder.html">Session Plan</a>
+    <a href="../week.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #555;padding:.3rem .7rem;border-radius:4px;">NL</a>
+  </div>
+<div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">The Week — Intensive Camp Program</div>
+  <h1>5 Days of <span>Character</span></h1>
+  <p>An intensive camp program for young athletes who want to become more than just a good athlete.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>5</strong><span>Days</span></div>
+    <div class="hero-stat"><strong>5</strong><span>Themes</span></div>
+    <div class="hero-stat"><strong>1</strong><span>Team</span></div>
+  </div>
+</section>
+
+<section class="content-section">
+
+  <!-- DAY TIMELINE -->
+  <div class="section-label">The program</div>
+  <h2 class="section-title">Day by day</h2>
+
+  <div class="timeline">
+
+    <!-- DAY 1 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-number">1</span>
+        <div class="day-label">Day one</div>
+        <div class="day-theme">Self-Knowledge</div>
+        <div class="day-question">"Who am I as an athlete?"</div>
+      </div>
+      <div class="day-body">
+        <ul class="day-activities">
+          <li>Sport timeline: visualise your journey from first memory to now</li>
+          <li>Values auction: discover your top 3 core values in sport</li>
+          <li>Identity anchors: articulate who you are as an athlete</li>
+        </ul>
+        <div class="day-rhythm">
+          <span class="rhythm-pill active">Morning</span>
+          <span class="rhythm-pill active">Afternoon</span>
+          <span class="rhythm-pill">Evening</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-number">2</span>
+        <div class="day-label">Day two</div>
+        <div class="day-theme">Pressure &amp; Stress</div>
+        <div class="day-question">"How do I react under pressure?"</div>
+      </div>
+      <div class="day-body">
+        <ul class="day-activities">
+          <li>Box Breathing and 4-7-8 breathing techniques in action</li>
+          <li>Stress ladder: map your personal pressure points</li>
+          <li>Pressure scenarios: practise responses to high-pressure situations</li>
+        </ul>
+        <div class="day-rhythm">
+          <span class="rhythm-pill active">Morning</span>
+          <span class="rhythm-pill active">Afternoon</span>
+          <span class="rhythm-pill active">Evening</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-number">3</span>
+        <div class="day-label">Day three</div>
+        <div class="day-theme">My Role</div>
+        <div class="day-question">"What is my contribution to the team?"</div>
+      </div>
+      <div class="day-body">
+        <ul class="day-activities">
+          <li>Role compass: map formal and informal roles</li>
+          <li>Human Graph: explore team positions and diversity</li>
+          <li>Role pledge: public commitment about your team behaviour</li>
+        </ul>
+        <div class="day-rhythm">
+          <span class="rhythm-pill active">Morning</span>
+          <span class="rhythm-pill active">Afternoon</span>
+          <span class="rhythm-pill active">Evening</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-number">4</span>
+        <div class="day-label">Day four</div>
+        <div class="day-theme">Communication</div>
+        <div class="day-question">"How do I speak and listen?"</div>
+      </div>
+      <div class="day-body">
+        <ul class="day-activities">
+          <li>Mirror Conversation: active listening without interrupting</li>
+          <li>Feedback Round Trio: giving and receiving in groups of three</li>
+          <li>Encouragement challenge: specific and spontaneous encouragement</li>
+        </ul>
+        <div class="day-rhythm">
+          <span class="rhythm-pill active">Morning</span>
+          <span class="rhythm-pill active">Afternoon</span>
+          <span class="rhythm-pill">Evening</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-number">5</span>
+        <div class="day-label">Day five</div>
+        <div class="day-theme">Team First</div>
+        <div class="day-question">"What does it mean to choose for each other?"</div>
+      </div>
+      <div class="day-body">
+        <ul class="day-activities">
+          <li>Trust fall: building physical trust in pairs</li>
+          <li>Team contract: establishing shared behavioural norms</li>
+          <li>Closing ceremony: three circle rounds — word, lesson, wish</li>
+        </ul>
+        <div class="day-rhythm">
+          <span class="rhythm-pill active">Morning</span>
+          <span class="rhythm-pill active">Afternoon</span>
+          <span class="rhythm-pill active">Evening</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div class="section-label">What's included</div>
+  <h2 class="section-title">Fully developed materials</h2>
+
+  <div class="included-grid">
+    <div class="included-card">
+      <div class="included-icon">📋</div>
+      <div>
+        <h3>Worksheets per day</h3>
+        <p>10 print-ready worksheets aligned to the daily themes for players to take with them.</p>
+      </div>
+    </div>
+    <div class="included-card">
+      <div class="included-icon">🏃</div>
+      <div>
+        <h3>50+ exercises</h3>
+        <p>Every session contains 3–5 fully developed exercises with steps, materials list and debrief questions.</p>
+      </div>
+    </div>
+    <div class="included-card">
+      <div class="included-icon">📖</div>
+      <div>
+        <h3>Facilitator guide</h3>
+        <p>Complete facilitator instructions per session so every coach can lead the program.</p>
+      </div>
+    </div>
+    <div class="included-card">
+      <div class="included-icon">🔬</div>
+      <div>
+        <h3>Scientific foundation</h3>
+        <p>Every exercise is based on sport psychology research with source references per theme.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOR WHO -->
+  <div class="section-label">For whom</div>
+  <h2 class="section-title">Ideal for</h2>
+
+  <div class="forwho-grid">
+    <div class="forwho-card">
+      <span class="icon">🏆</span>
+      <h3>Sports Clubs</h3>
+      <p>Youth academies and teams that want to shape their players into athletes of character, not just technically strong ones.</p>
+    </div>
+    <div class="forwho-card">
+      <span class="icon">🏫</span>
+      <h3>Schools</h3>
+      <p>Sports classes and sport departments that want to embed an intensive character and team development program.</p>
+    </div>
+    <div class="forwho-card">
+      <span class="icon">⭐</span>
+      <h3>Academies</h3>
+      <p>Top academies that take the mental and social component of elite sports training seriously alongside technical-tactical development.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Interested in The Week for your group?</h2>
+    <p>Get in touch and we will discuss how The Week fits your club, school or academy.</p>
+    <a href="mailto:info@characterfirst.be" class="cta-btn">Contact us →</a>
+  </div>
+
+</section>
+
+<footer>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../library.html">Library</a>
+    <a href="../oefeningen.html">Exercises</a>
+    <a href="../werkbladen.html">Worksheets</a>
+    <a href="season.html">The Season</a>
+    <a href="week.html">The Week</a>
+    <a href="../planbuilder.html">Session Plan</a>
+  </nav>
+  <p><strong>Character First</strong> — Character above performance</p>
+</footer>
+
+</body>
+</html>
