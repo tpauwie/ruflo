@@ -248,15 +248,24 @@
     document.getElementById('nav-links').classList.toggle('open');
   });
 
-  // Password gate
-  const CORRECT = 'CF2026';
+  // Multi-client access codes
+  // Format: 'CODE': 'KlantNaam' — voeg nieuwe codes toe als nieuwe klanten starten
+  const CODES = {
+    'CF2026':    'Demo',
+    'WEEK-2026': 'The Week Pilot',
+    'SEA-2026':  'The Season Pilot',
+    // Voeg hier nieuwe klantcodes toe:
+    // 'CLUB-XYZ':  'Club Naam',
+  };
 
   function attempt() {
-    const val = document.getElementById('pw-input').value.trim();
+    const val = document.getElementById('pw-input').value.trim().toUpperCase();
     const errEl = document.getElementById('error-msg');
-    if (val === CORRECT) {
+    if (CODES[val]) {
       localStorage.setItem('cf_access', '1');
-      window.location.href = 'library.html';
+      localStorage.setItem('cf_client', CODES[val]);
+      const dest = new URLSearchParams(window.location.search).get('redirect') || 'library.html';
+      window.location.href = dest;
     } else {
       errEl.classList.add('show');
       document.getElementById('pw-input').focus();
