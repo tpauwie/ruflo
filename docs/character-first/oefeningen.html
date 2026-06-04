@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — 50 Oefeningen</title>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --orange: #f05a28;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --light-orange: #fff3ef;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--black); }
+
+  /* SCREEN */
+  .screen-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .logo-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 22px; color: var(--white);
+    flex-shrink: 0;
+  }
+  .screen-header h1 { font-size: 28px; font-weight: 800; }
+  .screen-header p { font-size: 14px; opacity: .7; margin-top: 4px; }
+
+  .screen-nav {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .screen-nav a {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all .2s;
+  }
+  .screen-nav a.active, .screen-nav a:hover {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+
+  .screen-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  .theme-section { margin-bottom: 56px; }
+  .theme-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--orange);
+  }
+  .theme-num {
+    width: 44px; height: 44px;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 18px;
+    flex-shrink: 0;
+  }
+  .theme-header h2 { font-size: 22px; font-weight: 800; }
+  .theme-header span { font-size: 13px; color: #888; }
+
+  .exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 20px;
+  }
+  .exercise-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .exercise-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+  .card-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .card-num {
+    background: var(--orange);
+    color: var(--white);
+    font-weight: 900;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .card-header h3 { font-size: 15px; font-weight: 700; flex: 1; }
+  .card-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 18px;
+    background: var(--light-orange);
+    border-bottom: 1px solid var(--border);
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: #555;
+  }
+  .badge.time { border-color: var(--orange); color: var(--orange); }
+  .badge.type { background: var(--black); color: var(--white); border-color: var(--black); }
+  .card-body { padding: 16px 18px; }
+  .card-body .doel {
+    font-size: 13px;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 12px;
+    padding-left: 10px;
+    border-left: 3px solid var(--orange);
+  }
+  .steps-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .steps ol { padding-left: 18px; }
+  .steps li { font-size: 13px; line-height: 1.6; margin-bottom: 4px; color: #333; }
+  .materiaal, .debrief {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #555;
+  }
+  .materiaal strong, .debrief strong {
+    color: var(--black);
+    font-weight: 700;
+  }
+  .debrief ul { padding-left: 16px; margin-top: 4px; }
+  .debrief li { margin-bottom: 2px; line-height: 1.5; }
+
+  /* PRINT */
+  @media print {
+    .screen-header, .screen-nav { display: none; }
+    body { background: white; }
+    .screen-body { padding: 0; max-width: 100%; }
+    .theme-section { page-break-after: always; }
+    .exercises-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .exercise-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    .card-header { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card-meta { background: #fff3ef !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .badge.type { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="screen-header">
+  <div class="logo-circle">CF</div>
+  <div>
+    <h1>Character First — Oefeningen Bibliotheek</h1>
+    <p>50 uitgewerkte oefeningen · max 10 minuten · 5 themas · voor coaches en moderatoren</p>
+  </div>
+</div>
+
+<nav class="screen-nav">
+  <a href="#t1" class="active">1. Zelfkennis</a>
+  <a href="#t2">2. Druk &amp; Stress</a>
+  <a href="#t3">3. Mijn Rol</a>
+  <a href="#t4">4. Communicatie</a>
+  <a href="#t5">5. Team Eerst</a>
+</nav>
+
+<div class="screen-body">
+
+<!-- ===== THEMA 1 ===== -->
+<section class="theme-section" id="t1">
+  <div class="theme-header">
+    <div class="theme-num">1</div>
+    <div>
+      <h2>Zelfkennis &amp; Identiteit</h2>
+      <span>10 oefeningen — wie ben ik als sporter en als persoon?</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">01</span><h3>Drie Woorden</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers verwoorden wie ze zijn zonder na te denken.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Geef elke speler een post-it en een stift.</li>
+          <li>Zeg: "Schrijf in 30 seconden drie woorden die jou beschrijven als sporter. Niet nadenken, gewoon schrijven."</li>
+          <li>Na 30 seconden: "Schrijf nu drie woorden die jou beschrijven als persoon buiten sport."</li>
+          <li>Spelers plakken hun post-its op een muur en lopen langs de andere kaartjes.</li>
+          <li>Korte plenaire ronde: wie herkent iets van zichzelf in iemand anders?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> post-its, stiften</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat viel je op bij je eigen woorden?</li>
+          <li>Welk woord zou een teamgenoot over jou kiezen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">02</span><h3>Sportlijn</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers visualiseren hun sporttraject en ontdekken vormende momenten.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Geef elk een leeg blad. Teken een horizontale tijdlijn van "eerste sport herinnering" tot "nu".</li>
+          <li>Zet op de lijn: 2 hoogtepunten (boven de lijn) en 2 dieptepunten (onder de lijn).</li>
+          <li>Schrijf bij elk moment één woord wat je leerde.</li>
+          <li>Koppels van 2: deel één hoogtepunt en één dieptepunt in 90 seconden per persoon.</li>
+          <li>Plenair: wie wil een dieptepunt delen dat hen sterker maakte?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> A4 bladen, pennen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welk moment heeft jou het meest gevormd?</li>
+          <li>Wat zegt jouw lijn over wie je bent?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">03</span><h3>Waardenkompas</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel + Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers identificeren hun top 3 persoonlijke waarden.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Deel een lijst van 20 waarden uit (bijv. eerlijkheid, doorzetting, respect, moed, loyaliteit, plezier, winnen, groei, enz.).</li>
+          <li>Stap 1 (2 min): omcirkel de 7 waarden die het meest bij jou passen.</li>
+          <li>Stap 2 (2 min): streep 4 door. Houd 3 over.</li>
+          <li>Stap 3: schrijf bij elke waarde een concrete herinnering wanneer je die waarde leefde op het veld.</li>
+          <li>Duo: deel je top 3 en de reden. Luister actief zonder te onderbreken.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> waardenkaartjes of gedrukte lijst</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke waarde is het moeilijkst te leven wanneer je onder druk staat?</li>
+          <li>Hoe wil je dat anderen jouw waarden herkennen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">04</span><h3>Energiegever of Energievreeter</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers herkennen wat hen energie geeft en kost in sport.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Teken twee kolommen: "geeft energie" en "kost energie".</li>
+          <li>Spelers schrijven 3 min lang alles op dat hen energie geeft in de sport (mensen, situaties, trainingen, momenten).</li>
+          <li>Daarna 3 min: wat kost energie? (conflicten, spanning, bepaalde situaties).</li>
+          <li>Bekijk de lijsten: welk patroon zie je?</li>
+          <li>Optioneel: deel één energiegever met de groep.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> notitieboek of blad</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe kun je meer energiegevers inbouwen in je week?</li>
+          <li>Wat doe jij wanneer iets energie kost?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">05</span><h3>Mijn Superpower</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Positieve Affirmatie</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers benoemen hun sterkste eigenschap via externe feedback.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Koppels van 2. Partner A zit stil, partner B noemt in 60 seconden elke kracht die hij/zij ziet in partner A als sporter.</li>
+          <li>Partner A luistert alleen, schrijft op wat er gezegd wordt.</li>
+          <li>Na 60 seconden: wissel.</li>
+          <li>Ieder kiest uit de lijst de kracht die het meest verraste hen.</li>
+          <li>Schrijf die kracht op een kaartje dat je meeneemt.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> kleine kaartjes, pennen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke kracht verraste je het meest?</li>
+          <li>Hoe zou je die kracht meer inzetten?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">06</span><h3>Brief aan Mijn Jongere Ik</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers reflecteren op groei en geven zichzelf waardevol advies.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Zeg: "Schrijf een brief van 5 zinnen aan jezelf toen je net begon met sporten."</li>
+          <li>Begin elke zin met een gegeven opener: "Ik wil dat je weet dat...", "Wees niet bang om...", "De beste keuze die je zult maken is...", "Wat telt is...", "Jij bent in staat om..."</li>
+          <li>Spelers schrijven 5 min in stilte.</li>
+          <li>Wie wil mag één zin voorlezen aan de groep.</li>
+          <li>Coach sluit af: "De dingen die je schreef, zijn wie je nu al bent."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke zin voelde het meest als waarheid?</li>
+          <li>Wat zou jouw toekomstige ik jou nu zeggen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">07</span><h3>Identiteitsankers</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Visualisatie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers verankeren een positieve identiteitsuitspraak in het lichaam.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers staan rechtop, voeten op schouderbreedte.</li>
+          <li>Coach begeleidt: "Sluit je ogen. Denk aan een moment waarop je je écht jezelf voelde als sporter. Wanneer was dat?"</li>
+          <li>30 seconden stilte. Spelers laten het beeld komen.</li>
+          <li>"Voel dat gevoel in je lichaam. Waar zit het? Borst? Benen? Handen?"</li>
+          <li>Spelers benoemen voor zichzelf één zin: "Ik ben iemand die..." gebaseerd op dat gevoel.</li>
+          <li>Open ogen. Schrijf de zin op en bewaar hem.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> rustige ruimte, pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelt die zin aan wanneer je hem hardop zegt?</li>
+          <li>Wanneer heb je die zin het meest nodig?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">08</span><h3>Wie Inspireert Jou?</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers koppelen externe rolmodellen aan interne kwaliteiten.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Iedere speler denkt aan één persoon die hen inspireert (sporter of niet).</li>
+          <li>Schrijf drie eigenschappen op die je in die persoon bewondert.</li>
+          <li>Schrijf dan: "Dit bewonder ik, dus dit zit ook al in mij: ..."</li>
+          <li>Vrijwilligers delen hun rolmodel en één eigenschap.</li>
+          <li>Coach: "Je kunt iets niet herkennen in een ander als het niet ook in jezelf leeft."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke eigenschap wil je verder ontwikkelen?</li>
+          <li>Wat zou jouw rolmodel nu doen in jouw situatie?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">09</span><h3>Lichaamsscan Check-in</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Mindfulness / Lichaamsscan</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers verbinden met hoe ze er op dit moment voor staan.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers zitten of staan comfortabel. Ogen dicht of neergeslagen.</li>
+          <li>Coach leidt: "Scan langzaam van je voeten naar je hoofd. Niet oordelen, gewoon opmerken."</li>
+          <li>"Voeten: gespannen of ontspannen? Benen: zwaar of licht? Buik: rustig of nerveus? Borst: open of dicht? Schouders: omhoog of laag? Kaak: gebald of los?"</li>
+          <li>Spelers geven op een schaal van 1 tot 10 aan hoe ze zich voelen. Geen uitleg nodig.</li>
+          <li>Rond af: "Hoe je er nu voor staat is oké. We beginnen van hier."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat merkte je op dat je normaal niet opmerkt?</li>
+          <li>Hoe helpt dit voor de training of wedstrijd?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">10</span><h3>Twee Waarheden, Één Leugen</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">IJsbreker / Reflectie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers leren elkaar beter kennen op een speelse, onthullende manier.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Iedere speler schrijft 3 uitspraken over zichzelf: 2 ware feiten en 1 leugen.</li>
+          <li>De uitspraken gaan over wie ze zijn buiten de sport (geen sport-feiten).</li>
+          <li>Beurtelings lezen spelers hun 3 uitspraken voor.</li>
+          <li>De groep stemt: welke is de leugen? Kort debat van 30 seconden toegestaan.</li>
+          <li>De speler onthult de leugen en vertelt kort iets over één van de ware feiten.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier of kaartjes</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat heb je vandaag ontdekt over een teamgenoot?</li>
+          <li>Welk feit van jezelf verrastte anderen het meest?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEMA 2 ===== -->
+<section class="theme-section" id="t2">
+  <div class="theme-header">
+    <div class="theme-num">2</div>
+    <div>
+      <h2>Druk &amp; Stress</h2>
+      <span>10 oefeningen — omgaan met druk, zenuwen en hoge verwachtingen</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">11</span><h3>Box Breathing</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Ademhaling</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: zenuwstelsel kalmeren via gecontroleerde ademhaling (techniek gebruikt door Navy SEALs en topsporters).</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers staan of zitten rechtop. Handen op de knieën.</li>
+          <li>Coach telt hardop of via timer: "Inademen 4 tellen... vasthouden 4 tellen... uitademen 4 tellen... vasthouden 4 tellen."</li>
+          <li>Herhaal 4 rondes. Totaal circa 2 minuten.</li>
+          <li>Verhoog naar 5 tellen per fase als de groep eraan toe is.</li>
+          <li>Sluit af: "Merk op hoe je hartslag gedaald is. Dit kun je altijd en overal toepassen."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen (optioneel: timer)</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wanneer in een wedstrijd zou je dit gebruiken?</li>
+          <li>Wat merk je aan je lichaam na deze oefening?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">12</span><h3>4-7-8 Adem Ontspanning</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Ademhaling</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: diepe ontspanning activeren via parasympathisch zenuwstelsel.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers zitten comfortabel, rug recht.</li>
+          <li>Adem volledig uit door de mond met een "whoosh" geluid.</li>
+          <li>Sluit de mond en adem in door de neus, tel innerlijk tot 4.</li>
+          <li>Houd de adem vast, tel tot 7.</li>
+          <li>Adem volledig uit door de mond met "whoosh", tel tot 8.</li>
+          <li>Dit is één cyclus. Herhaal 3 tot 4 keer.</li>
+          <li>Sluit af met een korte stilte en open ogen.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelt dit anders dan gewoon inademen?</li>
+          <li>In welke stressvolle situatie zou dit helpen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">13</span><h3>Stressbarometer</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers leren hun eigen stresspeil herkennen en benoemen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Teken een thermometer op papier, van 0 (volledig kalm) tot 10 (maximale stress).</li>
+          <li>Markeer: waar zit je NU? Kleur de thermometer.</li>
+          <li>Schrijf naast de thermometer: wat veroorzaakt deze score?</li>
+          <li>Schrijf bij 3 (lage druk): hoe voelt je lichaam dan? Bij 7 (hoge druk): hoe voelt het lichaam?</li>
+          <li>Optioneel: deel je score anoniem. Coach schrijft scores op bord en bespreekt spreiding.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat zijn jouw vroege signalen van oplopende stress?</li>
+          <li>Wat helpt jou om van een 8 naar een 5 te gaan?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">14</span><h3>Worst Case Best Case</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Cognitieve Herstructurering</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: angst voor falen relativeren door het in perspectief te plaatsen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Speler denkt aan een komende stressvolle situatie (wedstrijd, presentatie, selectie).</li>
+          <li>Schrijf: "Wat is het ergste dat kan gebeuren?" Wees eerlijk en specifiek.</li>
+          <li>Schrijf: "Wat is het beste dat kan gebeuren?"</li>
+          <li>Schrijf: "Wat is het meest waarschijnlijke scenario?"</li>
+          <li>Duo: bespreek het meest waarschijnlijke scenario. Hoe kun je je daarvoor voorbereiden?</li>
+          <li>Sluit af: "Het ergste is zelden wat er écht gebeurt."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe reëel was jouw worst case?</li>
+          <li>Wat verandert er als je focust op het meest waarschijnlijke?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">15</span><h3>Herscoring Ritueel</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Mindfulness</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: na een verlies of fout bewust resetten en opnieuw beginnen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers staan in een kring. Coach: "Denk aan iets dat niet goed ging deze week."</li>
+          <li>30 seconden stilte: laat het gevoel er zijn. Niet wegduwen.</li>
+          <li>Ademhaling: één diepe inademing door de neus, lange uitademing door de mond.</li>
+          <li>Iedereen zegt tegelijkertijd luid: "Volgende!" (of een teamwoord).</li>
+          <li>Coach: "Dat moment is voorbij. Wat neem je mee naar volgende keer?"</li>
+          <li>Ieder schrijft één les op. Klaar.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen (optioneel: kaartjes)</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelt het om bewust te resetten?</li>
+          <li>Wanneer gebruik jij dit in een wedstrijd?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">16</span><h3>Drukkaart</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers maken een persoonlijk plan voor omgaan met druk.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Vouw een A4 in vieren. Vier vakken: "Mijn drukbronnen", "Mijn signalen", "Mijn hulpmiddelen", "Mijn reset-zin".</li>
+          <li>Vak 1 (2 min): schrijf 3 dingen die druk bij jou veroorzaken in sport.</li>
+          <li>Vak 2 (1 min): hoe merk je het in je lichaam? (hartslag, ademhaling, gedachten).</li>
+          <li>Vak 3 (2 min): wat helpt jou? (muziek, routine, ademhaling, praten, bewegen).</li>
+          <li>Vak 4 (1 min): schrijf één zin die jij jezelf zegt als het moeilijk wordt.</li>
+          <li>Bewaar de kaart. Neem hem mee naar wedstrijden.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> A4, pen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Is jouw reset-zin iets dat je echt gelooft?</li>
+          <li>Welk hulpmiddel gebruik je het vaakst?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">17</span><h3>Grond Jezelf: 5-4-3-2-1</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Mindfulness</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: angst of overweldiging doorbreken via zintuiglijke grounding.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers staan of zitten. Coach begeleidt rustig:</li>
+          <li>"Noem 5 dingen die je KAN ZIEN in de ruimte."</li>
+          <li>"Noem 4 dingen die je KAN AANRAKEN. Raak ze aan."</li>
+          <li>"Noem 3 dingen die je KAN HOREN op dit moment."</li>
+          <li>"Noem 2 dingen die je KAN RUIKEN."</li>
+          <li>"Noem 1 ding dat je KAN PROEVEN."</li>
+          <li>Sluit af met één diepe ademhaling. "Je bent hier. Je bent aanwezig."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe snel verdwenen de stressgedachten?</li>
+          <li>Wanneer zou jij dit zelf gebruiken?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">18</span><h3>Prestatiemantra Schrijven</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Positieve Affirmatie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers creëren een persoonlijke mentale cue voor onder druk.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach: "Een mantra is een korte zin die je helpt focussen. Topsporters gebruiken ze altijd."</li>
+          <li>Geef voorbeelden: "One play at a time", "Ik ben voorbereid", "Kalm en scherp".</li>
+          <li>Spelers schrijven 3 kandidaat-mantra's op (2 min).</li>
+          <li>Lees elke mantra hardop voor jezelf. Welke voelt het krachtigst?</li>
+          <li>Schrijf de gekozen mantra groot op een kaartje.</li>
+          <li>Oefen: zeg de mantra 5 keer hardop terwijl je rechtop staat.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> kaartjes, stiften</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelt het om je mantra te zeggen?</li>
+          <li>Wanneer ga je hem gebruiken deze week?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">19</span><h3>Stressdagboek 3 Minuten</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: stresspatronen herkennen door kort en regelmatig te reflecteren.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers openen een notitieboek of blad. Drie vragen, elk 1 minuut:</li>
+          <li>Vraag 1: "Wat veroorzaakte vandaag stress bij mij?" (situatie, persoon, gedachte).</li>
+          <li>Vraag 2: "Hoe reageerde ik op die stress?" (gedrag, gevoel, lichaam).</li>
+          <li>Vraag 3: "Wat zou ik volgende keer anders willen doen?"</li>
+          <li>Geen uitgebreide zinnen nodig. Kernwoorden zijn genoeg.</li>
+          <li>Coach: "Als je dit drie weken doet, zie je je eigen patroon."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> notitieboek, pen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat is jouw meest voorkomende stressor?</li>
+          <li>Wat leer je over jezelf als je dit bijhoudt?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">20</span><h3>Progressief Ontspannen</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Lichaamsscan / Ademhaling</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: fysieke spanning bewust loslaten via progressieve spierontspanning.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers liggen op de grond of zitten comfortabel met gesloten ogen.</li>
+          <li>Coach begeleidt langzaam: "Span je voeten aan, houd 5 seconden vast... laat los."</li>
+          <li>Herhaal voor: kuiten, bovenbenen, billen, buik, handen, armen, schouders, gezicht.</li>
+          <li>Na elk lichaamsdeel 2 diepe ademhalingen.</li>
+          <li>Sluit af met 1 minuut stilte. Open langzaam ogen.</li>
+          <li>Coach: "Spanning die je niet voelt, kun je niet loslaten."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> zachte ondergrond (optioneel)</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welk lichaamsdeel hield de meeste spanning vast?</li>
+          <li>Wanneer gebruik je dit voor of na een wedstrijd?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEMA 3 ===== -->
+<section class="theme-section" id="t3">
+  <div class="theme-header">
+    <div class="theme-num">3</div>
+    <div>
+      <h2>Mijn Rol in het Team</h2>
+      <span>10 oefeningen — leiderschap, bijdrage en rolbewustzijn</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">21</span><h3>Rolcompass</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers begrijpen hun formele en informele rol in het team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Teken een kompas op papier: Noord, Oost, Zuid, West.</li>
+          <li>Noord: "Mijn taak op het veld (formele rol)".</li>
+          <li>Oost: "Hoe ik het team help buiten het spel (informele rol)".</li>
+          <li>Zuid: "Wanneer ik mijn rol vergeet of verlies".</li>
+          <li>West: "Wat ik nodig heb van het team om mijn rol goed uit te voeren".</li>
+          <li>Spelers vullen 5 min in, daarna korte duo-bespreking.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Is jouw informele rol even belangrijk als je formele rol?</li>
+          <li>Weet de coach wat jij nodig hebt?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">22</span><h3>Onzichtbare Bijdrage</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflectie + Motivatie</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: bijdragen benoemen die niet in statistieken staan maar het team sterker maken.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach vraagt: "Denk aan de afgelopen 3 trainingen. Wat deed jij dat niet zichtbaar was maar het team hielp?"</li>
+          <li>Spelers schrijven 2 min individueel: minstens 3 onzichtbare bijdragen.</li>
+          <li>Duo: vertel je partner je bijdragen. Partner vult aan met bijdragen die hij/zij zag bij de ander.</li>
+          <li>Plenair: elk duo deelt de mooiste onzichtbare bijdrage van hun partner.</li>
+          <li>Coach: "Alles wat het team vooruit brengt telt. Niet alleen de punten."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelde het om jouw onzichtbare bijdrage erkend te zien?</li>
+          <li>Hoe kun je die bijdragen bewust vaker inzetten?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">23</span><h3>Menselijke Grafiek</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Teamdynamiek</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers positioneren zichzelf op stellingen en ontdekken diversiteit in het team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Maak een lijn in de ruimte: één kant = "helemaal mee eens", andere kant = "helemaal niet mee eens".</li>
+          <li>Coach leest stellingen, spelers gaan staan op hun positie:</li>
+          <li>"Ik voel me comfortabel als leider." / "Ik durf fouten toe te geven aan het team." / "Mijn rol in het team is duidelijk voor mij." / "Ik weet wat mijn beste bijdrage is."</li>
+          <li>Na elke stelling: wie staat uiterst? Kort woord van uitleg (vrijwillig).</li>
+          <li>Sluit af: "Jullie mening is waardevol. Diversiteit maakt een team sterker."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> ruimte om te bewegen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke stelling verraste je het meest in de posities van anderen?</li>
+          <li>Wat leer je over jullie team uit deze grafiek?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">24</span><h3>Top 3 Bijdragen</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers formuleren hun meest waardevolle bijdragen aan het team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach: "Als je aan het einde van dit seizoen terugkijkt, wat zijn de 3 dingen waarmee jij het team het meest geholpen hebt?"</li>
+          <li>Spelers schrijven 3 min hun top 3 op. Geen statistieken, maar kwaliteiten en acties.</li>
+          <li>Schrijf dan: "Waarom is dit jouw bijdrage? Wat maakt jou uniek hiervoor?"</li>
+          <li>Duo: deel je top 3 en luister naar die van je partner.</li>
+          <li>Optioneel: plak de top 3 op een teambord.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier of post-its</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe bewust werk je aan jouw top 3?</li>
+          <li>Weet je teamgenoten dat dit jouw sterkste bijdrage is?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">25</span><h3>Rolbelofte</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Commitment</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers maken een publieke belofte over hun bijdrage aan het team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Ieder schrijft een zin: "In dit team beloof ik om ________ te zijn/doen."</li>
+          <li>De zin is concreet en gaat over gedrag, niet over resultaten.</li>
+          <li>Voorbeelden: "aanmoedigen wanneer het moeilijk gaat", "eerlijk zijn naar de coach", "hard werken ook als ik niet speel".</li>
+          <li>Kring: iedereen leest zijn belofte hardop voor.</li>
+          <li>Coach schrijft alle beloften op een groot vel dat zichtbaar blijft in de kleedkamer of ruimte.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> groot vel, stiften</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelt het om dit publiek uit te spreken?</li>
+          <li>Hoe kunnen teamgenoten jou helpen je belofte te houden?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">26</span><h3>Rolcirkel</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers visualiseren hoe hun rol op het veld en in het team samenhangen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Teken drie concentrische cirkels (binnenste klein, buitenste groot).</li>
+          <li>Binnenste cirkel: "Mijn kerntaak — wat ik altijd moet doen".</li>
+          <li>Middelste cirkel: "Mijn secundaire bijdragen — wat ik vaak doe".</li>
+          <li>Buitenste cirkel: "Mijn groeipotentieel — wat ik kan ontwikkelen".</li>
+          <li>Spelers vullen elk niveau in (5 min).</li>
+          <li>Kies één ding uit de buitenste cirkel om deze week op te focussen.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe ver ligt jouw groeipotentieel van je huidige rol?</li>
+          <li>Wat heb je nodig om de buitenste cirkel te bereiken?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">27</span><h3>Groeipunt Formuleren</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Doelstelling</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers formuleren een concreet groeipunt zonder zichzelf neer te halen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach: "Een groeipunt is geen zwakte, het is de richting van je ontwikkeling."</li>
+          <li>Spelers schrijven: "Op dit moment ben ik goed in: ____."</li>
+          <li>Schrijf: "Ik wil groeien in: ____. Niet omdat ik slecht ben, maar omdat ik beter wil worden."</li>
+          <li>Schrijf één concrete actie die ze deze week kunnen nemen voor dat groeipunt.</li>
+          <li>Duo: deel groeipunten. Partner stelt één vraag voor verduidelijking.</li>
+          <li>Wissel de papieren uit. Houd elkaars groeipunt bij als herinnering.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelt het om een groeipunt te delen?</li>
+          <li>Welke actie ga je echt nemen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">28</span><h3>Leider of Volger?</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Teamdynamiek</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers begrijpen dat leiderschap en volgzaamheid beide waardevolle rollen zijn.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach legt uit: "Elk team heeft leiders EN mensen die het team volgen en stabiliseren. Beide zijn nodig."</li>
+          <li>Spelers schrijven: "Wanneer ben ik een leider in dit team? Geef een voorbeeld."</li>
+          <li>Schrijf: "Wanneer ben ik een goede volger? Geef een voorbeeld."</li>
+          <li>Kring: ieder deelt één voorbeeld van leiderschap EN één van volgzaamheid.</li>
+          <li>Coach: "Echt leiderschap weet wanneer je leidt en wanneer je volgt."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat is moeilijker voor jou: leiden of volgen?</li>
+          <li>Wanneer heeft het team jou nodig als leider?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">29</span><h3>Teamkaart Invullen</h3></div>
+      <div class="card-meta">
+        <span class="badge time">9 min</span>
+        <span class="badge type">Teamdynamiek</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: het team in kaart brengen als geheel aan kwaliteiten en rollen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Groot vel op tafel of muur met namen van alle spelers.</li>
+          <li>Elke speler schrijft naast zijn eigen naam: zijn sterkste kwaliteit als teamlid (niet als sporter).</li>
+          <li>Daarna: elke speler schrijft naast de naam van één ander iets wat die persoon goed doet voor het team.</li>
+          <li>Lees het vel samen door. Kloppen de beschrijvingen?</li>
+          <li>Coach: "Kijk hoe compleet jullie al zijn als team."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> groot vel, stiften</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke kwaliteit van het team hadden jullie niet verwacht?</li>
+          <li>Wat ontbreekt nog op jullie kaart?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">30</span><h3>Als Ik Niet Speel</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers die niet starten leren hun rol als supporters en teamgenoten te waarderen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach: "Bijna iedereen speelt soms niet. Dat is een onderdeel van team zijn."</li>
+          <li>Spelers schrijven: "Wanneer speel ik niet, wat doe ik dan?" Eerlijk antwoord.</li>
+          <li>Schrijf: "Wat is mijn rol wanneer ik niet op het veld sta?"</li>
+          <li>Schrijf: "Hoe kan ik het team helpen vanaf de bank of zijlijn?"</li>
+          <li>Kring: vrijwilligers delen hun antwoord op de laatste vraag.</li>
+          <li>Coach: "Een kampioensteam wint met 15 spelers, niet met 5."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe invloedrijk kan iemand zijn zonder te spelen?</li>
+          <li>Wat ga jij anders doen als je niet speelt?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEMA 4 ===== -->
+<section class="theme-section" id="t4">
+  <div class="theme-header">
+    <div class="theme-num">4</div>
+    <div>
+      <h2>Communicatie</h2>
+      <span>10 oefeningen — feedback, luisteren en moeilijke gesprekken</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">31</span><h3>Ik Boodschap</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Communicatie</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers leren een boodschap overbrengen zonder te beschuldigen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach legt structuur uit: "Als jij [gedrag] doet, dan voel ik [gevoel], omdat [reden]. Ik wil graag [behoefte]."</li>
+          <li>Oefen met een situatie uit sport: "Als jij niet communiceert op het veld, dan voel ik me alleen, omdat ik dan niet weet wat je gaat doen. Ik wil graag meer roepen en aanwijzen."</li>
+          <li>Duo: elke speler bedenkt één échte situatie uit training of wedstrijd.</li>
+          <li>Formuleer de ik-boodschap en zeg hem aan je partner.</li>
+          <li>Partner reageert niet met verdediging maar met: "Ik hoor dat jij..."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier (optioneel)</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelt het om te horen "ik hoor dat jij"?</li>
+          <li>Wanneer is dit moeilijk om te zeggen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">32</span><h3>Feedbackronde Trio</h3></div>
+      <div class="card-meta">
+        <span class="badge time">9 min</span>
+        <span class="badge type">Feedback</span>
+        <span class="badge">Trio</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers oefenen met het geven en ontvangen van constructieve feedback.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Groepen van 3: speler A, B, C.</li>
+          <li>Ronde 1: A geeft feedback aan B over één iets positiefs EN één groeipunt (beide concreet). C observeert en let op de manier van communiceren.</li>
+          <li>B mag alleen zeggen: "Dank je. Ik neem dit mee." Geen verdediging.</li>
+          <li>Ronde 2: B geeft aan C. C observeert A.</li>
+          <li>Ronde 3: C geeft aan A. A observeert B.</li>
+          <li>Sluit af: elk trio bespreekt kort wat goed ging in de communicatie.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat was moeilijker: geven of ontvangen?</li>
+          <li>Wat deed de observator opmerken over jouw manier van communiceren?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">33</span><h3>Spiegel Gesprek</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Actief Luisteren</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers ervaren hoe het voelt om echt gehoord te worden.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Duo: partner A spreekt 90 seconden over een uitdaging in de sport (niet per se groot).</li>
+          <li>Partner B luistert en mag NIETS zeggen. Alleen knikken.</li>
+          <li>Na 90 seconden: B herhaalt in eigen woorden wat A zei. Geen aanvulling, geen mening. Alleen spiegel.</li>
+          <li>A zegt: "Dat klopt" of corrigeert zachtjes.</li>
+          <li>Wissel rollen.</li>
+          <li>Coach: "Echte communicatie begint met luisteren, niet met antwoorden."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelde het om niet onderbroken te worden?</li>
+          <li>Hoe goed luister jij normaal?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">34</span><h3>Kapot Telefoon Analyse</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Communicatie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers ontdekken hoe communicatie vervormt en wat de gevolgen zijn in een team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Rij van 6 tot 8 spelers. De eerste krijgt een zin te lezen (sportgerelateerd, detailrijk).</li>
+          <li>Speler fluistert de zin door aan de volgende. Geen herhaling toegestaan.</li>
+          <li>De laatste spreekt de zin luid uit.</li>
+          <li>Vergelijk met het origineel. Bespreek: wat ging er verloren?</li>
+          <li>Coach koppelt terug: "Dit gebeurt ook in een team. Hoe voorkomen we dit?"</li>
+          <li>Spelers bedenken 2 teamafspraken om miscommunicatie te verminderen.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> zinnen op papier, pen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welk woord veranderde het meest?</li>
+          <li>Welke teamafspraken zijn het meest haalbaar?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">35</span><h3>Dankwoord Kaartje</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Dankbaarheid + Motivatie</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers uiten dankbaarheid concreet en specifiek aan een teamgenoot.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Ieder krijgt een blanco kaartje en een pen.</li>
+          <li>Schrijf een dankwoord aan één specifieke teamgenoot. Niet algemeen, maar concreet: "Ik ben dankbaar voor jou omdat jij..."</li>
+          <li>Noem een specifieke actie of moment: "... tijdens de training vorige week altijd aanmoedigde toen het moeilijk was."</li>
+          <li>Kaartjes worden bezorgd aan de persoon zelf (niet voorgelezen).</li>
+          <li>Spelers mogen reageren als ze willen, maar hoeven niet.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> kaartjes, pennen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelde het om specifiek dankbaar te zijn?</li>
+          <li>Wanneer zeg je dit soort dingen normaal gezien niet?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">36</span><h3>Moeilijk Gesprek Oefenen</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Communicatie</span>
+        <span class="badge">Trio</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers oefenen een moeilijk gesprek voeren in een veilige setting.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Trio: A is de spreker, B is de ontvanger, C is de observator.</li>
+          <li>A kiest een fictieve moeilijke situatie (bijv. een teamgenoot die altijd te laat is).</li>
+          <li>A spreekt B aan via de ik-boodschapformule.</li>
+          <li>B reageert realistisch maar niet overdreven defensief.</li>
+          <li>Na 3 minuten: C geeft feedback op de manier van communiceren (niet de inhoud).</li>
+          <li>Wissel rollen zodat iedereen A is geweest.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> scenario-kaartjes (optioneel)</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat maakte het gesprek moeilijk?</li>
+          <li>Wat leerde je van de feedback van de observator?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">37</span><h3>Aanmoedigingschallenge</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge time">Motivatie</span>
+        <span class="badge type">Elkaar Motiveren</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers leren spontaan en specifiek aanmoedigen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach: "De komende 5 minuten is de challenge: elk van jullie moet minstens 3 teamgenoten aanmoedigen. Maar het moet specifiek zijn. Niet 'goed bezig', maar waarom."</li>
+          <li>Spelers bewegen door de ruimte en zoeken bewust teamgenoten op.</li>
+          <li>Na 5 min: kring. Wie heeft een aanmoediging gekregen die écht aankwam?</li>
+          <li>Coach: "Specifieke aanmoediging is veel krachtiger dan algemeen. 'Jij houdt altijd druk, dat maakt onze verdediging sterker' is anders dan 'goed zo'."</li>
+          <li>Bespreek: hoe doen we dit ook tijdens wedstrijden?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke aanmoediging verraste jou?</li>
+          <li>Hoe vaak moedig jij normaal aan?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">38</span><h3>Stil vs. Luid Communiceren</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Communicatie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers ontdekken de kracht van non-verbale communicatie in sport.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach geeft een kleine sportopdracht in de ruimte (bijv. een eenvoudig patroon bewegen). Eerste ronde: volledig in stilte, geen woorden.</li>
+          <li>Debriefna 2 min: wat ging moeilijk? Wat ging verrassend goed?</li>
+          <li>Tweede ronde: zelfde opdracht, maar nu mag er gecommuniceerd worden.</li>
+          <li>Vergelijk de twee rondes.</li>
+          <li>Coach: "Wat zegt jouw lichaamstaal al voor je mond opengaat?"</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> ruimte</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke non-verbale signalen gebruik jij in een wedstrijd?</li>
+          <li>Wat zegt jouw lichaamstaal als je gefrustreerd bent?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">39</span><h3>Compliment Escalator</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Dankbaarheid + Motivatie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: een cultuur van echte waardering opbouwen in het team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Kring. Één speler staat in het midden (max 30 seconden).</li>
+          <li>De kring geeft reihum complimenten: snel, spontaan, specifiek.</li>
+          <li>De persoon in het midden mag niet reageren, alleen luisteren en knikken.</li>
+          <li>Na 30 seconden, de volgende speler. Coach houdt tempo bij.</li>
+          <li>Iedereen is een keer in het midden geweest.</li>
+          <li>Coach: "Dit is hoe een winnaar voelt. Geef dit aan elkaar elke dag."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelde het om alleen te luisteren?</li>
+          <li>Hoe verandert dit de sfeer in het team?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">40</span><h3>Vraag Eerst</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Communicatie</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers leren vragen stellen voor ze een oordeel vormen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach geeft een scenario: "Jouw teamgenoot speelde vandaag slecht. Wat doe jij?"</li>
+          <li>Stap 1: spelers schrijven hun eerste reactie op. (Eerlijk, niet gecorrigeerd.)</li>
+          <li>Stap 2: Coach: "Stel dat je eerst één vraag stelt aan die teamgenoot. Welke vraag is dat?"</li>
+          <li>Duo: A speelt de teamgenoot die slecht speelde. B stelt de vraag.</li>
+          <li>Bespreek: hoe verandert een vraag de relatie?</li>
+          <li>Coach: "Achter elk gedrag zit een verhaal. Vraag het eerst."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke vraag zou jij stellen?</li>
+          <li>Hoe verschilt dit van wat je normaal doet?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEMA 5 ===== -->
+<section class="theme-section" id="t5">
+  <div class="theme-header">
+    <div class="theme-num">5</div>
+    <div>
+      <h2>Team Eerst</h2>
+      <span>10 oefeningen — vertrouwen, cohesie en samen winnen</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">41</span><h3>Vertrouwensval</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Vertrouwen</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: fysiek ervaren wat vertrouwen betekent in een team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Duo: A staat met rug naar B, armen langs het lichaam.</li>
+          <li>B staat klaar om A op te vangen, handen voor zich.</li>
+          <li>Afstand: klein (30 cm) om te beginnen. A sluit ogen en valt achterover.</li>
+          <li>B vangt op. Wissel. Vergroot afstand geleidelijk.</li>
+          <li>Daarna: hoe voelde het om te vallen? Hoe voelde het om te vangen?</li>
+          <li>Coach: "Dit is wat je doet als je voor iemand verdedigt, als je een pass geeft. Je vertrouwt."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> zachte ondergrond, ruimte</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wanneer vertrouw je iemand in een wedstrijd?</li>
+          <li>Hoe bouw je vertrouwen op in een team?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">42</span><h3>Team Contract</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Commitment</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: het team stelt samen afspraken op die gelden als gedeeld contract.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach: "Wat zijn de drie dingen die we in dit team ALTIJD doen? En de drie dingen die we NOOIT doen?"</li>
+          <li>Groepen van 3 brainstormen 3 min en schrijven hun suggesties op post-its.</li>
+          <li>Post-its op het bord. Coach clustert overlappende ideeën.</li>
+          <li>Stemming: elk lid heeft 3 stickers. Kies de 3 belangrijkste afspraken.</li>
+          <li>De top 3 van "altijd" en top 3 van "nooit" worden het Team Contract.</li>
+          <li>Iedereen tekent. Contract hangt zichtbaar.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> post-its, stiften, stickers, groot vel</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke afspraak is het moeilijkst te houden?</li>
+          <li>Hoe houden we elkaar aan dit contract?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">43</span><h3>Week Terugblik</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflectie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: team reflecteert samen op de afgelopen week en trekken lessen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Kring. Drie vragen, elk beantwoord door 3 tot 4 vrijwilligers:</li>
+          <li>Vraag 1: "Wat ging goed als team deze week?"</li>
+          <li>Vraag 2: "Wat was moeilijk als team?"</li>
+          <li>Vraag 3: "Wat nemen we mee naar volgende week?"</li>
+          <li>Geen meningen over anderen. Alleen eigen observaties.</li>
+          <li>Coach vat samen en verbindt lessen aan de teamdoelen.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke les is het meest urgent voor volgende week?</li>
+          <li>Hoe kunnen we dit als team structureel aanpakken?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">44</span><h3>Blinde Gids</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Vertrouwen</span>
+        <span class="badge">Duo</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: ervaren dat communicatie en vertrouwen hand in hand gaan.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Duo: A sluit ogen (of blinddoek). B begeleidt via verbale instructies door een parcours in de ruimte.</li>
+          <li>B mag A niet aanraken. Alleen woorden.</li>
+          <li>Na 2 min: wissel.</li>
+          <li>Daarna: wissel opnieuw maar nu mag B wél aanraken (hand op schouder).</li>
+          <li>Vergelijk de twee ervaringen: wat voelde beter? Makkelijker?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> ruimte, eventueel sjaaltjes als blinddoek</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe is dit vergelijkbaar met spelen in een team?</li>
+          <li>Wat heb je nodig om iemand te vertrouwen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">45</span><h3>Brief aan het Team</h3></div>
+      <div class="card-meta">
+        <span class="badge time">9 min</span>
+        <span class="badge type">Reflectie + Dankbaarheid</span>
+        <span class="badge">Individueel</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers verwoorden wat het team voor hen betekent.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Ieder schrijft een korte brief aan het team (5 zinnen minimum).</li>
+          <li>Structuur: "Ik ben blij dat ik deel uitmaak van dit team omdat... / Ik wil jullie bedanken voor... / Ik beloof dit seizoen... / Wat ik jullie toewens is..."</li>
+          <li>5 min schrijven in stilte.</li>
+          <li>Wie wil leest zijn brief voor aan de kring.</li>
+          <li>Geen commentaar of reactie vanuit de groep, enkel luisteren.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Wat verandert er als je je gevoelens over het team deelt?</li>
+          <li>Hoe zou het zijn als je dit elk seizoen doet?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">46</span><h3>Kracht van de Kring</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Elkaar Motiveren</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: het team activeren via een gedeeld energie ritueel.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Iedereen in een kring, schouder aan schouder, armen om elkaar heen.</li>
+          <li>Coach: "We gaan energie opbouwen. Volg mijn tempo."</li>
+          <li>Begin: zacht neuriën of ademen in hetzelfde ritme.</li>
+          <li>Bouw op: tikken, stampen, roepen van een teamwoord.</li>
+          <li>Finish: allen tegelijk een krachtige uitroep (team-slogan of woord).</li>
+          <li>Coach: "Dat gevoel is er altijd. We activeren het bewust."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelde de energie vlak voor de uitroep?</li>
+          <li>Wanneer gebruiken jullie dit ritueel?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">47</span><h3>Dankbaarheidscirkel</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Dankbaarheid</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: een positieve teamsfeer opbouwen door bewuste dankbaarheid te uiten.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Kring. Elk teamlid denkt aan één moment deze week waarbij een teamgenoot iets deed voor het team dat opviel.</li>
+          <li>Reihum: "Ik wil [naam] bedanken voor [actie], want dit hielp het team doordat [reden]."</li>
+          <li>Degene die bedankt wordt zegt enkel: "Dank je." Niets anders.</li>
+          <li>Na iedereen: coach vraagt wie verrast was door zijn dankwoord.</li>
+          <li>Coach: "Dankbaarheid is gratis. Het kost niks. En het geeft alles."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe voelde het om bedankt te worden?</li>
+          <li>Hoe zou het zijn als je dit wekelijks doet?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">48</span><h3>Teamvisualisatie</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Visualisatie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: het team visualiseert een geweldige prestatie samen om collectieve mentale kracht op te bouwen.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Spelers zitten comfortabel, ogen gesloten.</li>
+          <li>Coach spreekt langzaam: "Stel je voor: het is de belangrijkste wedstrijd van het seizoen. Jullie zijn er klaar voor."</li>
+          <li>"Zie je teamgenoten naast je. Voel de energie. Ruik de sporthal. Hoor het publiek."</li>
+          <li>"De wedstrijd begint. Alles klopt. Jullie bewegen als één team."</li>
+          <li>"Zie een moment waarop het team iets geweldigs doet. Voel de vreugde. Deel het."</li>
+          <li>Open ogen. Kort delen: wat zag je?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen (rustgevende muziek optioneel)</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Hoe levendig was jouw beeld?</li>
+          <li>Hoe kan visualisatie helpen bij voorbereiding?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">49</span><h3>Ik Heb Jou Nodig</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Vertrouwen + Motivatie</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: spelers uiten kwetsbaarheid door aan te geven wat ze nodig hebben van het team.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Coach: "Het sterkste wat je als sporter kunt zeggen is: ik heb jou nodig."</li>
+          <li>Ieder schrijft: "Ik heb het team nodig om... [1 specifieke behoefte]."</li>
+          <li>Voorbeelden: "meer aan te moedigen als ik een fout maak", "me te vertellen wanneer ik te veel solo ga".</li>
+          <li>Kring: iedereen leest zijn zin voor.</li>
+          <li>Na iedere zin: de rest van het team zegt tegelijkertijd: "We zijn er voor jou."</li>
+          <li>Coach: "Dat is een team."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> pen, papier</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Was het moeilijk om je behoefte uit te spreken?</li>
+          <li>Hoe kun je dit in de dagelijkse training doen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">50</span><h3>Slotceremonie</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Ritueel + Afsluiting</span>
+        <span class="badge">Groep</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Doel: een programma of week afsluiten met betekenis, verbinding en vooruitblik.</p>
+        <div class="steps-label">Stappen</div>
+        <div class="steps"><ol>
+          <li>Kring. Coach: "We sluiten af met drie rondes."</li>
+          <li>Ronde 1 (1 woord per persoon): "Welk woord beschrijft jou vandaag/deze week?"</li>
+          <li>Ronde 2 (1 zin per persoon): "Wat neem ik mee uit dit programma?"</li>
+          <li>Ronde 3 (1 wens per persoon): "Wat wens ik dit team toe voor de toekomst?"</li>
+          <li>Sluit af met het Kracht van de Kring ritueel (oefening 46) of een gezamenlijk gebaar.</li>
+          <li>Coach: "Jullie zijn Character First. Dat dragen jullie mee."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materiaal:</strong> geen</div>
+        <div class="debrief"><strong>Debriefvragen:</strong><ul>
+          <li>Welke ronde raakte je het meest?</li>
+          <li>Hoe ga je dit meenemen in je dagelijks leven als sporter?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- end screen-body -->
+
+<script>
+  const sections = document.querySelectorAll('.theme-section');
+  const navLinks = document.querySelectorAll('.screen-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
