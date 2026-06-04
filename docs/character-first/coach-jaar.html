@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Jaar — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --gray: #f4f4f4; --text: #1a1a1a; --muted: #666; --border: #e0e0e0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(10,10,10,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* PAGE HEADER */
+    #page-header { background: var(--black); padding: 120px 5% 70px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(1.8rem,3.5vw,2.8rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1.05rem; color: #777; max-width: 580px; line-height: 1.75; }
+    .page-nav { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
+    .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* INTRO */
+    #intro { background: var(--gray); }
+    .intro-highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; margin-top: 2rem; }
+    .highlight-item { background: var(--white); border-radius: 10px; padding: 1.2rem; text-align: center; border: 1px solid var(--border); }
+    .highlight-num { font-size: 2rem; font-weight: 900; color: var(--orange); line-height: 1; }
+    .highlight-label { font-size: .82rem; color: var(--muted); margin-top: .3rem; }
+
+    /* MONTH GRID */
+    #programma { background: var(--white); }
+    .months-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .month-card { border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+    .month-card:hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(240,90,40,.08); }
+    .month-card-header { background: var(--gray); padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .month-badge { background: var(--orange); color: var(--white); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; flex-shrink: 0; }
+    .month-card-header-text {}
+    .month-num-label { font-size: .68rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; }
+    .month-card-header h3 { font-size: 1.05rem; font-weight: 900; color: var(--text); line-height: 1.2; }
+    .month-card-body { padding: 1.2rem 1.5rem; }
+    .month-question { font-size: .88rem; font-style: italic; color: var(--muted); margin-bottom: 1rem; padding-left: .8rem; border-left: 3px solid var(--orange); line-height: 1.5; }
+    .month-activities { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+    .month-activities li { font-size: .83rem; color: var(--text); padding-left: 1.1rem; position: relative; line-height: 1.5; }
+    .month-activities li::before { content: "&#9658;"; color: var(--orange); position: absolute; left: 0; font-size: .65rem; top: 3px; }
+    .month-science { font-size: .75rem; color: #aaa; background: var(--gray); border-radius: 6px; padding: .4rem .7rem; display: inline-block; }
+    .month-science strong { color: var(--orange); }
+
+    /* PREMIUM LOCK */
+    .premium-locked { position: relative; pointer-events: none; }
+    .premium-locked > *:not(.premium-lock) { filter: blur(4px); user-select: none; }
+    .premium-lock {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: rgba(10,10,10,0.7); border-radius: inherit; z-index: 10;
+      pointer-events: all; gap: 0.5rem; color: white; text-align: center;
+    }
+    .premium-lock .lock-icon { font-size: 2rem; }
+    .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+    .premium-lock .lock-cta {
+      background: #f05a28; color: white; padding: 0.5rem 1.25rem;
+      border-radius: 6px; text-decoration: none; font-weight: 600;
+      font-size: 0.875rem; pointer-events: all;
+    }
+
+    /* CTA BAND */
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    /* FOOTER */
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } .months-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="programma.html">Programma</a>
+    <a href="library.html">Bibliotheek</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="coach-programma.html" class="active">Coach Development</a>
+    <a href="mailto:pauwaert.tom@gmail.com?subject=Character First" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="coach-programma.html">Coach Development</a> / Coach Jaar</div>
+  <h1>Coach Jaar &mdash; 10 Maanden Groeien als Coach en Mens</h1>
+  <p>Voor coaches die duurzame, diepgaande groei willen doorheen het volledige seizoen. Één module per maand, elk thema wetenschappelijk onderbouwd, persoonlijk en professioneel.</p>
+  <div class="page-nav">
+    <a href="#intro">Overzicht</a>
+    <a href="#programma">10 Maanden</a>
+    <a href="#cta-band">Aanmelden</a>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="fade-in">
+    <span class="section-tag">Wat je kan verwachten</span>
+    <h2>Diepgang over een volledig seizoen</h2>
+    <p class="section-sub">Coach Jaar is geen cursus. Het is een persoonlijk ontwikkelingstraject waarbij je elke maand aan één kerncompetentie werkt — met concrete oefeningen, wetenschappelijke inzichten en ruimte voor reflectie.</p>
+  </div>
+  <div class="intro-highlights fade-in">
+    <div class="highlight-item">
+      <div class="highlight-num">10</div>
+      <div class="highlight-label">maanden intensief</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-num">10</div>
+      <div class="highlight-label">competentiedomeinen</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-num">30+</div>
+      <div class="highlight-label">concrete activiteiten</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-num">1</div>
+      <div class="highlight-label">persoonlijke coachingfilosofie</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMA -->
+<section id="programma">
+  <div class="fade-in">
+    <span class="section-tag">Het programma</span>
+    <h2>Maand per maand</h2>
+    <p class="section-sub">Maand 1 en 2 zijn vrij toegankelijk als kennismaking. Maanden 3 tot 10 zijn onderdeel van het volledige Coach Jaar traject.</p>
+  </div>
+  <div class="months-grid fade-in">
+
+    <!-- Maand 1 — VRIJ -->
+    <div class="month-card">
+      <div class="month-card-header">
+        <div class="month-badge">1</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 1 &mdash; Gratis preview</div>
+          <h3>Wie ben ik als coach?</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Wat zijn mijn diepste waarden als coach, en hoe worden ze zichtbaar in mijn gedrag?"</p>
+        <ul class="month-activities">
+          <li>Coachidentiteit oefening: drie woorden die jou als coach definiëren</li>
+          <li>Persoonlijke sporthistorie schrijven — hoe heeft je eigen sportverleden je coaching gevormd?</li>
+          <li>Waardenkompas invullen en brug leggen naar dagelijkse coachingsbeslissingen</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Cushion et al., 2010 — Coach knowledge &amp; identity formation</span>
+      </div>
+    </div>
+
+    <!-- Maand 2 — VRIJ -->
+    <div class="month-card">
+      <div class="month-card-header">
+        <div class="month-badge">2</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 2 &mdash; Gratis preview</div>
+          <h3>Mijn relatie met spelers</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Hoe bouw ik oprecht vertrouwen op met elk individu in mijn groep?"</p>
+        <ul class="month-activities">
+          <li>Attachment theory in sport: hoe hechting de coach-atleet band beïnvloedt</li>
+          <li>Individuele check-in protocol opstellen voor elke sporter</li>
+          <li>Psychologische veiligheidsaudit van jouw team uitvoeren</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Jowett &amp; Ntoumanis, 2004 — The coach-athlete relationship</span>
+      </div>
+    </div>
+
+    <!-- Maand 3 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">3</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 3</div>
+          <h3>Motivationeel klimaat</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Welk klimaat creëer ik bewust of onbewust, en hoe kan ik dat veranderen?"</p>
+        <ul class="month-activities">
+          <li>Mastery vs. performance climate zelfscan en observatielog</li>
+          <li>Taakoriëntatie stimuleren via doelstellingsgesprekken</li>
+          <li>Autonomie-ondersteunende instructietechnieken oefenen</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Ames, 1992 &amp; Mageau &amp; Vallerand, 2003</span>
+      </div>
+    </div>
+
+    <!-- Maand 4 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">4</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 4</div>
+          <h3>Communicatie</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Wanneer stel ik vragen en wanneer vertel ik? Hoe bouw ik een feedbackcultuur?"</p>
+        <ul class="month-activities">
+          <li>Instructietechnieken analyseren via video-observatie van eigen sessies</li>
+          <li>Vraag-gebaseerd coachen: 30-dag uitdaging (vragen stellen i.p.v. vertellen)</li>
+          <li>Feedbackprotocol ontwerpen voor jouw groep</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Turnnidge &amp; Côté, 2018 — Coach communication</span>
+      </div>
+    </div>
+
+    <!-- Maand 5 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">5</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 5</div>
+          <h3>Omgaan met ouders</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Hoe navigeer ik de driehoek coach-ouder-atleet zonder de atleet in het midden te verliezen?"</p>
+        <ul class="month-activities">
+          <li>Ouder-coach-atleet driehoek in kaart brengen voor jouw groep</li>
+          <li>Verwachtingenmanagement gesprek simuleren en oefenen</li>
+          <li>Script voor moeilijke oudersgesprekken opstellen</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Holt et al., 2009 — Parental involvement in youth sport</span>
+      </div>
+    </div>
+
+    <!-- Maand 6 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">6</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 6</div>
+          <h3>Druk &amp; Stress als coach</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Hoe blijf ik mezelf onder druk? Wat zijn mijn stresssignalen en hoe reageer ik erop?"</p>
+        <ul class="month-activities">
+          <li>Coachburnout-risico zelfscan (Maslach Burnout Inventory — coach versie)</li>
+          <li>Perfectionisme in coaching herkennen en ombuigen</li>
+          <li>Strategie voor verliesreeksen en externe druk ontwikkelen</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Olusoga et al., 2012 — Stress &amp; coping in elite coaches</span>
+      </div>
+    </div>
+
+    <!-- Maand 7 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">7</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 7</div>
+          <h3>Leiderschap van binnenuit</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Hoe leidt mijn ploeg zonder te controleren? Hoe bouw ik een ploegcultuur die zichzelf draagt?"</p>
+        <ul class="month-activities">
+          <li>Servant leadership principes vertalen naar concrete coaching situaties</li>
+          <li>Leiders identificeren en ontwikkelen in jouw groep</li>
+          <li>Ploegcultuuraudit: rituelen, normen en gedeelde waarden</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Smith et al., 2013 — Transformational coaching</span>
+      </div>
+    </div>
+
+    <!-- Maand 8 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">8</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 8</div>
+          <h3>Positieve jeugdontwikkeling</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Zie ik de hele mens, of zie ik enkel de atleet? Hoe stem ik mijn verwachtingen af op de ontwikkelingsfase?"</p>
+        <ul class="month-activities">
+          <li>LTAD (Long Term Athlete Development) framework toepassen op jouw groep</li>
+          <li>Leeftijdsgebonden verwachtingen en begeleiding per fase</li>
+          <li>Individuele ontwikkelingsplannen opstellen (sport + persoon)</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Côté et al., 2007 — Positive youth development through sport</span>
+      </div>
+    </div>
+
+    <!-- Maand 9 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">9</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 9</div>
+          <h3>Reflectie als groeimiddel</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Hoe maak ik van elke training een leerervaring — voor mijn spelers én voor mezelf?"</p>
+        <ul class="month-activities">
+          <li>Video-analyse van eigen coaching: drie sleutelmomenten analyseren</li>
+          <li>Peer coaching opzetten met een collega-coach</li>
+          <li>Structureel reflectiejournal starten en volhouden</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Knowles et al., 2006 — Reflective practice in sport coaching</span>
+      </div>
+    </div>
+
+    <!-- Maand 10 — LOCKED -->
+    <div class="month-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Jaar &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="month-card-header">
+        <div class="month-badge">10</div>
+        <div class="month-card-header-text">
+          <div class="month-num-label">Maand 10</div>
+          <h3>Mijn coachingerfenis</h3>
+        </div>
+      </div>
+      <div class="month-card-body">
+        <p class="month-question">"Als mijn spelers over 10 jaar aan mij terugdenken, wat wil ik dat ze zich herinneren?"</p>
+        <ul class="month-activities">
+          <li>Terugblik op 10 maanden groei: reflectie op alle modules</li>
+          <li>Persoonlijke coachingfilosofie uitschrijven in 500 woorden</li>
+          <li>Actieplan voor volgend seizoen formuleren</li>
+        </ul>
+        <span class="month-science"><strong>Wetenschappelijk fundament:</strong> Côté &amp; Gilbert, 2009 — Coach effectiveness &amp; legacy</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <h2>Start Coach Jaar</h2>
+  <p>10 maanden. 10 thema's. 1 diepgaand groeiparcours dat je coaching en jezelf permanent verandert.</p>
+  <div class="cta-btns">
+    <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="btn-white">Meld je aan voor Coach Jaar</a>
+    <a href="coach-maand.html" class="btn-white-outline">Liever Coach Maand?</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based karakterontwikkeling voor sporters van U14 tot Senior.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programma</h4>
+      <a href="programma.html">Overzicht</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
+      <a href="week-werkbladen.html">Week werkbladen</a>
+    </div>
+    <div class="footer-col">
+      <h4>Coach Development</h4>
+      <a href="coach-programma.html">Overzicht</a>
+      <a href="coach-jaar.html">Coach Jaar</a>
+      <a href="coach-maand.html">Coach Maand</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="werkbladen.html">Werkbladen</a>
+      <a href="library.html">Bibliotheek</a>
+      <a href="mailto:pauwaert.tom@gmail.com?subject=Character First">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. Alle rechten voorbehouden.</p>
+    <p>Evidence-based sportpsychologie.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Maand — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --gray: #f4f4f4; --text: #1a1a1a; --muted: #666; --border: #e0e0e0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(10,10,10,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* PAGE HEADER */
+    #page-header { background: var(--black); padding: 120px 5% 70px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(1.8rem,3.5vw,2.8rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1.05rem; color: #777; max-width: 580px; line-height: 1.75; }
+    .page-nav { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
+    .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* FORMAT */
+    #format { background: var(--gray); }
+    .format-box { background: var(--white); border-radius: 14px; border: 2px solid var(--border); overflow: hidden; max-width: 720px; margin-top: 2rem; }
+    .format-box-header { background: var(--black); padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .format-box-header h3 { color: var(--white); font-size: 1.1rem; font-weight: 900; }
+    .format-box-header .badge { background: var(--orange); color: var(--white); font-size: .7rem; font-weight: 800; padding: .2rem .65rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; }
+    .format-steps { padding: 1.5rem 2rem; display: flex; flex-direction: column; gap: 0; }
+    .format-step { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1rem 0; border-bottom: 1px solid var(--gray); }
+    .format-step:last-child { border-bottom: none; }
+    .step-time { background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 900; padding: .3rem .65rem; border-radius: 4px; flex-shrink: 0; min-width: 52px; text-align: center; }
+    .step-content h4 { font-weight: 800; font-size: .92rem; margin-bottom: .2rem; }
+    .step-content p { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+
+    /* SESSIONS GRID */
+    #sessies { background: var(--white); }
+    .sessions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 640px) { .sessions-grid { grid-template-columns: 1fr; } }
+    .session-card { border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+    .session-card:hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(240,90,40,.08); }
+    .session-card-header { background: var(--gray); padding: 1rem 1.3rem; display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+    .session-header-left { display: flex; align-items: center; gap: .8rem; }
+    .session-badge { background: var(--orange); color: var(--white); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .92rem; flex-shrink: 0; }
+    .session-card-header-text {}
+    .session-num-label { font-size: .65rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; }
+    .session-card-header h3 { font-size: .97rem; font-weight: 900; color: var(--text); line-height: 1.2; }
+    .duration-badge { background: var(--black); color: var(--white); font-size: .68rem; font-weight: 800; padding: .2rem .6rem; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
+    .session-card-body { padding: 1.1rem 1.3rem; }
+    .session-question { font-size: .85rem; font-style: italic; color: var(--muted); margin-bottom: .9rem; padding-left: .7rem; border-left: 3px solid var(--orange); line-height: 1.5; }
+    .session-activities { list-style: none; display: flex; flex-direction: column; gap: .38rem; }
+    .session-activities li { font-size: .82rem; color: var(--text); padding-left: 1.1rem; position: relative; line-height: 1.5; }
+    .session-activities li::before { content: "&#9658;"; color: var(--orange); position: absolute; left: 0; font-size: .62rem; top: 3px; }
+
+    /* PREMIUM LOCK */
+    .premium-locked { position: relative; pointer-events: none; }
+    .premium-locked > *:not(.premium-lock) { filter: blur(4px); user-select: none; }
+    .premium-lock {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: rgba(10,10,10,0.7); border-radius: inherit; z-index: 10;
+      pointer-events: all; gap: 0.5rem; color: white; text-align: center;
+    }
+    .premium-lock .lock-icon { font-size: 2rem; }
+    .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+    .premium-lock .lock-cta {
+      background: #f05a28; color: white; padding: 0.5rem 1.25rem;
+      border-radius: 6px; text-decoration: none; font-weight: 600;
+      font-size: 0.875rem; pointer-events: all;
+    }
+
+    /* CTA BAND */
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    /* FOOTER */
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="programma.html">Programma</a>
+    <a href="library.html">Bibliotheek</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="coach-programma.html" class="active">Coach Development</a>
+    <a href="mailto:pauwaert.tom@gmail.com?subject=Character First" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="coach-programma.html">Coach Development</a> / Coach Maand</div>
+  <h1>Coach Maand &mdash; 8 Contactmomenten per Seizoen</h1>
+  <p>Voor coaches die willen groeien maar weinig tijd hebben. &Eacute;&eacute;n krachtige sessie per maand van 90 minuten &mdash; praktisch, direct toepasbaar, met onmiddellijk effect op jouw training.</p>
+  <div class="page-nav">
+    <a href="#format">Sessieformaat</a>
+    <a href="#sessies">8 Sessies</a>
+    <a href="#cta-band">Aanmelden</a>
+  </div>
+</section>
+
+<!-- FORMAT -->
+<section id="format">
+  <div class="fade-in">
+    <span class="section-tag">Hoe het werkt</span>
+    <h2>Elke sessie, hetzelfde ritme</h2>
+    <p class="section-sub">Consistentie maakt groei mogelijk. Elke contactmoment volgt dezelfde structuur zodat je steeds weet wat je kan verwachten &mdash; en wat er van je gevraagd wordt.</p>
+  </div>
+  <div class="format-box fade-in">
+    <div class="format-box-header">
+      <div class="badge">90 min</div>
+      <h3>Vaste sessiestructuur &mdash; elke maand</h3>
+    </div>
+    <div class="format-steps">
+      <div class="format-step">
+        <div class="step-time">15 min</div>
+        <div class="step-content">
+          <h4>Check-in &amp; Reflectie</h4>
+          <p>Terugblik op de vorige maand. Wat heb je geprobeerd? Wat werkte? Wat was moeilijk? Geen oordeel, enkel observatie en leren.</p>
+        </div>
+      </div>
+      <div class="format-step">
+        <div class="step-time">45 min</div>
+        <div class="step-content">
+          <h4>Kernthema van de Maand</h4>
+          <p>Combinatie van theorie (compact en praktisch) en oefening. Elke coach werkt actief mee &mdash; geen passieve toehoorder.</p>
+        </div>
+      </div>
+      <div class="format-step">
+        <div class="step-time">20 min</div>
+        <div class="step-content">
+          <h4>Concrete Toepassing</h4>
+          <p>Jij vertaalt het thema naar je eigen trainingsplan van de komende maand. Wat ga je specifiek anders doen? Wanneer? Met wie?</p>
+        </div>
+      </div>
+      <div class="format-step">
+        <div class="step-time">10 min</div>
+        <div class="step-content">
+          <h4>Persoonlijke Actie</h4>
+          <p>&Eacute;&eacute;n concrete, meetbare actie voor de komende maand. Je schrijft het op. We komen er volgende sessie op terug.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SESSIES -->
+<section id="sessies">
+  <div class="fade-in">
+    <span class="section-tag">Het programma</span>
+    <h2>8 sessies doorheen het seizoen</h2>
+    <p class="section-sub">Sessies 1 en 2 zijn vrij toegankelijk als kennismaking. Sessies 3 tot 8 zijn onderdeel van het volledige Coach Maand traject.</p>
+  </div>
+  <div class="sessions-grid fade-in">
+
+    <!-- Sessie 1 — VRIJ -->
+    <div class="session-card">
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">1</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 1 &mdash; Gratis preview</div>
+            <h3>Coachidentiteit</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Wie ben ik als coach, en waarom doe ik dit?"</p>
+        <ul class="session-activities">
+          <li>Drie kernwaarden die jouw coaching definiëren identificeren</li>
+          <li>Persoonlijke sporthistorie als spiegel voor jouw coachingstijl</li>
+          <li>Actie: jouw coachingcredo in twee zinnen formuleren</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sessie 2 — VRIJ -->
+    <div class="session-card">
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">2</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 2 &mdash; Gratis preview</div>
+            <h3>Relatie Bouwen</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Hoe bouw ik in de eerste 30 dagen een stevige basis van vertrouwen op?"</p>
+        <ul class="session-activities">
+          <li>Eerste 30 dagen protocol voor een nieuwe groep of nieuw seizoen</li>
+          <li>Vertrouwen vs. populariteit: het verschil en waarom het belangrijk is</li>
+          <li>Actie: individuele check-in met elke speler plannen in de komende maand</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sessie 3 — LOCKED -->
+    <div class="session-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Maand &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">3</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 3</div>
+            <h3>Motivationeel Klimaat</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Gebruik ik mastery-taal of prestatie-taal? Wat hoor ik mezelf eigenlijk zeggen?"</p>
+        <ul class="session-activities">
+          <li>Mastery vs. performance climate: zelfscan op basis van echte trainingsmomenten</li>
+          <li>Fouten als leerkansen benoemen: concrete zinnen en technieken</li>
+          <li>Actie: autonomie-moment inbouwen in elke training van de komende maand</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sessie 4 — LOCKED -->
+    <div class="session-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Maand &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">4</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 4</div>
+            <h3>Feedback Geven</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Geef ik feedback die laat groeien, of feedback die pijn doet zonder richting?"</p>
+        <ul class="session-activities">
+          <li>Sandwich vs. directe feedback: wanneer werkt wat?</li>
+          <li>Specifiek vs. generiek feedback: oefening met echte trainingsscenario's</li>
+          <li>Actie: per speler &eacute;&eacute;n specifieke groeifeedback geven deze maand</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sessie 5 — LOCKED -->
+    <div class="session-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Maand &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">5</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 5</div>
+            <h3>Druk Momenten</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Hoe coach ik in het vierde kwart? Ken ik mijn eigen stressreactie?"</p>
+        <ul class="session-activities">
+          <li>Eigen stressreactie in kaart brengen via observatie en reflectie</li>
+          <li>Time-out strategie: wat zeg je, hoe zeg je het, in welke volgorde?</li>
+          <li>Actie: pre-game routine opstellen die jou als coach kalibreert</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sessie 6 — LOCKED -->
+    <div class="session-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Maand &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">6</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 6</div>
+            <h3>Ouders &amp; Omgeving</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Hoe communiceer ik helder met ouders zonder grenzen te verliezen?"</p>
+        <ul class="session-activities">
+          <li>Verwachtingen van ouders managen: proactieve communicatiestrategie</li>
+          <li>Grenzen stellen als coach: concreet en respectvol</li>
+          <li>Actie: seizoensbrief of sessie-update protocol opstellen voor ouders</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sessie 7 — LOCKED -->
+    <div class="session-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Maand &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">7</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 7</div>
+            <h3>Teamcultuur</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Hebben we een echte cultuur, of enkel regels? Wie zijn de leiders in mijn groep?"</p>
+        <ul class="session-activities">
+          <li>Rituelen en teamgewoonten analyseren: wat versterken ze?</li>
+          <li>Informele leiders identificeren en bewust inschakelen</li>
+          <li>Actie: &eacute;&eacute;n nieuw ploegritueel invoeren dat waarden zichtbaar maakt</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sessie 8 — LOCKED -->
+    <div class="session-card premium-locked">
+      <div class="premium-lock">
+        <div class="lock-icon">&#128274;</div>
+        <p>Coach Maand &mdash; Premium</p>
+        <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="lock-cta">Vraag toegang aan</a>
+      </div>
+      <div class="session-card-header">
+        <div class="session-header-left">
+          <div class="session-badge">8</div>
+          <div class="session-card-header-text">
+            <div class="session-num-label">Sessie 8</div>
+            <h3>Terugblik &amp; Vooruitblik</h3>
+          </div>
+        </div>
+        <span class="duration-badge">90 min</span>
+      </div>
+      <div class="session-card-body">
+        <p class="session-question">"Wat heb ik dit jaar geleerd als coach? Wat neem ik mee naar volgend seizoen?"</p>
+        <ul class="session-activities">
+          <li>Gestructureerde terugblik op alle acht sessies en persoonlijke groei</li>
+          <li>Drie grootste groeimomenten van het seizoen benoemen</li>
+          <li>Actie: schriftelijk actieplan voor volgend seizoen formuleren</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <h2>Start Coach Maand</h2>
+  <p>8 sessies van 90 minuten. Eén krachtig contactmoment per maand. Groei die je direct meeneemt naar je volgende training.</p>
+  <div class="cta-btns">
+    <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="btn-white">Meld je aan voor Coach Maand</a>
+    <a href="coach-jaar.html" class="btn-white-outline">Liever Coach Jaar?</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based karakterontwikkeling voor sporters van U14 tot Senior.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programma</h4>
+      <a href="programma.html">Overzicht</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
+      <a href="week-werkbladen.html">Week werkbladen</a>
+    </div>
+    <div class="footer-col">
+      <h4>Coach Development</h4>
+      <a href="coach-programma.html">Overzicht</a>
+      <a href="coach-jaar.html">Coach Jaar</a>
+      <a href="coach-maand.html">Coach Maand</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="werkbladen.html">Werkbladen</a>
+      <a href="library.html">Bibliotheek</a>
+      <a href="mailto:pauwaert.tom@gmail.com?subject=Character First">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. Alle rechten voorbehouden.</p>
+    <p>Evidence-based sportpsychologie.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

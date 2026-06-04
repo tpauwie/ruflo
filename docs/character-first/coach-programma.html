@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Development — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --gray: #f4f4f4; --text: #1a1a1a; --muted: #666; --border: #e0e0e0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(10,10,10,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    .section-tag.outline { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* PAGE HEADER */
+    #page-header { background: var(--black); padding: 120px 5% 70px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(2rem,4vw,3.2rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1.1rem; color: #777; max-width: 560px; line-height: 1.75; }
+    .page-nav { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
+    .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* INTRO STAT BAND */
+    #waarom { background: var(--gray); }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .stat-card { background: var(--white); border-left: 4px solid var(--orange); padding: 1.5rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+    .stat-num { font-size: 2.2rem; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: .3rem; }
+    .stat-card h4 { font-weight: 800; font-size: .95rem; margin-bottom: .3rem; }
+    .stat-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+    .stat-card .source { font-size: .72rem; color: #aaa; margin-top: .6rem; font-style: italic; }
+
+    /* TRACKS */
+    #trajecten { background: var(--white); }
+    .tracks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .track-card { border: 2px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+    .track-card:hover { border-color: var(--orange); box-shadow: 0 8px 32px rgba(240,90,40,.1); }
+    .track-header { background: var(--black); padding: 2rem 2rem 1.5rem; }
+    .track-badge { display: inline-block; background: var(--orange); color: var(--white); font-size: .7rem; font-weight: 800; padding: .22rem .7rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .8rem; }
+    .track-header h3 { font-size: 1.5rem; font-weight: 900; color: var(--white); margin-bottom: .4rem; }
+    .track-header p { font-size: .9rem; color: #888; }
+    .track-body { padding: 1.5rem 2rem; }
+    .track-features { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
+    .track-features li { font-size: .88rem; color: var(--text); padding-left: 1.2rem; position: relative; line-height: 1.5; }
+    .track-features li::before { content: "&#9658;"; color: var(--orange); position: absolute; left: 0; font-size: .7rem; top: 3px; }
+    .track-cta { display: inline-block; background: var(--orange); color: var(--white); padding: .7rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .88rem; transition: background .2s; }
+    .track-cta:hover { background: var(--orange2); }
+    .track-cta.outline { background: transparent; color: var(--orange); border: 2px solid var(--orange); }
+    .track-cta.outline:hover { background: var(--orange); color: var(--white); }
+
+    /* PILLARS */
+    #pijlers { background: var(--gray); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-top: 2.5rem; }
+    .pillar-card { background: var(--black); color: var(--white); padding: 2rem 1.5rem; border-radius: 10px; text-align: center; border: 1px solid #1a1a1a; transition: transform .2s, box-shadow .2s; }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+    .pillar-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+    .pillar-title { font-size: .95rem; font-weight: 800; margin: .4rem 0 .4rem; color: var(--white); }
+    .pillar-subtitle { font-size: .72rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .5rem; }
+    .pillar-desc { font-size: .82rem; color: #777; line-height: 1.6; }
+
+    /* SCIENCE */
+    #wetenschap { background: var(--white); }
+    .science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .science-card { background: var(--gray); border-radius: 10px; padding: 1.5rem; border: 1px solid var(--border); transition: box-shadow .2s; }
+    .science-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+    .sci-tier { display: inline-block; font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 10px; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .06em; }
+    .sci-tier.sr { background: #d4edda; color: #1a7a4a; }
+    .sci-tier.rct { background: #d0e4f7; color: #1a4a8a; }
+    .sci-tier.qual { background: #e8d5f5; color: #5a1a8a; }
+    .sci-author { font-size: .78rem; color: var(--orange); font-weight: 700; margin-bottom: .3rem; }
+    .science-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
+    .science-card p { font-size: .83rem; color: var(--muted); line-height: 1.6; }
+
+    /* CTA BAND */
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    /* FOOTER */
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="programma.html">Programma</a>
+    <a href="library.html">Bibliotheek</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="coach-programma.html" class="active">Coach Development</a>
+    <a href="mailto:pauwaert.tom@gmail.com?subject=Character First" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Coach Development</div>
+  <h1>Coach Development</h1>
+  <p>Groei als coach. Groei als mens. Wetenschappelijk onderbouwde coach-ontwikkeling die verdergaat dan tactiek en techniek.</p>
+  <div class="page-nav">
+    <a href="#waarom">Waarom</a>
+    <a href="#trajecten">Programma's</a>
+    <a href="#pijlers">6 Pijlers</a>
+    <a href="#wetenschap">Wetenschap</a>
+  </div>
+</section>
+
+<!-- WAAROM -->
+<section id="waarom">
+  <div class="fade-in">
+    <span class="section-tag">De realiteit</span>
+    <h2>De coach is de sleutel</h2>
+    <p class="section-sub">Onderzoek toont keer op keer hetzelfde: de kwaliteit van de coach-atleet relatie is de sterkste voorspeller van ontwikkeling en retentie bij jongeren — sterker dan tactische kennis of trainingsstijl.</p>
+  </div>
+  <div class="stat-grid fade-in">
+    <div class="stat-card">
+      <div class="stat-num">35%</div>
+      <h4>Vroegtijdig afhaken</h4>
+      <p>35% van de jonge sporters stopt voor de leeftijd van 15 jaar. De voornaamste reden is coachgedrag dat geen veiligheid en verbinding creëert.</p>
+      <div class="source">Smoll &amp; Smith, 2009 — University of Washington</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">#1</div>
+      <h4>Relatie als fundament</h4>
+      <p>De coach-atleet relatie is de sterkste enkelvoudige voorspeller van sportplezier, motivatie en doorzetting bij jeugdatleten.</p>
+      <div class="source">Jowett &amp; Ntoumanis, 2004 — British Journal of Educational Psychology</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2%</div>
+      <h4>Mentale aandacht</h4>
+      <p>Coaches besteden gemiddeld minder dan 2% van de trainingstijd aan mentale en interpersoonlijke vaardigheden, terwijl 90% dit erkent als even belangrijk.</p>
+      <div class="source">Weinberg &amp; Gould, 2019 — Foundations of Sport Psychology</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3x</div>
+      <h4>Motivationeel klimaat</h4>
+      <p>Sporters in een mastery-climate (taakgericht) tonen driemaal meer intrinsieke motivatie en langdurig engagement dan sporters in een performance-climate.</p>
+      <div class="source">Ames, 1992 — Journal of Educational Psychology</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJECTEN -->
+<section id="trajecten">
+  <div class="fade-in">
+    <span class="section-tag">Programma's</span>
+    <h2>Twee wegen naar groei</h2>
+    <p class="section-sub">Coach First biedt twee trajecten die aansluiten bij jouw beschikbare tijd en ontwikkelingsambitie.</p>
+  </div>
+  <div class="tracks-grid fade-in">
+    <div class="track-card">
+      <div class="track-header">
+        <div class="track-badge">10 maanden</div>
+        <h3>Coach Jaar</h3>
+        <p>Diepgaande persoonlijke en professionele ontwikkeling over een volledig seizoen. Eén module per maand met individuele begeleiding.</p>
+      </div>
+      <div class="track-body">
+        <ul class="track-features">
+          <li>10 maandelijkse modules — elk een ander competentiedomein</li>
+          <li>Persoonlijk reflectiejournal bij elke module</li>
+          <li>Wetenschappelijke onderbouwing per thema</li>
+          <li>Peer coaching en groepsreflectie</li>
+          <li>Video-analyse van eigen coaching</li>
+          <li>Formuleer jouw persoonlijke coachingfilosofie</li>
+        </ul>
+        <a href="coach-jaar.html" class="track-cta">Bekijk Coach Jaar &rarr;</a>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-header">
+        <div class="track-badge">8 contactmomenten</div>
+        <h3>Coach Maand</h3>
+        <p>Voor coaches die willen groeien maar weinig tijd hebben. Één krachtige sessie per maand van 90 minuten — direct toepasbaar.</p>
+      </div>
+      <div class="track-body">
+        <ul class="track-features">
+          <li>8 sessies van 90 minuten doorheen het seizoen</li>
+          <li>Vaste sessiestructuur: check-in, kernthema, toepassing, actie</li>
+          <li>Concrete oefeningen voor de volgende training</li>
+          <li>Persoonlijk actieplan na elke sessie</li>
+          <li>Praktijkgericht — geen theorie zonder toepassing</li>
+          <li>Flexibel inroosteren naast jouw coachschema</li>
+        </ul>
+        <a href="coach-maand.html" class="track-cta outline">Bekijk Coach Maand &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIJLERS -->
+<section id="pijlers">
+  <div class="fade-in">
+    <span class="section-tag">Competenties</span>
+    <h2>De 6 pijlers van Coach Development</h2>
+    <p class="section-sub">Gebaseerd op het ICCE Global Coach Framework (Côté &amp; Gilbert, 2009) en Cushion et al. (2010). Elk domein is essentieel voor effectief jeugdcoachen.</p>
+  </div>
+  <div class="pillars-grid fade-in">
+    <div class="pillar-card">
+      <div class="pillar-icon">&#129309;</div>
+      <div class="pillar-subtitle">Pijler 1</div>
+      <div class="pillar-title">Relatie &amp; Verbinding</div>
+      <p class="pillar-desc">De coach-atleet relatie als fundament. Vertrouwen bouwen, psychologische veiligheid creëren, attachment in sportontwikkeling.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">&#127919;</div>
+      <div class="pillar-subtitle">Pijler 2</div>
+      <div class="pillar-title">Motivationeel Klimaat</div>
+      <p class="pillar-desc">Mastery vs. performance climate bewust kiezen. Taakoriëntatie stimuleren, autonomie ondersteunen, fouten als leerkansen.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">&#128172;</div>
+      <div class="pillar-subtitle">Pijler 3</div>
+      <div class="pillar-title">Communicatie &amp; Feedback</div>
+      <p class="pillar-desc">Vragen stellen in plaats van vertellen. Feedbackcultuur bouwen, luisteren, specifieke vs. generieke feedback.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">&#128302;</div>
+      <div class="pillar-subtitle">Pijler 4</div>
+      <div class="pillar-title">Persoonlijke Groei</div>
+      <p class="pillar-desc">Zelfkennis, waarden en identiteit als coach. Intrapersoonlijk bewustzijn, reflectiepraktijk en groeimindset.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">&#127891;</div>
+      <div class="pillar-subtitle">Pijler 5</div>
+      <div class="pillar-title">Positieve Jeugdontwikkeling</div>
+      <p class="pillar-desc">Leeftijdsgebonden begeleiding, LTAD framework, de hele mens zien, psychologische veiligheid in de groep.</p>
+    </div>
+    <div class="pillar-card" style="border-color:rgba(240,90,40,.25)">
+      <div class="pillar-icon">&#9889;</div>
+      <div class="pillar-subtitle">Pijler 6</div>
+      <div class="pillar-title">Coach Welzijn</div>
+      <p class="pillar-desc">Balans, burnout preventie, energie management. Duurzaam coachen zonder jezelf te verliezen in de rol.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section id="wetenschap">
+  <div class="fade-in">
+    <span class="section-tag">Evidence-based</span>
+    <h2>Onderbouwd met wetenschap</h2>
+    <p class="section-sub">Coach Development is geen mening. Elk thema is gebaseerd op peer-reviewed literatuur over coacheffectiviteit en jeugdontwikkeling.</p>
+  </div>
+  <div class="science-grid fade-in">
+    <div class="science-card">
+      <span class="sci-tier sr">Systematische Review</span>
+      <div class="sci-author">Côté &amp; Gilbert, 2009</div>
+      <h4>An Integrative Definition of Coaching Effectiveness</h4>
+      <p>Definitie van coacheffectiviteit via drie kennisdomeinen: professioneel, interpersoonlijk en intrapersoonlijk. Basis van het ICCE Global Coach Framework.</p>
+    </div>
+    <div class="science-card">
+      <span class="sci-tier rct">Longitudinale studie</span>
+      <div class="sci-author">Jowett &amp; Ntoumanis, 2004</div>
+      <h4>The Coach-Athlete Relationship Questionnaire</h4>
+      <p>De coach-atleet relatie — gemeten via nabijheid, vastbeslotenheid en complementariteit — is de sterkste voorspeller van atletische prestatie en sportplezier.</p>
+    </div>
+    <div class="science-card">
+      <span class="sci-tier qual">RCT Studie</span>
+      <div class="sci-author">Smoll &amp; Smith, 2009</div>
+      <h4>Coaching Behavior Research and Intervention</h4>
+      <p>Coaches die een mastery-georiënteerd coachprogramma volgden zagen significant lagere drop-out rates en hogere sportplezierscores bij hun atleten dan de controlegroep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <h2>Klaar om te groeien als coach?</h2>
+  <p>Kies het traject dat bij jou past — diepgaand over een volledig jaar of één krachtige sessie per maand.</p>
+  <div class="cta-btns">
+    <a href="mailto:info@characterfirst.be?subject=Coach Jaar aanvragen" class="btn-white">Start met Coach Jaar</a>
+    <a href="mailto:info@characterfirst.be?subject=Coach Maand aanvragen" class="btn-white-outline">Start met Coach Maand</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based karakterontwikkeling voor sporters van U14 tot Senior.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programma</h4>
+      <a href="programma.html">Overzicht</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
+      <a href="week-werkbladen.html">Week werkbladen</a>
+    </div>
+    <div class="footer-col">
+      <h4>Coach Development</h4>
+      <a href="coach-programma.html">Overzicht</a>
+      <a href="coach-jaar.html">Coach Jaar</a>
+      <a href="coach-maand.html">Coach Maand</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="werkbladen.html">Werkbladen</a>
+      <a href="library.html">Bibliotheek</a>
+      <a href="mailto:pauwaert.tom@gmail.com?subject=Character First">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. Alle rechten voorbehouden.</p>
+    <p>Evidence-based sportpsychologie.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
