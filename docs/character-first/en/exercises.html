@@ -234,10 +234,13 @@
 <body>
 <script>
   (function(){
-    if(!localStorage.getItem('cf_access')){
+    if(localStorage.getItem('cf_access')==='1'){
+      document.querySelectorAll('.premium-locked').forEach(function(el){el.classList.remove('premium-locked');});
+      document.querySelectorAll('.premium-lock').forEach(function(el){el.style.display='none';});
+    } else {
       var o=document.createElement('div');
       o.style.cssText='position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
-      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="access.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
+      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="../toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
       document.body.prepend(o);
     }
   })();
@@ -324,7 +327,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">03</span><h3>Values Compass</h3></div>
       <div class="card-meta">
@@ -350,7 +353,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">04</span><h3>Energy Giver or Energy Drainer</h3></div>
       <div class="card-meta">
@@ -376,7 +379,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">05</span><h3>My Superpower</h3></div>
       <div class="card-meta">
@@ -402,7 +405,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">06</span><h3>Letter to My Younger Self</h3></div>
       <div class="card-meta">
@@ -428,7 +431,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">07</span><h3>Identity Anchors</h3></div>
       <div class="card-meta">
@@ -455,7 +458,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">08</span><h3>Who Inspires You?</h3></div>
       <div class="card-meta">
@@ -481,7 +484,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">09</span><h3>Body Scan Check-in</h3></div>
       <div class="card-meta">
@@ -507,7 +510,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">10</span><h3>Two Truths, One Lie</h3></div>
       <div class="card-meta">
@@ -599,7 +602,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">13</span><h3>Stress Barometer</h3></div>
       <div class="card-meta">
@@ -625,7 +628,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">14</span><h3>Worst Case Best Case</h3></div>
       <div class="card-meta">
@@ -652,7 +655,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">15</span><h3>Reset Ritual</h3></div>
       <div class="card-meta">
@@ -679,7 +682,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">16</span><h3>Pressure Card</h3></div>
       <div class="card-meta">
@@ -706,7 +709,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">17</span><h3>Ground Yourself: 5-4-3-2-1</h3></div>
       <div class="card-meta">
@@ -734,7 +737,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">18</span><h3>Writing a Performance Mantra</h3></div>
       <div class="card-meta">
@@ -761,7 +764,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">19</span><h3>3-Minute Stress Journal</h3></div>
       <div class="card-meta">
@@ -788,7 +791,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">20</span><h3>Progressive Relaxation</h3></div>
       <div class="card-meta">
@@ -880,7 +883,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">23</span><h3>Human Graph</h3></div>
       <div class="card-meta">
@@ -906,7 +909,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">24</span><h3>Top 3 Contributions</h3></div>
       <div class="card-meta">
@@ -932,7 +935,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">25</span><h3>Role Promise</h3></div>
       <div class="card-meta">
@@ -958,7 +961,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">26</span><h3>Role Circle</h3></div>
       <div class="card-meta">
@@ -985,7 +988,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">27</span><h3>Formulating a Growth Point</h3></div>
       <div class="card-meta">
@@ -1012,7 +1015,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">28</span><h3>Leader or Follower?</h3></div>
       <div class="card-meta">
@@ -1038,7 +1041,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">29</span><h3>Filling in the Team Map</h3></div>
       <div class="card-meta">
@@ -1064,7 +1067,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">30</span><h3>When I Don't Play</h3></div>
       <div class="card-meta">
@@ -1156,7 +1159,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">33</span><h3>Mirror Conversation</h3></div>
       <div class="card-meta">
@@ -1183,7 +1186,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">34</span><h3>Broken Telephone Analysis</h3></div>
       <div class="card-meta">
@@ -1210,7 +1213,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">35</span><h3>Thank You Card</h3></div>
       <div class="card-meta">
@@ -1236,7 +1239,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">36</span><h3>Practising a Difficult Conversation</h3></div>
       <div class="card-meta">
@@ -1263,7 +1266,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">37</span><h3>Encouragement Challenge</h3></div>
       <div class="card-meta">
@@ -1290,7 +1293,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">38</span><h3>Silent vs. Verbal Communication</h3></div>
       <div class="card-meta">
@@ -1316,7 +1319,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">39</span><h3>Compliment Escalator</h3></div>
       <div class="card-meta">
@@ -1343,7 +1346,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">40</span><h3>Ask First</h3></div>
       <div class="card-meta">
@@ -1436,7 +1439,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">43</span><h3>Weekly Review</h3></div>
       <div class="card-meta">
@@ -1463,7 +1466,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">44</span><h3>Blind Guide</h3></div>
       <div class="card-meta">
@@ -1489,7 +1492,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">45</span><h3>Letter to the Team</h3></div>
       <div class="card-meta">
@@ -1515,7 +1518,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">46</span><h3>Power of the Circle</h3></div>
       <div class="card-meta">
@@ -1542,7 +1545,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">47</span><h3>Gratitude Circle</h3></div>
       <div class="card-meta">
@@ -1568,7 +1571,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">48</span><h3>Team Visualisation</h3></div>
       <div class="card-meta">
@@ -1595,7 +1598,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">49</span><h3>I Need You</h3></div>
       <div class="card-meta">
@@ -1622,7 +1625,7 @@
       </div>
     </div>
 
-    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
 
       <div class="card-header"><span class="card-num">50</span><h3>Closing Ceremony</h3></div>
       <div class="card-meta">

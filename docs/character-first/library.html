@@ -240,6 +240,14 @@
 </script>
 </head>
 <body>
+<script>
+  if(localStorage.getItem('cf_access')==='1'){
+    document.addEventListener('DOMContentLoaded',function(){
+      document.querySelectorAll('.premium-locked').forEach(function(el){el.classList.remove('premium-locked');});
+      document.querySelectorAll('.premium-lock,.premium-banner').forEach(function(el){el.style.display='none';});
+    });
+  }
+</script>
 
 <header class="header">
   <div class="logo">CF</div>

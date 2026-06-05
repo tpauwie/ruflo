@@ -581,10 +581,13 @@
 <body>
 <script>
   (function(){
-    if(!localStorage.getItem('cf_access')){
+    if(localStorage.getItem('cf_access')==='1'){
+      document.querySelectorAll('.premium-locked').forEach(function(el){el.classList.remove('premium-locked');});
+      document.querySelectorAll('.premium-lock').forEach(function(el){el.style.display='none';});
+    } else {
       var o=document.createElement('div');
       o.style.cssText='position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
-      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="access.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
+      o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium content</div><p style="color:#666;font-size:.9rem;max-width:320px;">This section is only available with an access code.</p><a href="../toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Enter access code</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Back to home</a>';
       document.body.prepend(o);
     }
   })();
@@ -927,7 +930,7 @@
 
   <!-- ========== MONTH 3 PLAYER ========== -->
   <div class="page premium-locked" id="m3">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Month 3 — Player Worksheet</div>
@@ -1094,7 +1097,7 @@
 
   <!-- ========== MONTH 4 PLAYER ========== -->
   <div class="page premium-locked" id="m4">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Month 4 — Player Worksheet</div>
@@ -1232,7 +1235,7 @@
 
   <!-- ========== MONTH 5 PLAYER ========== -->
   <div class="page premium-locked" id="m5">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Month 5 — Player Worksheet</div>
@@ -1391,7 +1394,7 @@
 
   <!-- ========== MONTH 6 PLAYER ========== -->
   <div class="page premium-locked" id="m6">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Month 6 — Player Worksheet</div>
@@ -1530,7 +1533,7 @@
 
   <!-- ========== MONTH 7 PLAYER ========== -->
   <div class="page premium-locked" id="m7">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Month 7 — Player Worksheet</div>
@@ -1672,7 +1675,7 @@
 
   <!-- ========== MONTH 8 PLAYER ========== -->
   <div class="page premium-locked" id="m8">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
     <div class="page-header">
       <div class="page-header-left">
         <div class="month-label">Month 8 — Player Worksheet</div>
