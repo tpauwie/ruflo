@@ -59,6 +59,10 @@
     .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid #1e1e1e; }
     .stat-num { font-size: 1.9rem; font-weight: 900; color: var(--orange); line-height: 1; }
     .stat-label { font-size: .78rem; color: #666; margin-top: .2rem; }
+    .hero-photo { margin-bottom: 1.8rem; border-radius: 12px; overflow: hidden; }
+    .hero-photo img { width: 100%; height: 220px; object-fit: cover; display: block; border-radius: 12px; }
+    .hero-photo-placeholder { width: 100%; height: 220px; background: #141414; border: 2px dashed #2a2a2a; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: #333; font-size: .78rem; }
+    .hero-photo-placeholder svg { opacity: .4; }
     .hero-visual { display: flex; flex-direction: column; gap: 12px; }
     .hero-card { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 18px 20px; transition: transform .3s; }
     .hero-card:hover { transform: translateY(-3px); }
@@ -200,7 +204,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left fade-in">
-    <div class="hero-tag">Sportontwikkeling voor U14 tot Senior</div>
+    <div class="hero-tag">Starten vanaf 14 jaar</div>
     <h1>Win the person.<br><span>Win the team.</span></h1>
     <p>Character First is een evidence-based karakterontwikkelingsprogramma voor jonge sporters. Wij bouwen aan mensen, niet alleen aan prestaties.</p>
     <div class="hero-btns">
@@ -215,6 +219,12 @@
     </div>
   </div>
   <div class="hero-visual fade-in" style="transition-delay:.2s">
+    <!-- Vervang dit blok door: <div class="hero-photo"><img src="jouwfoto.jpg" alt="Team"></div> -->
+    <div class="hero-photo-placeholder">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="13" r="6" stroke="#f05a28" stroke-width="2"/><path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#f05a28" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Voeg hier je teamfoto toe</span>
+      <span style="font-size:.7rem;color:#2a2a2a">Vervang door &lt;img src="jouwfoto.jpg"&gt;</span>
+    </div>
     <div class="hero-card accent">
       <div class="hero-card-top"><span class="hero-card-num">56</span><span class="hero-card-title">Wall Squat Challenge</span></div>
       <p class="hero-card-desc">Solo, daarna teamaanmoediging, daarna samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</p>
@@ -352,7 +362,7 @@
   <div class="footer-grid">
     <div>
       <div class="footer-logo">Character <span>First</span></div>
-      <p class="footer-desc">Evidence-based karakterontwikkeling voor sporters van U14 tot Senior. Win the person. Win the team.</p>
+      <p class="footer-desc">Evidence-based karakterontwikkeling voor sporters vanaf 14 jaar. Win the person. Win the team.</p>
     </div>
     <div class="footer-col">
       <h4>Programma</h4>
