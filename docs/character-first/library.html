@@ -210,23 +210,21 @@
     pointer-events: all;
   }
 
-  /* PREMIUM BANNER */
+  /* Hide individual locked cards - show access wall instead */
+  .grid .premium-locked { display: none; }
   .premium-banner {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, #1a0a05, #2d1108);
-    border: 1px solid rgba(240,90,40,0.4);
-    border-radius: 10px;
-    padding: 14px 20px;
-    font-size: 13px;
-    color: #ccc;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    background: #0a0a0a;
+    border: 2px solid #f05a28;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: #fff;
+    margin: 1rem 0;
   }
-  .premium-banner strong { color: white; }
-  .premium-banner a { color: var(--orange); font-weight: 600; text-decoration: none; }
-  .premium-banner a:hover { text-decoration: underline; }
+  .premium-banner strong { color: #f05a28; font-size: 1.3rem; display: block; margin-bottom: .5rem; }
+  .premium-banner p { color: #888; margin: .5rem 0 1.5rem; font-size: .95rem; }
+  .premium-banner a.unlock-btn { background: #f05a28; color: #fff; padding: .9rem 2.2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; display: inline-block; }
 </style>
 <script>/* cf_lang_persist */
   (function(){
@@ -294,7 +292,7 @@
 </div>
 
 <div class="results-bar">
-  <span>Toont <span id="results-count">59</span> van 59 oefeningen</span>
+  <span>5 gratis oefeningen · <a href="toegang.html" style="color:#f05a28;font-weight:700;">Ontgrendel alle 59 →</a></span>
   <button class="clear-btn" id="clear-btn" style="display:none">Filters wissen</button>
 </div>
 
@@ -373,7 +371,14 @@
     <div class="card-footer"><span class="card-link">Bekijk oefening</span></div>
   </a>
 
-  <div class="premium-banner">🔒 <strong>54 meer oefeningen beschikbaar</strong> — Voer je toegangscode in voor volledige toegang. <a href="toegang.html">Toegang krijgen →</a></div>
+  <div class="premium-banner">
+    <strong>🔒 54 oefeningen meer beschikbaar</strong>
+    <p>Voer je toegangscode in om alle 59 oefeningen te ontgrendelen — verdeeld over 7 thema's voor U14, U16 en Senioren.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="toegang.html" class="unlock-btn">Toegangscode invoeren</a>
+      <a href="mailto:info@characterfirst.be?subject=Toegang Character First bibliotheek" style="border:1.5px solid #333;color:#aaa;padding:.9rem 2.2rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.95rem;">Toegang aanvragen</a>
+    </div>
+  </div>
 
   <a class="card premium-locked" href="toegang.html"
      data-tags="zelfkennis reflectie individueel u16 senior lang">
