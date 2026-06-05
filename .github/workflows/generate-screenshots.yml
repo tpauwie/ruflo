@@ -1,0 +1,67 @@
+name: Generate Instagram Screenshots
+
+on:
+  workflow_dispatch:
+    inputs:
+      language:
+        description: 'Taal / Language'
+        required: true
+        default: 'nl'
+        type: choice
+        options:
+          - nl
+          - en
+          - both
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: claude/jolly-hamilton-RltzM
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: docs/character-first/tools
+        run: npm install
+
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgbm-dev libasound2 libatk1.0-0 libatk-bridge2.0-0 \
+            libcups2 libdrm2 libxkbcommon0 libxcomposite1 \
+            libxdamage1 libxfixes3 libxrandr2 libpango-1.0-0 \
+            libcairo2 libnss3 libnspr4 libdbus-1-3
+
+      - name: Generate NL screenshots
+        if: ${{ inputs.language == 'nl' || inputs.language == 'both' }}
+        working-directory: docs/character-first/tools
+        run: node screenshot-posts.mjs
+
+      - name: Generate EN screenshots
+        if: ${{ inputs.language == 'en' || inputs.language == 'both' }}
+        working-directory: docs/character-first/tools
+        run: node screenshot-posts.mjs --lang en
+
+      - name: Upload NL screenshots
+        if: ${{ inputs.language == 'nl' || inputs.language == 'both' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: CharacterFirst-Posts-NL
+          path: docs/character-first/tools/output-nl/
+          retention-days: 30
+
+      - name: Upload EN screenshots
+        if: ${{ inputs.language == 'en' || inputs.language == 'both' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: CharacterFirst-Posts-EN
+          path: docs/character-first/tools/output-en/
+          retention-days: 30
