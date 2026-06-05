@@ -93,6 +93,16 @@
   .rule.do li::before{content:"\2713";position:absolute;left:0;color:var(--growth);font-weight:800}
   .rule.dont li::before{content:"\2715";position:absolute;left:0;color:var(--ember);font-weight:800}
   @media(max-width:760px){.logo-grid,.rules{grid-template-columns:1fr}}
+  /* concepts gallery */
+  .concept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin:1.4rem 0 2.6rem}
+  .concept{position:relative;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1rem 1.3rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;transition:box-shadow .2s,transform .15s}
+  .concept:hover{box-shadow:0 10px 28px rgba(0,0,0,.08);transform:translateY(-3px)}
+  .concept.pick{border-color:var(--ignite);box-shadow:0 0 0 2px rgba(240,90,40,.18)}
+  .concept .stage{width:88px;height:88px;border-radius:20px;background:var(--mist);display:flex;align-items:center;justify-content:center;margin-bottom:.2rem}
+  .concept .no{font-family:'Archivo';font-weight:900;font-size:.74rem;color:var(--stone);letter-spacing:.08em}
+  .concept .cn{font-family:'Archivo';font-weight:800;font-size:.92rem;line-height:1.15}
+  .concept .cd{font-size:.75rem;color:var(--stone);line-height:1.45}
+  .concept .tagpick{position:absolute;top:-9px;font-family:'Archivo';font-weight:800;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ignite);padding:.2rem .6rem;border-radius:20px}
 
   /* ---------- COLOUR ---------- */
   .swatch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
@@ -214,15 +224,71 @@
 <!-- ===================== LOGO ===================== -->
 <section id="logos">
   <div class="eyebrow">02 — Logo</div>
-  <h2 class="sec-title">Het logo & zijn varianten</h2>
-  <p class="sec-sub">Het merkteken is een dubbele opwaartse chevron: twee bewegingen die samen omhoog wijzen — groei, momentum en de "eerste" plaats. Eén persoon die stijgt, een team dat volgt. Gebruik altijd één van de vier goedgekeurde varianten hieronder; nooit losse kleuren of effecten.</p>
+  <h2 class="sec-title">Kies jouw logo</h2>
+  <p class="sec-sub">Het merkteken vertrekt van de <strong>teamgreep</strong> — de onderarm-clasp uit de sport: "ik heb jou vast". Twee armen die samen één piek vormen: samen omhoog. Het zegt in één beeld waar Character First voor staat — <em>de persoon én het team</em>. Hieronder 10 richtingen op hetzelfde idee; kies je favoriet, dan verwerken we die overal op de site.</p>
+
+  <div class="concept-grid">
+    <!-- 1 -->
+    <div class="concept pick"><span class="tagpick">Voorstel</span>
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">01</div><div class="cn">Top Clasp</div><div class="cd">De greep vormt een piek — samen omhoog.</div>
+    </div>
+    <!-- 2 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1C2433"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#F05A28" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#F05A28" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">02</div><div class="cn">Navy + greep</div><div class="cd">De greep oplichtend in oranje op navy.</div>
+    </div>
+    <!-- 3 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><path d="M11 38 L24 21" stroke="#F05A28" stroke-width="4.6" fill="none" stroke-linecap="round"/><path d="M37 38 L24 21" stroke="#1C2433" stroke-width="4.6" fill="none" stroke-linecap="round"/><path d="M17.5 25.5 L30.5 32" stroke="#1C2433" stroke-width="4.6" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#F05A28" stroke-width="4.6" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">03</div><div class="cn">Twee armen</div><div class="cd">Eén arm oranje, één navy: persoon + team.</div>
+    </div>
+    <!-- 4 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><path d="M11 38 L24 21 L37 38" stroke="#1C2433" stroke-width="4.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#F05A28" stroke-width="4.4" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#F05A28" stroke-width="4.4" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">04</div><div class="cn">Open lijn</div><div class="cd">Zonder kader — luchtig en modern.</div>
+    </div>
+    <!-- 5 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><circle cx="24" cy="24" r="14" fill="none" stroke="#fff" stroke-width="2" opacity=".4"/><path d="M14 35 L24 22 L34 35" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 26 L29.5 31.5" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round"/><path d="M29.5 26 L18.5 31.5" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">05</div><div class="cn">Greep in kring</div><div class="cd">Het team als cirkel rond de greep.</div>
+    </div>
+    <!-- 6 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><circle cx="24" cy="24" r="15" fill="none" stroke="#1C2433" stroke-width="4"/><path d="M17.5 21 L30.5 27.5" stroke="#F05A28" stroke-width="4.4" fill="none" stroke-linecap="round"/><path d="M30.5 21 L17.5 27.5" stroke="#F05A28" stroke-width="4.4" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">06</div><div class="cn">Unity ring</div><div class="cd">De greep houdt de cirkel samen.</div>
+    </div>
+    <!-- 7 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M24 27 L24 13" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round"/><path d="M18 19 L24 13 L30 19" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 37 L24 27 L34 37" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 31.5 L29.5 36.5" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round"/><path d="M29.5 31.5 L18.5 36.5" stroke="#fff" stroke-width="3.8" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">07</div><div class="cn">Groei uit greep</div><div class="cd">Een pijl die uit de greep omhoog groeit.</div>
+    </div>
+    <!-- 8 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><path d="M24 6 L38 11 V23 C38 32 32 38 24 41 C16 38 10 32 10 23 V11 Z" fill="none" stroke="#1C2433" stroke-width="3.2" stroke-linejoin="round"/><path d="M16 29 L24 20 L32 29" stroke="#1C2433" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 24 L29 29" stroke="#F05A28" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M29 24 L19 29" stroke="#F05A28" stroke-width="3.4" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">08</div><div class="cn">Schild</div><div class="cd">Karakter & integriteit beschermen de band.</div>
+    </div>
+    <!-- 9 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1C2433"/><path d="M8 25 L18 25 L21.5 17 L26.5 33 L30 25 L40 25" stroke="#F05A28" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 21 L29.5 28" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M29.5 21 L18.5 28" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">09</div><div class="cn">Hartslag</div><div class="cd">De greep brengt karakter tot leven.</div>
+    </div>
+    <!-- 10 -->
+    <div class="concept">
+      <div class="stage"><svg width="66" height="66" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1C2433"/><path d="M16 18.5 L32 30.5" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M32 18.5 L16 30.5" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="no">10</div><div class="cn">Mini-greep</div><div class="cd">Ultra-minimaal — perfect als favicon/avatar.</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1.15rem;margin:.4rem 0 .2rem">Zo ziet het voorstel eruit, toegepast</h3>
+  <p class="sec-sub" style="margin-bottom:1rem">De vier verplichte varianten op basis van concept 01. Kies je een ander concept, dan passen we deze suite daaraan aan.</p>
 
   <div class="logo-grid">
     <!-- 1. PRIMARY -->
     <div class="logo-tile">
       <div class="logo-stage canvas">
         <div class="wm">
-          <svg width="52" height="52" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
+          <svg width="52" height="52" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
           <div class="txt" style="color:#1C2433">CHARACTER<small style="color:#F05A28">First</small></div>
         </div>
       </div>
@@ -232,7 +298,7 @@
     <div class="logo-tile">
       <div class="logo-stage dark">
         <div class="wm">
-          <svg width="52" height="52" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
+          <svg width="52" height="52" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
           <div class="txt" style="color:#fff">CHARACTER<small style="color:#F05A28">First</small></div>
         </div>
       </div>
@@ -242,7 +308,7 @@
     <div class="logo-tile">
       <div class="logo-stage light">
         <div class="wm">
-          <svg width="52" height="52" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1C2433"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
+          <svg width="52" height="52" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1C2433"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
           <div class="txt" style="color:#1C2433">CHARACTER<small style="color:#1C2433">First</small></div>
         </div>
       </div>
@@ -252,7 +318,7 @@
     <div class="logo-tile">
       <div class="logo-stage orange">
         <div class="wm">
-          <svg width="52" height="52" viewBox="0 0 48 48"><rect x="2" y="2" width="44" height="44" rx="12" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/></svg>
+          <svg width="52" height="52" viewBox="0 0 48 48"><rect x="2" y="2" width="44" height="44" rx="12" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
           <div class="txt" style="color:#fff">CHARACTER<small style="color:rgba(255,255,255,.85)">First</small></div>
         </div>
       </div>
@@ -265,19 +331,19 @@
   <p class="sec-sub" style="margin-bottom:1rem">Voor social avatars, favicon en app-iconen. Altijd vierkant, nooit uitgerekt.</p>
   <div class="mark-row">
     <div class="mark-tile">
-      <svg width="64" height="64" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
+      <svg width="64" height="64" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
       <span>Primair</span>
     </div>
     <div class="mark-tile" style="background:#1C2433">
-      <svg width="64" height="64" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
+      <svg width="64" height="64" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#F05A28"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
       <span style="color:#8893a6">Op navy</span>
     </div>
     <div class="mark-tile">
-      <svg width="64" height="64" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1C2433"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
+      <svg width="64" height="64" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1C2433"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
       <span>Mono zwart</span>
     </div>
     <div class="mark-tile" style="background:#F05A28">
-      <svg width="64" height="64" viewBox="0 0 48 48"><rect x="2" y="2" width="44" height="44" rx="12" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M13 27 L24 16 L35 27" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 34 L24 23 L35 34" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/></svg>
+      <svg width="64" height="64" viewBox="0 0 48 48"><rect x="2" y="2" width="44" height="44" rx="12" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M11 38 L24 21 L37 38" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 25.5 L30.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M30.5 25.5 L17.5 32" stroke="#fff" stroke-width="4.2" fill="none" stroke-linecap="round"/></svg>
       <span style="color:#fff">Mono wit</span>
     </div>
   </div>
@@ -295,7 +361,7 @@
     <div class="rule dont">
       <h4>Niet doen</h4>
       <ul>
-        <li>Het logo uitrekken, kantelen of de chevron herkleuren.</li>
+        <li>Het logo uitrekken, kantelen of de greep herkleuren.</li>
         <li>Schaduwen, gloed of verlopen toevoegen.</li>
         <li>De wordmark in een andere letter dan Archivo zetten.</li>
         <li>Oranje logo op rode of drukke achtergrond plaatsen.</li>
