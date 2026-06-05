@@ -3,127 +3,93 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Logo preview — Character First</title>
+<title>10 logo-concepten — Character First</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Archivo',system-ui,sans-serif;background:#FAF7F2;color:#1C2433;padding:48px 6%;line-height:1.5}
-  h1{font-size:1.8rem;font-weight:900;margin-bottom:.3rem}
-  .lead{color:#6E6A63;font-weight:600;font-size:.95rem;margin-bottom:1.6rem;max-width:660px}
-  .warn{background:#FDEEE8;border:1px solid #F9BBA3;color:#B03D15;border-radius:12px;padding:1rem 1.2rem;font-size:.86rem;font-weight:600;max-width:660px;margin-bottom:2rem}
-  h2{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:#F05A28;font-weight:800;margin:2.6rem 0 1rem}
-  .row{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:stretch}
-  .tile{border:1px solid #E4DFD6;border-radius:18px;overflow:hidden;background:#fff;width:240px}
-  .stage{height:230px;display:flex;align-items:center;justify-content:center;padding:1.4rem}
-  .stage.white{background:#fff}.stage.navy{background:#1C2433}.stage.orange{background:#F05A28}
-  .meta{padding:.9rem 1.1rem;border-top:1px solid #E4DFD6;font-size:.8rem;color:#6E6A63;font-weight:700}
-  .meta b{color:#1C2433;display:block;font-size:.9rem}
-  .note{margin-top:2.6rem;font-size:.86rem;color:#6E6A63;font-weight:600;max-width:660px}
+  h1{font-size:1.9rem;font-weight:900;margin-bottom:.3rem}
+  .lead{color:#6E6A63;font-weight:600;font-size:.95rem;margin-bottom:2.4rem;max-width:680px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.3rem}
+  .tile{border:1px solid #E4DFD6;border-radius:18px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .stage{height:190px;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:#FAF7F2}
+  .meta{padding:1rem 1.2rem;border-top:1px solid #E4DFD6}
+  .meta .no{font-size:.72rem;color:#F05A28;font-weight:800;letter-spacing:.1em}
+  .meta b{display:block;font-size:1rem;margin:.1rem 0 .25rem}
+  .meta p{font-size:.78rem;color:#6E6A63;font-weight:600;line-height:1.45}
+  .note{margin-top:2.6rem;font-size:.88rem;color:#6E6A63;font-weight:600;max-width:680px}
   .note b{color:#1C2433}
 </style>
 </head>
 <body>
-  <h1>Logo-preview — nieuwe poging</h1>
-  <p class="lead">Twee zelf-getekende stijlen van de teamgreep met cirkel, in de moodboard-kleuren. Deze keer met <b>duidelijke duim en aparte vingers</b> — dat maakt de handdruk herkenbaar. Kies een richting (A of B), dan verfijn ik die.</p>
+  <h1>10 logo-concepten</h1>
+  <p class="lead">Geen handen meer. Tien richtingen voor Character First in de moodboard-kleuren (oranje #F05A28 · navy #1C2433 · groen #1E8A5B), elk in een cirkel/badge. Kies gewoon een nummer — dan werk ik dat ene uit in alle varianten (kleur, donker, mono, favicon) en zet het in de brand board.</p>
 
-  <div class="warn">⚠ Ik teken dit blind (ik kan de pagina niet zelf bekijken). Lukt geen van beide? Dan is de zuiverste route: stuur jij het SVG-bestand van een handdruk-icoon dat je mooi vindt, en ik herkleur dat exact naar de merkkleuren + cirkel. (Let op de Flaticon-licentie voor logogebruik.)</p>
+  <div class="grid">
 
-  <!-- ===================== STIJL A ===================== -->
-  <h2>Stijl A — gevuld, met duim & vingers</h2>
-  <div class="row">
-
+    <!-- 1 -->
     <div class="tile">
-      <div class="stage white">
-        <svg width="170" height="170" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="56" fill="#fff"/>
-          <path d="M24 104 L52 62" stroke="#1C2433" stroke-width="26" stroke-linecap="round" fill="none"/>
-          <path d="M24 104 L52 62" stroke="#F05A28" stroke-width="20" stroke-linecap="round" fill="none"/>
-          <path d="M96 104 L68 62" stroke="#1C2433" stroke-width="26" stroke-linecap="round" fill="none"/>
-          <path d="M96 104 L68 62" stroke="#F05A28" stroke-width="20" stroke-linecap="round" fill="none"/>
-          <!-- back of gripping hand -->
-          <path d="M44 62 C42 47 51 36 66 38 C79 40 85 53 80 66 C76 76 64 79 56 75 C50 72 45 69 44 62 Z" fill="#1C2433"/>
-          <path d="M47 61 C45 49 53 41 66 43 C77 45 82 55 78 65 C74 73 64 76 56 72 C51 70 48 66 47 61 Z" fill="#F05A28"/>
-          <!-- thumb across the top -->
-          <path d="M40 56 L60 45" stroke="#1C2433" stroke-width="13" stroke-linecap="round" fill="none"/>
-          <path d="M40 56 L60 45" stroke="#F05A28" stroke-width="8" stroke-linecap="round" fill="none"/>
-          <!-- four fingers curling over the bottom edge -->
-          <path d="M52 70 L51 80" stroke="#1C2433" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M60 72 L59 82" stroke="#1C2433" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M68 71 L68 81" stroke="#1C2433" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M75 67 L77 77" stroke="#1C2433" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <circle cx="60" cy="60" r="56" fill="none" stroke="#1C2433" stroke-width="4"/>
-        </svg>
-      </div>
-      <div class="meta"><b>A · Primair</b>Volle kleur op licht</div>
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#F05A28"/><text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-family="Archivo" font-weight="900" font-size="40" fill="#fff">CF</text></svg></div>
+      <div class="meta"><span class="no">01</span><b>CF Monogram</b><p>De initialen — direct, herkenbaar, tijdloos.</p></div>
     </div>
 
+    <!-- 2 -->
     <div class="tile">
-      <div class="stage orange">
-        <svg width="170" height="170" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="56" fill="#F05A28"/>
-          <path d="M24 104 L52 62" stroke="#fff" stroke-width="26" stroke-linecap="round" fill="none"/>
-          <path d="M96 104 L68 62" stroke="#fff" stroke-width="26" stroke-linecap="round" fill="none"/>
-          <path d="M44 62 C42 47 51 36 66 38 C79 40 85 53 80 66 C76 76 64 79 56 75 C50 72 45 69 44 62 Z" fill="#fff"/>
-          <path d="M40 56 L60 45" stroke="#fff" stroke-width="13" stroke-linecap="round" fill="none"/>
-          <!-- separations cut in orange -->
-          <path d="M52 70 L51 80" stroke="#F05A28" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-          <path d="M60 72 L59 82" stroke="#F05A28" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-          <path d="M68 71 L68 81" stroke="#F05A28" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-          <path d="M75 67 L77 77" stroke="#F05A28" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-          <path d="M41 55 L59 46" stroke="#F05A28" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <circle cx="60" cy="60" r="56" fill="none" stroke="#fff" stroke-width="4"/>
-        </svg>
-      </div>
-      <div class="meta"><b>A · Mono wit</b>Knockout op oranje</div>
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#1C2433"/><text x="49" y="53" text-anchor="middle" dominant-baseline="central" font-family="Archivo" font-weight="900" font-size="62" fill="#fff">C</text><circle cx="60" cy="50" r="6.5" fill="#F05A28"/></svg></div>
+      <div class="meta"><span class="no">02</span><b>De C + vonk</b><p>De C van Character, met de oranje vonk als kern.</p></div>
     </div>
 
-  </div>
-
-  <!-- ===================== STIJL B ===================== -->
-  <h2>Stijl B — twee handen die elkaar vastgrijpen (lijn)</h2>
-  <div class="row">
-
+    <!-- 3 -->
     <div class="tile">
-      <div class="stage white">
-        <svg width="170" height="170" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="56" fill="#fff"/>
-          <path d="M24 104 L50 64" stroke="#1C2433" stroke-width="24" stroke-linecap="round" fill="none"/>
-          <path d="M24 104 L50 64" stroke="#F05A28" stroke-width="18" stroke-linecap="round" fill="none"/>
-          <path d="M96 104 L70 64" stroke="#1C2433" stroke-width="24" stroke-linecap="round" fill="none"/>
-          <path d="M96 104 L70 64" stroke="#F05A28" stroke-width="18" stroke-linecap="round" fill="none"/>
-          <!-- left hand hooks over right -->
-          <path d="M48 48 C66 40 78 52 70 68 C65 77 55 76 50 70" stroke="#1C2433" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M48 48 C66 40 78 52 70 68 C65 77 55 76 50 70" stroke="#F05A28" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <!-- right hand hooks over left -->
-          <path d="M72 48 C54 40 42 52 50 68 C55 77 65 76 70 70" stroke="#1C2433" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M72 48 C54 40 42 52 50 68 C55 77 65 76 70 70" stroke="#F05A28" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <circle cx="60" cy="60" r="56" fill="none" stroke="#1C2433" stroke-width="4"/>
-        </svg>
-      </div>
-      <div class="meta"><b>B · Primair</b>Twee handen, ineengehaakt</div>
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#F05A28"/><path d="M30 54 L50 34 L70 54" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 67 L50 47 L70 67" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/></svg></div>
+      <div class="meta"><span class="no">03</span><b>Opwaarts</b><p>Dubbele chevron — groei, momentum, vooruit.</p></div>
     </div>
 
+    <!-- 4 -->
     <div class="tile">
-      <div class="stage navy">
-        <svg width="170" height="170" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="56" fill="#1C2433"/>
-          <path d="M24 104 L50 64" stroke="#FAF7F2" stroke-width="24" stroke-linecap="round" fill="none"/>
-          <path d="M24 104 L50 64" stroke="#F05A28" stroke-width="18" stroke-linecap="round" fill="none"/>
-          <path d="M96 104 L70 64" stroke="#FAF7F2" stroke-width="24" stroke-linecap="round" fill="none"/>
-          <path d="M96 104 L70 64" stroke="#F05A28" stroke-width="18" stroke-linecap="round" fill="none"/>
-          <path d="M48 48 C66 40 78 52 70 68 C65 77 55 76 50 70" stroke="#FAF7F2" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M48 48 C66 40 78 52 70 68 C65 77 55 76 50 70" stroke="#F05A28" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M72 48 C54 40 42 52 50 68 C55 77 65 76 70 70" stroke="#FAF7F2" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M72 48 C54 40 42 52 50 68 C55 77 65 76 70 70" stroke="#F05A28" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <circle cx="60" cy="60" r="56" fill="none" stroke="#F05A28" stroke-width="4"/>
-        </svg>
-      </div>
-      <div class="meta"><b>B · Op navy</b>Donkere achtergrond</div>
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#1C2433"/><path d="M20 72 L40 44 L52 60 L64 40 L82 72 Z" fill="#fff"/><path d="M64 40 L73 53 L55 53 Z" fill="#F05A28"/></svg></div>
+      <div class="meta"><span class="no">04</span><b>Top bereiken</b><p>Bergtop — karakter, ambitie, de top halen.</p></div>
+    </div>
+
+    <!-- 5 -->
+    <div class="tile">
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#1C2433"/><path d="M50 22 L56 44 L78 50 L56 56 L50 78 L44 56 L22 50 L44 44 Z" fill="#F05A28"/></svg></div>
+      <div class="meta"><span class="no">05</span><b>Noordster</b><p>Waarden als kompas — excellentie en richting.</p></div>
+    </div>
+
+    <!-- 6 -->
+    <div class="tile">
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fff"/><circle cx="50" cy="50" r="34" fill="none" stroke="#1C2433" stroke-width="5"/><circle cx="50" cy="50" r="20" fill="none" stroke="#1C2433" stroke-width="5"/><circle cx="50" cy="50" r="8" fill="#F05A28"/></svg></div>
+      <div class="meta"><span class="no">06</span><b>Focus</b><p>De persoon in het hart, het team eromheen.</p></div>
+    </div>
+
+    <!-- 7 -->
+    <div class="tile">
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#F05A28"/><path d="M50 24 C61 38 67 46 60 58 C57 64 53 66 50 76 C47 66 43 64 40 58 C33 46 39 38 50 24 Z" fill="#fff"/><path d="M50 48 C55 53 55 59 52 63 C50 66 51 70 50 71 C46 66 47 59 50 48 Z" fill="#F05A28"/></svg></div>
+      <div class="meta"><span class="no">07</span><b>Vonk / vuur</b><p>"Ignite" — de energie en het vuur van karakter.</p></div>
+    </div>
+
+    <!-- 8 -->
+    <div class="tile">
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fff"/><path d="M50 22 L73 30 V52 C73 66 63 75 50 79 C37 75 27 66 27 52 V30 Z" fill="none" stroke="#1C2433" stroke-width="5" stroke-linejoin="round"/><text x="50" y="54" text-anchor="middle" dominant-baseline="central" font-family="Archivo" font-weight="900" font-size="30" fill="#F05A28">C</text></svg></div>
+      <div class="meta"><span class="no">08</span><b>Schild</b><p>Karakter & integriteit — bescherming en waarden.</p></div>
+    </div>
+
+    <!-- 9 -->
+    <div class="tile">
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fff"/><path d="M50 80 L50 46" stroke="#1C2433" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M50 58 C38 58 31 49 33 39 C45 39 52 48 50 58 Z" fill="#1E8A5B"/><path d="M50 50 C62 50 69 41 67 31 C55 31 48 40 50 50 Z" fill="#F05A28"/></svg></div>
+      <div class="meta"><span class="no">09</span><b>Groei</b><p>Spruit met twee blaadjes — groeien als mens.</p></div>
+    </div>
+
+    <!-- 10 -->
+    <div class="tile">
+      <div class="stage"><svg width="130" height="130" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#1C2433"/><circle cx="50" cy="50" r="27" fill="none" stroke="#F05A28" stroke-width="5"/><circle cx="50" cy="23" r="7.5" fill="#fff"/></svg></div>
+      <div class="meta"><span class="no">10</span><b>Baan + persoon</b><p>De individu op de cirkel van het team — in beweging.</p></div>
     </div>
 
   </div>
 
-  <p class="note"><b>Zeg me welke kant op:</b> "A is beter", "B is beter", of "allebei niet". Bij A kan ik de hand realistischer maken (meer vingerlijnen, schaduw); bij B kan ik de haken meer op handen laten lijken. En als je liever het exacte icoon wil: stuur het SVG-bestand, dan herkleur ik dat precies — sneller én scherper dan ik het blind kan natekenen.</p>
+  <p class="note"><b>Welk nummer spreekt je aan?</b> Zeg gewoon bv. "04" of "doe 02 en 06 eens met groen i.p.v. oranje". Dan werk ik dat concept volledig uit (volle kleur, op navy, mono zwart, mono wit, favicon + met de naam ernaast) en zet ik het in de brand board.</p>
 </body>
 </html>
