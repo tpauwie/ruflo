@@ -46,7 +46,6 @@
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
-    /* PAGE HEADER */
     #page-header { background: var(--ink); padding: 120px 5% 70px; }
     #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
     #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
@@ -56,7 +55,6 @@
     .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
     .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* INTRO STAT BAND */
     #why { background: var(--canvas); }
     .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; margin-top: 2rem; }
     .stat-card { background: var(--white); border-left: 4px solid var(--orange); padding: 1.5rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
@@ -65,7 +63,6 @@
     .stat-card p { font-size: .85rem; color: var(--stone); line-height: 1.6; }
     .stat-card .source { font-size: .72rem; color: #aaa; margin-top: .6rem; font-style: italic; }
 
-    /* TRACKS */
     #tracks { background: var(--white); }
     .tracks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-top: 2rem; }
     .track-card { border: 2px solid var(--line); border-radius: 14px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
@@ -83,7 +80,6 @@
     .track-cta.outline { background: transparent; color: var(--orange); border: 2px solid var(--orange); }
     .track-cta.outline:hover { background: var(--orange); color: var(--white); }
 
-    /* PILLARS */
     #pillars { background: var(--canvas); }
     .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-top: 2.5rem; }
     .pillar-card { background: var(--ink); color: var(--white); padding: 2rem 1.5rem; border-radius: 10px; text-align: center; border: 1px solid #1a1a1a; transition: transform .2s, box-shadow .2s; }
@@ -93,7 +89,6 @@
     .pillar-subtitle { font-size: .72rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .5rem; }
     .pillar-desc { font-size: .82rem; color: #777; line-height: 1.6; }
 
-    /* SCIENCE */
     #science { background: var(--white); }
     .science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.2rem; margin-top: 2rem; }
     .science-card { background: var(--canvas); border-radius: 10px; padding: 1.5rem; border: 1px solid var(--line); transition: box-shadow .2s; }
@@ -106,7 +101,6 @@
     .science-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
     .science-card p { font-size: .83rem; color: var(--stone); line-height: 1.6; }
 
-    /* CTA BAND */
     #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
     #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
     #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -116,7 +110,6 @@
     .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
     .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
 
-    /* FOOTER */
     footer { background: #050505; padding: 48px 5% 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
     .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
@@ -130,15 +123,11 @@
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
-<script>/* cf_lang_persist */
+<script>
   (function(){
-    if(localStorage.getItem('cf_lang')==='nl'){
-      window.location.replace('../coach-programma.html');
-    }
+    if(localStorage.getItem('cf_lang')==='nl') window.location.replace('../coach-programma.html');
     document.querySelectorAll('.lang-switch').forEach(function(a){
-      a.addEventListener('click',function(){
-        localStorage.setItem('cf_lang','nl');
-      });
+      a.addEventListener('click',function(){ localStorage.setItem('cf_lang','nl'); });
     });
   })();
 </script>
@@ -156,12 +145,11 @@
     <a href="planbuilder.html">Plan Builder</a>
     <a href="coach-program.html" class="active">Coach Development</a>
     <a href="../coach-programma.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
-    <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
   </div>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- PAGE HEADER -->
 <section id="page-header">
   <div class="breadcrumb"><a href="index.html">Home</a> / Coach Development</div>
   <h1>Coach Development</h1>
@@ -174,7 +162,6 @@
   </div>
 </section>
 
-<!-- WHY -->
 <section id="why">
   <div class="fade-in">
     <span class="section-tag">The reality</span>
@@ -182,34 +169,13 @@
     <p class="section-sub">Research shows the same thing time and again: the quality of the coach-athlete relationship is the strongest predictor of development and retention in young athletes — stronger than tactical knowledge or training style.</p>
   </div>
   <div class="stat-grid fade-in">
-    <div class="stat-card">
-      <div class="stat-num">35%</div>
-      <h4>Early dropout</h4>
-      <p>35% of young athletes quit before the age of 15. The main reason is coaching behaviour that fails to create safety and connection.</p>
-      <div class="source">Smoll &amp; Smith, 2009 — University of Washington</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">#1</div>
-      <h4>Relationship as foundation</h4>
-      <p>The coach-athlete relationship is the single strongest predictor of enjoyment, motivation, and persistence in young athletes.</p>
-      <div class="source">Jowett &amp; Ntoumanis, 2004 — Scandinavian Journal of Medicine &amp; Science in Sports, 14(6), 402–410</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">2%</div>
-      <h4>Mental attention</h4>
-      <p>Coaches spend on average less than 2% of training time on mental and interpersonal skills, while 90% recognise these as equally important.</p>
-      <div class="source">Weinberg &amp; Gould, 2019 — Foundations of Sport Psychology</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">3x</div>
-      <h4>Motivational Climate</h4>
-      <p>Athletes in a mastery climate (task-oriented) show three times more intrinsic motivation and long-term engagement than athletes in a performance climate.</p>
-      <div class="source">Ames, 1992 — Journal of Educational Psychology</div>
-    </div>
+    <div class="stat-card"><div class="stat-num">35%</div><h4>Early dropout</h4><p>35% of young athletes quit before the age of 15. The main reason is coaching behaviour that fails to create safety and connection.</p><div class="source">Smoll &amp; Smith, 2009 — University of Washington</div></div>
+    <div class="stat-card"><div class="stat-num">#1</div><h4>Relationship as foundation</h4><p>The coach-athlete relationship is the single strongest predictor of enjoyment, motivation, and persistence in young athletes.</p><div class="source">Jowett &amp; Ntoumanis, 2004 — Scandinavian Journal of Medicine &amp; Science in Sports, 14(6), 402–410</div></div>
+    <div class="stat-card"><div class="stat-num">2%</div><h4>Mental attention</h4><p>Coaches spend on average less than 2% of training time on mental and interpersonal skills, while 90% recognise these as equally important.</p><div class="source">Weinberg &amp; Gould, 2019 — Foundations of Sport Psychology</div></div>
+    <div class="stat-card"><div class="stat-num">3x</div><h4>Motivational Climate</h4><p>Athletes in a mastery climate show three times more intrinsic motivation and long-term engagement than athletes in a performance climate.</p><div class="source">Ames, 1992 — Journal of Educational Psychology</div></div>
   </div>
 </section>
 
-<!-- TRACKS -->
 <section id="tracks">
   <div class="fade-in">
     <span class="section-tag">Programs</span>
@@ -218,11 +184,7 @@
   </div>
   <div class="tracks-grid fade-in">
     <div class="track-card">
-      <div class="track-header">
-        <div class="track-badge">10 months</div>
-        <h3>Coach Year</h3>
-        <p>Deep personal and professional development across a full season. One module per month with individual guidance.</p>
-      </div>
+      <div class="track-header"><div class="track-badge">10 months</div><h3>Coach Year</h3><p>Deep personal and professional development across a full season. One module per month with individual guidance.</p></div>
       <div class="track-body">
         <ul class="track-features">
           <li>10 monthly modules — each covering a different competency domain</li>
@@ -236,11 +198,7 @@
       </div>
     </div>
     <div class="track-card">
-      <div class="track-header">
-        <div class="track-badge">8 contact sessions</div>
-        <h3>Coach Month</h3>
-        <p>For coaches who want to grow but have little time. One powerful 90-minute session per month — directly applicable.</p>
-      </div>
+      <div class="track-header"><div class="track-badge">8 contact sessions</div><h3>Coach Month</h3><p>For coaches who want to grow but have little time. One powerful 90-minute session per month — directly applicable.</p></div>
       <div class="track-body">
         <ul class="track-features">
           <li>8 sessions of 90 minutes throughout the season</li>
@@ -256,7 +214,6 @@
   </div>
 </section>
 
-<!-- PILLARS -->
 <section id="pillars">
   <div class="fade-in">
     <span class="section-tag">Competencies</span>
@@ -264,46 +221,15 @@
     <p class="section-sub">Based on the ICCE Global Coach Framework (Côté &amp; Gilbert, 2009) and Cushion et al. (2010). Each domain is essential for effective youth coaching.</p>
   </div>
   <div class="pillars-grid fade-in">
-    <div class="pillar-card">
-      <div class="pillar-icon">&#129309;</div>
-      <div class="pillar-subtitle">Pillar 1</div>
-      <div class="pillar-title">Relationship &amp; Connection</div>
-      <p class="pillar-desc">The coach-athlete relationship as foundation. Building trust, creating psychological safety, attachment in sports development.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">&#127919;</div>
-      <div class="pillar-subtitle">Pillar 2</div>
-      <div class="pillar-title">Motivational Climate</div>
-      <p class="pillar-desc">Consciously choosing mastery vs. performance climate. Stimulating task orientation, supporting autonomy, mistakes as learning opportunities.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">&#128172;</div>
-      <div class="pillar-subtitle">Pillar 3</div>
-      <div class="pillar-title">Communication &amp; Feedback</div>
-      <p class="pillar-desc">Asking questions instead of telling. Building a feedback culture, listening, specific vs. generic feedback.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">&#128302;</div>
-      <div class="pillar-subtitle">Pillar 4</div>
-      <div class="pillar-title">Personal Growth</div>
-      <p class="pillar-desc">Self-knowledge, values and identity as a coach. Intrapersonal awareness, reflective practice and growth mindset.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">&#127891;</div>
-      <div class="pillar-subtitle">Pillar 5</div>
-      <div class="pillar-title">Positive Youth Development</div>
-      <p class="pillar-desc">Age-appropriate guidance, LTAD framework, seeing the whole person, psychological safety within the group.</p>
-    </div>
-    <div class="pillar-card" style="border-color:rgba(240,90,40,.25)">
-      <div class="pillar-icon">&#9889;</div>
-      <div class="pillar-subtitle">Pillar 6</div>
-      <div class="pillar-title">Coach Wellbeing</div>
-      <p class="pillar-desc">Balance, burnout prevention, energy management. Sustainable coaching without losing yourself in the role.</p>
-    </div>
+    <div class="pillar-card"><div class="pillar-icon">&#129309;</div><div class="pillar-subtitle">Pillar 1</div><div class="pillar-title">Relationship &amp; Connection</div><p class="pillar-desc">The coach-athlete relationship as foundation. Building trust, creating psychological safety, attachment in sports development.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#127919;</div><div class="pillar-subtitle">Pillar 2</div><div class="pillar-title">Motivational Climate</div><p class="pillar-desc">Consciously choosing mastery vs. performance climate. Stimulating task orientation, supporting autonomy, mistakes as learning opportunities.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#128172;</div><div class="pillar-subtitle">Pillar 3</div><div class="pillar-title">Communication &amp; Feedback</div><p class="pillar-desc">Asking questions instead of telling. Building a feedback culture, listening, specific vs. generic feedback.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#128302;</div><div class="pillar-subtitle">Pillar 4</div><div class="pillar-title">Personal Growth</div><p class="pillar-desc">Self-knowledge, values and identity as a coach. Intrapersonal awareness, reflective practice and growth mindset.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#127891;</div><div class="pillar-subtitle">Pillar 5</div><div class="pillar-title">Positive Youth Development</div><p class="pillar-desc">Age-appropriate guidance, LTAD framework, seeing the whole person, psychological safety within the group.</p></div>
+    <div class="pillar-card" style="border-color:rgba(240,90,40,.25)"><div class="pillar-icon">&#9889;</div><div class="pillar-subtitle">Pillar 6</div><div class="pillar-title">Coach Wellbeing</div><p class="pillar-desc">Balance, burnout prevention, energy management. Sustainable coaching without losing yourself in the role.</p></div>
   </div>
 </section>
 
-<!-- SCIENCE -->
 <section id="science">
   <div class="fade-in">
     <span class="section-tag">Evidence-based</span>
@@ -311,38 +237,21 @@
     <p class="section-sub">Coach Development is not opinion. Every theme is based on peer-reviewed literature on coaching effectiveness and youth development.</p>
   </div>
   <div class="science-grid fade-in">
-    <div class="science-card">
-      <span class="sci-tier sr">Systematic Review</span>
-      <div class="sci-author">Côté &amp; Gilbert, 2009</div>
-      <h4>An Integrative Definition of Coaching Effectiveness</h4>
-      <p>Definition of coaching effectiveness through three knowledge domains: professional, interpersonal and intrapersonal. Foundation of the ICCE Global Coach Framework.</p>
-    </div>
-    <div class="science-card">
-      <span class="sci-tier rct">Longitudinal Study</span>
-      <div class="sci-author">Jowett &amp; Ntoumanis, 2004</div>
-      <h4>The Coach-Athlete Relationship Questionnaire</h4>
-      <p>The coach-athlete relationship — measured via closeness, commitment and complementarity — is the strongest predictor of athletic performance and sport enjoyment.</p>
-    </div>
-    <div class="science-card">
-      <span class="sci-tier qual">RCT Study</span>
-      <div class="sci-author">Smoll &amp; Smith, 2009</div>
-      <h4>Coaching Behavior Research and Intervention</h4>
-      <p>Coaches who completed a mastery-oriented coaching program saw significantly lower dropout rates and higher sport enjoyment scores in their athletes compared to the control group.</p>
-    </div>
+    <div class="science-card"><span class="sci-tier sr">Systematic Review</span><div class="sci-author">Côté &amp; Gilbert, 2009</div><h4>An Integrative Definition of Coaching Effectiveness</h4><p>Definition of coaching effectiveness through three knowledge domains: professional, interpersonal and intrapersonal. Foundation of the ICCE Global Coach Framework.</p></div>
+    <div class="science-card"><span class="sci-tier rct">Longitudinal Study</span><div class="sci-author">Jowett &amp; Ntoumanis, 2004</div><h4>The Coach-Athlete Relationship Questionnaire</h4><p>The coach-athlete relationship — measured via closeness, commitment and complementarity — is the strongest predictor of athletic performance and sport enjoyment.</p></div>
+    <div class="science-card"><span class="sci-tier qual">RCT Study</span><div class="sci-author">Smoll &amp; Smith, 2009</div><h4>Coaching Behavior Research and Intervention</h4><p>Coaches who completed a mastery-oriented coaching program saw significantly lower dropout rates and higher sport enjoyment scores in their athletes compared to the control group.</p></div>
   </div>
 </section>
 
-<!-- CTA BAND -->
 <section id="cta-band">
   <h2>Ready to grow as a coach?</h2>
   <p>Choose the track that suits you — deep development over a full year or one powerful session per month.</p>
   <div class="cta-btns">
-    <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="btn-white">Start with Coach Year</a>
-    <a href="mailto:info@characterfirst.be?subject=Coach Month request" class="btn-white-outline">Start with Coach Month</a>
+    <a href="contact.html" class="btn-white">Start with Coach Year</a>
+    <a href="contact.html" class="btn-white-outline">Start with Coach Month</a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
@@ -367,7 +276,7 @@
       <a href="planbuilder.html">Plan Builder</a>
       <a href="worksheets.html">Worksheets</a>
       <a href="library.html">Library</a>
-      <a href="mailto:info@characterfirst.be?subject=Character First">Contact</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
