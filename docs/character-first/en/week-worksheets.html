@@ -211,6 +211,37 @@
       .pages { margin: 0; padding: 0; max-width: 100%; gap: 0; }
       .page { box-shadow: none; border-radius: 0; margin: 0; padding: 28px 36px; min-height: auto; }
     }
+    /* Premium gate */
+    #premium-wall { position: relative; }
+    #premium-wall::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      background: rgba(250,247,242,.55);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .premium-gate-banner {
+      position: sticky;
+      top: 72px;
+      z-index: 20;
+      background: #1C2433;
+      border-bottom: 3px solid #F05A28;
+      padding: 1.2rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .pgb-left { display: flex; align-items: center; gap: .8rem; }
+    .pgb-lock { font-size: 1.4rem; }
+    .pgb-text strong { font-family: 'Archivo', sans-serif; font-weight: 800; color: #fff; font-size: .95rem; display: block; }
+    .pgb-text span { font-size: .8rem; color: #8a94a8; }
+    .pgb-btn { background: #F05A28; color: #fff; padding: .65rem 1.5rem; border-radius: 6px; text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: .85rem; white-space: nowrap; transition: background .2s; }
+    .pgb-btn:hover { background: #D44A1A; }
   </style>
 <script>/* cf_lang_persist */
   (function(){
@@ -453,6 +484,19 @@
     <span>Character First — Moderator Guide Day 1</span>
     <span>CONFIDENTIAL — For moderator only</span>
   </div>
+</div>
+
+<!-- PREMIUM GATE -->
+<div id="premium-wall">
+<div class="premium-gate-banner">
+  <div class="pgb-left">
+    <span class="pgb-lock">🔒</span>
+    <div class="pgb-text">
+      <strong>Days 2–5 — Full Access</strong>
+      <span>Contact us to get access to all 10 worksheets (Days 2–5, player + moderator).</span>
+    </div>
+  </div>
+  <a href="mailto:info@characterfirst.be?subject=Week%20Worksheets%20%E2%80%94%20Full%20Access" class="pgb-btn">Request access →</a>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -1230,6 +1274,7 @@
   </div>
 </div>
 
+</div><!-- end premium-wall -->
 </div><!-- end .pages -->
 </body>
 </html>
