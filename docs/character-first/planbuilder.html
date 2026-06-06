@@ -8,34 +8,39 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0a0a0a;
+      --ink: #1C2433;
       --orange: #f05a28;
       --orange-light: #ff7a4d;
       --white: #ffffff;
+      --canvas: #FAF7F2;
+      --line: #E4DFD6;
+      --stone: #6E6A63;
       --gray-900: #111111;
       --gray-800: #1a1a1a;
       --gray-700: #2a2a2a;
       --gray-600: #3a3a3a;
       --gray-400: #666666;
       --gray-200: #cccccc;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
+      background: var(--ink);
       color: var(--white);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
       min-height: 100vh;
     }
+    h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
 
     /* NAV */
     nav.top-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(10,10,10,0.95);
+      background: rgba(28,36,51,0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(240,90,40,0.2);
       padding: 0 2rem;
@@ -75,7 +80,7 @@
     .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
 
     @media (max-width: 600px) {
-      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--black); flex-direction: column; padding: 20px; gap: 1rem; border-bottom: 1px solid var(--gray-700); z-index: 99; }
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 20px; gap: 1rem; border-bottom: 1px solid var(--gray-700); z-index: 99; }
       .nav-links.open { display: flex; }
       .hamburger { display: flex; }
       .page-wrap { padding: 80px 1rem 3rem; }
@@ -335,7 +340,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(10,10,10,0.75);
+      background: rgba(28,36,51,0.75);
       border-radius: 13px;
       z-index: 10;
       pointer-events: all;
@@ -471,6 +476,9 @@
       .slot.locked { display: none; }
     }
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>/* cf_lang_persist */
   (function(){
     if(localStorage.getItem('cf_lang')==='en'){
@@ -487,7 +495,10 @@
 <body>
 
 <nav class="top-nav">
-  <a class="nav-logo" href="index.html">Character <span>First</span></a>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+  <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+  <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+</a>
   <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="library.html">Bibliotheek</a>
