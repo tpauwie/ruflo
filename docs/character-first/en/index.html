@@ -3,329 +3,559 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home — Character First</title>
+  <title>Character First — Win the person. Win the team.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --ink: #1C2433; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
-      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
-      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --ink:#1C2433; --white:#ffffff; --orange:#F05A28; --orange2:#D44A1A;
+      --canvas:#FAF7F2; --mist:#F0ECE4; --stone:#6E6A63; --line:#E4DFD6;
+      --growth:#1E8A5B; --focus:#2F6FB0;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;font-weight:900;line-height:1.1}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 64px; background: rgba(28,36,51,.94);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
-    .nav-logo span { color: var(--orange); }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
-    .nav-cta:hover { background: var(--orange2) !important; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
-    @media (max-width: 768px) {
-      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
-      .nav-links.open { display: flex; }
-      .hamburger { display: flex; }
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;background:rgba(28,36,51,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;padding:0 5%;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-logo{text-decoration:none;display:flex;align-items:center;gap:10px}
+    .nav-links{display:flex;gap:1.6rem;align-items:center}
+    .nav-links a{color:#aaa;text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s}
+    .nav-links a:hover{color:#fff}
+    .lang-pill{color:#777 !important;font-size:.78rem !important;border:1px solid #2e3a50;padding:.28rem .7rem;border-radius:4px}
+    .lang-pill:hover{border-color:#F05A28 !important;color:#F05A28 !important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;display:block}
+    @media(max-width:600px){
+      .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--ink);flex-direction:column;padding:20px 5%;gap:1rem;border-bottom:1px solid rgba(255,255,255,.08)}
+      .nav-links.open{display:flex}
+      .hamburger{display:flex}
     }
 
-    /* FADE */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
+    .fade-in{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:none}
 
-    /* HERO */
-    #hero {
-      min-height: 100vh; background: var(--ink);
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-      align-items: center; padding: 120px 5% 80px;
-    }
-    .hero-tag { display: inline-flex; align-items: center; gap: .5rem; background: rgba(240,90,40,.15); border: 1px solid rgba(240,90,40,.35); color: var(--orange); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 20px; margin-bottom: 1.6rem; }
-    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
-    #hero h1 { font-size: clamp(2.4rem, 4.5vw, 3.8rem); color: var(--white); font-weight: 900; line-height: 1.08; margin-bottom: 1.4rem; }
-    #hero h1 span { color: var(--orange); }
-    #hero p { font-size: 1.1rem; color: #999; max-width: 500px; margin-bottom: 2.2rem; line-height: 1.75; }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-    .btn-primary { background: var(--orange); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: background .2s, transform .15s; display: inline-block; }
-    .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
-    .btn-ghost { border: 1.5px solid #333; color: #aaa; padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: .95rem; transition: all .2s; display: inline-block; }
-    .btn-ghost:hover { border-color: #666; color: var(--white); }
-    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid #1e1e1e; }
-    .stat-num { font-size: 1.9rem; font-weight: 900; color: var(--orange); line-height: 1; }
-    .stat-label { font-size: .78rem; color: #666; margin-top: .2rem; }
-    .hero-visual { display: flex; flex-direction: column; gap: 12px; }
-    .hero-card { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 18px 20px; transition: transform .3s; }
-    .hero-card:hover { transform: translateY(-3px); }
-    .hero-card.accent { border-color: rgba(240,90,40,.3); }
-    .hero-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .hero-card-num { background: var(--orange); color: var(--white); font-size: 11px; font-weight: 900; padding: 2px 7px; border-radius: 3px; }
-    .hero-card-title { font-size: 14px; font-weight: 800; color: var(--white); }
-    .hero-card-desc { font-size: 12px; color: #666; line-height: 1.6; margin-bottom: 10px; }
-    .hero-card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-    .htag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 8px; }
-    .htag-theme { background: rgba(240,90,40,.15); color: var(--orange); border: 1px solid rgba(240,90,40,.25); }
-    .htag-age { background: rgba(26,122,74,.15); color: #1a7a4a; border: 1px solid rgba(26,122,74,.25); }
-    .htag-time { background: #1e1e1e; color: #888; border: 1px solid #2a2a2a; }
-    @media (max-width: 900px) { #hero { grid-template-columns: 1fr; } .hero-visual { display: none; } }
+    #hero{min-height:100vh;background:var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:clamp(100px,14vh,130px) 5% 80px}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(240,90,40,.14);border:1px solid rgba(240,90,40,.3);color:var(--orange);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.34rem .9rem;border-radius:20px;margin-bottom:1.6rem}
+    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange)}
+    #hero h1{font-size:clamp(2.4rem,4.5vw,3.8rem);color:#fff;line-height:1.06;margin-bottom:1.3rem}
+    #hero h1 em{color:var(--orange);font-style:normal}
+    #hero .lead{font-size:1.05rem;color:#8a94a8;max-width:480px;margin-bottom:2rem;line-height:1.75}
+    .hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:2.8rem}
+    .btn-primary{background:var(--orange);color:#fff;padding:.85rem 1.9rem;border-radius:7px;text-decoration:none;font-family:'Archivo',sans-serif;font-weight:800;font-size:.92rem;transition:background .2s,transform .15s;display:inline-block}
+    .btn-primary:hover{background:var(--orange2);transform:translateY(-2px)}
+    .btn-ghost{border:1.5px solid #2e3a50;color:#8a94a8;padding:.85rem 1.9rem;border-radius:7px;text-decoration:none;font-weight:600;font-size:.92rem;transition:all .2s;display:inline-block}
+    .btn-ghost:hover{border-color:#4a5a70;color:#fff}
+    .hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07)}
+    .stat-num{font-family:'Archivo',sans-serif;font-size:1.9rem;font-weight:900;color:var(--orange);line-height:1}
+    .stat-label{font-size:.76rem;color:#556;margin-top:.25rem}
 
-    /* MISSION & VISION */
-    #mission { background: var(--ink); padding: clamp(60px,8vw,100px) 5%; }
-    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
-    .mv-card { padding: 2.5rem; }
-    .mv-card.mission-card { background: var(--orange); }
-    .mv-card.vision-card { background: #141414; border: 1px solid #222; }
-    .mv-label { font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .8rem; }
-    .mv-card.mission-card .mv-label { color: rgba(255,255,255,.7); }
-    .mv-card.vision-card .mv-label { color: var(--orange); }
-    .mv-card h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 900; line-height: 1.35; color: var(--white); margin-bottom: .8rem; }
-    .mv-card.mission-card p { color: rgba(255,255,255,.85); font-size: .92rem; line-height: 1.75; }
-    .mv-card.vision-card p { color: #888; font-size: .92rem; line-height: 1.75; }
-    .mv-draft { display: inline-block; background: rgba(255,255,255,.18); color: var(--white); font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
-    @media (max-width: 640px) { .mv-grid { grid-template-columns: 1fr; } }
+    .hero-cards{display:flex;flex-direction:column;gap:10px}
+    .hcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;transition:transform .3s,border-color .3s}
+    .hcard:hover{transform:translateY(-3px);border-color:rgba(240,90,40,.25)}
+    .hcard.featured{border-color:rgba(240,90,40,.3);background:rgba(240,90,40,.05)}
+    .hcard-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+    .hcard-num{background:var(--orange);color:#fff;font-size:10px;font-weight:900;font-family:'Archivo',sans-serif;padding:2px 6px;border-radius:3px;flex-shrink:0}
+    .hcard-title{font-size:13px;font-weight:700;color:#fff;font-family:'Archivo',sans-serif}
+    .hcard-desc{font-size:11.5px;color:#55637a;line-height:1.55;margin-bottom:8px}
+    .hcard-tags{display:flex;gap:5px;flex-wrap:wrap}
+    .htag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px}
 
-    /* EXPLORE SECTION */
-    #explore { padding: clamp(60px,8vw,100px) 5%; background: var(--canvas); }
-    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
-    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
-    h2 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
-    .section-sub { font-size: 1.05rem; color: var(--stone); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
-    .explore-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
-    .explore-card { background: var(--white); border-radius: 12px; border: 1px solid var(--line); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: box-shadow .2s, transform .15s; }
-    .explore-card:hover { box-shadow: 0 10px 32px rgba(0,0,0,.1); transform: translateY(-4px); }
-    .explore-card-top { background: var(--ink); padding: 24px 24px 20px; }
-    .explore-icon { font-size: 2rem; margin-bottom: .6rem; }
-    .explore-card-top h3 { font-size: 1.05rem; font-weight: 900; color: var(--white); margin-bottom: .3rem; }
-    .explore-card-top p { font-size: .82rem; color: #666; line-height: 1.5; }
-    .explore-card-body { padding: 20px 24px; flex: 1; }
-    .explore-card-body p { font-size: .87rem; color: var(--stone); line-height: 1.65; margin-bottom: 1rem; }
-    .explore-link { font-size: .83rem; font-weight: 700; color: var(--orange); display: inline-flex; align-items: center; gap: .3rem; }
-    .explore-link::after { content: '\2192'; }
-    .explore-card.featured .explore-card-top { background: var(--orange); }
+    @media(max-width:900px){#hero{grid-template-columns:1fr}.hero-cards{display:none}}
+    @media(max-width:600px){#hero{padding:90px 5% 60px}#hero h1{font-size:2.2rem}.hero-btns{flex-direction:column}.btn-primary,.btn-ghost{text-align:center;min-height:46px;display:flex;align-items:center;justify-content:center}.hero-stats{gap:1.4rem}}
 
-    /* WAITLIST SECTION */
-    #waitlist { background: var(--ink); padding: clamp(60px,8vw,100px) 5%; }
-    .waitlist-inner { max-width: 560px; margin: 0 auto; text-align: center; }
-    #waitlist .section-tag { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); }
-    #waitlist h2 { color: var(--white); margin-bottom: .7rem; }
-    #waitlist .section-sub { margin: 0 auto 2.2rem; }
-    .waitlist-form { display: flex; gap: .7rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
-    .waitlist-input {
-      flex: 1 1 240px; background: #1C2433; border: 1px solid #2a2a2a;
-      color: var(--white); font-size: .95rem; padding: .75rem 1.1rem;
-      border-radius: 7px; outline: none; transition: border-color .2s;
-      font-family: inherit; min-width: 0;
-    }
-    .waitlist-input:focus { border-color: var(--orange); }
-    .waitlist-input::placeholder { color: #444; }
-    .waitlist-btn {
-      background: var(--orange); color: var(--white); border: none;
-      padding: .75rem 1.6rem; border-radius: 7px; font-size: .95rem;
-      font-weight: 800; cursor: pointer; transition: background .2s, transform .15s;
-      font-family: inherit; white-space: nowrap;
-    }
-    .waitlist-btn:hover { background: var(--orange2); transform: translateY(-2px); }
-    .waitlist-btn:active { transform: none; }
-    .waitlist-trust { display: flex; gap: 1.4rem; justify-content: center; flex-wrap: wrap; }
-    .trust-item { font-size: .78rem; color: #444; display: flex; align-items: center; gap: .35rem; }
-    .trust-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); opacity: .6; flex-shrink: 0; }
+    .eyebrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.9rem}
+    .sec-title{font-size:clamp(1.7rem,3.3vw,2.5rem);margin-bottom:.65rem}
+    .sec-sub{font-size:1.02rem;color:var(--stone);max-width:580px;line-height:1.7;margin-bottom:2.4rem}
 
-    /* CTA BAND */
-    #cta-band { background: var(--ink); padding: 80px 5%; text-align: center; border-top: 1px solid #161616; }
-    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: .8rem; }
-    #cta-band p { color: #555; font-size: 1.05rem; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-orange { background: var(--orange); color: var(--white); padding: .9rem 2.2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: background .2s, transform .15s; }
-    .btn-orange:hover { background: var(--orange2); transform: translateY(-2px); }
-    .btn-outline { border: 1.5px solid #333; color: #aaa; padding: .9rem 2.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: .95rem; transition: all .2s; }
-    .btn-outline:hover { border-color: #666; color: var(--white); }
+    #mission{background:var(--ink);padding:clamp(56px,7vw,96px) 5%}
+    .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2.8rem;border-radius:16px;overflow:hidden}
+    .mv-card{padding:2.5rem}
+    .mv-card.mc{background:var(--orange)}
+    .mv-card.vc{background:#151d2b;border:1px solid rgba(255,255,255,.06)}
+    .mv-lbl{font-family:'Archivo',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem}
+    .mc .mv-lbl{color:rgba(255,255,255,.7)}
+    .vc .mv-lbl{color:var(--orange)}
+    .mv-card h3{font-size:clamp(1.05rem,1.8vw,1.3rem);color:#fff;margin-bottom:.7rem;line-height:1.35}
+    .mc p{color:rgba(255,255,255,.85);font-size:.92rem;line-height:1.75}
+    .vc p{color:#6e7a8e;font-size:.92rem;line-height:1.75}
+    @media(max-width:640px){.mv-grid{grid-template-columns:1fr}}
 
-    /* FOOTER */
-    footer { background: #050505; padding: 48px 5% 32px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
-    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
-    .footer-logo span { color: var(--orange); }
-    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
-    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
-    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
-    .footer-col a:hover { color: var(--white); }
-    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
-    .footer-bottom p { font-size: .78rem; color: #333; }
-    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    #library-preview{padding:clamp(56px,7vw,96px) 5%;background:var(--canvas)}
+    .age-toggle{display:inline-flex;background:var(--mist);border-radius:8px;padding:3px;margin-bottom:2.4rem;gap:2px}
+    .age-btn{padding:.4rem 1.1rem;border-radius:6px;border:none;background:transparent;font-family:'Archivo',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;color:var(--stone);transition:all .2s}
+    .age-btn.active{background:#fff;color:var(--ink);box-shadow:0 1px 6px rgba(0,0,0,.1)}
+    .ex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .ex-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem;transition:box-shadow .2s,transform .18s}
+    .ex-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-3px)}
+    .ex-num{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.1rem;color:var(--orange)}
+    .ex-title{font-family:'Archivo',sans-serif;font-weight:800;font-size:.95rem;color:var(--ink);line-height:1.25}
+    .ex-desc{font-size:.82rem;color:var(--stone);line-height:1.55;flex:1}
+    .ex-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto}
+    .ex-tag{font-size:.72rem;font-weight:700;padding:.22rem .6rem;border-radius:5px;color:#fff}
+    .ex-time{font-size:.72rem;font-weight:600;color:var(--stone);background:var(--mist);padding:.22rem .6rem;border-radius:5px}
+    .lib-cta{margin-top:2rem;text-align:center}
+    .lib-link{font-family:'Archivo',sans-serif;font-weight:800;font-size:.92rem;color:var(--orange);text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;border-bottom:2px solid rgba(240,90,40,.25);padding-bottom:2px;transition:border-color .2s}
+    .lib-link:hover{border-color:var(--orange)}
+    @media(max-width:780px){.ex-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.ex-grid{grid-template-columns:1fr}}
+
+    #programma{padding:clamp(56px,7vw,96px) 5%;background:#fff}
+    .prog-tabs{display:flex;gap:2px;background:var(--mist);border-radius:8px;padding:3px;width:fit-content;margin-bottom:2.8rem}
+    .prog-tab{padding:.45rem 1.4rem;border-radius:6px;border:none;background:transparent;font-family:'Archivo',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;color:var(--stone);transition:all .2s}
+    .prog-tab.active{background:#fff;color:var(--ink);box-shadow:0 1px 6px rgba(0,0,0,.1)}
+    .prog-panel{display:none}
+    .prog-panel.active{display:block}
+
+    .week-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border-radius:14px;overflow:hidden;margin-bottom:2rem}
+    .day{background:#fff;padding:1.6rem 1.2rem}
+    .day-num{font-family:'Archivo',sans-serif;font-weight:900;font-size:2rem;color:var(--line);line-height:1;margin-bottom:.3rem}
+    .day-label{font-family:'Archivo',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem}
+    .day-theme{font-family:'Archivo',sans-serif;font-weight:800;font-size:.9rem;color:var(--ink);margin-bottom:.4rem}
+    .day-ex{font-size:.78rem;color:var(--stone);line-height:1.55}
+    @media(max-width:720px){.week-timeline{grid-template-columns:1fr 1fr}.day:last-child{grid-column:1/-1}}
+    @media(max-width:400px){.week-timeline{grid-template-columns:1fr}}
+
+    .season-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .month-card{background:var(--canvas);border:1px solid var(--line);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden}
+    .month-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange)}
+    .month-num{font-family:'Archivo',sans-serif;font-weight:900;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-bottom:.3rem}
+    .month-theme{font-family:'Archivo',sans-serif;font-weight:800;font-size:.92rem;color:var(--ink);margin-bottom:.4rem}
+    .month-desc{font-size:.78rem;color:var(--stone);line-height:1.5}
+    @media(max-width:780px){.season-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:400px){.season-grid{grid-template-columns:1fr}}
+
+    .prog-cta{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+
+    #coach-prog{background:var(--ink);padding:clamp(56px,7vw,96px) 5%}
+    .coach-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;margin-top:2rem}
+    .coach-checks{display:flex;flex-direction:column;gap:.9rem;margin-top:1.4rem}
+    .coach-check{display:flex;align-items:flex-start;gap:.8rem;font-size:.9rem;color:#8a94a8;line-height:1.5}
+    .check-dot{width:20px;height:20px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.65rem;color:#fff;margin-top:.1rem}
+    .coach-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .coach-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1.2rem}
+    .coach-stat-num{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.7rem;color:var(--orange);line-height:1;margin-bottom:.25rem}
+    .coach-stat-label{font-size:.75rem;color:#556}
+    @media(max-width:680px){.coach-grid{grid-template-columns:1fr}}
+
+    #wetenschap{background:var(--canvas);padding:clamp(56px,7vw,96px) 5%}
+    .science-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2rem}
+    .sci-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.6rem;transition:box-shadow .2s}
+    .sci-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07)}
+    .sci-type{display:inline-block;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:8px;margin-bottom:.7rem;text-transform:uppercase;letter-spacing:.04em}
+    .sci-author{font-size:.78rem;color:var(--orange);font-weight:700;margin-bottom:.3rem}
+    .sci-card h4{font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:.4rem;font-family:'Archivo',sans-serif}
+    .sci-card p{font-size:.82rem;color:var(--stone);line-height:1.6}
+
+    #quotes{background:var(--ink);padding:clamp(56px,7vw,96px) 5%}
+    .quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.4rem}
+    .quote-card{background:#151d2b;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.8rem;display:flex;flex-direction:column;gap:1.2rem}
+    .quote-text{font-size:.95rem;color:#c0c8d8;line-height:1.75;font-style:italic;flex:1}
+    .quote-text::before{content:'\201C';font-size:1.8rem;color:var(--orange);line-height:.5;display:block;margin-bottom:.4rem;font-style:normal;font-family:'Archivo',sans-serif}
+    .quote-author{display:flex;align-items:center;gap:.8rem}
+    .quote-avatar{width:38px;height:38px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:900;font-size:.8rem;color:#fff;flex-shrink:0}
+    .quote-name{font-family:'Archivo',sans-serif;font-weight:800;font-size:.85rem;color:#fff;line-height:1.2}
+    .quote-role{font-size:.74rem;color:#4a5a70}
+    @media(max-width:780px){.quotes-grid{grid-template-columns:1fr}}
+
+    #cta-band{background:var(--orange);padding:clamp(56px,7vw,80px) 5%;text-align:center}
+    #cta-band h2{color:#fff;font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:.7rem}
+    #cta-band p{color:rgba(255,255,255,.8);font-size:1.05rem;margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .btn-white{background:#fff;color:var(--orange);padding:.9rem 2.2rem;border-radius:7px;text-decoration:none;font-family:'Archivo',sans-serif;font-weight:800;font-size:.92rem;transition:transform .15s,box-shadow .2s}
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.2)}
+    .btn-outline-white{border:2px solid rgba(255,255,255,.5);color:#fff;padding:.9rem 2.2rem;border-radius:7px;text-decoration:none;font-weight:600;font-size:.92rem;transition:all .2s}
+    .btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+
+    footer{background:var(--ink);padding:clamp(40px,6vw,64px) 5% 32px;border-top:1px solid rgba(255,255,255,.06)}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+    .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:.8rem}
+    .footer-brand-txt{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.05rem;color:#fff;letter-spacing:.02em}
+    .footer-brand-txt span{color:var(--orange)}
+    .footer-desc{font-size:.83rem;color:#3a4a60;line-height:1.7;max-width:240px}
+    .footer-col h4{font-family:'Archivo',sans-serif;font-size:.68rem;font-weight:800;color:#2e3a50;text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem}
+    .footer-col a{display:block;font-size:.83rem;color:#3a4a60;text-decoration:none;margin-bottom:.45rem;transition:color .2s}
+    .footer-col a:hover{color:#fff}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+    .footer-bottom p{font-size:.76rem;color:#2e3a50}
+    @media(max-width:780px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:460px){.footer-grid{grid-template-columns:1fr}}
+
+    #waitlist{background:var(--mist);padding:clamp(56px,7vw,80px) 5%}
+    .waitlist-inner{max-width:520px;margin:0 auto;text-align:center}
+    #waitlist h2{margin-bottom:.6rem}
+    #waitlist .sec-sub{margin:0 auto 2rem}
+    .waitlist-form{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.2rem}
+    .waitlist-input{flex:1 1 220px;background:#fff;border:1px solid var(--line);color:var(--ink);font-size:.92rem;padding:.75rem 1rem;border-radius:7px;outline:none;font-family:inherit;min-width:0;transition:border-color .2s}
+    .waitlist-input:focus{border-color:var(--orange)}
+    .waitlist-input::placeholder{color:var(--stone)}
+    .waitlist-btn{background:var(--orange);color:#fff;border:none;padding:.75rem 1.5rem;border-radius:7px;font-size:.92rem;font-family:'Archivo',sans-serif;font-weight:800;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+    .waitlist-btn:hover{background:var(--orange2);transform:translateY(-2px)}
+    .trust-row{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+    .trust-item{font-size:.76rem;color:var(--stone);display:flex;align-items:center;gap:.3rem}
+    .trust-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);opacity:.6;flex-shrink:0}
+    @media(max-width:480px){.waitlist-form{flex-direction:column}.waitlist-input,.waitlist-btn{width:100%}}
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script>/* cf_lang_persist */
-  (function(){
-    if(localStorage.getItem('cf_lang')==='nl'){
-      window.location.replace('../index.html');
-    }
-    document.querySelectorAll('.lang-switch').forEach(function(a){
-      a.addEventListener('click',function(){
-        localStorage.setItem('cf_lang','nl');
+  <script>
+    (function(){
+      if(localStorage.getItem('cf_lang')==='nl') window.location.replace('../index.html');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.querySelectorAll('.lang-switch').forEach(function(a){
+          a.addEventListener('click',function(){ localStorage.setItem('cf_lang','nl'); });
+        });
       });
-    });
-  })();
-</script>
+    })();
+  </script>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
-  <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
-  <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
-</a>
+  <a class="nav-logo" href="index.html">
+    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+    <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.05rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+  </a>
   <div class="nav-links" id="nav-links">
-    <a href="program.html">Program</a>
-    <a href="library.html">Library</a>
-    <a href="coach-program.html">Coach Development</a>
-    <a href="order.html" style="color:var(--orange);font-weight:700;">Order</a>
-    <a href="#waitlist">Early access</a>
-    <a href="../index.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
-    <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
+    <a href="index.html" style="color:#fff;font-weight:700">Home</a>
+    <a href="../index.html" class="lang-switch lang-pill">NL</a>
   </div>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-left fade-in">
-    <div class="hero-tag">Sports development for U14 to Senior</div>
-    <h1>Win the person.<br><span>Win the team.</span></h1>
-    <p>Character First is an evidence-based character development program for young athletes. We build people, not just performances.</p>
+  <div class="fade-in">
+    <div class="hero-badge">From age 14 onwards</div>
+    <h1>Win the person.<br><em>Win the team.</em></h1>
+    <p class="lead">Character First is an evidence-based character development programme for young athletes. We build people, not just performance.</p>
     <div class="hero-btns">
-      <a href="program.html" class="btn-primary">Discover the program</a>
-      <a href="library.html" class="btn-ghost">Exercises library</a>
+      <a href="program.html" class="btn-primary">Explore the programme</a>
+      <a href="library.html" class="btn-ghost">Exercise library</a>
     </div>
     <div class="hero-stats">
-      <div><div class="stat-num">59</div><div class="stat-label">Fully developed exercises</div></div>
+      <div><div class="stat-num">59</div><div class="stat-label">Detailed exercises</div></div>
       <div><div class="stat-num">7</div><div class="stat-label">Themes</div></div>
-      <div><div class="stat-num">2</div><div class="stat-label">Tracks</div></div>
-      <div><div class="stat-num">3</div><div class="stat-label">Age groups</div></div>
+      <div><div class="stat-num">2</div><div class="stat-label">Programmes</div></div>
+      <div><div class="stat-num">U14+</div><div class="stat-label">3 age groups</div></div>
     </div>
   </div>
-  <div class="hero-visual fade-in" style="transition-delay:.2s">
-    <div class="hero-card accent">
-      <div class="hero-card-top"><span class="hero-card-num">56</span><span class="hero-card-title">Wall Squat Challenge</span></div>
-      <p class="hero-card-desc">Solo, then team encouragement, then together. The time difference proves the power of motivational climate.</p>
-      <div class="hero-card-tags"><span class="htag htag-theme">Physical</span><span class="htag htag-age">U14+</span><span class="htag htag-time">15 min</span></div>
+  <div class="hero-cards fade-in" style="transition-delay:.18s">
+    <div class="hcard featured">
+      <div class="hcard-top"><span class="hcard-num">#56</span><span class="hcard-title">Wall Squat Challenge</span></div>
+      <div class="hcard-desc">Solo, then with team encouragement, then together. The time difference proves the power of a motivational climate.</div>
+      <div class="hcard-tags"><span class="htag" style="background:#3A8A8A">Physical</span><span class="htag" style="background:rgba(30,138,91,.15);color:#1E8A5B;border:1px solid rgba(30,138,91,.25)">U14+</span><span class="htag" style="background:var(--mist);color:var(--stone)">15 min</span></div>
     </div>
-    <div class="hero-card">
-      <div class="hero-card-top"><span class="hero-card-num">11</span><span class="hero-card-title">Box Breathing</span></div>
-      <p class="hero-card-desc">Calming the nervous system through controlled 4-4-4-4 breathing. Used by Navy SEALs and elite athletes worldwide.</p>
-      <div class="hero-card-tags"><span class="htag htag-theme">Pressure &amp; Stress</span><span class="htag htag-age">U14+</span><span class="htag htag-time">5 min</span></div>
+    <div class="hcard">
+      <div class="hcard-top"><span class="hcard-num">#11</span><span class="hcard-title">Box Breathing</span></div>
+      <div class="hcard-desc">Calm the nervous system with controlled 4-4-4-4 breathing. Used by Navy SEALs and elite athletes worldwide.</div>
+      <div class="hcard-tags"><span class="htag" style="background:#2F6FB0">Pressure &amp; Stress</span><span class="htag" style="background:var(--mist);color:var(--stone)">5 min</span></div>
     </div>
-    <div class="hero-card">
-      <div class="hero-card-top"><span class="hero-card-num">51</span><span class="hero-card-title">The Flu Game Mentality</span></div>
-      <p class="hero-card-desc">Players discover their own perseverance moment and formulate their personal Flu Game sentence.</p>
-      <div class="hero-card-tags"><span class="htag htag-theme">Resilience</span><span class="htag htag-age">U14+</span><span class="htag htag-time">15 min</span></div>
+    <div class="hcard">
+      <div class="hcard-top"><span class="hcard-num">#37</span><span class="hcard-title">Encouragement Challenge</span></div>
+      <div class="hcard-desc">Players learn to encourage deliberately. Proof that the team outperforms the individual.</div>
+      <div class="hcard-tags"><span class="htag" style="background:#C7842F">Communication</span><span class="htag" style="background:var(--mist);color:var(--stone)">7 min</span></div>
     </div>
   </div>
 </section>
 
-<!-- MISSION & VISION -->
+<!-- MISSION -->
 <section id="mission">
   <div class="fade-in">
-    <span class="section-tag" style="background:transparent;color:var(--orange);border:1.5px solid var(--orange);">Who we are</span>
-    <h2 style="color:var(--white)">Mission &amp; Vision</h2>
-    <p class="section-sub" style="color:#555;">Why we do what we do and where we want to go.</p>
+    <div class="eyebrow" style="color:rgba(240,90,40,.7)">Who we are</div>
+    <h2 class="sec-title" style="color:#fff">Mission &amp; Vision</h2>
   </div>
   <div class="mv-grid fade-in">
-    <div class="mv-card mission-card">
-      <span class="mv-draft">Draft</span>
-      <div class="mv-label">Mission</div>
-      <h3>Giving every young athlete the opportunity to grow as a person, not just as an athlete.</h3>
-      <p>Character First believes that sport is the perfect platform for developing life values. We offer coaches and clubs an evidence-based framework to train mental resilience, team spirit, self-awareness and leadership alongside technical skills.</p>
+    <div class="mv-card mc">
+      <div class="mv-lbl">Mission</div>
+      <h3>Help every young athlete grow as a person, not just as an athlete.</h3>
+      <p>Character First believes sport is the perfect stage for developing life values. We give coaches and clubs an evidence-based framework to train mental resilience, team spirit, self-knowledge, and leadership alongside technique.</p>
     </div>
-    <div class="mv-card vision-card">
-      <span class="mv-draft">Draft</span>
-      <div class="mv-label">Vision</div>
-      <h3>A generation of athletes who win on the field and in life.</h3>
-      <p>We envision a future where character is trained as systematically as technique and tactics. Where coaches are not only judged on results but on the people they shape. Where Character First is the standard, not the exception.</p>
+    <div class="mv-card vc">
+      <div class="mv-lbl">Vision</div>
+      <h3>A generation that wins on the field and in life.</h3>
+      <p>We envision a future where character is trained as systematically as technique — where coaches are judged by the people they develop, and where Character First is the standard, not the exception.</p>
     </div>
   </div>
 </section>
 
-<!-- EXPLORE -->
-<section id="explore">
+<!-- LIBRARY PREVIEW -->
+<section id="library-preview">
   <div class="fade-in">
-    <span class="section-tag">Explore</span>
-    <h2>Everything in one place</h2>
-    <p class="section-sub">Choose where you want to start. Every section is fully developed and ready to use immediately.</p>
+    <div class="eyebrow">Exercise library</div>
+    <h2 class="sec-title">Discover the exercises</h2>
+    <p class="sec-sub">59 fully developed exercises across 7 themes. Browse a selection per age group.</p>
+    <div class="age-toggle">
+      <button class="age-btn active" data-age="u14">U14</button>
+      <button class="age-btn" data-age="u16">U16</button>
+      <button class="age-btn" data-age="senior">Senior</button>
+    </div>
   </div>
-  <div class="explore-grid fade-in">
-    <a class="explore-card featured" href="program.html">
-      <div class="explore-card-top">
-        <div class="explore-icon">&#127942;</div>
-        <h3>The Programs</h3>
-        <p>The Week &amp; The Season</p>
+
+  <div class="ex-grid fade-in" id="cards-u14">
+    <div class="ex-card">
+      <div class="ex-num">#10</div>
+      <div class="ex-title">Two Truths One Lie</div>
+      <div class="ex-desc">Players get to know each other through a surprising self-knowledge format. Builds trust and openness within the team.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Self-Knowledge</span><span class="ex-time">8 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#11</div>
+      <div class="ex-title">Box Breathing</div>
+      <div class="ex-desc">Controlled 4-4-4-4 breathing to calm the nervous system before and after performance moments.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Pressure &amp; Stress</span><span class="ex-time">5 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#23</div>
+      <div class="ex-title">Human Graph</div>
+      <div class="ex-desc">Players physically position themselves on a scale to clarify their role and opinion within the team.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#7A52C7">My Role</span><span class="ex-time">8 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#37</div>
+      <div class="ex-title">Encouragement Challenge</div>
+      <div class="ex-desc">Prove that deliberate encouragement increases team performance. Timed, measurable, motivating.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communication</span><span class="ex-time">7 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#46</div>
+      <div class="ex-title">Power of the Circle</div>
+      <div class="ex-desc">Team members stand up for each other in a circle of trust — literally and figuratively.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team First</span><span class="ex-time">5 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#56</div>
+      <div class="ex-title">Wall Squat Challenge</div>
+      <div class="ex-desc">Solo vs. with team encouragement vs. together. The time difference proves the power of motivational climate.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#3A8A8A">Physical</span><span class="ex-time">15 min</span></div>
+    </div>
+  </div>
+
+  <div class="ex-grid fade-in" id="cards-u16" style="display:none">
+    <div class="ex-card">
+      <div class="ex-num">#15</div>
+      <div class="ex-title">Values Map</div>
+      <div class="ex-desc">Players visualise their personal core values and connect them to their athletic performance.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Self-Knowledge</span><span class="ex-time">12 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#19</div>
+      <div class="ex-title">Pre-game Routine</div>
+      <div class="ex-desc">Build a personal activation routine for matches. Consistency as a mental anchor before performance.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Pressure &amp; Stress</span><span class="ex-time">10 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#28</div>
+      <div class="ex-title">Position Switch</div>
+      <div class="ex-desc">Players take each other's position and role. Empathy and role understanding grow through perspective-taking.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#7A52C7">My Role</span><span class="ex-time">15 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#39</div>
+      <div class="ex-title">Critical Feedback</div>
+      <div class="ex-desc">Structured practice in giving and receiving constructive feedback within the team.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communication</span><span class="ex-time">10 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#48</div>
+      <div class="ex-title">Trust Circle</div>
+      <div class="ex-desc">Team members share moments of vulnerability and strength. Increases psychological safety.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team First</span><span class="ex-time">12 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#54</div>
+      <div class="ex-title">Cold Shower Protocol</div>
+      <div class="ex-desc">Deliberate exposure to discomfort as a metaphor for resilience. Scientifically supported.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#3A8A8A">Physical</span><span class="ex-time">10 min</span></div>
+    </div>
+  </div>
+
+  <div class="ex-grid fade-in" id="cards-senior" style="display:none">
+    <div class="ex-card">
+      <div class="ex-num">#12</div>
+      <div class="ex-title">Core Values Card</div>
+      <div class="ex-desc">Deep reflection on personal values and how they guide the athlete through difficult competition moments.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Self-Knowledge</span><span class="ex-time">15 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#22</div>
+      <div class="ex-title">Breathing &amp; Visualisation</div>
+      <div class="ex-desc">Combination of breathing technique and mental imagery for pre-performance activation.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Pressure &amp; Stress</span><span class="ex-time">12 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#31</div>
+      <div class="ex-title">Leadership Styles</div>
+      <div class="ex-desc">Players discover their natural leadership style and learn when each style is most effective.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#1C2433">Leadership</span><span class="ex-time">20 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#42</div>
+      <div class="ex-title">The Difficult Conversation</div>
+      <div class="ex-desc">Role-play to practice confrontational but necessary conversations in a safe environment.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communication</span><span class="ex-time">15 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#50</div>
+      <div class="ex-title">Team Contract</div>
+      <div class="ex-desc">The team collectively establishes behavioural agreements. Ownership and accountability as a foundation.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team First</span><span class="ex-time">20 min</span></div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-num">#57</div>
+      <div class="ex-title">The Flu Game Mentality</div>
+      <div class="ex-desc">Players formulate their personal perseverance moment and their own Flu Game sentence as a mental anchor.</div>
+      <div class="ex-tags"><span class="ex-tag" style="background:#C73F62">Resilience</span><span class="ex-time">15 min</span></div>
+    </div>
+  </div>
+
+  <div class="lib-cta">
+    <a href="library.html" class="lib-link">Browse all 59 exercises in the library &#8594;</a>
+  </div>
+</section>
+
+<!-- PROGRAMME TIMELINE -->
+<section id="programma">
+  <div class="fade-in">
+    <div class="eyebrow">The programmes</div>
+    <h2 class="sec-title">Two tracks. One goal.</h2>
+    <p class="sec-sub">For athletes and coaches — each with its own track, scientifically grounded and immediately deployable at training or in the changing room.</p>
+    <div class="prog-tabs">
+      <button class="prog-tab active" data-prog="week">The Week</button>
+      <button class="prog-tab" data-prog="season">The Season</button>
+    </div>
+  </div>
+
+  <div class="prog-panel active fade-in" id="prog-week">
+    <div class="week-timeline">
+      <div class="day"><div class="day-num">1</div><div class="day-label">Day 1</div><div class="day-theme">Self-Knowledge</div><div class="day-ex">Who am I? What drives me? Core values and identity as an athlete.</div></div>
+      <div class="day"><div class="day-num">2</div><div class="day-label">Day 2</div><div class="day-theme">Pressure &amp; Stress</div><div class="day-ex">Box Breathing, pre-game routine, dealing with setbacks under pressure.</div></div>
+      <div class="day"><div class="day-num">3</div><div class="day-label">Day 3</div><div class="day-theme">Team &amp; Role</div><div class="day-ex">My role in the team. Communication. Encouragement as a learnable skill.</div></div>
+      <div class="day"><div class="day-num">4</div><div class="day-label">Day 4</div><div class="day-theme">Resilience</div><div class="day-ex">Dealing with loss, failure, and pressure. Physical toughness as a metaphor.</div></div>
+      <div class="day"><div class="day-num">5</div><div class="day-label">Day 5</div><div class="day-theme">Team First</div><div class="day-ex">Leadership, team contract and the step from individual to collective.</div></div>
+    </div>
+    <div class="prog-cta">
+      <a href="week.html" class="btn-primary">Full Week programme</a>
+      <a href="week-worksheets.html" class="btn-ghost">View worksheets</a>
+    </div>
+  </div>
+
+  <div class="prog-panel fade-in" id="prog-season">
+    <div class="season-grid">
+      <div class="month-card"><div class="month-num">Month 1</div><div class="month-theme">Self-Knowledge</div><div class="month-desc">Who am I as an athlete? Core values and personal identity.</div></div>
+      <div class="month-card"><div class="month-num">Month 2</div><div class="month-theme">Pressure &amp; Stress</div><div class="month-desc">Regulating performance pressure. Activation and calming techniques.</div></div>
+      <div class="month-card"><div class="month-num">Month 3</div><div class="month-theme">My Role</div><div class="month-desc">Role clarity, position switch, and contribution to the team.</div></div>
+      <div class="month-card"><div class="month-num">Month 4</div><div class="month-theme">Communication</div><div class="month-desc">Encouraging, giving feedback, and having difficult conversations.</div></div>
+      <div class="month-card"><div class="month-num">Month 5</div><div class="month-theme">Team First</div><div class="month-desc">Team contract, trust, and collective responsibility.</div></div>
+      <div class="month-card"><div class="month-num">Month 6</div><div class="month-theme">Resilience</div><div class="month-desc">Dealing with loss, failure, and pressure. The Flu Game mentality.</div></div>
+      <div class="month-card"><div class="month-num">Month 7</div><div class="month-theme">Leadership</div><div class="month-desc">Leadership styles, influence, and bringing people along with you.</div></div>
+      <div class="month-card"><div class="month-num">Month 8</div><div class="month-theme">Integration</div><div class="month-desc">Bringing it all together. Season review and next steps.</div></div>
+    </div>
+    <div class="prog-cta">
+      <a href="season.html" class="btn-primary">Full Season programme</a>
+    </div>
+  </div>
+</section>
+
+<!-- COACH PROGRAMME -->
+<section id="coach-prog">
+  <div class="fade-in">
+    <div class="eyebrow" style="color:rgba(240,90,40,.7)">For coaches &amp; support staff</div>
+    <h2 class="sec-title" style="color:#fff">Grow as a coach.<br>Grow as a person.</h2>
+    <p class="sec-sub" style="color:#6e7a8e">Work on motivational climate, relationship with players, and your own coaching identity — month by month, evidence-based.</p>
+  </div>
+  <div class="coach-grid fade-in">
+    <div>
+      <div class="coach-checks">
+        <div class="coach-check"><div class="check-dot">✓</div><span>12 monthly themes, immediately applicable</span></div>
+        <div class="coach-check"><div class="check-dot">✓</div><span>Motivational climate and player relationships</span></div>
+        <div class="coach-check"><div class="check-dot">✓</div><span>Personal growth and coaching identity</span></div>
+        <div class="coach-check"><div class="check-dot">✓</div><span>Evidence-based worksheets per month</span></div>
       </div>
-      <div class="explore-card-body">
-        <p>A 5-day intensive camp or an 8-month season program. Both fully developed with daily schedules, worksheets and scientific foundation.</p>
-        <span class="explore-link">View programs</span>
+      <div style="margin-top:2rem">
+        <a href="coach-program.html" class="btn-primary">View Coach Programme</a>
       </div>
-    </a>
-    <a class="explore-card" href="library.html">
-      <div class="explore-card-top">
-        <div class="explore-icon">&#128218;</div>
-        <h3>Exercises Library</h3>
-        <p>59 fully developed exercises</p>
+    </div>
+    <div class="coach-stats">
+      <div class="coach-stat"><div class="coach-stat-num">12</div><div class="coach-stat-label">Monthly themes</div></div>
+      <div class="coach-stat"><div class="coach-stat-num">1</div><div class="coach-stat-label">Year track</div></div>
+      <div class="coach-stat"><div class="coach-stat-num">2×</div><div class="coach-stat-label">Worksheets per month</div></div>
+      <div class="coach-stat"><div class="coach-stat-num">100%</div><div class="coach-stat-label">Evidence-based</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section id="wetenschap">
+  <div class="fade-in">
+    <div class="eyebrow">Research foundation</div>
+    <h2 class="sec-title">Built on science</h2>
+    <p class="sec-sub">All exercises are based on peer-reviewed literature from sport psychology, organisational psychology, and education research.</p>
+  </div>
+  <div class="science-grid fade-in">
+    <div class="sci-card">
+      <span class="sci-type" style="background:#d4edda;color:#1a7a4a">Systematic Review</span>
+      <div class="sci-author">Gucciardi et al., 2015</div>
+      <h4>Mental Toughness in Sport</h4>
+      <p>Mental resilience is 60–70% trainable through targeted intervention. Meta-analysis of 91 studies.</p>
+    </div>
+    <div class="sci-card">
+      <span class="sci-type" style="background:#d0e4f7;color:#1a4a8a">RCT Study</span>
+      <div class="sci-author">Duckworth et al., 2007</div>
+      <h4>Grit: Perseverance and Passion</h4>
+      <p>Perseverance and passion are stronger predictors of success than intelligence or talent alone.</p>
+    </div>
+    <div class="sci-card">
+      <span class="sci-type" style="background:#d4edda;color:#1a7a4a">Systematic Review</span>
+      <div class="sci-author">Edmondson, 2018</div>
+      <h4>Psychological Safety</h4>
+      <p>Teams with high psychological safety perform 26% better and make significantly fewer errors.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section id="quotes">
+  <div class="fade-in">
+    <div class="eyebrow" style="color:rgba(240,90,40,.7)">From the field</div>
+    <h2 class="sec-title" style="color:#fff">What coaches say</h2>
+  </div>
+  <div class="quotes-grid fade-in">
+    <div class="quote-card">
+      <div class="quote-text">Character First gave our team a language for what we already felt but couldn't name. Suddenly we could talk about it at training.</div>
+      <div class="quote-author">
+        <div class="quote-avatar">SV</div>
+        <div><div class="quote-name">Sven V.</div><div class="quote-role">U17 basketball coach</div></div>
       </div>
-      <div class="explore-card-body">
-        <p>Filterable by age group (U14 / U16 / Senior), theme, duration and type. Every exercise with moderator guide and worksheet.</p>
-        <span class="explore-link">Go to library</span>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">After the season programme I see my players handling defeat differently. That is worth more than a cup final.</div>
+      <div class="quote-author">
+        <div class="quote-avatar">LD</div>
+        <div><div class="quote-name">Lies D.</div><div class="quote-role">Women's football coach</div></div>
       </div>
-    </a>
-    <a class="explore-card" href="worksheets.html">
-      <div class="explore-card-top">
-        <div class="explore-icon">&#128196;</div>
-        <h3>Worksheets</h3>
-        <p>Print-ready for players &amp; coaches</p>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">Box Breathing in the changing room before a derby. Never thought I'd say that as a coach. It worked. And the players asked for it themselves.</div>
+      <div class="quote-author">
+        <div class="quote-avatar">TM</div>
+        <div><div class="quote-name">Thomas M.</div><div class="quote-role">U16 hockey coach</div></div>
       </div>
-      <div class="explore-card-body">
-        <p>16 A4 worksheets: 8 for players and 8 coach guides. With scientific literature and evidence-tier badges.</p>
-        <span class="explore-link">View worksheets</span>
-      </div>
-    </a>
-    <a class="explore-card featured" href="coach-program.html">
-      <div class="explore-card-top">
-        <div class="explore-icon">&#127947;</div>
-        <h3>Coach Development</h3>
-        <p>Grow as a coach &amp; as a person</p>
-      </div>
-      <div class="explore-card-body">
-        <p>A yearly or monthly program specifically for coaches. Motivational climate, player relationships, personal growth and coaching identity — evidence-based.</p>
-        <span class="explore-link">View coach programs</span>
-      </div>
-    </a>
+    </div>
   </div>
 </section>
 
 <!-- WAITLIST -->
 <section id="waitlist">
   <div class="waitlist-inner fade-in">
-    <span class="section-tag">Early access</span>
+    <div class="eyebrow">Early access</div>
     <h2>Be the first to know</h2>
-    <p class="section-sub">Character First launches soon. Sign up and receive early access, exclusive materials and the launch discount.</p>
+    <p class="sec-sub">Character First launches soon. Sign up and receive early access, exclusive materials, and the launch discount.</p>
     <div class="waitlist-form">
-      <input
-        class="waitlist-input"
-        type="email"
-        id="waitlist-email"
-        placeholder="your@email.com"
-        autocomplete="email"
-      />
+      <input class="waitlist-input" type="email" id="waitlist-email" placeholder="your@email.com" autocomplete="email"/>
       <button class="waitlist-btn" id="waitlist-submit">Sign me up</button>
     </div>
-    <div class="waitlist-trust">
+    <div class="trust-row">
       <span class="trust-item"><span class="trust-dot"></span>Free</span>
       <span class="trust-item"><span class="trust-dot"></span>No spam</span>
       <span class="trust-item"><span class="trust-dot"></span>Cancel anytime</span>
@@ -337,10 +567,10 @@
 <section id="cta-band">
   <div class="fade-in">
     <h2>Ready to get started?</h2>
-    <p>Join the coaches and clubs already working on character, not just performance.</p>
+    <p>Join coaches and clubs already working on character — not just performance.</p>
     <div class="cta-btns">
-      <a href="mailto:info@characterfirst.be?subject=Character First - Interest" class="btn-orange">Get in touch</a>
-      <a href="program.html" class="btn-outline">More about the programs</a>
+      <a href="week.html" class="btn-white">Request The Week</a>
+      <a href="season.html" class="btn-outline-white">Explore The Season</a>
     </div>
   </div>
 </section>
@@ -349,15 +579,19 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-logo">Character <span>First</span></div>
-      <p class="footer-desc">Evidence-based character development for athletes from U14 to Senior. Win the person. Win the team.</p>
+      <div class="footer-brand">
+        <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+        <div class="footer-brand-txt">CHARACTER<span>FIRST</span></div>
+      </div>
+      <p class="footer-desc">Evidence-based character development for athletes from age 14. Win the person. Win the team.</p>
     </div>
     <div class="footer-col">
-      <h4>Program</h4>
+      <h4>Programme</h4>
       <a href="program.html">Overview</a>
       <a href="week.html">The Week</a>
       <a href="season.html">The Season</a>
       <a href="week-worksheets.html">Week worksheets</a>
+      <a href="coach-program.html">Coach Programme</a>
     </div>
     <div class="footer-col">
       <h4>Exercises</h4>
@@ -370,34 +604,56 @@
       <h4>Tools</h4>
       <a href="planbuilder.html">Plan Builder</a>
       <a href="worksheets.html">Worksheets</a>
-      <a href="program.html#science">Science</a>
-      <a href="mailto:info@characterfirst.be?subject=Character First">Contact</a>
+      <a href="access.html">Access code</a>
+      <a href="../index.html">Nederlandse versie</a>
+      <a href="mailto:info@characterfirst.be">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Character First. All rights reserved.</p>
-    <p>Evidence-based sports psychology.</p>
+    <p>Evidence-based sport psychology · characterfirst.be</p>
   </div>
 </footer>
 
 <script>
-  document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('hamburger').addEventListener('click',()=>{
     document.getElementById('nav-links').classList.toggle('open');
   });
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // Waitlist form
-  document.getElementById('waitlist-submit').addEventListener('click', () => {
-    const email = document.getElementById('waitlist-email').value.trim();
-    const subject = encodeURIComponent('Waitlist Character First');
-    const body = encodeURIComponent('I would like to join the waitlist for Character First.\n\nMy email address: ') + encodeURIComponent(email);
-    window.location.href = 'mailto:info@characterfirst.be?subject=' + subject + '&body=' + body;
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:0.08});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+  document.querySelectorAll('.age-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.age-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const age=btn.dataset.age;
+      ['u14','u16','senior'].forEach(g=>{
+        const el=document.getElementById('cards-'+g);
+        if(el) el.style.display=g===age?'':'none';
+      });
+    });
   });
-  document.getElementById('waitlist-email').addEventListener('keydown', e => {
-    if (e.key === 'Enter') document.getElementById('waitlist-submit').click();
+
+  document.querySelectorAll('.prog-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.prog-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.prog-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('prog-'+tab.dataset.prog).classList.add('active');
+    });
+  });
+
+  document.getElementById('waitlist-submit').addEventListener('click',()=>{
+    const email=document.getElementById('waitlist-email').value.trim();
+    const subject=encodeURIComponent('Waitlist Character First');
+    const body=encodeURIComponent('I would like to join the waitlist for Character First.\n\nMy email address: ')+encodeURIComponent(email);
+    window.location.href='mailto:info@characterfirst.be?subject='+subject+'&body='+body;
+  });
+  document.getElementById('waitlist-email').addEventListener('keydown',e=>{
+    if(e.key==='Enter') document.getElementById('waitlist-submit').click();
   });
 </script>
 </body>
