@@ -6,22 +6,25 @@
 <title>Character First — Mentale Weerbaarheid</title>
 <style>
   :root {
-    --black: #0a0a0a;
+    --ink: #1C2433;
     --orange: #f05a28;
     --white: #ffffff;
-    --gray: #f5f5f5;
+    --canvas: #FAF7F2;
+    --line: #E4DFD6;
+    --stone: #6E6A63;
     --light-orange: #fff3ef;
-    --border: #e0e0e0;
     --green: #1a7a4a;
     --blue: #1a4a8a;
     --purple: #5a1a8a;
+    --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--black); }
+  body { font-family: 'Inter', Arial, sans-serif; background: var(--canvas); color: var(--ink); }
+  h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
 
   /* NAV */
   .top-header {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     padding: 28px 48px;
     display: flex; align-items: center; gap: 20px;
@@ -33,7 +36,7 @@
   .sticky-nav {
     position: sticky; top: 0; z-index: 100;
     background: var(--white);
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid var(--line);
     padding: 0 48px;
     display: flex; gap: 0; overflow-x: auto;
   }
@@ -49,12 +52,12 @@
   .exercise-block {
     background: var(--white);
     border-radius: 16px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     margin-bottom: 64px;
     overflow: hidden;
   }
   .ex-hero {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     padding: 32px 40px;
     display: grid;
@@ -85,9 +88,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--line);
   }
-  .col-mod { border-right: 1px solid var(--border); padding: 32px 36px; }
+  .col-mod { border-right: 1px solid var(--line); padding: 32px 36px; }
   .col-ws { padding: 32px 36px; background: #fafafa; }
 
   .col-label {
@@ -97,10 +100,10 @@
   }
   .col-label .dot { width: 10px; height: 10px; border-radius: 50%; }
   .dot-mod { background: var(--orange); }
-  .dot-ws { background: var(--black); }
+  .dot-ws { background: var(--ink); }
 
   h3.section-title {
-    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--black);
+    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--ink);
     display: flex; align-items: center; gap: 8px;
   }
   h3.section-title::before {
@@ -134,8 +137,8 @@
   }
 
   .timing-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
-  .timing-table th { background: var(--black); color: var(--white); padding: 7px 12px; text-align: left; }
-  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--border); }
+  .timing-table th { background: var(--ink); color: var(--white); padding: 7px 12px; text-align: left; }
+  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--line); }
   .timing-table tr:last-child td { border-bottom: none; }
   .timing-table tr:nth-child(even) td { background: #f8f8f8; }
 
@@ -161,13 +164,13 @@
   /* LITERATURE */
   .lit-section {
     padding: 24px 36px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--line);
     background: #f9f9f9;
   }
   .lit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
   .lit-item {
     background: var(--white);
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     border-radius: 8px;
     padding: 12px 14px;
     font-size: 12px; line-height: 1.6;
@@ -185,7 +188,7 @@
 
   .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
   .yt-item {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     border-radius: 8px;
     padding: 14px 16px;
@@ -203,10 +206,10 @@
   /* WORKSHEET */
   .ws-intro {
     font-size: 13px; color: #555; margin-bottom: 16px; font-style: italic;
-    border-bottom: 1px dashed var(--border); padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line); padding-bottom: 12px;
   }
   .ws-field-label {
-    font-size: 12px; font-weight: 700; color: var(--black);
+    font-size: 12px; font-weight: 700; color: var(--ink);
     margin-bottom: 4px; margin-top: 12px;
   }
   .ws-lines { margin-bottom: 12px; }
@@ -224,7 +227,7 @@
     background: var(--white);
   }
   .ws-quote {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     border-radius: 8px;
     padding: 16px 18px;
@@ -312,14 +315,14 @@
     .exercise-block { page-break-after: always; border: none; border-radius: 0; }
     .two-col { grid-template-columns: 1fr 1fr; }
     .lit-grid, .yt-grid { grid-template-columns: 1fr 1fr; }
-    .ex-hero { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .ex-hero { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .info-box, .tips-box, .warn-box, .commit-box, .ws-quote { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .yt-item { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yt-item { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
   @media (max-width: 800px) {
     .two-col { grid-template-columns: 1fr; }
-    .col-mod { border-right: none; border-bottom: 1px solid var(--border); }
+    .col-mod { border-right: none; border-bottom: 1px solid var(--line); }
     .lit-grid, .yt-grid { grid-template-columns: 1fr; }
     .ex-hero { grid-template-columns: auto 1fr; }
     .ex-tags { grid-column: 1 / -1; justify-content: flex-start; }
@@ -334,6 +337,9 @@
     .lit-section { padding: 16px 16px; }
   }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>/* cf_lang_persist */
   (function(){
     if(localStorage.getItem('cf_lang')==='en'){
@@ -352,7 +358,7 @@
   (function(){
     if(!localStorage.getItem('cf_access')){
       var o=document.createElement('div');
-      o.style.cssText='position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
+      o.style.cssText='position:fixed;inset:0;background:#1C2433;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2rem;text-align:center;';
       o.innerHTML='<div style="font-size:2.5rem">&#128274;</div><div style="font-size:1.3rem;font-weight:900;color:#fff;">Premium inhoud</div><p style="color:#666;font-size:.9rem;max-width:320px;">Dit onderdeel is alleen beschikbaar met toegangscode.</p><a href="toegang.html" style="background:#f05a28;color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:.5rem;">Toegangscode invoeren</a><a href="index.html" style="color:#555;font-size:.82rem;text-decoration:none;margin-top:.5rem;">Terug naar home</a>';
       document.body.prepend(o);
     }
@@ -756,7 +762,7 @@
 
       <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
         <!-- Trede 1 -->
-        <div style="background:#f8f8f8; border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <div style="background:#f8f8f8; border:1px solid var(--line); border-radius:8px; padding:12px;">
           <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">TREDE 1</div>
           <div style="font-size:12px; margin-bottom:4px;">Tegenslag:</div>
           <div class="ws-line"></div>
@@ -770,7 +776,7 @@
           <div class="ws-line"></div>
         </div>
         <!-- Trede 2 -->
-        <div style="background:#f8f8f8; border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <div style="background:#f8f8f8; border:1px solid var(--line); border-radius:8px; padding:12px;">
           <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">TREDE 2</div>
           <div style="font-size:12px; margin-bottom:4px;">Tegenslag:</div>
           <div class="ws-line"></div>
@@ -784,7 +790,7 @@
           <div class="ws-line"></div>
         </div>
         <!-- Trede 3 -->
-        <div style="background:#f8f8f8; border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <div style="background:#f8f8f8; border:1px solid var(--line); border-radius:8px; padding:12px;">
           <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">TREDE 3</div>
           <div style="font-size:12px; margin-bottom:4px;">Tegenslag:</div>
           <div class="ws-line"></div>
@@ -922,17 +928,17 @@
       <div class="ws-field-label">DE DRIE LAGEN VAN MIJN PPR</div>
 
       <div style="display:grid; gap:10px; margin-bottom:16px;">
-        <div style="border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <div style="border:1px solid var(--line); border-radius:8px; padding:12px;">
           <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Fysiek — beweging, handgebaar, warming-up</div>
           <div class="ws-line"></div>
           <div class="ws-line"></div>
         </div>
-        <div style="border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <div style="border:1px solid var(--line); border-radius:8px; padding:12px;">
           <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Mentaal — ademhaling, visualisatie, mantra</div>
           <div class="ws-line"></div>
           <div class="ws-line"></div>
         </div>
-        <div style="border:1px solid var(--border); border-radius:8px; padding:12px;">
+        <div style="border:1px solid var(--line); border-radius:8px; padding:12px;">
           <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Emotioneel — muziek, herinnering, intentie</div>
           <div class="ws-line"></div>
           <div class="ws-line"></div>

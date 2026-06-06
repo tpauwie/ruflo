@@ -4,27 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Season — Character First</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0a0a0a;
-      --orange: #f05a28;
-      --orange-light: #ff7a4d;
-      --white: #ffffff;
-      --gray-900: #111111;
-      --gray-800: #1a1a1a;
-      --gray-700: #2a2a2a;
-      --gray-400: #666666;
-      --gray-200: #cccccc;
+      --ink: #1C2433; --orange: #f05a28; --orange2: #d44a1a;
+      --orange-light: #ff7a4d; --white: #ffffff;
+      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+      --gray-900: #111111; --gray-800: #1a1a1a; --gray-700: #2a2a2a;
+      --gray-400: #666666; --gray-200: #cccccc;
     }
 
     html { scroll-behavior: smooth; }
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
 
     body {
-      background: var(--black);
+      background: var(--ink);
       color: var(--white);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
     }
 
@@ -33,7 +34,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(10,10,10,0.95);
+      background: rgba(28,36,51,0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(240,90,40,0.2);
       padding: 0 2rem;

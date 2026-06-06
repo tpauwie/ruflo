@@ -6,19 +6,22 @@
 <title>Character First — Oefeningen Bibliotheek</title>
 <style>
   :root {
-    --black: #0a0a0a;
+    --ink: #1C2433;
     --orange: #f05a28;
     --white: #ffffff;
-    --gray: #f4f4f4;
-    --border: #e0e0e0;
+    --canvas: #FAF7F2;
+    --line: #E4DFD6;
+    --stone: #6E6A63;
     --light-orange: #fff3ef;
+    --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--black); }
+  body { font-family: 'Inter', Arial, sans-serif; background: var(--canvas); color: var(--ink); }
+  h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
 
   /* HEADER */
   .header {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     padding: 32px 48px;
     display: flex; align-items: center; gap: 20px;
@@ -38,16 +41,16 @@
   /* FILTER BAR */
   .filter-bar {
     background: var(--white);
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid var(--line);
     padding: 16px 48px;
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
     position: sticky; top: 0; z-index: 100;
   }
   .filter-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: #888; margin-right: 4px; }
-  .filter-sep { width: 1px; height: 28px; background: var(--border); margin: 0 8px; }
+  .filter-sep { width: 1px; height: 28px; background: var(--line); margin: 0 8px; }
   .filter-btn {
     padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
-    border: 2px solid var(--border); background: var(--white); color: #555;
+    border: 2px solid var(--line); background: var(--white); color: #555;
     cursor: pointer; transition: all .15s; white-space: nowrap;
   }
   .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
@@ -57,7 +60,7 @@
   .filter-btn.age-senior.active { background: #5a1a8a; border-color: #5a1a8a; }
   .search-wrap { margin-left: auto; position: relative; }
   .search-wrap input {
-    padding: 7px 14px 7px 34px; border-radius: 20px; border: 2px solid var(--border);
+    padding: 7px 14px 7px 34px; border-radius: 20px; border: 2px solid var(--line);
     font-size: 13px; outline: none; width: 200px;
   }
   .search-wrap input:focus { border-color: var(--orange); }
@@ -69,7 +72,7 @@
     font-size: 13px; color: #888;
     display: flex; align-items: center; gap: 12px;
   }
-  #results-count { font-weight: 700; color: var(--black); }
+  #results-count { font-weight: 700; color: var(--ink); }
   .clear-btn {
     font-size: 12px; color: var(--orange); cursor: pointer; font-weight: 600;
     border: none; background: none; padding: 0;
@@ -88,7 +91,7 @@
   .card {
     background: var(--white);
     border-radius: 12px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     overflow: hidden;
     transition: box-shadow .2s, transform .15s;
     cursor: pointer;
@@ -100,7 +103,7 @@
   .card.hidden { display: none; }
 
   .card-top {
-    background: var(--black);
+    background: var(--ink);
     padding: 14px 16px 12px;
     display: flex; align-items: flex-start; gap: 10px;
   }
@@ -117,15 +120,15 @@
   .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
   .tag {
     font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
   }
   .tag-theme   { background: var(--light-orange); color: var(--orange); border-color: #f7c4b3; }
   .tag-age-u14   { background: #d4edda; color: #1a7a4a; border-color: #b2dfcc; }
   .tag-age-u16   { background: #d0e4f7; color: #1a4a8a; border-color: #a8c8ed; }
   .tag-age-senior { background: #e8d5f5; color: #5a1a8a; border-color: #d0aae8; }
-  .tag-type-fysiek  { background: var(--black); color: var(--white); border-color: var(--black); }
-  .tag-time  { background: #f0f0f0; color: #444; border-color: var(--border); }
-  .tag-group { background: #f0f0f0; color: #444; border-color: var(--border); }
+  .tag-type-fysiek  { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .tag-time  { background: #f0f0f0; color: #444; border-color: var(--line); }
+  .tag-group { background: #f0f0f0; color: #444; border-color: var(--line); }
 
   .card-footer {
     padding: 8px 16px 12px;
@@ -152,7 +155,7 @@
     padding: 8px 0 4px;
   }
   .section-divider h2 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #888; white-space: nowrap; }
-  .section-divider hr { flex: 1; border: none; border-top: 2px solid var(--border); }
+  .section-divider hr { flex: 1; border: none; border-top: 2px solid var(--line); }
 
   @media (max-width: 700px) {
     .header { padding: 20px 16px; flex-wrap: wrap; }
@@ -170,7 +173,7 @@
     .filter-bar, .results-bar, .search-wrap { display: none; }
     .grid { padding: 0; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .card { break-inside: avoid; }
-    .card-top { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card-top { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
   /* PREMIUM LOCK SYSTEM */
@@ -214,7 +217,7 @@
   .grid .premium-locked { display: none; }
   .premium-banner {
     grid-column: 1 / -1;
-    background: #0a0a0a;
+    background: #1C2433;
     border: 2px solid #f05a28;
     border-radius: 16px;
     padding: 3rem 2rem;
@@ -226,6 +229,9 @@
   .premium-banner p { color: #888; margin: .5rem 0 1.5rem; font-size: .95rem; }
   .premium-banner a.unlock-btn { background: #f05a28; color: #fff; padding: .9rem 2.2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; display: inline-block; }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>/* cf_lang_persist */
   (function(){
     if(localStorage.getItem('cf_lang')==='en'){
