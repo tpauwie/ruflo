@@ -4,27 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Character First — Review &amp; Physical Mental Toughness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0a0a0a;
-    --orange: #f05a28;
-    --white: #ffffff;
-    --gray: #f5f5f5;
-    --light-orange: #fff3ef;
-    --border: #e0e0e0;
-    --green: #1a7a4a;
-    --blue: #1a4a8a;
-    --purple: #5a1a8a;
-    --red: #b91c1c;
-    --red-light: #fef2f2;
-    --green-light: #f0faf5;
+    --ink: #1C2433; --orange: #f05a28; --orange2: #d44a1a;
+    --white: #ffffff; --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+    --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    --gray: #f5f5f5; --light-orange: #fff3ef;
+    --green: #1a7a4a; --blue: #1a4a8a; --purple: #5a1a8a;
+    --red: #b91c1c; --red-light: #fef2f2; --green-light: #f0faf5;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--black); }
+  h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
+  body { font-family: 'Inter', Arial, sans-serif; background: var(--canvas); color: var(--ink); }
 
   /* HEADER */
   .top-header {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     padding: 28px 48px;
     display: flex; align-items: center; gap: 20px;
@@ -37,7 +35,7 @@
   .sticky-nav {
     position: sticky; top: 0; z-index: 100;
     background: var(--white);
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid var(--line);
     padding: 0 48px;
     display: flex; gap: 0; overflow-x: auto;
   }
@@ -53,7 +51,7 @@
      REVIEW SECTION (Part 1)
      =========================== */
   .review-banner {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     border-radius: 12px 12px 0 0;
     padding: 24px 36px;
@@ -72,7 +70,7 @@
 
   .review-block {
     background: var(--white);
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     border-radius: 0 0 16px 16px;
     margin-bottom: 64px;
     overflow: hidden;
@@ -81,7 +79,7 @@
   .review-intro {
     padding: 20px 36px;
     background: #fffbf0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--line);
     font-size: 13px; line-height: 1.8;
     border-left: 4px solid var(--orange);
   }
@@ -89,7 +87,7 @@
 
   /* Category review cards */
   .review-category {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--line);
     padding: 28px 36px;
   }
   .review-category:last-child { border-bottom: none; }
@@ -166,7 +164,7 @@
      EXERCISE BLOCKS (Part 2)
      =========================== */
   .section-divider {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     padding: 20px 36px;
     border-radius: 12px;
@@ -186,12 +184,12 @@
   .exercise-block {
     background: var(--white);
     border-radius: 16px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     margin-bottom: 64px;
     overflow: hidden;
   }
   .ex-hero {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     padding: 32px 40px;
     display: grid;
@@ -220,9 +218,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--line);
   }
-  .col-mod { border-right: 1px solid var(--border); padding: 32px 36px; }
+  .col-mod { border-right: 1px solid var(--line); padding: 32px 36px; }
   .col-ws { padding: 32px 36px; background: #fafafa; }
 
   .col-label {
@@ -232,10 +230,10 @@
   }
   .col-label .dot { width: 10px; height: 10px; border-radius: 50%; }
   .dot-mod { background: var(--orange); }
-  .dot-ws { background: var(--black); }
+  .dot-ws { background: var(--ink); }
 
   h3.section-title {
-    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--black);
+    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--ink);
     display: flex; align-items: center; gap: 8px;
   }
   h3.section-title::before {
@@ -271,13 +269,13 @@
     flex-shrink: 0;
     padding: 3px 10px; border-radius: 12px;
     font-size: 11px; font-weight: 800;
-    background: var(--black); color: var(--white);
+    background: var(--ink); color: var(--white);
     margin-top: 2px; white-space: nowrap;
   }
 
   .timing-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
-  .timing-table th { background: var(--black); color: var(--white); padding: 7px 12px; text-align: left; }
-  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--border); }
+  .timing-table th { background: var(--ink); color: var(--white); padding: 7px 12px; text-align: left; }
+  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--line); }
   .timing-table tr:last-child td { border-bottom: none; }
   .timing-table tr:nth-child(even) td { background: #f8f8f8; }
 
@@ -306,7 +304,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     margin-bottom: 14px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
   }
   .phase-block .phase-title {
     font-size: 13px; font-weight: 800; margin-bottom: 8px;
@@ -325,13 +323,13 @@
   /* LITERATURE */
   .lit-section {
     padding: 24px 36px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--line);
     background: #f9f9f9;
   }
   .lit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
   .lit-item {
     background: var(--white);
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     border-radius: 8px;
     padding: 12px 14px;
     font-size: 12px; line-height: 1.6;
@@ -349,7 +347,7 @@
 
   .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
   .yt-item {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     border-radius: 8px;
     padding: 14px 16px;
@@ -367,10 +365,10 @@
   /* WORKSHEET */
   .ws-intro {
     font-size: 13px; color: #555; margin-bottom: 16px; font-style: italic;
-    border-bottom: 1px dashed var(--border); padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line); padding-bottom: 12px;
   }
   .ws-field-label {
-    font-size: 12px; font-weight: 700; color: var(--black);
+    font-size: 12px; font-weight: 700; color: var(--ink);
     margin-bottom: 4px; margin-top: 12px;
   }
   .ws-lines { margin-bottom: 12px; }
@@ -387,7 +385,7 @@
     background: var(--white);
   }
   .ws-quote {
-    background: var(--black);
+    background: var(--ink);
     color: var(--white);
     border-radius: 8px;
     padding: 16px 18px;
@@ -405,7 +403,7 @@
   }
   .data-cell {
     background: var(--white);
-    border: 2px solid var(--border);
+    border: 2px solid var(--line);
     border-radius: 8px;
     padding: 12px 10px;
     text-align: center;
@@ -459,15 +457,15 @@
     .two-col { grid-template-columns: 1fr 1fr; }
     .lit-grid, .yt-grid { grid-template-columns: 1fr 1fr; }
     .flags-grid, .fixes-grid { grid-template-columns: 1fr 1fr; }
-    .ex-hero { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .review-banner { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .ex-hero { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .review-banner { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .info-box, .tips-box, .warn-box, .commit-box, .ws-quote, .flag-item, .fix-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .yt-item { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yt-item { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
   @media (max-width: 800px) {
     .two-col { grid-template-columns: 1fr; }
-    .col-mod { border-right: none; border-bottom: 1px solid var(--border); }
+    .col-mod { border-right: none; border-bottom: 1px solid var(--line); }
     .lit-grid, .yt-grid { grid-template-columns: 1fr; }
     .flags-grid, .fixes-grid { grid-template-columns: 1fr; }
     .ex-hero { grid-template-columns: auto 1fr; }
@@ -755,7 +753,7 @@
     <!-- OVERALL RECOMMENDATIONS -->
     <div class="review-category" style="background: #fafafa;">
       <div class="cat-header">
-        <div class="cat-num" style="background: var(--black);">!</div>
+        <div class="cat-num" style="background: var(--ink);">!</div>
         <div>
           <h3>Overarching recommendations for session 1</h3>
           <div class="cat-sub">Apply to all categories</div>
@@ -1298,24 +1296,24 @@
       <div class="ws-field-label">My experiences per sprint:</div>
       <table style="width:100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px;">
         <thead>
-          <tr style="background: var(--black); color: var(--white);">
+          <tr style="background: var(--ink); color: var(--white);">
             <th style="padding: 6px 10px; text-align: left;">Message</th>
             <th style="padding: 6px 10px; text-align: left;">Reset successful?</th>
             <th style="padding: 6px 10px; text-align: left;">What I felt</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom: 1px solid var(--border);">
+          <tr style="border-bottom: 1px solid var(--line);">
             <td style="padding: 6px 10px;">Turnover</td>
             <td style="padding: 6px 10px;">Yes / No / Partly</td>
             <td style="padding: 6px 10px; min-width: 120px;"></td>
           </tr>
-          <tr style="border-bottom: 1px solid var(--border); background: #f8f8f8;">
+          <tr style="border-bottom: 1px solid var(--line); background: #f8f8f8;">
             <td style="padding: 6px 10px;">Bench</td>
             <td style="padding: 6px 10px;">Yes / No / Partly</td>
             <td style="padding: 6px 10px;"></td>
           </tr>
-          <tr style="border-bottom: 1px solid var(--border);">
+          <tr style="border-bottom: 1px solid var(--line);">
             <td style="padding: 6px 10px;">Fifth foul</td>
             <td style="padding: 6px 10px;">Yes / No / Partly</td>
             <td style="padding: 6px 10px;"></td>
@@ -1521,19 +1519,19 @@
       <div class="ws-field-label">When does collective responsibility become powerful vs. toxic?</div>
       <table style="width:100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px;">
         <thead>
-          <tr style="background: var(--black); color: var(--white);">
+          <tr style="background: var(--ink); color: var(--white);">
             <th style="padding: 7px 12px; text-align: left;">Powerful when...</th>
             <th style="padding: 7px 12px; text-align: left;">Toxic when...</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
           </tr>
           <tr>
-            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid var(--border); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
           </tr>
           <tr>
             <td style="padding: 8px 12px; height: 32px;"></td>

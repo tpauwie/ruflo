@@ -4,34 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Character First — The Week: Daily Worksheets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --orange: #f05a28;
-      --orange-light: #fff3ee;
-      --black: #0a0a0a;
-      --gray-50: #fafafa;
-      --gray-100: #f4f4f4;
-      --gray-200: #e4e4e4;
-      --gray-400: #999;
-      --gray-600: #555;
-      --gray-800: #222;
-      --green: #1a6b3a;
-      --blue: #1a5299;
-      --purple: #5c3d9e;
+      --orange: #f05a28; --orange2: #d44a1a;
+      --orange-light: #fff3ee; --ink: #1C2433;
+      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+      --gray-50: #fafafa; --gray-100: #f4f4f4; --gray-200: #e4e4e4;
+      --gray-400: #999; --gray-600: #555; --gray-800: #222;
+      --green: #1a6b3a; --blue: #1a5299; --purple: #5c3d9e;
     }
 
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
       background: #e8e8e8;
-      color: var(--black);
+      color: var(--ink);
       font-size: 14px;
     }
 
     /* ─── SCREEN BAR ─── */
     .screen-bar {
-      background: var(--black);
+      background: var(--ink);
       color: white;
       padding: 0.9rem 2rem;
       display: flex;
@@ -90,7 +89,7 @@
       font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
     }
     .badge-player { background: var(--orange-light); color: var(--orange); border: 1.5px solid var(--orange); }
-    .badge-mod { background: var(--black); color: white; }
+    .badge-mod { background: var(--ink); color: white; }
     .brand-tiny { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
     .brand-tiny span { color: var(--orange); }
 
@@ -122,7 +121,7 @@
     .ex-num.orange { background: var(--orange); }
     .ex-num.warm { background: #e07820; }
     .ex-num.close { background: #1a5299; }
-    .ex-title strong { font-size: 0.9rem; font-weight: 800; color: var(--black); }
+    .ex-title strong { font-size: 0.9rem; font-weight: 800; color: var(--ink); }
     .ex-title .time-tag {
       margin-left: auto; font-size: 0.65rem; font-weight: 700; color: var(--gray-400);
       background: var(--gray-100); padding: 2px 7px; border-radius: 4px;
@@ -167,11 +166,11 @@
     }
     .step { display: flex; gap: 9px; margin-bottom: 7px; align-items: flex-start; }
     .step-num {
-      flex-shrink: 0; width: 21px; height: 21px; background: var(--black); color: white;
+      flex-shrink: 0; width: 21px; height: 21px; background: var(--ink); color: white;
       border-radius: 50%; font-size: 0.68rem; font-weight: 900; display: flex; align-items: center; justify-content: center;
     }
     .step p { font-size: 0.8rem; color: var(--gray-800); line-height: 1.55; }
-    .step p strong { color: var(--black); }
+    .step p strong { color: var(--ink); }
 
     .tip-box { background: #fff8f5; border: 1.5px solid #ffd0bc; border-radius: 7px; padding: 9px 12px; margin-bottom: 7px; }
     .tip-box p { font-size: 0.79rem; color: var(--gray-800); line-height: 1.55; }
@@ -186,7 +185,7 @@
 
     .science-box { background: var(--gray-100); border-radius: 7px; padding: 9px 12px; margin-bottom: 12px; }
     .science-box p { font-size: 0.77rem; color: var(--gray-600); line-height: 1.55; }
-    .science-box strong { color: var(--black); font-size: 0.75rem; }
+    .science-box strong { color: var(--ink); font-size: 0.75rem; }
     .tier { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 5px; border-radius: 3px; margin-right: 3px; }
     .t1 { background: var(--green); color: white; }
     .t2 { background: var(--blue); color: white; }
