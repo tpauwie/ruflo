@@ -160,17 +160,15 @@
     .sci-card h4{font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:.4rem;font-family:'Archivo',sans-serif}
     .sci-card p{font-size:.82rem;color:var(--stone);line-height:1.6}
 
-    /* ── QUOTES ── */
-    #quotes{background:var(--ink);padding:clamp(56px,7vw,96px) 5%}
-    .quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.4rem}
-    .quote-card{background:#151d2b;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.8rem;display:flex;flex-direction:column;gap:1.2rem}
-    .quote-text{font-size:.95rem;color:#c0c8d8;line-height:1.75;font-style:italic;flex:1}
-    .quote-text::before{content:'\201C';font-size:1.8rem;color:var(--orange);line-height:.5;display:block;margin-bottom:.4rem;font-style:normal;font-family:'Archivo',sans-serif}
-    .quote-author{display:flex;align-items:center;gap:.8rem}
-    .quote-avatar{width:38px;height:38px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:900;font-size:.8rem;color:#fff;flex-shrink:0}
-    .quote-name{font-family:'Archivo',sans-serif;font-weight:800;font-size:.85rem;color:#fff;line-height:1.2}
-    .quote-role{font-size:.74rem;color:#4a5a70}
-    @media(max-width:780px){.quotes-grid{grid-template-columns:1fr}}
+    /* ── LOGO STORY ── */
+    .logo-story{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;margin-top:2.8rem;background:#0f1620;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:2.2rem 2.5rem}
+    .logo-story-mark{flex-shrink:0}
+    .ls-eyebrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.55rem}
+    .logo-story-text h3{font-size:clamp(1rem,1.8vw,1.25rem);color:#fff;margin-bottom:.7rem;line-height:1.3}
+    .logo-story-text p{font-size:.88rem;color:#6e7a8e;line-height:1.75}
+    .logo-story-text p strong{color:#aab;font-weight:700}
+    .logo-story-text p em{color:var(--orange);font-style:normal}
+    @media(max-width:600px){.logo-story{grid-template-columns:1fr}.logo-story-mark{display:none}}
 
     /* ── CTA BAND ── */
     #cta-band{background:var(--orange);padding:clamp(56px,7vw,80px) 5%;text-align:center}
@@ -234,6 +232,8 @@
   </a>
   <div class="nav-links" id="nav-links">
     <a href="index.html" style="color:#fff;font-weight:700">Home</a>
+    <a href="coach-programma.html">Coaches</a>
+    <a href="#mission">Missie &amp; Visie</a>
     <a href="en/index.html" class="lang-switch lang-pill">EN</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -291,6 +291,18 @@
       <div class="mv-lbl">Visie</div>
       <h3>Een generatie die wint op het veld én in het leven.</h3>
       <p>Wij zien een toekomst waar karakter net zo systematisch getraind wordt als techniek. Waar coaches worden afgerekend op de mensen die ze vormen — en waar Character First de standaard is, niet de uitzondering.</p>
+    </div>
+  </div>
+
+  <!-- Logo backstory -->
+  <div class="logo-story fade-in">
+    <div class="logo-story-mark">
+      <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#F05A28"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/><text x="50" y="90" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="13" fill="#fff" letter-spacing="2">CF</text></svg>
+    </div>
+    <div class="logo-story-text">
+      <div class="ls-eyebrow">Ons logo</div>
+      <h3>CF is de basis. De berg is waar je naartoe gaat.</h3>
+      <p>De berg staat voor ambitie — de top die elke sporter en coach nastreeft. De letters <strong>CF</strong> vormen het fundament waarop de berg rust: <em>karakter boven alles</em>. Het witte sneeuwpunt is het moment van aankomst, maar ook het begin van de volgende klim. Character First bouwt aan de mens die de berg kan beklimmen — niet alleen aan de prestatie op de top.</p>
     </div>
   </div>
 </section>
@@ -531,37 +543,6 @@
       <div class="sci-author">Edmondson, 2018</div>
       <h4>Psychological Safety</h4>
       <p>Teams met hoge psychologische veiligheid presteren 26% beter en maken significant minder fouten.</p>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTES -->
-<section id="quotes">
-  <div class="fade-in">
-    <div class="eyebrow" style="color:rgba(240,90,40,.7)">Uit de praktijk</div>
-    <h2 class="sec-title" style="color:#fff">Wat coaches zeggen</h2>
-  </div>
-  <div class="quotes-grid fade-in">
-    <div class="quote-card">
-      <div class="quote-text">Character First gaf ons team een taal voor wat we al voelden maar niet konden benoemen. Opeens konden we het bespreken op training.</div>
-      <div class="quote-author">
-        <div class="quote-avatar">SV</div>
-        <div><div class="quote-name">Sven V.</div><div class="quote-role">Coach U17 basketbal</div></div>
-      </div>
-    </div>
-    <div class="quote-card">
-      <div class="quote-text">Na het seizoensprogramma zie ik mijn speelsters anders omgaan met verlies. Dat is meer waard dan een bekerfinale.</div>
-      <div class="quote-author">
-        <div class="quote-avatar">LD</div>
-        <div><div class="quote-name">Lies D.</div><div class="quote-role">Coach voetbal dames</div></div>
-      </div>
-    </div>
-    <div class="quote-card">
-      <div class="quote-text">Box Breathing in de kleedkamer voor een derby. Nooit gedacht dat ik dat als coach zou zeggen. Het werkte. En de spelers vroegen er zelf om.</div>
-      <div class="quote-author">
-        <div class="quote-avatar">TM</div>
-        <div><div class="quote-name">Thomas M.</div><div class="quote-role">Coach U16 hockey</div></div>
-      </div>
     </div>
   </div>
 </section>
