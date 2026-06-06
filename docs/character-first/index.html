@@ -54,7 +54,6 @@
     .stat-num{font-family:'Archivo',sans-serif;font-size:1.9rem;font-weight:900;color:var(--orange);line-height:1}
     .stat-label{font-size:.76rem;color:#556;margin-top:.25rem}
 
-    /* hero right — exercise preview cards */
     .hero-cards{display:flex;flex-direction:column;gap:10px}
     .hcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;transition:transform .3s,border-color .3s}
     .hcard:hover{transform:translateY(-3px);border-color:rgba(240,90,40,.25)}
@@ -69,12 +68,10 @@
     @media(max-width:900px){#hero{grid-template-columns:1fr}.hero-cards{display:none}}
     @media(max-width:600px){#hero{padding:90px 5% 60px}#hero h1{font-size:2.2rem}.hero-btns{flex-direction:column}.btn-primary,.btn-ghost{text-align:center;min-height:46px;display:flex;align-items:center;justify-content:center}.hero-stats{gap:1.4rem}}
 
-    /* ── SECTION SHARED ── */
     .eyebrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.9rem}
     .sec-title{font-size:clamp(1.7rem,3.3vw,2.5rem);margin-bottom:.65rem}
     .sec-sub{font-size:1.02rem;color:var(--stone);max-width:580px;line-height:1.7;margin-bottom:2.4rem}
 
-    /* ── MISSION ── */
     #mission{background:var(--ink);padding:clamp(56px,7vw,96px) 5%}
     .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2.8rem;border-radius:16px;overflow:hidden}
     .mv-card{padding:2.5rem}
@@ -88,7 +85,6 @@
     .vc p{color:#6e7a8e;font-size:.92rem;line-height:1.75}
     @media(max-width:640px){.mv-grid{grid-template-columns:1fr}}
 
-    /* ── LIBRARY PREVIEW ── */
     #library-preview{padding:clamp(56px,7vw,96px) 5%;background:var(--canvas)}
     .age-toggle{display:inline-flex;background:var(--mist);border-radius:8px;padding:3px;margin-bottom:2.4rem;gap:2px}
     .age-btn{padding:.4rem 1.1rem;border-radius:6px;border:none;background:transparent;font-family:'Archivo',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;color:var(--stone);transition:all .2s}
@@ -108,7 +104,6 @@
     @media(max-width:780px){.ex-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:480px){.ex-grid{grid-template-columns:1fr}}
 
-    /* ── PROGRAM TIMELINE ── */
     #programma{padding:clamp(56px,7vw,96px) 5%;background:#fff}
     .prog-tabs{display:flex;gap:2px;background:var(--mist);border-radius:8px;padding:3px;width:fit-content;margin-bottom:2.8rem}
     .prog-tab{padding:.45rem 1.4rem;border-radius:6px;border:none;background:transparent;font-family:'Archivo',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;color:var(--stone);transition:all .2s}
@@ -116,7 +111,6 @@
     .prog-panel{display:none}
     .prog-panel.active{display:block}
 
-    /* Week timeline */
     .week-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border-radius:14px;overflow:hidden;margin-bottom:2rem}
     .day{background:#fff;padding:1.6rem 1.2rem}
     .day-num{font-family:'Archivo',sans-serif;font-weight:900;font-size:2rem;color:var(--line);line-height:1;margin-bottom:.3rem}
@@ -126,7 +120,6 @@
     @media(max-width:720px){.week-timeline{grid-template-columns:1fr 1fr}.day:last-child{grid-column:1/-1}}
     @media(max-width:400px){.week-timeline{grid-template-columns:1fr}}
 
-    /* Season timeline */
     .season-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
     .month-card{background:var(--canvas);border:1px solid var(--line);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden}
     .month-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange)}
@@ -138,7 +131,6 @@
 
     .prog-cta{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
 
-    /* ── COACH PROGRAM ── */
     #coach-prog{background:var(--ink);padding:clamp(56px,7vw,96px) 5%}
     .coach-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;margin-top:2rem}
     .coach-checks{display:flex;flex-direction:column;gap:.9rem;margin-top:1.4rem}
@@ -150,7 +142,6 @@
     .coach-stat-label{font-size:.75rem;color:#556}
     @media(max-width:680px){.coach-grid{grid-template-columns:1fr}}
 
-    /* ── WETENSCHAP ── */
     #wetenschap{background:var(--canvas);padding:clamp(56px,7vw,96px) 5%}
     .science-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2rem}
     .sci-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.6rem;transition:box-shadow .2s}
@@ -160,7 +151,6 @@
     .sci-card h4{font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:.4rem;font-family:'Archivo',sans-serif}
     .sci-card p{font-size:.82rem;color:var(--stone);line-height:1.6}
 
-    /* ── LOGO STORY ── */
     .logo-story{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;margin-top:2.8rem;background:#0f1620;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:2.2rem 2.5rem}
     .logo-story-mark{flex-shrink:0}
     .ls-eyebrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.55rem}
@@ -170,7 +160,6 @@
     .logo-story-text p em{color:var(--orange);font-style:normal}
     @media(max-width:600px){.logo-story{grid-template-columns:1fr}.logo-story-mark{display:none}}
 
-    /* ── CTA BAND ── */
     #cta-band{background:var(--orange);padding:clamp(56px,7vw,80px) 5%;text-align:center}
     #cta-band h2{color:#fff;font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:.7rem}
     #cta-band p{color:rgba(255,255,255,.8);font-size:1.05rem;margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto}
@@ -180,7 +169,6 @@
     .btn-outline-white{border:2px solid rgba(255,255,255,.5);color:#fff;padding:.9rem 2.2rem;border-radius:7px;text-decoration:none;font-weight:600;font-size:.92rem;transition:all .2s}
     .btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.1)}
 
-    /* ── FOOTER ── */
     footer{background:var(--ink);padding:clamp(40px,6vw,64px) 5% 32px;border-top:1px solid rgba(255,255,255,.06)}
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
     .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:.8rem}
@@ -195,7 +183,6 @@
     @media(max-width:780px){.footer-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:460px){.footer-grid{grid-template-columns:1fr}}
 
-    /* ── WAITLIST ── */
     #waitlist{background:var(--mist);padding:clamp(56px,7vw,80px) 5%}
     .waitlist-inner{max-width:520px;margin:0 auto;text-align:center}
     #waitlist h2{margin-bottom:.6rem}
@@ -234,6 +221,7 @@
     <a href="index.html" style="color:#fff;font-weight:700">Home</a>
     <a href="coach-programma.html">Coaches</a>
     <a href="#mission">Missie &amp; Visie</a>
+    <a href="contact.html">Contact</a>
     <a href="en/index.html" class="lang-switch lang-pill">EN</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -294,7 +282,6 @@
     </div>
   </div>
 
-  <!-- Logo backstory -->
   <div class="logo-story fade-in">
     <div class="logo-story-mark">
       <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#F05A28"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/><text x="50" y="90" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="13" fill="#fff" letter-spacing="2">CF</text></svg>
@@ -320,124 +307,31 @@
     </div>
   </div>
 
-  <!-- U14 cards -->
   <div class="ex-grid fade-in" id="cards-u14">
-    <div class="ex-card">
-      <div class="ex-num">#10</div>
-      <div class="ex-title">Twee Waarheden Één Leugen</div>
-      <div class="ex-desc">Spelers leren elkaar kennen via een verrassend zelfkennisformat. Bouwt vertrouwen en openheid in het team.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Zelfkennis</span><span class="ex-time">8 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#11</div>
-      <div class="ex-title">Box Breathing</div>
-      <div class="ex-desc">Gecontroleerde 4-4-4-4 ademhaling om het zenuwstelsel te kalmeren voor en na prestatiemomenten.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Druk &amp; Stress</span><span class="ex-time">5 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#23</div>
-      <div class="ex-title">Menselijke Grafiek</div>
-      <div class="ex-desc">Spelers positioneren zichzelf fysiek op een schaal om hun rol en mening te verduidelijken.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#7A52C7">Mijn Rol</span><span class="ex-time">8 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#37</div>
-      <div class="ex-title">Aanmoedigingschallenge</div>
-      <div class="ex-desc">Bewijs dat bewust aanmoedigen de teamprestatie verhoogt. Getimed, meetbaar, motiverend.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communicatie</span><span class="ex-time">7 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#46</div>
-      <div class="ex-title">Kracht van de Kring</div>
-      <div class="ex-desc">Teamleden staan voor elkaar in een cirkel van vertrouwen. Letterlijk en figuurlijk.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team Eerst</span><span class="ex-time">5 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#56</div>
-      <div class="ex-title">Wall Squat Challenge</div>
-      <div class="ex-desc">Solo vs. met teamaanmoediging vs. samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#3A8A8A">Fysiek</span><span class="ex-time">15 min</span></div>
-    </div>
+    <div class="ex-card"><div class="ex-num">#10</div><div class="ex-title">Twee Waarheden Één Leugen</div><div class="ex-desc">Spelers leren elkaar kennen via een verrassend zelfkennisformat. Bouwt vertrouwen en openheid in het team.</div><div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Zelfkennis</span><span class="ex-time">8 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#11</div><div class="ex-title">Box Breathing</div><div class="ex-desc">Gecontroleerde 4-4-4-4 ademhaling om het zenuwstelsel te kalmeren voor en na prestatiemomenten.</div><div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Druk &amp; Stress</span><span class="ex-time">5 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#23</div><div class="ex-title">Menselijke Grafiek</div><div class="ex-desc">Spelers positioneren zichzelf fysiek op een schaal om hun rol en mening te verduidelijken.</div><div class="ex-tags"><span class="ex-tag" style="background:#7A52C7">Mijn Rol</span><span class="ex-time">8 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#37</div><div class="ex-title">Aanmoedigingschallenge</div><div class="ex-desc">Bewijs dat bewust aanmoedigen de teamprestatie verhoogt. Getimed, meetbaar, motiverend.</div><div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communicatie</span><span class="ex-time">7 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#46</div><div class="ex-title">Kracht van de Kring</div><div class="ex-desc">Teamleden staan voor elkaar in een cirkel van vertrouwen. Letterlijk en figuurlijk.</div><div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team Eerst</span><span class="ex-time">5 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#56</div><div class="ex-title">Wall Squat Challenge</div><div class="ex-desc">Solo vs. met teamaanmoediging vs. samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</div><div class="ex-tags"><span class="ex-tag" style="background:#3A8A8A">Fysiek</span><span class="ex-time">15 min</span></div></div>
   </div>
 
-  <!-- U16 cards -->
   <div class="ex-grid fade-in" id="cards-u16" style="display:none">
-    <div class="ex-card">
-      <div class="ex-num">#15</div>
-      <div class="ex-title">Waarden Map</div>
-      <div class="ex-desc">Spelers visualiseren hun persoonlijke kernwaarden en koppelen die aan hun sportprestatie.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Zelfkennis</span><span class="ex-time">12 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#19</div>
-      <div class="ex-title">Pre-game Routine</div>
-      <div class="ex-desc">Bouwen aan een persoonlijke activeringsroutine voor wedstrijden. Consistentie als mentale anker.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Druk &amp; Stress</span><span class="ex-time">10 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#28</div>
-      <div class="ex-title">Positiewissel</div>
-      <div class="ex-desc">Spelers nemen elkaars positie en rol in. Empathie en rolbegrip groeien door perspectief te wisselen.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#7A52C7">Mijn Rol</span><span class="ex-time">15 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#39</div>
-      <div class="ex-title">Kritische Feedback</div>
-      <div class="ex-desc">Gestructureerd oefenen in het geven en ontvangen van constructieve feedback binnen de ploeg.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communicatie</span><span class="ex-time">10 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#48</div>
-      <div class="ex-title">Vertrouwenscirkel</div>
-      <div class="ex-desc">Teamleden spreken over momenten van kwetsbaarheid en kracht. Verhoogt psychologische veiligheid.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team Eerst</span><span class="ex-time">12 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#54</div>
-      <div class="ex-title">Koude Douche Protocol</div>
-      <div class="ex-desc">Bewuste blootstelling aan ongemak als metafoor voor veerkracht. Wetenschappelijk onderbouwd.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#3A8A8A">Fysiek</span><span class="ex-time">10 min</span></div>
-    </div>
+    <div class="ex-card"><div class="ex-num">#15</div><div class="ex-title">Waarden Map</div><div class="ex-desc">Spelers visualiseren hun persoonlijke kernwaarden en koppelen die aan hun sportprestatie.</div><div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Zelfkennis</span><span class="ex-time">12 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#19</div><div class="ex-title">Pre-game Routine</div><div class="ex-desc">Bouwen aan een persoonlijke activeringsroutine voor wedstrijden. Consistentie als mentale anker.</div><div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Druk &amp; Stress</span><span class="ex-time">10 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#28</div><div class="ex-title">Positiewissel</div><div class="ex-desc">Spelers nemen elkaars positie en rol in. Empathie en rolbegrip groeien door perspectief te wisselen.</div><div class="ex-tags"><span class="ex-tag" style="background:#7A52C7">Mijn Rol</span><span class="ex-time">15 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#39</div><div class="ex-title">Kritische Feedback</div><div class="ex-desc">Gestructureerd oefenen in het geven en ontvangen van constructieve feedback binnen de ploeg.</div><div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communicatie</span><span class="ex-time">10 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#48</div><div class="ex-title">Vertrouwenscirkel</div><div class="ex-desc">Teamleden spreken over momenten van kwetsbaarheid en kracht. Verhoogt psychologische veiligheid.</div><div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team Eerst</span><span class="ex-time">12 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#54</div><div class="ex-title">Koude Douche Protocol</div><div class="ex-desc">Bewuste blootstelling aan ongemak als metafoor voor veerkracht. Wetenschappelijk onderbouwd.</div><div class="ex-tags"><span class="ex-tag" style="background:#3A8A8A">Fysiek</span><span class="ex-time">10 min</span></div></div>
   </div>
 
-  <!-- Senior cards -->
   <div class="ex-grid fade-in" id="cards-senior" style="display:none">
-    <div class="ex-card">
-      <div class="ex-num">#12</div>
-      <div class="ex-title">Kernwaarden Kaart</div>
-      <div class="ex-desc">Diepe reflectie op persoonlijke waarden en hoe die de sporter sturen in moeilijke wedstrijdmomenten.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Zelfkennis</span><span class="ex-time">15 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#22</div>
-      <div class="ex-title">Ademhaling &amp; Visualisatie</div>
-      <div class="ex-desc">Combinatie van ademhalingstechniek en mentale beeldvorming voor pre-performance activering.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Druk &amp; Stress</span><span class="ex-time">12 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#31</div>
-      <div class="ex-title">Leiderschapsstijlen</div>
-      <div class="ex-desc">Spelers ontdekken hun natuurlijke leiderschapsstijl en leren wanneer welke stijl effectief is.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#1C2433">Leiderschap</span><span class="ex-time">20 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#42</div>
-      <div class="ex-title">Het Moeilijk Gesprek</div>
-      <div class="ex-desc">Rollenspel om confronterende maar noodzakelijke gesprekken te oefenen in een veilige omgeving.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communicatie</span><span class="ex-time">15 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#50</div>
-      <div class="ex-title">Teamcontract</div>
-      <div class="ex-desc">Het team stelt samen gedragsafspraken op. Eigenaarschap en verantwoordelijkheid als fundament.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team Eerst</span><span class="ex-time">20 min</span></div>
-    </div>
-    <div class="ex-card">
-      <div class="ex-num">#57</div>
-      <div class="ex-title">De Flu Game Mentaliteit</div>
-      <div class="ex-desc">Spelers formuleren hun persoonlijk doorzet-moment en hun eigen Flu Game zin als mentaal anker.</div>
-      <div class="ex-tags"><span class="ex-tag" style="background:#C73F62">Veerkracht</span><span class="ex-time">15 min</span></div>
-    </div>
+    <div class="ex-card"><div class="ex-num">#12</div><div class="ex-title">Kernwaarden Kaart</div><div class="ex-desc">Diepe reflectie op persoonlijke waarden en hoe die de sporter sturen in moeilijke wedstrijdmomenten.</div><div class="ex-tags"><span class="ex-tag" style="background:#F05A28">Zelfkennis</span><span class="ex-time">15 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#22</div><div class="ex-title">Ademhaling &amp; Visualisatie</div><div class="ex-desc">Combinatie van ademhalingstechniek en mentale beeldvorming voor pre-performance activering.</div><div class="ex-tags"><span class="ex-tag" style="background:#2F6FB0">Druk &amp; Stress</span><span class="ex-time">12 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#31</div><div class="ex-title">Leiderschapsstijlen</div><div class="ex-desc">Spelers ontdekken hun natuurlijke leiderschapsstijl en leren wanneer welke stijl effectief is.</div><div class="ex-tags"><span class="ex-tag" style="background:#1C2433">Leiderschap</span><span class="ex-time">20 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#42</div><div class="ex-title">Het Moeilijk Gesprek</div><div class="ex-desc">Rollenspel om confronterende maar noodzakelijke gesprekken te oefenen in een veilige omgeving.</div><div class="ex-tags"><span class="ex-tag" style="background:#C7842F">Communicatie</span><span class="ex-time">15 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#50</div><div class="ex-title">Teamcontract</div><div class="ex-desc">Het team stelt samen gedragsafspraken op. Eigenaarschap en verantwoordelijkheid als fundament.</div><div class="ex-tags"><span class="ex-tag" style="background:#1E8A5B">Team Eerst</span><span class="ex-time">20 min</span></div></div>
+    <div class="ex-card"><div class="ex-num">#57</div><div class="ex-title">De Flu Game Mentaliteit</div><div class="ex-desc">Spelers formuleren hun persoonlijk doorzet-moment en hun eigen Flu Game zin als mentaal anker.</div><div class="ex-tags"><span class="ex-tag" style="background:#C73F62">Veerkracht</span><span class="ex-time">15 min</span></div></div>
   </div>
 
   <div class="lib-cta">
@@ -457,7 +351,6 @@
     </div>
   </div>
 
-  <!-- WEEK -->
   <div class="prog-panel active fade-in" id="prog-week">
     <div class="week-timeline">
       <div class="day"><div class="day-num">1</div><div class="day-label">Dag 1</div><div class="day-theme">Zelfkennis</div><div class="day-ex">Wie ben ik? Wat drijft me? Kernwaarden en identiteit als sporter.</div></div>
@@ -472,7 +365,6 @@
     </div>
   </div>
 
-  <!-- SEASON -->
   <div class="prog-panel fade-in" id="prog-season">
     <div class="season-grid">
       <div class="month-card"><div class="month-num">Maand 1</div><div class="month-theme">Zelfkennis</div><div class="month-desc">Wie ben ik als sporter? Kernwaarden en persoonlijke identiteit.</div></div>
@@ -526,24 +418,9 @@
     <p class="sec-sub">Alle oefeningen zijn gebaseerd op peer-reviewed literatuur uit sportpsychologie, organisatiepsychologie en onderwijs.</p>
   </div>
   <div class="science-grid fade-in">
-    <div class="sci-card">
-      <span class="sci-type" style="background:#d4edda;color:#1a7a4a">Systematische Review</span>
-      <div class="sci-author">Gucciardi et al., 2015</div>
-      <h4>Mental Toughness in Sport</h4>
-      <p>Mentale weerbaarheid is voor 60–70% trainbaar via gerichte interventie. Meta-analyse van 91 studies.</p>
-    </div>
-    <div class="sci-card">
-      <span class="sci-type" style="background:#d0e4f7;color:#1a4a8a">RCT Studie</span>
-      <div class="sci-author">Duckworth et al., 2007</div>
-      <h4>Grit: Perseverance and Passion</h4>
-      <p>Doorzettingsvermogen en passie zijn sterkere voorspellers van succes dan intelligentie of talent alleen.</p>
-    </div>
-    <div class="sci-card">
-      <span class="sci-type" style="background:#d4edda;color:#1a7a4a">Systematische Review</span>
-      <div class="sci-author">Edmondson, 2018</div>
-      <h4>Psychological Safety</h4>
-      <p>Teams met hoge psychologische veiligheid presteren 26% beter en maken significant minder fouten.</p>
-    </div>
+    <div class="sci-card"><span class="sci-type" style="background:#d4edda;color:#1a7a4a">Systematische Review</span><div class="sci-author">Gucciardi et al., 2015</div><h4>Mental Toughness in Sport</h4><p>Mentale weerbaarheid is voor 60–70% trainbaar via gerichte interventie. Meta-analyse van 91 studies.</p></div>
+    <div class="sci-card"><span class="sci-type" style="background:#d0e4f7;color:#1a4a8a">RCT Studie</span><div class="sci-author">Duckworth et al., 2007</div><h4>Grit: Perseverance and Passion</h4><p>Doorzettingsvermogen en passie zijn sterkere voorspellers van succes dan intelligentie of talent alleen.</p></div>
+    <div class="sci-card"><span class="sci-type" style="background:#d4edda;color:#1a7a4a">Systematische Review</span><div class="sci-author">Edmondson, 2018</div><h4>Psychological Safety</h4><p>Teams met hoge psychologische veiligheid presteren 26% beter en maken significant minder fouten.</p></div>
   </div>
 </section>
 
@@ -571,8 +448,8 @@
     <h2>Klaar om te starten?</h2>
     <p>Sluit je aan bij coaches en clubs die al werken aan karakter — niet alleen aan prestaties.</p>
     <div class="cta-btns">
-      <a href="week.html" class="btn-white">The Week aanvragen</a>
-      <a href="season.html" class="btn-outline-white">The Season bekijken</a>
+      <a href="contact.html" class="btn-white">Neem contact op</a>
+      <a href="programma.html" class="btn-outline-white">Bekijk het programma</a>
     </div>
   </div>
 </section>
@@ -608,28 +485,25 @@
       <a href="werkbladen.html">Werkbladen</a>
       <a href="toegang.html">Toegangscode</a>
       <a href="en/index.html">English version</a>
-      <a href="mailto:info@characterfirst.be">Contact</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Character First. Alle rechten voorbehouden.</p>
-    <p>Evidence-based sportpsychologie · characterfirst.be</p>
+    <p>Evidence-based sportpsychologie &middot; characterfirst.be</p>
   </div>
 </footer>
 
 <script>
-  // Nav hamburger
   document.getElementById('hamburger').addEventListener('click',()=>{
     document.getElementById('nav-links').classList.toggle('open');
   });
 
-  // Scroll fade-in
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
   },{threshold:0.08});
   document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
-  // Age toggle
   document.querySelectorAll('.age-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
       document.querySelectorAll('.age-btn').forEach(b=>b.classList.remove('active'));
@@ -642,7 +516,6 @@
     });
   });
 
-  // Program tabs
   document.querySelectorAll('.prog-tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
       document.querySelectorAll('.prog-tab').forEach(t=>t.classList.remove('active'));
@@ -652,7 +525,6 @@
     });
   });
 
-  // Waitlist
   document.getElementById('waitlist-submit').addEventListener('click',()=>{
     const email=document.getElementById('waitlist-email').value.trim();
     const subject=encodeURIComponent('Waitlist Character First');
