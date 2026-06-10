@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --ink: #1C2433; --orange: #f05a28; --orange2: #d44a1a;
       --orange-light: #ff7a4d; --white: #ffffff;
@@ -18,436 +17,79 @@
       --gray-900: #111111; --gray-800: #1a1a1a; --gray-700: #2a2a2a;
       --gray-600: #3a3a3a; --gray-400: #666666; --gray-200: #cccccc;
     }
-
     html { scroll-behavior: smooth; }
     h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
-
-    body {
-      background: var(--ink);
-      color: var(--white);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* NAV */
-    nav.top-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(28,36,51,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(240,90,40,0.2);
-      padding: 0 2rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
+    body { background: var(--ink); color: var(--white); font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.6; min-height: 100vh; }
+    nav.top-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(28,36,51,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(240,90,40,0.2); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
     .nav-logo span { color: var(--orange); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: var(--gray-200);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--orange); }
-
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { color: var(--gray-200); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
     @media (max-width: 600px) {
-      .nav-links { display: none; }
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 20px; gap: 1rem; border-bottom: 1px solid var(--gray-700); z-index: 99; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .page-wrap { padding: 80px 1rem 3rem; }
+      .builder-card { padding: 1.5rem; }
+      .generate-btn { min-height: 44px; }
+      .radio-group label span, .check-group label span { min-height: 44px; display: flex; align-items: center; }
     }
-
-    /* PAGE LAYOUT */
-    .page-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 96px 2rem 4rem;
-    }
-
-    /* HERO */
-    .page-hero {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .page-hero .badge {
-      display: inline-block;
-      background: rgba(240,90,40,0.15);
-      color: var(--orange);
-      border: 1px solid rgba(240,90,40,0.3);
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .page-hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
-    }
-
+    .page-wrap { max-width: 900px; margin: 0 auto; padding: 96px 2rem 4rem; }
+    .page-hero { text-align: center; margin-bottom: 3rem; }
+    .page-hero .badge { display: inline-block; background: rgba(240,90,40,0.15); color: var(--orange); border: 1px solid rgba(240,90,40,0.3); padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+    .page-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
     .page-hero h1 span { color: var(--orange); }
-
-    .page-hero p {
-      font-size: 1.05rem;
-      color: var(--gray-200);
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    /* BUILDER FORM */
-    .builder-card {
-      background: var(--gray-800);
-      border: 1px solid var(--gray-700);
-      border-radius: 20px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .field-group {
-      margin-bottom: 2rem;
-    }
-
+    .page-hero p { font-size: 1.05rem; color: var(--gray-200); max-width: 520px; margin: 0 auto; }
+    .builder-card { background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; }
+    .field-group { margin-bottom: 2rem; }
     .field-group:last-child { margin-bottom: 0; }
-
-    .field-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
-    .radio-group,
-    .check-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .radio-group label,
-    .check-group label {
-      cursor: pointer;
-    }
-
-    .radio-group input,
-    .check-group input {
-      display: none;
-    }
-
-    .radio-group label span,
-    .check-group label span {
-      display: block;
-      padding: 0.55rem 1.1rem;
-      border-radius: 999px;
-      border: 2px solid var(--gray-600);
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--gray-200);
-      transition: all 0.15s;
-      user-select: none;
-    }
-
-    .radio-group input:checked + span,
-    .check-group input:checked + span {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: var(--white);
-    }
-
-    .radio-group label:hover span,
-    .check-group label:hover span {
-      border-color: var(--orange);
-      color: var(--orange);
-    }
-
-    .check-note {
-      font-size: 0.78rem;
-      color: var(--gray-400);
-      margin-top: 0.5rem;
-    }
-
-    .generate-btn {
-      display: block;
-      width: 100%;
-      background: var(--orange);
-      color: var(--white);
-      border: none;
-      padding: 1.1rem 2rem;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      letter-spacing: 0.02em;
-      margin-top: 2rem;
-    }
-
-    .generate-btn:hover {
-      background: var(--orange-light);
-      transform: translateY(-2px);
-    }
-
-    /* OUTPUT */
+    .field-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem; display: block; }
+    .radio-group, .check-group { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .radio-group label, .check-group label { cursor: pointer; }
+    .radio-group input, .check-group input { display: none; }
+    .radio-group label span, .check-group label span { display: block; padding: 0.55rem 1.1rem; border-radius: 999px; border: 2px solid var(--gray-600); font-size: 0.88rem; font-weight: 600; color: var(--gray-200); transition: all 0.15s; user-select: none; }
+    .radio-group input:checked + span, .check-group input:checked + span { background: var(--orange); border-color: var(--orange); color: var(--white); }
+    .radio-group label:hover span, .check-group label:hover span { border-color: var(--orange); color: var(--orange); }
+    .check-note { font-size: 0.78rem; color: var(--gray-400); margin-top: 0.5rem; }
+    .generate-btn { display: block; width: 100%; background: var(--orange); color: var(--white); border: none; padding: 1.1rem 2rem; border-radius: 12px; font-weight: 700; font-size: 1.05rem; cursor: pointer; transition: background 0.2s, transform 0.15s; letter-spacing: 0.02em; margin-top: 2rem; }
+    .generate-btn:hover { background: var(--orange-light); transform: translateY(-2px); }
     #output { display: none; }
-
-    .plan-header {
-      background: var(--gray-800);
-      border: 1px solid var(--gray-700);
-      border-radius: 20px;
-      padding: 2rem 2.5rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .plan-title {
-      font-size: 1.4rem;
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-    }
-
-    .plan-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .plan-pill {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(240,90,40,0.15);
-      border: 1px solid rgba(240,90,40,0.3);
-      color: var(--orange);
-    }
-
-    .plan-actions {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .action-btn {
-      padding: 0.6rem 1.4rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      transition: all 0.15s;
-      border: 2px solid var(--gray-600);
-      background: transparent;
-      color: var(--gray-200);
-    }
-
-    .action-btn:hover {
-      border-color: var(--orange);
-      color: var(--orange);
-    }
-
-    .action-btn.primary {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: var(--white);
-    }
-
-    .action-btn.primary:hover {
-      background: var(--orange-light);
-      border-color: var(--orange-light);
-    }
-
-    /* PLAN SLOTS */
-    .plan-slots {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .slot {
-      background: var(--gray-800);
-      border: 1px solid var(--gray-700);
-      border-radius: 14px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1.25rem;
-    }
-
-    .slot.special {
-      background: var(--gray-900);
-      border-color: rgba(240,90,40,0.3);
-    }
-
-    .slot.locked {
-      position: relative;
-      pointer-events: none;
-    }
-
-    .slot.locked > *:not(.slot-lock) {
-      filter: blur(4px);
-      user-select: none;
-    }
-
-    .slot-lock {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(28,36,51,0.75);
-      border-radius: 13px;
-      z-index: 10;
-      pointer-events: all;
-      gap: 0.4rem;
-      color: white;
-      text-align: center;
-    }
-
+    .plan-header { background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 20px; padding: 2rem 2.5rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .plan-title { font-size: 1.4rem; font-weight: 900; margin-bottom: 0.5rem; }
+    .plan-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .plan-pill { font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 999px; background: rgba(240,90,40,0.15); border: 1px solid rgba(240,90,40,0.3); color: var(--orange); }
+    .plan-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .action-btn { padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: all 0.15s; border: 2px solid var(--gray-600); background: transparent; color: var(--gray-200); }
+    .action-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .action-btn.primary { background: var(--orange); border-color: var(--orange); color: var(--white); }
+    .action-btn.primary:hover { background: var(--orange-light); border-color: var(--orange-light); }
+    .plan-slots { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .slot { background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 14px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1.25rem; }
+    .slot.special { background: var(--gray-900); border-color: rgba(240,90,40,0.3); }
+    .slot.locked { position: relative; pointer-events: none; }
+    .slot.locked > *:not(.slot-lock) { filter: blur(4px); user-select: none; }
+    .slot-lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(28,36,51,0.75); border-radius: 13px; z-index: 10; pointer-events: all; gap: 0.4rem; color: white; text-align: center; }
     .slot-lock .lock-icon { font-size: 1.5rem; }
     .slot-lock p { margin: 0; font-size: 0.85rem; opacity: 0.8; }
-    .slot-lock .lock-cta {
-      background: #f05a28;
-      color: white;
-      padding: 0.4rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.8rem;
-      pointer-events: all;
-    }
-
-    .slot-time {
-      flex-shrink: 0;
-      background: rgba(240,90,40,0.15);
-      border: 1px solid rgba(240,90,40,0.3);
-      border-radius: 8px;
-      padding: 0.4rem 0.75rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--orange);
-      white-space: nowrap;
-      min-width: 70px;
-      text-align: center;
-    }
-
+    .slot-lock .lock-cta { background: #f05a28; color: white; padding: 0.4rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.8rem; pointer-events: all; }
+    .slot-time { flex-shrink: 0; background: rgba(240,90,40,0.15); border: 1px solid rgba(240,90,40,0.3); border-radius: 8px; padding: 0.4rem 0.75rem; font-size: 0.78rem; font-weight: 700; color: var(--orange); white-space: nowrap; min-width: 70px; text-align: center; }
     .slot-content { flex: 1; }
-
-    .slot-num {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 0.2rem;
-    }
-
-    .slot-name {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 0.3rem;
-    }
-
-    .slot-desc {
-      font-size: 0.85rem;
-      color: var(--gray-200);
-      line-height: 1.5;
-    }
-
-    .slot-theme {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      background: rgba(240,90,40,0.1);
-      color: var(--orange);
-      border: 1px solid rgba(240,90,40,0.25);
-      margin-top: 0.4rem;
-    }
-
-    .slot-duration {
-      flex-shrink: 0;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--gray-400);
-      white-space: nowrap;
-    }
-
-    /* EMPTY STATE */
-    .empty-state {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: var(--gray-400);
-    }
-
+    .slot-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 0.2rem; }
+    .slot-name { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 0.3rem; }
+    .slot-desc { font-size: 0.85rem; color: var(--gray-200); line-height: 1.5; }
+    .slot-theme { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(240,90,40,0.1); color: var(--orange); border: 1px solid rgba(240,90,40,0.25); margin-top: 0.4rem; }
+    .slot-duration { flex-shrink: 0; font-size: 0.8rem; font-weight: 700; color: var(--gray-400); white-space: nowrap; }
+    .empty-state { text-align: center; padding: 3rem 1rem; color: var(--gray-400); }
     .empty-state p { font-size: 1rem; }
-
-    /* FOOTER */
-    footer {
-      background: var(--gray-900);
-      border-top: 1px solid var(--gray-700);
-      padding: 3rem 2rem;
-      text-align: center;
-      margin-top: 4rem;
-    }
-
-    footer nav {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-
-    footer nav a {
-      color: var(--gray-400);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s;
-    }
-
+    footer { background: var(--gray-900); border-top: 1px solid var(--gray-700); padding: 3rem 2rem; text-align: center; margin-top: 4rem; }
+    footer nav { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    footer nav a { color: var(--gray-400); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
     footer nav a:hover { color: var(--orange); }
-
-    footer p {
-      color: var(--gray-400);
-      font-size: 0.82rem;
-    }
-
+    footer p { color: var(--gray-400); font-size: 0.82rem; }
     footer strong { color: var(--orange); }
-
     @media print {
       nav.top-nav, .builder-card, .page-hero, .plan-actions, footer { display: none !important; }
       body { background: white; color: black; }
@@ -494,16 +136,13 @@
 </nav>
 
 <div class="page-wrap">
-
   <div class="page-hero">
     <div class="badge">Coach Tool</div>
     <h1>Session Plan <span>Builder</span></h1>
     <p>Set your age group, themes and duration and instantly receive a custom-made session plan.</p>
   </div>
 
-  <!-- BUILDER FORM -->
   <div class="builder-card">
-
     <div class="field-group">
       <span class="field-label">Age Group</span>
       <div class="radio-group">
@@ -512,7 +151,6 @@
         <label><input type="radio" name="age" value="Senior"><span>Senior</span></label>
       </div>
     </div>
-
     <div class="field-group">
       <span class="field-label">Themes (max. 3)</span>
       <div class="check-group" id="theme-checks">
@@ -526,7 +164,6 @@
       </div>
       <p class="check-note">Select 1 to 3 themes for your session.</p>
     </div>
-
     <div class="field-group">
       <span class="field-label">Session Duration</span>
       <div class="radio-group">
@@ -536,13 +173,10 @@
         <label><input type="radio" name="duration" value="90"><span>90 min</span></label>
       </div>
     </div>
-
-    <button class="generate-btn" id="generate-btn">Generate Session Plan →</button>
+    <button class="generate-btn" id="generate-btn">Generate Session Plan &rarr;</button>
   </div>
 
-  <!-- OUTPUT -->
   <div id="output">
-
     <div class="plan-header">
       <div>
         <div class="plan-title" id="plan-title">Session Plan</div>
@@ -553,15 +187,9 @@
         <button class="action-btn" id="reset-btn">Start over</button>
       </div>
     </div>
-
     <div class="plan-slots" id="plan-slots"></div>
-
-    <div class="empty-state" id="empty-state" style="display:none">
-      <p>No exercises found for the selected combination. Try different themes.</p>
-    </div>
-
+    <div class="empty-state" id="empty-state" style="display:none"><p>No exercises found for the selected combination. Try different themes.</p></div>
   </div>
-
 </div>
 
 <footer>
@@ -573,7 +201,7 @@
     <a href="season.html">The Season</a>
     <a href="week.html">The Week</a>
   </nav>
-  <p><strong>Character First</strong> — Character over performance</p>
+  <p><strong>Character First</strong> &mdash; Character over performance</p>
 </footer>
 
 <script>
@@ -582,38 +210,31 @@
   });
 
   const exercises = [
-    // Self-Knowledge
     { id: 10, name: "Two Truths One Lie", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 8, desc: "Self-disclosure through a low-barrier game format." },
     { id: 1, name: "My Athlete Profile", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 10, desc: "Visual self-analysis through a radar chart." },
     { id: 3, name: "Values Auction", theme: "Self-Knowledge", ages: ["U16","Senior"], duration: 10, desc: "Set priorities through an auction of core values." },
     { id: 5, name: "Letter to My Younger Self", theme: "Self-Knowledge", ages: ["Senior"], duration: 10, desc: "Reflect on growth and lessons through a letter." },
     { id: 2, name: "Athlete Timeline", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 8, desc: "Visualize your athletic journey with highs and lows." },
     { id: 7, name: "Identity Anchors", theme: "Self-Knowledge", ages: ["U14","U16","Senior"], duration: 7, desc: "Anchor a positive identity statement through visualization." },
-    // Pressure & Stress
     { id: 11, name: "Box Breathing", theme: "Pressure & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Regulate your nervous system for performance under pressure." },
     { id: 12, name: "Stress Ladder", theme: "Pressure & Stress", ages: ["U14","U16","Senior"], duration: 8, desc: "Identify and rank personal stressors." },
     { id: 14, name: "Pressure Scenario Roleplay", theme: "Pressure & Stress", ages: ["U16","Senior"], duration: 10, desc: "Simulate high-pressure situations and practice responses." },
     { id: 15, name: "Rescoring Ritual", theme: "Pressure & Stress", ages: ["U14","U16","Senior"], duration: 5, desc: "Consciously reset and start fresh after a loss or mistake." },
-    // My Role
     { id: 23, name: "Human Graph", theme: "My Role", ages: ["U14","U16","Senior"], duration: 8, desc: "Visually map team roles and positions." },
     { id: 24, name: "Role Swap", theme: "My Role", ages: ["U14","U16","Senior"], duration: 10, desc: "Experience the role of a teammate." },
     { id: 26, name: "Leadership Spectrum", theme: "My Role", ages: ["U16","Senior"], duration: 10, desc: "Discover your leadership style on a continuum." },
     { id: 21, name: "Role Compass", theme: "My Role", ages: ["U14","U16","Senior"], duration: 8, desc: "Understand formal and informal role through a compass." },
-    // Communication
     { id: 37, name: "Encouragement Challenge", theme: "Communication", ages: ["U14","U16","Senior"], duration: 7, desc: "Practice positive and specific encouragement under time pressure." },
     { id: 38, name: "Active Listening Duo", theme: "Communication", ages: ["U14","U16","Senior"], duration: 8, desc: "Deepen listening skills through structured partner work." },
     { id: 40, name: "Feedback Triangle", theme: "Communication", ages: ["U16","Senior"], duration: 10, desc: "Structured feedback round with three perspectives." },
     { id: 31, name: "I-Message", theme: "Communication", ages: ["U16","Senior"], duration: 8, desc: "Convey a message without blame." },
-    // Team First
     { id: 46, name: "Power of the Circle", theme: "Team First", ages: ["U14","U16","Senior"], duration: 5, desc: "Experience collective energy and intention through a team ritual." },
     { id: 47, name: "Trust Fall", theme: "Team First", ages: ["U14","U16","Senior"], duration: 8, desc: "Build physical trust in a safe setting." },
     { id: 49, name: "Team Contract", theme: "Team First", ages: ["U16","Senior"], duration: 10, desc: "Collectively establish behavioral standards." },
     { id: 43, name: "Weekly Review", theme: "Team First", ages: ["U14","U16","Senior"], duration: 7, desc: "Team reflects together on three questions about the week." },
-    // Mental Resilience
     { id: 51, name: "Flu Game Mentality", theme: "Mental Resilience", ages: ["U14","U16","Senior"], duration: 10, desc: "Analyze resilience through iconic sports moments." },
     { id: 52, name: "Reframing Thoughts", theme: "Mental Resilience", ages: ["U14","U16","Senior"], duration: 10, desc: "ABC model to redirect negative thoughts." },
     { id: 53, name: "Adversity Ladder", theme: "Mental Resilience", ages: ["U16","Senior"], duration: 10, desc: "Build resilience by reframing setbacks as growth opportunities." },
-    // Physical
     { id: 56, name: "Wall Squat Challenge", theme: "Physical", ages: ["U14","U16","Senior"], duration: 15, desc: "Experience the difference encouragement makes on physical performance." },
     { id: 57, name: "Pressure Breathing", theme: "Physical", ages: ["U14","U16","Senior"], duration: 10, desc: "Plank hold with and without breathing technique." },
     { id: 58, name: "Comeback Sprint", theme: "Physical", ages: ["U14","U16","Senior"], duration: 12, desc: "Measure quality of recovery after a mental setback." },
@@ -622,14 +243,11 @@
 
   const slotCounts = { 30: 3, 45: 4, 60: 5, 90: 6 };
 
-  // Limit theme selection to max 3
   const themeChecks = document.querySelectorAll('input[name="theme"]');
   themeChecks.forEach(cb => {
     cb.addEventListener('change', () => {
       const checked = [...themeChecks].filter(c => c.checked);
-      if (checked.length > 3) {
-        cb.checked = false;
-      }
+      if (checked.length > 3) cb.checked = false;
     });
   });
 
@@ -640,117 +258,54 @@
     const age = document.querySelector('input[name="age"]:checked').value;
     const duration = parseInt(document.querySelector('input[name="duration"]:checked').value);
     const selectedThemes = [...document.querySelectorAll('input[name="theme"]:checked')].map(c => c.value);
+    if (selectedThemes.length === 0) { alert('Please select at least one theme.'); return; }
 
-    if (selectedThemes.length === 0) {
-      alert('Please select at least one theme.');
-      return;
-    }
-
-    // Filter exercises
-    let pool = exercises.filter(e =>
-      e.ages.includes(age) && selectedThemes.includes(e.theme)
-    );
-
-    // Sort by duration ascending
+    let pool = exercises.filter(e => e.ages.includes(age) && selectedThemes.includes(e.theme));
     pool.sort((a, b) => a.duration - b.duration);
 
-    // Opening ritual (always Power of the Circle)
-    const openingRitual = {
-      id: 'opening',
-      name: 'Power of the Circle',
-      theme: 'Team First',
-      ages: ["U14","U16","Senior"],
-      duration: 5,
-      desc: 'Activate the team through a shared energy ritual that builds toward a collective chant.',
-      special: true,
-      label: 'Opening Ritual'
-    };
-
-    // Closing reflection
-    const closingRitual = {
-      id: 'closing',
-      name: 'Closing Reflection',
-      theme: 'Team First',
-      ages: ["U14","U16","Senior"],
-      duration: 5,
-      desc: 'Close the session: each member shares one word that summarizes the session.',
-      special: true,
-      label: 'Closing'
-    };
+    const openingRitual = { id: 'opening', name: 'Power of the Circle', theme: 'Team First', ages: ["U14","U16","Senior"], duration: 5, desc: 'Activate the team through a shared energy ritual that builds toward a collective chant.', special: true, label: 'Opening Ritual' };
+    const closingRitual = { id: 'closing', name: 'Closing Reflection', theme: 'Team First', ages: ["U14","U16","Senior"], duration: 5, desc: 'Close the session: each member shares one word that summarizes the session.', special: true, label: 'Closing' };
 
     const maxSlots = slotCounts[duration] || 4;
-    const contentSlots = maxSlots - 2; // subtract opening + closing
-    const availableDuration = duration - 10; // minus 5 opening + 5 closing
-
-    // Pick exercises to fill content slots within available duration
+    const contentSlots = maxSlots - 2;
+    const availableDuration = duration - 10;
     const picked = [];
     let usedDuration = 0;
     for (const ex of pool) {
       if (picked.length >= contentSlots) break;
-      if (usedDuration + ex.duration > availableDuration + 5) continue; // slight tolerance
+      if (usedDuration + ex.duration > availableDuration + 5) continue;
       picked.push(ex);
       usedDuration += ex.duration;
     }
 
-    // Build full plan
     const plan = [openingRitual, ...picked, closingRitual];
-
-    // Render
     renderPlan(plan, age, duration, selectedThemes);
-
-    // Show output
     document.getElementById('output').style.display = 'block';
     document.getElementById('output').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function renderPlan(plan, age, duration, themes) {
-    // Title and meta
     document.getElementById('plan-title').textContent = `Session Plan — ${age} · ${duration} min`;
     const metaEl = document.getElementById('plan-meta');
     metaEl.innerHTML = '';
-    themes.forEach(t => {
-      const pill = document.createElement('span');
-      pill.className = 'plan-pill';
-      pill.textContent = t;
-      metaEl.appendChild(pill);
-    });
+    themes.forEach(t => { const pill = document.createElement('span'); pill.className = 'plan-pill'; pill.textContent = t; metaEl.appendChild(pill); });
 
-    // Slots
     const slotsEl = document.getElementById('plan-slots');
     slotsEl.innerHTML = '';
     const emptyState = document.getElementById('empty-state');
-
     const contentExercises = plan.filter(e => !e.special);
-    if (contentExercises.length === 0) {
-      emptyState.style.display = 'block';
-      return;
-    }
+    if (contentExercises.length === 0) { emptyState.style.display = 'block'; return; }
     emptyState.style.display = 'none';
 
     let currentTime = 0;
-
     plan.forEach((ex, idx) => {
-      const isLocked = !ex.special && idx > 2; // first 2 content exercises free (positions 1 and 2 after opening)
+      const isLocked = !ex.special && idx > 2;
       const slot = document.createElement('div');
       slot.className = 'slot' + (ex.special ? ' special' : '') + (isLocked ? ' locked' : '');
-
       const timeLabel = `${currentTime}–${currentTime + ex.duration} min`;
       currentTime += ex.duration;
-
-      const lockHTML = isLocked ? `<div class="slot-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>` : '';
-
-      slot.innerHTML = `
-        ${lockHTML}
-        <div class="slot-time">${timeLabel}</div>
-        <div class="slot-content">
-          <div class="slot-num">${ex.special ? ex.label : `Exercise ${String(idx).padStart(2,'0')}`}</div>
-          <div class="slot-name">${ex.name}</div>
-          <div class="slot-desc">${ex.desc}</div>
-          ${!ex.special ? `<span class="slot-theme">${ex.theme}</span>` : ''}
-        </div>
-        <div class="slot-duration">${ex.duration} min</div>
-      `;
-
+      const lockHTML = isLocked ? `<div class="slot-lock"><div class="lock-icon">&#x1F512;</div><p>Premium content</p><a href="contact.html" class="lock-cta">Request access</a></div>` : '';
+      slot.innerHTML = `${lockHTML}<div class="slot-time">${timeLabel}</div><div class="slot-content"><div class="slot-num">${ex.special ? ex.label : `Exercise ${String(idx).padStart(2,'0')}`}</div><div class="slot-name">${ex.name}</div><div class="slot-desc">${ex.desc}</div>${!ex.special ? `<span class="slot-theme">${ex.theme}</span>` : ''}</div><div class="slot-duration">${ex.duration} min</div>`;
       slotsEl.appendChild(slot);
     });
   }

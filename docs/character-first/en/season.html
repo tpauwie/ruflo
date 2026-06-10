@@ -29,7 +29,6 @@
       line-height: 1.6;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -44,28 +43,9 @@
       justify-content: space-between;
     }
 
-    .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
+    .nav-logo { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
     .nav-logo span { color: var(--orange); }
 
-    .nav-back {
-      color: var(--gray-200);
-      text-decoration: none;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s;
-    }
-
-    .nav-back:hover { color: var(--orange); }
-
-    /* HERO */
     .hero {
       padding: 120px 2rem 80px;
       max-width: 900px;
@@ -87,276 +67,79 @@
       margin-bottom: 1.5rem;
     }
 
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
     .hero h1 span { color: var(--orange); }
+    .hero p { font-size: 1.2rem; color: var(--gray-200); max-width: 600px; margin: 0 auto 3rem; }
 
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--gray-200);
-      max-width: 600px;
-      margin: 0 auto 3rem;
-    }
-
-    /* MONTH TIMELINE NAV */
     .timeline-nav {
-      display: flex;
-      overflow-x: auto;
-      gap: 0.5rem;
-      padding: 1rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto 4rem;
-      scrollbar-width: none;
-      justify-content: center;
-      flex-wrap: wrap;
+      display: flex; overflow-x: auto; gap: 0.5rem; padding: 1rem 2rem;
+      max-width: 1100px; margin: 0 auto 4rem; scrollbar-width: none;
+      justify-content: center; flex-wrap: wrap;
     }
-
     .timeline-nav::-webkit-scrollbar { display: none; }
 
     .month-pill {
-      flex-shrink: 0;
-      background: var(--gray-800);
-      border: 1px solid var(--gray-700);
-      color: var(--gray-200);
-      padding: 0.5rem 1.2rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
+      flex-shrink: 0; background: var(--gray-800); border: 1px solid var(--gray-700);
+      color: var(--gray-200); padding: 0.5rem 1.2rem; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none;
     }
+    .month-pill:hover, .month-pill.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
 
-    .month-pill:hover,
-    .month-pill.active {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: var(--white);
-    }
-
-    /* MONTHS */
-    .months-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem 6rem;
-    }
-
-    .month-section {
-      margin-bottom: 5rem;
-      scroll-margin-top: 80px;
-    }
-
-    .month-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-    }
-
+    .months-container { max-width: 1000px; margin: 0 auto; padding: 0 2rem 6rem; }
+    .month-section { margin-bottom: 5rem; scroll-margin-top: 80px; }
+    .month-header { display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2.5rem; }
     .month-number {
-      flex-shrink: 0;
-      width: 72px;
-      height: 72px;
-      background: var(--orange);
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.2;
+      flex-shrink: 0; width: 72px; height: 72px; background: var(--orange); border-radius: 16px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.8); line-height: 1.2;
     }
-
-    .month-number strong {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-    }
-
+    .month-number strong { font-size: 1.8rem; font-weight: 900; color: var(--white); line-height: 1; }
     .month-meta { flex: 1; }
+    .month-meta h2 { font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.4rem; }
+    .month-meta .theme-label { color: var(--orange); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .month-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 700px) { .month-body { grid-template-columns: 1fr; } .month-header { flex-direction: column; gap: 1rem; } }
 
-    .month-meta h2 {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 0.4rem;
-    }
+    .card { background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 16px; padding: 1.5rem; }
+    .card h3 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+    .card p { color: var(--gray-200); font-size: 0.95rem; line-height: 1.7; }
 
-    .month-meta .theme-label {
-      color: var(--orange);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .exercise-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .exercise-list li { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--gray-200); font-size: 0.92rem; }
+    .exercise-icon { flex-shrink: 0; width: 28px; height: 28px; background: rgba(240,90,40,0.15); border: 1px solid rgba(240,90,40,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+    .exercise-list li strong { color: var(--white); display: block; font-size: 0.88rem; margin-bottom: 0.15rem; }
 
-    .month-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
+    .quote-card { background: var(--gray-900); border: 1px solid rgba(240,90,40,0.2); border-left: 4px solid var(--orange); border-radius: 0 12px 12px 0; padding: 1.5rem; grid-column: 1 / -1; }
+    .quote-text { font-size: 1.1rem; font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 0.75rem; }
+    .quote-author { font-size: 0.82rem; color: var(--orange); font-weight: 700; letter-spacing: 0.05em; }
 
-    @media (max-width: 700px) {
-      .month-body { grid-template-columns: 1fr; }
-      .month-header { flex-direction: column; gap: 1rem; }
-    }
+    .month-divider { height: 1px; background: linear-gradient(to right, transparent, var(--gray-700), transparent); margin-bottom: 5rem; }
 
-    .card {
-      background: var(--gray-800);
-      border: 1px solid var(--gray-700);
-      border-radius: 16px;
-      padding: 1.5rem;
-    }
-
-    .card-full {
-      grid-column: 1 / -1;
-    }
-
-    .card h3 {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1rem;
-    }
-
-    .card p {
-      color: var(--gray-200);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    /* EXERCISE LIST */
-    .exercise-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .exercise-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      color: var(--gray-200);
-      font-size: 0.92rem;
-    }
-
-    .exercise-icon {
-      flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      background: rgba(240,90,40,0.15);
-      border: 1px solid rgba(240,90,40,0.3);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-    }
-
-    .exercise-list li strong {
-      color: var(--white);
-      display: block;
-      font-size: 0.88rem;
-      margin-bottom: 0.15rem;
-    }
-
-    /* QUOTE */
-    .quote-card {
-      background: var(--gray-900);
-      border: 1px solid rgba(240,90,40,0.2);
-      border-left: 4px solid var(--orange);
-      border-radius: 0 12px 12px 0;
-      padding: 1.5rem;
-      grid-column: 1 / -1;
-    }
-
-    .quote-text {
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--white);
-      line-height: 1.6;
-      margin-bottom: 0.75rem;
-    }
-
-    .quote-author {
-      font-size: 0.82rem;
-      color: var(--orange);
-      font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-
-    /* DIVIDER */
-    .month-divider {
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gray-700), transparent);
-      margin-bottom: 5rem;
-    }
-
-    /* PREMIUM LOCK SYSTEM */
-    .premium-locked {
-      position: relative;
-      pointer-events: none;
-    }
-    .premium-locked > *:not(.premium-lock) {
-      filter: blur(4px);
-      user-select: none;
-    }
+    .premium-locked { position: relative; pointer-events: none; }
+    .premium-locked > *:not(.premium-lock) { filter: blur(4px); user-select: none; }
     .premium-lock {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(28,36,51,0.7);
-      border-radius: 16px;
-      z-index: 10;
-      pointer-events: all;
-      gap: 0.5rem;
-      color: white;
-      text-align: center;
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; background: rgba(28,36,51,0.7);
+      border-radius: 16px; z-index: 10; pointer-events: all; gap: 0.5rem; color: white; text-align: center;
     }
     .premium-lock .lock-icon { font-size: 2rem; }
     .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
-    .premium-lock .lock-cta {
-      background: #f05a28;
-      color: white;
-      padding: 0.5rem 1.25rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.875rem;
-      pointer-events: all;
+    .premium-lock .lock-cta { background: #f05a28; color: white; padding: 0.5rem 1.25rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.875rem; pointer-events: all; }
+
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 20px; gap: 1rem; border-bottom: 1px solid var(--gray-700); z-index: 99; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
     }
 
-    /* FOOTER */
-    footer {
-      background: var(--gray-900);
-      border-top: 1px solid var(--gray-700);
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    footer p {
-      color: var(--gray-400);
-      font-size: 0.85rem;
-    }
-
+    footer { background: var(--gray-900); border-top: 1px solid var(--gray-700); padding: 3rem 2rem; text-align: center; }
+    footer p { color: var(--gray-400); font-size: 0.85rem; }
     footer strong { color: var(--orange); }
   </style>
 <script>/* cf_lang_persist */
@@ -384,20 +167,20 @@
   })();
 </script>
 
-
   <nav>
     <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
       <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
       <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
     </a>
-    <div style="display:flex;gap:1.5rem;align-items:center">
-      <a href="index.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Home</a>
-      <a href="library.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Library</a>
-      <a href="season.html" style="color:#f05a28;text-decoration:none;font-size:0.85rem;font-weight:600">The Season</a>
-      <a href="week.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">The Week</a>
-      <a href="planbuilder.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Session Plan</a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="library.html">Library</a>
+      <a href="season.html" class="active">The Season</a>
+      <a href="week.html">The Week</a>
+      <a href="planbuilder.html">Session Plan</a>
       <a href="../season.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #555;padding:.3rem .7rem;border-radius:4px;">NL</a>
     </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 
   <section class="hero">
@@ -423,41 +206,13 @@
     <section class="month-section" id="month-1">
       <div class="month-header">
         <div class="month-number"><span>MONTH</span><strong>1</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>Self-Knowledge &amp; Identity</h2>
-        </div>
+        <div class="month-meta"><div class="theme-label">Theme</div><h2>Self-Knowledge &amp; Identity</h2></div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>Who are you as a player and as a person? You discover your core values, your strengths and what gives you energy. Self-knowledge is the foundation of everything that follows.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Research by Deci and Ryan (1985) shows that insight into your own motivation, both intrinsic and extrinsic, is directly linked to perseverance and wellbeing in elite sport.</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🪞</div>
-              <div><strong>My Three Words</strong>Choose three words that best describe you as a teammate. Also ask three teammates to choose three words about you and compare.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🔥</div>
-              <div><strong>Energy Giver vs Energy Drainer</strong>Write down which moments in training give you energy and which cost you energy. Discuss with your coach.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🗺️</div>
-              <div><strong>Personal Values Compass</strong>Rank 12 values (loyalty, courage, honesty...) from most to least important for you. Reflect: do you live by them?</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"The most important thing is to try and inspire people so that they can be great in whatever they want to do."</p>
-          <div class="quote-author">Kobe Bryant — 5x NBA Champion, Los Angeles Lakers</div>
-        </div>
+        <div class="card"><h3>What you learn</h3><p>Who are you as a player and as a person? You discover your core values, your strengths and what gives you energy. Self-knowledge is the foundation of everything that follows.</p></div>
+        <div class="card"><h3>Science</h3><p>Research by Deci and Ryan (1985) shows that insight into your own motivation, both intrinsic and extrinsic, is directly linked to perseverance and wellbeing in elite sport.</p></div>
+        <div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1FA9E;</div><div><strong>My Three Words</strong>Choose three words that best describe you as a teammate. Also ask three teammates to choose three words about you and compare.</div></li><li><div class="exercise-icon">&#x1F525;</div><div><strong>Energy Giver vs Energy Drainer</strong>Write down which moments in training give you energy and which cost you energy. Discuss with your coach.</div></li><li><div class="exercise-icon">&#x1F5FA;&#xFE0F;</div><div><strong>Personal Values Compass</strong>Rank 12 values (loyalty, courage, honesty...) from most to least important for you. Reflect: do you live by them?</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;The most important thing is to try and inspire people so that they can be great in whatever they want to do.&#8221;</p><div class="quote-author">Kobe Bryant &#8212; 5x NBA Champion, Los Angeles Lakers</div></div>
       </div>
     </section>
     <div class="month-divider"></div>
@@ -466,306 +221,62 @@
     <section class="month-section" id="month-2">
       <div class="month-header">
         <div class="month-number"><span>MONTH</span><strong>2</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>Pressure &amp; Stress</h2>
-        </div>
+        <div class="month-meta"><div class="theme-label">Theme</div><h2>Pressure &amp; Stress</h2></div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>Pressure feels different for everyone. You learn to recognise how your body and mind respond to stress, and you discover concrete tools to stay calm and focused in difficult situations.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Lazarus and Folkman (1984) describe two types of coping styles: problem-focused and emotion-focused. Athletes who master both strategies perform more consistently under pressure according to recent sport psychology research.</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🌬️</div>
-              <div><strong>Box Breathing</strong>4 counts inhale, 4 counts hold, 4 counts exhale, 4 counts wait. Practise before every training session for 2 minutes.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🗒️</div>
-              <div><strong>Stress Journal</strong>Write for 5 minutes after every match: what did I feel, what did I think, and what did I do? Look for patterns over a month.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🎯</div>
-              <div><strong>Worst Case Best Case</strong>Write down the worst that can happen and the best that can happen. Then write the most likely outcome. Your brain stops catastrophising.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Pressure is a privilege — it only comes to those who earn it."</p>
-          <div class="quote-author">Billie Jean King — 39x Grand Slam Champion</div>
-        </div>
+        <div class="card"><h3>What you learn</h3><p>Pressure feels different for everyone. You learn to recognise how your body and mind respond to stress, and you discover concrete tools to stay calm and focused in difficult situations.</p></div>
+        <div class="card"><h3>Science</h3><p>Lazarus and Folkman (1984) describe two types of coping styles: problem-focused and emotion-focused. Athletes who master both strategies perform more consistently under pressure.</p></div>
+        <div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F32C;&#xFE0F;</div><div><strong>Box Breathing</strong>4 counts inhale, 4 counts hold, 4 counts exhale, 4 counts wait. Practise before every training session for 2 minutes.</div></li><li><div class="exercise-icon">&#x1F5D2;&#xFE0F;</div><div><strong>Stress Journal</strong>Write for 5 minutes after every match: what did I feel, what did I think, and what did I do? Look for patterns over a month.</div></li><li><div class="exercise-icon">&#x1F3AF;</div><div><strong>Worst Case Best Case</strong>Write down the worst that can happen and the best that can happen. Then write the most likely outcome.</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;Pressure is a privilege &#8212; it only comes to those who earn it.&#8221;</p><div class="quote-author">Billie Jean King &#8212; 39x Grand Slam Champion</div></div>
       </div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MONTH 3 -->
     <section class="month-section premium-locked" id="month-3">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-      <div class="month-header">
-        <div class="month-number"><span>MONTH</span><strong>3</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>My Role in the Team</h2>
-        </div>
-      </div>
-      <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>Every team needs different roles to function. You discover which role you currently play, which role you want to grow into, and how to fulfil that role as well as possible.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Carron and Eys (2012) show in their team cohesion model that role clarity — knowing what is expected of you — is one of the strongest predictors of both task motivation and social cohesion in sports teams.</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🧭</div>
-              <div><strong>Role Compass</strong>Explore four roles: Leader, Engine, Thinker and Stable Force. Fill in a compass from 0 to 10 per role. Discuss with a teammate.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">👥</div>
-              <div><strong>Role Circle</strong>The team stands together in a circle. Each player names one concrete contribution they bring to the team. Then someone else may add to it.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">📋</div>
-              <div><strong>My Top 3 Contributions</strong>Write down three concrete things weekly that you contributed to the team — not statistics, but behaviour and attitude.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"The strength of the team is each individual member. The strength of each member is the team. I never tried to be the best player. I tried to be the player we needed."</p>
-          <div class="quote-author">Phil Jackson — 11x NBA Championship coach</div>
-        </div>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium content</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-header"><div class="month-number"><span>MONTH</span><strong>3</strong></div><div class="month-meta"><div class="theme-label">Theme</div><h2>My Role in the Team</h2></div></div>
+      <div class="month-body"><div class="card"><h3>What you learn</h3><p>Every team needs different roles to function. You discover which role you currently play, which role you want to grow into, and how to fulfil that role as well as possible.</p></div><div class="card"><h3>Science</h3><p>Carron and Eys (2012) show that role clarity is one of the strongest predictors of both task motivation and social cohesion in sports teams.</p></div><div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F9ED;</div><div><strong>Role Compass</strong>Explore four roles: Leader, Engine, Thinker and Stable Force.</div></li><li><div class="exercise-icon">&#x1F465;</div><div><strong>Role Circle</strong>Each player names one concrete contribution they bring to the team.</div></li><li><div class="exercise-icon">&#x1F4CB;</div><div><strong>My Top 3 Contributions</strong>Write down three concrete things weekly that you contributed to the team.</div></li></ul></div><div class="quote-card"><p class="quote-text">&#8220;The strength of the team is each individual member. The strength of each member is the team.&#8221;</p><div class="quote-author">Phil Jackson &#8212; 11x NBA Championship coach</div></div></div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MONTH 4 -->
     <section class="month-section premium-locked" id="month-4">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-      <div class="month-header">
-        <div class="month-number"><span>MONTH</span><strong>4</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>Communication</h2>
-        </div>
-      </div>
-      <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>How you talk determines how you collaborate. You learn the difference between reacting and communicating, how to give feedback without damaging the atmosphere, and how not to avoid but engage in difficult conversations.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Marshall Rosenberg developed Nonviolent Communication (NVC): compassionate communication that focuses on needs rather than blame. Sports teams trained in NVC report fewer conflicts and higher cohesion (Holt et al., 2020).</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">💬</div>
-              <div><strong>I Message</strong>Practise with the model: "I see... I feel... I need... I ask you to..." Write three situations from your sport life to practise this.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🔄</div>
-              <div><strong>Feedback Round Trio</strong>In groups of three: one person gives feedback, one receives, one observes tone and word choice. Switch roles after each round.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🤝</div>
-              <div><strong>Difficult Conversation</strong>Write down a conversation you have been putting off with a coach or teammate. Use the I message and schedule the conversation within 7 days.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Communication is the most important skill any leader can possess. I talked to my players like human beings, not pieces on a chess board, and that changed everything."</p>
-          <div class="quote-author">Doc Rivers — NBA Head Coach, Philadelphia 76ers</div>
-        </div>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium content</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-header"><div class="month-number"><span>MONTH</span><strong>4</strong></div><div class="month-meta"><div class="theme-label">Theme</div><h2>Communication</h2></div></div>
+      <div class="month-body"><div class="card"><h3>What you learn</h3><p>How you talk determines how you collaborate. You learn the difference between reacting and communicating, how to give feedback without damaging the atmosphere.</p></div><div class="card"><h3>Science</h3><p>Marshall Rosenberg developed Nonviolent Communication (NVC): compassionate communication that focuses on needs rather than blame.</p></div><div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F4AC;</div><div><strong>I Message</strong>Practise with the model: &#8220;I see... I feel... I need... I ask you to...&#8221;</div></li><li><div class="exercise-icon">&#x1F504;</div><div><strong>Feedback Round Trio</strong>In groups of three: one gives feedback, one receives, one observes.</div></li><li><div class="exercise-icon">&#x1F91D;</div><div><strong>Difficult Conversation</strong>Write down a conversation you have been putting off. Schedule it within 7 days.</div></li></ul></div><div class="quote-card"><p class="quote-text">&#8220;Communication is the most important skill any leader can possess.&#8221;</p><div class="quote-author">Doc Rivers &#8212; NBA Head Coach, Philadelphia 76ers</div></div></div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MONTH 5 -->
     <section class="month-section premium-locked" id="month-5">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-      <div class="month-header">
-        <div class="month-number"><span>MONTH</span><strong>5</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>Team First</h2>
-        </div>
-      </div>
-      <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>The step from "I" to "we" is the hardest in elite sport. You explore what it means to set aside personal interests, how to build a culture of trust, and what psychological safety is.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Amy Edmondson (Harvard, 1999) discovered that the best teams are not composed of the best individuals, but are teams with the highest psychological safety: the conviction that you can make mistakes without being punished.</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">📜</div>
-              <div><strong>Team Contract</strong>The team together sets up 5 behavioural rules that everyone upholds. Not about winning, but about behaviour: "We always give energy to whoever is struggling."</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🙋</div>
-              <div><strong>Asking for Help</strong>Practise actively asking for help during training sessions. Once per training session you ask a teammate for help with something specific.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">⭐</div>
-              <div><strong>Invisible Contribution</strong>After every match everyone writes down one teammate who did something nobody noticed but was essential for the team. Share at the end of the month.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Talent wins games, but teamwork and intelligence win championships. The most important thing in basketball is trust. Trust your teammates. Trust the process."</p>
-          <div class="quote-author">Michael Jordan — 6x NBA Champion, Chicago Bulls</div>
-        </div>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium content</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-header"><div class="month-number"><span>MONTH</span><strong>5</strong></div><div class="month-meta"><div class="theme-label">Theme</div><h2>Team First</h2></div></div>
+      <div class="month-body"><div class="card"><h3>What you learn</h3><p>The step from &#8220;I&#8221; to &#8220;we&#8221; is the hardest in elite sport. You explore what it means to set aside personal interests and build a culture of trust.</p></div><div class="card"><h3>Science</h3><p>Amy Edmondson (Harvard, 1999) discovered that the best teams have the highest psychological safety: the conviction that you can make mistakes without being punished.</p></div><div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F4DC;</div><div><strong>Team Contract</strong>The team sets up 5 behavioural rules that everyone upholds.</div></li><li><div class="exercise-icon">&#x1F64B;</div><div><strong>Asking for Help</strong>Once per training session ask a teammate for help with something specific.</div></li><li><div class="exercise-icon">&#x2B50;</div><div><strong>Invisible Contribution</strong>After every match write down one teammate who did something nobody noticed but was essential.</div></li></ul></div><div class="quote-card"><p class="quote-text">&#8220;Talent wins games, but teamwork and intelligence win championships.&#8221;</p><div class="quote-author">Michael Jordan &#8212; 6x NBA Champion, Chicago Bulls</div></div></div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MONTH 6 -->
     <section class="month-section premium-locked" id="month-6">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-      <div class="month-header">
-        <div class="month-number"><span>MONTH</span><strong>6</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>Resilience &amp; Growth Mindset</h2>
-        </div>
-      </div>
-      <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>How do you respond to setbacks, mistakes and defeat? You learn the difference between a fixed mindset and a growth mindset and develop concrete tools to recover more quickly from disappointments.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Carol Dweck (Stanford, 2006) proved that athletes with a growth mindset — who believe talent is developable — train harder, handle feedback better and enjoy their sport more over the long term.</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🔄</div>
-              <div><strong>Rewrite the Mistake</strong>Write down a recent mistake. Change every sentence with "I can't" to "I can't yet" and write what you can concretely learn from it.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">📈</div>
-              <div><strong>Progress List</strong>Keep a monthly list of three things you can do better than last month. No comparison with others, only with yourself.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">💪</div>
-              <div><strong>Hardest Moment</strong>Think back on the hardest moment of this season. Write down what you did, what you learned and how you became stronger by pushing through.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"I have missed more than 9,000 shots in my career. I have lost almost 300 games. Twenty six times I have been trusted to take the game winning shot and missed. I have failed over and over and over again in my life. And that is why I succeed."</p>
-          <div class="quote-author">Michael Jordan — 6x NBA Champion, Chicago Bulls</div>
-        </div>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium content</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-header"><div class="month-number"><span>MONTH</span><strong>6</strong></div><div class="month-meta"><div class="theme-label">Theme</div><h2>Resilience &amp; Growth Mindset</h2></div></div>
+      <div class="month-body"><div class="card"><h3>What you learn</h3><p>How do you respond to setbacks, mistakes and defeat? You learn the difference between a fixed mindset and a growth mindset.</p></div><div class="card"><h3>Science</h3><p>Carol Dweck (Stanford, 2006) proved that athletes with a growth mindset train harder, handle feedback better and enjoy their sport more over the long term.</p></div><div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F504;</div><div><strong>Rewrite the Mistake</strong>Change every sentence with &#8220;I can&#8217;t&#8221; to &#8220;I can&#8217;t yet&#8221;.</div></li><li><div class="exercise-icon">&#x1F4C8;</div><div><strong>Progress List</strong>Keep a monthly list of three things you can do better than last month.</div></li><li><div class="exercise-icon">&#x1F4AA;</div><div><strong>Hardest Moment</strong>Think back on the hardest moment of this season. Write down what you learned.</div></li></ul></div><div class="quote-card"><p class="quote-text">&#8220;I have failed over and over and over again in my life. And that is why I succeed.&#8221;</p><div class="quote-author">Michael Jordan &#8212; 6x NBA Champion, Chicago Bulls</div></div></div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MONTH 7 -->
     <section class="month-section premium-locked" id="month-7">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-      <div class="month-header">
-        <div class="month-number"><span>MONTH</span><strong>7</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>Leadership from Within</h2>
-        </div>
-      </div>
-      <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>Leadership is not about the captain's armband. You discover that every player can lead at every moment through their behaviour, attitude and words. Informal leadership is the most powerful thing in a team.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Côté and Gilbert (2009) distinguish three types of leaders in sport: formal, informal and emotional. Informal leaders — players without an official role but with great influence on team culture — often determine more than the captain.</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🔦</div>
-              <div><strong>Who Do I Follow?</strong>Write down which three teammates you follow most in behaviour — without them being captain. What do they do? What makes them influential?</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🗣️</div>
-              <div><strong>The First Voice</strong>Practise being the first to say something positive or constructive during team meetings or time-outs. Once a week, one concrete suggestion.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🌱</div>
-              <div><strong>Mentor a Younger Player</strong>Choose one younger player or new teammate. Spend 5 minutes each week teaching them something — technical or mental.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"I like pressure. I think pressure is an amazing thing. It's a privilege to be in pressure situations."</p>
-          <div class="quote-author">LeBron James — 4x NBA Champion, Los Angeles Lakers</div>
-        </div>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium content</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-header"><div class="month-number"><span>MONTH</span><strong>7</strong></div><div class="month-meta"><div class="theme-label">Theme</div><h2>Leadership from Within</h2></div></div>
+      <div class="month-body"><div class="card"><h3>What you learn</h3><p>Leadership is not about the captain&#8217;s armband. Every player can lead at every moment through their behaviour, attitude and words.</p></div><div class="card"><h3>Science</h3><p>C&#244;t&#233; and Gilbert (2009) distinguish three types of leaders in sport: formal, informal and emotional. Informal leaders often determine more than the captain.</p></div><div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F526;</div><div><strong>Who Do I Follow?</strong>Write down which three teammates you follow most in behaviour &#8212; without them being captain.</div></li><li><div class="exercise-icon">&#x1F5E3;&#xFE0F;</div><div><strong>The First Voice</strong>Practise being the first to say something positive during team meetings. Once a week, one concrete suggestion.</div></li><li><div class="exercise-icon">&#x1F331;</div><div><strong>Mentor a Younger Player</strong>Spend 5 minutes each week teaching a younger player something &#8212; technical or mental.</div></li></ul></div><div class="quote-card"><p class="quote-text">&#8220;I like pressure. I think pressure is an amazing thing. It&#8217;s a privilege to be in pressure situations.&#8221;</p><div class="quote-author">LeBron James &#8212; 4x NBA Champion, Los Angeles Lakers</div></div></div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MONTH 8 -->
     <section class="month-section premium-locked" id="month-8">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-      <div class="month-header">
-        <div class="month-number"><span>MONTH</span><strong>8</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Theme</div>
-          <h2>Legacy &amp; Next Step</h2>
-        </div>
-      </div>
-      <div class="month-body">
-        <div class="card">
-          <h3>What you learn</h3>
-          <p>What do you want to leave behind in this team? How do you want to be remembered as a player, as a person and as a teammate? You close the season with reflection, intentions for the future and a letter to yourself.</p>
-        </div>
-        <div class="card">
-          <h3>Science</h3>
-          <p>Positive psychology (Seligman, 2011) describes the importance of meaning — a sense of purpose — as one of the five pillars of wellbeing. Athletes who consciously reflect on their impact and legacy report higher motivation and less burnout.</p>
-        </div>
-        <div class="card">
-          <h3>Exercises</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">✉️</div>
-              <div><strong>Letter to Myself</strong>Write a letter to yourself for next season. What do you hope to have learned? What kind of teammate do you want to have become? The letter is kept sealed.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🏆</div>
-              <div><strong>My Contribution This Season</strong>Write down five concrete moments this season when you contributed something that made the team stronger. No statistics — only behaviour and character.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🔮</div>
-              <div><strong>Three Intentions</strong>Set three concrete intentions for next season. One for yourself, one for the team and one for your coach. Make them specific and measurable in behaviour.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"The strength of the team is each individual member. The strength of each member is the team."</p>
-          <div class="quote-author">Phil Jackson — 11x NBA Champion Coach, Chicago Bulls &amp; LA Lakers</div>
-        </div>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium content</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-header"><div class="month-number"><span>MONTH</span><strong>8</strong></div><div class="month-meta"><div class="theme-label">Theme</div><h2>Legacy &amp; Next Step</h2></div></div>
+      <div class="month-body"><div class="card"><h3>What you learn</h3><p>What do you want to leave behind in this team? You close the season with reflection, intentions for the future and a letter to yourself.</p></div><div class="card"><h3>Science</h3><p>Positive psychology (Seligman, 2011) describes the importance of meaning as one of the five pillars of wellbeing.</p></div><div class="card"><h3>Exercises</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x2709;&#xFE0F;</div><div><strong>Letter to Myself</strong>Write a letter to yourself for next season. The letter is kept sealed.</div></li><li><div class="exercise-icon">&#x1F3C6;</div><div><strong>My Contribution This Season</strong>Write down five concrete moments this season when you contributed something that made the team stronger.</div></li><li><div class="exercise-icon">&#x1F52E;</div><div><strong>Three Intentions</strong>Set three concrete intentions for next season: one for yourself, one for the team, one for your coach.</div></li></ul></div><div class="quote-card"><p class="quote-text">&#8220;The strength of the team is each individual member. The strength of each member is the team.&#8221;</p><div class="quote-author">Phil Jackson &#8212; 11x NBA Champion Coach, Chicago Bulls &amp; LA Lakers</div></div></div>
     </section>
 
   </div>
@@ -776,6 +287,10 @@
   </footer>
 
   <script>
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+
     const pills = document.querySelectorAll('.month-pill');
     const sections = document.querySelectorAll('.month-section');
 
