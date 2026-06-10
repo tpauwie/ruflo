@@ -48,184 +48,140 @@
   .filter-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: #888; margin-right: 4px; }
   .filter-sep { width: 1px; height: 28px; background: var(--border); margin: 0 8px; }
   .filter-btn {
-    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
-    border: 2px solid var(--line); background: var(--white); color: #555;
-    cursor: pointer; transition: all .15s; white-space: nowrap;
+    padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--line);
+    font-size: 12px; font-weight: 700; cursor: pointer; background: var(--white);
+    color: #555; transition: all 0.18s; font-family: inherit;
   }
   .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
-  .filter-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
-  .filter-btn.age-u14.active { background: #1a7a4a; border-color: #1a7a4a; }
-  .filter-btn.age-u16.active { background: #1a4a8a; border-color: #1a4a8a; }
-  .filter-btn.age-senior.active { background: #5a1a8a; border-color: #5a1a8a; }
-  .search-wrap { margin-left: auto; position: relative; }
-  .search-wrap input {
-    padding: 7px 14px 7px 34px; border-radius: 20px; border: 2px solid var(--line);
-    font-size: 13px; outline: none; width: 200px;
+  .filter-btn.active {
+    background: var(--orange); color: var(--white); border-color: var(--orange);
   }
-  .search-wrap input:focus { border-color: var(--orange); }
-  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #aaa; }
-
-  /* RESULTS BAR */
-  .results-bar {
-    padding: 16px 48px 8px;
-    font-size: 13px; color: #888;
-    display: flex; align-items: center; gap: 12px;
+  .filter-search {
+    margin-left: auto;
+    padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--line);
+    font-size: 13px; font-family: inherit; outline: none;
+    min-width: 200px; background: var(--white); color: var(--ink);
+    transition: border-color .2s;
   }
-  #results-count { font-weight: 700; color: var(--ink); }
-  .clear-btn {
-    font-size: 12px; color: var(--orange); cursor: pointer; font-weight: 600;
-    border: none; background: none; padding: 0;
+  .filter-search:focus { border-color: var(--orange); }
+  @media (max-width: 700px) {
+    .filter-bar { padding: 12px 16px; }
+    .header { padding: 20px 16px; flex-wrap: wrap; }
+    .header-stats { display: none; }
+    .filter-search { min-width: 120px; }
   }
-  .clear-btn:hover { text-decoration: underline; }
 
   /* GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-    padding: 8px 48px 48px;
-  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding: 24px 48px; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; padding: 16px; } }
 
   /* CARD */
   .card {
-    background: var(--white);
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    overflow: hidden;
-    transition: box-shadow .2s, transform .15s;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    display: flex; flex-direction: column;
-  }
-  .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.12); transform: translateY(-2px); }
-  .card.hidden { display: none; }
-
-  .card-top {
-    background: var(--ink);
-    padding: 14px 16px 12px;
-    display: flex; align-items: flex-start; gap: 10px;
-  }
-  .card-num {
-    background: var(--orange); color: var(--white);
-    font-size: 11px; font-weight: 900;
-    padding: 3px 7px; border-radius: 4px; flex-shrink: 0; margin-top: 2px;
-  }
-  .card-title { font-size: 15px; font-weight: 800; color: var(--white); line-height: 1.3; }
-
-  .card-body { padding: 12px 16px; flex: 1; }
-  .card-doel { font-size: 12px; color: #555; font-style: italic; line-height: 1.5; margin-bottom: 10px; }
-
-  .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
-  .tag {
-    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;
-    border: 1px solid var(--line);
-  }
-  .tag-theme   { background: var(--light-orange); color: var(--orange); border-color: #f7c4b3; }
-  .tag-age-u14   { background: #d4edda; color: #1a7a4a; border-color: #b2dfcc; }
-  .tag-age-u16   { background: #d0e4f7; color: #1a4a8a; border-color: #a8c8ed; }
-  .tag-age-senior { background: #e8d5f5; color: #5a1a8a; border-color: #d0aae8; }
-  .tag-type-fysiek  { background: var(--ink); color: var(--white); border-color: var(--ink); }
-  .tag-time  { background: #f0f0f0; color: #444; border-color: var(--line); }
-  .tag-group { background: #f0f0f0; color: #444; border-color: var(--line); }
-
-  .card-footer {
-    padding: 8px 16px 12px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .card-link {
-    font-size: 11px; font-weight: 700; color: var(--orange);
-    display: flex; align-items: center; gap: 4px;
-  }
-  .card-link::after { content: '→'; }
-
-  /* NO RESULTS */
-  .no-results {
-    grid-column: 1 / -1;
-    text-align: center; padding: 60px 20px; color: #aaa;
-    font-size: 16px;
-  }
-  .no-results strong { color: #555; }
-
-  /* SECTION DIVIDER */
-  .section-divider {
-    grid-column: 1 / -1;
-    display: flex; align-items: center; gap: 16px;
-    padding: 8px 0 4px;
-  }
-  .section-divider h2 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #888; white-space: nowrap; }
-  .section-divider hr { flex: 1; border: none; border-top: 2px solid var(--border); }
-
-  @media (max-width: 700px) {
-    .header { padding: 20px 20px; }
-    .header-stats { display: none; }
-    .filter-bar { padding: 12px 16px; }
-    .grid { padding: 8px 16px 32px; grid-template-columns: 1fr; }
-    .results-bar { padding: 12px 16px 4px; }
-    .search-wrap input { width: 140px; }
-  }
-
-  @media print {
-    .filter-bar, .results-bar, .search-wrap { display: none; }
-    .grid { padding: 0; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .card { break-inside: avoid; }
-    .card-top { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  }
-
-  /* PREMIUM LOCK SYSTEM */
-  .premium-locked {
+    background: var(--white); border: 1.5px solid var(--line);
+    border-radius: 12px; padding: 20px;
+    display: flex; flex-direction: column; gap: 10px;
+    cursor: pointer; transition: box-shadow .18s, transform .18s, border-color .18s;
     position: relative;
-    pointer-events: none;
   }
-  .premium-locked > *:not(.premium-lock) {
-    filter: blur(4px);
-    user-select: none;
+  .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.10); transform: translateY(-2px); border-color: var(--orange); }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .card-num { font-size: 11px; font-weight: 900; color: var(--orange); letter-spacing: .05em; flex-shrink: 0; }
+  .card-title { font-size: 15px; font-weight: 800; line-height: 1.3; flex: 1; }
+  .card-desc { font-size: 13px; color: #666; line-height: 1.6; flex: 1; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
+  .tag {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 6px; color: #fff;
+    white-space: nowrap;
   }
-  .premium-lock {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(28,36,51,0.7);
-    border-radius: inherit;
-    z-index: 10;
-    pointer-events: all;
-    gap: 0.5rem;
-    color: white;
-    text-align: center;
+  .tag-time { background: var(--mist); color: #888; font-weight: 600; }
+  .tag-type { background: #e8e2f8; color: #6030a8; }
+  .card-expand {
+    position: absolute; top: 16px; right: 16px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--canvas); border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: #aaa; transition: all .18s;
   }
-  .premium-lock .lock-icon { font-size: 2rem; }
-  .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
-  .premium-lock .lock-cta {
-    background: #f05a28;
-    color: white;
-    padding: 0.5rem 1.25rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.875rem;
-    pointer-events: all;
-  }
+  .card:hover .card-expand { background: var(--orange); color: #fff; border-color: var(--orange); }
 
-  /* PREMIUM BANNER */
-  .premium-banner {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, #1a0a05, #2d1108);
-    border: 1px solid rgba(240,90,40,0.4);
-    border-radius: 10px;
-    padding: 14px 20px;
-    font-size: 13px;
-    color: #ccc;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+  /* DETAIL PANEL */
+  .detail-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    z-index: 500; align-items: flex-start; justify-content: flex-end;
+    padding: 0;
   }
-  .premium-banner strong { color: white; }
-  .premium-banner a { color: var(--orange); font-weight: 600; text-decoration: none; }
-  .premium-banner a:hover { text-decoration: underline; }
+  .detail-overlay.open { display: flex; }
+  .detail-panel {
+    width: 100%; max-width: 560px; height: 100vh;
+    background: #fff; overflow-y: auto;
+    box-shadow: -8px 0 40px rgba(0,0,0,.18);
+    animation: slideIn .25s ease;
+  }
+  @keyframes slideIn { from { transform: translateX(100%); } to { transform: none; } }
+  @media (max-width: 600px) { .detail-panel { max-width: 100%; } }
+
+  .detail-header {
+    background: var(--ink); color: var(--white);
+    padding: 28px 28px 24px; position: relative;
+  }
+  .detail-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,.1); border: none; cursor: pointer;
+    color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .detail-close:hover { background: rgba(255,255,255,.2); }
+  .detail-num { font-size: 12px; font-weight: 800; color: var(--orange); letter-spacing: .06em; margin-bottom: 6px; }
+  .detail-title { font-size: 22px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; font-family: 'Archivo', sans-serif; }
+  .detail-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+
+  .detail-body { padding: 28px; display: flex; flex-direction: column; gap: 24px; }
+  .detail-section h3 { font-size: 11px; font-weight: 800; color: #aaa; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; font-family: 'Archivo', sans-serif; }
+  .detail-section p { font-size: 14px; color: #444; line-height: 1.75; }
+  .detail-section ul { padding-left: 20px; }
+  .detail-section ul li { font-size: 14px; color: #444; line-height: 1.75; margin-bottom: 4px; }
+  .step-list { list-style: none; padding: 0; counter-reset: steps; }
+  .step-list li {
+    counter-increment: steps; display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; color: #444; line-height: 1.65;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-list li::before {
+    content: counter(steps);
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--orange); color: #fff; font-weight: 900; font-size: 12px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .detail-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .meta-item { background: var(--canvas); border-radius: 8px; padding: 12px 14px; }
+  .meta-label { font-size: 10px; font-weight: 800; color: #aaa; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+  .meta-value { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .science-box {
+    background: #f0f4ff; border: 1.5px solid #c5d3f0; border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .science-box .sci-label { font-size: 10px; font-weight: 800; color: #6080c8; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+  .science-box p { font-size: 13px; color: #445; line-height: 1.65; }
+  .youtube-link {
+    display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    background: #fff0f0; border: 1.5px solid #ffc5c5; border-radius: 10px;
+    text-decoration: none; color: #c00; font-size: 14px; font-weight: 700;
+    transition: background .18s;
+  }
+  .youtube-link:hover { background: #ffe0e0; }
+  .youtube-icon { font-size: 22px; }
+
+  /* EMPTY STATE */
+  .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #aaa; }
+  .empty-state p { font-size: 15px; }
+
+  /* RESULTS COUNT */
+  .results-bar {
+    padding: 10px 48px 0;
+    font-size: 12px; color: #999; font-weight: 600;
+  }
+  @media (max-width: 700px) { .results-bar { padding: 8px 16px 0; } }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -241,6 +197,13 @@
       });
     });
   })();
+</script>
+<script>
+(function(){
+  if(localStorage.getItem('cf_access') !== '1'){
+    window.location.replace('access.html?redirect=library.html');
+  }
+})();
 </script>
 </head>
 <body>
@@ -258,844 +221,1100 @@
   </div>
 </header>
 
-<div class="filter-bar">
-  <span class="filter-label">Age</span>
-  <button class="filter-btn age-u14" data-filter="u14">U14</button>
-  <button class="filter-btn age-u16" data-filter="u16">U16</button>
-  <button class="filter-btn age-senior" data-filter="senior">Senior</button>
-
+<div class="filter-bar" id="filter-bar">
+  <span class="filter-label">Age:</span>
+  <button class="filter-btn active" data-filter="age" data-val="all">All</button>
+  <button class="filter-btn" data-filter="age" data-val="U14">U14</button>
+  <button class="filter-btn" data-filter="age" data-val="U16">U16</button>
+  <button class="filter-btn" data-filter="age" data-val="Senior">Senior</button>
   <div class="filter-sep"></div>
-  <span class="filter-label">Theme</span>
-  <button class="filter-btn" data-filter="zelfkennis">Self-Knowledge</button>
-  <button class="filter-btn" data-filter="stress">Pressure &amp; Stress</button>
-  <button class="filter-btn" data-filter="rol">My Role</button>
-  <button class="filter-btn" data-filter="communicatie">Communication</button>
-  <button class="filter-btn" data-filter="team">Team First</button>
-  <button class="filter-btn" data-filter="weerbaarheid">Mental Resilience</button>
-  <button class="filter-btn" data-filter="fysiek">Physical</button>
-
-  <div class="filter-sep"></div>
-  <span class="filter-label">Duration</span>
-  <button class="filter-btn" data-filter="kort">up to 5 min</button>
-  <button class="filter-btn" data-filter="middel">5-10 min</button>
-  <button class="filter-btn" data-filter="lang">10-15 min</button>
-
-  <div class="filter-sep"></div>
-  <span class="filter-label">Type</span>
-  <button class="filter-btn" data-filter="individueel">Individual</button>
-  <button class="filter-btn" data-filter="duo">Duo/Pair</button>
-  <button class="filter-btn" data-filter="groep">Group</button>
-  <button class="filter-btn" data-filter="fysiek-type">Physical</button>
-  <button class="filter-btn" data-filter="reflectie">Reflection</button>
-
-  <div class="search-wrap">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="search" placeholder="Search by name...">
-  </div>
-  <a href="../library.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+  <span class="filter-label">Theme:</span>
+  <button class="filter-btn active" data-filter="theme" data-val="all">All</button>
+  <button class="filter-btn" data-filter="theme" data-val="Self-Knowledge">Self-Knowledge</button>
+  <button class="filter-btn" data-filter="theme" data-val="Pressure">Pressure &amp; Stress</button>
+  <button class="filter-btn" data-filter="theme" data-val="Role">My Role</button>
+  <button class="filter-btn" data-filter="theme" data-val="Communication">Communication</button>
+  <button class="filter-btn" data-filter="theme" data-val="Team">Team First</button>
+  <button class="filter-btn" data-filter="theme" data-val="Resilience">Resilience</button>
+  <button class="filter-btn" data-filter="theme" data-val="Physical">Physical</button>
+  <input class="filter-search" id="search-input" type="search" placeholder="Search exercises..." />
 </div>
 
-<div class="results-bar">
-  <span>Showing <span id="results-count">59</span> of 59 exercises</span>
-  <button class="clear-btn" id="clear-btn" style="display:none">Clear all filters</button>
-</div>
+<div class="results-bar" id="results-bar"></div>
+<div class="grid" id="grid"></div>
 
-<div class="grid" id="grid">
-
-  <!-- ===== SELF-KNOWLEDGE ===== -->
-  <div class="section-divider"><h2>Self-Knowledge &amp; Identity</h2><hr></div>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">01</span><div class="card-title">Three Words</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players describe who they are without overthinking — using post-its and a brief group round.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">5 min</span><span class="tag tag-group">Group</span>
-      </div>
+<!-- DETAIL PANEL -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-panel" id="detail-panel">
+    <div class="detail-header">
+      <button class="detail-close" id="detail-close">&#x2715;</button>
+      <div class="detail-num" id="d-num"></div>
+      <div class="detail-title" id="d-title"></div>
+      <div class="detail-tags" id="d-tags"></div>
     </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie individueel u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">02</span><div class="card-title">Athlete Timeline</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players visualize their athletic journey and discover defining highs and lows on a timeline.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">8 min</span><span class="tag tag-group">Individual + Pair</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie individueel duo u16 senior lang">
-    <div class="card-top"><span class="card-num">03</span><div class="card-title">Values Compass</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players select their top 3 personal values from a list of 20 and connect them to concrete sporting moments.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">10 min</span><span class="tag tag-group">Pair</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie individueel u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">04</span><div class="card-title">Energy Giver or Energy Drainer</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players write down what gives them energy and what costs it — recognizing their own patterns in sport.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie duo u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">05</span><div class="card-title">My Superpower</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players name each other's greatest strength through external feedback in a pair exercise.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">6 min</span><span class="tag tag-group">Pair</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie individueel u16 senior lang">
-    <div class="card-top"><span class="card-num">06</span><div class="card-title">Letter to My Younger Self</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players reflect on growth by writing a letter to their younger athletic self using five sentence starters.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">8 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie individueel u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">07</span><div class="card-title">Identity Anchors</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players anchor a positive identity statement through visualization and body awareness.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">08</span><div class="card-title">Who Inspires You?</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players link external role models to internal qualities through three admired traits.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">6 min</span><span class="tag tag-group">Group</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="card" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie individueel u14 u16 senior kort">
-    <div class="card-top"><span class="card-num">09</span><div class="card-title">Body Scan Check-In</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players connect with their current state through a guided body scan from feet to head.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">5 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <div class="premium-banner">🔒 <strong>59 exercises available</strong> — The first 9 are free. <a href="mailto:info@characterfirst.be">Request full access →</a></div>
-
-  <a class="card premium-locked" href="../oefeningen.html#t1"
-     data-tags="zelfkennis reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">10</span><div class="card-title">Two Truths, One Lie</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players get to know each other through two true facts and one lie about themselves outside of sport.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Self-Knowledge</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">8 min</span><span class="tag tag-group">Group</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <!-- ===== PRESSURE & STRESS ===== -->
-  <div class="section-divider"><h2>Pressure &amp; Stress</h2><hr></div>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie groep u14 u16 senior kort">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">11</span><div class="card-title">Box Breathing</div></div>
-    <div class="card-body">
-      <p class="card-doel">Calm the nervous system with 4-4-4-4 breathing. A technique used by elite athletes and Navy SEALs.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">5 min</span><span class="tag tag-group">Group</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie individueel u16 senior kort">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">12</span><div class="card-title">4-7-8 Breathing Relaxation</div></div>
-    <div class="card-body">
-      <p class="card-doel">Activate deep relaxation through the parasympathetic nervous system using the 4-7-8 breathing technique.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">5 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie individueel u14 u16 senior middel">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">13</span><div class="card-title">Stress Barometer</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players learn to recognize and name their own stress level using a drawn thermometer.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">6 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie duo u16 senior lang">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">14</span><div class="card-title">Worst Case Best Case</div></div>
-    <div class="card-body">
-      <p class="card-doel">Put the fear of failure in perspective by analyzing it through three scenario analyses.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">8 min</span><span class="tag tag-group">Pair</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie groep u14 u16 senior kort">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">15</span><div class="card-title">Rescoring Ritual</div></div>
-    <div class="card-body">
-      <p class="card-doel">Consciously reset and start fresh after a loss or mistake through a shared team ritual.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">5 min</span><span class="tag tag-group">Group</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie individueel u16 senior middel">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">16</span><div class="card-title">Pressure Card</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players create a personal A4 card with stressors, signals, coping tools and a reset sentence.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie groep u14 u16 senior kort">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">17</span><div class="card-title">5-4-3-2-1 Grounding</div></div>
-    <div class="card-body">
-      <p class="card-doel">Break through anxiety with sensory grounding: 5 see, 4 touch, 3 hear, 2 smell, 1 taste.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">5 min</span><span class="tag tag-group">Group</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie individueel u14 u16 senior middel">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">18</span><div class="card-title">Writing a Performance Mantra</div></div>
-    <div class="card-body">
-      <p class="card-doel">Players create a personal one-sentence mental cue to use under performance pressure.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">7 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie individueel u16 senior kort">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">19</span><div class="card-title">3-Minute Stress Journal</div></div>
-    <div class="card-body">
-      <p class="card-doel">Recognize stress patterns by answering three daily questions in a maximum of five minutes.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">5 min</span><span class="tag tag-group">Individual</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t2"
-     data-tags="stress reflectie groep u16 senior lang">
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-top"><span class="card-num">20</span><div class="card-title">Progressive Relaxation</div></div>
-    <div class="card-body">
-      <p class="card-doel">Consciously release physical tension through progressive muscle relaxation from feet to face.</p>
-      <div class="card-tags">
-        <span class="tag tag-theme">Pressure &amp; Stress</span>
-        <span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span>
-        <span class="tag tag-time">8 min</span><span class="tag tag-group">Group</span>
-      </div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <!-- ===== MY ROLE ===== -->
-  <div class="section-divider"><h2>My Role on the Team</h2><hr></div>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie individueel duo u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">21</span><div class="card-title">Role Compass</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players understand their formal and informal role through a compass with four directions.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie duo u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">22</span><div class="card-title">Invisible Contribution</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Name contributions that don't show up in statistics but make the team stronger.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">23</span><div class="card-title">Human Graph</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players physically position themselves on statements and discover the diversity within the team.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie individueel u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">24</span><div class="card-title">Top 3 Contributions</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players formulate the three contributions with which they help the team most this season.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Individual</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">25</span><div class="card-title">Role Pledge</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players make a public pledge about their behavioral contribution to the team in the circle.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie individueel u16 senior lang">
-    <div class="card-top"><span class="card-num">26</span><div class="card-title">Role Circle</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Three concentric circles visualize core task, secondary contributions and growth potential.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Individual</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie duo u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">27</span><div class="card-title">Formulating a Growth Point</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players formulate a concrete growth point positively and share it with a partner.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">28</span><div class="card-title">Leader or Follower?</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players understand that leadership and followership are both valuable and necessary roles.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">29</span><div class="card-title">Filling in the Team Map</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">The team maps its strengths together on a shared large sheet with all names.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">9 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t3" data-tags="rol reflectie individueel u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">30</span><div class="card-title">When I'm Not Playing</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players who don't start learn to define their role as supporters and active teammates.</p>
-      <div class="card-tags"><span class="tag tag-theme">My Role</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Individual</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <!-- ===== COMMUNICATION ===== -->
-  <div class="section-divider"><h2>Communication</h2><hr></div>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie duo u16 senior lang">
-    <div class="card-top"><span class="card-num">31</span><div class="card-title">I-Message</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players practice conveying a message without blame using the I-message formula.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie groep u16 senior lang">
-    <div class="card-top"><span class="card-num">32</span><div class="card-title">Feedback Round Trio</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players practice giving and receiving constructive feedback in groups of three with an observer.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">9 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie duo u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">33</span><div class="card-title">Mirror Conversation</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players experience what it feels like to truly be heard through active listening without responding.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">34</span><div class="card-title">Broken Telephone Analysis</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players discover how communication gets distorted and what the consequences are within a team.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie individueel u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">35</span><div class="card-title">Thank You Note</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players express gratitude in a concrete and specific way to a teammate through a personal note.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Individual</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie groep u16 senior lang">
-    <div class="card-top"><span class="card-num">36</span><div class="card-title">Practicing a Difficult Conversation</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players practice having a difficult conversation in a safe trio setting with an observer.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">10 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">37</span><div class="card-title">Encouragement Challenge</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players learn to encourage spontaneously and specifically in five minutes of intentional practice.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">38</span><div class="card-title">Silent vs. Loud Communication</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players discover the power of non-verbal communication by completing a task in silence.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">39</span><div class="card-title">Compliment Escalator</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Build a culture of genuine appreciation: each player stands in the center of the circle for 30 seconds.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">6 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t4" data-tags="communicatie reflectie duo u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">40</span><div class="card-title">Ask First</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players learn to ask questions before judging a teammate who played poorly.</p>
-      <div class="card-tags"><span class="tag tag-theme">Communication</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <!-- ===== TEAM FIRST ===== -->
-  <div class="section-divider"><h2>Team First</h2><hr></div>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team fysiek-type duo u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">41</span><div class="card-title">Trust Fall</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Experience physically what trust means by falling and being caught by a partner.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-type-fysiek">Physical</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">42</span><div class="card-title">Team Contract</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">The team creates behavioral agreements together via post-its and voting, resulting in a signed contract.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">10 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">43</span><div class="card-title">Weekly Review</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Team reflects together on three questions: what went well, what was difficult, what do we take forward.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team fysiek-type duo u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">44</span><div class="card-title">Blind Guide</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Experience that communication and trust are inseparable through a course without sight.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-type-fysiek">Physical</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team reflectie individueel u16 senior lang">
-    <div class="card-top"><span class="card-num">45</span><div class="card-title">Letter to the Team</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players express what the team means to them through a short letter with four fixed sentence starters.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">9 min</span><span class="tag tag-group">Individual</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team fysiek-type groep u14 u16 senior kort">
-    <div class="card-top"><span class="card-num">46</span><div class="card-title">Power of the Circle</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Activate the team through a shared energy ritual that builds toward a collective chant.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-type-fysiek">Physical</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">5 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">47</span><div class="card-title">Gratitude Circle</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Build a positive team atmosphere by expressing specific gratitude for teammates in the circle.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">48</span><div class="card-title">Team Visualization</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">The team visualizes a great performance together to build collective mental strength.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">8 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior middel">
-    <div class="card-top"><span class="card-num">49</span><div class="card-title">I Need You</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players express vulnerability by naming their need for the team publicly in the circle.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">7 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../oefeningen.html#t5" data-tags="team reflectie groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">50</span><div class="card-title">Closing Ceremony</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Close a program with three circle rounds: one word, one lesson, one wish for the team.</p>
-      <div class="card-tags"><span class="tag tag-theme">Team First</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">10 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <!-- ===== MENTAL RESILIENCE ===== -->
-  <div class="section-divider"><h2>Mental Resilience</h2><hr></div>
-
-  <a class="premium-locked card" href="../mentale-weerbaarheid.html#oe1" data-tags="weerbaarheid reflectie individueel groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">51</span><div class="card-title">The Flu Game Mentality</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">What do you do when everything is working against you? Players write their own perseverance moment and Flu Game sentence.</p>
-      <div class="card-tags"><span class="tag tag-theme">Mental Resilience</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../mentale-weerbaarheid.html#oe2" data-tags="weerbaarheid reflectie individueel duo u16 senior lang">
-    <div class="card-top"><span class="card-num">52</span><div class="card-title">Reframing Thoughts</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Learn to turn negative thoughts into constructive fuel using the ABC model from sports psychology.</p>
-      <div class="card-tags"><span class="tag tag-theme">Mental Resilience</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../mentale-weerbaarheid.html#oe3" data-tags="weerbaarheid reflectie individueel groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">53</span><div class="card-title">The Adversity Ladder</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players map three setbacks and discover their personal adversity quotient pattern.</p>
-      <div class="card-tags"><span class="tag tag-theme">Mental Resilience</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../mentale-weerbaarheid.html#oe4" data-tags="weerbaarheid reflectie individueel u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">54</span><div class="card-title">Pre-Performance Ritual</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players build a personal 6-step switch (physical, mental, emotional) for before every match.</p>
-      <div class="card-tags"><span class="tag tag-theme">Mental Resilience</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Individual</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="../mentale-weerbaarheid.html#oe5" data-tags="weerbaarheid reflectie individueel duo u16 senior lang">
-    <div class="card-top"><span class="card-num">55</span><div class="card-title">Growth After Failure</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Players explore post-traumatic growth through the five PTG domains of Tedeschi and Calhoun.</p>
-      <div class="card-tags"><span class="tag tag-theme">Mental Resilience</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Pair</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <!-- ===== MENTAL TOUGHNESS — PHYSICAL ===== -->
-  <div class="section-divider"><h2>Mental Toughness — Physical</h2><hr></div>
-
-  <a class="premium-locked card" href="review-toughness.html" data-tags="fysiek fysiek-type team groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">56</span><div class="card-title">Wall Squat Challenge</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Three phases: solo, team encouragement per person, everyone together. The time difference proves the power of a motivational climate.</p>
-      <div class="card-tags"><span class="tag tag-theme">Physical</span><span class="tag tag-type-fysiek">Physical</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="review-toughness.html" data-tags="fysiek fysiek-type stress individueel groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">57</span><div class="card-title">Pressure Breathing</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">Plank hold with and without breathing technique: players feel the difference between pain and danger for themselves.</p>
-      <div class="card-tags"><span class="tag tag-theme">Physical</span><span class="tag tag-type-fysiek">Physical</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="review-toughness.html" data-tags="fysiek fysiek-type weerbaarheid groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">58</span><div class="card-title">Comeback Sprint</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">After each sprint the player receives fictitious bad news. The team evaluates the quality of the reset, not the speed.</p>
-      <div class="card-tags"><span class="tag tag-theme">Physical</span><span class="tag tag-type-fysiek">Physical</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <a class="premium-locked card" href="review-toughness.html" data-tags="fysiek fysiek-type team groep u14 u16 senior lang">
-    <div class="card-top"><span class="card-num">59</span><div class="card-title">Team Plank Hold</div></div>
-    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
-    <div class="card-body">
-      <p class="card-doel">If one person drops, everyone drops. Making collective responsibility and group motivation tangible.</p>
-      <div class="card-tags"><span class="tag tag-theme">Physical</span><span class="tag tag-type-fysiek">Physical</span><span class="tag tag-age-u14">U14</span><span class="tag tag-age-u16">U16</span><span class="tag tag-age-senior">Senior</span><span class="tag tag-time">15 min</span><span class="tag tag-group">Group</span></div>
-    </div>
-    <div class="card-footer"><span class="card-link">View exercise</span></div>
-  </a>
-
-  <div class="no-results" id="no-results" style="display:none">
-    <strong>No exercises found</strong><br>Try different filters or clear the selection.
+    <div class="detail-body" id="d-body"></div>
   </div>
-
-</div><!-- end grid -->
+</div>
 
 <script>
-  const cards = document.querySelectorAll('.card');
-  const dividers = document.querySelectorAll('.section-divider');
-  const countEl = document.getElementById('results-count');
-  const clearBtn = document.getElementById('clear-btn');
-  const noResults = document.getElementById('no-results');
-  const searchInput = document.getElementById('search');
-  const filterBtns = document.querySelectorAll('.filter-btn');
-
-  let activeFilters = new Set();
-  let searchTerm = '';
-
-  function applyFilters() {
-    let visible = 0;
-
-    cards.forEach(card => {
-      const tags = (card.dataset.tags || '').split(' ');
-      const title = card.querySelector('.card-title').textContent.toLowerCase();
-      const doel = (card.querySelector('.card-doel') || {}).textContent?.toLowerCase() || '';
-
-      const matchesSearch = !searchTerm ||
-        title.includes(searchTerm) || doel.includes(searchTerm);
-
-      const matchesFilters = activeFilters.size === 0 ||
-        [...activeFilters].every(f => tags.includes(f));
-
-      const show = matchesSearch && matchesFilters;
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
-
-    // hide empty section dividers
-    dividers.forEach(div => {
-      let next = div.nextElementSibling;
-      let hasVisible = false;
-      while (next && !next.classList.contains('section-divider')) {
-        if (!next.classList.contains('hidden') && next.classList.contains('card')) hasVisible = true;
-        next = next.nextElementSibling;
-      }
-      div.classList.toggle('hidden', !hasVisible);
-    });
-
-    countEl.textContent = visible;
-    noResults.style.display = visible === 0 ? 'block' : 'none';
-    clearBtn.style.display = (activeFilters.size > 0 || searchTerm) ? 'inline' : 'none';
+const EXERCISES = [
+  {
+    id:1, num:"#01", title:"Who Am I?",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Reflection",
+    desc:"Players write 5 words that describe them as an athlete and as a person. Introduction to self-knowledge and personal identity.",
+    goal:"Personal identity awareness and team introduction.",
+    steps:[
+      "Each player writes 5 words on a card: 3 as athlete, 2 as person.",
+      "Share in pairs: what surprised you about yourself?",
+      "Group discussion: what do these words say about our team?",
+      "Coach reflection: what do you want to add to this?"
+    ],
+    material:"Cards, markers",
+    science:"Based on Markus' Self-Schema theory (1977) — athletic identity influences motivation and behavior. Research shows that athletes with a rich self-image outside sport are more resilient after setbacks.",
+    youtube:""
+  },
+  {
+    id:2, num:"#02", title:"Values Auction",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U16","Senior"], duration:"12 min", type:"Interactive",
+    desc:"Players receive 100 points and bid on values like courage, loyalty, and fairness. Reveals what's really important — often surprising.",
+    goal:"Clarify personal and team values through choice and discussion.",
+    steps:[
+      "Give each player 100 points to distribute over 10 values.",
+      "Let everyone bid silently first, then share.",
+      "Discuss: which values did you invest most in? Why?",
+      "Team question: which 3 values do we share as a group?"
+    ],
+    material:"Value cards, scoring sheet",
+    science:"Based on Schwartz' Theory of Basic Human Values (1992). Research shows that clarifying values increases goal commitment and motivation to train.",
+    youtube:""
+  },
+  {
+    id:3, num:"#03", title:"Strengths Map",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Reflection",
+    desc:"Players map 3 strengths and 1 growth area. The ratio 3:1 is based on positive psychology and prevents deficit thinking.",
+    goal:"Balanced self-knowledge with emphasis on strengths.",
+    steps:[
+      "Write 3 personal strengths — as athlete AND as person.",
+      "Choose 1 growth area: what do you want to develop?",
+      "Share in groups of 3: confirm each other's strengths.",
+      "Individual action step: how will you use your strengths this week?"
+    ],
+    material:"Worksheet (provided)",
+    science:"Based on Seligman's PERMA model (2011) and Peterson & Seligman (2004) VIA Classification of Character Strengths. Strengths-based coaching yields 36% higher performance improvement.",
+    youtube:""
+  },
+  {
+    id:4, num:"#04", title:"Letter to Future Self",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U16","Senior"], duration:"15 min", type:"Writing",
+    desc:"Players write a letter to themselves 1 year from now. Activates long-term motivation and goal orientation.",
+    goal:"Long-term goal setting and personal motivation.",
+    steps:[
+      "Introduction: what do you want to have achieved in 1 year?",
+      "Write letter (8 min): who are you, what have you accomplished, what are you proud of?",
+      "Optional: share 1 sentence with partner.",
+      "Coach: collect letters, return them in a year."
+    ],
+    material:"Paper, envelopes",
+    science:"Research by Oettingen (2014) shows that mental contrasting — combining positive vision with realistic obstacles — significantly increases goal achievement.",
+    youtube:""
+  },
+  {
+    id:5, num:"#05", title:"Iceberg Model",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U16","Senior"], duration:"12 min", type:"Discussion",
+    desc:"What's visible vs. invisible in your performance? Players map the deeper layers — beliefs, fears, values — that drive their visible behavior.",
+    goal:"Deeper self-insight into the drivers of athletic behavior.",
+    steps:[
+      "Draw an iceberg: above water = visible behavior, below = internal drivers.",
+      "Fill in: what do people see (above)? What drives it (below)?",
+      "Pairs: share one element that surprised you.",
+      "Group: how do our hidden layers influence team performance?"
+    ],
+    material:"Iceberg worksheet",
+    science:"Based on the Iceberg Model of culture (Hall, 1976) applied to athletic psychology. 80% of performance factors are invisible: beliefs, emotions, values.",
+    youtube:""
+  },
+  {
+    id:6, num:"#06", title:"Growth vs. Fixed Mindset",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"Interactive discussion using real examples from sport. Players recognize fixed thinking patterns and practice reframing.",
+    goal:"Awareness of growth mindset as trainable skill.",
+    steps:[
+      "Present 5 sports situations (video or description).",
+      "Players vote: growth mindset or fixed mindset reaction?",
+      "Discussion: how does this affect your own training behavior?",
+      "Each player formulates their own growth mindset sentence."
+    ],
+    material:"Situation cards or video clip",
+    science:"Based on Dweck's Mindset research (2006). Athletes with a growth mindset recover 40% faster after failure and perform better under pressure.",
+    youtube:"https://www.youtube.com/watch?v=hiiEeMN7vbQ"
+  },
+  {
+    id:7, num:"#07", title:"The Personal Highlight Reel",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Reflection",
+    desc:"Players recall their 3 best sporting moments and identify the common thread. What made those moments successful?",
+    goal:"Activating positive self-image and identifying success patterns.",
+    steps:[
+      "Think of 3 moments you're most proud of as an athlete.",
+      "Write: what were the circumstances? What did you do well?",
+      "Look for the common thread: what recurring strength appears?",
+      "Share with partner: confirm and add observations."
+    ],
+    material:"Worksheet",
+    science:"Based on Appreciative Inquiry (Cooperrider, 1987) — focusing on positive experiences activates strengths and increases self-efficacy.",
+    youtube:""
+  },
+  {
+    id:8, num:"#08", title:"Johari Window",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U16","Senior"], duration:"15 min", type:"Reflection",
+    desc:"Players explore what they know about themselves vs. what others see. Expands self-insight through external feedback.",
+    goal:"Expanding self-knowledge through the feedback of teammates.",
+    steps:[
+      "Introduce the 4 quadrants: open, blind spot, hidden, unknown.",
+      "Step 1: write 3 qualities you recognize in yourself.",
+      "Step 2: receive 3 qualities from a teammate (anonymous).",
+      "Discuss: what's in your blind spot? What surprised you?"
+    ],
+    material:"Johari Window worksheet",
+    science:"Luft & Ingham (1955). Research shows that expanding the 'open zone' through feedback increases team cohesion and interpersonal trust.",
+    youtube:""
+  },
+  {
+    id:9, num:"#09", title:"My Athlete Identity",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U16","Senior"], duration:"12 min", type:"Writing",
+    desc:"Who are you when you play? Players construct their athletic identity: values, playing style, role and what they want to be remembered for.",
+    goal:"Strong, authentic athletic identity as motivational anchor.",
+    steps:[
+      "Complete: I play [sport] because...",
+      "My strengths as an athlete are... / My style is...",
+      "My role in the team is... / What teammates can count on me for...",
+      "I want to be remembered as..."
+    ],
+    material:"Identity card (print)",
+    science:"Based on Brewer et al. (1993) Athletic Identity Measurement Scale. Strong athletic identity correlates with higher intrinsic motivation and better coping with adversity.",
+    youtube:""
+  },
+  {
+    id:10, num:"#10", title:"Two Truths One Lie",
+    theme:"Self-Knowledge", themeColor:"#F05A28",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Interactive",
+    desc:"Players share 2 truths and 1 lie about themselves. The group guesses which is the lie. Builds trust and openness through surprising self-disclosure.",
+    goal:"Team bonding and deepening mutual understanding.",
+    steps:[
+      "Each player prepares 2 truths and 1 lie (2 min).",
+      "Present in turn — group votes which is the lie.",
+      "Reveal the lie + short explanation.",
+      "Debrief: what did you learn about your teammates?"
+    ],
+    material:"None",
+    science:"Based on Self-Disclosure theory (Jourard, 1971). Voluntary self-disclosure increases psychological safety and team cohesion — both predictors of team performance.",
+    youtube:""
+  },
+  {
+    id:11, num:"#11", title:"Box Breathing",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"5 min", type:"Physical",
+    desc:"Controlled 4-4-4-4 breathing to calm the nervous system before and after performance. Used by Navy SEALs and elite athletes worldwide.",
+    goal:"Activate the parasympathetic nervous system and reduce cortisol.",
+    steps:[
+      "Sit or stand comfortably. Spine straight.",
+      "Inhale for 4 counts through the nose.",
+      "Hold for 4 counts — no tension.",
+      "Exhale slowly for 4 counts through the mouth.",
+      "Hold for 4 counts. Repeat 4–6 times."
+    ],
+    material:"None",
+    science:"Research shows that controlled breathing activates the vagus nerve and reduces cortisol by up to 30% (Ma et al., 2017). Widely applied in military, sport and clinical settings.",
+    youtube:"https://www.youtube.com/watch?v=tEmt1Znux58"
+  },
+  {
+    id:12, num:"#12", title:"Pressure Points",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"Players identify their personal pressure moments and the physical signals of tension. Then together they develop a coping strategy.",
+    goal:"Recognize personal stress signals and develop a plan.",
+    steps:[
+      "Think: when do I feel most pressure? (before match, after mistake, at set point?)",
+      "Write 3 physical signals: rapid heartbeat, tense shoulders, shallow breathing...",
+      "Choose 1 strategy to use next time (breathing, self-talk, routine).",
+      "Share with partner: test and give feedback."
+    ],
+    material:"Worksheet",
+    science:"Based on Lazarus' Stress Appraisal Theory (1984). The ability to recognize physical stress signals is the first step in effective emotional regulation.",
+    youtube:""
+  },
+  {
+    id:13, num:"#13", title:"Positive Self-Talk",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Reflection",
+    desc:"Players identify their negative inner voices during pressure and rewrite them as positive, realistic self-talk.",
+    goal:"Replace negative automatic thoughts with effective self-talk.",
+    steps:[
+      "Write down 3 negative thoughts you have during competition.",
+      "Analyze: are they realistic? What do they cost you?",
+      "Rewrite each thought as a positive, credible self-talk statement.",
+      "Practice 3x saying your new statements aloud — with conviction."
+    ],
+    material:"Self-talk card",
+    science:"Meta-analysis by Tod et al. (2011): positive self-talk increases performance by 12–18%, especially in pressure situations. Most effective when specific and personal.",
+    youtube:""
+  },
+  {
+    id:14, num:"#14", title:"The Comfort Zone Walk",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"12 min", type:"Interactive",
+    desc:"Physical activity where players literally move between comfort zone, learning zone and panic zone. Experiential learning about optimal performance under pressure.",
+    goal:"Understanding the relationship between challenge and performance.",
+    steps:[
+      "Mark 3 zones in the space: green = comfort, yellow = learning, red = panic.",
+      "Read situations aloud — players move to their zone.",
+      "Discuss: where do you perform best? When do you tip over?",
+      "Individual: what can you do to stay in the learning zone?"
+    ],
+    material:"Tape/cones for zones, situation cards",
+    science:"Based on Yerkes-Dodson law (1908) and the concept of Flow (Csikszentmihalyi, 1990). Optimal performance occurs in the zone between boredom and anxiety.",
+    youtube:""
+  },
+  {
+    id:15, num:"#15", title:"Pre-Performance Routine",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Reflection",
+    desc:"Players develop their personal activation routine for before matches. Combines breathing, self-talk and physical trigger for consistent activation.",
+    goal:"Create a personal, repeatable pre-performance ritual.",
+    steps:[
+      "What do you currently do before a match? Write it down.",
+      "Design your ideal routine: 3 steps in 2–3 minutes.",
+      "Include: physical trigger, breathing, self-talk sentence.",
+      "Practice the routine twice — adapt if needed."
+    ],
+    material:"Routine card (print)",
+    science:"Research by Cotterill (2010): pre-performance routines reduce anxiety by 23% and increase focus consistency. Used by 89% of elite athletes.",
+    youtube:""
+  },
+  {
+    id:16, num:"#16", title:"The Setback Protocol",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"What do you do after a mistake or loss? Players develop a personal 3-step protocol to recover quickly and refocus.",
+    goal:"Develop resilience and fast recovery after mistakes.",
+    steps:[
+      "Think of a recent mistake: how did you react?",
+      "Design your 3-step protocol: acknowledge → reset → refocus.",
+      "Create a physical reset trigger (gesture, word, routine).",
+      "Practice in pairs: one makes mistake, other guides through protocol."
+    ],
+    material:"Protocol card",
+    science:"Based on Seligman's ABCDE model (1991) and research on error management in sport. Athletes who recover faster from mistakes show higher performance over the long term.",
+    youtube:""
+  },
+  {
+    id:17, num:"#17", title:"Visualisation",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Mental",
+    desc:"Guided mental imagery of a successful performance moment. Players train their brain to experience the performance as real before it happens.",
+    goal:"Mental rehearsal as preparation and confidence builder.",
+    steps:[
+      "Quiet position, eyes closed.",
+      "Guided: imagine a successful performance moment in detail (3 min).",
+      "Include: what do you see, hear, feel in your body?",
+      "Open eyes: share what you experienced."
+    ],
+    material:"Calm music (optional)",
+    science:"Meta-analysis by Driskell et al. (1994): mental imagery improves physical performance by an average of 13.4%. Most effective when multi-sensory.",
+    youtube:""
+  },
+  {
+    id:18, num:"#18", title:"Reframing Under Pressure",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"Players learn to see pressure as an activator rather than a threat. Based on Kelly McGonigal's research on the positive stress mindset.",
+    goal:"Shift from threat response to challenge response.",
+    steps:[
+      "Present: 'My heart is racing, I'm nervous' vs. 'My body is preparing to perform'.",
+      "Discussion: same physical response, different interpretation — different result?",
+      "Write your own reframe: my pressure signal means...",
+      "Practice: activate a pressure signal (physical) and apply the reframe."
+    ],
+    material:"None",
+    science:"McGonigal (2015) and Crum et al. (2013): people who reframe stress as functional show better cardiovascular response and performance in high-pressure situations.",
+    youtube:"https://www.youtube.com/watch?v=RcGyVTAoXEU"
+  },
+  {
+    id:19, num:"#19", title:"The Focus Word",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U14","U16","Senior"], duration:"6 min", type:"Reflection",
+    desc:"Each player chooses one word that brings them back to their best performance state. Used as an anchor during matches.",
+    goal:"Create a personal mental anchor for high-pressure moments.",
+    steps:[
+      "Think: what word describes you at your best as an athlete?",
+      "Write it large on a card. Practice saying it aloud.",
+      "When do you use this word? Agree on a trigger moment.",
+      "Test in a training situation — evaluate together."
+    ],
+    material:"Cards, markers",
+    science:"Based on Cue word research (Mesagno & Mullane-Grant, 2010). A single focus word reduces performance-disruptive self-consciousness in high-pressure situations.",
+    youtube:""
+  },
+  {
+    id:20, num:"#20", title:"Breathing &amp; Visualisation Combo",
+    theme:"Pressure", themeColor:"#2F6FB0",
+    age:["U16","Senior"], duration:"12 min", type:"Mental",
+    desc:"Combination of box breathing and guided mental imagery as integrated pre-performance protocol.",
+    goal:"Combine physiological calm with mental readiness.",
+    steps:[
+      "3 rounds of box breathing (4-4-4-4).",
+      "Transition: close eyes, relax body.",
+      "Visualisation: ideal performance (5 min guided).",
+      "Open eyes, shake body loose, activate with focus word."
+    ],
+    material:"Calm music",
+    science:"Combination of breathing (Ma et al., 2017) and imagery (Driskell et al., 1994). Combined protocols are 28% more effective than isolated techniques.",
+    youtube:""
+  },
+  {
+    id:21, num:"#21", title:"What's My Role?",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Discussion",
+    desc:"Each player describes their role in the team — both on and off the field. Often surprising: roles rarely match expectations.",
+    goal:"Role clarity and awareness of contribution to team success.",
+    steps:[
+      "Write: what is your technical role? What is your social role?",
+      "Share with partner: does your partner agree with your description?",
+      "Group discussion: are all roles covered in the team?",
+      "Coach: address gaps in team roles."
+    ],
+    material:"Role card",
+    science:"Based on Belbin's Team Roles (1981). Unclear role definition is one of the strongest predictors of team conflict and lower group performance.",
+    youtube:""
+  },
+  {
+    id:22, num:"#22", title:"Role Value",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"What is your role worth to the team? Players demonstrate the value of every role — including the less visible ones — through concrete examples.",
+    goal:"Appreciation of all roles in the team, including supporting ones.",
+    steps:[
+      "Every player names their 3 most important contributions to the team.",
+      "Group exercise: match contributions to team success factors.",
+      "Which roles are undervalued? Why?",
+      "Recognition moment: name something valuable about each teammate."
+    ],
+    material:"None",
+    science:"Research by Carron et al. (2002) shows that role clarity and acceptance correlates 0.65 with team cohesion — one of the strongest predictors of team performance.",
+    youtube:""
+  },
+  {
+    id:23, num:"#23", title:"Human Graph",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Interactive",
+    desc:"Players physically position themselves on a scale on the floor based on statements about their role and preferences. Makes abstract choices concrete.",
+    goal:"Visualise team diversity and different role preferences.",
+    steps:[
+      "Mark a line in the space: 1 (completely disagree) – 10 (completely agree).",
+      "Read statements aloud: 'I prefer to lead' / 'I work better in the background' etc.",
+      "Players take their position physically and explain their choice.",
+      "Debrief: what does the distribution tell us about our team?"
+    ],
+    material:"Tape for line, statements list",
+    science:"Based on physical learning techniques (embodied cognition). Making abstract values tangible increases retention and self-awareness.",
+    youtube:""
+  },
+  {
+    id:24, num:"#24", title:"Position Switch",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U14","U16","Senior"], duration:"15 min", type:"Physical",
+    desc:"Players switch positions and experience each other's role live during a training exercise. Develops empathy and role understanding.",
+    goal:"Perspective-taking through direct role experience.",
+    steps:[
+      "Choose a training exercise where positions can be swapped.",
+      "Players play in someone else's position for 10 minutes.",
+      "Debrief: what did you notice? What was harder than expected?",
+      "Discussion: how does this change how you communicate with that position?"
+    ],
+    material:"Training equipment for chosen exercise",
+    science:"Perspective-taking increases empathy (Davis, 1983) and reduces interpersonal conflict. In sport: better understanding of role interdependence leads to more effective teamwork.",
+    youtube:""
+  },
+  {
+    id:25, num:"#25", title:"The Specialist &amp; The Generalist",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"Discussion about specialisation vs. versatility in sport and in life. When is it better to be very good at one thing vs. broadly competent?",
+    goal:"Develop a nuanced view of one's own role specialisation.",
+    steps:[
+      "Present examples: Messi (specialist) vs. Ronaldo (generalist approach).",
+      "Discussion: where on the spectrum are you? Where do you want to be?",
+      "Team question: what mix of specialists and generalists is optimal for us?",
+      "Individual: in which areas do I want to specialise or broaden?"
+    ],
+    material:"None",
+    science:"Based on Range research (Epstein, 2019). Both specialisation and breadth have specific advantages — conscious choice leads to higher satisfaction and performance.",
+    youtube:""
+  },
+  {
+    id:26, num:"#26", title:"Role Evolution",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U16","Senior"], duration:"10 min", type:"Reflection",
+    desc:"How has your role changed over time? Players map the evolution of their role and identify their growth.",
+    goal:"Acknowledge personal growth and role development.",
+    steps:[
+      "Draw a timeline: your role 2 years ago vs. now vs. in 1 year.",
+      "Write: what changed? What stayed the same? What do you want to develop?",
+      "Share with partner: confirm each other's growth.",
+      "Coach: discuss team role evolution and emerging needs."
+    ],
+    material:"Timeline worksheet",
+    science:"Based on developmental models in sport psychology (Wylleman et al., 2000). Reflection on role evolution supports identity development and transition management.",
+    youtube:""
+  },
+  {
+    id:27, num:"#27", title:"The Invisible Role",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Discussion",
+    desc:"Which roles in the team are invisible but essential? Players identify and appreciate the less visible contributions.",
+    goal:"Recognition and appreciation of supporting team roles.",
+    steps:[
+      "Name 5 invisible roles in sport (encourager, peacemaker, preparer...).",
+      "Players identify which invisible roles exist in their team.",
+      "Who fulfils these roles? Are they recognized?",
+      "Recognition exercise: name an invisible contribution of a teammate."
+    ],
+    material:"None",
+    science:"Based on Functional role theory (Benne & Sheats, 1948). Invisible 'maintenance roles' are equally important for team functioning as task roles, but rarely recognised.",
+    youtube:""
+  },
+  {
+    id:28, num:"#28", title:"Role Conflict",
+    theme:"Role", themeColor:"#7A52C7",
+    age:["U16","Senior"], duration:"12 min", type:"Discussion",
+    desc:"When do roles conflict? Players explore tensions between individual ambitions and team roles.",
+    goal:"Open discussion about role tensions and solutions.",
+    steps:[
+      "Present a role conflict scenario (e.g. attacker vs. team defender).",
+      "Small groups: discuss how to handle this conflict.",
+      "Strategies: role negotiation, clear agreements, open conversation.",
+      "Individual: identify your own role conflict and take a concrete step."
+    ],
+    material:"Scenario cards",
+    science:"Role conflict is one of the main sources of team tension (Kahn et al., 1964). Research shows that open communication about role conflicts reduces tension and improves performance.",
+    youtube:""
+  },
+  {
+    id:29, num:"#29", title:"My Communication Style",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Reflection",
+    desc:"Players discover their natural communication style using a simple self-assessment. Direct, analytical, relational or expressive?",
+    goal:"Self-knowledge about communication style and its effect on the team.",
+    steps:[
+      "Complete the 12-item communication style questionnaire.",
+      "Identify your dominant style: D, A, R or E.",
+      "Share in groups: what does each style contribute to the team?",
+      "Discussion: how do you communicate with someone with a very different style?"
+    ],
+    material:"Questionnaire (print)",
+    science:"Based on DISC model (Marston, 1928) adapted for sports context. Communication style awareness reduces misunderstandings and improves team cohesion.",
+    youtube:""
+  },
+  {
+    id:30, num:"#30", title:"Active Listening",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Practical",
+    desc:"Listening is a skill. Players practice really listening — without reacting, without judging — and experience the difference.",
+    goal:"Active listening as a concrete communication skill.",
+    steps:[
+      "In pairs: one person speaks for 2 minutes about a challenge. The other listens completely.",
+      "Listener summarizes without interpretation or advice.",
+      "Roles switch.",
+      "Debrief: how did it feel to really be listened to?"
+    ],
+    material:"Timer",
+    science:"Research by Rogers & Farson (1957) and more recently Itzchakov & Kluger (2018): feeling genuinely heard increases openness and trust by up to 40%.",
+    youtube:""
+  },
+  {
+    id:31, num:"#31", title:"The Feedback Sandwich",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Practical",
+    desc:"Players learn to give effective feedback: positive – specific improvement – positive. Practice with real situations from training.",
+    goal:"Concrete feedback technique that is both honest and constructive.",
+    steps:[
+      "Explain the sandwich model: positive – specific point – positive.",
+      "Give an example with a training situation.",
+      "In pairs: give each other 1 piece of feedback using the sandwich.",
+      "Debrief: was the feedback clear? How did it feel to receive it?"
+    ],
+    material:"None",
+    science:"Based on feedback research (Hattie & Timperley, 2007). Specific, behavioral feedback focused on improvement is significantly more effective than general praise or criticism.",
+    youtube:""
+  },
+  {
+    id:32, num:"#32", title:"Encouragement Challenge",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U14","U16","Senior"], duration:"7 min", type:"Practical",
+    desc:"First task solo, then the team deliberately encourages, then together. The time difference proves the power of encouragement.",
+    goal:"Prove that deliberate encouragement increases performance.",
+    steps:[
+      "Task 1: perform a physical challenge (plank, push-ups) in silence.",
+      "Task 2: the same challenge, but now teammates encourage actively.",
+      "Measure and compare times or repetitions.",
+      "Debrief: what made the encouragement effective?"
+    ],
+    material:"Timer, optional score sheet",
+    science:"Research shows that social facilitation (Zajonc, 1965) and verbal encouragement can increase physical performance by 12–20%. Encouragement is a trainable skill.",
+    youtube:""
+  },
+  {
+    id:33, num:"#33", title:"The Difficult Conversation",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U16","Senior"], duration:"15 min", type:"Role-play",
+    desc:"Role-play for difficult but necessary conversations: conflict, feedback, disappointment. Players practice in a safe environment.",
+    goal:"Build courage and skill for honest conversations.",
+    steps:[
+      "Choose a scenario: conflict between teammates, issue with coach...",
+      "Pair role-play: one initiates difficult conversation, other responds.",
+      "Observers give feedback on what worked.",
+      "Reflection: what do you avoid in real conversations? Why?"
+    ],
+    material:"Scenario cards",
+    science:"Based on Crucial Conversations framework (Patterson et al., 2011). Avoiding difficult conversations costs teams 80% more in the long run than the short-term discomfort of the conversation.",
+    youtube:""
+  },
+  {
+    id:34, num:"#34", title:"Non-Verbal Signals",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Practical",
+    desc:"93% of communication is non-verbal. Players experiment with body language and discover how their posture affects the team.",
+    goal:"Awareness of the effect of posture, facial expression and gestures.",
+    steps:[
+      "Walk through space with defeated body language (2 min).",
+      "Then: confident body language. What changes?",
+      "Pairs: guess what emotion the other is projecting — no words.",
+      "Discussion: what does your non-verbal communication say to your teammates?"
+    ],
+    material:"None",
+    science:"Mehrabian (1967) and Cuddy (2012): posture not only influences how others perceive you, but also your own hormonal state (testosterone/cortisol ratio).",
+    youtube:""
+  },
+  {
+    id:35, num:"#35", title:"The Yes-And Game",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Interactive",
+    desc:"Improvisation exercise: players must continue each other's ideas with 'yes and' instead of blocking. Makes team communication positive and solution-oriented.",
+    goal:"Practice collaborative communication and building on each other's ideas.",
+    steps:[
+      "Round 1: in pairs, build a story alternately. Every sentence starts with 'yes and'.",
+      "Round 2: try blocking with 'yes but' — notice the effect.",
+      "Round 3: back to 'yes and'. What changes?",
+      "Debrief: when do you block ideas in the team? What does that cost you?"
+    ],
+    material:"None",
+    science:"Based on improvisational theater techniques applied to teamwork (Sawyer, 2007). 'Yes and' increases creative output by 35% and reduces defensive communication.",
+    youtube:""
+  },
+  {
+    id:36, num:"#36", title:"Team Meeting Skills",
+    theme:"Communication", themeColor:"#C7842F",
+    age:["U16","Senior"], duration:"12 min", type:"Practical",
+    desc:"How do you run an effective team meeting? Players learn concrete tools for meetings that actually improve team performance.",
+    goal:"Effective meeting structure and facilitation skills.",
+    steps:[
+      "Present the 4 meeting traps: no agenda, no focus, no decisions, no follow-up.",
+      "Practice a 10-minute meeting with roles: facilitator, timer, note-taker.",
+      "Debrief: what made the meeting effective? What went wrong?",
+      "Agree on team meeting standards for the rest of the season."
+    ],
+    material:"Agenda template",
+    science:"Research by Google's Project Aristotle (2016): psychological safety in meetings is the strongest predictor of team performance. Structure creates safety.",
+    youtube:""
+  },
+  {
+    id:37, num:"#37", title:"The Power of We",
+    theme:"Team", themeColor:"#1E8A5B",
+    age:["U14","U16","Senior"], duration:"5 min", type:"Discussion",
+    desc:"Simple but powerful: players replace 'I' with 'we' in describing team successes and challenges. Language shapes team identity.",
+    goal:"Strengthening team identity through collective language.",
+    steps:[
+      "Ask: describe your team's biggest challenge. Note language used.",
+      "Repeat: now use only 'we' and 'our'. What changes?",
+      "Discussion: when do you say 'I' when you should say 'we'?",
+      "Agreement: this week, consciously use 'we' in team situations."
+    ],
+    material:"None",
+    science:"Research by Kray & Haselhuhn (2012): teams using more 'we-language' show higher collective efficacy and better performance under pressure.",
+    youtube:""
+  },
+  {
+    id:38, num:"#38", title:"Trust Walk",
+    theme:"Team", themeColor:"#1E8A5B",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Physical",
+    desc:"One player is blindfolded, the other guides them through an obstacle course with only voice instructions. Direct experience of trust and responsibility.",
+    goal:"Build interpersonal trust through physical vulnerability.",
+    steps:[
+      "Set up a simple obstacle course.",
+      "Pair up: one blindfolded, one guides — voice only.",
+      "Roles switch after 3 minutes.",
+      "Debrief: who did you trust more easily? What did guiding require of you?"
+    ],
+    material:"Blindfolds, cones for course",
+    science:"Trust in sport is built through vulnerability and reliability (Dirks, 1999). Physical trust experiences translate to emotional trust in team situations.",
+    youtube:""
+  },
+  {
+    id:39, num:"#39", title:"Team Contract",
+    theme:"Team", themeColor:"#1E8A5B",
+    age:["U14","U16","Senior"], duration:"20 min", type:"Group",
+    desc:"The team collectively formulates behavioral agreements: what do we commit to with each other? Players own it — not rules imposed by the coach.",
+    goal:"Player-owned team standards and collective accountability.",
+    steps:[
+      "Individual brainstorm: what behaviors make us a great team?",
+      "Group: collect on whiteboard, cluster into themes.",
+      "Vote: choose the 5 most important agreements.",
+      "Formulate positively, write on poster, everyone signs."
+    ],
+    material:"Large paper, markers",
+    science:"Research by Jowett & Chaundy (2004): player-owned team agreements show 3x more adherence than coach-imposed rules. Ownership creates commitment.",
+    youtube:""
+  },
+  {
+    id:40, num:"#40", title:"Power of the Circle",
+    theme:"Team", themeColor:"#1E8A5B",
+    age:["U14","U16","Senior"], duration:"5 min", type:"Physical",
+    desc:"Team members stand up for each other in a circle of trust. Literally: plank against each other, then release. Trust and collective strength become tangible.",
+    goal:"Physical experience of collective strength and mutual support.",
+    steps:[
+      "Team stands in a circle, hands on each other's shoulders.",
+      "Together lean back: feel the support of the group.",
+      "Then forward: hold the person in front of you.",
+      "Release one by one — notice the effect on the whole."
+    ],
+    material:"None",
+    science:"Physical cohesion exercises (Prapavessis & Carron, 1997) increase group cohesion and reduce social loafing. Collective physical experience creates a stronger sense of 'us'.",
+    youtube:""
+  },
+  {
+    id:41, num:"#41", title:"The Accountability Ladder",
+    theme:"Team", themeColor:"#1E8A5B",
+    age:["U16","Senior"], duration:"12 min", type:"Discussion",
+    desc:"Players map where they are on the responsibility ladder: from 'it's not my fault' to 'I take action'. Shift from victim to owner thinking.",
+    goal:"Develop personal and collective accountability.",
+    steps:[
+      "Present the 8 rungs of the accountability ladder.",
+      "Players place themselves: where are you usually? In training? After a loss?",
+      "Discussion: what keeps you on the lower rungs? What helps you climb?",
+      "Individual goal: 1 step higher this week in a specific situation."
+    ],
+    material:"Accountability ladder poster",
+    science:"Based on The Oz Principle (Connors, Smith, Hickman, 1994). Research shows that accountability culture is the strongest organizational predictor of long-term success.",
+    youtube:""
+  },
+  {
+    id:42, num:"#42", title:"Collective Goals",
+    theme:"Team", themeColor:"#1E8A5B",
+    age:["U14","U16","Senior"], duration:"15 min", type:"Group",
+    desc:"The team formulates shared goals for the season: process goals, performance goals and outcome goals. Alignment creates focus.",
+    goal:"Shared ambition and alignment on team goals.",
+    steps:[
+      "Explain 3 types of goals: process (behavior), performance (measurable), outcome (result).",
+      "Small groups: formulate 1 goal per type for the team.",
+      "Plenary: compare and combine into shared team goals.",
+      "Write on poster, place visibly in changing room."
+    ],
+    material:"Goal cards, large paper",
+    science:"Based on Goal Setting Theory (Locke & Latham, 1990). Teams with clear, shared goals show 25–30% higher performance compared to teams without explicit goals.",
+    youtube:""
+  },
+  {
+    id:43, num:"#43", title:"Social Loafing",
+    theme:"Team", themeColor:"#1E8A5B",
+    age:["U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"Why do people work less hard in groups? Players experience the Ringelmann effect and discuss how to combat it in their own team.",
+    goal:"Understand and prevent social loafing in team settings.",
+    steps:[
+      "Task 1: pull a rope alone with maximum effort (or press against a wall).",
+      "Task 2: same task, but with 4-6 people. Measure/compare effort.",
+      "Discussion: was your effort the same? Why did it decrease?",
+      "Solutions: what can we do as a team to prevent social loafing?"
+    ],
+    material:"Rope or wall, optional force meter",
+    science:"Ringelmann (1913) and Latane et al. (1979): individual effort decreases by up to 29% in group settings. Awareness and identifiability are the most effective solutions.",
+    youtube:""
+  },
+  {
+    id:44, num:"#44", title:"Resilience Story",
+    theme:"Resilience", themeColor:"#C73F62",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"Players share a personal story of resilience: a moment they fell and got back up. Normalizes failure and builds team resilience.",
+    goal:"Normalize setbacks and build collective resilience capacity.",
+    steps:[
+      "Coach shares own resilience story as model.",
+      "Players write their own story in 3 minutes.",
+      "Share in groups of 3 — optional with full group.",
+      "Debrief: what did you learn from these stories? What do they have in common?"
+    ],
+    material:"None",
+    science:"Based on Posttraumatic Growth Theory (Tedeschi & Calhoun, 1996). Sharing resilience stories increases collective efficacy and reduces fear of failure.",
+    youtube:""
+  },
+  {
+    id:45, num:"#45", title:"The Flu Game Mentality",
+    theme:"Resilience", themeColor:"#C73F62",
+    age:["U14","U16","Senior"], duration:"15 min", type:"Discussion",
+    desc:"Jordan's Flu Game: performing under extreme adversity. Players discover their own Flu Game moment and formulate their personal perseverance sentence.",
+    goal:"Build mental toughness through personal examples of perseverance.",
+    steps:[
+      "Show or describe Jordan's Flu Game (1997).",
+      "Discussion: what made this remarkable? What drove him?",
+      "Players write their own Flu Game moment: when did you keep going despite everything?",
+      "Formulate your personal Flu Game sentence as a mental anchor."
+    ],
+    material:"Optional video clip",
+    science:"Based on Gucciardi's Mental Toughness research (2008) and Bandura's concept of self-efficacy (1986). Personal resilience examples have a stronger effect on motivation than general stories.",
+    youtube:"https://www.youtube.com/watch?v=gkSU3kWnI6I"
+  },
+  {
+    id:46, num:"#46", title:"Failing Forward",
+    theme:"Resilience", themeColor:"#C73F62",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Reflection",
+    desc:"What did your failures teach you? Players reframe mistakes as learning moments using a concrete analysis model.",
+    goal:"Develop a growth-oriented relationship with failure.",
+    steps:[
+      "Think of a significant failure or setback in your sport.",
+      "Analyze using the 4L model: Learn – Liked – Lacked – Longed for.",
+      "What did you learn from this failure that made you better?",
+      "Share with partner: confirm each other's learning."
+    ],
+    material:"4L worksheet",
+    science:"Based on failure research (Dweck, 2006) and retrospective learning models. Athletes who actively process failures improve 23% faster than those who avoid reflection.",
+    youtube:""
+  },
+  {
+    id:47, num:"#47", title:"Mental Toughness Checklist",
+    theme:"Resilience", themeColor:"#C73F62",
+    age:["U16","Senior"], duration:"8 min", type:"Reflection",
+    desc:"Players assess themselves on 10 mental toughness components. Reveals strengths and concrete growth areas.",
+    goal:"Self-assessment of mental toughness with action planning.",
+    steps:[
+      "Complete the 10-point mental toughness checklist (1–10 scale).",
+      "Identify your 3 highest and 3 lowest scores.",
+      "Choose 1 growth area: what specific action can you take this week?",
+      "Share with partner for accountability."
+    ],
+    material:"Checklist (print)",
+    science:"Based on the 4C model of Mental Toughness (Clough & Earle, 2002): Control, Commitment, Challenge, Confidence. Validated instrument with strong predictive validity for athletic performance.",
+    youtube:""
+  },
+  {
+    id:48, num:"#48", title:"Worst Case Scenario",
+    theme:"Resilience", themeColor:"#C73F62",
+    age:["U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"What's the worst that can happen? Stoic exercise: players consciously confront their greatest fear and discover it's manageable.",
+    goal:"Reduce fear of failure through rational preparation for the worst case.",
+    steps:[
+      "Think of your greatest fear in sport (failing a penalty, letting your team down...).",
+      "Write: what exactly would happen? What would the consequences be?",
+      "Question: can you handle this? What would you do?",
+      "Reframe: if you can handle the worst case, what does that do to your fear of normal mistakes?"
+    ],
+    material:"Worksheet",
+    science:"Based on Stoic philosophy (Marcus Aurelius, Seneca) and modern Cognitive Behavioral Therapy (CBT). Negative visualization reduces anxiety and increases equanimity.",
+    youtube:""
+  },
+  {
+    id:49, num:"#49", title:"The Comeback Story",
+    theme:"Resilience", themeColor:"#C73F62",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Discussion",
+    desc:"Players analyze a famous comeback story from sport and identify the factors that made it possible. Then they apply these factors to their own situation.",
+    goal:"Inspire and activate personal resilience through examples.",
+    steps:[
+      "Present a comeback story: Federer at Wimbledon 2017, Leicester City, etc.",
+      "Analysis: what factors made this comeback possible?",
+      "Players identify which factors are present in their own situation.",
+      "Individual: write your own comeback scenario for this season."
+    ],
+    material:"Optional video clip, analysis worksheet",
+    science:"Based on Social Cognitive Theory (Bandura, 1986). Vicarious experiences — observing others overcoming challenges — increase self-efficacy by up to 27%.",
+    youtube:""
+  },
+  {
+    id:50, num:"#50", title:"Emotional Regulation",
+    theme:"Resilience", themeColor:"#C73F62",
+    age:["U16","Senior"], duration:"12 min", type:"Practical",
+    desc:"Players learn 3 concrete techniques to regulate strong emotions during matches: grounding, breathing and cognitive distancing.",
+    goal:"Practical toolkit for in-match emotional regulation.",
+    steps:[
+      "Explain the 3 techniques: 5-4-3-2-1 grounding, box breathing, cognitive distancing.",
+      "Practice each technique for 90 seconds.",
+      "Choose your personal preferred technique.",
+      "Application: when exactly will you use this during your next match?"
+    ],
+    material:"Technique cards",
+    science:"Based on Emotion Regulation Theory (Gross, 1998) and sport-specific applications (Uphill et al., 2009). Emotional regulation is the most important predictor of performance consistency.",
+    youtube:""
+  },
+  {
+    id:51, num:"#51", title:"Wall Squat Challenge",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U14","U16","Senior"], duration:"15 min", type:"Physical",
+    desc:"Solo, then with team encouragement, then together. The time difference proves the power of a motivational climate.",
+    goal:"Direct physical proof of the effect of encouragement on performance.",
+    steps:[
+      "Round 1: each player holds wall squat alone, in silence. Measure time.",
+      "Round 2: same, but teammates actively encourage. Measure time.",
+      "Round 3: back against the wall together — team formation. Measure time.",
+      "Debrief: compare times. What does this say about our team culture?"
+    ],
+    material:"Timer, wall or chairs",
+    science:"Social facilitation (Zajonc, 1965) combined with encouragement research. Motivational climate (Ames, 1992) strongly influences physical endurance and willingness to invest.",
+    youtube:""
+  },
+  {
+    id:52, num:"#52", title:"Cold Shower Protocol",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U16","Senior"], duration:"10 min", type:"Physical",
+    desc:"Deliberate exposure to discomfort as a metaphor for resilience. Players discuss, prepare, and optionally take a cold shower with team support.",
+    goal:"Resilience through voluntary discomfort and delayed reward.",
+    steps:[
+      "Discussion: why would you voluntarily choose discomfort?",
+      "Present the science of cold exposure and resilience.",
+      "If possible: cold shower protocol (30–90 seconds) — with team support.",
+      "Debrief: how does this relate to difficult moments in training or matches?"
+    ],
+    material:"Shower facility (optional)",
+    science:"Research by Huberman (2022) and van der Lans et al. (2013): regular cold exposure increases norepinephrine by 300%, reduces inflammation and builds tolerance for discomfort.",
+    youtube:"https://www.youtube.com/watch?v=pq6WHJzOkow"
+  },
+  {
+    id:53, num:"#53", title:"Push-Up Accountability",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Physical",
+    desc:"Team exercise where everyone does push-ups together — the weakest link determines the pace. Teaches collective responsibility through physical solidarity.",
+    goal:"Physical experience of collective accountability and support.",
+    steps:[
+      "Team starts push-ups together at the same pace.",
+      "Rule: no one stands up until everyone is done.",
+      "No mocking — encourage the last player together.",
+      "Debrief: how do you support the weakest player? What does this look like on the field?"
+    ],
+    material:"None",
+    science:"Based on interdependence theory (Johnson & Johnson, 1989). Collective physical challenges build team cohesion faster than verbal exercises.",
+    youtube:""
+  },
+  {
+    id:54, num:"#54", title:"The Endurance Metaphor",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U14","U16","Senior"], duration:"12 min", type:"Physical",
+    desc:"A physical challenge as a metaphor for the season: uncomfortable, but grow through it. The moment when you want to stop is exactly when growth happens.",
+    goal:"Experience the link between physical discomfort and mental growth.",
+    steps:[
+      "Choose a physical challenge: plank, running in place, static hold.",
+      "Halfway: coach asks 'do you want to stop?' — encourage to continue.",
+      "After completion: immediate reflection on what kept you going.",
+      "Discussion: how does this relate to difficult moments in training or matches?"
+    ],
+    material:"Timer",
+    science:"Based on Psychological Toughness research (Gucciardi, 2008). Physical challenges that include mental choice moments (quit vs. continue) most effectively build mental resilience.",
+    youtube:""
+  },
+  {
+    id:55, num:"#55", title:"Breathing Before Battle",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U14","U16","Senior"], duration:"5 min", type:"Physical",
+    desc:"Activating breathing before a match or training: 4-7-8 pattern for focus and alertness. The opposite of box breathing — this one activates.",
+    goal:"Physical activation and mental alertness before performance.",
+    steps:[
+      "Standing, feet shoulder-width apart.",
+      "Inhale sharply for 4 counts through the nose.",
+      "Hold for 7 counts — build pressure.",
+      "Exhale powerfully for 8 counts through the mouth. Repeat 3x."
+    ],
+    material:"None",
+    science:"Based on Andrew Weil's 4-7-8 method and research on sympathetic nervous system activation. Activating breathing increases alertness and readiness for action.",
+    youtube:""
+  },
+  {
+    id:56, num:"#56", title:"The Plank Circle",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U14","U16","Senior"], duration:"8 min", type:"Physical",
+    desc:"Team holds plank in a circle with feet on each other's backs. If one collapses, everyone falls. Physical interdependence made literal.",
+    goal:"Experience physical interdependence and collective accountability.",
+    steps:[
+      "Team forms a circle in plank position.",
+      "Everyone places their feet on the back of the person behind them.",
+      "Hold as long as possible — encourage each other.",
+      "Debrief: how did it feel to be the weak link? How did you support the others?"
+    ],
+    material:"None",
+    science:"Collective physical effort increases oxytocin production (Dunbar et al., 2012) and strengthens social bonding. Shared physical challenge creates trust faster than verbal exercises.",
+    youtube:""
+  },
+  {
+    id:57, num:"#57", title:"Physical Leadership",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U16","Senior"], duration:"10 min", type:"Physical",
+    desc:"One player leads a short physical warm-up for the team. Leadership through action, not words. Reveals natural leadership styles.",
+    goal:"Physical leadership and leading by example.",
+    steps:[
+      "Different players take turns leading a 2-minute warm-up exercise.",
+      "No instructions from coach — the leader decides everything.",
+      "Team follows — even if the exercise is hard.",
+      "Debrief: what makes a physical leader effective? What leadership style did you see?"
+    ],
+    material:"None",
+    science:"Based on Transformational Leadership theory (Bass & Riggio, 2006). Physical leadership through action ('lead by example') has a stronger impact on team culture than verbal leadership.",
+    youtube:""
+  },
+  {
+    id:58, num:"#58", title:"The Obstacle Course",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U14","U16","Senior"], duration:"15 min", type:"Physical",
+    desc:"Team navigates an obstacle course together: some blindfolded, some with limited mobility. Requires communication, trust and collective problem-solving.",
+    goal:"Physical team challenge that requires all roles and communication.",
+    steps:[
+      "Set up a course with 5–8 obstacles.",
+      "Roles: 3 blindfolded, 2 with one arm, 1 guide per group.",
+      "Complete the course as a team — no one left behind.",
+      "Debrief: what communication was essential? What would you do differently?"
+    ],
+    material:"Cones, rope, blindfolds, optional other obstacles",
+    science:"Based on adventure-based learning research (Gillis & Gass, 1993). Physical team challenges with role restrictions increase collective problem-solving and trust.",
+    youtube:""
+  },
+  {
+    id:59, num:"#59", title:"The Final Push",
+    theme:"Physical", themeColor:"#3A8A8A",
+    age:["U14","U16","Senior"], duration:"10 min", type:"Physical",
+    desc:"Closing exercise for the program: all-out physical effort as a team. The last 30 seconds are the hardest — and most important. Symbolic conclusion.",
+    goal:"Symbolic and physical conclusion of the character development programme.",
+    steps:[
+      "Choose a fitting physical challenge for the group.",
+      "Build intensity gradually — last 30 seconds all-out.",
+      "Team finishes together — no one stops early.",
+      "Circle: each player names one thing they take from the programme."
+    ],
+    material:"Timer",
+    science:"Based on Peak-end rule (Kahneman, 1999): people remember experiences most by their peak moment and the ending. A strong ending creates lasting memory.",
+    youtube:""
   }
+];
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const f = btn.dataset.filter;
-      if (activeFilters.has(f)) {
-        activeFilters.delete(f);
-        btn.classList.remove('active');
-      } else {
-        activeFilters.add(f);
-        btn.classList.add('active');
-      }
-      applyFilters();
-    });
-  });
+let activeAge = 'all', activeTheme = 'all', searchQ = '';
 
-  searchInput.addEventListener('input', () => {
-    searchTerm = searchInput.value.toLowerCase().trim();
-    applyFilters();
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  const q = searchQ.toLowerCase();
+  const filtered = EXERCISES.filter(ex => {
+    const ageOk = activeAge === 'all' || ex.age.includes(activeAge);
+    const themeOk = activeTheme === 'all' || ex.theme.includes(activeTheme);
+    const searchOk = !q || ex.title.toLowerCase().includes(q) || ex.desc.toLowerCase().includes(q) || ex.theme.toLowerCase().includes(q);
+    return ageOk && themeOk && searchOk;
   });
+  document.getElementById('results-bar').textContent = filtered.length + ' exercise' + (filtered.length !== 1 ? 's' : '') + ' found';
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty-state"><p>No exercises found. Try different filters.</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(ex => `
+    <div class="card" onclick="openDetail(${ex.id})" tabindex="0" onkeydown="if(event.key==='Enter')openDetail(${ex.id})">
+      <div class="card-top">
+        <span class="card-num">${ex.num}</span>
+        <div class="card-expand">&#43;</div>
+      </div>
+      <div class="card-title">${ex.title}</div>
+      <div class="card-desc">${ex.desc}</div>
+      <div class="card-tags">
+        <span class="tag" style="background:${ex.themeColor}">${ex.theme}</span>
+        <span class="tag tag-time">${ex.duration}</span>
+        <span class="tag tag-time">${ex.age.join(' / ')}</span>
+        <span class="tag tag-type">${ex.type}</span>
+      </div>
+    </div>
+  `).join('');
+}
 
-  clearBtn.addEventListener('click', () => {
-    activeFilters.clear();
-    searchTerm = '';
-    searchInput.value = '';
-    filterBtns.forEach(b => b.classList.remove('active'));
-    applyFilters();
+function openDetail(id) {
+  const ex = EXERCISES.find(e => e.id === id);
+  if (!ex) return;
+  document.getElementById('d-num').textContent = ex.num + ' · ' + ex.theme;
+  document.getElementById('d-title').textContent = ex.title;
+  document.getElementById('d-tags').innerHTML = `
+    <span class="tag" style="background:${ex.themeColor}">${ex.theme}</span>
+    <span class="tag tag-time">${ex.duration}</span>
+    <span class="tag tag-time">${ex.age.join(' / ')}</span>
+    <span class="tag tag-type">${ex.type}</span>
+  `;
+  let bodyHTML = `
+    <div class="detail-section">
+      <h3>Goal</h3>
+      <p>${ex.goal}</p>
+    </div>
+    <div class="detail-meta-grid">
+      <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">${ex.duration}</div></div>
+      <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">${ex.type}</div></div>
+      <div class="meta-item"><div class="meta-label">Age groups</div><div class="meta-value">${ex.age.join(', ')}</div></div>
+      <div class="meta-item"><div class="meta-label">Material</div><div class="meta-value">${ex.material}</div></div>
+    </div>
+    <div class="detail-section">
+      <h3>Step by step</h3>
+      <ol class="step-list">${ex.steps.map(s => '<li>' + s + '</li>').join('')}</ol>
+    </div>
+  `;
+  if (ex.science) {
+    bodyHTML += `<div class="science-box"><div class="sci-label">Scientific foundation</div><p>${ex.science}</p></div>`;
+  }
+  if (ex.youtube) {
+    bodyHTML += `<a href="${ex.youtube}" target="_blank" class="youtube-link"><span class="youtube-icon">&#9654;</span> Watch on YouTube</a>`;
+  }
+  document.getElementById('d-body').innerHTML = bodyHTML;
+  document.getElementById('detail-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+document.getElementById('detail-close').addEventListener('click', () => {
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+});
+document.getElementById('detail-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('detail-overlay')) {
+    document.getElementById('detail-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('detail-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+document.querySelectorAll('[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = btn.dataset.filter, v = btn.dataset.val;
+    if (f === 'age') {
+      activeAge = v;
+      document.querySelectorAll('[data-filter="age"]').forEach(b => b.classList.remove('active'));
+    } else {
+      activeTheme = v;
+      document.querySelectorAll('[data-filter="theme"]').forEach(b => b.classList.remove('active'));
+    }
+    btn.classList.add('active');
+    renderGrid();
   });
+});
+
+document.getElementById('search-input').addEventListener('input', e => {
+  searchQ = e.target.value;
+  renderGrid();
+});
+
+renderGrid();
 </script>
-
-<div style="background:#f4f4f4;border-top:2px solid #e0e0e0;padding:40px 5%;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
-  <div>
-    <div style="font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#f05a28;margin-bottom:.4rem;">Plan Builder</div>
-    <div style="font-size:1.1rem;font-weight:900;color:#1C2433;margin-bottom:.3rem;">Turn exercises into a session plan</div>
-    <div style="font-size:.88rem;color:#666;">Choose an age group, themes and duration — the builder automatically composes a plan.</div>
-  </div>
-  <a href="planbuilder.html" style="background:#f05a28;color:#fff;padding:.9rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.95rem;white-space:nowrap;flex-shrink:0;">Build a session plan →</a>
-</div>
-
-
 </body>
 </html>
