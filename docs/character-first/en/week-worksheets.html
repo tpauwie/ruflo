@@ -8,237 +8,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --orange: #f05a28; --orange2: #d44a1a;
-      --orange-light: #fff3ee; --ink: #1C2433;
-      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
-      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
-      --gray-50: #fafafa; --gray-100: #f4f4f4; --gray-200: #e4e4e4;
-      --gray-400: #999; --gray-600: #555; --gray-800: #222;
-      --green: #1a6b3a; --blue: #1a5299; --purple: #5c3d9e;
+      --ink: #1C2433; --white: #ffffff; --orange: #F05A28; --orange2: #D44A1A;
+      --canvas: #FAF7F2; --mist: #F0ECE4; --stone: #6E6A63; --line: #E4DFD6;
     }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--ink); line-height: 1.6; }
+    h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; font-weight: 900; }
 
-    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: #e8e8e8;
-      color: var(--ink);
-      font-size: 14px;
-    }
-
-    /* ─── SCREEN BAR ─── */
+    /* SCREEN NAV BAR */
     .screen-bar {
-      background: var(--ink);
-      color: white;
-      padding: 0.9rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 99;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 56px; background: rgba(28,36,51,.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.07);
     }
-    .screen-bar-logo { font-size: 1rem; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; }
+    .screen-bar-logo { font-size: 1rem; font-weight: 900; color: var(--white); letter-spacing: .04em; }
     .screen-bar-logo span { color: var(--orange); }
-    .screen-bar-sub { font-size: 0.72rem; color: #aaa; margin-top: 2px; }
-    .screen-bar-nav { display: flex; gap: 6px; flex-wrap: wrap; }
-    .screen-bar-nav a {
-      color: #ccc; text-decoration: none; font-size: 0.75rem;
-      padding: 4px 10px; border-radius: 6px; border: 1px solid #333; transition: all 0.15s;
-    }
-    .screen-bar-nav a:hover { color: white; border-color: var(--orange); }
-    .print-btn {
-      background: var(--orange); color: white; border: none;
-      padding: 7px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer;
-    }
-
-    /* ─── PAGE WRAPPER ─── */
-    .pages { max-width: 880px; margin: 1.5rem auto; padding: 0 1rem 5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-
-    /* ─── A4 PAGE ─── */
-    .page {
-      background: white;
-      padding: 40px 48px;
-      min-height: 1050px;
-      position: relative;
-      border-radius: 3px;
-      box-shadow: 0 2px 14px rgba(0,0,0,0.13);
-      page-break-after: always;
-      break-after: page;
-    }
-
-    /* ─── PAGE HEADER ─── */
-    .page-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      padding-bottom: 14px; margin-bottom: 18px;
-      border-bottom: 3px solid var(--orange);
-    }
-    .ph-left .day-badge {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 3px;
-    }
-    .ph-left h2 { font-size: 1.55rem; font-weight: 900; line-height: 1.1; }
-    .ph-left .tagline { font-size: 0.8rem; color: var(--gray-600); margin-top: 3px; }
-    .ph-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
-    .page-badge {
-      display: inline-block; padding: 4px 12px; border-radius: 999px;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .badge-player { background: var(--orange-light); color: var(--orange); border: 1.5px solid var(--orange); }
-    .badge-mod { background: var(--ink); color: white; }
-    .brand-tiny { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); }
-    .brand-tiny span { color: var(--orange); }
-
-    /* ─── GOAL BOX ─── */
-    .goal-box {
-      background: var(--orange-light); border: 1.5px solid var(--orange);
-      border-radius: 8px; padding: 10px 14px; margin-bottom: 14px;
-    }
-    .goal-box .gl { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 5px; }
-    .goal-box ul { list-style: none; display: flex; flex-direction: column; gap: 3px; }
-    .goal-box li { font-size: 0.8rem; color: var(--gray-800); padding-left: 12px; position: relative; line-height: 1.5; }
-    .goal-box li::before { content: "▸"; color: var(--orange); position: absolute; left: 0; font-size: 0.65rem; top: 3px; }
-
-    /* ─── SECTION LABELS ─── */
-    .section-label {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--orange); margin: 16px 0 8px;
-    }
-
-    /* ─── EXERCISE CARD ─── */
-    .ex-card { border: 1.5px solid var(--gray-200); border-radius: 10px; padding: 13px 15px; margin-bottom: 11px; }
-    .ex-card.warm { border-color: #ffd0b0; background: #fff9f5; }
-    .ex-card.close { border-color: #b0d4ff; background: #f5f9ff; }
-    .ex-title { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-    .ex-num {
-      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
-      font-size: 0.68rem; font-weight: 900; display: flex; align-items: center; justify-content: center; color: white;
-    }
-    .ex-num.orange { background: var(--orange); }
-    .ex-num.warm { background: #e07820; }
-    .ex-num.close { background: #1a5299; }
-    .ex-title strong { font-size: 0.9rem; font-weight: 800; color: var(--ink); }
-    .ex-title .time-tag {
-      margin-left: auto; font-size: 0.65rem; font-weight: 700; color: var(--gray-400);
-      background: var(--gray-100); padding: 2px 7px; border-radius: 4px;
-    }
-    .ex-desc { font-size: 0.8rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 8px; }
-
-    /* ─── WRITE ELEMENTS ─── */
-    .line { height: 26px; border-bottom: 1.5px solid var(--gray-200); width: 100%; margin-bottom: 4px; }
-    .line-sm { height: 20px; border-bottom: 1px solid var(--gray-200); width: 100%; margin-bottom: 3px; }
-    .box { border: 1.5px dashed var(--gray-200); border-radius: 6px; width: 100%; margin-top: 6px; }
-    .box-sm { height: 48px; }
-    .box-md { height: 68px; }
-    .box-lg { height: 88px; }
-    .box-xl { height: 110px; }
-
-    /* ─── GRID HELPERS ─── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-
-    /* ─── SCALE ROW ─── */
-    .scale-row { display: flex; align-items: center; gap: 6px; margin: 8px 0 4px; }
-    .scale-label { font-size: 0.75rem; color: var(--gray-600); min-width: 90px; }
-    .scale-dots { display: flex; gap: 4px; }
-    .dot {
-      width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--gray-400);
-      font-size: 0.6rem; color: var(--gray-400); display: flex; align-items: center; justify-content: center;
-    }
-
-    /* ─── QUOTE BLOCK ─── */
-    .quote-block {
-      border-left: 4px solid var(--orange); padding: 9px 13px;
-      background: #fff8f5; border-radius: 0 8px 8px 0; margin-top: 14px;
-    }
-    .quote-block p { font-style: italic; font-size: 0.8rem; color: var(--gray-800); line-height: 1.6; margin-bottom: 3px; }
-    .quote-block cite { font-size: 0.7rem; color: var(--orange); font-weight: 700; font-style: normal; }
-
-    /* ─── MOD PAGE SPECIFICS ─── */
-    .mod-section { margin-bottom: 16px; }
-    .mod-section-title {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      background: var(--gray-100); padding: 4px 10px; border-radius: 4px; color: var(--gray-800); margin-bottom: 9px;
-    }
-    .step { display: flex; gap: 9px; margin-bottom: 7px; align-items: flex-start; }
-    .step-num {
-      flex-shrink: 0; width: 21px; height: 21px; background: var(--ink); color: white;
-      border-radius: 50%; font-size: 0.68rem; font-weight: 900; display: flex; align-items: center; justify-content: center;
-    }
-    .step p { font-size: 0.8rem; color: var(--gray-800); line-height: 1.55; }
-    .step p strong { color: var(--ink); }
-
-    .tip-box { background: #fff8f5; border: 1.5px solid #ffd0bc; border-radius: 7px; padding: 9px 12px; margin-bottom: 7px; }
-    .tip-box p { font-size: 0.79rem; color: var(--gray-800); line-height: 1.55; }
-    .tip-box p strong { color: var(--orange); }
-    .warn-box { background: #fffae6; border: 1.5px solid #f0d460; border-radius: 7px; padding: 9px 12px; margin-bottom: 7px; }
-    .warn-box p { font-size: 0.79rem; color: #6b5000; line-height: 1.55; }
-
-    .yt-box { background: #f5f5f5; border: 1.5px solid #ddd; border-radius: 7px; padding: 9px 12px; margin-bottom: 7px; }
-    .yt-box .yt-label { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #cc0000; margin-bottom: 4px; }
-    .yt-box p { font-size: 0.78rem; color: var(--gray-800); line-height: 1.5; }
-    .yt-box p em { color: var(--gray-600); font-size: 0.73rem; }
-
-    .science-box { background: var(--gray-100); border-radius: 7px; padding: 9px 12px; margin-bottom: 12px; }
-    .science-box p { font-size: 0.77rem; color: var(--gray-600); line-height: 1.55; }
-    .science-box strong { color: var(--ink); font-size: 0.75rem; }
-    .tier { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 5px; border-radius: 3px; margin-right: 3px; }
-    .t1 { background: var(--green); color: white; }
-    .t2 { background: var(--blue); color: white; }
-    .t3 { background: var(--purple); color: white; }
-
-    .timing-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .timing-list li { display: flex; align-items: center; gap: 8px; font-size: 0.79rem; color: var(--gray-800); }
-    .timing-list li .chk { flex-shrink: 0; width: 14px; height: 14px; border: 1.5px solid var(--gray-400); border-radius: 3px; }
-    .timing-list li .dur { margin-left: auto; font-size: 0.72rem; font-weight: 700; color: var(--orange); background: var(--orange-light); padding: 1px 6px; border-radius: 4px; }
-
-    /* ─── PAGE FOOTER ─── */
-    .page-footer {
-      position: absolute; bottom: 22px; left: 48px; right: 48px;
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid var(--gray-200); padding-top: 6px;
-    }
-    .page-footer span { font-size: 0.65rem; color: var(--gray-400); }
-
-    /* ─── PRINT ─── */
-    @media print {
-      body { background: white; }
-      .screen-bar { display: none !important; }
-      .pages { margin: 0; padding: 0; max-width: 100%; gap: 0; }
-      .page { box-shadow: none; border-radius: 0; margin: 0; padding: 28px 36px; min-height: auto; }
-    }
-    /* Premium gate */
-    #premium-wall { position: relative; }
-    #premium-wall::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      background: rgba(250,247,242,.55);
-      z-index: 10;
-      pointer-events: none;
-    }
-    .premium-gate-banner {
-      position: sticky;
-      top: 72px;
-      z-index: 20;
-      background: #1C2433;
-      border-bottom: 3px solid #F05A28;
-      padding: 1.2rem 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .pgb-left { display: flex; align-items: center; gap: .8rem; }
-    .pgb-lock { font-size: 1.4rem; }
-    .pgb-text strong { font-family: 'Archivo', sans-serif; font-weight: 800; color: #fff; font-size: .95rem; display: block; }
+    .screen-bar-sub { font-size: .72rem; color: #555; margin-top: 1px; }
+    .screen-bar-nav { display: flex; gap: 1rem; align-items: center; }
+    .screen-bar-nav a { font-size: .82rem; color: #666; text-decoration: none; font-weight: 600; transition: color .2s; }
+    .screen-bar-nav a:hover { color: var(--white); }
+    .screen-bar-nav a.active { color: var(--orange); }
+    .pgb { background: #0d1320; border-bottom: 1px solid rgba(255,255,255,.06); padding: 10px 5%; display: flex; align-items: center; gap: 1rem; margin-top: 56px; }
+    .pgb-day { font-size: .75rem; font-weight: 800; color: #333; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+    .pgb-bar { flex: 1; height: 3px; background: #1a2235; border-radius: 3px; overflow: hidden; }
+    .pgb-fill { height: 100%; background: var(--orange); border-radius: 3px; transition: width .4s; }
+    .pgb-text { font-size: .72rem; color: #333; white-space: nowrap; }
     .pgb-text span { font-size: .8rem; color: #8a94a8; }
     .pgb-btn { background: #F05A28; color: #fff; padding: .65rem 1.5rem; border-radius: 6px; text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: .85rem; white-space: nowrap; transition: background .2s; }
     .pgb-btn:hover { background: #D44A1A; }
@@ -255,6 +53,13 @@
     });
   })();
 </script>
+<script>
+(function(){
+  if(localStorage.getItem('cf_access') !== '1'){
+    window.location.replace('access.html?redirect=week-worksheets.html');
+  }
+})();
+</script>
 </head>
 <body>
 
@@ -263,1018 +68,617 @@
     <div class="screen-bar-logo">Character <span>First</span></div>
     <div class="screen-bar-sub">The Week — 10 pages: 5 daily worksheets + 5 moderator guides</div>
   </div>
-  <nav class="screen-bar-nav">
-    <a href="#d1p">D1 Player</a><a href="#d1m">D1 Mod</a>
-    <a href="#d2p">D2 Player</a><a href="#d2m">D2 Mod</a>
-    <a href="#d3p">D3 Player</a><a href="#d3m">D3 Mod</a>
-    <a href="#d4p">D4 Player</a><a href="#d4m">D4 Mod</a>
-    <a href="#d5p">D5 Player</a><a href="#d5m">D5 Mod</a>
-    <a href="../week-werkbladen.html" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
-  </nav>
-  <button class="print-btn" onclick="window.print()">&#128438; Print all worksheets</button>
-</div>
-
-<div class="pages">
-
-<!-- ═══════════════════════════════════════════
-     DAY 1 — PLAYER
-     Theme: Self-Knowledge & Identity
-════════════════════════════════════════════ -->
-<div class="page" id="d1p">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 1 — Player Worksheet</div>
-      <h2>Self-Knowledge &amp; Identity</h2>
-      <div class="tagline">Who are you as a player, as a teammate, as a person?</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-player">Player</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="goal-box">
-    <div class="gl">Goal Day 1</div>
-    <ul>
-      <li>You can name three core values that define you as a person and teammate</li>
-      <li>You recognize what gives you energy and what costs energy in a team situation</li>
-      <li>You discover the difference between how you see yourself and how others experience you</li>
-    </ul>
-  </div>
-
-  <div class="section-label">&#9728; Warm-up — Check-in Circle <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(10 min)</span></div>
-  <div class="ex-card warm">
-    <div class="ex-title">
-      <div class="ex-num warm">&#9728;</div>
-      <strong>Two Truths, One Lie</strong>
-      <span class="time-tag">10 min</span>
-    </div>
-    <p class="ex-desc">Write below two things that are true about you as an athlete and one lie. The group guesses which is the lie. Goal: get to know each other beyond basketball statistics.</p>
-    <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px">
-      <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="font-weight:700;min-width:70px">Truth 1:</span><div class="line" style="flex:1;margin:0"></div></div>
-      <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="font-weight:700;min-width:70px">Truth 2:</span><div class="line" style="flex:1;margin:0"></div></div>
-      <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem"><span style="font-weight:700;min-width:70px">Lie:</span><div class="line" style="flex:1;margin:0"></div></div>
-    </div>
-  </div>
-
-  <div class="section-label">Exercise 1 — My Three Words</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">1</div><strong>My Three Words</strong><span class="time-tag">15 min</span></div>
-    <p class="ex-desc">Choose three words that best describe you as a teammate. Write them down. Then ask two teammates to also choose three words about you. Compare and reflect.</p>
-    <div class="two-col">
-      <div>
-        <div style="font-size:0.72rem;font-weight:700;color:var(--orange);margin-bottom:5px">MY THREE WORDS</div>
-        <div class="line"></div><div class="line"></div><div class="line"></div>
-      </div>
-      <div>
-        <div style="font-size:0.72rem;font-weight:700;color:var(--gray-400);margin-bottom:5px">TEAMMATES' WORDS</div>
-        <div class="line"></div><div class="line"></div><div class="line"></div>
-      </div>
-    </div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:10px">What do you notice when you compare the lists?</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 2 — Energy Giver vs. Energy Drainer</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">2</div><strong>Energy Giver vs. Energy Drainer</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Write three things that give you energy during training or a match, and three things that drain energy. Be honest.</p>
-    <div class="two-col">
-      <div>
-        <div style="font-size:0.72rem;font-weight:700;color:#1a6b3a;margin-bottom:5px">ENERGY GIVERS &#9650;</div>
-        <div class="line"></div><div class="line"></div><div class="line"></div>
-      </div>
-      <div>
-        <div style="font-size:0.72rem;font-weight:700;color:#c0392b;margin-bottom:5px">ENERGY DRAINERS &#9660;</div>
-        <div class="line"></div><div class="line"></div><div class="line"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">Exercise 3 — Values Compass</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">3</div><strong>Personal Values Compass</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Give each value a score from 1 (most important) to 6. Then choose your top 2 and write down how you live them.</p>
-    <div class="three-col" style="margin-top:8px">
-      <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem"><div class="box-sm" style="width:28px;height:22px;border-radius:4px"></div>Loyalty</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem"><div class="box-sm" style="width:28px;height:22px;border-radius:4px"></div>Courage</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem"><div class="box-sm" style="width:28px;height:22px;border-radius:4px"></div>Honesty</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem"><div class="box-sm" style="width:28px;height:22px;border-radius:4px"></div>Respect</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem"><div class="box-sm" style="width:28px;height:22px;border-radius:4px"></div>Perseverance</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem"><div class="box-sm" style="width:28px;height:22px;border-radius:4px"></div>Team Spirit</div>
-    </div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:10px">My top 2 values are: <span style="display:inline-block;width:140px;border-bottom:1.5px solid var(--gray-200)">&nbsp;</span> and <span style="display:inline-block;width:140px;border-bottom:1.5px solid var(--gray-200)">&nbsp;</span></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:8px">How do I show them on the court?</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 4 — My Sports Timeline</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">4</div><strong>My Sports Timeline</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">On the timeline below, draw the highs and lows of your sports career. Mark at least three moments. Which moment has shaped you the most?</p>
-    <div style="margin:12px 0;position:relative;height:50px">
-      <div style="position:absolute;top:50%;left:0;right:0;height:2px;background:var(--gray-200)"></div>
-      <div style="position:absolute;top:50%;left:0;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Start</div>
-      <div style="position:absolute;top:50%;right:0;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Now</div>
-    </div>
-    <div style="font-size:0.75rem;color:var(--gray-400)">The moment that has shaped me the most:</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">&#9790; Closing — One word for today <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(5 min)</span></div>
-  <div class="ex-card close">
-    <div class="ex-title"><div class="ex-num close">&#9790;</div><strong>Check-out: One Word</strong><span class="time-tag">5 min</span></div>
-    <p class="ex-desc">Write one word that describes how you feel after today. Not how you should feel. How you actually feel.</p>
-    <div style="margin-top:10px;text-align:center">
-      <div style="display:inline-block;border:2px solid var(--orange);border-radius:10px;padding:10px 30px;min-width:180px">
-        <div style="font-size:0.65rem;color:var(--orange);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">My word of today</div>
-        <div class="line" style="width:160px;margin:0 auto"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="quote-block">
-    <p>"I never tried to be the best player on the court. I tried to understand what the team needed from me that day. That self-awareness took years to develop but it changed everything."</p>
-    <cite>Tim Duncan — 5x NBA Champion, San Antonio Spurs</cite>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — The Week: Day 1 — Self-Knowledge &amp; Identity</span>
-    <span>Name: _______________________</span>
+  <div class="screen-bar-nav">
+    <a href="index.html">Home</a>
+    <a href="library.html">Library</a>
+    <a href="worksheets.html">All worksheets</a>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     DAY 1 — MODERATOR
-════════════════════════════════════════════ -->
-<div class="page" id="d1m">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 1 — Moderator Guide</div>
-      <h2>Self-Knowledge &amp; Identity</h2>
-      <div class="tagline">Building trust — the first day sets the tone for the entire week</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-mod">Moderator</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="science-box">
-    <strong>Scientific basis</strong>
-    <p style="margin-top:4px"><span class="tier t1">Systematic Review</span> Ntoumanis et al. (2021): self-knowledge and autonomy are the strongest predictors of sports motivation in young people. <em>Psychology of Sport &amp; Exercise.</em></p>
-    <p style="margin-top:4px"><span class="tier t2">Meta-analysis</span> Zuber &amp; Conzelmann (2014): self-concept directly correlates with performance and perseverance in young athletes. <em>Int. Review of Sport &amp; Exercise Psychology.</em></p>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Warm-up: Two Truths, One Lie — Facilitation Steps</div>
-    <div class="step"><div class="step-num">1</div><p>Stand in a circle. Start yourself as moderator. Say your three statements aloud. Let the group guess. <strong>This models permission to share.</strong></p></div>
-    <div class="step"><div class="step-num">2</div><p>Go around. Each player states their three claims. The group shouts "Lie!" at their guess. Reveal the truth afterward.</p></div>
-    <div class="step"><div class="step-num">3</div><p>Close with: "Everyone has something we didn't know. Those surprises are the reason we're doing this week."</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Exercise 1: My Three Words</div>
-    <div class="step"><div class="step-num">1</div><p>3 minutes solo writing. Absolute silence. No consultation.</p></div>
-    <div class="step"><div class="step-num">2</div><p>Pairs exchange worksheets. Write three words about the other. <strong>Only positive words.</strong> No jokes.</p></div>
-    <div class="step"><div class="step-num">3</div><p>Plenary question: "Who was surprised? What surprised you?" Do not address negative surprises in front of the group — do that individually afterward.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Exercise 4: Sports Timeline — Extra facilitation</div>
-    <div class="step"><div class="step-num">1</div><p>First draw your own sports timeline on the board. Name a high and a low point. This is the most powerful thing you can do: the moderator's vulnerability greatly lowers the threshold.</p></div>
-    <div class="step"><div class="step-num">2</div><p>Then in pairs: each shares their timeline for 3 minutes. The listener only asks questions, gives no advice.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">YouTube Inspiration — Tone for the session (optional)</div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"The Power of Vulnerability"</strong> — Brené Brown, TED Talk (2010)<br><em>Search on YouTube: "Brené Brown vulnerability TED" — approx. 20 min, use fragment 0:00–4:00</em></p>
-    </div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"Tim Duncan — The Big Fundamental"</strong> — NBA documentary fragment<br><em>Search on YouTube: "Tim Duncan leadership documentary" — use as intro on silence and self-knowledge</em></p>
-    </div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Coach Tips Day 1</div>
-    <div class="tip-box"><p><strong>Tip 1:</strong> The first day is about building trust, not forcing depth. If players write little that is normal. Plant the seed, don't push.</p></div>
-    <div class="tip-box"><p><strong>Tip 2:</strong> Note which players share noticeably little or noticeably much. Both are interesting. Follow up individually during the break.</p></div>
-    <div class="warn-box"><p>&#9888; Avoid: asking direct questions to quiet players in front of the group. Ask open questions to the group and let quiet players participate naturally.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Time Schedule Day 1</div>
-    <ul class="timing-list">
-      <li><div class="chk"></div>Welcome + program explanation<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Warm-up: Two Truths, One Lie<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 1: My Three Words<div class="dur">15 min</div></li>
-      <li><div class="chk"></div>Exercise 2: Energy Giver vs. Energy Drainer<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 3: Values Compass<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 4: Sports Timeline in pairs<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Plenary debrief<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Closing: Check-out one word<div class="dur">5 min</div></li>
-      <li><div class="chk"></div><strong>Total</strong><div class="dur">80 min</div></li>
-    </ul>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — Moderator Guide Day 1</span>
-    <span>CONFIDENTIAL — For moderator only</span>
-  </div>
+<div class="pgb">
+  <span class="pgb-day">The Week</span>
+  <div class="pgb-bar"><div class="pgb-fill" id="pgb-fill" style="width:0%"></div></div>
+  <span class="pgb-text">Page <span id="pgb-current">1</span> of 10</span>
+  <a href="worksheets.html" class="pgb-btn">All worksheets</a>
 </div>
 
-<!-- PREMIUM GATE -->
-<div id="premium-wall">
-<div class="premium-gate-banner">
-  <div class="pgb-left">
-    <span class="pgb-lock">🔒</span>
-    <div class="pgb-text">
-      <strong>Days 2–5 — Full Access</strong>
-      <span>Contact us to get access to all 10 worksheets (Days 2–5, player + moderator).</span>
-    </div>
-  </div>
-  <a href="mailto:info@characterfirst.be?subject=Week%20Worksheets%20%E2%80%94%20Full%20Access" class="pgb-btn">Request access →</a>
-</div>
+<div id="book-root"></div>
 
-<!-- ═══════════════════════════════════════════
-     DAY 2 — PLAYER
-     Theme: Pressure & Stress
-════════════════════════════════════════════ -->
-<div class="page" id="d2p">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 2 — Player Worksheet</div>
-      <h2>Pressure &amp; Stress</h2>
-      <div class="tagline">Feeling pressure is normal. How you deal with it makes the difference.</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-player">Player</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
+<script>
+// ===== WEEK WORKSHEETS DATA =====
+const WEEK_PAGES = [
+  // DAY 1 PLAYER WORKSHEET
+  {
+    day: 1,
+    type: 'player',
+    theme: 'Self-Knowledge',
+    themeColor: '#F05A28',
+    title: 'Who Am I?',
+    subtitle: 'Day 1 — Player Worksheet',
+    intro: 'The first step in character development: knowing yourself. This worksheet helps you explore who you are — not just as an athlete, but as a person.',
+    sections: [
+      {
+        heading: '1. My 5 athlete words',
+        type: 'grid5',
+        label: 'Write 5 words that describe you as an athlete:',
+        placeholders: ['Hard worker', 'Competitive', 'Team player', 'Consistent', 'Passionate']
+      },
+      {
+        heading: '2. My 3 personal strengths',
+        type: 'list3',
+        label: 'Beyond sport: who are you as a person?',
+        placeholders: ['e.g. Loyal', 'e.g. Creative', 'e.g. Empathetic']
+      },
+      {
+        heading: '3. My 1 growth area',
+        type: 'textarea',
+        label: 'What do you want to develop — as an athlete or as a person?',
+        placeholder: 'e.g. I want to become more resilient after mistakes...'
+      },
+      {
+        heading: '4. My values',
+        type: 'values',
+        label: 'Circle your 3 most important values:',
+        values: ['Loyalty', 'Courage', 'Respect', 'Honesty', 'Team spirit', 'Perseverance', 'Excellence', 'Joy', 'Leadership', 'Growth', 'Fairness', 'Passion']
+      },
+      {
+        heading: '5. My reflection',
+        type: 'textarea',
+        label: 'What do you want to take away from this week for yourself?',
+        placeholder: 'Write freely — no wrong answers...'
+      }
+    ]
+  },
+  // DAY 1 MODERATOR GUIDE
+  {
+    day: 1,
+    type: 'moderator',
+    theme: 'Self-Knowledge',
+    themeColor: '#F05A28',
+    title: 'Who Am I? — Moderator Guide',
+    subtitle: 'Day 1 — For coaches and facilitators',
+    intro: 'Goal: Players get to know themselves as athletes and as people. They identify their strengths, values, and growth areas. This creates the basis for everything that follows.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Introduction: why self-knowledge?' },
+          { time: '10 min', desc: 'Individual worksheet (sections 1–4)' },
+          { time: '8 min', desc: 'Pair sharing' },
+          { time: '7 min', desc: 'Group discussion + reflection' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'What surprised you about your own answers?',
+          'Which value is most important to you — and why?',
+          'How do your strengths help the team?',
+          'What does your growth area require of you this week?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Share an example of your own: which values drive you as a coach?',
+          'Create psychological safety: there are no wrong answers.',
+          'Allow for silence — reflecting takes time.',
+          'Link self-knowledge to team culture: how do our individual strengths complement each other?'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Self-knowledge is the basis of emotional intelligence (Goleman, 1995) and is strongly correlated with athletic performance and resilience. Markus\' Self-Schema theory (1977) shows that a clear self-image increases motivation and consistency under pressure.'
+      },
+      {
+        heading: 'Connection to Day 2',
+        type: 'connection',
+        text: 'Tomorrow: Pressure & Stress. The values and strengths from today serve as an anchor for dealing with performance pressure.'
+      }
+    ]
+  },
+  // DAY 2 PLAYER WORKSHEET
+  {
+    day: 2,
+    type: 'player',
+    theme: 'Pressure & Stress',
+    themeColor: '#2F6FB0',
+    title: 'Perform Under Pressure',
+    subtitle: 'Day 2 — Player Worksheet',
+    intro: 'Pressure is not the enemy — how you handle it is. Today you discover your personal signals and learn techniques to perform better under pressure.',
+    sections: [
+      {
+        heading: '1. My pressure moments',
+        type: 'list3',
+        label: 'When do I feel the most pressure as an athlete?',
+        placeholders: ['e.g. Before an important match', 'e.g. After a mistake', 'e.g. Penalty kick']
+      },
+      {
+        heading: '2. My physical stress signals',
+        type: 'body-map',
+        label: 'Mark where you feel stress in your body:',
+        signals: ['Rapid heartbeat', 'Tense shoulders', 'Butterflies in stomach', 'Shallow breathing', 'Sweaty hands', 'Tense jaw', 'Head feels heavy', 'Feet feel heavy']
+      },
+      {
+        heading: '3. Box Breathing — My Practice',
+        type: 'breathing',
+        label: 'Practice the technique and record:',
+        steps: ['Inhale: 4 counts', 'Hold: 4 counts', 'Exhale: 4 counts', 'Hold: 4 counts']
+      },
+      {
+        heading: '4. My personal reset',
+        type: 'textarea',
+        label: 'What is my personal routine after a mistake or setback?',
+        placeholder: 'e.g. Breathe once deeply, say \'reset\', refocus...'
+      },
+      {
+        heading: '5. My focus word',
+        type: 'focus-word',
+        label: 'My word that brings me back to my best version:',
+        placeholder: 'e.g. FOCUS / BELIEVE / BREATHE'
+      }
+    ]
+  },
+  // DAY 2 MODERATOR GUIDE
+  {
+    day: 2,
+    type: 'moderator',
+    theme: 'Pressure & Stress',
+    themeColor: '#2F6FB0',
+    title: 'Perform Under Pressure — Moderator Guide',
+    subtitle: 'Day 2 — For coaches and facilitators',
+    intro: 'Goal: Players learn to recognize and regulate their stress response. They develop concrete tools for peak performance under pressure.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Introduction: pressure as activator vs. blocker' },
+          { time: '8 min', desc: 'Box Breathing together (guided)' },
+          { time: '10 min', desc: 'Individual worksheet' },
+          { time: '7 min', desc: 'Group sharing + debrief' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'When does pressure help you and when does it block you?',
+          'What does your body do that you can actually use as a signal?',
+          'What focus word suits you — and why?',
+          'How can you support each other in pressure moments?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Guide box breathing yourself — model the technique.',
+          'Normalize stress: even the best athletes feel pressure.',
+          'Let players test their focus word aloud.',
+          'Link to team culture: how do we encourage each other in pressure moments?'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Controlled breathing activates the vagus nerve and reduces cortisol by up to 30% (Ma et al., 2017). Reframing pressure as activation (challenge vs. threat) significantly improves performance (Crum et al., 2013). A focus word reduces self-consciousness during performance (Mesagno & Mullane-Grant, 2010).'
+      },
+      {
+        heading: 'Connection to Day 3',
+        type: 'connection',
+        text: 'Tomorrow: Team & Role. The individual pressure techniques are today’s focus — tomorrow we look at how team roles can be a source of both pressure and support.'
+      }
+    ]
+  },
+  // DAY 3 PLAYER WORKSHEET
+  {
+    day: 3,
+    type: 'player',
+    theme: 'Team & Role',
+    themeColor: '#7A52C7',
+    title: 'My Role in the Team',
+    subtitle: 'Day 3 — Player Worksheet',
+    intro: 'Every team needs every role. Today you discover exactly what you contribute — and how that makes the team stronger.',
+    sections: [
+      {
+        heading: '1. My technical role',
+        type: 'textarea',
+        label: 'What is my position and function on the field?',
+        placeholder: 'e.g. Striker — creating chances and scoring goals...'
+      },
+      {
+        heading: '2. My social role',
+        type: 'textarea',
+        label: 'What role do I play off the field?',
+        placeholder: 'e.g. I\'m often the one who keeps spirits up after a loss...'
+      },
+      {
+        heading: '3. What teammates can count on me for',
+        type: 'list3',
+        label: 'My 3 most important contributions to the team:',
+        placeholders: ['e.g. Always give 100%', 'e.g. Encourage others', 'e.g. Stay calm under pressure']
+      },
+      {
+        heading: '4. Encourage a teammate',
+        type: 'letter',
+        label: 'Write a sentence of genuine appreciation for a teammate:',
+        placeholder: 'Dear [name], I want to tell you that I really appreciate...'
+      },
+      {
+        heading: '5. Team reflection',
+        type: 'textarea',
+        label: 'What could our team do better to use each other\'s strengths more?',
+        placeholder: 'Think of communication, role clarity, support...'
+      }
+    ]
+  },
+  // DAY 3 MODERATOR GUIDE
+  {
+    day: 3,
+    type: 'moderator',
+    theme: 'Team & Role',
+    themeColor: '#7A52C7',
+    title: 'My Role in the Team — Moderator Guide',
+    subtitle: 'Day 3 — For coaches and facilitators',
+    intro: 'Goal: Players gain clarity about their role in the team and experience the power of deliberate encouragement. This is the most interactive day of The Week.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Introduction: visible vs. invisible roles' },
+          { time: '10 min', desc: 'Individual worksheet (sections 1–3)' },
+          { time: '10 min', desc: 'Encouragement Challenge (physical exercise)' },
+          { time: '5 min', desc: 'Appreciation letters — share with the group' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'Which roles in our team are undervalued?',
+          'How did encouragement change your performance in the exercise?',
+          'What does your teammate\'s appreciation letter say about their view of you?',
+          'How can we encourage each other more deliberately?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Do the Encouragement Challenge yourself — it\'s the most impactful exercise.',
+          'Read appreciation letters aloud if the group allows it.',
+          'Connect invisible roles to team performance: every role matters.',
+          'Avoid comparing players — every role is valuable.'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Role clarity is one of the strongest predictors of team performance (Carron et al., 2002). Deliberate encouragement increases physical performance by 12–20% (Zajonc, 1965). Appreciation and recognition are the most effective non-financial motivators (Ariely et al., 2008).'
+      },
+      {
+        heading: 'Connection to Day 4',
+        type: 'connection',
+        text: 'Tomorrow: Resilience. After today’s positive team experience, we look at how we deal with setbacks, failure, and adversity — individually and as a team.'
+      }
+    ]
+  },
+  // DAY 4 PLAYER WORKSHEET
+  {
+    day: 4,
+    type: 'player',
+    theme: 'Resilience',
+    themeColor: '#C73F62',
+    title: 'My Flu Game',
+    subtitle: 'Day 4 — Player Worksheet',
+    intro: 'Michael Jordan played the 1997 NBA Finals with high fever and still had the game of his life. Today you discover your own Flu Game mentality.',
+    sections: [
+      {
+        heading: '1. My biggest setback',
+        type: 'textarea',
+        label: 'Describe a moment when everything went against you in sport:',
+        placeholder: 'What happened? How did you feel? What did you do?'
+      },
+      {
+        heading: '2. What I learned from it',
+        type: 'list3',
+        label: 'What did this setback teach you?',
+        placeholders: ['e.g. I\'m stronger than I think', 'e.g. My team was there for me', 'e.g. I learned to ask for help']
+      },
+      {
+        heading: '3. My Flu Game moment',
+        type: 'textarea',
+        label: 'Describe a moment when you kept going despite everything:',
+        placeholder: 'Even though... I still..., because...'
+      },
+      {
+        heading: '4. My Flu Game sentence',
+        type: 'highlight',
+        label: 'Write your personal perseverance sentence:',
+        placeholder: 'e.g. Even when it\'s hard, I choose to give everything — because I\'m a fighter.'
+      },
+      {
+        heading: '5. My resilience anchor',
+        type: 'textarea',
+        label: 'What or who helps you get back up after a setback?',
+        placeholder: 'A person, a memory, a conviction, a routine...'
+      }
+    ]
+  },
+  // DAY 4 MODERATOR GUIDE
+  {
+    day: 4,
+    type: 'moderator',
+    theme: 'Resilience',
+    themeColor: '#C73F62',
+    title: 'My Flu Game — Moderator Guide',
+    subtitle: 'Day 4 — For coaches and facilitators',
+    intro: 'Goal: Players normalize setbacks and build mental resilience through personal stories and the Flu Game metaphor. Most impactful day for creating psychological safety.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Flu Game story — Jordan 1997 (video or telling)' },
+          { time: '5 min', desc: 'Discussion: what made this remarkable?' },
+          { time: '12 min', desc: 'Individual worksheet' },
+          { time: '8 min', desc: 'Share Flu Game sentences in the group' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'What was the hardest moment in your setback story?',
+          'How did you get back up? What helped?',
+          'What does your Flu Game sentence say about who you are?',
+          'How can we use this as a team when things get hard?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Share your own resilience story as a coach — this creates safety.',
+          'Don\'t force sharing: some setbacks are private.',
+          'Celebrate the Flu Game sentences: have everyone say theirs aloud.',
+          'Create a physical reminder: write sentences on a team banner.'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Resilience is trainable through reflection and sharing personal stories (Tedeschi & Calhoun, 1996). Gucciardi\'s Mental Toughness research (2008) shows that self-efficacy — the belief in your own capacity — is the most important predictor of resilience. Bandura (1986): personal resilience examples have a stronger effect than general stories.'
+      },
+      {
+        heading: 'Connection to Day 5',
+        type: 'connection',
+        text: 'Tomorrow: Team First. After four days of individual and team work, we bring it all together: who are we as a team, and what do we commit to?'
+      }
+    ]
+  },
+  // DAY 5 PLAYER WORKSHEET
+  {
+    day: 5,
+    type: 'player',
+    theme: 'Team First',
+    themeColor: '#1E8A5B',
+    title: 'Team First',
+    subtitle: 'Day 5 — Player Worksheet',
+    intro: 'The final day. Everything we\'ve worked on this week comes together in one commitment: who do we want to be as a team?',
+    sections: [
+      {
+        heading: '1. What I take from this week',
+        type: 'list3',
+        label: 'My 3 biggest learnings from The Week:',
+        placeholders: ['e.g. Self-knowledge is the start of everything', 'e.g. Encouragement actually works', 'e.g. My Flu Game sentence gives me strength']
+      },
+      {
+        heading: '2. My commitment to the team',
+        type: 'highlight',
+        label: 'What do I commit to as a teammate this season?',
+        placeholder: 'e.g. I commit to always encouraging my teammates, especially when it\'s hard.'
+      },
+      {
+        heading: '3. Team contract input',
+        type: 'list3',
+        label: 'My 3 proposals for our team agreements:',
+        placeholders: ['e.g. We always encourage each other', 'e.g. We give honest feedback', 'e.g. We support each other after a loss']
+      },
+      {
+        heading: '4. My role this season',
+        type: 'textarea',
+        label: 'How will I contribute to our team culture this season?',
+        placeholder: 'Specific, realistic, personal...'
+      },
+      {
+        heading: '5. Final reflection',
+        type: 'textarea',
+        label: 'What has this week meant to you? What do you want to remember?',
+        placeholder: 'Write freely — this is your reflection, not a test.'
+      }
+    ]
+  },
+  // DAY 5 MODERATOR GUIDE
+  {
+    day: 5,
+    type: 'moderator',
+    theme: 'Team First',
+    themeColor: '#1E8A5B',
+    title: 'Team First — Moderator Guide',
+    subtitle: 'Day 5 — For coaches and facilitators',
+    intro: 'Goal: Bring the week to a close with a team contract and individual commitments. This day is about ownership, celebration and looking forward.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Recap of the week: what did we do?' },
+          { time: '10 min', desc: 'Individual worksheet' },
+          { time: '10 min', desc: 'Team contract: collect input, vote, formulate' },
+          { time: '5 min', desc: 'Everyone signs — celebration moment' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'What was the most impactful moment of this week for you?',
+          'Which of our proposed agreements are non-negotiable?',
+          'How will we hold each other accountable to these agreements?',
+          'What do we want our team culture to look like at the end of the season?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Celebrate: this week deserves recognition.',
+          'Display the team contract visibly: changing room, team chat.',
+          'Have everyone sign physically — this creates commitment.',
+          'As a coach: also sign and share your own commitment.'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Player-owned team agreements show 3x more adherence than coach-imposed rules (Jowett & Chaundy, 2004). Public commitment increases follow-through by 40% (Cialdini, 2006). Closing rituals strengthen group identity and create a lasting memory of the experience (Kahneman, peak-end rule, 1999).'
+      },
+      {
+        heading: 'After The Week',
+        type: 'connection',
+        text: 'Hang the team contract visibly. Return to it at the start of each month. Plan a check-in after 4 weeks: which agreements are we honoring? Which need more attention? Consider The Season for a year-long continuation.'
+      }
+    ]
+  }
+];
 
-  <div class="goal-box">
-    <div class="gl">Goal Day 2</div>
-    <ul>
-      <li>You recognize the physical and mental signals of stress in your body</li>
-      <li>You master at least one breathing technique to regulate activation</li>
-      <li>You can explain the difference between pressure that holds you back and pressure that drives you forward</li>
-    </ul>
-  </div>
+// ===== RENDER ENGINE =====
+let currentPage = 0;
 
-  <div class="section-label">&#9728; Warm-up — Stress Barometer <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(8 min)</span></div>
-  <div class="ex-card warm">
-    <div class="ex-title"><div class="ex-num warm">&#9728;</div><strong>Stress Barometer</strong><span class="time-tag">8 min</span></div>
-    <p class="ex-desc">Give yourself a score from 0 to 10 for your stress level right now. Next to the barometer, also write: what are the three things that are occupying you most today?</p>
-    <div class="two-col" style="align-items:center">
-      <div>
-        <div style="font-size:0.72rem;color:var(--gray-400);margin-bottom:6px">Stress score now:</div>
-        <div class="scale-dots">
-          <div class="dot">0</div><div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div>
-          <div class="dot">5</div><div class="dot">6</div><div class="dot">7</div><div class="dot">8</div><div class="dot">9</div><div class="dot">10</div>
+function renderPage(idx) {
+  const p = WEEK_PAGES[idx];
+  if (!p) return;
+  currentPage = idx;
+  const total = WEEK_PAGES.length;
+  const pct = ((idx + 1) / total * 100).toFixed(0);
+  if (document.getElementById('pgb-fill')) document.getElementById('pgb-fill').style.width = pct + '%';
+  if (document.getElementById('pgb-current')) document.getElementById('pgb-current').textContent = idx + 1;
+
+  const isMod = p.type === 'moderator';
+  const bgColor = isMod ? '#0a0f1a' : '#FAF7F2';
+  const textColor = isMod ? '#e0e6f0' : '#1C2433';
+
+  let sectionsHTML = p.sections.map(s => renderSection(s, isMod)).join('');
+
+  document.getElementById('book-root').innerHTML = `
+    <div style="min-height:100vh;background:${bgColor};padding:64px 0 40px;">
+      <div style="max-width:760px;margin:0 auto;padding:40px 5%;">
+
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:${p.themeColor};display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:14px;flex-shrink:0;">D${p.day}</div>
+          <div>
+            <div style="font-size:11px;font-weight:800;color:${p.themeColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;">${p.theme} · Day ${p.day} · ${isMod ? 'Moderator Guide' : 'Player Worksheet'}</div>
+            <h1 style="font-size:clamp(1.4rem,3vw,2rem);color:${isMod ? '#fff' : '#1C2433'};line-height:1.15;font-family:'Archivo',sans-serif;font-weight:900;">${p.title}</h1>
+          </div>
+        </div>
+
+        <div style="background:${isMod ? 'rgba(255,255,255,.05)' : '#fff'};border:1px solid ${isMod ? 'rgba(255,255,255,.08)' : '#E4DFD6'};border-radius:12px;padding:20px 24px;margin-bottom:28px;">
+          <p style="font-size:.92rem;color:${isMod ? '#8a94a8' : '#6E6A63'};line-height:1.75;">${p.intro}</p>
+        </div>
+
+        ${sectionsHTML}
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid ${isMod ? 'rgba(255,255,255,.08)' : '#E4DFD6'};">
+          <button onclick="goPage(${idx - 1})" ${idx === 0 ? 'disabled' : ''} style="background:${isMod ? '#1a2235' : '#fff'};border:1.5px solid ${isMod ? '#2a3550' : '#E4DFD6'};color:${isMod ? '#8a94a8' : '#6E6A63'};padding:.7rem 1.4rem;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.85rem;transition:all .2s;" ${idx === 0 ? 'style="opacity:.3;cursor:not-allowed"' : ''}>← Previous</button>
+          <span style="font-size:.8rem;color:${isMod ? '#555' : '#aaa'};">${idx + 1} / ${total}</span>
+          ${idx < total - 1
+            ? `<button onclick="goPage(${idx + 1})" style="background:#F05A28;color:#fff;border:none;padding:.7rem 1.4rem;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:800;font-size:.85rem;transition:background .2s;">Next →</button>`
+            : `<a href="worksheets.html" style="background:#1E8A5B;color:#fff;border:none;padding:.7rem 1.4rem;border-radius:7px;text-decoration:none;font-family:'Archivo',sans-serif;font-weight:800;font-size:.85rem;">View all worksheets →</a>`
+          }
         </div>
       </div>
-      <div>
-        <div style="font-size:0.72rem;color:var(--gray-400);margin-bottom:5px">What's on my mind?</div>
-        <div class="line-sm"></div><div class="line-sm"></div><div class="line-sm"></div>
-      </div>
     </div>
-  </div>
+  `;
+  window.scrollTo(0, 0);
+}
 
-  <div class="section-label">Exercise 1 — Box Breathing</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">1</div><strong>Box Breathing — Log</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">We do Box Breathing together. Afterward: score your stress level again. Also do this before each session for the rest of the week and fill in the log.</p>
-    <div style="background:var(--gray-100);border-radius:8px;padding:10px;margin-bottom:10px;text-align:center">
-      <div style="display:inline-flex;gap:20px;align-items:center">
-        <div style="text-align:center"><div style="width:44px;height:44px;border:2px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--orange)">IN<br>4 sec</div></div>
-        <div style="font-size:1rem;color:var(--gray-400)">→</div>
-        <div style="text-align:center"><div style="width:44px;height:44px;border:2px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--orange)">HOLD<br>4 sec</div></div>
-        <div style="font-size:1rem;color:var(--gray-400)">→</div>
-        <div style="text-align:center"><div style="width:44px;height:44px;border:2px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--orange)">OUT<br>4 sec</div></div>
-        <div style="font-size:1rem;color:var(--gray-400)">→</div>
-        <div style="text-align:center"><div style="width:44px;height:44px;border:2px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--orange)">WAIT<br>4 sec</div></div>
-      </div>
+function renderSection(s, dark) {
+  const bg = dark ? 'rgba(255,255,255,.04)' : '#fff';
+  const border = dark ? '1px solid rgba(255,255,255,.08)' : '1px solid #E4DFD6';
+  const textMain = dark ? '#e0e6f0' : '#1C2433';
+  const textSub = dark ? '#6e7a8e' : '#6E6A63';
+  const orange = '#F05A28';
+
+  let inner = '';
+  switch (s.type) {
+    case 'grid5':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;">${s.placeholders.map(p => `<div style="background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:8px;padding:12px;text-align:center;font-size:.82rem;color:${textSub};">${p}</div>`).join('')}</div>`;
+      break;
+    case 'list3':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:flex;flex-direction:column;gap:8px;">${s.placeholders.map((p,i) => `<div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:50%;background:${orange};color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;">${i+1}</div><div style="flex:1;background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:7px;padding:10px 14px;font-size:.82rem;color:${textSub};">${p}</div></div>`).join('')}</div>`;
+      break;
+    case 'textarea':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:8px;padding:16px;min-height:80px;font-size:.85rem;color:${textSub};line-height:1.75;">${s.placeholder}</div>`;
+      break;
+    case 'values':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:flex;flex-wrap:wrap;gap:8px;">${s.values.map(v => `<div style="padding:6px 14px;border-radius:20px;border:1.5px solid ${dark?'#2a3550':'#E4DFD6'};font-size:.82rem;font-weight:700;color:${textSub};">${v}</div>`).join('')}</div>`;
+      break;
+    case 'focus-word':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'rgba(240,90,40,.08)':'rgba(240,90,40,.06)'};border:2px dashed ${orange};border-radius:10px;padding:20px;text-align:center;font-size:1.3rem;font-weight:900;color:${orange};letter-spacing:.08em;">${s.placeholder}</div>`;
+      break;
+    case 'highlight':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'rgba(240,90,40,.08)':'rgba(240,90,40,.06)'};border-left:4px solid ${orange};border-radius:0 8px 8px 0;padding:16px 20px;font-size:.92rem;font-style:italic;color:${dark?'#d0d8e8':textMain};line-height:1.75;">${s.placeholder}</div>`;
+      break;
+    case 'letter':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:8px;padding:16px;font-size:.85rem;color:${textSub};line-height:1.75;font-style:italic;">${s.placeholder}</div>`;
+      break;
+    case 'timing':
+      inner = `<div style="display:flex;flex-direction:column;gap:6px;">${s.items.map(item => `<div style="display:flex;align-items:center;gap:12px;"><span style="background:${orange};color:#fff;font-size:.72rem;font-weight:800;padding:3px 8px;border-radius:4px;min-width:50px;text-align:center;flex-shrink:0;">${item.time}</span><span style="font-size:.88rem;color:${textMain};">${item.desc}</span></div>`).join('')}</div>`;
+      break;
+    case 'questions':
+      inner = `<div style="display:flex;flex-direction:column;gap:8px;">${s.items.map(q => `<div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:${orange};font-weight:900;margin-top:2px;flex-shrink:0;">?</span><p style="font-size:.88rem;color:${textMain};line-height:1.6;">${q}</p></div>`).join('')}</div>`;
+      break;
+    case 'tips':
+      inner = `<div style="display:flex;flex-direction:column;gap:8px;">${s.items.map(t => `<div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:${orange};font-weight:900;margin-top:2px;flex-shrink:0;">✓</span><p style="font-size:.88rem;color:${textMain};line-height:1.6;">${t}</p></div>`).join('')}</div>`;
+      break;
+    case 'science':
+      inner = `<div style="background:${dark?'rgba(47,111,176,.08)':'rgba(47,111,176,.06)'};border:1.5px solid rgba(47,111,176,.2);border-radius:8px;padding:14px 16px;"><p style="font-size:.85rem;color:${dark?'#8ab0d8':'#2F6FB0'};line-height:1.75;">${s.text}</p></div>`;
+      break;
+    case 'connection':
+      inner = `<div style="background:${dark?'rgba(30,138,91,.08)':'rgba(30,138,91,.06)'};border:1.5px solid rgba(30,138,91,.25);border-radius:8px;padding:14px 16px;"><p style="font-size:.85rem;color:${dark?'#5ab88a':'#1E8A5B'};line-height:1.75;">${s.text}</p></div>`;
+      break;
+    case 'breathing':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">${s.steps.map((step,i) => `<div style="background:${dark?'rgba(47,111,176,.1)':'rgba(47,111,176,.06)'};border:1.5px solid rgba(47,111,176,.2);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:1.4rem;font-weight:900;color:#2F6FB0;">${i+1}</div><div style="font-size:.75rem;color:${dark?'#8ab0d8':'#2F6FB0'};margin-top:4px;font-weight:700;">${step}</div></div>`).join('')}</div>`;
+      break;
+    case 'body-map':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:flex;flex-wrap:wrap;gap:8px;">${s.signals.map(sig => `<div style="padding:6px 14px;border-radius:20px;border:1.5px solid rgba(47,111,176,.3);background:rgba(47,111,176,.06);font-size:.8rem;color:#2F6FB0;font-weight:700;">${sig}</div>`).join('')}</div>`;
+      break;
+    default:
+      inner = '';
+  }
+
+  return `
+    <div style="background:${bg};border:${border};border-radius:12px;padding:20px 24px;margin-bottom:16px;">
+      <h3 style="font-size:.88rem;font-weight:800;color:${orange};font-family:'Archivo',sans-serif;margin-bottom:14px;">${s.heading}</h3>
+      ${inner}
     </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px">
-      <div style="font-size:0.68rem;font-weight:700;color:var(--gray-400)">SITUATION / DATE</div>
-      <div style="font-size:0.68rem;font-weight:700;color:var(--gray-400)">BEFORE (0-10)</div>
-      <div style="font-size:0.68rem;font-weight:700;color:var(--gray-400)">AFTER (0-10)</div>
-      <div class="line"></div><div class="line"></div><div class="line"></div>
-      <div class="line"></div><div class="line"></div><div class="line"></div>
-      <div class="line"></div><div class="line"></div><div class="line"></div>
-    </div>
-  </div>
+  `;
+}
 
-  <div class="section-label">Exercise 2 — Stress Diary</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">2</div><strong>Stress Diary</strong><span class="time-tag">12 min</span></div>
-    <p class="ex-desc">Think about the last match or training session where you felt a lot of pressure. Describe what happened inside you on three levels.</p>
-    <div class="three-col" style="margin-top:8px">
-      <div>
-        <div style="font-size:0.7rem;font-weight:700;color:#c0392b;margin-bottom:5px">BODY felt...</div>
-        <div class="box box-md"></div>
-      </div>
-      <div>
-        <div style="font-size:0.7rem;font-weight:700;color:#e07820;margin-bottom:5px">HEAD thought...</div>
-        <div class="box box-md"></div>
-      </div>
-      <div>
-        <div style="font-size:0.7rem;font-weight:700;color:#1a5299;margin-bottom:5px">I did...</div>
-        <div class="box box-md"></div>
-      </div>
-    </div>
-  </div>
+function goPage(idx) {
+  if (idx < 0 || idx >= WEEK_PAGES.length) return;
+  renderPage(idx);
+}
 
-  <div class="section-label">Exercise 3 — Worst Case Best Case</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">3</div><strong>Worst Case Best Case</strong><span class="time-tag">12 min</span></div>
-    <p class="ex-desc">Write down a situation that makes you nervous. Then the three scenarios. Your brain will stop catastrophizing when you write down the most likely outcome.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
-      <div><div style="font-size:0.7rem;font-weight:700;color:var(--gray-400);margin-bottom:3px">The situation:</div><div class="line"></div></div>
-      <div class="two-col">
-        <div><div style="font-size:0.7rem;font-weight:700;color:#c0392b;margin-bottom:3px">Worst Case</div><div class="box box-sm"></div></div>
-        <div><div style="font-size:0.7rem;font-weight:700;color:#1a6b3a;margin-bottom:3px">Best Case</div><div class="box box-sm"></div></div>
-      </div>
-      <div><div style="font-size:0.7rem;font-weight:700;color:var(--orange);margin-bottom:3px">Most Likely</div><div class="box box-sm"></div></div>
-    </div>
-  </div>
+renderPage(0);
+</script>
 
-  <div class="section-label">Exercise 4 — My Pressure Card</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">4</div><strong>My Personal Pressure Card</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Create your personal pressure card: three strategies you use or want to learn when the pressure becomes too much.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
-      <div style="display:flex;align-items:center;gap:8px"><div class="ex-num orange" style="font-size:0.7rem">1</div><div class="line" style="flex:1;margin:0"></div></div>
-      <div style="display:flex;align-items:center;gap:8px"><div class="ex-num orange" style="font-size:0.7rem">2</div><div class="line" style="flex:1;margin:0"></div></div>
-      <div style="display:flex;align-items:center;gap:8px"><div class="ex-num orange" style="font-size:0.7rem">3</div><div class="line" style="flex:1;margin:0"></div></div>
-    </div>
-  </div>
-
-  <div class="section-label">&#9790; Closing — Rescore <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(5 min)</span></div>
-  <div class="ex-card close">
-    <div class="ex-title"><div class="ex-num close">&#9790;</div><strong>Stress Barometer — Rescore</strong><span class="time-tag">5 min</span></div>
-    <p class="ex-desc">Give yourself a score again. Difference from the opening score? Write in one sentence what you take away from today.</p>
-    <div style="display:flex;gap:20px;align-items:center;margin-top:8px">
-      <div><div style="font-size:0.7rem;color:var(--gray-400)">Score now:</div><div class="scale-dots" style="margin-top:4px"><div class="dot">0</div><div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div><div class="dot">7</div><div class="dot">8</div><div class="dot">9</div><div class="dot">10</div></div></div>
-      <div style="flex:1"><div style="font-size:0.7rem;color:var(--gray-400);margin-bottom:4px">I take away:</div><div class="line"></div></div>
-    </div>
-  </div>
-
-  <div class="quote-block">
-    <p>"Pressure is a privilege — it only comes to those who earn it."</p>
-    <cite>Billie Jean King — 39x Grand Slam Champion</cite>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — The Week: Day 2 — Pressure &amp; Stress</span>
-    <span>Name: _______________________</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DAY 2 — MODERATOR
-════════════════════════════════════════════ -->
-<div class="page" id="d2m">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 2 — Moderator Guide</div>
-      <h2>Pressure &amp; Stress</h2>
-      <div class="tagline">Normalize stress — build tools — create awareness</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-mod">Moderator</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="science-box">
-    <strong>Scientific basis</strong>
-    <p style="margin-top:4px"><span class="tier t1">Systematic Review</span> Crocker et al. (2015): flexible coping strategies are the strongest predictors of performance and well-being in youth sport. <em>Int. Journal of Sport Psychology.</em></p>
-    <p style="margin-top:4px"><span class="tier t2">RCT</span> Balban et al. (2023): cyclic breathing significantly reduces stress levels versus mindfulness. <em>Cell Reports Medicine.</em></p>
-    <p style="margin-top:4px"><span class="tier t3">Study</span> Hanton et al. (2009): the interpretation of the stress response (facilitative vs. debilitative) determines the impact on performance, not the intensity.</p>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Box Breathing — Group facilitation (critical moment)</div>
-    <div class="step"><div class="step-num">1</div><p>Stand in a circle or have everyone sit with a straight back and feet flat on the floor. Say: <strong>"Close your eyes. This might feel strange. That's normal."</strong></p></div>
-    <div class="step"><div class="step-num">2</div><p>Lead the 4-4-4-4 breathing aloud. Do this for 4 rounds. Speak calmly and lowly. Pause after each round.</p></div>
-    <div class="step"><div class="step-num">3</div><p>Afterward: "Open your eyes. Do you notice a difference?" Compare barometer scores. Show the scientific evidence if you like: cortisol measurably drops within 3 minutes of cyclic breathing.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Pressure Card — Facilitation tips</div>
-    <div class="step"><div class="step-num">1</div><p>After players write their pressure card, have them compare in pairs. Ask: "Which strategy do you find most feasible?"</p></div>
-    <div class="step"><div class="step-num">2</div><p>Collect the strategies as a group on a flip chart or board. This becomes the <strong>"Team Pressure Card"</strong> that stays visible all week.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">YouTube Inspiration</div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"How to make stress your friend"</strong> — Kelly McGonigal, TED Talk (2013)<br><em>Search: "Kelly McGonigal stress TED" — use fragment 0:00–5:00 as an opener. Core message: stress is harmful only if you believe it is.</em></p>
-    </div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"Box breathing Navy SEAL technique"</strong> — Mark Divine<br><em>Search: "box breathing Mark Divine" — demonstration of the technique by Navy SEALs, credible for athletes who appreciate a "tough" approach.</em></p>
-    </div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Coach Tips Day 2</div>
-    <div class="tip-box"><p><strong>Tip 1:</strong> Actively normalize stress. Say literally: "LeBron James feels this. Every pro feels this before a big game. It's not weakness, it's energy." Young people think they're the only ones.</p></div>
-    <div class="tip-box"><p><strong>Tip 2:</strong> The Stress Barometer at the beginning and end of the day is powerful. Players see measurably that activities influence their stress level.</p></div>
-    <div class="tip-box"><p><strong>Tip 3:</strong> Worst Case Best Case: after the exercise ask: "How often did the Worst Case actually happen?" Almost never. This relativizing is the goal.</p></div>
-    <div class="warn-box"><p>&#9888; Stress and anxiety can indicate an underlying problem. If a player consistently scores above 8 on the stress score, plan an individual conversation outside the group dynamic.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Time Schedule Day 2</div>
-    <ul class="timing-list">
-      <li><div class="chk"></div>Recap Day 1 — 1 word per person<div class="dur">5 min</div></li>
-      <li><div class="chk"></div>Warm-up: Fill in Stress Barometer<div class="dur">8 min</div></li>
-      <li><div class="chk"></div>Exercise 1: Box Breathing (group)<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 2: Stress Diary individually<div class="dur">12 min</div></li>
-      <li><div class="chk"></div>Exercise 3: Worst Case Best Case in pairs<div class="dur">12 min</div></li>
-      <li><div class="chk"></div>Exercise 4: Pressure Card + Team Pressure Card on board<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Debrief + closing<div class="dur">8 min</div></li>
-      <li><div class="chk"></div><strong>Total</strong><div class="dur">65 min</div></li>
-    </ul>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — Moderator Guide Day 2</span>
-    <span>CONFIDENTIAL — For moderator only</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DAY 3 — PLAYER
-     Theme: My Role in the Team
-════════════════════════════════════════════ -->
-<div class="page" id="d3p">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 3 — Player Worksheet</div>
-      <h2>My Role in the Team</h2>
-      <div class="tagline">Every team needs all roles. Which role do you play?</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-player">Player</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="goal-box">
-    <div class="gl">Goal Day 3</div>
-    <ul>
-      <li>You name your current roles in the team with concrete behavioral examples</li>
-      <li>You understand why every team member contributes regardless of playing time or position</li>
-      <li>You formulate one role you want to strengthen this season</li>
-    </ul>
-  </div>
-
-  <div class="section-label">&#9728; Warm-up — Human Graph <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(8 min)</span></div>
-  <div class="ex-card warm">
-    <div class="ex-title"><div class="ex-num warm">&#9728;</div><strong>Human Graph</strong><span class="time-tag">8 min</span></div>
-    <p class="ex-desc">The moderator presents statements. Stand on an imaginary line from 1 (strongly disagree) to 10 (strongly agree). Observe where you stand relative to your teammates.</p>
-    <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
-      <div style="font-size:0.8rem;color:var(--gray-800)">"I know exactly what my role is in this team."</div>
-      <div style="font-size:0.8rem;color:var(--gray-800)">"I feel valued for what I contribute."</div>
-      <div style="font-size:0.8rem;color:var(--gray-800)">"My contribution is just as important as the top scorer's."</div>
-    </div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:10px">Record your personal reaction to one of the statements:</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 1 — Role Compass</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">1</div><strong>Role Compass — Score yourself</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Give yourself a score from 0 to 10 for each of the four roles. Color in the bar up to your score.</p>
-    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:3px;font-size:0.8rem"><strong>Leader</strong><span style="color:var(--gray-400);font-size:0.73rem">Gives direction, addresses the group</span><span style="color:var(--orange);font-size:0.73rem">___/10</span></div>
-        <div style="height:12px;background:var(--gray-200);border-radius:4px"></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:3px;font-size:0.8rem"><strong>Engine</strong><span style="color:var(--gray-400);font-size:0.73rem">Gives energy, pulls the team along</span><span style="color:var(--orange);font-size:0.73rem">___/10</span></div>
-        <div style="height:12px;background:var(--gray-200);border-radius:4px"></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:3px;font-size:0.8rem"><strong>Thinker</strong><span style="color:var(--gray-400);font-size:0.73rem">Analyzes, finds solutions</span><span style="color:var(--orange);font-size:0.73rem">___/10</span></div>
-        <div style="height:12px;background:var(--gray-200);border-radius:4px"></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:3px;font-size:0.8rem"><strong>Steady Force</strong><span style="color:var(--gray-400);font-size:0.73rem">Reliable, support for others</span><span style="color:var(--orange);font-size:0.73rem">___/10</span></div>
-        <div style="height:12px;background:var(--gray-200);border-radius:4px"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">Exercise 2 — Role Circle</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">2</div><strong>Role Circle — My Contribution</strong><span class="time-tag">15 min</span></div>
-    <p class="ex-desc">After the group exercise: write down the contribution you heard teammates say about you, and the contribution you found most striking in another person.</p>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:4px">What others said about my contribution to the team:</div>
-    <div class="box box-sm"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin:8px 0 4px">The contribution of a teammate that surprised me:</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 3 — Top 3 Contributions</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">3</div><strong>My Top 3 Contributions — No statistics</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Write three concrete things you have contributed in the last two weeks in terms of behavior, attitude, or character. No points, no rebounds.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-      <div style="display:flex;align-items:flex-start;gap:8px"><div class="ex-num orange" style="flex-shrink:0;margin-top:1px">1</div><div class="box box-sm" style="flex:1"></div></div>
-      <div style="display:flex;align-items:flex-start;gap:8px"><div class="ex-num orange" style="flex-shrink:0;margin-top:1px">2</div><div class="box box-sm" style="flex:1"></div></div>
-      <div style="display:flex;align-items:flex-start;gap:8px"><div class="ex-num orange" style="flex-shrink:0;margin-top:1px">3</div><div class="box box-sm" style="flex:1"></div></div>
-    </div>
-  </div>
-
-  <div class="section-label">Exercise 4 — The Role I Want to Grow</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">4</div><strong>My Growth Point</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Choose one role you want to strengthen this season. Write two concrete actions you can perform weekly to develop that role.</p>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:4px">I want to grow in the role of:</div>
-    <div class="line"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin:8px 0 4px">Action 1 (weekly):</div>
-    <div class="box box-sm"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin:8px 0 4px">Action 2 (weekly):</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">&#9790; Closing — Role Promise <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(5 min)</span></div>
-  <div class="ex-card close">
-    <div class="ex-title"><div class="ex-num close">&#9790;</div><strong>My Role Promise</strong><span class="time-tag">5 min</span></div>
-    <p class="ex-desc">Fill in. Share with the group if you want. This is your personal promise for the rest of the season.</p>
-    <div style="margin-top:10px;font-size:0.85rem;line-height:2">
-      I, <div class="line" style="width:140px;display:inline-block;vertical-align:bottom"></div>, promise to fulfill my role as
-      <div class="line" style="width:140px;display:inline-block;vertical-align:bottom"></div> as best I can this season by at every training session
-      <div class="line" style="width:180px;display:inline-block;vertical-align:bottom"></div>.
-    </div>
-  </div>
-
-  <div class="quote-block">
-    <p>"The strength of the team is each individual member. The strength of each member is the team. Every role matters. Every player contributes. Championship teams know this better than anyone."</p>
-    <cite>Phil Jackson — 11x NBA Championship coach</cite>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — The Week: Day 3 — My Role in the Team</span>
-    <span>Name: _______________________</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DAY 3 — MODERATOR
-════════════════════════════════════════════ -->
-<div class="page" id="d3m">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 3 — Moderator Guide</div>
-      <h2>My Role in the Team</h2>
-      <div class="tagline">Role clarity as the foundation of cohesion and ownership</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-mod">Moderator</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="science-box">
-    <strong>Scientific basis</strong>
-    <p style="margin-top:4px"><span class="tier t1">Systematic Review</span> Bruner et al. (2021): role clarity is the strongest predictor of task and social cohesion in youth teams (d=0.62). <em>Journal of Sport Sciences.</em></p>
-    <p style="margin-top:4px"><span class="tier t2">Longitudinal study</span> Eys et al. (2015): role ambiguity correlates negatively with confidence and positively with performance anxiety over the course of a season. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Role Circle — Step-by-step facilitation</div>
-    <div class="step"><div class="step-num">1</div><p>Team stands in a circle. Moderator begins: <strong>"My contribution to this team is..."</strong> (give an honest, non-sporting example: "I'm the one who always arrives early and builds the atmosphere")</p></div>
-    <div class="step"><div class="step-num">2</div><p>Each player takes a turn. Clockwise. After each player: one person (voluntary) may add what they also see in that person. Only positive. No corrections.</p></div>
-    <div class="step"><div class="step-num">3</div><p>After the circle: <strong>"Which contribution surprised you most in a teammate?"</strong> Open question to the group.</p></div>
-    <div class="step"><div class="step-num">4</div><p>Closing: "Everyone has a role. Nobody is unimportant. The question is: are you fulfilling your role as well as possible?"</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">YouTube Inspiration</div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"The Last Dance — Scottie Pippen episode"</strong> — Netflix/ESPN fragment<br><em>Search: "Last Dance Pippen role player" — shows how a player who is not the star fulfills an irreplaceable role. Powerful conversation starter about role acceptance.</em></p>
-    </div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"Every role player matters"</strong> — NBA compilation<br><em>Search: "NBA role players matter compilation" — montage of crucial contributions from bench players in playoff games. Breaks the idea that only starters count.</em></p>
-    </div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Coach Tips Day 3</div>
-    <div class="tip-box"><p><strong>Tip 1:</strong> Emphasize that Steady Force and Engine are just as valuable as Leader. Cultures that only reward leaders create competition instead of collaboration.</p></div>
-    <div class="tip-box"><p><strong>Tip 2:</strong> Use the "Human Graph" as a barometer. Players who stand far from the center at "I feel valued" deserve individual follow-up.</p></div>
-    <div class="warn-box"><p>&#9888; If players score themselves low on all four roles, that is a signal. Plan an individual conversation: "Do you feel that you matter in this team?" Do not address in front of the group.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Time Schedule Day 3</div>
-    <ul class="timing-list">
-      <li><div class="chk"></div>Recap Day 2<div class="dur">5 min</div></li>
-      <li><div class="chk"></div>Warm-up: Human Graph<div class="dur">8 min</div></li>
-      <li><div class="chk"></div>Exercise 1: Fill in Role Compass<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 2: Role Circle group + worksheet<div class="dur">15 min</div></li>
-      <li><div class="chk"></div>Exercise 3: Top 3 Contributions<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 4: Growth point + actions<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Closing: Role Promise<div class="dur">5 min</div></li>
-      <li><div class="chk"></div><strong>Total</strong><div class="dur">63 min</div></li>
-    </ul>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — Moderator Guide Day 3</span>
-    <span>CONFIDENTIAL — For moderator only</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DAY 4 — PLAYER
-     Theme: Communication
-════════════════════════════════════════════ -->
-<div class="page" id="d4p">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 4 — Player Worksheet</div>
-      <h2>Communication</h2>
-      <div class="tagline">How you talk determines how you collaborate.</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-player">Player</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="goal-box">
-    <div class="gl">Goal Day 4</div>
-    <ul>
-      <li>You apply the I Message model in a real situation from your sports life</li>
-      <li>You give feedback to a teammate without triggering accusations or defensiveness</li>
-      <li>You distinguish between listening to respond and listening to understand</li>
-    </ul>
-  </div>
-
-  <div class="section-label">&#9728; Warm-up — Telephone Game <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(8 min)</span></div>
-  <div class="ex-card warm">
-    <div class="ex-title"><div class="ex-num warm">&#9728;</div><strong>Broken Telephone</strong><span class="time-tag">8 min</span></div>
-    <p class="ex-desc">In a row, everyone whispers a tactical instruction down the line. Compare the original with the result. Reflect: how does this work on the court? Write your observation.</p>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:8px">One moment this season when poor communication cost something:</div>
-    <div class="box box-sm"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:6px">What struck me about how communication gets distorted?</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 1 — I Message</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">1</div><strong>The I Message — Four steps</strong><span class="time-tag">12 min</span></div>
-    <p class="ex-desc">Model: "I see... I feel... I need... I ask you to..." Write a real situation from your sports life using this model.</p>
-    <div style="display:flex;flex-direction:column;gap:7px;margin-top:8px">
-      <div><div style="font-size:0.72rem;font-weight:700;color:var(--orange)">I SEE (the concrete situation, no interpretation):</div><div class="line"></div></div>
-      <div><div style="font-size:0.72rem;font-weight:700;color:var(--orange)">I FEEL (how this affects me):</div><div class="line"></div></div>
-      <div><div style="font-size:0.72rem;font-weight:700;color:var(--orange)">I NEED (what I need from you):</div><div class="line"></div></div>
-      <div><div style="font-size:0.72rem;font-weight:700;color:var(--orange)">I ASK YOU TO (concrete action):</div><div class="line"></div></div>
-    </div>
-  </div>
-
-  <div class="section-label">Exercise 2 — Feedback Round Trio</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">2</div><strong>Feedback Round Trio</strong><span class="time-tag">15 min</span></div>
-    <p class="ex-desc">Groups of 3. Role A gives feedback, Role B receives, Role C observes the tone. After each round: observer gives 30 seconds of feedback. Rotate roles.</p>
-    <div style="background:var(--gray-100);border-radius:8px;padding:10px;margin:8px 0">
-      <div style="font-size:0.72rem;font-weight:700;color:var(--gray-800);margin-bottom:6px">Observer watches for:</div>
-      <ul style="list-style:none;font-size:0.78rem;color:var(--gray-600)">
-        <li style="padding-left:10px;position:relative;margin-bottom:3px"><span style="position:absolute;left:0">&#9642;</span>Did the giver use "you" or "I" statements?</li>
-        <li style="padding-left:10px;position:relative;margin-bottom:3px"><span style="position:absolute;left:0">&#9642;</span>What was the tone: accusatory or curious?</li>
-        <li style="padding-left:10px;position:relative"><span style="position:absolute;left:0">&#9642;</span>Did the receiver stay open or close off?</li>
-      </ul>
-    </div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:8px">What did I learn in the role of giver?</div>
-    <div class="box box-sm"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:6px">What did I learn in the role of receiver?</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 3 — Active Listening</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">3</div><strong>Mirror Conversation</strong><span class="time-tag">12 min</span></div>
-    <p class="ex-desc">In pairs: Person A talks for 2 minutes about a difficult sports experience. Person B listens without interrupting. Then B summarizes what A said without adding their own opinion. Switch. Note your observation.</p>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:8px">What was difficult about only listening?</div>
-    <div class="box box-sm"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:6px">When did you feel most heard this season?</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 4 — The Conversation I Keep Postponing</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">4</div><strong>Planning a Difficult Conversation</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Write down a conversation you keep postponing. Use the I Message to write the first sentence. Set a date.</p>
-    <div style="display:flex;gap:8px;margin-top:6px">
-      <div style="flex:1"><div style="font-size:0.72rem;color:var(--gray-400);margin-bottom:3px">With whom:</div><div class="line"></div></div>
-      <div style="flex:2"><div style="font-size:0.72rem;color:var(--gray-400);margin-bottom:3px">When:</div><div class="line"></div></div>
-    </div>
-    <div style="font-size:0.72rem;color:var(--gray-400);margin:8px 0 3px">First sentence (I message):</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">&#9790; Closing — Thank You Note <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(5 min)</span></div>
-  <div class="ex-card close">
-    <div class="ex-title"><div class="ex-num close">&#9790;</div><strong>One Thank You</strong><span class="time-tag">5 min</span></div>
-    <p class="ex-desc">Write one teammate and one concrete reason why you are grateful for something they did. Hand over the card today.</p>
-    <div style="border:2px dashed var(--orange);border-radius:10px;padding:14px;margin-top:10px">
-      <div style="font-size:0.7rem;color:var(--orange);font-weight:700;margin-bottom:6px">TO:</div>
-      <div class="line"></div>
-      <div style="font-size:0.7rem;color:var(--orange);font-weight:700;margin-top:8px;margin-bottom:6px">THANK YOU FOR:</div>
-      <div class="box box-sm"></div>
-    </div>
-  </div>
-
-  <div class="quote-block">
-    <p>"The single biggest problem in communication is the illusion that it has taken place. On the court, the best teams over-communicate. They say out loud what others leave unsaid."</p>
-    <cite>George Bernard Shaw — adapted by Doc Rivers, NBA Coach</cite>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — The Week: Day 4 — Communication</span>
-    <span>Name: _______________________</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DAY 4 — MODERATOR
-════════════════════════════════════════════ -->
-<div class="page" id="d4m">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 4 — Moderator Guide</div>
-      <h2>Communication</h2>
-      <div class="tagline">From reacting to communicating — from talking to connecting</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-mod">Moderator</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="science-box">
-    <strong>Scientific basis</strong>
-    <p style="margin-top:4px"><span class="tier t1">Systematic Review</span> (multiple studies on communication training in sport teams demonstrate improvements in cohesion — see Tod et al., 2011)</p>
-    <p style="margin-top:4px"><span class="tier t2">RCT</span> Holt et al. (2020): 8 weeks of NVC training significantly increases social cohesion versus control group. <em>Psychology of Sport &amp; Exercise.</em></p>
-    <p style="margin-top:4px"><span class="tier t3">Study</span> Turnnidge &amp; Côté (2018): positive, information-rich communication from coach correlates with enjoyment and motivation in young athletes.</p>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Broken Telephone — Debrief facilitation</div>
-    <div class="step"><div class="step-num">1</div><p>Use a basketball tactical phrase as the starting message (e.g., "Switch after the screen, man-to-man coverage on the weak side"). Compare original with end result.</p></div>
-    <div class="step"><div class="step-num">2</div><p>Ask: "How does this work on the court during a match?" Connect to concrete moments: failed rotations, miscommunication during time-outs.</p></div>
-    <div class="step"><div class="step-num">3</div><p>Bridge to the day: "Today we learn to communicate in a way that changes less along the way."</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Feedback Round Trio — Facilitation tips</div>
-    <div class="step"><div class="step-num">1</div><p>Scan the mood before you begin. If there is tension in the team: start with only positive feedback (strengths), add growth-oriented feedback in round 2 after a break.</p></div>
-    <div class="step"><div class="step-num">2</div><p>The observer role is crucial. Give observers a checklist (on the worksheet). Brief them separately: "You assess not the content, only the tone and structure."</p></div>
-    <div class="step"><div class="step-num">3</div><p>After the exercise: "What was harder: giving or receiving?" Almost always receiving. Discuss why.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">YouTube Inspiration</div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"Simon Sinek — Most leaders don't even know the game they're in"</strong> — Interview fragment<br><em>Search: "Simon Sinek listen to understand" — about the difference between listening to respond and listening to understand. 3-5 minute fragment.</em></p>
-    </div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"Golden State Warriors communication"</strong> — NBA mic'd up compilation<br><em>Search: "Warriors communication court talk NBA" — shows how pro teams constantly communicate aloud. Concrete and recognizable for players.</em></p>
-    </div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Coach Tips Day 4</div>
-    <div class="tip-box"><p><strong>Tip 1:</strong> Also introduce the I Message in your own language as moderator. Stop saying "You're doing this wrong." Start with "I see that... I need that..." Players adopt this when they hear it from you.</p></div>
-    <div class="tip-box"><p><strong>Tip 2:</strong> The One Thank You card is powerful. Make sure everyone actually writes and hands it over. A physical card works better than a digital message.</p></div>
-    <div class="warn-box"><p>&#9888; The feedback round can become intense. Stop the exercise if someone gets emotional. Give space, restart after a break. Normalize: "Receiving feedback is difficult for everyone, even for professional players."</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Time Schedule Day 4</div>
-    <ul class="timing-list">
-      <li><div class="chk"></div>Recap Day 3<div class="dur">5 min</div></li>
-      <li><div class="chk"></div>Warm-up: Broken Telephone + debrief<div class="dur">8 min</div></li>
-      <li><div class="chk"></div>Exercise 1: I Message individually<div class="dur">12 min</div></li>
-      <li><div class="chk"></div>Exercise 2: Feedback Round Trio<div class="dur">15 min</div></li>
-      <li><div class="chk"></div>Exercise 3: Mirror Conversation in pairs<div class="dur">12 min</div></li>
-      <li><div class="chk"></div>Exercise 4: Plan difficult conversation<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Closing: Write thank you card<div class="dur">5 min</div></li>
-      <li><div class="chk"></div><strong>Total</strong><div class="dur">67 min</div></li>
-    </ul>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — Moderator Guide Day 4</span>
-    <span>CONFIDENTIAL — For moderator only</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DAY 5 — PLAYER
-     Theme: Team First & Closing Ceremony
-════════════════════════════════════════════ -->
-<div class="page" id="d5p">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 5 — Player Worksheet</div>
-      <h2>Team First &amp; Closing Ceremony</h2>
-      <div class="tagline">From "I" to "we" — close the week with a promise.</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-player">Player</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="goal-box">
-    <div class="gl">Goal Day 5</div>
-    <ul>
-      <li>You can explain what psychological safety means in a team setting</li>
-      <li>You actively contribute to a team contract that serves as a compass for the season</li>
-      <li>You close the week with a conscious sense of connection and personal intention</li>
-    </ul>
-  </div>
-
-  <div class="section-label">&#9728; Warm-up — Trust Exercise <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(10 min)</span></div>
-  <div class="ex-card warm">
-    <div class="ex-title"><div class="ex-num warm">&#9728;</div><strong>Trust Fall</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">In pairs: one person stands with their back to the other and falls backward. The other catches. Then reflect: trust is a choice. Write who you trust most in this team and why.</p>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:8px">I trust most: <div class="line" style="display:inline-block;width:160px;vertical-align:bottom"></div></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:8px">Why:</div>
-    <div class="box box-sm"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:6px">How do you build trust in a team?</div>
-    <div class="box box-sm"></div>
-  </div>
-
-  <div class="section-label">Exercise 1 — Team Contract</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">1</div><strong>My Contribution to the Team Contract</strong><span class="time-tag">15 min</span></div>
-    <p class="ex-desc">Write three personal behavioral rules you want to follow this season. Not sports rules. Purely about how you treat your teammates. This will become part of the shared contract.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-      <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem"><span style="color:var(--orange);font-weight:700;min-width:100px">I promise to</span><div class="line" style="flex:1;margin:0"></div></div>
-      <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem"><span style="color:var(--orange);font-weight:700;min-width:100px">I promise to</span><div class="line" style="flex:1;margin:0"></div></div>
-      <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem"><span style="color:var(--orange);font-weight:700;min-width:100px">I promise to</span><div class="line" style="flex:1;margin:0"></div></div>
-    </div>
-    <div style="display:flex;gap:20px;margin-top:12px">
-      <div style="flex:1"><div style="font-size:0.7rem;color:var(--gray-400);margin-bottom:4px">Signature</div><div class="line"></div></div>
-      <div style="flex:1"><div style="font-size:0.7rem;color:var(--gray-400);margin-bottom:4px">Date</div><div class="line"></div></div>
-    </div>
-  </div>
-
-  <div class="section-label">Exercise 2 — Invisible Contribution</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">2</div><strong>Invisible Contribution</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Write one teammate who did something this week or this season that nobody noticed but was essential. What did that person do? You will read it aloud in the group later (anonymously or with a name, your choice).</p>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:4px">Name (may remain anonymous):</div>
-    <div class="line"></div>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin:8px 0 4px">What did they do?</div>
-    <div class="box box-md"></div>
-  </div>
-
-  <div class="section-label">Exercise 3 — Week Review</div>
-  <div class="ex-card">
-    <div class="ex-title"><div class="ex-num orange">3</div><strong>My Three Insights from This Week</strong><span class="time-tag">10 min</span></div>
-    <p class="ex-desc">Look back on the five days. Write three insights you take with you. One about yourself, one about the team, one about leadership.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
-      <div><div style="font-size:0.7rem;font-weight:700;color:var(--orange);margin-bottom:3px">ABOUT MYSELF</div><div class="box box-sm"></div></div>
-      <div><div style="font-size:0.7rem;font-weight:700;color:var(--orange);margin-bottom:3px">ABOUT THE TEAM</div><div class="box box-sm"></div></div>
-      <div><div style="font-size:0.7rem;font-weight:700;color:var(--orange);margin-bottom:3px">ABOUT LEADERSHIP</div><div class="box box-sm"></div></div>
-    </div>
-  </div>
-
-  <div class="section-label">Exercise 4 — Letter to Myself</div>
-  <div class="ex-card" style="border:2px dashed var(--orange)">
-    <div class="ex-title"><div class="ex-num orange">4</div><strong>Letter to My Future Self</strong><span class="time-tag">12 min</span></div>
-    <p class="ex-desc">Write a letter to yourself 8 months from now, at the end of the season. What do you hope to have learned? What kind of teammate do you want to have become? The letter is sealed today and only opened at the end of the season.</p>
-    <div class="box box-xl"></div>
-    <div style="font-size:0.72rem;color:var(--gray-400);margin-top:8px;display:flex;gap:20px">
-      <span>Date: _______________________</span>
-      <span>Signature: _______________________</span>
-    </div>
-  </div>
-
-  <div class="section-label">&#9790; Closing — Closing Ceremony <span style="color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0">(15 min)</span></div>
-  <div class="ex-card close">
-    <div class="ex-title"><div class="ex-num close">&#9790;</div><strong>Closing Ceremony — Circle of Strength</strong><span class="time-tag">15 min</span></div>
-    <p class="ex-desc">The team stands in a circle. Everyone says one thing they learned about themselves this week. Not about basketball. About character. Close with the team handshake or your own ritual.</p>
-    <div style="font-size:0.75rem;color:var(--gray-400);margin-top:8px">What I learned about my character this week:</div>
-    <div class="box box-md"></div>
-  </div>
-
-  <div class="quote-block">
-    <p>"The strength of the team is each individual member. The strength of each member is the team."</p>
-    <cite>Phil Jackson — 11x NBA Champion Coach, Chicago Bulls &amp; LA Lakers</cite>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — The Week: Day 5 — Team First &amp; Closing Ceremony</span>
-    <span>Name: _______________________</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DAY 5 — MODERATOR
-════════════════════════════════════════════ -->
-<div class="page" id="d5m">
-  <div class="page-header">
-    <div class="ph-left">
-      <div class="day-badge">Day 5 — Moderator Guide</div>
-      <h2>Team First &amp; Closing Ceremony</h2>
-      <div class="tagline">The most powerful day of the week — give it the space it deserves</div>
-    </div>
-    <div class="ph-right">
-      <span class="page-badge badge-mod">Moderator</span>
-      <div class="brand-tiny">Character <span>First</span> — The Week</div>
-    </div>
-  </div>
-
-  <div class="science-box">
-    <strong>Scientific basis</strong>
-    <p style="margin-top:4px"><span class="tier t1">Meta-analysis</span> Frazier et al. (2017): psychological safety strongly correlates with creativity, learning behavior, and willingness to take risks (136 samples). <em>Personnel Psychology, 70(1), 113–165.</em></p>
-    <p style="margin-top:4px"><span class="tier t2">Longitudinal study</span> Fransen et al. (2015): teams with a strong "we" culture show higher performance stability and lower dropout. <em>Journal of Sport Sciences.</em></p>
-    <p style="margin-top:4px"><span class="tier t3">Framework</span> Seligman (2011): meaning and accomplishment are the most underrated components of well-being in adolescents — a conscious closing activates both.</p>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Trust Fall — Guaranteeing safety</div>
-    <div class="step"><div class="step-num">1</div><p>Demonstrate yourself first. Stand and fall backward yourself. This eliminates the threshold for players who find it nerve-wracking.</p></div>
-    <div class="step"><div class="step-num">2</div><p>Brief catchers: "You take full responsibility. Feet slightly apart, hands at shoulder-blade height. Ready = ready."</p></div>
-    <div class="step"><div class="step-num">3</div><p>Debrief: "Trust is a choice. You chose to fall. That is also what you do every day as a teammate."</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Team Contract — Group process</div>
-    <div class="step"><div class="step-num">1</div><p>Individual writing (3 min). Then groups of 3: compare and together choose the strongest formulation of each promise.</p></div>
-    <div class="step"><div class="step-num">2</div><p>Plenary: each group proposes 1 promise. Vote: hands up for agreement. Five promises become the Team Contract.</p></div>
-    <div class="step"><div class="step-num">3</div><p>Have everyone sign. Put it up in the locker room or send it digitally in the team group. <strong>Say: "In 4 weeks we'll look back at this together."</strong></p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Closing Ceremony — Preparation &amp; Script</div>
-    <div class="step"><div class="step-num">1</div><p>Circle formation. Dim lights if possible. Music in the background (instrumental, no lyrics).</p></div>
-    <div class="step"><div class="step-num">2</div><p>Moderator opens: <strong>"We end the week the way we started: in a circle. In five days you have shared things that are normally never said out loud. That takes courage. I see that courage in each of you."</strong></p></div>
-    <div class="step"><div class="step-num">3</div><p>Read Invisible Contributions aloud (anonymously unless the writer gives permission). After each one: 3 seconds of silence.</p></div>
-    <div class="step"><div class="step-num">4</div><p>Round: everyone says one thing they learned about character. Moderator closes. Team ritual (handshake, hands in the middle, own tradition).</p></div>
-    <div class="step"><div class="step-num">5</div><p>Seal the letters. Moderator keeps them. <strong>Say explicitly: "I'll give them back at the first session of The Season."</strong></p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">YouTube Inspiration</div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"Extreme Ownership — Jocko Willink"</strong> — TEDx Talk fragment<br><em>Search: "Jocko Willink extreme ownership TEDx" — use fragment 0:00–4:00. Message: the best leaders take responsibility for their team, not just themselves.</em></p>
-    </div>
-    <div class="yt-box">
-      <div class="yt-label">&#9654; YouTube Inspiration</div>
-      <p><strong>"Golden State Warriors Team Culture"</strong> — 60 Minutes fragment<br><em>Search: "Golden State Warriors team culture 60 minutes" — shows how a team consciously builds a culture of trust and "we". Powerful closing fragment for Day 5.</em></p>
-    </div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Coach Tips Day 5 — The Closing Day</div>
-    <div class="tip-box"><p><strong>Tip 1:</strong> Also write a letter to your future self as moderator. Share a fragment. Your vulnerability closes the week in the spirit in which it began.</p></div>
-    <div class="tip-box"><p><strong>Tip 2:</strong> Send each player a personal message after the week: one specific observation of their character, not their basketball game. This is the most powerful feedback you will ever give.</p></div>
-    <div class="tip-box"><p><strong>Tip 3:</strong> Use the week as a starting point, not an end point. Name how The Season builds on everything from this week. Continuity makes it sustainable.</p></div>
-    <div class="warn-box"><p>&#9888; Give the closing ceremony at least 20 minutes. Feeling rushed is the worst thing you can do. If the week has gone well, players want this moment. Give it the space.</p></div>
-  </div>
-
-  <div class="mod-section">
-    <div class="mod-section-title">Time Schedule Day 5</div>
-    <ul class="timing-list">
-      <li><div class="chk"></div>Recap Day 4<div class="dur">5 min</div></li>
-      <li><div class="chk"></div>Warm-up: Trust Fall + debrief<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 1: Team Contract<div class="dur">15 min</div></li>
-      <li><div class="chk"></div>Exercise 2: Write Invisible Contribution<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 3: Week Review<div class="dur">10 min</div></li>
-      <li><div class="chk"></div>Exercise 4: Letter to myself<div class="dur">12 min</div></li>
-      <li><div class="chk"></div>Closing: Closing Ceremony<div class="dur">20 min</div></li>
-      <li><div class="chk"></div><strong>Total</strong><div class="dur">82 min</div></li>
-    </ul>
-  </div>
-
-  <div class="page-footer">
-    <span>Character First — Moderator Guide Day 5</span>
-    <span>CONFIDENTIAL — For moderator only</span>
-  </div>
-</div>
-
-</div><!-- end premium-wall -->
-</div><!-- end .pages -->
 </body>
 </html>
