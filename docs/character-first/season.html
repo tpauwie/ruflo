@@ -349,6 +349,18 @@
       pointer-events: all;
     }
 
+    /* NAV LINKS + HAMBURGER */
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 600px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 20px; gap: 1rem; border-bottom: 1px solid var(--gray-700); z-index: 99; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
     /* FOOTER */
     footer {
       background: var(--gray-900);
@@ -400,14 +412,15 @@
   <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
   <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
 </a>
-    <div style="display:flex;gap:1.5rem;align-items:center">
-      <a href="index.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Home</a>
-      <a href="library.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Bibliotheek</a>
-      <a href="season.html" style="color:#f05a28;text-decoration:none;font-size:0.85rem;font-weight:600">The Season</a>
-      <a href="week.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">The Week</a>
-      <a href="planbuilder.html" style="color:#ccc;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s" onmouseover="this.style.color='#f05a28'" onmouseout="this.style.color='#ccc'">Sessieplan</a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="library.html">Bibliotheek</a>
+      <a href="season.html" class="active">The Season</a>
+      <a href="week.html">The Week</a>
+      <a href="planbuilder.html">Sessieplan</a>
       <a href="en/season.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #555;padding:.3rem .7rem;border-radius:4px;">EN</a>
     </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 
   <section class="hero">
@@ -421,10 +434,10 @@
     <div style="background:linear-gradient(135deg,#1a0a04,#2a1208);border:1px solid rgba(240,90,40,.35);border-left:4px solid #f05a28;border-radius:12px;padding:2rem 2rem 1.6rem;">
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;flex-wrap:wrap;">
         <span style="background:#f05a28;color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .75rem;border-radius:3px;">Mindset</span>
-        <span style="font-size:.75rem;color:#888;font-style:italic;">Geïnspireerd door Jay Shetty — Think Like a Monk (2020)</span>
+        <span style="font-size:.75rem;color:#888;font-style:italic;">Ge&#239;nspireerd door Jay Shetty &#8212; Think Like a Monk (2020)</span>
       </div>
-      <p style="color:#e8d5c4;font-size:1rem;line-height:1.75;margin-bottom:1.2rem;">"Don't compare your beginning to someone else's middle." Shetty leert ons dat groei altijd individueel is. Elk seizoen begint met een eigen startpunt — niet dat van een teamgenoot of een ideaalbeeld. De 8 maanden van The Season zijn ontworpen rond dat principe: jij groeit in jouw tempo, op basis van jouw waarden en jouw karakter.</p>
-      <p style="color:#c97a55;font-size:.88rem;line-height:1.65;">Shetty beschrijft in <em>Think Like a Monk</em> hoe monniken negativiteit niet vermijden, maar begrijpen. Datzelfde principe zit in elke maand van dit programma: niet weglopen van druk, tegenslagen of conflict — maar er bewust mee leren omgaan.</p>
+      <p style="color:#e8d5c4;font-size:1rem;line-height:1.75;margin-bottom:1.2rem;">&#8220;Don&#8217;t compare your beginning to someone else&#8217;s middle.&#8221; Shetty leert ons dat groei altijd individueel is. Elk seizoen begint met een eigen startpunt &#8212; niet dat van een teamgenoot of een ideaalbeeld. De 8 maanden van The Season zijn ontworpen rond dat principe: jij groeit in jouw tempo, op basis van jouw waarden en jouw karakter.</p>
+      <p style="color:#c97a55;font-size:.88rem;line-height:1.65;">Shetty beschrijft in <em>Think Like a Monk</em> hoe monniken negativiteit niet vermijden, maar begrijpen. Datzelfde principe zit in elke maand van dit programma: niet weglopen van druk, tegenslagen of conflict &#8212; maar er bewust mee leren omgaan.</p>
     </div>
   </div>
 
@@ -463,22 +476,22 @@
           <h3>Oefeningen</h3>
           <ul class="exercise-list">
             <li>
-              <div class="exercise-icon">🪞</div>
+              <div class="exercise-icon">&#x1F9B8;</div>
               <div><strong>Mijn Drie Woorden</strong>Kies drie woorden die jou het best beschrijven als ploegmaat. Vraag ook drie teamgenoten om drie woorden over jou te kiezen en vergelijk.</div>
             </li>
             <li>
-              <div class="exercise-icon">🔥</div>
+              <div class="exercise-icon">&#x1F525;</div>
               <div><strong>Energiegever vs Energieslurper</strong>Schrijf op welke momenten in de training je energie krijgt en welke je energie kosten. Bespreek met je coach.</div>
             </li>
             <li>
-              <div class="exercise-icon">🗺️</div>
+              <div class="exercise-icon">&#x1F5FA;&#xFE0F;</div>
               <div><strong>Persoonlijke Waardenkompas</strong>Rangschik 12 waarden (loyaliteit, moed, eerlijkheid...) van meest naar minst belangrijk voor jou. Reflecteer: leef je ernaar?</div>
             </li>
           </ul>
         </div>
         <div class="quote-card">
-          <p class="quote-text">"The most important thing is to try and inspire people so that they can be great in whatever they want to do."</p>
-          <div class="quote-author">Kobe Bryant — 5x NBA Champion, Los Angeles Lakers</div>
+          <p class="quote-text">&#8220;The most important thing is to try and inspire people so that they can be great in whatever they want to do.&#8221;</p>
+          <div class="quote-author">Kobe Bryant &#8212; 5x NBA Champion, Los Angeles Lakers</div>
         </div>
       </div>
     </section>
@@ -500,28 +513,28 @@
         </div>
         <div class="card">
           <h3>Wetenschap</h3>
-          <p>Lazarus en Folkman (1984) beschrijven twee types copingstijlen: probleemgericht en emotiongericht. Atleten die beide strategieën beheersen presteren stabieler onder druk volgens recent sportpsychologisch onderzoek.</p>
+          <p>Lazarus en Folkman (1984) beschrijven twee types copingstijlen: probleemgericht en emotiongericht. Atleten die beide strategie&#235;n beheersen presteren stabieler onder druk volgens recent sportpsychologisch onderzoek.</p>
         </div>
         <div class="card">
           <h3>Oefeningen</h3>
           <ul class="exercise-list">
             <li>
-              <div class="exercise-icon">🌬️</div>
+              <div class="exercise-icon">&#x1F32C;&#xFE0F;</div>
               <div><strong>Box Breathing</strong>4 tellen inademen, 4 tellen vasthouden, 4 tellen uitademen, 4 tellen wachten. Oefen voor elke training gedurende 2 minuten.</div>
             </li>
             <li>
-              <div class="exercise-icon">🗒️</div>
+              <div class="exercise-icon">&#x1F5D2;&#xFE0F;</div>
               <div><strong>Stressdagboek</strong>Schrijf 5 minuten na elke wedstrijd: wat voelde ik, wat dacht ik, en wat deed ik? Zoek patronen over een maand.</div>
             </li>
             <li>
-              <div class="exercise-icon">🎯</div>
+              <div class="exercise-icon">&#x1F3AF;</div>
               <div><strong>Worst Case Best Case</strong>Schrijf het ergste dat kan gebeuren en het beste dat kan gebeuren. Dan schrijf je het meest waarschijnlijke. Je brein stopt met catastroferen.</div>
             </li>
           </ul>
         </div>
         <div class="quote-card">
-          <p class="quote-text">"Pressure is a privilege — it only comes to those who earn it."</p>
-          <div class="quote-author">Billie Jean King — 39x Grand Slam Champion</div>
+          <p class="quote-text">&#8220;Pressure is a privilege &#8212; it only comes to those who earn it.&#8221;</p>
+          <div class="quote-author">Billie Jean King &#8212; 39x Grand Slam Champion</div>
         </div>
       </div>
     </section>
@@ -529,7 +542,7 @@
 
     <!-- MAAND 3 -->
     <section class="month-section premium-locked" id="maand-3">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium inhoud</p><a href="contact.html" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>3</strong></div>
         <div class="month-meta">
@@ -538,255 +551,90 @@
         </div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Elk team heeft verschillende rollen nodig om te functioneren. Je ontdekt welke rol jij op dit moment speelt, welke rol je wil groeien in, en hoe je die rol zo goed mogelijk vervult.</p>
-        </div>
-        <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Carron en Eys (2012) tonen in hun teamcohesiemodel aan dat rolhelderheid, weten wat van je verwacht wordt, een van de sterkste voorspellers is van zowel taaklust als sociale cohesie in sportteams.</p>
-        </div>
-        <div class="card">
-          <h3>Oefeningen</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🧭</div>
-              <div><strong>Rolcompass</strong>Verken vier rollen: Leider, Motor, Denker en Stabiele Kracht. Vul een kompas in van 0 tot 10 per rol. Bespreek met een teamgenoot.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">👥</div>
-              <div><strong>Rolcirkel</strong>Het team staat samen in een cirkel. Elke speler benoemt één concrete bijdrage die hij of zij levert aan het team. Daarna mag iemand anders aanvullen.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">📋</div>
-              <div><strong>Mijn Top 3 Bijdragen</strong>Schrijf wekelijks drie concrete dingen op die jij hebt bijgedragen aan het team, niet op statistieken, maar op gedrag en houding.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"The strength of the team is each individual member. The strength of each member is the team. I never tried to be the best player. I tried to be the player we needed."</p>
-          <div class="quote-author">Phil Jackson — 11x NBA Championship coach</div>
-        </div>
+        <div class="card"><h3>Wat je leert</h3><p>Elk team heeft verschillende rollen nodig om te functioneren. Je ontdekt welke rol jij op dit moment speelt, welke rol je wil groeien in, en hoe je die rol zo goed mogelijk vervult.</p></div>
+        <div class="card"><h3>Wetenschap</h3><p>Carron en Eys (2012) tonen in hun teamcohesiemodel aan dat rolhelderheid, weten wat van je verwacht wordt, een van de sterkste voorspellers is van zowel taaklust als sociale cohesie in sportteams.</p></div>
+        <div class="card"><h3>Oefeningen</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F9ED;</div><div><strong>Rolcompass</strong>Verken vier rollen: Leider, Motor, Denker en Stabiele Kracht.</div></li><li><div class="exercise-icon">&#x1F465;</div><div><strong>Rolcirkel</strong>Het team staat samen in een cirkel. Elke speler benoemt &#233;&#233;n concrete bijdrage.</div></li><li><div class="exercise-icon">&#x1F4CB;</div><div><strong>Mijn Top 3 Bijdragen</strong>Schrijf wekelijks drie concrete dingen op die jij hebt bijgedragen aan het team.</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;The strength of the team is each individual member. The strength of each member is the team.&#8221;</p><div class="quote-author">Phil Jackson &#8212; 11x NBA Championship coach</div></div>
       </div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MAAND 4 -->
     <section class="month-section premium-locked" id="maand-4">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium inhoud</p><a href="contact.html" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>4</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Communicatie</h2>
-        </div>
+        <div class="month-meta"><div class="theme-label">Thema</div><h2>Communicatie</h2></div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Hoe je praat bepaalt hoe je samenwerkt. Je leert het verschil tussen reageren en communiceren, hoe je feedback geeft zonder de sfeer te beschadigen, en hoe je moeilijke gesprekken niet vermijdt maar aangaat.</p>
-        </div>
-        <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Marshall Rosenberg ontwikkelde Nonviolent Communication (NVC): geweldloze communicatie die focust op behoeften in plaats van verwijten. Sportteams die NVC trainen rapporteren minder conflicten en hogere cohesie (Holt et al., 2020).</p>
-        </div>
-        <div class="card">
-          <h3>Oefeningen</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">💬</div>
-              <div><strong>Ik Boodschap</strong>Oefen met het model: "Ik zie... Ik voel... Ik heb nodig... Ik vraag je om..." Schrijf drie situaties uit je sportleven om dit te oefenen.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🔄</div>
-              <div><strong>Feedbackronde Trio</strong>In groepen van drie: één persoon geeft feedback, één ontvangt, één observeert op toon en woordkeuze. Wissel na elke ronde van rol.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🤝</div>
-              <div><strong>Moeilijk Gesprek</strong>Schrijf een gesprek op dat je al lang uitstelt met een coach of teamgenoot. Gebruik de ik boodschap en plan het gesprek in binnen 7 dagen.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Communication is the most important skill any leader can possess. I talked to my players like human beings, not pieces on a chess board, and that changed everything."</p>
-          <div class="quote-author">Doc Rivers — NBA Head Coach, Philadelphia 76ers</div>
-        </div>
+        <div class="card"><h3>Wat je leert</h3><p>Hoe je praat bepaalt hoe je samenwerkt. Je leert het verschil tussen reageren en communiceren, hoe je feedback geeft zonder de sfeer te beschadigen.</p></div>
+        <div class="card"><h3>Wetenschap</h3><p>Marshall Rosenberg ontwikkelde Nonviolent Communication (NVC): geweldloze communicatie die focust op behoeften in plaats van verwijten.</p></div>
+        <div class="card"><h3>Oefeningen</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F4AC;</div><div><strong>Ik Boodschap</strong>Oefen met het model: &#8220;Ik zie... Ik voel... Ik heb nodig... Ik vraag je om...&#8221;</div></li><li><div class="exercise-icon">&#x1F504;</div><div><strong>Feedbackronde Trio</strong>In groepen van drie: &#233;&#233;n persoon geeft feedback, &#233;&#233;n ontvangt, &#233;&#233;n observeert.</div></li><li><div class="exercise-icon">&#x1F91D;</div><div><strong>Moeilijk Gesprek</strong>Schrijf een gesprek op dat je al lang uitstelt. Plan het gesprek in binnen 7 dagen.</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;Communication is the most important skill any leader can possess.&#8221;</p><div class="quote-author">Doc Rivers &#8212; NBA Head Coach, Philadelphia 76ers</div></div>
       </div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MAAND 5 -->
     <section class="month-section premium-locked" id="maand-5">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium inhoud</p><a href="contact.html" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>5</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Team Eerst</h2>
-        </div>
+        <div class="month-meta"><div class="theme-label">Thema</div><h2>Team Eerst</h2></div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>Wat je leert</h3>
-          <p>De stap van "ik" naar "wij" is de moeilijkste in topsport. Je onderzoekt wat het betekent om persoonlijk belang opzij te zetten, hoe je een cultuur van vertrouwen bouwt, en wat psychologische veiligheid is.</p>
-        </div>
-        <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Amy Edmondson (Harvard, 1999) ontdekte dat de beste teams niet samengesteld zijn uit de beste individuen, maar uit teams met de hoogste psychologische veiligheid: de overtuiging dat je fouten mag maken zonder gestraft te worden.</p>
-        </div>
-        <div class="card">
-          <h3>Oefeningen</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">📜</div>
-              <div><strong>Team Contract</strong>Het team stelt samen 5 gedragsregels op die iedereen nakomt. Niet over winnen, maar over gedrag: "Wij geven altijd energie aan wie het moeilijk heeft."</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🙋</div>
-              <div><strong>Hulp Vragen</strong>Oefen om actief hulp te vragen tijdens trainingen. Één keer per training vraag je een teamgenoot om hulp bij iets specifieks.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">⭐</div>
-              <div><strong>Onzichtbare Bijdrage</strong>Na elke wedstrijd schrijft iedereen één teamgenoot op die iets deed wat niemand opmerkte maar essentieel was voor het team. Deel het op het einde van de maand.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Talent wins games, but teamwork and intelligence win championships. The most important thing in basketball is trust. Trust your teammates. Trust the process."</p>
-          <div class="quote-author">Michael Jordan — 6x NBA Champion, Chicago Bulls</div>
-        </div>
+        <div class="card"><h3>Wat je leert</h3><p>De stap van &#8220;ik&#8221; naar &#8220;wij&#8221; is de moeilijkste in topsport. Je onderzoekt wat het betekent om persoonlijk belang opzij te zetten.</p></div>
+        <div class="card"><h3>Wetenschap</h3><p>Amy Edmondson (Harvard, 1999) ontdekte dat de beste teams niet samengesteld zijn uit de beste individuen, maar uit teams met de hoogste psychologische veiligheid.</p></div>
+        <div class="card"><h3>Oefeningen</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F4DC;</div><div><strong>Team Contract</strong>Het team stelt samen 5 gedragsregels op die iedereen nakomt.</div></li><li><div class="exercise-icon">&#x1F64B;</div><div><strong>Hulp Vragen</strong>Oefen om actief hulp te vragen tijdens trainingen.</div></li><li><div class="exercise-icon">&#x2B50;</div><div><strong>Onzichtbare Bijdrage</strong>Na elke wedstrijd schrijft iedereen &#233;&#233;n teamgenoot op die iets deed wat niemand opmerkte.</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;Talent wins games, but teamwork and intelligence win championships.&#8221;</p><div class="quote-author">Michael Jordan &#8212; 6x NBA Champion, Chicago Bulls</div></div>
       </div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MAAND 6 -->
     <section class="month-section premium-locked" id="maand-6">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium inhoud</p><a href="contact.html" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>6</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Veerkracht &amp; Groeimindset</h2>
-        </div>
+        <div class="month-meta"><div class="theme-label">Thema</div><h2>Veerkracht &amp; Groeimindset</h2></div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Hoe reageer jij op tegenslagen, fouten en verlies? Je leert het verschil tussen een fixed mindset en een growth mindset en ontwikkelt concrete tools om sneller te herstellen van teleurstellingen.</p>
-        </div>
-        <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Carol Dweck (Stanford, 2006) bewees dat atleten met een groeimindset, die geloven dat talent ontwikkelbaar is, harder trainen, beter omgaan met feedback en meer plezier hebben in hun sport op de lange termijn.</p>
-        </div>
-        <div class="card">
-          <h3>Oefeningen</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🔄</div>
-              <div><strong>Herschrijf de Fout</strong>Schrijf een recente fout op. Verander elke zin met "ik kan het niet" naar "ik kan het nog niet" en schrijf wat je er concreet van kan leren.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">📈</div>
-              <div><strong>Progressielijst</strong>Hou een maandelijkse lijst bij van drie dingen die je beter kunt dan vorige maand. Geen vergelijking met anderen, enkel met jezelf.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">💪</div>
-              <div><strong>Moeilijkste Moment</strong>Denk terug aan het moeilijkste moment van dit seizoen. Schrijf op wat je deed, wat je leerde en hoe je sterker bent geworden door het door te zetten.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"I have missed more than 9,000 shots in my career. I have lost almost 300 games. Twenty six times I have been trusted to take the game winning shot and missed. I have failed over and over and over again in my life. And that is why I succeed."</p>
-          <div class="quote-author">Michael Jordan — 6x NBA Champion, Chicago Bulls</div>
-        </div>
+        <div class="card"><h3>Wat je leert</h3><p>Hoe reageer jij op tegenslagen, fouten en verlies? Je leert het verschil tussen een fixed mindset en een growth mindset.</p></div>
+        <div class="card"><h3>Wetenschap</h3><p>Carol Dweck (Stanford, 2006) bewees dat atleten met een groeimindset harder trainen, beter omgaan met feedback en meer plezier hebben in hun sport.</p></div>
+        <div class="card"><h3>Oefeningen</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F504;</div><div><strong>Herschrijf de Fout</strong>Verander elke zin met &#8220;ik kan het niet&#8221; naar &#8220;ik kan het nog niet&#8221;.</div></li><li><div class="exercise-icon">&#x1F4C8;</div><div><strong>Progressielijst</strong>Hou een maandelijkse lijst bij van drie dingen die je beter kunt dan vorige maand.</div></li><li><div class="exercise-icon">&#x1F4AA;</div><div><strong>Moeilijkste Moment</strong>Denk terug aan het moeilijkste moment van dit seizoen. Schrijf op wat je leerde.</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;I have failed over and over and over again in my life. And that is why I succeed.&#8221;</p><div class="quote-author">Michael Jordan &#8212; 6x NBA Champion, Chicago Bulls</div></div>
       </div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MAAND 7 -->
     <section class="month-section premium-locked" id="maand-7">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium inhoud</p><a href="contact.html" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>7</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Leiderschap van Binnenuit</h2>
-        </div>
+        <div class="month-meta"><div class="theme-label">Thema</div><h2>Leiderschap van Binnenuit</h2></div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Leiderschap gaat niet over de aanvoerdersband. Je ontdekt dat elke speler op elk moment kan leiden door zijn of haar gedrag, houding en woorden. Informeel leiderschap is het krachtigste wat er bestaat in een team.</p>
-        </div>
-        <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Côté en Gilbert (2009) onderscheiden drie soorten leiders in sport: formeel, informeel en emotioneel. Informele leiders, spelers zonder officiële rol maar met grote invloed op de teamcultuur, bepalen vaak meer dan de aanvoerder.</p>
-        </div>
-        <div class="card">
-          <h3>Oefeningen</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">🔦</div>
-              <div><strong>Wie Volg Ik?</strong>Schrijf op welke drie teamgenoten jij het meest volgt in gedrag, zonder dat ze aanvoerder zijn. Wat doen ze? Wat maakt hen invloedrijk?</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🗣️</div>
-              <div><strong>De Eerste Stem</strong>Oefen om tijdens teamvergaderingen of time outs als eerste iets positiefs of constructiefs te zeggen. Eén keer per week, één concrete suggestie.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🌱</div>
-              <div><strong>Mentor een Jongere Speler</strong>Kies één jongere speler of nieuwe teamgenoot. Besteed elke week 5 minuten om hen iets bij te brengen, technisch of mentaal.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"I like pressure. I think pressure is an amazing thing. It's a privilege to be in pressure situations."</p>
-          <div class="quote-author">LeBron James — 4x NBA Champion, Los Angeles Lakers</div>
-        </div>
+        <div class="card"><h3>Wat je leert</h3><p>Leiderschap gaat niet over de aanvoerdersband. Je ontdekt dat elke speler op elk moment kan leiden door zijn of haar gedrag, houding en woorden.</p></div>
+        <div class="card"><h3>Wetenschap</h3><p>C&#244;t&#233; en Gilbert (2009) onderscheiden drie soorten leiders in sport: formeel, informeel en emotioneel.</p></div>
+        <div class="card"><h3>Oefeningen</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x1F526;</div><div><strong>Wie Volg Ik?</strong>Schrijf op welke drie teamgenoten jij het meest volgt in gedrag, zonder dat ze aanvoerder zijn.</div></li><li><div class="exercise-icon">&#x1F5E3;&#xFE0F;</div><div><strong>De Eerste Stem</strong>Oefen om tijdens teamvergaderingen als eerste iets positiefs te zeggen.</div></li><li><div class="exercise-icon">&#x1F331;</div><div><strong>Mentor een Jongere Speler</strong>Besteed elke week 5 minuten om een jongere speler iets bij te brengen.</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;I like pressure. I think pressure is an amazing thing.&#8221;</p><div class="quote-author">LeBron James &#8212; 4x NBA Champion, Los Angeles Lakers</div></div>
       </div>
     </section>
     <div class="month-divider"></div>
 
     <!-- MAAND 8 -->
     <section class="month-section premium-locked" id="maand-8">
-      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>
+      <div class="premium-lock"><div class="lock-icon">&#x1F512;</div><p>Premium inhoud</p><a href="contact.html" class="lock-cta">Vraag toegang aan</a></div>
       <div class="month-header">
         <div class="month-number"><span>MAAND</span><strong>8</strong></div>
-        <div class="month-meta">
-          <div class="theme-label">Thema</div>
-          <h2>Nalatenschap &amp; Volgende Stap</h2>
-        </div>
+        <div class="month-meta"><div class="theme-label">Thema</div><h2>Nalatenschap &amp; Volgende Stap</h2></div>
       </div>
       <div class="month-body">
-        <div class="card">
-          <h3>Wat je leert</h3>
-          <p>Wat wil je achterlaten in dit team? Hoe wil je herinnerd worden als speler, als mens en als ploegmaat? Je sluit het seizoen af met reflectie, intenties voor de toekomst en een brief aan jezelf.</p>
-        </div>
-        <div class="card">
-          <h3>Wetenschap</h3>
-          <p>Positieve psychologie (Seligman, 2011) beschrijft het belang van meaning, zingeving, als een van de vijf pijlers van welzijn. Atleten die bewust nadenken over hun impact en nalatenschap rapporteren hogere motivatie en minder burn out.</p>
-        </div>
-        <div class="card">
-          <h3>Oefeningen</h3>
-          <ul class="exercise-list">
-            <li>
-              <div class="exercise-icon">✉️</div>
-              <div><strong>Brief aan Mezelf</strong>Schrijf een brief aan jezelf van volgend seizoen. Wat hoop je te hebben geleerd? Welk type ploegmaat wil je zijn geworden? De brief wordt gesloten bewaard.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🏆</div>
-              <div><strong>Mijn Bijdrage dit Seizoen</strong>Schrijf vijf concrete momenten op dit seizoen waarop jij iets hebt bijgedragen dat het team sterker maakte. Geen statistieken, enkel gedrag en karakter.</div>
-            </li>
-            <li>
-              <div class="exercise-icon">🔮</div>
-              <div><strong>Drie Intenties</strong>Stel drie concrete intenties voor volgend seizoen op. Eén voor jezelf, één voor het team en één voor je coach. Maak ze specifiek en meetbaar in gedrag.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"The strength of the team is each individual member. The strength of each member is the team."</p>
-          <div class="quote-author">Phil Jackson — 11x NBA Champion Coach, Chicago Bulls &amp; LA Lakers</div>
-        </div>
+        <div class="card"><h3>Wat je leert</h3><p>Wat wil je achterlaten in dit team? Je sluit het seizoen af met reflectie, intenties voor de toekomst en een brief aan jezelf.</p></div>
+        <div class="card"><h3>Wetenschap</h3><p>Positieve psychologie (Seligman, 2011) beschrijft het belang van meaning, zingeving, als een van de vijf pijlers van welzijn.</p></div>
+        <div class="card"><h3>Oefeningen</h3><ul class="exercise-list"><li><div class="exercise-icon">&#x2709;&#xFE0F;</div><div><strong>Brief aan Mezelf</strong>Schrijf een brief aan jezelf van volgend seizoen. De brief wordt gesloten bewaard.</div></li><li><div class="exercise-icon">&#x1F3C6;</div><div><strong>Mijn Bijdrage dit Seizoen</strong>Schrijf vijf concrete momenten op dit seizoen waarop jij iets hebt bijgedragen.</div></li><li><div class="exercise-icon">&#x1F52E;</div><div><strong>Drie Intenties</strong>Stel drie concrete intenties voor volgend seizoen op. Eén voor jezelf, één voor het team en één voor je coach.</div></li></ul></div>
+        <div class="quote-card"><p class="quote-text">&#8220;The strength of the team is each individual member. The strength of each member is the team.&#8221;</p><div class="quote-author">Phil Jackson &#8212; 11x NBA Champion Coach, Chicago Bulls &amp; LA Lakers</div></div>
       </div>
     </section>
 
@@ -798,6 +646,10 @@
   </footer>
 
   <script>
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+
     const pills = document.querySelectorAll('.month-pill');
     const sections = document.querySelectorAll('.month-section');
 

@@ -554,7 +554,7 @@
       </div>
     </div>
 
-    <button class="generate-btn" id="generate-btn">Genereer Sessieplan →</button>
+    <button class="generate-btn" id="generate-btn">Genereer Sessieplan &rarr;</button>
   </div>
 
   <!-- OUTPUT -->
@@ -590,7 +590,7 @@
     <a href="season.html">The Season</a>
     <a href="week.html">The Week</a>
   </nav>
-  <p><strong>Character First</strong> — Karakter boven prestatie</p>
+  <p><strong>Character First</strong> &mdash; Karakter boven prestatie</p>
 </footer>
 
 <script>
@@ -600,7 +600,7 @@
 
   const exercises = [
     // Zelfkennis
-    { id: 10, name: "Twee Waarheden Één Leugen", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 8, desc: "Zelfopenbaring via een spelformaat met lage drempel." },
+    { id: 10, name: "Twee Waarheden E&#233;n Leugen", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 8, desc: "Zelfopenbaring via een spelformaat met lage drempel." },
     { id: 1, name: "Mijn Sportersprofiel", theme: "Zelfkennis", ages: ["U14","U16","Senior"], duration: 10, desc: "Visuele zelfanalyse via een radargrafiek." },
     { id: 3, name: "Waardenveiling", theme: "Zelfkennis", ages: ["U16","Senior"], duration: 10, desc: "Prioriteiten stellen via een veiling van kernwaarden." },
     { id: 5, name: "Brief aan Jongere Ik", theme: "Zelfkennis", ages: ["Senior"], duration: 10, desc: "Reflectie op groei en lessen via een brief." },
@@ -614,7 +614,7 @@
     // Mijn Rol
     { id: 23, name: "Menselijke Grafiek", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 8, desc: "Visueel in kaart brengen van teamrollen en posities." },
     { id: 24, name: "Rollenspel Wissel", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 10, desc: "Ervaar de rol van een ploegmaat." },
-    { id: 26, name: "Leiderschap Spectrum", theme: "Mijn Rol", ages: ["U16","Senior"], duration: 10, desc: "Ontdek jouw leiderschapsstijl op een continuüm." },
+    { id: 26, name: "Leiderschap Spectrum", theme: "Mijn Rol", ages: ["U16","Senior"], duration: 10, desc: "Ontdek jouw leiderschapsstijl op een continu&#252;m." },
     { id: 21, name: "Rolcompass", theme: "Mijn Rol", ages: ["U14","U16","Senior"], duration: 8, desc: "Begrijp formele en informele rol via een kompas." },
     // Communicatie
     { id: 37, name: "Aanmoedigingschallenge", theme: "Communicatie", ages: ["U14","U16","Senior"], duration: 7, desc: "Oefen positieve en specifieke aanmoediging onder tijdsdruk." },
@@ -639,7 +639,6 @@
 
   const slotCounts = { 30: 3, 45: 4, 60: 5, 90: 6 };
 
-  // Limit theme selection to max 3
   const themeChecks = document.querySelectorAll('input[name="theme"]');
   themeChecks.forEach(cb => {
     cb.addEventListener('change', () => {
@@ -659,19 +658,16 @@
     const selectedThemes = [...document.querySelectorAll('input[name="theme"]:checked')].map(c => c.value);
 
     if (selectedThemes.length === 0) {
-      alert('Selecteer minstens één thema.');
+      alert('Selecteer minstens &#233;&#233;n thema.');
       return;
     }
 
-    // Filter exercises
     let pool = exercises.filter(e =>
       e.ages.includes(age) && selectedThemes.includes(e.theme)
     );
 
-    // Sort by duration ascending
     pool.sort((a, b) => a.duration - b.duration);
 
-    // Opening ritual (always Kracht van de Kring)
     const openingRitual = {
       id: 'opening',
       name: 'Kracht van de Kring',
@@ -683,46 +679,38 @@
       label: 'Opening'
     };
 
-    // Closing reflection
     const closingRitual = {
       id: 'closing',
       name: 'Slotreflectie',
       theme: 'Team Eerst',
       ages: ["U14","U16","Senior"],
       duration: 5,
-      desc: 'Sluit de sessie af: elk lid deelt één woord dat de sessie samenvat.',
+      desc: 'Sluit de sessie af: elk lid deelt &#233;&#233;n woord dat de sessie samenvat.',
       special: true,
       label: 'Afsluiting'
     };
 
     const maxSlots = slotCounts[duration] || 4;
-    const contentSlots = maxSlots - 2; // subtract opening + closing
-    const availableDuration = duration - 10; // minus 5 opening + 5 closing
+    const contentSlots = maxSlots - 2;
+    const availableDuration = duration - 10;
 
-    // Pick exercises to fill content slots within available duration
     const picked = [];
     let usedDuration = 0;
     for (const ex of pool) {
       if (picked.length >= contentSlots) break;
-      if (usedDuration + ex.duration > availableDuration + 5) continue; // slight tolerance
+      if (usedDuration + ex.duration > availableDuration + 5) continue;
       picked.push(ex);
       usedDuration += ex.duration;
     }
 
-    // Build full plan
     const plan = [openingRitual, ...picked, closingRitual];
-
-    // Render
     renderPlan(plan, age, duration, selectedThemes);
-
-    // Show output
     document.getElementById('output').style.display = 'block';
     document.getElementById('output').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function renderPlan(plan, age, duration, themes) {
-    // Title and meta
-    document.getElementById('plan-title').textContent = `Sessieplan — ${age} · ${duration} min`;
+    document.getElementById('plan-title').textContent = `Sessieplan &#8212; ${age} &#183; ${duration} min`;
     const metaEl = document.getElementById('plan-meta');
     metaEl.innerHTML = '';
     themes.forEach(t => {
@@ -732,7 +720,6 @@
       metaEl.appendChild(pill);
     });
 
-    // Slots
     const slotsEl = document.getElementById('plan-slots');
     slotsEl.innerHTML = '';
     const emptyState = document.getElementById('empty-state');
@@ -747,14 +734,14 @@
     let currentTime = 0;
 
     plan.forEach((ex, idx) => {
-      const isLocked = !ex.special && idx > 2; // first 2 content exercises free (positions 1 and 2 after opening)
+      const isLocked = !ex.special && idx > 2;
       const slot = document.createElement('div');
       slot.className = 'slot' + (ex.special ? ' special' : '') + (isLocked ? ' locked' : '');
 
-      const timeLabel = `${currentTime}–${currentTime + ex.duration} min`;
+      const timeLabel = `${currentTime}&#8211;${currentTime + ex.duration} min`;
       currentTime += ex.duration;
 
-      const lockHTML = isLocked ? `<div class="slot-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="mailto:info@characterfirst.be" class="lock-cta">Vraag toegang aan</a></div>` : '';
+      const lockHTML = isLocked ? `<div class="slot-lock"><div class="lock-icon">&#x1F512;</div><p>Premium inhoud</p><a href="contact.html" class="lock-cta">Vraag toegang aan</a></div>` : '';
 
       slot.innerHTML = `
         ${lockHTML}
