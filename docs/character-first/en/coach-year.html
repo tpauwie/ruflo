@@ -45,7 +45,6 @@
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
-    /* PAGE HEADER */
     #page-header { background: var(--ink); padding: 120px 5% 70px; }
     #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
     #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
@@ -55,21 +54,18 @@
     .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
     .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* INTRO */
     #intro { background: var(--canvas); }
     .intro-highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; margin-top: 2rem; }
     .highlight-item { background: var(--white); border-radius: 10px; padding: 1.2rem; text-align: center; border: 1px solid var(--line); }
     .highlight-num { font-size: 2rem; font-weight: 900; color: var(--orange); line-height: 1; }
     .highlight-label { font-size: .82rem; color: var(--stone); margin-top: .3rem; }
 
-    /* MONTH GRID */
     #program { background: var(--white); }
     .months-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 1.5rem; margin-top: 2rem; }
     .month-card { border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
     .month-card:hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(240,90,40,.08); }
     .month-card-header { background: var(--canvas); padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
     .month-badge { background: var(--orange); color: var(--white); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; flex-shrink: 0; }
-    .month-card-header-text {}
     .month-num-label { font-size: .68rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; }
     .month-card-header h3 { font-size: 1.05rem; font-weight: 900; color: var(--ink); line-height: 1.2; }
     .month-card-body { padding: 1.2rem 1.5rem; }
@@ -80,7 +76,6 @@
     .month-science { font-size: .75rem; color: #aaa; background: var(--canvas); border-radius: 6px; padding: .4rem .7rem; display: inline-block; }
     .month-science strong { color: var(--orange); }
 
-    /* PREMIUM LOCK */
     .premium-locked { position: relative; pointer-events: none; }
     .premium-locked > *:not(.premium-lock) { filter: blur(4px); user-select: none; }
     .premium-lock {
@@ -97,7 +92,6 @@
       font-size: 0.875rem; pointer-events: all;
     }
 
-    /* CTA BAND */
     #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
     #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
     #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -107,7 +101,6 @@
     .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
     .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
 
-    /* FOOTER */
     footer { background: #050505; padding: 48px 5% 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
     .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
@@ -147,12 +140,11 @@
     <a href="planbuilder.html">Plan Builder</a>
     <a href="coach-program.html" class="active">Coach Development</a>
     <a href="../coach-jaar.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
-    <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
   </div>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- PAGE HEADER -->
 <section id="page-header">
   <div class="breadcrumb"><a href="index.html">Home</a> / <a href="coach-program.html">Coach Development</a> / Coach Year</div>
   <h1>Coach Year &mdash; 10 Months of Growing as a Coach and Person</h1>
@@ -164,34 +156,20 @@
   </div>
 </section>
 
-<!-- INTRO -->
 <section id="intro">
   <div class="fade-in">
     <span class="section-tag">What to expect</span>
     <h2>Depth across a full season</h2>
-    <p class="section-sub">Coach Year is not a course. It is a personal development journey in which you work on one core competency every month — with concrete exercises, scientific insights and space for reflection.</p>
+    <p class="section-sub">Coach Year is not a course. It is a personal development journey in which you work on one core competency every month &mdash; with concrete exercises, scientific insights and space for reflection.</p>
   </div>
   <div class="intro-highlights fade-in">
-    <div class="highlight-item">
-      <div class="highlight-num">10</div>
-      <div class="highlight-label">months intensive</div>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-num">10</div>
-      <div class="highlight-label">competency domains</div>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-num">30+</div>
-      <div class="highlight-label">concrete activities</div>
-    </div>
-    <div class="highlight-item">
-      <div class="highlight-num">1</div>
-      <div class="highlight-label">personal coaching philosophy</div>
-    </div>
+    <div class="highlight-item"><div class="highlight-num">10</div><div class="highlight-label">months intensive</div></div>
+    <div class="highlight-item"><div class="highlight-num">10</div><div class="highlight-label">competency domains</div></div>
+    <div class="highlight-item"><div class="highlight-num">30+</div><div class="highlight-label">concrete activities</div></div>
+    <div class="highlight-item"><div class="highlight-num">1</div><div class="highlight-label">personal coaching philosophy</div></div>
   </div>
 </section>
 
-<!-- PROGRAM -->
 <section id="program">
   <div class="fade-in">
     <span class="section-tag">The program</span>
@@ -200,291 +178,92 @@
   </div>
   <div class="months-grid fade-in">
 
-    <!-- Month 1 — FREE -->
     <div class="month-card">
-      <div class="month-card-header">
-        <div class="month-badge">1</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 1 &mdash; Free preview</div>
-          <h3>Who am I as a coach?</h3>
-        </div>
-      </div>
+      <div class="month-card-header"><div class="month-badge">1</div><div><div class="month-num-label">Month 1 &mdash; Free preview</div><h3>Who am I as a coach?</h3></div></div>
       <div class="month-card-body">
         <p class="month-question">"What are my deepest values as a coach, and how are they visible in my behaviour?"</p>
-        <ul class="month-activities">
-          <li>Coach identity exercise: three words that define you as a coach</li>
-          <li>Write your personal sport history — how has your own sporting past shaped your coaching?</li>
-          <li>Fill in the values compass and build a bridge to daily coaching decisions</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Cushion et al., 2010 — Coach knowledge &amp; identity formation</span>
+        <ul class="month-activities"><li>Coach identity exercise: three words that define you as a coach</li><li>Write your personal sport history</li><li>Fill in the values compass</li></ul>
+        <span class="month-science"><strong>Scientific foundation:</strong> Cushion et al., 2010</span>
       </div>
     </div>
 
-    <!-- Month 2 — FREE -->
     <div class="month-card">
-      <div class="month-card-header">
-        <div class="month-badge">2</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 2 &mdash; Free preview</div>
-          <h3>My relationship with players</h3>
-        </div>
-      </div>
+      <div class="month-card-header"><div class="month-badge">2</div><div><div class="month-num-label">Month 2 &mdash; Free preview</div><h3>My relationship with players</h3></div></div>
       <div class="month-card-body">
         <p class="month-question">"How do I build genuine trust with every individual in my group?"</p>
-        <ul class="month-activities">
-          <li>Attachment theory in sport: how attachment shapes the coach-athlete bond</li>
-          <li>Set up an individual check-in protocol for each athlete</li>
-          <li>Conduct a psychological safety audit of your team</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Jowett &amp; Ntoumanis, 2004 — The coach-athlete relationship (Scandinavian Journal of Medicine &amp; Science in Sports)</span>
+        <ul class="month-activities"><li>Attachment theory in sport</li><li>Set up an individual check-in protocol</li><li>Conduct a psychological safety audit</li></ul>
+        <span class="month-science"><strong>Scientific foundation:</strong> Jowett &amp; Ntoumanis, 2004</span>
       </div>
     </div>
 
-    <!-- Month 3 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">3</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 3</div>
-          <h3>Motivational Climate</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"What climate do I create consciously or unconsciously, and how can I change it?"</p>
-        <ul class="month-activities">
-          <li>Mastery vs. performance climate self-scan and observation log</li>
-          <li>Stimulating task orientation through goal-setting conversations</li>
-          <li>Practising autonomy-supportive instruction techniques</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Ames, 1992 &amp; Mageau &amp; Vallerand, 2003</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">3</div><div><div class="month-num-label">Month 3</div><h3>Motivational Climate</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"What climate do I create consciously or unconsciously?"</p><ul class="month-activities"><li>Mastery vs. performance climate self-scan</li><li>Goal-setting conversations</li><li>Autonomy-supportive instruction</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Ames, 1992</span></div>
     </div>
 
-    <!-- Month 4 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">4</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 4</div>
-          <h3>Communication</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"When do I ask questions and when do I tell? How do I build a feedback culture?"</p>
-        <ul class="month-activities">
-          <li>Analyse instruction techniques through video observation of your own sessions</li>
-          <li>Question-based coaching: 30-day challenge (asking questions instead of telling)</li>
-          <li>Design a feedback protocol for your group</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Turnnidge &amp; Côté, 2018 — Coach communication</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">4</div><div><div class="month-num-label">Month 4</div><h3>Communication</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"When do I ask questions and when do I tell?"</p><ul class="month-activities"><li>Analyse instruction via video</li><li>30-day question challenge</li><li>Design a feedback protocol</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Turnnidge &amp; Côté, 2018</span></div>
     </div>
 
-    <!-- Month 5 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">5</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 5</div>
-          <h3>Dealing with parents</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"How do I navigate the coach-parent-athlete triangle without losing the athlete in the middle?"</p>
-        <ul class="month-activities">
-          <li>Map the parent-coach-athlete triangle for your group</li>
-          <li>Simulate and practise expectation management conversations</li>
-          <li>Develop a script for difficult parent conversations</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Holt et al., 2009 — Parental involvement in youth sport</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">5</div><div><div class="month-num-label">Month 5</div><h3>Dealing with parents</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I navigate the coach-parent-athlete triangle?"</p><ul class="month-activities"><li>Map the triangle for your group</li><li>Expectation management conversations</li><li>Script for difficult parent conversations</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Holt et al., 2009</span></div>
     </div>
 
-    <!-- Month 6 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">6</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 6</div>
-          <h3>Pressure &amp; Stress as a coach</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"How do I stay myself under pressure? What are my stress signals and how do I respond to them?"</p>
-        <ul class="month-activities">
-          <li>Coach burnout risk self-scan (Maslach Burnout Inventory — coach version)</li>
-          <li>Recognise and reframe perfectionism in coaching</li>
-          <li>Develop a strategy for losing streaks and external pressure</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Olusoga et al., 2012 — Stress &amp; coping in elite coaches</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">6</div><div><div class="month-num-label">Month 6</div><h3>Pressure &amp; Stress as a coach</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I stay myself under pressure?"</p><ul class="month-activities"><li>Coach burnout risk self-scan</li><li>Reframe perfectionism</li><li>Strategy for losing streaks</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Olusoga et al., 2012</span></div>
     </div>
 
-    <!-- Month 7 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">7</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 7</div>
-          <h3>Leadership from within</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"How do I lead my team without controlling it? How do I build a team culture that sustains itself?"</p>
-        <ul class="month-activities">
-          <li>Translate servant leadership principles into concrete coaching situations</li>
-          <li>Identify and develop leaders within your group</li>
-          <li>Team culture audit: rituals, norms and shared values</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Smith et al., 2013 — Transformational coaching</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">7</div><div><div class="month-num-label">Month 7</div><h3>Leadership from within</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I lead my team without controlling it?"</p><ul class="month-activities"><li>Servant leadership principles</li><li>Identify and develop leaders</li><li>Team culture audit</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Smith et al., 2013</span></div>
     </div>
 
-    <!-- Month 8 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">8</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 8</div>
-          <h3>Positive Youth Development</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"Do I see the whole person, or only the athlete? How do I align my expectations with the development stage?"</p>
-        <ul class="month-activities">
-          <li>Apply the LTAD (Long Term Athlete Development) framework to your group</li>
-          <li>Age-appropriate expectations and guidance per phase</li>
-          <li>Create individual development plans (sport + person)</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Côté et al., 2007 — Positive youth development through sport</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">8</div><div><div class="month-num-label">Month 8</div><h3>Positive Youth Development</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"Do I see the whole person, or only the athlete?"</p><ul class="month-activities"><li>Apply LTAD framework</li><li>Age-appropriate expectations</li><li>Individual development plans</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Côté et al., 2007</span></div>
     </div>
 
-    <!-- Month 9 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">9</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 9</div>
-          <h3>Reflection as a growth tool</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"How do I turn every training session into a learning experience — for my players and for myself?"</p>
-        <ul class="month-activities">
-          <li>Video analysis of your own coaching: analyse three key moments</li>
-          <li>Set up peer coaching with a fellow coach</li>
-          <li>Start and maintain a structured reflection journal</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Knowles et al., 2006 — Reflective practice in sport coaching</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">9</div><div><div class="month-num-label">Month 9</div><h3>Reflection as a growth tool</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I turn every session into a learning experience?"</p><ul class="month-activities"><li>Video analysis of your coaching</li><li>Peer coaching setup</li><li>Structured reflection journal</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Knowles et al., 2006</span></div>
     </div>
 
-    <!-- Month 10 — LOCKED -->
     <div class="month-card premium-locked">
-      <div class="premium-lock">
-        <div class="lock-icon">&#128274;</div>
-        <p>Coach Year &mdash; Premium</p>
-        <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="lock-cta">Request access</a>
-      </div>
-      <div class="month-card-header">
-        <div class="month-badge">10</div>
-        <div class="month-card-header-text">
-          <div class="month-num-label">Month 10</div>
-          <h3>My coaching legacy</h3>
-        </div>
-      </div>
-      <div class="month-card-body">
-        <p class="month-question">"When my players think back on me in 10 years, what do I want them to remember?"</p>
-        <ul class="month-activities">
-          <li>Looking back on 10 months of growth: reflection on all modules</li>
-          <li>Write your personal coaching philosophy in 500 words</li>
-          <li>Formulate an action plan for next season</li>
-        </ul>
-        <span class="month-science"><strong>Scientific foundation:</strong> Côté &amp; Gilbert, 2009 — Coach effectiveness &amp; legacy</span>
-      </div>
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">10</div><div><div class="month-num-label">Month 10</div><h3>My coaching legacy</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"What do I want players to remember in 10 years?"</p><ul class="month-activities"><li>Reflection on all 10 modules</li><li>Write your coaching philosophy (500 words)</li><li>Action plan for next season</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Côté &amp; Gilbert, 2009</span></div>
     </div>
 
   </div>
 </section>
 
-<!-- CTA BAND -->
 <section id="cta-band">
   <h2>Start Coach Year</h2>
   <p>10 months. 10 themes. 1 deep growth journey that permanently transforms your coaching and yourself.</p>
   <div class="cta-btns">
-    <a href="mailto:info@characterfirst.be?subject=Coach Year request" class="btn-white">Sign up for Coach Year</a>
+    <a href="contact.html" class="btn-white">Sign up for Coach Year</a>
     <a href="coach-month.html" class="btn-white-outline">Prefer Coach Month?</a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
-    <div>
-      <div class="footer-logo">Character <span>First</span></div>
-      <p class="footer-desc">Evidence-based character development for athletes from U14 to Senior.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Program</h4>
-      <a href="program.html">Overview</a>
-      <a href="week.html">The Week</a>
-      <a href="season.html">The Season</a>
-      <a href="week-worksheets.html">Week Worksheets</a>
-    </div>
-    <div class="footer-col">
-      <h4>Coach Development</h4>
-      <a href="coach-program.html">Overview</a>
-      <a href="coach-year.html">Coach Year</a>
-      <a href="coach-month.html">Coach Month</a>
-    </div>
-    <div class="footer-col">
-      <h4>Tools</h4>
-      <a href="planbuilder.html">Plan Builder</a>
-      <a href="worksheets.html">Worksheets</a>
-      <a href="library.html">Library</a>
-      <a href="mailto:info@characterfirst.be?subject=Character First">Contact</a>
-    </div>
+    <div><div class="footer-logo">Character <span>First</span></div><p class="footer-desc">Evidence-based character development for athletes from U14 to Senior.</p></div>
+    <div class="footer-col"><h4>Program</h4><a href="program.html">Overview</a><a href="week.html">The Week</a><a href="season.html">The Season</a><a href="week-worksheets.html">Week Worksheets</a></div>
+    <div class="footer-col"><h4>Coach Development</h4><a href="coach-program.html">Overview</a><a href="coach-year.html">Coach Year</a><a href="coach-month.html">Coach Month</a></div>
+    <div class="footer-col"><h4>Tools</h4><a href="planbuilder.html">Plan Builder</a><a href="worksheets.html">Worksheets</a><a href="library.html">Library</a><a href="contact.html">Contact</a></div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Character First. All rights reserved.</p>
-    <p>Evidence-based sport psychology.</p>
-  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Character First. All rights reserved.</p><p>Evidence-based sport psychology.</p></div>
 </footer>
 
 <script>
