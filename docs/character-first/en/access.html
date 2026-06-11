@@ -285,7 +285,8 @@
     if (CODES[val]) {
       localStorage.setItem('cf_access', '1');
       localStorage.setItem('cf_client', CODES[val]);
-      const dest = new URLSearchParams(window.location.search).get('redirect') || 'library.html';
+      const _r = new URLSearchParams(window.location.search).get('redirect') || 'library.html';
+      const dest = /^[a-z0-9_-]+\.html$/i.test(_r) ? _r : 'library.html';
       window.location.href = dest;
     } else {
       errEl.classList.add('show');
