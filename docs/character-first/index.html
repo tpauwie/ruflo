@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Character First — Win the person. Win the team.</title>
+  <title>Character First — De mens achter de atleet.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -65,7 +65,7 @@
     .hcard-tags{display:flex;gap:5px;flex-wrap:wrap}
     .htag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px}
 
-    @media(max-width:900px){#hero{grid-template-columns:1fr}.hero-cards{display:none}}
+    @media(max-width:900px){#hero{grid-template-columns:1fr}.hero-slideshow{min-height:280px;border-radius:10px}}
     @media(max-width:600px){#hero{padding:90px 5% 60px}#hero h1{font-size:2.2rem}.hero-btns{flex-direction:column}.btn-primary,.btn-ghost{text-align:center;min-height:46px;display:flex;align-items:center;justify-content:center}.hero-stats{gap:1.4rem}}
 
     .eyebrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.9rem}
@@ -197,6 +197,19 @@
     .trust-item{font-size:.76rem;color:var(--stone);display:flex;align-items:center;gap:.3rem}
     .trust-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);opacity:.6;flex-shrink:0}
     @media(max-width:480px){.waitlist-form{flex-direction:column}.waitlist-input,.waitlist-btn{width:100%}}
+    /* ── HERO SLIDESHOW ── */
+    .hero-slideshow{position:relative;overflow:hidden;border-radius:16px;min-height:480px;background:#1a1f2b}
+    .hero-slideshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
+    .hero-slideshow img.active{opacity:1}
+    .hero-slideshow::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--orange);z-index:2}
+    .slide-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10}
+    .slide-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:background .3s,transform .3s;border:none;padding:0}
+    .slide-dot.active{background:var(--orange);transform:scale(1.3)}
+    .hero-pillars{display:flex;flex-direction:column;gap:0;margin-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.4rem}
+    .hpillar{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.84rem;color:#6e7a8e}
+    .hpillar:last-child{border-bottom:0}
+    .hpillar-icon{width:28px;height:28px;border-radius:7px;background:rgba(240,90,40,.12);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+    .hpillar strong{color:#aab4c6;font-weight:600;margin-right:4px}
   </style>
   <script>
     (function(){
@@ -231,7 +244,7 @@
 <section id="hero">
   <div class="fade-in">
     <div class="hero-badge">Starten vanaf 14 jaar</div>
-    <h1>Win the person.<br><em>Win the team.</em></h1>
+    <h1>De mens<br>achter de<br><em>atleet.</em></h1>
     <p class="lead">Character First is een evidence-based karakterontwikkelingsprogramma voor jonge sporters. Wij bouwen aan mensen, niet alleen aan prestaties.</p>
     <div class="hero-btns">
       <a href="programma.html" class="btn-primary">Ontdek het programma</a>
@@ -243,22 +256,22 @@
       <div><div class="stat-num">2</div><div class="stat-label">Programma's</div></div>
       <div><div class="stat-num">U14+</div><div class="stat-label">3 leeftijdsgroepen</div></div>
     </div>
+    <div class="hero-pillars">
+      <div class="hpillar"><div class="hpillar-icon">🏆</div><span><strong>Teambegeleiding</strong>doorheen het seizoen of éénmalig in preseason</span></div>
+      <div class="hpillar"><div class="hpillar-icon">🎯</div><span><strong>Begeleiding voor coaches</strong>individuele ondersteuning bij karaktercoaching</span></div>
+      <div class="hpillar"><div class="hpillar-icon">🌱</div><span><strong>Mentorship voor spelers</strong>1-op-1 begeleiding voor persoonlijke groei</span></div>
+    </div>
   </div>
-  <div class="hero-cards fade-in" style="transition-delay:.18s">
-    <div class="hcard featured">
-      <div class="hcard-top"><span class="hcard-num">#56</span><span class="hcard-title">Wall Squat Challenge</span></div>
-      <div class="hcard-desc">Solo, daarna teamaanmoediging, daarna samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</div>
-      <div class="hcard-tags"><span class="htag" style="background:#3A8A8A">Fysiek</span><span class="htag" style="background:rgba(30,138,91,.15);color:#1E8A5B;border:1px solid rgba(30,138,91,.25)">U14+</span><span class="htag" style="background:var(--mist);color:var(--stone)">15 min</span></div>
-    </div>
-    <div class="hcard">
-      <div class="hcard-top"><span class="hcard-num">#11</span><span class="hcard-title">Box Breathing</span></div>
-      <div class="hcard-desc">Zenuwstelsel kalmeren via gecontroleerde 4-4-4-4 ademhaling. Gebruikt door Navy SEALs en topsporters.</div>
-      <div class="hcard-tags"><span class="htag" style="background:#2F6FB0">Druk &amp; Stress</span><span class="htag" style="background:var(--mist);color:var(--stone)">5 min</span></div>
-    </div>
-    <div class="hcard">
-      <div class="hcard-top"><span class="hcard-num">#37</span><span class="hcard-title">Aanmoedigingschallenge</span></div>
-      <div class="hcard-desc">Spelers leren bewust aanmoedigen. Bewijs dat het team sneller gaat dan het individu.</div>
-      <div class="hcard-tags"><span class="htag" style="background:#C7842F">Communicatie</span><span class="htag" style="background:var(--mist);color:var(--stone)">7 min</span></div>
+  <div class="hero-slideshow fade-in" style="transition-delay:.18s">
+    <img class="active" id="hs1"
+      src="https://raw.githubusercontent.com/tpauwie/ui-ux-pro-max-skill/main/ChatGPT%20Image%20Jun%2011%2C%202026%2C%2008_04_44%20AM.png"
+      alt="Coach begeleidt speler op grasveld"/>
+    <img id="hs2"
+      src="https://raw.githubusercontent.com/tpauwie/ui-ux-pro-max-skill/main/ChatGPT%20Image%20Jun%2011%2C%202026%2C%2008_07_09%20AM.png"
+      alt="Coach begeleidt speler op basketbalveld"/>
+    <div class="slide-dots">
+      <button class="slide-dot active" data-n="0"></button>
+      <button class="slide-dot" data-n="1"></button>
     </div>
   </div>
 </section>
@@ -534,6 +547,18 @@
   document.getElementById('waitlist-email').addEventListener('keydown',e=>{
     if(e.key==='Enter') document.getElementById('waitlist-submit').click();
   });
+  // Slideshow
+  (function(){
+    const imgs=['hs1','hs2'], dots=document.querySelectorAll('.slide-dot');
+    let cur=0;
+    function go(n){
+      imgs.forEach((id,i)=>{const el=document.getElementById(id);if(el)el.classList.toggle('active',i===n)});
+      dots.forEach((d,i)=>d.classList.toggle('active',i===n));
+      cur=n;
+    }
+    dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.n)));
+    setInterval(()=>go((cur+1)%imgs.length),4500);
+  })();
 </script>
 </body>
 </html>
