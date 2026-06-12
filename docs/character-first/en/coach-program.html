@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Development — Character First</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1C2433; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+    html { scroll-behavior: smooth; }
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(28,36,51,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    .section-tag.outline { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--stone); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    #page-header { background: var(--ink); padding: 120px 5% 70px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(2rem,4vw,3.2rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1.1rem; color: #777; max-width: 560px; line-height: 1.75; }
+    .page-nav { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
+    .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+    #why { background: var(--canvas); }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .stat-card { background: var(--white); border-left: 4px solid var(--orange); padding: 1.5rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+    .stat-num { font-size: 2.2rem; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: .3rem; }
+    .stat-card h4 { font-weight: 800; font-size: .95rem; margin-bottom: .3rem; }
+    .stat-card p { font-size: .85rem; color: var(--stone); line-height: 1.6; }
+    .stat-card .source { font-size: .72rem; color: #aaa; margin-top: .6rem; font-style: italic; }
+
+    #tracks { background: var(--white); }
+    .tracks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .track-card { border: 2px solid var(--line); border-radius: 14px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+    .track-card:hover { border-color: var(--orange); box-shadow: 0 8px 32px rgba(240,90,40,.1); }
+    .track-header { background: var(--ink); padding: 2rem 2rem 1.5rem; }
+    .track-badge { display: inline-block; background: var(--orange); color: var(--white); font-size: .7rem; font-weight: 800; padding: .22rem .7rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .8rem; }
+    .track-header h3 { font-size: 1.5rem; font-weight: 900; color: var(--white); margin-bottom: .4rem; }
+    .track-header p { font-size: .9rem; color: #888; }
+    .track-body { padding: 1.5rem 2rem; }
+    .track-features { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
+    .track-features li { font-size: .88rem; color: var(--ink); padding-left: 1.2rem; position: relative; line-height: 1.5; }
+    .track-features li::before { content: "\25B6"; color: var(--orange); position: absolute; left: 0; font-size: .7rem; top: 3px; }
+    .track-cta { display: inline-block; background: var(--orange); color: var(--white); padding: .7rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .88rem; transition: background .2s; }
+    .track-cta:hover { background: var(--orange2); }
+    .track-cta.outline { background: transparent; color: var(--orange); border: 2px solid var(--orange); }
+    .track-cta.outline:hover { background: var(--orange); color: var(--white); }
+
+    #pillars { background: var(--canvas); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-top: 2.5rem; }
+    .pillar-card { background: var(--ink); color: var(--white); padding: 2rem 1.5rem; border-radius: 10px; text-align: center; border: 1px solid #1a1a1a; transition: transform .2s, box-shadow .2s; }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+    .pillar-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+    .pillar-title { font-size: .95rem; font-weight: 800; margin: .4rem 0 .4rem; color: var(--white); }
+    .pillar-subtitle { font-size: .72rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .5rem; }
+    .pillar-desc { font-size: .82rem; color: #777; line-height: 1.6; }
+
+    #science { background: var(--white); }
+    .science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .science-card { background: var(--canvas); border-radius: 10px; padding: 1.5rem; border: 1px solid var(--line); transition: box-shadow .2s; }
+    .science-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+    .sci-tier { display: inline-block; font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 10px; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .06em; }
+    .sci-tier.sr { background: #d4edda; color: #1a7a4a; }
+    .sci-tier.rct { background: #d0e4f7; color: #1a4a8a; }
+    .sci-tier.qual { background: #e8d5f5; color: #5a1a8a; }
+    .sci-author { font-size: .78rem; color: var(--orange); font-weight: 700; margin-bottom: .3rem; }
+    .science-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
+    .science-card p { font-size: .83rem; color: var(--stone); line-height: 1.6; }
+
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+<script>
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl') window.location.replace('../coach-programma.html');
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){ localStorage.setItem('cf_lang','nl'); });
+    });
+  })();
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+    <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="program.html">Program</a>
+    <a href="library.html">Library</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="coach-program.html" class="active">Coach Development</a>
+    <a href="../coach-programma.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Coach Development</div>
+  <h1>Coach Development</h1>
+  <p>Grow as a coach. Grow as a person. Scientifically grounded coach development that goes beyond tactics and technique.</p>
+  <div class="page-nav">
+    <a href="#why">Why</a>
+    <a href="#tracks">Programs</a>
+    <a href="#pillars">6 Pillars</a>
+    <a href="#science">Science</a>
+  </div>
+</section>
+
+<section id="why">
+  <div class="fade-in">
+    <span class="section-tag">The reality</span>
+    <h2>The coach is the key</h2>
+    <p class="section-sub">Research shows the same thing time and again: the quality of the coach-athlete relationship is the strongest predictor of development and retention in young athletes — stronger than tactical knowledge or training style.</p>
+  </div>
+  <div class="stat-grid fade-in">
+    <div class="stat-card"><div class="stat-num">35%</div><h4>Early dropout</h4><p>35% of young athletes quit before the age of 15. The main reason is coaching behaviour that fails to create safety and connection.</p><div class="source">Smoll &amp; Smith, 2009 — University of Washington</div></div>
+    <div class="stat-card"><div class="stat-num">#1</div><h4>Relationship as foundation</h4><p>The coach-athlete relationship is the single strongest predictor of enjoyment, motivation, and persistence in young athletes.</p><div class="source">Jowett &amp; Ntoumanis, 2004 — Scandinavian Journal of Medicine &amp; Science in Sports, 14(6), 402–410</div></div>
+    <div class="stat-card"><div class="stat-num">2%</div><h4>Mental attention</h4><p>Coaches spend on average less than 2% of training time on mental and interpersonal skills, while 90% recognise these as equally important.</p><div class="source">Weinberg &amp; Gould, 2019 — Foundations of Sport Psychology</div></div>
+    <div class="stat-card"><div class="stat-num">3x</div><h4>Motivational Climate</h4><p>Athletes in a mastery climate show three times more intrinsic motivation and long-term engagement than athletes in a performance climate.</p><div class="source">Ames, 1992 — Journal of Educational Psychology</div></div>
+  </div>
+</section>
+
+<section id="tracks">
+  <div class="fade-in">
+    <span class="section-tag">Programs</span>
+    <h2>Two paths to growth</h2>
+    <p class="section-sub">Coach First offers two tracks that match your available time and development ambition.</p>
+  </div>
+  <div class="tracks-grid fade-in">
+    <div class="track-card">
+      <div class="track-header"><div class="track-badge">10 months</div><h3>Coach Year</h3><p>Deep personal and professional development across a full season. One module per month with individual guidance.</p></div>
+      <div class="track-body">
+        <ul class="track-features">
+          <li>10 monthly modules — each covering a different competency domain</li>
+          <li>Personal reflection journal with every module</li>
+          <li>Scientific foundation per theme</li>
+          <li>Peer coaching and group reflection</li>
+          <li>Video analysis of your own coaching</li>
+          <li>Formulate your personal coaching philosophy</li>
+        </ul>
+        <a href="coach-year.html" class="track-cta">View Coach Year &rarr;</a>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-header"><div class="track-badge">8 contact sessions</div><h3>Coach Month</h3><p>For coaches who want to grow but have little time. One powerful 90-minute session per month — directly applicable.</p></div>
+      <div class="track-body">
+        <ul class="track-features">
+          <li>8 sessions of 90 minutes throughout the season</li>
+          <li>Fixed session structure: check-in, core theme, application, action</li>
+          <li>Concrete exercises for your next training session</li>
+          <li>Personal action plan after each session</li>
+          <li>Practice-oriented — no theory without application</li>
+          <li>Flexible scheduling alongside your coaching calendar</li>
+        </ul>
+        <a href="coach-month.html" class="track-cta outline">View Coach Month &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="fade-in">
+    <span class="section-tag">Competencies</span>
+    <h2>The 6 Pillars of Coach Development</h2>
+    <p class="section-sub">Based on the ICCE Global Coach Framework (Côté &amp; Gilbert, 2009) and Cushion et al. (2010). Each domain is essential for effective youth coaching.</p>
+  </div>
+  <div class="pillars-grid fade-in">
+    <div class="pillar-card"><div class="pillar-icon">&#129309;</div><div class="pillar-subtitle">Pillar 1</div><div class="pillar-title">Relationship &amp; Connection</div><p class="pillar-desc">The coach-athlete relationship as foundation. Building trust, creating psychological safety, attachment in sports development.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#127919;</div><div class="pillar-subtitle">Pillar 2</div><div class="pillar-title">Motivational Climate</div><p class="pillar-desc">Consciously choosing mastery vs. performance climate. Stimulating task orientation, supporting autonomy, mistakes as learning opportunities.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#128172;</div><div class="pillar-subtitle">Pillar 3</div><div class="pillar-title">Communication &amp; Feedback</div><p class="pillar-desc">Asking questions instead of telling. Building a feedback culture, listening, specific vs. generic feedback.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#128302;</div><div class="pillar-subtitle">Pillar 4</div><div class="pillar-title">Personal Growth</div><p class="pillar-desc">Self-knowledge, values and identity as a coach. Intrapersonal awareness, reflective practice and growth mindset.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#127891;</div><div class="pillar-subtitle">Pillar 5</div><div class="pillar-title">Positive Youth Development</div><p class="pillar-desc">Age-appropriate guidance, LTAD framework, seeing the whole person, psychological safety within the group.</p></div>
+    <div class="pillar-card" style="border-color:rgba(240,90,40,.25)"><div class="pillar-icon">&#9889;</div><div class="pillar-subtitle">Pillar 6</div><div class="pillar-title">Coach Wellbeing</div><p class="pillar-desc">Balance, burnout prevention, energy management. Sustainable coaching without losing yourself in the role.</p></div>
+  </div>
+</section>
+
+<section id="science">
+  <div class="fade-in">
+    <span class="section-tag">Evidence-based</span>
+    <h2>Grounded in science</h2>
+    <p class="section-sub">Coach Development is not opinion. Every theme is based on peer-reviewed literature on coaching effectiveness and youth development.</p>
+  </div>
+  <div class="science-grid fade-in">
+    <div class="science-card"><span class="sci-tier sr">Systematic Review</span><div class="sci-author">Côté &amp; Gilbert, 2009</div><h4>An Integrative Definition of Coaching Effectiveness</h4><p>Definition of coaching effectiveness through three knowledge domains: professional, interpersonal and intrapersonal. Foundation of the ICCE Global Coach Framework.</p></div>
+    <div class="science-card"><span class="sci-tier rct">Longitudinal Study</span><div class="sci-author">Jowett &amp; Ntoumanis, 2004</div><h4>The Coach-Athlete Relationship Questionnaire</h4><p>The coach-athlete relationship — measured via closeness, commitment and complementarity — is the strongest predictor of athletic performance and sport enjoyment.</p></div>
+    <div class="science-card"><span class="sci-tier qual">RCT Study</span><div class="sci-author">Smoll &amp; Smith, 2009</div><h4>Coaching Behavior Research and Intervention</h4><p>Coaches who completed a mastery-oriented coaching program saw significantly lower dropout rates and higher sport enjoyment scores in their athletes compared to the control group.</p></div>
+  </div>
+</section>
+
+<section id="cta-band">
+  <h2>Ready to grow as a coach?</h2>
+  <p>Choose the track that suits you — deep development over a full year or one powerful session per month.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-white">Start with Coach Year</a>
+    <a href="contact.html" class="btn-white-outline">Start with Coach Month</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based character development for athletes from U14 to Senior.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Program</h4>
+      <a href="program.html">Overview</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
+      <a href="week-worksheets.html">Week Worksheets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Coach Development</h4>
+      <a href="coach-program.html">Overview</a>
+      <a href="coach-year.html">Coach Year</a>
+      <a href="coach-month.html">Coach Month</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="worksheets.html">Worksheets</a>
+      <a href="library.html">Library</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. All rights reserved.</p>
+    <p>Evidence-based sport psychology.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

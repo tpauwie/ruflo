@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<title>Character First — Social Media Templates</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0a0a0a;--white:#ffffff;--orange:#f05a28;--orange2:#d44a1a;
+  --orange-light:#fff0eb;--grey:#f4f4f4;--muted:#666;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a1a1a;padding:40px 20px;}
+
+/* ── SECTION HEADERS ── */
+.section-title{
+  color:#fff;font-size:1.4rem;font-weight:900;
+  letter-spacing:.08em;text-transform:uppercase;
+  margin:50px 0 8px;padding-left:4px;
+  border-left:4px solid var(--orange);padding-left:12px;
+}
+.section-sub{color:#888;font-size:.85rem;margin-bottom:24px;padding-left:16px;}
+.grid{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:40px;}
+
+/* ── PRINT HINT ── */
+.print-btn{
+  position:fixed;top:20px;right:20px;
+  background:var(--orange);color:#fff;border:none;
+  padding:10px 20px;border-radius:6px;
+  font-weight:700;font-size:.9rem;cursor:pointer;
+  box-shadow:0 4px 16px rgba(240,90,40,.4);z-index:100;
+}
+
+/* ══════════════════════════════════════
+   INSTAGRAM POSTS  1080×1080
+══════════════════════════════════════ */
+.ig-post{
+  width:400px;height:400px;
+  position:relative;overflow:hidden;
+  border-radius:4px;flex-shrink:0;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+
+/* bg image helper */
+.bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+}
+.overlay{position:absolute;inset:0;}
+.content{position:absolute;inset:0;display:flex;flex-direction:column;padding:28px;}
+
+/* ── POST TYPE A: Dark Quote ── */
+.post-dark-quote .bg{background-color:var(--black);}
+.post-dark-quote .overlay{background:linear-gradient(135deg,#0a0a0a 60%,#1e1e1e);}
+.post-dark-quote .deco-circle{
+  position:absolute;width:280px;height:280px;border-radius:50%;
+  border:40px solid rgba(240,90,40,.1);top:-80px;right:-80px;
+}
+.post-dark-quote .deco-circle2{
+  position:absolute;width:180px;height:180px;border-radius:50%;
+  border:25px solid rgba(240,90,40,.07);bottom:-40px;left:-40px;
+}
+.post-dark-quote .tag{
+  display:inline-block;background:var(--orange);color:#fff;
+  font-size:.55rem;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;padding:.25rem .7rem;border-radius:2px;
+  margin-bottom:auto;align-self:flex-start;
+}
+.post-dark-quote .quote-mark{
+  font-size:4rem;color:var(--orange);line-height:.8;
+  font-family:Georgia,serif;margin-bottom:.3rem;opacity:.8;
+}
+.post-dark-quote .quote-text{
+  color:#fff;font-size:1.05rem;font-weight:700;line-height:1.4;
+  flex:1;display:flex;align-items:center;
+}
+.post-dark-quote .source{
+  color:#888;font-size:.6rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;
+  margin-top:auto;padding-top:.8rem;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.post-dark-quote .logo{
+  position:absolute;bottom:18px;right:22px;
+  font-size:.65rem;font-weight:900;color:rgba(255,255,255,.3);
+  letter-spacing:.06em;
+}
+.post-dark-quote .logo span{color:var(--orange);opacity:.6;}
+
+/* ── POST TYPE B: Photo + Stat ── */
+.post-photo-stat .content{justify-content:flex-end;}
+.post-photo-stat .overlay{
+  background:linear-gradient(to top,rgba(0,0,0,.92) 50%,rgba(0,0,0,.2));
+}
+.post-photo-stat .stat-pill{
+  position:absolute;top:22px;left:22px;
+  background:var(--orange);color:#fff;
+  font-size:.65rem;font-weight:800;padding:.3rem .8rem;
+  border-radius:20px;letter-spacing:.06em;text-transform:uppercase;
+}
+.post-photo-stat .main-num{
+  font-size:3.5rem;font-weight:900;color:var(--orange);line-height:1;
+  margin-bottom:.2rem;
+}
+.post-photo-stat h2{color:#fff;font-size:1rem;font-weight:800;margin-bottom:.5rem;}
+.post-photo-stat p{color:#ccc;font-size:.72rem;line-height:1.5;margin-bottom:.8rem;}
+.post-photo-stat .logo{
+  color:rgba(255,255,255,.35);font-size:.6rem;
+  font-weight:900;letter-spacing:.06em;
+}
+.post-photo-stat .logo span{color:rgba(240,90,40,.6);}
+
+/* ── POST TYPE C: Orange Tip ── */
+.post-tip .bg{background:var(--orange);}
+.post-tip .overlay{background:linear-gradient(135deg,#f05a28,#c94020);}
+.post-tip .deco{
+  position:absolute;width:300px;height:300px;border-radius:50%;
+  border:50px solid rgba(255,255,255,.08);bottom:-100px;right:-100px;
+}
+.post-tip .deco2{
+  position:absolute;width:150px;height:150px;border-radius:50%;
+  border:25px solid rgba(255,255,255,.06);top:-30px;left:-30px;
+}
+.post-tip .tip-label{
+  font-size:.6rem;font-weight:800;color:rgba(255,255,255,.6);
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem;
+}
+.post-tip h2{
+  color:#fff;font-size:1.2rem;font-weight:900;
+  line-height:1.2;margin-bottom:1rem;
+}
+.post-tip .steps{flex:1;}
+.post-tip .step{
+  display:flex;align-items:flex-start;gap:.7rem;
+  margin-bottom:.6rem;
+}
+.post-tip .step-num{
+  background:rgba(255,255,255,.2);color:#fff;
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:.65rem;flex-shrink:0;
+}
+.post-tip .step p{color:rgba(255,255,255,.9);font-size:.72rem;line-height:1.4;margin:0;}
+.post-tip .cta{
+  background:rgba(0,0,0,.2);color:#fff;
+  font-size:.65rem;font-weight:700;padding:.4rem .8rem;
+  border-radius:20px;align-self:flex-start;
+  border:1px solid rgba(255,255,255,.2);
+}
+.post-tip .logo{
+  position:absolute;bottom:16px;right:18px;
+  color:rgba(255,255,255,.4);font-size:.6rem;font-weight:900;
+}
+.post-tip .logo span{color:rgba(255,255,255,.6);}
+
+/* ── POST TYPE D: White Poll ── */
+.post-poll .bg{background:#fff;}
+.post-poll .top-bar{
+  background:var(--black);margin:-28px -28px 20px;
+  padding:18px 28px;display:flex;align-items:center;gap:.8rem;
+}
+.post-poll .top-bar .ball-icon{
+  width:28px;height:28px;border-radius:50%;background:var(--orange);
+  flex-shrink:0;
+}
+.post-poll .top-bar span{color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.06em;}
+.post-poll h2{font-size:1.05rem;font-weight:900;color:var(--black);margin-bottom:.8rem;line-height:1.3;}
+.post-poll .options{flex:1;}
+.post-poll .opt{
+  display:flex;align-items:center;gap:.8rem;
+  padding:.6rem .8rem;border-radius:6px;
+  margin-bottom:.45rem;border:1.5px solid #e8e8e8;
+  font-size:.75rem;font-weight:600;color:var(--black);
+}
+.post-poll .opt .letter{
+  background:var(--black);color:#fff;
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:.65rem;flex-shrink:0;
+}
+.post-poll .opt.highlight{
+  background:var(--orange-light);border-color:var(--orange);
+}
+.post-poll .opt.highlight .letter{background:var(--orange);}
+.post-poll .footer-bar{
+  margin-top:auto;padding-top:12px;
+  border-top:1px solid #eee;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.post-poll .footer-bar .inst{font-size:.62rem;color:#aaa;}
+.post-poll .footer-bar .cf{font-size:.62rem;font-weight:800;color:var(--orange);}
+
+/* ── POST TYPE E: Split Photo/Text ── */
+.post-split{display:flex!important;flex-direction:row!important;}
+.post-split .left{
+  width:45%;height:100%;
+  background-size:cover;background-position:center;
+  position:relative;flex-shrink:0;
+}
+.post-split .left .overlay{
+  background:linear-gradient(to right,rgba(0,0,0,.3),rgba(240,90,40,.6));
+}
+.post-split .right{
+  flex:1;background:var(--black);
+  padding:24px 20px;display:flex;flex-direction:column;
+}
+.post-split .right .tag{
+  background:var(--orange);color:#fff;
+  font-size:.55rem;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;padding:.2rem .6rem;
+  border-radius:2px;align-self:flex-start;margin-bottom:.8rem;
+}
+.post-split .right h2{
+  color:#fff;font-size:.9rem;font-weight:900;
+  line-height:1.3;margin-bottom:.8rem;
+}
+.post-split .right .points{flex:1;}
+.post-split .right .point{
+  display:flex;gap:.5rem;margin-bottom:.5rem;
+  color:#ccc;font-size:.68rem;line-height:1.4;
+}
+.post-split .right .point::before{
+  content:"→";color:var(--orange);font-weight:900;flex-shrink:0;
+}
+.post-split .right .bottom{
+  margin-top:auto;padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-size:.6rem;color:#555;font-weight:700;letter-spacing:.06em;
+}
+.post-split .right .bottom span{color:var(--orange);}
+
+/* ── POST TYPE F: Announcement ── */
+.post-announce .bg{
+  background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%);
+}
+.post-announce .orange-bar{
+  position:absolute;left:0;top:0;bottom:0;width:8px;
+  background:var(--orange);
+}
+.post-announce .content{padding:28px 28px 28px 44px;}
+.post-announce .eyebrow{
+  font-size:.6rem;color:var(--orange);font-weight:800;
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem;
+}
+.post-announce h2{
+  color:#fff;font-size:1.25rem;font-weight:900;
+  line-height:1.2;margin-bottom:.8rem;
+}
+.post-announce p{color:#aaa;font-size:.75rem;line-height:1.5;flex:1;}
+.post-announce .items{margin-top:.8rem;}
+.post-announce .item{
+  display:flex;gap:.5rem;color:#ccc;
+  font-size:.7rem;line-height:1.4;margin-bottom:.35rem;
+}
+.post-announce .item::before{
+  content:"✓";color:var(--orange);font-weight:900;flex-shrink:0;
+}
+.post-announce .cta-bar{
+  margin-top:auto;padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.1);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.post-announce .cta-bar .email{
+  font-size:.65rem;color:var(--orange);font-weight:700;
+}
+.post-announce .cta-bar .logo-sm{
+  font-size:.6rem;font-weight:900;color:#444;
+}
+.post-announce .cta-bar .logo-sm span{color:var(--orange);}
+
+/* ══════════════════════════════════════
+   INSTAGRAM STORIES  9:16 ratio  (225×400)
+══════════════════════════════════════ */
+.story{
+  width:225px;height:400px;
+  position:relative;overflow:hidden;
+  border-radius:12px;flex-shrink:0;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.story .bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+.story .overlay{position:absolute;inset:0;}
+.story .content{position:absolute;inset:0;display:flex;flex-direction:column;padding:20px 16px;}
+
+/* story header (account bar) */
+.story-header{
+  display:flex;align-items:center;gap:.5rem;margin-bottom:auto;
+}
+.story-avatar{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--orange);display:flex;align-items:center;
+  justify-content:center;font-size:.5rem;font-weight:900;color:#fff;
+  border:1.5px solid #fff;flex-shrink:0;
+}
+.story-name{color:#fff;font-size:.6rem;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.5);}
+.story-time{color:rgba(255,255,255,.6);font-size:.55rem;margin-left:auto;}
+
+/* story progress bar */
+.story-progress{
+  position:absolute;top:10px;left:12px;right:12px;
+  height:2px;background:rgba(255,255,255,.3);border-radius:1px;
+}
+.story-progress-fill{
+  height:100%;background:#fff;border-radius:1px;width:45%;
+}
+
+/* ── STORY TYPE A: Dark tip ── */
+.story-dark .bg{background:var(--black);}
+.story-dark .overlay{
+  background:linear-gradient(160deg,#111 0%,#1a1a1a 100%);
+}
+.story-dark .deco{
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  border:30px solid rgba(240,90,40,.1);top:-60px;right:-60px;
+}
+.story-dark .body{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+}
+.story-dark .label{
+  font-size:.5rem;color:var(--orange);font-weight:800;
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;
+}
+.story-dark h2{
+  color:#fff;font-size:.95rem;font-weight:900;
+  line-height:1.25;margin-bottom:.7rem;
+}
+.story-dark p{color:#aaa;font-size:.65rem;line-height:1.5;}
+.story-dark .swipe{
+  text-align:center;color:rgba(255,255,255,.4);
+  font-size:.55rem;letter-spacing:.08em;
+  margin-top:auto;padding-top:8px;
+}
+.story-dark .swipe::before{content:"↑  ";}
+
+/* ── STORY TYPE B: Orange bold ── */
+.story-orange .bg{background:var(--orange);}
+.story-orange .overlay{
+  background:linear-gradient(160deg,#f05a28 0%,#c94020 100%);
+}
+.story-orange .deco{
+  position:absolute;width:180px;height:180px;border-radius:50%;
+  border:30px solid rgba(255,255,255,.1);bottom:-50px;right:-50px;
+}
+.story-orange .body{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+}
+.story-orange .num{
+  font-size:4rem;font-weight:900;color:rgba(255,255,255,.15);
+  line-height:1;margin-bottom:-.5rem;
+}
+.story-orange h2{
+  color:#fff;font-size:1rem;font-weight:900;
+  line-height:1.2;margin-bottom:.6rem;
+}
+.story-orange p{color:rgba(255,255,255,.85);font-size:.65rem;line-height:1.5;}
+.story-orange .swipe{
+  text-align:center;color:rgba(255,255,255,.5);
+  font-size:.55rem;letter-spacing:.08em;
+  margin-top:auto;padding-top:8px;
+}
+.story-orange .swipe::before{content:"↑  ";}
+
+/* ── STORY TYPE C: Photo quote ── */
+.story-photo .overlay{
+  background:linear-gradient(to top,rgba(0,0,0,.95) 45%,rgba(0,0,0,.3) 100%);
+}
+.story-photo .body{
+  margin-top:auto;
+}
+.story-photo .quote-mark{
+  font-size:2rem;color:var(--orange);
+  font-family:Georgia,serif;line-height:1;margin-bottom:.2rem;
+}
+.story-photo h2{
+  color:#fff;font-size:.85rem;font-weight:800;
+  line-height:1.35;margin-bottom:.5rem;
+  font-style:italic;
+}
+.story-photo .source{
+  color:#aaa;font-size:.55rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.story-photo .swipe{
+  text-align:center;color:rgba(255,255,255,.4);
+  font-size:.55rem;letter-spacing:.08em;
+  margin-top:.8rem;
+}
+.story-photo .swipe::before{content:"↑  ";}
+
+/* ── STORY TYPE D: Poll/Question ── */
+.story-poll .bg{background:#fff;}
+.story-poll .top-block{
+  background:var(--black);margin:-20px -16px 16px;
+  padding:32px 16px 16px;
+}
+.story-poll .top-block .q-icon{
+  font-size:1.4rem;margin-bottom:.4rem;
+}
+.story-poll .top-block h2{
+  color:#fff;font-size:.85rem;font-weight:900;line-height:1.25;
+}
+.story-poll .opt-block{flex:1;display:flex;flex-direction:column;gap:.5rem;padding-top:.3rem;}
+.story-poll .s-opt{
+  border:1.5px solid #e8e8e8;border-radius:8px;
+  padding:.55rem .7rem;display:flex;align-items:center;gap:.5rem;
+  font-size:.68rem;font-weight:600;color:var(--black);
+}
+.story-poll .s-opt .l{
+  background:var(--black);color:#fff;width:18px;height:18px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:.55rem;flex-shrink:0;
+}
+.story-poll .s-opt.hi{background:var(--orange-light);border-color:var(--orange);}
+.story-poll .s-opt.hi .l{background:var(--orange);}
+.story-poll .footer{
+  margin-top:auto;text-align:center;
+  font-size:.6rem;color:#aaa;padding-top:8px;
+}
+.story-poll .footer strong{color:var(--orange);}
+
+/* ── STORY TYPE E: Steps/List ── */
+.story-steps .bg{
+  background:linear-gradient(160deg,#0a0a0a 0%,#1f1010 100%);
+}
+.story-steps .top-tag{
+  background:var(--orange);color:#fff;
+  font-size:.5rem;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;
+  align-self:flex-start;margin-bottom:.5rem;
+}
+.story-steps h2{
+  color:#fff;font-size:.88rem;font-weight:900;
+  line-height:1.2;margin-bottom:.7rem;
+}
+.story-steps .steps-list{flex:1;}
+.story-steps .s-step{
+  display:flex;gap:.5rem;margin-bottom:.55rem;align-items:flex-start;
+}
+.story-steps .s-num{
+  background:var(--orange);color:#fff;
+  width:18px;height:18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:.55rem;flex-shrink:0;margin-top:1px;
+}
+.story-steps .s-step p{
+  color:#ccc;font-size:.65rem;line-height:1.4;
+}
+.story-steps .s-step strong{color:#fff;}
+.story-steps .swipe{
+  text-align:center;color:rgba(255,255,255,.35);
+  font-size:.55rem;letter-spacing:.08em;
+  padding-top:8px;
+}
+.story-steps .swipe::before{content:"↑  ";}
+
+/* logo watermark reuse */
+.wm{
+  position:absolute;bottom:14px;right:14px;
+  font-size:.55rem;font-weight:900;color:rgba(255,255,255,.2);
+  letter-spacing:.06em;
+}
+.wm span{color:rgba(240,90,40,.4);}
+
+@media print{
+  body{background:#fff;padding:0;}
+  .print-btn{display:none;}
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Opslaan als PDF</button>
+
+<!-- ════════════════════════════════════════
+     INSTAGRAM POSTS
+════════════════════════════════════════ -->
+<div class="section-title">Instagram Posts — 1080×1080</div>
+<div class="section-sub">Screenshot elke post afzonderlijk of sla op als PDF · Aanbevolen tool: Canva screenshot of browser zoom 100%</div>
+<div class="grid">
+
+  <!-- POST 1: Aankondiging -->
+  <div class="ig-post post-announce" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="orange-bar"></div>
+    <div class="content">
+      <div class="eyebrow">Nieuw programma</div>
+      <h2>Betere speler.<br>Betere mens.<br>Betere ploegmaat.</h2>
+      <p>Character First is een evidence-based ontwikkelingsprogramma voor jonge basketballers — gericht op zelfkennis, teamdynamiek en leiderschap.</p>
+      <div class="items">
+        <div class="item">5-daags seizoenskamp format (The Week)</div>
+        <div class="item">Volledig seizoensprogramma (The Season)</div>
+        <div class="item">100% online, 100% evidence-based</div>
+      </div>
+      <div class="cta-bar">
+        <div class="email">characterfirstbb@gmail.com</div>
+        <div class="logo-sm">CHARACTER<span> FIRST</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 2: Harvard stat -->
+  <div class="ig-post post-photo-stat" style="width:400px;height:400px;">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1546519638405-a2a3f4bd31c0?w=800&q=80');"></div>
+    <div class="overlay"></div>
+    <div class="stat-pill">Harvard Research</div>
+    <div class="content">
+      <div class="main-num">20%</div>
+      <h2>Beter presteren met teamcohesie</h2>
+      <p>Teams met hoge sociale cohesie presteren tot 20% beter dan teams met gelijk talent maar lage cohesie. — Carron (1982)</p>
+      <div class="logo">CHARACTER<span> FIRST</span></div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- POST 3: Quote Jordan -->
+  <div class="ig-post post-dark-quote" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco-circle"></div>
+    <div class="deco-circle2"></div>
+    <div class="content">
+      <div class="tag">Quote</div>
+      <div class="quote-mark">"</div>
+      <div class="quote-text">Ik heb meer dan 9.000 worpen gemist. Dat is precies waarom ik slaagde.</div>
+      <div class="source">Michael Jordan — NBA Legende</div>
+    </div>
+    <div class="logo">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- POST 4: Box Breathing tip -->
+  <div class="ig-post post-tip" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco"></div>
+    <div class="deco2"></div>
+    <div class="content">
+      <div class="tip-label">Praktische tip</div>
+      <h2>Box Breathing —<br>voor je volgende grote wedstrijd</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><p><strong>Adem in</strong> — 4 tellen</p></div>
+        <div class="step"><div class="step-num">2</div><p><strong>Vasthouden</strong> — 4 tellen</p></div>
+        <div class="step"><div class="step-num">3</div><p><strong>Adem uit</strong> — 4 tellen</p></div>
+        <div class="step"><div class="step-num">4</div><p><strong>Wachten</strong> — 4 tellen · herhaal 3×</p></div>
+      </div>
+      <div class="cta">Sla op voor je volgende wedstrijd 📌</div>
+    </div>
+    <div class="logo">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- POST 5: Poll spelerstypes -->
+  <div class="ig-post post-poll" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="content" style="padding:0;">
+      <div class="top-bar">
+        <div class="ball-icon"></div>
+        <span>Welk type ben jij?</span>
+      </div>
+      <div style="padding:0 22px;display:flex;flex-direction:column;flex:1;padding-bottom:16px;">
+        <h2>Elke ploeg heeft<br>alle 4 nodig. 🏀</h2>
+        <div class="options">
+          <div class="opt highlight"><div class="letter">A</div>De Leider — neemt verantwoordelijkheid</div>
+          <div class="opt"><div class="letter">B</div>De Motor — geeft energie en sfeer</div>
+          <div class="opt"><div class="letter">C</div>De Denker — tactisch sterk</div>
+          <div class="opt"><div class="letter">D</div>De Stabiele Kracht — betrouwbaar, altijd er</div>
+        </div>
+        <div class="footer-bar">
+          <div class="inst">Stem in de comments 👇</div>
+          <div class="cf">CHARACTER FIRST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 6: Team photo + quote -->
+  <div class="ig-post post-photo-stat" style="width:400px;height:400px;">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&q=80');"></div>
+    <div class="overlay"></div>
+    <div class="stat-pill">Teamwork</div>
+    <div class="content">
+      <h2>"Het geheim van goede teamwork is dat iedereen durft te spreken."</h2>
+      <p>Psychologische veiligheid is de sterkste voorspeller van teamprestaties. — Edmondson, Harvard 1999</p>
+      <div class="logo">CHARACTER<span> FIRST</span></div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- POST 7: Piloot call -->
+  <div class="ig-post post-announce" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="orange-bar"></div>
+    <div class="content">
+      <div class="eyebrow">🎯 Gratis piloot</div>
+      <h2>We zoeken<br>3 pilootclubs.</h2>
+      <p>Volledig gratis deelnemen aan The Week in ruil voor eerlijke feedback.</p>
+      <div class="items">
+        <div class="item">5 dagmodules volledig gratis</div>
+        <div class="item">Persoonlijke begeleiding van de oprichter</div>
+        <div class="item">Inspraak in de verdere ontwikkeling</div>
+        <div class="item">Vroege-adopter prijs daarna</div>
+      </div>
+      <div class="cta-bar">
+        <div class="email">DM of characterfirstbb@gmail.com</div>
+        <div class="logo-sm">CHARACTER<span> FIRST</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 8: Split — communicatie -->
+  <div class="ig-post post-split" style="width:400px;height:400px;display:flex;">
+    <div class="left" style="background-image:url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=600&q=80');">
+      <div class="overlay"></div>
+    </div>
+    <div class="right">
+      <div class="tag">Tip voor coaches</div>
+      <h2>Vraag deze week aan elke speler individueel:</h2>
+      <div class="points">
+        <div class="point">"Wat is jouw rol in ons team, zoals jij die ziet?"</div>
+        <div class="point">Luister. Vraag niet of ze gelijk hebben.</div>
+        <div class="point">Vraag daarna: "Klopt dat met wat jij van mij hoort?"</div>
+        <div class="point">5 minuten per speler. Eén week. Enorm verschil.</div>
+      </div>
+      <div class="bottom">CHARACTER <span>FIRST</span> · characterfirstbb@gmail.com</div>
+    </div>
+  </div>
+
+  <!-- POST 9: Quote Walsh -->
+  <div class="ig-post post-dark-quote" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco-circle"></div>
+    <div class="deco-circle2"></div>
+    <div class="content">
+      <div class="tag">Teamcultuur</div>
+      <div class="quote-mark">"</div>
+      <div class="quote-text">Als je de cultuur goed bouwt, zorgt het scorebord voor zichzelf.</div>
+      <div class="source">Bill Walsh — NFL Coach · The Score Takes Care of Itself</div>
+    </div>
+    <div class="logo">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- POST 10: Feedbacktip -->
+  <div class="ig-post post-tip" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco"></div>
+    <div class="deco2"></div>
+    <div class="content">
+      <div class="tip-label">Teemoefening — 2 minuten</div>
+      <h2>De Feedbackronde na training</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><p>Elke speler zegt aan de persoon naast hem:<br><strong>"Wat ik vandaag waardeerde aan jou was..."</strong></p></div>
+        <div class="step"><div class="step-num">2</div><p>Geen technische feedback — alleen gedrag als ploegmaat</p></div>
+        <div class="step"><div class="step-num">3</div><p>Ontvanger zegt alleen: <strong>"Dank je."</strong></p></div>
+      </div>
+      <div class="cta">Probeer het dit weekend 🏀</div>
+    </div>
+    <div class="logo">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- POST 11: Growth mindset -->
+  <div class="ig-post post-photo-stat" style="width:400px;height:400px;">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1519861531473-9200262188bf?w=800&q=80');"></div>
+    <div class="overlay"></div>
+    <div class="stat-pill">Growth Mindset · Dweck 2006</div>
+    <div class="content">
+      <h2>Talent is een startpunt.<br>Niet een eindpunt.</h2>
+      <p>Spelers met een growth mindset herstellen sneller na fouten en ontwikkelen zich structureel verder — ongeacht hun huidig niveau.</p>
+      <div class="logo">CHARACTER<span> FIRST</span></div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- POST 12: Poll coaches -->
+  <div class="ig-post post-poll" style="width:400px;height:400px;">
+    <div class="bg"></div>
+    <div class="content" style="padding:0;">
+      <div class="top-bar">
+        <div class="ball-icon"></div>
+        <span>Poll voor coaches 📋</span>
+      </div>
+      <div style="padding:0 22px;display:flex;flex-direction:column;flex:1;padding-bottom:16px;">
+        <h2>Wat is jullie grootste uitdaging dit seizoen?</h2>
+        <div class="options">
+          <div class="opt"><div class="letter">A</div>Spelers die hun rol niet accepteren</div>
+          <div class="opt highlight"><div class="letter">B</div>Slechte communicatie onderling</div>
+          <div class="opt"><div class="letter">C</div>Omgaan met druk en fouten</div>
+          <div class="opt"><div class="letter">D</div>Gebrek aan vertrouwen in de groep</div>
+        </div>
+        <div class="footer-bar">
+          <div class="inst">Stem in de comments 👇</div>
+          <div class="cf">CHARACTER FIRST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /grid posts -->
+
+
+<!-- ════════════════════════════════════════
+     INSTAGRAM STORIES
+════════════════════════════════════════ -->
+<div class="section-title">Instagram Stories — 1080×1920</div>
+<div class="section-sub">9:16 formaat · Ideaal voor dagelijkse content · 30 stories voor de eerste maand</div>
+<div class="grid">
+
+  <!-- STORY 1: Lancering -->
+  <div class="story story-dark">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco"></div>
+    <div class="story-progress"><div class="story-progress-fill"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body" style="margin-top:20px;">
+        <div class="label">Nieuw programma 🏀</div>
+        <h2>Character First is hier.</h2>
+        <p>Een evidence-based programma voor jonge basketballers — gericht op wie je bent, niet alleen hoe je speelt.</p>
+        <p style="margin-top:.5rem;color:#777;">Swipe up voor meer info.</p>
+      </div>
+      <div class="swipe">Meer info</div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- STORY 2: Pijler 1 -->
+  <div class="story story-orange">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:20%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body" style="margin-top:10px;">
+        <div class="num">01</div>
+        <h2>Pijler 1:<br>Zelfkennis</h2>
+        <p>Ken jezelf voor je anderen kan leiden. De beste spelers kennen niet alleen hun jump shot — ze kennen hun reactie onder druk.</p>
+      </div>
+      <div class="swipe">5 pijlers — swipe voor meer</div>
+    </div>
+    <div class="wm" style="color:rgba(0,0,0,.2);">CHARACTER FIRST</div>
+  </div>
+
+  <!-- STORY 3: Quote photo -->
+  <div class="story story-photo">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=600&q=80');"></div>
+    <div class="overlay"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:60%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body">
+        <div class="quote-mark">"</div>
+        <h2>Druk is geen probleem om op te lossen. Het is een signaal dat er iets op het spel staat.</h2>
+        <div class="source">Character First · Dag 2 — The Week</div>
+        <div class="swipe">Leer meer over The Week</div>
+      </div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- STORY 4: Box breathing steps -->
+  <div class="story story-steps">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:35%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="top-tag">Tip van de dag</div>
+      <h2>Box Breathing voor wedstrijdspanning</h2>
+      <div class="steps-list">
+        <div class="s-step"><div class="s-num">1</div><p><strong>Adem in</strong> — 4 tellen</p></div>
+        <div class="s-step"><div class="s-num">2</div><p><strong>Vasthouden</strong> — 4 tellen</p></div>
+        <div class="s-step"><div class="s-num">3</div><p><strong>Adem uit</strong> — 4 tellen</p></div>
+        <div class="s-step"><div class="s-num">4</div><p><strong>Wachten</strong> — 4 tellen</p></div>
+        <div class="s-step"><div class="s-num">✓</div><p>Herhaal 3× voor grote momenten</p></div>
+      </div>
+      <div class="swipe">Sla op voor later 📌</div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- STORY 5: Poll spelerstypes -->
+  <div class="story story-poll">
+    <div class="bg"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:75%;"></div></div>
+    <div class="content" style="padding:0;">
+      <div class="top-block">
+        <div class="q-icon">🏀</div>
+        <h2>Welk type speler ben jij in je team?</h2>
+      </div>
+      <div style="padding:0 14px;display:flex;flex-direction:column;flex:1;padding-bottom:14px;">
+        <div class="opt-block">
+          <div class="s-opt hi"><div class="l">A</div>De Leider</div>
+          <div class="s-opt"><div class="l">B</div>De Motor</div>
+          <div class="s-opt"><div class="l">C</div>De Denker</div>
+          <div class="s-opt"><div class="l">D</div>De Stabiele Kracht</div>
+        </div>
+        <div class="footer">Stem 👆 en reageer in <strong>characterfirst.bb</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 6: Piloot call -->
+  <div class="story story-dark">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:50%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body" style="margin-top:20px;">
+        <div class="label">🎯 Gratis piloot</div>
+        <h2>We zoeken 3 pilootclubs voor dit seizoen.</h2>
+        <p>Volledig gratis The Week — in ruil voor eerlijke feedback.</p>
+        <p style="margin-top:.5rem;color:var(--orange);font-weight:700;">DM ons of mail naar:<br>characterfirstbb@gmail.com</p>
+      </div>
+      <div class="swipe">Stuur een DM</div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- STORY 7: Team Contract -->
+  <div class="story story-orange">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:90%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body" style="margin-top:10px;">
+        <div class="num">05</div>
+        <h2>Dag 5: Team Contract</h2>
+        <p>Niet opgelegd door de coach. Door de spelers zelf geschreven en ondertekend.</p>
+        <p style="margin-top:.5rem;color:rgba(255,255,255,.7);">Gedragsafspraken vanuit eigenaarschap — het verschil tussen regels en cultuur.</p>
+      </div>
+      <div class="swipe">Meer over The Week</div>
+    </div>
+  </div>
+
+  <!-- STORY 8: Quote photo hoop -->
+  <div class="story story-photo">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1485395037613-e83d5c1d5ac8?w=600&q=80');"></div>
+    <div class="overlay"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:40%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body">
+        <div class="quote-mark">"</div>
+        <h2>Kampioenen worden gebouwd, niet geboren.</h2>
+        <div class="source">Character First · Dag 5 — Team Eerst</div>
+        <div class="swipe">Ontdek het programma</div>
+      </div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- STORY 9: The Season uitleg -->
+  <div class="story story-steps">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:25%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="top-tag">The Season — 8 maanden</div>
+      <h2>Eén thema per maand doorheen het seizoen</h2>
+      <div class="steps-list">
+        <div class="s-step"><div class="s-num">1</div><p><strong>Zelfkennis</strong> & Mindset</p></div>
+        <div class="s-step"><div class="s-num">2</div><p><strong>Druk</strong> & Falen</p></div>
+        <div class="s-step"><div class="s-num">3</div><p><strong>Mijn rol</strong> in het team</p></div>
+        <div class="s-step"><div class="s-num">4</div><p><strong>Communicatie</strong> & feedback</p></div>
+        <div class="s-step"><div class="s-num">5</div><p><strong>Leiderschap</strong> zonder aanvoerdersband</p></div>
+        <div class="s-step"><div class="s-num">+3</div><p>Conflict · Veerkracht · Teamcultuur</p></div>
+      </div>
+      <div class="swipe">Meer info via DM</div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- STORY 10: Ploegmaat zin -->
+  <div class="story story-dark">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="deco"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:65%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body" style="margin-top:20px;">
+        <div class="label">Tip van de dag</div>
+        <h2>De krachtigste zin na een fout van een ploegmaat:</h2>
+        <p style="color:var(--orange);font-size:.85rem;font-weight:700;margin-top:.5rem;">
+          "Volgende kans. Wij zijn er."
+        </p>
+        <p style="margin-top:.5rem;">Erkenning + verbondenheid + toekomst. Drie woorden. Enorm verschil.</p>
+      </div>
+      <div class="swipe">Deel met je team</div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+  <!-- STORY 11: Poll coaches -->
+  <div class="story story-poll">
+    <div class="bg"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:55%;"></div></div>
+    <div class="content" style="padding:0;">
+      <div class="top-block">
+        <div class="q-icon">📋</div>
+        <h2>Coaches: wat is jullie grootste uitdaging?</h2>
+      </div>
+      <div style="padding:0 14px;display:flex;flex-direction:column;flex:1;padding-bottom:14px;">
+        <div class="opt-block">
+          <div class="s-opt"><div class="l">A</div>Rolverwarring in de ploeg</div>
+          <div class="s-opt hi"><div class="l">B</div>Communicatieproblemen</div>
+          <div class="s-opt"><div class="l">C</div>Omgaan met druk</div>
+          <div class="s-opt"><div class="l">D</div>Gebrek aan vertrouwen</div>
+        </div>
+        <div class="footer">Stem 👆 · <strong>Character First</strong> kan helpen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 12: Brené Brown quote -->
+  <div class="story story-photo">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?w=600&q=80');"></div>
+    <div class="overlay"></div>
+    <div class="story-progress"><div class="story-progress-fill" style="width:80%;"></div></div>
+    <div class="content">
+      <div class="story-header">
+        <div class="story-avatar">CF</div>
+        <div class="story-name">characterfirst.bb</div>
+        <div class="story-time">nu</div>
+      </div>
+      <div class="body">
+        <div class="quote-mark">"</div>
+        <h2>Je kan niet dapper zijn als je je niet kwetsbaar durft opstellen.</h2>
+        <div class="source">Brené Brown</div>
+        <div class="swipe">Ontdek Character First</div>
+      </div>
+    </div>
+    <div class="wm">CHARACTER<span> FIRST</span></div>
+  </div>
+
+</div><!-- /grid stories -->
+
+<!-- ════════════════════════════════════════
+     CONTENT KALENDER
+════════════════════════════════════════ -->
+<div class="section-title" style="color:#fff;">Content Kalender — Week 1 t/m 4</div>
+<div class="section-sub">Volgorde voor Instagram & Facebook eerste maand</div>
+<div style="background:#fff;border-radius:8px;overflow:hidden;margin-bottom:40px;max-width:900px;">
+  <table style="width:100%;border-collapse:collapse;font-size:.8rem;">
+    <thead>
+      <tr style="background:#0a0a0a;color:#fff;">
+        <th style="padding:.7rem 1rem;text-align:left;">Week</th>
+        <th style="padding:.7rem 1rem;text-align:left;">Maandag</th>
+        <th style="padding:.7rem 1rem;text-align:left;">Woensdag</th>
+        <th style="padding:.7rem 1rem;text-align:left;">Vrijdag</th>
+        <th style="padding:.7rem 1rem;text-align:left;">Zondag</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:.7rem 1rem;font-weight:700;background:#fff0eb;color:#f05a28;">Week 1</td>
+        <td style="padding:.7rem 1rem;">📢 Aankondiging<br><small style="color:#999;">Post 1 — Wie is Character First?</small></td>
+        <td style="padding:.7rem 1rem;">📊 Poll<br><small style="color:#999;">Welk type speler ben jij?</small></td>
+        <td style="padding:.7rem 1rem;">💡 Tip<br><small style="color:#999;">De 2-min feedbackronde</small></td>
+        <td style="padding:.7rem 1rem;">💬 Quote<br><small style="color:#999;">Michael Jordan</small></td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;background:#fafafa;">
+        <td style="padding:.7rem 1rem;font-weight:700;background:#fff0eb;color:#f05a28;">Week 2</td>
+        <td style="padding:.7rem 1rem;">👤 Oprichter intro<br><small style="color:#999;">Waarom Character First?</small></td>
+        <td style="padding:.7rem 1rem;">📊 Poll coaches<br><small style="color:#999;">Grootste uitdaging?</small></td>
+        <td style="padding:.7rem 1rem;">🫁 Tip<br><small style="color:#999;">Box Breathing uitleg</small></td>
+        <td style="padding:.7rem 1rem;">💬 Quote<br><small style="color:#999;">Bill Walsh</small></td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:.7rem 1rem;font-weight:700;background:#fff0eb;color:#f05a28;">Week 3</td>
+        <td style="padding:.7rem 1rem;">📈 Stat<br><small style="color:#999;">Harvard 20% cohesie</small></td>
+        <td style="padding:.7rem 1rem;">❓ Vraag<br><small style="color:#999;">Welk gesprek stel jij uit?</small></td>
+        <td style="padding:.7rem 1rem;">📋 Coach oefening<br><small style="color:#999;">Rol gesprek individueel</small></td>
+        <td style="padding:.7rem 1rem;">💬 Quote<br><small style="color:#999;">Brené Brown</small></td>
+      </tr>
+      <tr>
+        <td style="padding:.7rem 1rem;font-weight:700;background:#fff0eb;color:#f05a28;">Week 4</td>
+        <td style="padding:.7rem 1rem;">🎯 Piloot call<br><small style="color:#999;">We zoeken 3 clubs</small></td>
+        <td style="padding:.7rem 1rem;">📊 Poll ouders<br><small style="color:#999;">Zin na de wedstrijd</small></td>
+        <td style="padding:.7rem 1rem;">💬 Ploegmaatzin<br><small style="color:#999;">"Volgende kans. Wij zijn er."</small></td>
+        <td style="padding:.7rem 1rem;">💬 Quote<br><small style="color:#999;">Character First eigen quote</small></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="color:#555;font-size:.75rem;text-align:center;padding-bottom:40px;">
+  Character First · Win the person. Win the team. · characterfirstbb@gmail.com
+</div>
+
+</body>
+</html>

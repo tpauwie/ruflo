@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — 50 Exercises</title>
+<style>
+  :root {
+    --ink: #1C2433;
+    --orange: #f05a28;
+    --white: #ffffff;
+    --canvas: #FAF7F2;
+    --light-orange: #fff3ef;
+    --line: #E4DFD6;
+    --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
+  body { font-family: 'Inter', Arial, sans-serif; background: var(--canvas); color: var(--ink); }
+
+  /* SCREEN */
+  .screen-header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .logo-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 22px; color: var(--white);
+    flex-shrink: 0;
+  }
+  .screen-header h1 { font-size: 28px; font-weight: 800; }
+  .screen-header p { font-size: 14px; opacity: .7; margin-top: 4px; }
+
+  .screen-nav {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .screen-nav a {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all .2s;
+  }
+  .screen-nav a.active, .screen-nav a:hover {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+
+  .screen-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  .theme-section { margin-bottom: 56px; }
+  .theme-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--orange);
+  }
+  .theme-num {
+    width: 44px; height: 44px;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 18px;
+    flex-shrink: 0;
+  }
+  .theme-header h2 { font-size: 22px; font-weight: 800; }
+  .theme-header span { font-size: 13px; color: #888; }
+
+  .exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 20px;
+  }
+  .exercise-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .exercise-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+  .card-header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .card-num {
+    background: var(--orange);
+    color: var(--white);
+    font-weight: 900;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .card-header h3 { font-size: 15px; font-weight: 700; flex: 1; }
+  .card-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 18px;
+    background: var(--light-orange);
+    border-bottom: 1px solid var(--border);
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    color: #555;
+  }
+  .badge.time { border-color: var(--orange); color: var(--orange); }
+  .badge.type { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .card-body { padding: 16px 18px; }
+  .card-body .doel {
+    font-size: 13px;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 12px;
+    padding-left: 10px;
+    border-left: 3px solid var(--orange);
+  }
+  .steps-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .steps ol { padding-left: 18px; }
+  .steps li { font-size: 13px; line-height: 1.6; margin-bottom: 4px; color: #333; }
+  .materiaal, .debrief {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #555;
+  }
+  .materiaal strong, .debrief strong {
+    color: var(--black);
+    font-weight: 700;
+  }
+  .debrief ul { padding-left: 16px; margin-top: 4px; }
+  .debrief li { margin-bottom: 2px; line-height: 1.5; }
+
+
+  /* PREMIUM LOCK SYSTEM */
+  .premium-locked {
+    position: relative;
+    pointer-events: none;
+  }
+  .premium-locked > *:not(.premium-lock) {
+    filter: blur(4px);
+    user-select: none;
+  }
+  .premium-lock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(28,36,51,0.7);
+    border-radius: inherit;
+    z-index: 10;
+    pointer-events: all;
+    gap: 0.5rem;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  .premium-lock .lock-icon { font-size: 2rem; }
+  .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+  .premium-lock .lock-cta {
+    background: #f05a28;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    pointer-events: all;
+  }
+
+  /* PRINT */
+  @media print {
+    .screen-header, .screen-nav { display: none; }
+    body { background: white; }
+    .screen-body { padding: 0; max-width: 100%; }
+    .theme-section { page-break-after: always; }
+    .exercises-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .exercise-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    .card-header { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card-meta { background: #fff3ef !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .badge.type { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../oefeningen.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
+<script src="../cf-auth.js"></script>
+</head>
+<body>
+
+
+
+<div class="screen-header">
+  <div class="logo-circle">CF</div>
+  <div>
+    <h1>Character First — Exercise Library</h1>
+    <p>50 fully developed exercises · max 10 minutes · 5 themes · for coaches and facilitators</p>
+  </div>
+</div>
+
+<nav class="screen-nav">
+  <a href="#t1" class="active">1. Self-Awareness</a>
+  <a href="#t2">2. Pressure &amp; Stress</a>
+  <a href="#t3">3. My Role</a>
+  <a href="#t4">4. Communication</a>
+  <a href="#t5">5. Team First</a>
+  <a href="../oefeningen.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+</nav>
+
+<div class="screen-body">
+
+<!-- ===== THEME 1 ===== -->
+<section class="theme-section" id="t1">
+  <div class="theme-header">
+    <div class="theme-num">1</div>
+    <div>
+      <h2>Self-Awareness &amp; Identity</h2>
+      <span>10 exercises — who am I as an athlete and as a person?</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">01</span><h3>Three Words</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players put into words who they are without overthinking.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Give each player a post-it and a marker.</li>
+          <li>Say: "Write three words in 30 seconds that describe you as an athlete. Don't think, just write."</li>
+          <li>After 30 seconds: "Now write three words that describe you as a person outside of sport."</li>
+          <li>Players stick their post-its on a wall and walk past the other cards.</li>
+          <li>Short plenary round: who recognises something of themselves in someone else?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> post-its, markers</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>What stood out to you about your own words?</li>
+          <li>Which word would a teammate choose to describe you?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">02</span><h3>Sports Timeline</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players visualise their sports journey and discover formative moments.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Give each player a blank sheet. Draw a horizontal timeline from "first sports memory" to "now".</li>
+          <li>Mark on the line: 2 highlights (above the line) and 2 low points (below the line).</li>
+          <li>Write one word next to each moment — what you learned.</li>
+          <li>Pairs of 2: share one highlight and one low point in 90 seconds per person.</li>
+          <li>Plenary: who wants to share a low point that made them stronger?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> A4 sheets, pens</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which moment has shaped you the most?</li>
+          <li>What does your timeline say about who you are?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">03</span><h3>Values Compass</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual + Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players identify their top 3 personal values.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Hand out a list of 20 values (e.g. honesty, perseverance, respect, courage, loyalty, enjoyment, winning, growth, etc.).</li>
+          <li>Step 1 (2 min): circle the 7 values that fit you best.</li>
+          <li>Step 2 (2 min): cross out 4. Keep 3.</li>
+          <li>Step 3: write a concrete memory next to each value — a time you lived that value on the field.</li>
+          <li>Pair: share your top 3 and the reason. Listen actively without interrupting.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> value cards or printed list</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which value is hardest to live by when you are under pressure?</li>
+          <li>How do you want others to recognise your values?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">04</span><h3>Energy Giver or Energy Drainer</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players recognise what gives them energy and what costs energy in sport.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Draw two columns: "gives energy" and "costs energy".</li>
+          <li>Players write for 3 min everything that gives them energy in sport (people, situations, training sessions, moments).</li>
+          <li>Then 3 min: what costs energy? (conflicts, tension, certain situations).</li>
+          <li>Review the lists: what pattern do you see?</li>
+          <li>Optional: share one energy giver with the group.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> notebook or sheet</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How can you build more energy givers into your week?</li>
+          <li>What do you do when something costs you energy?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">05</span><h3>My Superpower</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Positive Affirmation</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players name their strongest quality through external feedback.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Pairs of 2. Partner A sits quietly, partner B names every strength he/she sees in partner A as an athlete for 60 seconds.</li>
+          <li>Partner A only listens and writes down what is said.</li>
+          <li>After 60 seconds: switch.</li>
+          <li>Each person chooses from the list the strength that surprised them most.</li>
+          <li>Write that strength on a card to take with you.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> small cards, pens</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which strength surprised you the most?</li>
+          <li>How would you use that strength more?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">06</span><h3>Letter to My Younger Self</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players reflect on growth and give themselves valuable advice.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Say: "Write a letter of 5 sentences to yourself when you had just started playing sport."</li>
+          <li>Begin each sentence with a given opener: "I want you to know that...", "Don't be afraid to...", "The best choice you will make is...", "What matters is...", "You are capable of..."</li>
+          <li>Players write for 5 min in silence.</li>
+          <li>Anyone who wants to may read one sentence aloud to the group.</li>
+          <li>Coach closes: "The things you wrote are already who you are."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which sentence felt most true?</li>
+          <li>What would your future self say to you now?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">07</span><h3>Identity Anchors</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Visualisation</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players anchor a positive identity statement in the body.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players stand upright, feet shoulder-width apart.</li>
+          <li>Coach guides: "Close your eyes. Think of a moment when you truly felt like yourself as an athlete. When was that?"</li>
+          <li>30 seconds of silence. Players let the image come.</li>
+          <li>"Feel that feeling in your body. Where is it? Chest? Legs? Hands?"</li>
+          <li>Players name one sentence to themselves: "I am someone who..." based on that feeling.</li>
+          <li>Open eyes. Write the sentence down and keep it.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> quiet space, pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How does that sentence feel when you say it aloud?</li>
+          <li>When do you need that sentence most?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">08</span><h3>Who Inspires You?</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players link external role models to internal qualities.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Every player thinks of one person who inspires them (athlete or not).</li>
+          <li>Write three qualities you admire in that person.</li>
+          <li>Then write: "I admire this, so it is already in me too: ..."</li>
+          <li>Volunteers share their role model and one quality.</li>
+          <li>Coach: "You cannot recognise something in another person unless it also lives in you."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which quality do you want to develop further?</li>
+          <li>What would your role model do in your situation right now?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">09</span><h3>Body Scan Check-in</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Mindfulness / Body Scan</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players connect with how they are doing right now.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players sit or stand comfortably. Eyes closed or lowered.</li>
+          <li>Coach leads: "Scan slowly from your feet to your head. Don't judge, just notice."</li>
+          <li>"Feet: tense or relaxed? Legs: heavy or light? Stomach: calm or nervous? Chest: open or closed? Shoulders: up or down? Jaw: clenched or loose?"</li>
+          <li>Players rate on a scale of 1 to 10 how they feel. No explanation needed.</li>
+          <li>Close: "How you feel right now is okay. We start from here."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>What did you notice that you don't normally notice?</li>
+          <li>How does this help you for training or a match?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">10</span><h3>Two Truths, One Lie</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Icebreaker / Reflection</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players get to know each other better in a playful, revealing way.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Every player writes 3 statements about themselves: 2 true facts and 1 lie.</li>
+          <li>The statements are about who they are outside of sport (no sports facts).</li>
+          <li>Players take turns reading out their 3 statements.</li>
+          <li>The group votes: which one is the lie? A short 30-second debate is allowed.</li>
+          <li>The player reveals the lie and briefly shares something about one of the true facts.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper or cards</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>What did you discover today about a teammate?</li>
+          <li>Which fact about yourself surprised others the most?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEME 2 ===== -->
+<section class="theme-section" id="t2">
+  <div class="theme-header">
+    <div class="theme-num">2</div>
+    <div>
+      <h2>Pressure &amp; Stress</h2>
+      <span>10 exercises — coping with pressure, nerves and high expectations</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">11</span><h3>Box Breathing</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Breathing</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: calm the nervous system through controlled breathing (technique used by Navy SEALs and elite athletes).</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players stand or sit upright. Hands on their knees.</li>
+          <li>Coach counts aloud or via timer: "Inhale 4 counts... hold 4 counts... exhale 4 counts... hold 4 counts."</li>
+          <li>Repeat 4 rounds. Total approximately 2 minutes.</li>
+          <li>Increase to 5 counts per phase when the group is ready.</li>
+          <li>Close: "Notice how your heart rate has dropped. You can do this anywhere, anytime."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none (optional: timer)</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>When in a match would you use this?</li>
+          <li>What do you notice in your body after this exercise?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">12</span><h3>4-7-8 Breathing Relaxation</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Breathing</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: activate deep relaxation through the parasympathetic nervous system.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players sit comfortably, back straight.</li>
+          <li>Exhale completely through the mouth with a "whoosh" sound.</li>
+          <li>Close the mouth and inhale through the nose, counting silently to 4.</li>
+          <li>Hold the breath, count to 7.</li>
+          <li>Exhale completely through the mouth with a "whoosh", count to 8.</li>
+          <li>This is one cycle. Repeat 3 to 4 times.</li>
+          <li>Close with a brief silence and open eyes.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How does this feel different from normal breathing?</li>
+          <li>In which stressful situation would this help?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">13</span><h3>Stress Barometer</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players learn to recognise and name their own stress level.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Draw a thermometer on paper, from 0 (completely calm) to 10 (maximum stress).</li>
+          <li>Mark: where are you NOW? Colour in the thermometer.</li>
+          <li>Write next to the thermometer: what is causing this score?</li>
+          <li>Write at 3 (low pressure): how does your body feel? At 7 (high pressure): how does the body feel?</li>
+          <li>Optional: share your score anonymously. Coach writes scores on the board and discusses the spread.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>What are your early warning signs of rising stress?</li>
+          <li>What helps you go from an 8 to a 5?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">14</span><h3>Worst Case Best Case</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Cognitive Restructuring</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: put the fear of failure into perspective.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Player thinks of an upcoming stressful situation (match, presentation, selection).</li>
+          <li>Write: "What is the worst that can happen?" Be honest and specific.</li>
+          <li>Write: "What is the best that can happen?"</li>
+          <li>Write: "What is the most likely scenario?"</li>
+          <li>Pair: discuss the most likely scenario. How can you prepare for it?</li>
+          <li>Close: "The worst case rarely actually happens."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How realistic was your worst case?</li>
+          <li>What changes when you focus on the most likely outcome?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">15</span><h3>Reset Ritual</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Mindfulness</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: consciously reset and start fresh after a loss or mistake.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players stand in a circle. Coach: "Think of something that didn't go well this week."</li>
+          <li>30 seconds of silence: let the feeling be there. Don't push it away.</li>
+          <li>Breathing: one deep inhale through the nose, long exhale through the mouth.</li>
+          <li>Everyone says out loud simultaneously: "Next!" (or a team word).</li>
+          <li>Coach: "That moment is over. What do you take with you for next time?"</li>
+          <li>Each person writes one lesson. Done.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none (optional: cards)</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How does it feel to consciously reset?</li>
+          <li>When would you use this in a match?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">16</span><h3>Pressure Card</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players create a personal plan for coping with pressure.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Fold an A4 sheet into quarters. Four boxes: "My pressure sources", "My signals", "My tools", "My reset phrase".</li>
+          <li>Box 1 (2 min): write 3 things that cause pressure for you in sport.</li>
+          <li>Box 2 (1 min): how do you notice it in your body? (heart rate, breathing, thoughts).</li>
+          <li>Box 3 (2 min): what helps you? (music, routine, breathing, talking, movement).</li>
+          <li>Box 4 (1 min): write one sentence you tell yourself when things get tough.</li>
+          <li>Keep the card. Take it with you to matches.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> A4 sheet, pen</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Is your reset phrase something you genuinely believe?</li>
+          <li>Which tool do you use most often?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">17</span><h3>Ground Yourself: 5-4-3-2-1</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Mindfulness</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: break through anxiety or overwhelm using sensory grounding.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players stand or sit. Coach guides calmly:</li>
+          <li>"Name 5 things you CAN SEE in the room."</li>
+          <li>"Name 4 things you CAN TOUCH. Touch them."</li>
+          <li>"Name 3 things you CAN HEAR right now."</li>
+          <li>"Name 2 things you CAN SMELL."</li>
+          <li>"Name 1 thing you CAN TASTE."</li>
+          <li>Close with one deep breath. "You are here. You are present."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How quickly did the stress thoughts disappear?</li>
+          <li>When would you use this yourself?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">18</span><h3>Writing a Performance Mantra</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Positive Affirmation</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players create a personal mental cue for use under pressure.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach: "A mantra is a short phrase that helps you focus. Elite athletes use them all the time."</li>
+          <li>Give examples: "One play at a time", "I am prepared", "Calm and sharp".</li>
+          <li>Players write 3 candidate mantras (2 min).</li>
+          <li>Read each mantra aloud to yourself. Which feels the most powerful?</li>
+          <li>Write your chosen mantra in large letters on a card.</li>
+          <li>Practice: say the mantra 5 times aloud while standing upright.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> cards, markers</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How does it feel to say your mantra?</li>
+          <li>When will you use it this week?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">19</span><h3>3-Minute Stress Journal</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: recognise stress patterns through brief, regular reflection.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players open a notebook or sheet. Three questions, 1 minute each:</li>
+          <li>Question 1: "What caused stress for me today?" (situation, person, thought).</li>
+          <li>Question 2: "How did I react to that stress?" (behaviour, feeling, body).</li>
+          <li>Question 3: "What would I like to do differently next time?"</li>
+          <li>No full sentences needed. Key words are enough.</li>
+          <li>Coach: "If you do this for three weeks, you will see your own pattern."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> notebook, pen</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>What is your most common stressor?</li>
+          <li>What do you learn about yourself by keeping this record?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">20</span><h3>Progressive Relaxation</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Body Scan / Breathing</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: consciously release physical tension through progressive muscle relaxation.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players lie on the floor or sit comfortably with eyes closed.</li>
+          <li>Coach guides slowly: "Tense your feet, hold for 5 seconds... release."</li>
+          <li>Repeat for: calves, thighs, glutes, stomach, hands, arms, shoulders, face.</li>
+          <li>After each body part, 2 deep breaths.</li>
+          <li>Close with 1 minute of silence. Slowly open eyes.</li>
+          <li>Coach: "Tension you cannot feel, you cannot release."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> soft surface (optional)</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which body part was holding the most tension?</li>
+          <li>When will you use this before or after a match?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEME 3 ===== -->
+<section class="theme-section" id="t3">
+  <div class="theme-header">
+    <div class="theme-num">3</div>
+    <div>
+      <h2>My Role in the Team</h2>
+      <span>10 exercises — leadership, contribution and role awareness</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">21</span><h3>Role Compass</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players understand their formal and informal role in the team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Draw a compass on paper: North, East, South, West.</li>
+          <li>North: "My task on the field (formal role)".</li>
+          <li>East: "How I help the team off the ball (informal role)".</li>
+          <li>South: "When I forget or lose my role".</li>
+          <li>West: "What I need from the team to perform my role well".</li>
+          <li>Players fill it in for 5 min, then a short pair discussion.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Is your informal role as important as your formal role?</li>
+          <li>Does the coach know what you need?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">22</span><h3>Invisible Contribution</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflection + Motivation</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: name contributions that do not show up in statistics but make the team stronger.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach asks: "Think about the last 3 training sessions. What did you do that was not visible but helped the team?"</li>
+          <li>Players write individually for 2 min: at least 3 invisible contributions.</li>
+          <li>Pair: tell your partner your contributions. Partner adds contributions they noticed in the other person.</li>
+          <li>Plenary: each pair shares the best invisible contribution from their partner.</li>
+          <li>Coach: "Everything that moves the team forward counts. Not just the points."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How did it feel to see your invisible contribution acknowledged?</li>
+          <li>How can you use those contributions more consciously?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">23</span><h3>Human Graph</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Team Dynamics</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players position themselves on statements and discover diversity within the team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Create a line in the room: one end = "strongly agree", other end = "strongly disagree".</li>
+          <li>Coach reads statements, players take their position:</li>
+          <li>"I feel comfortable as a leader." / "I dare to admit mistakes to the team." / "My role in the team is clear to me." / "I know what my best contribution is."</li>
+          <li>After each statement: who is at the extreme? Brief word of explanation (voluntary).</li>
+          <li>Close: "Your opinion is valuable. Diversity makes a team stronger."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> space to move</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which statement surprised you most in terms of others' positions?</li>
+          <li>What does this graph tell you about your team?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">24</span><h3>Top 3 Contributions</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players formulate their most valuable contributions to the team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach: "If you look back at the end of this season, what are the 3 things you helped the team with most?"</li>
+          <li>Players write their top 3 for 3 min. No statistics, but qualities and actions.</li>
+          <li>Then write: "Why is this your contribution? What makes you uniquely suited to it?"</li>
+          <li>Pair: share your top 3 and listen to your partner's.</li>
+          <li>Optional: post the top 3 on a team board.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper or post-its</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How consciously do you work on your top 3?</li>
+          <li>Do your teammates know this is your strongest contribution?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">25</span><h3>Role Promise</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Commitment</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players make a public promise about their contribution to the team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Each person writes a sentence: "In this team I promise to be/do ________."</li>
+          <li>The sentence is concrete and about behaviour, not results.</li>
+          <li>Examples: "encourage when things get tough", "be honest with the coach", "work hard even when I don't play".</li>
+          <li>Circle: everyone reads their promise aloud.</li>
+          <li>Coach writes all promises on a large sheet that stays visible in the changing room or space.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> large sheet, markers</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How does it feel to say this publicly?</li>
+          <li>How can teammates help you keep your promise?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">26</span><h3>Role Circle</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players visualise how their role on the field and in the team are connected.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Draw three concentric circles (innermost small, outermost large).</li>
+          <li>Inner circle: "My core task — what I always need to do".</li>
+          <li>Middle circle: "My secondary contributions — what I often do".</li>
+          <li>Outer circle: "My growth potential — what I can develop".</li>
+          <li>Players fill in each level (5 min).</li>
+          <li>Choose one thing from the outer circle to focus on this week.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How far is your growth potential from your current role?</li>
+          <li>What do you need to reach the outer circle?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">27</span><h3>Formulating a Growth Point</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Goal Setting</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players formulate a concrete growth point without putting themselves down.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach: "A growth point is not a weakness, it is the direction of your development."</li>
+          <li>Players write: "Right now I am good at: ____."</li>
+          <li>Write: "I want to grow in: ____. Not because I am bad at it, but because I want to get better."</li>
+          <li>Write one concrete action they can take this week for that growth point.</li>
+          <li>Pair: share growth points. Partner asks one clarifying question.</li>
+          <li>Exchange the papers. Keep each other's growth point as a reminder.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How does it feel to share a growth point?</li>
+          <li>Which action will you actually take?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">28</span><h3>Leader or Follower?</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Team Dynamics</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players understand that leadership and followership are both valuable roles.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach explains: "Every team has leaders AND people who follow and stabilise the team. Both are needed."</li>
+          <li>Players write: "When am I a leader in this team? Give an example."</li>
+          <li>Write: "When am I a good follower? Give an example."</li>
+          <li>Circle: each person shares one example of leadership AND one of followership.</li>
+          <li>Coach: "True leadership knows when to lead and when to follow."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which is harder for you: leading or following?</li>
+          <li>When does the team need you as a leader?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">29</span><h3>Filling in the Team Map</h3></div>
+      <div class="card-meta">
+        <span class="badge time">9 min</span>
+        <span class="badge type">Team Dynamics</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: map the team as a whole collection of qualities and roles.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Large sheet on a table or wall with the names of all players.</li>
+          <li>Each player writes next to their own name: their strongest quality as a team member (not as an athlete).</li>
+          <li>Then: each player writes next to someone else's name something that person does well for the team.</li>
+          <li>Read through the sheet together. Do the descriptions ring true?</li>
+          <li>Coach: "Look how complete you already are as a team."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> large sheet, markers</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which quality of the team did you not expect?</li>
+          <li>What is still missing from your map?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">30</span><h3>When I Don't Play</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players who are not starting learn to appreciate their role as supporters and teammates.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach: "Almost everyone sits out sometimes. That is part of being a team."</li>
+          <li>Players write: "When I don't play, what do I do?" Honest answer.</li>
+          <li>Write: "What is my role when I am not on the field?"</li>
+          <li>Write: "How can I help the team from the bench or sideline?"</li>
+          <li>Circle: volunteers share their answer to the last question.</li>
+          <li>Coach: "A championship team wins with 15 players, not with 5."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How influential can someone be without playing?</li>
+          <li>What will you do differently when you don't play?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEME 4 ===== -->
+<section class="theme-section" id="t4">
+  <div class="theme-header">
+    <div class="theme-num">4</div>
+    <div>
+      <h2>Communication</h2>
+      <span>10 exercises — feedback, listening and difficult conversations</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">31</span><h3>I Message</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Communication</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players learn to convey a message without blaming.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach explains the structure: "When you [behaviour], I feel [feeling], because [reason]. I would like [need]."</li>
+          <li>Practise with a sports situation: "When you don't communicate on the field, I feel alone, because I don't know what you are going to do. I would like more calling out and pointing."</li>
+          <li>Pair: each player thinks of one real situation from training or a match.</li>
+          <li>Formulate the I-message and say it to your partner.</li>
+          <li>Partner does not respond with defence but with: "I hear that you..."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper (optional)</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How does it feel to hear "I hear that you"?</li>
+          <li>When is this hard to say?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">32</span><h3>Feedback Round Trio</h3></div>
+      <div class="card-meta">
+        <span class="badge time">9 min</span>
+        <span class="badge type">Feedback</span>
+        <span class="badge">Trio</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players practise giving and receiving constructive feedback.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Groups of 3: player A, B, C.</li>
+          <li>Round 1: A gives feedback to B on one positive thing AND one growth point (both concrete). C observes and pays attention to the manner of communication.</li>
+          <li>B may only say: "Thank you. I will take this with me." No defence.</li>
+          <li>Round 2: B gives to C. C observes A.</li>
+          <li>Round 3: C gives to A. A observes B.</li>
+          <li>Close: each trio briefly discusses what went well in the communication.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which was harder: giving or receiving?</li>
+          <li>What did the observer notice about your way of communicating?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">33</span><h3>Mirror Conversation</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Active Listening</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players experience what it feels like to truly be heard.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Pair: partner A speaks for 90 seconds about a challenge in sport (not necessarily a big one).</li>
+          <li>Partner B listens and may say NOTHING. Only nod.</li>
+          <li>After 90 seconds: B repeats in their own words what A said. No additions, no opinions. Only a mirror.</li>
+          <li>A says: "That's right" or gently corrects.</li>
+          <li>Switch roles.</li>
+          <li>Coach: "Real communication starts with listening, not with answering."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How did it feel not to be interrupted?</li>
+          <li>How well do you normally listen?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">34</span><h3>Broken Telephone Analysis</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Communication</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players discover how communication gets distorted and what the consequences are for a team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Row of 6 to 8 players. The first reads a sentence (sport-related, detail-rich).</li>
+          <li>Player whispers the sentence to the next. No repetition allowed.</li>
+          <li>The last player says the sentence aloud.</li>
+          <li>Compare with the original. Discuss: what was lost?</li>
+          <li>Coach links back: "This happens in a team too. How do we prevent it?"</li>
+          <li>Players come up with 2 team agreements to reduce miscommunication.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> sentences on paper, pen</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which word changed the most?</li>
+          <li>Which team agreements are most achievable?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">35</span><h3>Thank You Card</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Gratitude + Motivation</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players express gratitude concretely and specifically to a teammate.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Each person gets a blank card and a pen.</li>
+          <li>Write a thank-you to one specific teammate. Not general, but concrete: "I am grateful for you because you..."</li>
+          <li>Name a specific action or moment: "... always encouraged me during last week's training when things were tough."</li>
+          <li>Cards are delivered to the person directly (not read aloud).</li>
+          <li>Players may respond if they want to, but don't have to.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> cards, pens</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How did it feel to be specifically grateful?</li>
+          <li>When do you normally not say these kinds of things?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">36</span><h3>Practising a Difficult Conversation</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Communication</span>
+        <span class="badge">Trio</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players practise having a difficult conversation in a safe setting.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Trio: A is the speaker, B is the receiver, C is the observer.</li>
+          <li>A chooses a fictional difficult situation (e.g. a teammate who is always late).</li>
+          <li>A addresses B using the I-message formula.</li>
+          <li>B responds realistically but not excessively defensively.</li>
+          <li>After 3 minutes: C gives feedback on the manner of communication (not the content).</li>
+          <li>Rotate roles so that everyone has been A.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> scenario cards (optional)</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>What made the conversation difficult?</li>
+          <li>What did you learn from the observer's feedback?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">37</span><h3>Encouragement Challenge</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge time">Motivation</span>
+        <span class="badge type">Motivating Each Other</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players learn to encourage spontaneously and specifically.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach: "For the next 5 minutes the challenge is: each of you must encourage at least 3 teammates. But it must be specific. Not 'good job', but why."</li>
+          <li>Players move around the space and deliberately seek out teammates.</li>
+          <li>After 5 min: circle. Who received an encouragement that really landed?</li>
+          <li>Coach: "Specific encouragement is much more powerful than generic. 'You always keep pressing — that makes our defence stronger' is different from 'well done'."</li>
+          <li>Discuss: how do we also do this during matches?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which encouragement surprised you?</li>
+          <li>How often do you normally encourage others?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">38</span><h3>Silent vs. Verbal Communication</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Communication</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players discover the power of non-verbal communication in sport.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach gives a small sport task in the space (e.g. a simple movement pattern). First round: completely in silence, no words.</li>
+          <li>Debrief after 2 min: what was difficult? What went surprisingly well?</li>
+          <li>Second round: same task, but now communication is allowed.</li>
+          <li>Compare the two rounds.</li>
+          <li>Coach: "What does your body language say before you open your mouth?"</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> space</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which non-verbal signals do you use in a match?</li>
+          <li>What does your body language say when you are frustrated?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">39</span><h3>Compliment Escalator</h3></div>
+      <div class="card-meta">
+        <span class="badge time">6 min</span>
+        <span class="badge type">Gratitude + Motivation</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: build a culture of genuine appreciation within the team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Circle. One player stands in the middle (max 30 seconds).</li>
+          <li>The circle gives compliments in turn: quickly, spontaneously, specifically.</li>
+          <li>The person in the middle may not respond, only listen and nod.</li>
+          <li>After 30 seconds, the next player. Coach keeps the pace.</li>
+          <li>Everyone has had a turn in the middle.</li>
+          <li>Coach: "This is how a winner feels. Give this to each other every day."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How did it feel to only listen?</li>
+          <li>How does this change the atmosphere in the team?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">40</span><h3>Ask First</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Communication</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players learn to ask questions before forming a judgement.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach gives a scenario: "Your teammate played poorly today. What do you do?"</li>
+          <li>Step 1: players write their first reaction. (Honest, uncorrected.)</li>
+          <li>Step 2: Coach: "Suppose you ask that teammate one question first. What is that question?"</li>
+          <li>Pair: A plays the teammate who played poorly. B asks the question.</li>
+          <li>Discuss: how does a question change the relationship?</li>
+          <li>Coach: "Behind every behaviour is a story. Ask first."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which question would you ask?</li>
+          <li>How is this different from what you normally do?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== THEME 5 ===== -->
+<section class="theme-section" id="t5">
+  <div class="theme-header">
+    <div class="theme-num">5</div>
+    <div>
+      <h2>Team First</h2>
+      <span>10 exercises — trust, cohesion and winning together</span>
+    </div>
+  </div>
+  <div class="exercises-grid">
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">41</span><h3>Trust Fall</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Trust</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: physically experience what trust means in a team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Pair: A stands with their back to B, arms at their sides.</li>
+          <li>B stands ready to catch A, hands in front.</li>
+          <li>Distance: small (30 cm) to begin. A closes eyes and falls backwards.</li>
+          <li>B catches. Switch. Gradually increase the distance.</li>
+          <li>Afterwards: how did it feel to fall? How did it feel to catch?</li>
+          <li>Coach: "This is what you do when you defend for someone, when you make a pass. You trust."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> soft surface, space</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>When do you trust someone in a match?</li>
+          <li>How do you build trust in a team?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card">
+      <div class="card-header"><span class="card-num">42</span><h3>Team Contract</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Commitment</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: the team draws up agreements together that serve as a shared contract.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach: "What are the three things we ALWAYS do in this team? And the three things we NEVER do?"</li>
+          <li>Groups of 3 brainstorm for 3 min and write their suggestions on post-its.</li>
+          <li>Post-its on the board. Coach clusters overlapping ideas.</li>
+          <li>Vote: each member gets 3 stickers. Choose the 3 most important agreements.</li>
+          <li>The top 3 "always" and top 3 "never" become the Team Contract.</li>
+          <li>Everyone signs. Contract is displayed visibly.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> post-its, markers, stickers, large sheet</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which agreement is hardest to keep?</li>
+          <li>How do we hold each other to this contract?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">43</span><h3>Weekly Review</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Reflection</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: the team reflects together on the past week and draws lessons.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Circle. Three questions, each answered by 3 to 4 volunteers:</li>
+          <li>Question 1: "What went well as a team this week?"</li>
+          <li>Question 2: "What was difficult as a team?"</li>
+          <li>Question 3: "What do we take with us into next week?"</li>
+          <li>No opinions about others. Only personal observations.</li>
+          <li>Coach summarises and connects lessons to team goals.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which lesson is most urgent for next week?</li>
+          <li>How can we tackle this as a team structurally?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">44</span><h3>Blind Guide</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Trust</span>
+        <span class="badge">Pair</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: experience that communication and trust go hand in hand.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Pair: A closes eyes (or wears a blindfold). B guides through verbal instructions along a course in the space.</li>
+          <li>B may not touch A. Words only.</li>
+          <li>After 2 min: switch.</li>
+          <li>Then: switch again but now B may touch A (hand on shoulder).</li>
+          <li>Compare the two experiences: which felt better? Easier?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> space, optionally scarves as blindfolds</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How is this comparable to playing in a team?</li>
+          <li>What do you need to trust someone?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">45</span><h3>Letter to the Team</h3></div>
+      <div class="card-meta">
+        <span class="badge time">9 min</span>
+        <span class="badge type">Reflection + Gratitude</span>
+        <span class="badge">Individual</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players put into words what the team means to them.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Each person writes a short letter to the team (minimum 5 sentences).</li>
+          <li>Structure: "I am glad to be part of this team because... / I want to thank you for... / I promise this season... / What I wish for you is..."</li>
+          <li>5 min writing in silence.</li>
+          <li>Anyone who wants to may read their letter aloud to the circle.</li>
+          <li>No comments or reactions from the group, only listening.</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>What changes when you share your feelings about the team?</li>
+          <li>What would it be like to do this every season?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">46</span><h3>Power of the Circle</h3></div>
+      <div class="card-meta">
+        <span class="badge time">5 min</span>
+        <span class="badge type">Motivating Each Other</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: activate the team through a shared energy ritual.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Everyone in a circle, shoulder to shoulder, arms around each other.</li>
+          <li>Coach: "We are going to build energy. Follow my rhythm."</li>
+          <li>Begin: soft humming or breathing in the same rhythm.</li>
+          <li>Build up: tapping, stamping, calling out a team word.</li>
+          <li>Finish: everyone simultaneously makes a powerful shout (team slogan or word).</li>
+          <li>Coach: "That feeling is always there. We activate it consciously."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How did the energy feel just before the shout?</li>
+          <li>When will you use this ritual?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">47</span><h3>Gratitude Circle</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Gratitude</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: build a positive team atmosphere by expressing conscious gratitude.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Circle. Each team member thinks of one moment this week when a teammate did something for the team that stood out.</li>
+          <li>In turn: "I want to thank [name] for [action], because this helped the team by [reason]."</li>
+          <li>The person being thanked only says: "Thank you." Nothing else.</li>
+          <li>After everyone: coach asks who was surprised by their thank-you.</li>
+          <li>Coach: "Gratitude is free. It costs nothing. And it gives everything."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How did it feel to be thanked?</li>
+          <li>What would it be like to do this every week?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">48</span><h3>Team Visualisation</h3></div>
+      <div class="card-meta">
+        <span class="badge time">8 min</span>
+        <span class="badge type">Visualisation</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: the team visualises an outstanding performance together to build collective mental strength.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Players sit comfortably, eyes closed.</li>
+          <li>Coach speaks slowly: "Imagine: it is the most important match of the season. You are ready."</li>
+          <li>"See your teammates beside you. Feel the energy. Smell the sports hall. Hear the crowd."</li>
+          <li>"The match begins. Everything clicks. You move as one team."</li>
+          <li>"See a moment where the team does something amazing. Feel the joy. Share it."</li>
+          <li>Open eyes. Brief sharing: what did you see?</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none (optional: calming music)</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>How vivid was your image?</li>
+          <li>How can visualisation help with preparation?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">49</span><h3>I Need You</h3></div>
+      <div class="card-meta">
+        <span class="badge time">7 min</span>
+        <span class="badge type">Trust + Motivation</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: players express vulnerability by stating what they need from the team.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Coach: "The most powerful thing you can say as an athlete is: I need you."</li>
+          <li>Each person writes: "I need the team to... [1 specific need]."</li>
+          <li>Examples: "encourage me more when I make a mistake", "tell me when I am going solo too much".</li>
+          <li>Circle: everyone reads their sentence aloud.</li>
+          <li>After each sentence: the rest of the team says simultaneously: "We are here for you."</li>
+          <li>Coach: "That is a team."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> pen, paper</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Was it hard to speak your need aloud?</li>
+          <li>How can you do this in daily training?</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="exercise-card premium-locked">      <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="../toegang.html" class="lock-cta">Enter access code</a></div>
+
+      <div class="card-header"><span class="card-num">50</span><h3>Closing Ceremony</h3></div>
+      <div class="card-meta">
+        <span class="badge time">10 min</span>
+        <span class="badge type">Ritual + Closing</span>
+        <span class="badge">Group</span>
+      </div>
+      <div class="card-body">
+        <p class="doel">Goal: close a programme or week with meaning, connection and a forward look.</p>
+        <div class="steps-label">Steps</div>
+        <div class="steps"><ol>
+          <li>Circle. Coach: "We close with three rounds."</li>
+          <li>Round 1 (1 word per person): "Which word describes you today / this week?"</li>
+          <li>Round 2 (1 sentence per person): "What do I take away from this programme?"</li>
+          <li>Round 3 (1 wish per person): "What do I wish this team for the future?"</li>
+          <li>Close with the Power of the Circle ritual (exercise 46) or a shared gesture.</li>
+          <li>Coach: "You are Character First. You carry that with you."</li>
+        </ol></div>
+        <div class="materiaal"><strong>Materials:</strong> none</div>
+        <div class="debrief"><strong>Debrief questions:</strong><ul>
+          <li>Which round moved you the most?</li>
+          <li>How will you take this into your daily life as an athlete?</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- end screen-body -->
+
+<script>
+  const sections = document.querySelectorAll('.theme-section');
+  const navLinks = document.querySelectorAll('.screen-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

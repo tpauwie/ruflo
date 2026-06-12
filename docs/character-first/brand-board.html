@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Character First — Brand Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    /* ---- PRIMARY ---- */
+    --ignite:#F05A28;      /* signature orange — de persoon, lef, energie   */
+    --ember:#D44A1A;       /* dieper oranje — hover / diepte                */
+    /* ---- FOUNDATION ---- */
+    --ink:#1C2433;         /* slate-navy — karakter, discipline, vertrouwen */
+    --ink-soft:#33405A;    /* zachter navy voor secundaire tekst op licht  */
+    /* ---- SECONDARY / ACCENT ---- */
+    --growth:#1E8A5B;      /* groen — groeien als mens, het veld           */
+    --focus:#2F6FB0;       /* blauw — de mentale kant, rust & helderheid   */
+    /* ---- NEUTRALS (de "lichtere" basis) ---- */
+    --canvas:#FAF7F2;      /* warm gebroken wit — hoofdachtergrond         */
+    --mist:#F0ECE4;        /* zachte warme grijs — afwisselende secties    */
+    --white:#FFFFFF;
+    --stone:#6E6A63;       /* gedempte tekst                               */
+    --line:#E4DFD6;        /* randen                                       */
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--canvas);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.display{font-family:'Archivo',system-ui,sans-serif;font-weight:900;line-height:1.05;letter-spacing:-.01em}
+  section{padding:clamp(56px,7vw,96px) 7%;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'Archivo';font-weight:800;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ignite);margin-bottom:.9rem}
+  .sec-title{font-size:clamp(1.7rem,3.4vw,2.6rem);margin-bottom:.6rem}
+  .sec-sub{color:var(--stone);max-width:620px;font-size:1.02rem;line-height:1.7;margin-bottom:2.6rem}
+
+  /* ---------- COVER ---------- */
+  #cover{background:var(--ink);color:var(--white);min-height:88vh;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(40px,6vw,72px) 7%}
+  #cover .top{display:flex;justify-content:space-between;align-items:center;font-family:'Archivo';font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#8893a6}
+  #cover .mid{padding:6vh 0}
+  #cover .doc-tag{display:inline-block;border:1px solid #38445c;color:#9aa6bc;font-family:'Archivo';font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.4rem 1rem;border-radius:30px;margin-bottom:2rem}
+  #cover h1{font-size:clamp(3rem,9vw,7rem);color:var(--white)}
+  #cover h1 .o{color:var(--ignite)}
+  #cover .tagline{font-family:'Archivo';font-weight:600;font-size:clamp(1.1rem,2.4vw,1.7rem);color:#aab4c6;margin-top:1.4rem}
+  #cover .bottom{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;color:#6f7b91;font-size:.85rem;border-top:1px solid #2a3447;padding-top:1.6rem}
+
+  /* ---------- ESSENCE ---------- */
+  .essence-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  .ess-card{padding:2.2rem;border-radius:16px;border:1px solid var(--line)}
+  .ess-card.mission{background:var(--ignite);color:var(--white);border-color:transparent}
+  .ess-card.vision{background:var(--white)}
+  .ess-card .lbl{font-family:'Archivo';font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem}
+  .ess-card.mission .lbl{color:rgba(255,255,255,.8)}
+  .ess-card.vision .lbl{color:var(--ignite)}
+  .ess-card h3{font-size:1.3rem;line-height:1.3;margin-bottom:.8rem}
+  .ess-card.mission h3{color:var(--white)}
+  .ess-card p{font-size:.93rem;line-height:1.75}
+  .ess-card.mission p{color:rgba(255,255,255,.9)}
+  .ess-card.vision p{color:var(--stone)}
+  .values{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1.4rem}
+  .val{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.5rem}
+  .val .vh{font-family:'Archivo';font-weight:800;font-size:1.05rem;margin-bottom:.35rem}
+  .val .vp{font-size:.85rem;color:var(--stone);line-height:1.6}
+  .val .dot{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:.9rem}
+  @media(max-width:680px){.essence-grid{grid-template-columns:1fr}}
+
+  /* ---------- LOGO SUITE ---------- */
+  #logos{background:var(--mist)}
+  .logo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+  .logo-tile{border-radius:16px;border:1px solid var(--line);overflow:hidden;background:var(--white)}
+  .logo-stage{height:200px;display:flex;align-items:center;justify-content:center;padding:2rem}
+  .logo-stage.dark{background:var(--ink)}
+  .logo-stage.orange{background:var(--ignite)}
+  .logo-stage.light{background:var(--white)}
+  .logo-stage.canvas{background:var(--canvas)}
+  .logo-meta{padding:1rem 1.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+  .logo-meta .ln{font-family:'Archivo';font-weight:800;font-size:.9rem}
+  .logo-meta .ld{font-size:.78rem;color:var(--stone)}
+  /* wordmark */
+  .wm{display:flex;align-items:center;gap:14px}
+  .wm svg{flex-shrink:0}
+  .wm .txt{font-family:'Archivo';font-weight:900;font-size:1.5rem;letter-spacing:-.01em;line-height:1}
+  .wm .txt small{display:block;font-weight:700;font-size:.62rem;letter-spacing:.34em;margin-top:4px;text-transform:uppercase}
+  .mark-row{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.4rem}
+  .mark-tile{flex:1;min-width:150px;border:1px solid var(--line);border-radius:16px;background:var(--white);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:1rem}
+  .mark-tile span{font-size:.78rem;color:var(--stone);font-family:'Archivo';font-weight:700}
+  /* clearspace / misuse */
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:1.4rem}
+  .rule{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.6rem}
+  .rule h4{font-size:1rem;margin-bottom:.8rem}
+  .rule ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+  .rule li{font-size:.86rem;color:var(--ink-soft);padding-left:1.5rem;position:relative;line-height:1.5}
+  .rule.do li::before{content:"\2713";position:absolute;left:0;color:var(--growth);font-weight:800}
+  .rule.dont li::before{content:"\2715";position:absolute;left:0;color:var(--ember);font-weight:800}
+  @media(max-width:760px){.logo-grid,.rules{grid-template-columns:1fr}}
+  /* concepts gallery */
+  .concept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin:1.4rem 0 2.6rem}
+  .concept{position:relative;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1rem 1.3rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;transition:box-shadow .2s,transform .15s}
+  .concept:hover{box-shadow:0 10px 28px rgba(0,0,0,.08);transform:translateY(-3px)}
+  .concept.pick{border-color:var(--ignite);box-shadow:0 0 0 2px rgba(240,90,40,.18)}
+  .concept .stage{width:88px;height:88px;border-radius:20px;background:var(--mist);display:flex;align-items:center;justify-content:center;margin-bottom:.2rem}
+  .concept .no{font-family:'Archivo';font-weight:900;font-size:.74rem;color:var(--stone);letter-spacing:.08em}
+  .concept .cn{font-family:'Archivo';font-weight:800;font-size:.92rem;line-height:1.15}
+  .concept .cd{font-size:.75rem;color:var(--stone);line-height:1.45}
+  .concept .tagpick{position:absolute;top:-9px;font-family:'Archivo';font-weight:800;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ignite);padding:.2rem .6rem;border-radius:20px}
+
+  /* ---------- COLOUR ---------- */
+  .swatch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+  .swatch{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--white)}
+  .swatch .chip{height:128px;display:flex;align-items:flex-end;padding:14px;color:#fff;font-family:'Archivo';font-weight:800;font-size:.8rem;letter-spacing:.04em}
+  .swatch .body{padding:1.1rem 1.2rem 1.3rem}
+  .swatch .nm{font-family:'Archivo';font-weight:800;font-size:1rem;margin-bottom:.15rem}
+  .swatch .hx{font-size:.8rem;color:var(--stone);font-family:'Inter';letter-spacing:.02em;margin-bottom:.65rem;display:flex;gap:.7rem}
+  .swatch .why{font-size:.82rem;color:var(--ink-soft);line-height:1.55}
+  .tints{display:flex;height:34px;border-radius:8px;overflow:hidden;margin-top:1.6rem;border:1px solid var(--line)}
+  .tints div{flex:1}
+
+  /* ---------- TYPE ---------- */
+  #type{background:var(--mist)}
+  .type-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:2.4rem}
+  .font-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:2rem}
+  .font-card .role{font-family:'Archivo';font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ignite);margin-bottom:.4rem}
+  .font-card .fname{font-family:'Archivo';font-weight:900;font-size:2.4rem;margin-bottom:.2rem}
+  .font-card .fname.inter{font-family:'Inter';font-weight:700}
+  .font-card .glyphs{font-size:1.1rem;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:1rem;padding-top:1rem;line-height:1.5;word-break:break-word}
+  .font-card .why{font-size:.85rem;color:var(--stone);line-height:1.6;margin-top:1rem}
+  .font-card .weights{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+  .font-card .weights span{font-size:.8rem;color:var(--stone)}
+  .scale{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:2rem}
+  .scale .row{display:flex;align-items:baseline;gap:1.4rem;padding:.7rem 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+  .scale .row:last-child{border-bottom:0}
+  .scale .row .spec{font-size:.74rem;color:var(--stone);font-family:'Inter';width:170px;flex-shrink:0}
+  @media(max-width:760px){.type-pair{grid-template-columns:1fr}.scale .row .spec{width:100%}}
+
+  /* ---------- ELEMENTS ---------- */
+  .el-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  .el-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:2rem}
+  .el-card h4{font-size:1rem;margin-bottom:1.2rem}
+  .btn-primary{background:var(--ignite);color:#fff;border:none;font-family:'Archivo';font-weight:800;font-size:.9rem;padding:.8rem 1.6rem;border-radius:8px;cursor:pointer}
+  .btn-ink{background:var(--ink);color:#fff;border:none;font-family:'Archivo';font-weight:800;font-size:.9rem;padding:.8rem 1.6rem;border-radius:8px;cursor:pointer}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);font-family:'Archivo';font-weight:800;font-size:.9rem;padding:.8rem 1.6rem;border-radius:8px;cursor:pointer}
+  .btn-row{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+  .themes{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.3rem}
+  .tt{font-family:'Archivo';font-weight:700;font-size:.74rem;padding:.35rem .8rem;border-radius:30px;color:#fff}
+  .badge{display:inline-block;font-family:'Archivo';font-weight:800;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .7rem;border-radius:4px}
+  @media(max-width:680px){.el-grid{grid-template-columns:1fr}}
+
+  /* ---------- TONE ---------- */
+  .tone-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  .tone{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:1.8rem}
+  .tone h4{margin-bottom:.8rem}
+  .tone p{font-size:.9rem;color:var(--ink-soft);line-height:1.65}
+  .tone .we{color:var(--growth);font-weight:600}
+  .tone .not{color:var(--ember);font-weight:600}
+  @media(max-width:680px){.tone-grid{grid-template-columns:1fr}}
+
+  footer{background:var(--ink);color:#7c8699;padding:3rem 7%;text-align:center;font-size:.82rem}
+  footer .fl{font-family:'Archivo';font-weight:900;color:#fff;font-size:1.1rem;margin-bottom:.4rem}
+  footer .fl .o{color:var(--ignite)}
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<section id="cover">
+  <div class="top">
+    <span>Character First</span>
+    <span>Merkboek — Brand Board</span>
+  </div>
+  <div class="mid">
+    <span class="doc-tag">Visuele identiteit · v1.0 · 2026</span>
+    <h1>Character<br><span class="o">First.</span></h1>
+    <p class="tagline">Win the person. Win the team.</p>
+  </div>
+  <div class="bottom">
+    <span>Evidence-based karakterontwikkeling voor sporters vanaf 14 jaar</span>
+    <span>characterfirst.be</span>
+  </div>
+</section>
+
+<!-- ===================== ESSENCE ===================== -->
+<section id="essence">
+  <div class="eyebrow">01 — Merkkern</div>
+  <h2 class="sec-title">Waar het merk voor staat</h2>
+  <p class="sec-sub">Elke ontwerpkeuze in dit boek — kleur, vorm, taal — vertrekt vanuit deze kern. Het merk leeft op het snijpunt van twee krachten: het vuur van het individu en de rust van groei en karakter.</p>
+
+  <div class="essence-grid">
+    <div class="ess-card mission">
+      <div class="lbl">Missie</div>
+      <h3>Elke jonge sporter laten groeien als mens, niet alleen als atleet.</h3>
+      <p>Sport is het perfecte podium om levenswaarden te ontwikkelen. Wij geven coaches en clubs een evidence-based raamwerk om mentale weerbaarheid, teamgeest, zelfkennis en leiderschap te trainen — naast techniek en tactiek.</p>
+    </div>
+    <div class="ess-card vision">
+      <div class="lbl">Visie</div>
+      <h3>Een generatie die wint op het veld én in het leven.</h3>
+      <p>Wij zien een toekomst waar karakter net zo systematisch getraind wordt als techniek. Waar coaches gevormd worden op de mensen die ze maken — en waar Character First de standaard is, niet de uitzondering.</p>
+    </div>
+  </div>
+
+  <div class="values">
+    <div class="val">
+      <div class="dot" style="background:rgba(240,90,40,.14)">🔥</div>
+      <div class="vh">Moedig</div>
+      <div class="vp">We dagen uit, vragen lef en vermijden de comfortzone niet.</div>
+    </div>
+    <div class="val">
+      <div class="dot" style="background:rgba(30,138,91,.14)">🌱</div>
+      <div class="vh">Groeigericht</div>
+      <div class="vp">Vooruitgang boven perfectie. De mens van morgen telt.</div>
+    </div>
+    <div class="val">
+      <div class="dot" style="background:rgba(47,111,176,.14)">🎯</div>
+      <div class="vh">Onderbouwd</div>
+      <div class="vp">Geen hype, wel wetenschap. Elke oefening heeft een bron.</div>
+    </div>
+    <div class="val">
+      <div class="dot" style="background:rgba(28,36,51,.1)">🤝</div>
+      <div class="vh">Samen</div>
+      <div class="vp">De sterkste speler maakt het team sterker, niet zichzelf.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOGO ===================== -->
+<section id="logos">
+  <div class="eyebrow">02 — Logo</div>
+  <h2 class="sec-title">Summit CF</h2>
+  <p class="sec-sub">Het merkteken is een bergpiek: ambitie, doorzettingsvermogen, de top halen als mens én als sporter. De letters <strong>CF</strong> vormen het fundament onder de berg — karakter als basis van alles. Het sneeuwpunt geeft diepte en aankomst. Vier kleurvarianten voor elke ondergrond.</p>
+
+  <!-- BACKSTORY -->
+  <div style="background:var(--ink);border-radius:20px;padding:clamp(2rem,4vw,3.2rem);margin-bottom:2.6rem;position:relative;overflow:hidden">
+    <div style="position:absolute;right:-40px;top:-40px;opacity:.06">
+      <svg width="280" height="280" viewBox="0 0 100 100"><path d="M10 90 L50 10 L90 90 Z" fill="#F05A28"/></svg>
+    </div>
+    <div style="position:relative;z-index:1">
+      <div class="eyebrow" style="color:#F05A28;margin-bottom:1.2rem">Het verhaal achter het logo</div>
+      <h3 style="font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.4rem,3vw,2rem);color:#fff;line-height:1.15;margin-bottom:1.6rem">CF is de basis.<br>De berg is waar je naartoe gaat.</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:820px">
+        <div>
+          <p style="font-size:.96rem;color:#aab4c6;line-height:1.8;margin-bottom:1.2rem">Een berg beklim je niet met talent alleen. Je hebt een fundament nodig. Een karakter dat houdt als het zwaar wordt. Een basis die niet beweegt als de druk stijgt.</p>
+          <p style="font-size:.96rem;color:#aab4c6;line-height:1.8">Dat fundament zijn de letters <strong style="color:#F05A28">CF</strong> — <em>Character First</em>. Ze staan niet naast het logo. Ze dragen het. De berg rust op wie je bent, niet op wat je presteert.</p>
+        </div>
+        <div>
+          <p style="font-size:.96rem;color:#aab4c6;line-height:1.8;margin-bottom:1.2rem">De oranje piek staat voor ambitie en actie — de vonk in elke atleet die de top wil halen. Het witte sneeuwpunt is het moment van aankomst: niet het einde, maar het bewijs van de weg die je hebt afgelegd.</p>
+          <p style="font-size:.96rem;color:#aab4c6;line-height:1.8">De cirkel omsluit alles. Het team, de coach, de gemeenschap — samen houd je de berg overeind.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.1)">
+        <div style="display:flex;align-items:flex-start;gap:.9rem">
+          <svg width="40" height="40" viewBox="0 0 100 100" style="flex-shrink:0"><circle cx="50" cy="50" r="50" fill="rgba(240,90,40,.15)"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+          <div><div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:.85rem;color:#fff;margin-bottom:.2rem">De berg</div><div style="font-size:.78rem;color:#6E6A63;line-height:1.5">Jouw ambitie. De top die je nastreeft als mens én als atleet.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.9rem">
+          <div style="width:40px;height:40px;background:rgba(250,247,242,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Archivo',sans-serif;font-weight:900;font-size:.9rem;color:#F05A28;letter-spacing:1px">CF</div>
+          <div><div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:.85rem;color:#fff;margin-bottom:.2rem">Het fundament</div><div style="font-size:.78rem;color:#6E6A63;line-height:1.5">Character First. De basis waarop je de top bereikt — karakter boven alles.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.9rem">
+          <div style="width:40px;height:40px;background:rgba(250,247,242,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">🏔️</div>
+          <div><div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:.85rem;color:#fff;margin-bottom:.2rem">Het sneeuwpunt</div><div style="font-size:.78rem;color:#6E6A63;line-height:1.5">Aankomst. Het bewijs van wie je bent geworden onderweg.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summit CF mark — reusable inline SVG snippets via symbols -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <!-- mark-navy: orange mountain, white peak, navy bg -->
+    <symbol id="mark-navy" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#1C2433"/>
+      <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+      <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+      <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2" opacity=".45"/>
+      <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="14" fill="#fff" letter-spacing="3">CF</text>
+    </symbol>
+    <!-- mark-orange: orange bg, orange mountain outlined in white, white peak, white CF -->
+    <symbol id="mark-orange" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#F05A28"/>
+      <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#fff"/>
+      <line x1="18" y1="87" x2="82" y2="87" stroke="#fff" stroke-width="2" opacity=".55"/>
+      <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="14" fill="#fff" letter-spacing="3">CF</text>
+    </symbol>
+    <!-- mark-light: canvas bg, orange mountain, canvas peak, navy CF -->
+    <symbol id="mark-light" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#FAF7F2"/>
+      <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+      <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+      <line x1="18" y1="87" x2="82" y2="87" stroke="#1C2433" stroke-width="2" opacity=".2"/>
+      <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="14" fill="#1C2433" letter-spacing="3">CF</text>
+    </symbol>
+    <!-- mark-mono: navy mark on white — single-colour for print/stamp/engraving -->
+    <symbol id="mark-mono" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#fff"/>
+      <path d="M10 78 L50 14 L90 78 Z" fill="#1C2433"/>
+      <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#fff"/>
+      <line x1="18" y1="87" x2="82" y2="87" stroke="#1C2433" stroke-width="2" opacity=".3"/>
+      <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="14" fill="#1C2433" letter-spacing="3">CF</text>
+    </symbol>
+  </svg>
+
+  <!-- Applied suite -->
+  <h3 style="font-size:1.15rem;margin:.4rem 0 1.6rem">Vier kleurvarianten — toegepast</h3>
+
+  <div class="logo-grid">
+    <!-- 1. PRIMAIR: navy bg -->
+    <div class="logo-tile">
+      <div class="logo-stage dark">
+        <div class="wm">
+          <svg width="64" height="64"><use href="#mark-navy"/></svg>
+          <div class="txt" style="color:#fff">CHARACTER<small style="color:#F05A28">First</small></div>
+        </div>
+      </div>
+      <div class="logo-meta"><span class="ln">Primair — Navy</span><span class="ld">Voorkeur op donkere achtergrond</span></div>
+    </div>
+    <!-- 2. OP ORANJE -->
+    <div class="logo-tile">
+      <div class="logo-stage orange">
+        <div class="wm">
+          <svg width="64" height="64"><use href="#mark-orange"/></svg>
+          <div class="txt" style="color:#fff">CHARACTER<small style="color:rgba(255,255,255,.8)">First</small></div>
+        </div>
+      </div>
+      <div class="logo-meta"><span class="ln">Op Oranje</span><span class="ld">Berg outline voor contrast op egale oranje</span></div>
+    </div>
+    <!-- 3. OP LICHT -->
+    <div class="logo-tile">
+      <div class="logo-stage canvas">
+        <div class="wm">
+          <svg width="64" height="64"><use href="#mark-light"/></svg>
+          <div class="txt" style="color:#1C2433">CHARACTER<small style="color:#F05A28">First</small></div>
+        </div>
+      </div>
+      <div class="logo-meta"><span class="ln">Op Licht</span><span class="ld">Dagelijks gebruik op canvas / wit</span></div>
+    </div>
+    <!-- 4. MONO -->
+    <div class="logo-tile">
+      <div class="logo-stage canvas" style="background:#E4DFD6">
+        <div class="wm">
+          <svg width="64" height="64"><use href="#mark-mono"/></svg>
+          <div class="txt" style="color:#1C2433">CHARACTER<small style="color:#1C2433">First</small></div>
+        </div>
+      </div>
+      <div class="logo-meta"><span class="ln">Mono — Navy op wit</span><span class="ld">Print, stempel, gravure — één kleur</span></div>
+    </div>
+  </div>
+
+  <!-- beeldmerk alleen -->
+  <h3 style="font-size:1.15rem;margin:2.6rem 0 .2rem">Het beeldmerk alleen</h3>
+  <p class="sec-sub" style="margin-bottom:1rem">Voor social avatars, favicon en app-iconen. Altijd vierkant, nooit uitgerekt.</p>
+  <div class="mark-row">
+    <div class="mark-tile" style="background:#1C2433">
+      <svg width="64" height="64"><use href="#mark-navy"/></svg>
+      <span style="color:#8893a6">Primair Navy</span>
+    </div>
+    <div class="mark-tile" style="background:#F05A28">
+      <svg width="64" height="64"><use href="#mark-orange"/></svg>
+      <span style="color:#fff">Op Oranje</span>
+    </div>
+    <div class="mark-tile">
+      <svg width="64" height="64"><use href="#mark-light"/></svg>
+      <span>Op Licht</span>
+    </div>
+    <div class="mark-tile">
+      <svg width="64" height="64"><use href="#mark-mono"/></svg>
+      <span>Mono</span>
+    </div>
+  </div>
+
+  <div class="rules">
+    <div class="rule do">
+      <h4>Wel doen</h4>
+      <ul>
+        <li>Houd rondom het logo een vrije ruimte ter grootte van de bergbreedte.</li>
+        <li>Minimale breedte wordmark: 120 px (digitaal) / 30 mm (print).</li>
+        <li>Op oranje achtergrond: gebruik altijd de outline-variant voor contrast.</li>
+        <li>Gebruik het beeldmerk solo enkel waar de naam al elders staat.</li>
+      </ul>
+    </div>
+    <div class="rule dont">
+      <h4>Niet doen</h4>
+      <ul>
+        <li>Het logo uitrekken, kantelen of de berg vervormen.</li>
+        <li>Schaduwen, gloed of verlopen toevoegen.</li>
+        <li>De CF-letters in een andere letter dan Archivo zetten.</li>
+        <li>De oranje berg op rode of drukke achtergrond zonder outline plaatsen.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COLOUR ===================== -->
+<section id="colour">
+  <div class="eyebrow">03 — Kleur</div>
+  <h2 class="sec-title">Kleurenpalet & onderbouwing</h2>
+  <p class="sec-sub">Het oude palet leunde zwaar op bijna-zwart (#0a0a0a) en voelde donker en gesloten. Het nieuwe palet behoudt het herkenbare oranje, vervangt hard zwart door een warmer navy, en bouwt op een lichte, warme basis — uitnodigend en jong, passend bij sporters vanaf 14. Elke kleur draagt een betekenis uit de missie.</p>
+
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="chip" style="background:#F05A28">Primair</div>
+      <div class="body">
+        <div class="nm">Ignite Orange</div>
+        <div class="hx"><span>#F05A28</span><span>R240 G90 B40</span></div>
+        <div class="why">De handtekening. Staat voor <strong>de persoon</strong>: lef, energie en actie — de vonk in elke atleet. Behouden uit de bestaande identiteit voor herkenbaarheid. Spaarzaam inzetten als accent, niet als vlak.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#1C2433">Fundament</div>
+      <div class="body">
+        <div class="nm">Ink Navy</div>
+        <div class="hx"><span>#1C2433</span><span>R28 G36 B51</span></div>
+        <div class="why">Vervangt het harde zwart. Staat voor <strong>karakter & discipline</strong>. Navy leest als vertrouwen en volwassenheid — belangrijk voor coaches, clubs en ouders — maar oogt warmer en minder zwaar.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#1E8A5B">Secundair</div>
+      <div class="body">
+        <div class="nm">Growth Green</div>
+        <div class="hx"><span>#1E8A5B</span><span>R30 G138 B91</span></div>
+        <div class="why">Het hart van de missie: <strong>groeien als mens</strong>. De kleur van het veld en van vooruitgang. Voor groei-, succes- en bevestigingsmomenten (voltooide oefening, progressie).</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#2F6FB0">Accent</div>
+      <div class="body">
+        <div class="nm">Focus Blue</div>
+        <div class="hx"><span>#2F6FB0</span><span>R47 G111 B176</span></div>
+        <div class="why">De <strong>mentale kant</strong>: rust, helderheid, concentratie. Voor thema's rond druk, stress en mentale weerbaarheid. Balanceert de hitte van oranje met kalmte.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#FAF7F2;color:#1C2433;border-bottom:1px solid #E4DFD6">Basis</div>
+      <div class="body">
+        <div class="nm">Canvas</div>
+        <div class="hx"><span>#FAF7F2</span><span>R250 G247 B242</span></div>
+        <div class="why">Warm gebroken wit als <strong>hoofdachtergrond</strong>. Dit is het antwoord op "te donker": open, optimistisch en toegankelijk, met een warme ondertoon i.p.v. klinisch wit.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#F0ECE4;color:#1C2433;border-bottom:1px solid #E4DFD6">Basis</div>
+      <div class="body">
+        <div class="nm">Mist</div>
+        <div class="hx"><span>#F0ECE4</span><span>R240 G236 B228</span></div>
+        <div class="why">Zachte warme grijs om <strong>secties af te wisselen</strong> zonder harde contrasten. Geeft ritme en rust aan lange pagina's.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#6E6A63">Tekst</div>
+      <div class="body">
+        <div class="nm">Stone</div>
+        <div class="hx"><span>#6E6A63</span><span>R110 G106 B99</span></div>
+        <div class="why">Gedempte, warme grijs voor <strong>secundaire tekst</strong>. Genoeg contrast voor leesbaarheid, maar zonder de hardheid van puur grijs.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#E4DFD6;color:#1C2433;border-bottom:1px solid #d8d2c6">Lijn</div>
+      <div class="body">
+        <div class="nm">Line</div>
+        <div class="hx"><span>#E4DFD6</span><span>R228 G223 B214</span></div>
+        <div class="why">Subtiele warme randkleur voor kaders, scheidingen en kaarten. Houdt de interface licht en luchtig.</div>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:.9rem;margin:2.4rem 0 .2rem;font-family:'Archivo'">Tinten van Ignite Orange (10% → 100%)</h4>
+  <div class="tints">
+    <div style="background:#FDEEE8"></div><div style="background:#FBD5C6"></div><div style="background:#F9BBA3"></div><div style="background:#F7A181"></div><div style="background:#F5875E"></div><div style="background:#F36D3C"></div><div style="background:#F05A28"></div><div style="background:#D44A1A"></div><div style="background:#B03D15"></div><div style="background:#7A2A0E"></div>
+  </div>
+  <h4 style="font-size:.9rem;margin:1.6rem 0 .2rem;font-family:'Archivo'">Tinten van Ink Navy</h4>
+  <div class="tints">
+    <div style="background:#E8EAEE"></div><div style="background:#C6CBD4"></div><div style="background:#A3ABB9"></div><div style="background:#808B9E"></div><div style="background:#5D6B83"></div><div style="background:#3E4D67"></div><div style="background:#1C2433"></div><div style="background:#141A26"></div><div style="background:#0E121B"></div><div style="background:#070A0F"></div>
+  </div>
+</section>
+
+<!-- ===================== TYPE ===================== -->
+<section id="type">
+  <div class="eyebrow">04 — Typografie</div>
+  <h2 class="sec-title">Lettertypes</h2>
+  <p class="sec-sub">Het oude 'Segoe UI' had geen eigen stem. Het nieuwe systeem koppelt een atletische display-letter aan een glasheldere tekstletter — persoonlijkheid in de koppen, vertrouwen in de inhoud. Beide zijn gratis via Google Fonts en laden snel.</p>
+
+  <div class="type-pair">
+    <div class="font-card">
+      <div class="role">Display & koppen</div>
+      <div class="fname">Archivo</div>
+      <div class="glyphs">AaBbCcDd 1234567890<br>WIN THE PERSON. WIN THE TEAM.</div>
+      <div class="weights"><span>500 Medium</span><span>700 Bold</span><span>800 Extrabold</span><span>900 Black</span></div>
+      <div class="why">Een stevige, licht geometrische grotesk met athletische allure. In zwaar gewicht (800–900) straalt ze lef en beweging uit — perfect voor een sportmerk dat uitdaagt.</div>
+    </div>
+    <div class="font-card">
+      <div class="role">Tekst & interface</div>
+      <div class="fname inter">Inter</div>
+      <div class="glyphs">AaBbCcDd 1234567890<br>Evidence-based karakterontwikkeling.</div>
+      <div class="weights"><span>400 Regular</span><span>500 Medium</span><span>600 Semibold</span><span>700 Bold</span></div>
+      <div class="why">Ontworpen voor schermleesbaarheid. Neutraal en professioneel — ideaal voor wetenschappelijke onderbouwing, werkbladen en lange teksten zonder vermoeidheid.</div>
+    </div>
+  </div>
+
+  <div class="scale">
+    <div class="row"><span class="spec">Display · Archivo 900 · 64/72px</span><span class="display" style="font-size:3.4rem">Win the person</span></div>
+    <div class="row"><span class="spec">H1 · Archivo 900 · 40px</span><span class="display" style="font-size:2.5rem">Sectiekop niveau 1</span></div>
+    <div class="row"><span class="spec">H2 · Archivo 800 · 30px</span><span class="display" style="font-size:1.875rem;font-weight:800">Sectiekop niveau 2</span></div>
+    <div class="row"><span class="spec">H3 · Archivo 700 · 22px</span><span class="display" style="font-size:1.375rem;font-weight:700">Subkop niveau 3</span></div>
+    <div class="row"><span class="spec">Body · Inter 400 · 16px</span><span style="font-size:1rem;max-width:520px">Sport is het perfecte podium om levenswaarden te ontwikkelen. Wij bouwen aan mensen, niet alleen aan prestaties.</span></div>
+    <div class="row"><span class="spec">Small · Inter 500 · 14px</span><span style="font-size:.875rem;font-weight:500;color:var(--stone)">Ondersteunende tekst en bijschriften.</span></div>
+    <div class="row"><span class="spec">Eyebrow · Archivo 800 · 12px caps</span><span style="font-family:'Archivo';font-weight:800;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ignite)">Label / Categorie</span></div>
+  </div>
+</section>
+
+<!-- ===================== ELEMENTS ===================== -->
+<section id="elements">
+  <div class="eyebrow">05 — Bouwstenen</div>
+  <h2 class="sec-title">Toegepaste elementen</h2>
+  <p class="sec-sub">Hoe het palet en de typografie samenkomen in herhaalbare componenten.</p>
+
+  <div class="el-grid">
+    <div class="el-card">
+      <h4>Knoppen</h4>
+      <div class="btn-row">
+        <button class="btn-primary">Primaire actie</button>
+        <button class="btn-ink">Secundair</button>
+        <button class="btn-ghost">Subtiel</button>
+      </div>
+    </div>
+    <div class="el-card">
+      <h4>Labels & badges</h4>
+      <div class="btn-row">
+        <span class="badge" style="background:rgba(240,90,40,.14);color:#D44A1A">Nieuw</span>
+        <span class="badge" style="background:rgba(30,138,91,.14);color:#1E8A5B">Gratis</span>
+        <span class="badge" style="background:rgba(47,111,176,.14);color:#2F6FB0">U14+</span>
+        <span class="badge" style="background:var(--ink);color:#fff">Premium</span>
+      </div>
+    </div>
+    <div class="el-card" style="grid-column:1/-1">
+      <h4>Themakleuren — codering van de 7 programmathema's</h4>
+      <div class="themes">
+        <span class="tt" style="background:#F05A28">Zelfkennis</span>
+        <span class="tt" style="background:#2F6FB0">Druk &amp; Stress</span>
+        <span class="tt" style="background:#7A52C7">Mijn Rol</span>
+        <span class="tt" style="background:#C7842F">Communicatie</span>
+        <span class="tt" style="background:#1E8A5B">Team Eerst</span>
+        <span class="tt" style="background:#C73F62">Veerkracht</span>
+        <span class="tt" style="background:#1C2433">Leiderschap</span>
+        <span class="tt" style="background:#3A8A8A">Fysiek</span>
+      </div>
+      <p style="font-size:.82rem;color:var(--stone);margin-top:1rem;line-height:1.6">Elk thema krijgt een vaste kleur uit (of afgeleid van) het kernpalet. Zo herkent een coach in één oogopslag het type oefening — in de bibliotheek, op werkbladen en op social.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TONE ===================== -->
+<section id="tone" style="background:var(--mist)">
+  <div class="eyebrow">06 — Toon</div>
+  <h2 class="sec-title">Tone of voice & beeld</h2>
+  <p class="sec-sub">De stem volgt de waarden: moedig, groeigericht, onderbouwd en samen.</p>
+  <div class="tone-grid">
+    <div class="tone">
+      <h4>Hoe we klinken</h4>
+      <p><span class="we">Wel:</span> direct, warm en activerend. Korte zinnen. "Jij" en "wij". Een coach die naast je staat, niet boven je.<br><br><span class="not">Niet:</span> wollig, belerend of overdreven motivational-quote. Geen loze hype zonder bron.</p>
+    </div>
+    <div class="tone">
+      <h4>Hoe we eruitzien</h4>
+      <p><span class="we">Wel:</span> echte jonge sporters in actie en in rust, natuurlijk licht, eerlijke emotie. Veel witruimte op canvas. Oranje als accent.<br><br><span class="not">Niet:</span> stockfoto-clichés, donkere zware vlakken overal, of beelden die enkel over winnen gaan.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">Character <span class="o">First</span></div>
+  <p>Brand Board v1.0 — 2026 · Win the person. Win the team.</p>
+</footer>
+
+</body>
+</html>

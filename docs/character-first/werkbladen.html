@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character First — Werkbladen Coach &amp; Speler</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f05a28;
+      --ink: #1C2433;
+      --canvas: #FAF7F2;
+      --line: #E4DFD6;
+      --stone: #6E6A63;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #999;
+      --gray-600: #555;
+      --gray-800: #222;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f0f0f0;
+      color: var(--ink);
+    }
+    h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
+
+    /* SCREEN: top bar */
+    .screen-bar {
+      background: var(--ink);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .screen-bar h1 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .screen-bar span { color: var(--orange); }
+
+    .print-btn {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+
+    .screen-bar nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .screen-bar nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #333;
+      transition: all 0.15s;
+    }
+
+    .screen-bar nav a:hover { color: white; border-color: var(--orange); }
+
+    /* PAGE WRAPPER */
+    .pages {
+      max-width: 870px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 0 1rem 4rem;
+    }
+
+    /* SINGLE A4 PAGE */
+    .page {
+      background: white;
+      width: 100%;
+      min-height: 1100px;
+      padding: 48px 52px;
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid var(--orange);
+    }
+
+    .page-header-left h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .page-header-left .month-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .page-header-right {
+      text-align: right;
+    }
+
+    .page-type-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-player {
+      background: #fff3ee;
+      color: var(--orange);
+      border: 1.5px solid var(--orange);
+    }
+
+    .badge-coach {
+      background: var(--ink);
+      color: white;
+    }
+
+    .logo-small {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-top: 6px;
+    }
+
+    .logo-small span { color: var(--orange); }
+
+    /* INTRO BOX */
+    .intro-box {
+      background: var(--gray-100);
+      border-left: 4px solid var(--orange);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 22px;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+      margin-top: 22px;
+    }
+
+    /* EXERCISE BLOCK */
+    .exercise-block {
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .exercise-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exercise-number {
+      width: 22px;
+      height: 22px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .exercise-instruction {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
+    /* WRITE LINES */
+    .write-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .write-line {
+      height: 28px;
+      border-bottom: 1.5px solid var(--gray-200);
+      width: 100%;
+    }
+
+    .write-line-sm {
+      height: 22px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    /* WRITE BOX */
+    .write-box {
+      border: 1.5px dashed var(--gray-200);
+      border-radius: 6px;
+      height: 60px;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .write-box-lg {
+      height: 90px;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.5;
+    }
+
+    .checkbox {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--gray-400);
+      border-radius: 3px;
+      margin-top: 2px;
+    }
+
+    /* RATING SCALE */
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    .rating-label {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      min-width: 100px;
+    }
+
+    .rating-circles {
+      display: flex;
+      gap: 5px;
+    }
+
+    .rc {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid var(--gray-400);
+      border-radius: 50%;
+      font-size: 0.65rem;
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* QUOTE */
+    .quote-block {
+      border-left: 4px solid var(--orange);
+      padding: 10px 14px;
+      background: #fff8f5;
+      border-radius: 0 8px 8px 0;
+      margin-top: 18px;
+    }
+
+    .quote-block p {
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .quote-block cite {
+      font-size: 0.72rem;
+      color: var(--orange);
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    /* PAGE FOOTER */
+    .page-footer {
+      position: absolute;
+      bottom: 28px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gray-200);
+      padding-top: 8px;
+    }
+
+    .page-footer span {
+      font-size: 0.68rem;
+      color: var(--gray-400);
+    }
+
+    /* COACH PAGE SPECIFICS */
+    .coach-page .page-header {
+      border-bottom-color: var(--ink);
+    }
+
+    .coach-section {
+      margin-bottom: 20px;
+    }
+
+    .coach-section h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gray-100);
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .coach-step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--ink);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coach-step p {
+      font-size: 0.83rem;
+      color: var(--gray-800);
+      line-height: 1.55;
+    }
+
+    .coach-step p strong { color: var(--ink); }
+
+    .tip-box {
+      background: #fff8f5;
+      border: 1.5px solid #ffd0bc;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+
+    .tip-box p {
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.55;
+    }
+
+    .tip-box p strong { color: var(--orange); }
+
+    .warning-box {
+      background: #fff9e6;
+      border: 1.5px solid #f0d060;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+
+    .warning-box p {
+      font-size: 0.82rem;
+      color: #7a6000;
+      line-height: 1.55;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .science-box {
+      background: #f0f0f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+    }
+
+    .science-box p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+
+    .science-box strong { color: var(--ink); font-size: 0.78rem; }
+
+    .evidence-tier {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    .tier-1 { background: #1a6b3a; color: white; }
+    .tier-2 { background: #2d7fc1; color: white; }
+    .tier-3 { background: #7a5fc1; color: white; }
+
+    .goal-box {
+      background: #fff8f5;
+      border: 2px solid var(--orange);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .goal-box .goal-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .goal-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .goal-box ul li {
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .goal-box ul li::before {
+      content: "▸";
+      color: var(--orange);
+      position: absolute;
+      left: 0;
+      font-size: 0.7rem;
+      top: 2px;
+    }
+
+    /* PREMIUM LOCK SYSTEM */
+    .premium-locked {
+      position: relative;
+      pointer-events: none;
+    }
+    .premium-locked > *:not(.premium-lock) {
+      filter: blur(4px);
+      user-select: none;
+    }
+    .premium-lock {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(28,36,51,0.75);
+      border-radius: inherit;
+      z-index: 10;
+      pointer-events: all;
+      gap: 0.5rem;
+      color: white;
+      text-align: center;
+    }
+    .premium-lock .lock-icon { font-size: 2rem; }
+    .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+    .premium-lock .lock-cta {
+      background: #f05a28;
+      color: white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      pointer-events: all;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .screen-bar { padding: 0.75rem 1rem; }
+      .screen-bar h1 { font-size: 0.9rem; }
+      .pages { padding: 0 0.5rem 2rem; margin: 1rem auto; }
+      .page { padding: 28px 20px; min-height: auto; }
+      .two-col { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; gap: 8px; }
+      .page-header-right { text-align: left; }
+      .print-btn { min-height: 44px; }
+    }
+
+    /* PRINT */
+    @media print {
+      body { background: white; }
+      .screen-bar { display: none; }
+      .pages { margin: 0; padding: 0; max-width: 100%; gap: 0; }
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 32px 40px;
+        min-height: auto;
+        width: 210mm;
+        min-height: 297mm;
+      }
+    }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='en'){
+      window.location.replace('en/worksheets.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','en');
+      });
+    });
+  })();
+</script>
+<script src="cf-auth.js"></script>
+</head>
+<body>
+
+
+
+<div class="screen-bar">
+  <div>
+    <h1>Character <span>First</span> — Werkbladen</h1>
+    <div style="font-size:0.75rem;color:#aaa;margin-top:3px">16 pagina's: 8 spelerswerkbladen + 8 coachgidsen</div>
+  </div>
+  <nav>
+    <a href="#m1">M1</a><a href="#m2">M2</a><a href="#m3">M3</a><a href="#m4">M4</a>
+    <a href="#m5">M5</a><a href="#m6">M6</a><a href="#m7">M7</a><a href="#m8">M8</a>
+  </nav>
+  <button class="print-btn" onclick="window.print()">&#128438; Print alle werkbladen</button>
+</div>
+
+<div class="pages">
+
+  <!-- ========== MAAND 1 SPELER ========== -->
+  <div class="page" id="m1">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 1 — Spelerswerkblad</div>
+        <h2>Zelfkennis &amp; Identiteit</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 1</div>
+      <ul>
+        <li>Je kan drie kernwaarden benoemen die jou als persoon en ploegmaat definiëren</li>
+        <li>Je herkent wat je energie geeft en wat energie kost in een teamsetting</li>
+        <li>Je begrijpt het verschil tussen hoe jij jezelf ziet en hoe anderen jou ervaren</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">
+      Wie ben jij als speler en als persoon? Dit werkblad helpt je om je eigen krachten, waarden en motivatie beter te begrijpen. Neem de tijd en wees eerlijk.
+    </div>
+
+    <div class="section-title">Oefening 1 — Mijn Drie Woorden</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Mijn Drie Woorden</div>
+      <p class="exercise-instruction">Kies drie woorden die jou het best beschrijven als ploegmaat. Schrijf ze hieronder. Vraag daarna drie teamgenoten om ook drie woorden over jou op te schrijven en vergelijk de resultaten.</p>
+      <div class="write-lines">
+        <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">Mijn drie woorden:</div>
+        <div class="write-line"></div>
+        <div style="font-size:0.78rem;color:var(--gray-400);margin:8px 0 4px">Woorden van teamgenoot 1:</div>
+        <div class="write-line"></div>
+        <div style="font-size:0.78rem;color:var(--gray-400);margin:8px 0 4px">Woorden van teamgenoot 2:</div>
+        <div class="write-line"></div>
+        <div style="font-size:0.78rem;color:var(--gray-400);margin:8px 0 4px">Wat valt je op als je de lijsten vergelijkt?</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Energiegever vs Energieslurper</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Energiegever vs Energieslurper</div>
+      <p class="exercise-instruction">Schrijf drie dingen op die je energie geven tijdens training of wedstrijd, en drie dingen die je energie kosten.</p>
+      <div class="two-col">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin-bottom:6px">ENERGIEGEVERS &#9654;</div>
+          <div class="write-line"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#999;margin-bottom:6px">ENERGIESLURPERS &#9660;</div>
+          <div class="write-line"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 3 — Persoonlijk Waardenkompas</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Persoonlijk Waardenkompas</div>
+      <p class="exercise-instruction">Rangschik onderstaande waarden van 1 (meest belangrijk) tot 5 (minder belangrijk) voor jou als speler en als persoon.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Loyaliteit
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Eerlijkheid
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Moed
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Doorzetting
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Respect
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Teamgeest
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-top:12px">Welke waarde leven jij het minst na? Wat wil je veranderen?</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"The most important thing is to try and inspire people so that they can be great in whatever they want to do."</p>
+      <cite>Kobe Bryant — 5x NBA Champion, Los Angeles Lakers</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 1: Zelfkennis &amp; Identiteit</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 1 COACH ========== -->
+  <div class="page coach-page" id="m1c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 1 — Coachgids</div>
+        <h2>Zelfkennis &amp; Identiteit</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Ntoumanis et al. (2021) — meta-analyse van 184 studies toont aan dat autonomie en zelfkennis binnen Self Determination Theory de sterkste voorspellers zijn van sportmotivatie en welzijn bij jonge atleten. <em>Psychology of Sport &amp; Exercise.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analyse</span> Zuber &amp; Conzelmann (2014) — analyse van 47 studies bevestigt dat intrinsieke motivatie en zelfconcept direct samenhangen met sportprestatie bij jongeren. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Deci &amp; Ryan (1985, herzien 2017) — Self Determination Theory: autonomie, competentie en verbondenheid als universele basisbehoeften voor optimale ontwikkeling en welzijn in sport.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding per oefening</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p><strong>Mijn Drie Woorden:</strong> Geef spelers 3 minuten solo om hun woorden te schrijven. Laat ze daarna in tweetallen de woorden van de ander opschrijven zonder overleg. Sluit af met een korte groepsdiscussie: "Wie was verrast door de woorden van anderen?" Ga niet dieper in op negatieve verrassingen in de groep, doe dat individueel.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p><strong>Energiegever vs Energieslurper:</strong> Laat spelers dit individueel invullen. Bespreek daarna in de groep enkel de energiegevers. Creëer bewustzijn: "Hoe kunnen we als team meer energiegevers inbouwen?" De energieslurpers bespreek je individueel of in vertrouwen.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p><strong>Waardenkompas:</strong> Na het invullen vraag je vrijwilligers om hun topwaarde te delen. Maak een klassement op het bord. Vraag: "Als dit onze teamwaarden zijn, hoe zien we dat terug in gedrag?" Dit wordt de brug naar volgende maanden.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Vul zelf ook het werkblad in en deel jouw antwoorden. Kwetsbaarheid van de coach verlaagt de drempel voor spelers om eerlijk te zijn.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Maak aantekeningen van wat spelers delen. Gebruik dit later in het seizoen om hen te herinneren aan hun eigen waarden ("Je zei dat moed belangrijk was. Ik zag dat vandaag.").</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Spelers die heel weinig schrijven of afwijken zijn niet ongemotiveerd. Soms is zelfkennis confronterend. Ga hier later individueel op in, niet voor de groep.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Vermijd: "Wie wil zijn woorden delen?" Direct iemand aanwijzen creëert onveiligheid. Bouw vertrouwen op door eerst zelf te delen en dan vrijwilligers te vragen.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Introductie thema en uitleg oefeningen: 5 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen werkblad: 10 minuten</li>
+        <li><div class="checkbox"></div>Groepsbespreking Drie Woorden: 10 minuten</li>
+        <li><div class="checkbox"></div>Groepsbespreking Waardenkompas: 10 minuten</li>
+        <li><div class="checkbox"></div>Afsluiting en quote: 5 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 1</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 2 SPELER ========== -->
+  <div class="page" id="m2">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 2 — Spelerswerkblad</div>
+        <h2>Druk &amp; Stress</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 2</div>
+      <ul>
+        <li>Je herkent de fysieke en mentale signalen van stress bij jezelf</li>
+        <li>Je beheerst minstens één ademhalingstechniek om activatie te reguleren</li>
+        <li>Je kan het verschil benoemen tussen probleemgerichte en emotiegerichte coping</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">Druk voelen is normaal. Elk topsporter voelt het. Wat het verschil maakt is hoe je ermee omgaat. Dit werkblad helpt je te ontdekken hoe jouw lichaam en geest reageren op stress.</div>
+
+    <div class="section-title">Oefening 1 — Box Breathing</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Box Breathing Logboek</div>
+      <p class="exercise-instruction">Oefen Box Breathing minstens 3x deze maand voor een training of wedstrijd. Vul in na elke keer: hoe voelde je je voor en na?</p>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-top:8px">
+        <div style="font-size:0.72rem;font-weight:700;color:var(--gray-400)">DATUM / SITUATIE</div>
+        <div style="font-size:0.72rem;font-weight:700;color:var(--gray-400)">VOOR (1-10)</div>
+        <div style="font-size:0.72rem;font-weight:700;color:var(--gray-400)">NA (1-10)</div>
+        <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+        <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+        <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Stressdagboek</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Stressdagboek</div>
+      <p class="exercise-instruction">Schrijf na je volgende wedstrijd drie dingen op: wat voelde je, wat dacht je, en wat deed je?</p>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">Wat voelde ik? (fysiek en emotioneel)</div>
+      <div class="write-box"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:10px 0 4px">Wat dacht ik?</div>
+      <div class="write-box"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:10px 0 4px">Wat deed ik? (hoe reageerde ik op de druk?)</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="section-title">Oefening 3 — Worst Case Best Case</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Worst Case Best Case</div>
+      <p class="exercise-instruction">Denk aan een aankomende situatie die je zenuwachtig maakt. Schrijf de drie scenario's.</p>
+      <div class="two-col">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#c0392b;margin-bottom:5px">Worst Case</div>
+          <div class="write-box"></div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#27ae60;margin-bottom:5px">Best Case</div>
+          <div class="write-box"></div>
+        </div>
+      </div>
+      <div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin:10px 0 5px">Meest Waarschijnlijk</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Pressure is a privilege — it only comes to those who earn it."</p>
+      <cite>Billie Jean King — 39x Grand Slam Champion</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 2: Druk &amp; Stress</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 2 COACH ========== -->
+  <div class="page coach-page" id="m2c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 2 — Coachgids</div>
+        <h2>Druk &amp; Stress</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Crocker et al. (2015) — review van 92 studies over coping in jeugdsport bevestigt dat flexibele copingstrategieën (zowel probleem als emotiongericht) de sterkste samenhang tonen met prestatie en welzijn. <em>International Journal of Sport Psychology.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Balban et al. (2023) — gerandomiseerde studie toont aan dat cyclische ademhaling (4 sec in, 4 sec vasthouden, 8 sec uit) het stressniveau significant reduceert in vergelijking met mindfulness meditatie. <em>Cell Reports Medicine.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatieve studie</span> Hanton et al. (2009) — ervaringsonderzoek bij elitesporters: angst voor wedstrijden wordt faciliterend of debiliterend op basis van hoe de atleet de stressrespons interpreteert, niet op basis van de intensiteit.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding per oefening</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p><strong>Box Breathing:</strong> Doe dit samen als groep voor de training. Sta in een kring, sluit ogen, en leid het ademhalingsritme. Zeg hardop: "In... 2, 3, 4. Vasthouden... 2, 3, 4. Uit... 2, 3, 4. Wachten... 2, 3, 4." Herhaal 4 keer. Bespreek daarna kort: "Wat merk je?"</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p><strong>Stressdagboek:</strong> Dit is individueel en privé. Dring niet aan op delen. Zeg expliciet: "Dit dagboek is voor jou alleen. Ik vraag niet wat erin staat." Na twee weken kun je vragen: "Wie heeft patronen ontdekt?" zonder inhoud te vragen.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p><strong>Worst Case Best Case:</strong> Dit kan in koppels. Koppel A schrijft, Koppel B luistert. Daarna wissel je. De coach stelt één vraag: "Is jouw Worst Case al ooit echt gebeurd?" Bijna altijd is het antwoord nee. Dit relativeren is het doel.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Normaliseer stress actief. Zeg letterlijk: "Elke prof voelt dit. Jij ook. Het is geen zwakte." Jonge spelers denken vaak dat ze de enige zijn die zenuwachtig zijn.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Gebruik Box Breathing ook in echte wedstrijdsituaties. Geef bij een time-out 30 seconden ruimte om samen te ademen voor je tactisch spreekt. Het resultaat is meer opname van informatie.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Let op spelers die nooit stress lijken te voelen. Dit kan apathie zijn, een verdedigingsmechanisme. Check individueel in met: "Hoe gaat het echt?"</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Pas op voor: druk opvoeren door te zeggen "Je moet dit kunnen." Dat vergroot precies de stress die je probeert te reduceren. Gebruik nieuwsgierige vragen: "Wat heb jij nodig om rustig te blijven?"</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Gezamenlijke Box Breathing oefening: 8 minuten</li>
+        <li><div class="checkbox"></div>Uitleg thema stress en copingstijlen: 5 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen werkblad: 10 minuten</li>
+        <li><div class="checkbox"></div>Worst Case Best Case in koppels: 10 minuten</li>
+        <li><div class="checkbox"></div>Groepsreflectie en afsluiting: 7 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 2</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 3 SPELER ========== -->
+  <div class="page premium-locked" id="m3">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="toegang.html" class="lock-cta">Toegangscode invoeren</a></div>
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 3 — Spelerswerkblad</div>
+        <h2>Mijn Rol in het Team</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 3</div>
+      <ul>
+        <li>Je kan jouw huidige rol(len) in het team benoemen met concrete voorbeelden</li>
+        <li>Je begrijpt waarom rolhelderheid bijdraagt aan teamcohesie en persoonlijke motivatie</li>
+        <li>Je formuleert één concrete bijdrage die jij wil versterken de komende maanden</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">Je hebt niet één rol in een team. Je hebt er meerdere, en ze veranderen. Dit werkblad helpt je ontdekken welke rollen jij vervult en welke je wil ontwikkelen.</div>
+
+    <div class="section-title">Oefening 1 — Rolcompass</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Rolcompass</div>
+      <p class="exercise-instruction">Geef jezelf een score van 0 tot 10 voor elk van de vier rollen hieronder. Kleur de balken in.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:10px">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Leider</strong><span style="color:var(--gray-400);font-size:0.75rem">Geeft richting, spreekt de groep toe</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Motor</strong><span style="color:var(--gray-400);font-size:0.75rem">Geeft energie, trekt het team mee</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Denker</strong><span style="color:var(--gray-400);font-size:0.75rem">Analyseert, stelt vragen, zoekt oplossingen</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Stabiele Kracht</strong><span style="color:var(--gray-400);font-size:0.75rem">Betrouwbaar, consistent, steun voor anderen</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Mijn Bijdrage</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Mijn Top 3 Bijdragen deze maand</div>
+      <p class="exercise-instruction">Geen statistieken. Geen punten. Schrijf drie dingen op die jij hebt bijgedragen aan het team op het vlak van gedrag, houding of karakter.</p>
+      <div class="write-lines">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="exercise-number" style="flex-shrink:0">1</div><div class="write-line" style="flex:1"></div></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="exercise-number" style="flex-shrink:0">2</div><div class="write-line" style="flex:1"></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><div class="exercise-number" style="flex-shrink:0">3</div><div class="write-line" style="flex:1"></div></div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 3 — Rolcirkel Reflectie</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Na de Rolcirkel Oefening</div>
+      <p class="exercise-instruction">Na de groepsoefening: wat heeft je verrast? Welke bijdrage van een teamgenoot had je nooit verwacht?</p>
+      <div class="write-box write-box-lg"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"The strength of the team is each individual member. The strength of each member is the team. I never tried to be the best player. I tried to be the player we needed."</p>
+      <cite>Phil Jackson — 11x NBA Championship coach</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 3: Mijn Rol in het Team</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 3 COACH ========== -->
+  <div class="page coach-page" id="m3c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 3 — Coachgids</div>
+        <h2>Mijn Rol in het Team</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Bruner et al. (2021) — meta-analyse over rolhelderheid en cohesie in jeugdteams: rolhelderheid is de sterkste voorspeller van zowel taakcohesie als sociale cohesie in sportteams, met effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Eys et al. (2015) — meetseizoenstudie bij 248 basketbalspelers: rolambiguïteit (rolonduidelijkheid) is negatief gelinkt aan zelfvertrouwen en positief aan angst gedurende het seizoen. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretische studie</span> Carron &amp; Eys (2012) — Teamcohesiemodel: rolacceptatie en rolprestatie als twee aparte dimensies. Atleten die hun rol accepteren presteren niet altijd beter; atleten die actief investeren in hun rol presteren significant beter.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding Rolcirkel (groepsoefening)</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p>Laat het team in een cirkel staan. Leg uit: "We gaan één voor één onze bijdrage aan dit team benoemen. Niet wat we technisch goed kunnen. Maar wat je als persoon bijdraagt."</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p>Elke speler zegt: "Mijn bijdrage aan dit team is..." Begin zelf als coach. Dit verlaagt de drempel en geeft het goede voorbeeld.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p>Na elke speler: één andere speler mag aanvullen wat hij of zij ook in die persoon ziet. Alleen positief. Regels: geen ironie, geen "ja maar", enkel erkenning.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">4</div>
+        <p>Sluit af met: "Iedereen heeft een rol. Niemand is onbelangrijk. De vraag is: vul jij jouw rol zo goed mogelijk in?"</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Rolcompass scores zijn geen ranglijst. Benadruk actief dat een Stabiele Kracht net zo waardevol is als een Leider. Cultures die enkel leiders belonen creëren onderlinge competitie in plaats van samenwerking.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Gebruik rollen in je dagelijkse coaching taal. "Tom, jij bent onze Motor vandaag. Jij mag het tempo zetten." Dit versterkt identiteit en geeft richting zonder hiërarchie.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Herhaal de "Top 3 Bijdragen" oefening maandelijks door het seizoen. Spelers die zichzelf zien groeien in karakter en bijdrage presteren beter en haken minder af.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Let op: spelers die zichzelf consistent laag scoren op alle vier de rollen hebben misschien het gevoel niet te passen of niet gezien te worden. Plan een individueel gesprek in.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Introductie vier rollen: 5 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen Rolcompass: 8 minuten</li>
+        <li><div class="checkbox"></div>Rolcirkel groepsoefening: 15 minuten</li>
+        <li><div class="checkbox"></div>Reflectie en invullen werkblad: 5 minuten</li>
+        <li><div class="checkbox"></div>Afsluiting met quote en intentie: 5 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 3</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 4 SPELER ========== -->
+  <div class="page premium-locked" id="m4">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="toegang.html" class="lock-cta">Toegangscode invoeren</a></div>
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 4 — Spelerswerkblad</div>
+        <h2>Communicatie</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 4</div>
+      <ul>
+        <li>Je kan het Ik Boodschap model toepassen in een echte situatie uit je sportleven</li>
+        <li>Je geeft constructieve feedback aan een teamgenoot zonder beschuldiging of defensiviteit op te wekken</li>
+        <li>Je plant en voert minstens één moeilijk gesprek dat je al uitstelde</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">Hoe je praat bepaalt hoe je samenwerkt. Je leert het verschil tussen reageren en echt communiceren, en hoe je feedback geeft zonder relaties te beschadigen.</div>
+
+    <div class="section-title">Oefening 1 — Ik Boodschap</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>De Ik Boodschap</div>
+      <p class="exercise-instruction">Het model: "Ik zie... Ik voel... Ik heb nodig... Ik vraag je om..." Schrijf een situatie uit je sportleven uit met dit model.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+        <div><div style="font-size:0.75rem;color:var(--orange);font-weight:700">IK ZIE...</div><div class="write-line"></div></div>
+        <div><div style="font-size:0.75rem;color:var(--orange);font-weight:700">IK VOEL...</div><div class="write-line"></div></div>
+        <div><div style="font-size:0.75rem;color:var(--orange);font-weight:700">IK HEB NODIG...</div><div class="write-line"></div></div>
+        <div><div style="font-size:0.75rem;color:var(--orange);font-weight:700">IK VRAAG JE OM...</div><div class="write-line"></div></div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Moeilijk Gesprek</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Het Gesprek dat ik Uitsel</div>
+      <p class="exercise-instruction">Schrijf een gesprek op dat je al lang wil hebben maar uitstelt. Met een coach, teamgenoot of ouder.</p>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">Met wie is dit gesprek?</div>
+      <div class="write-line"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:10px 0 4px">Waarom stel ik het uit?</div>
+      <div class="write-box"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:10px 0 4px">Schrijf de eerste zin waarmee je het gesprek opent (gebruik de Ik Boodschap):</div>
+      <div class="write-box"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:10px 0 4px">Wanneer ga ik dit gesprek plannen? (datum + plaats)</div>
+      <div class="write-line"></div>
+    </div>
+
+    <div class="section-title">Oefening 3 — Feedbackronde Reflectie</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Na de Feedbackronde</div>
+      <p class="exercise-instruction">Wat was de beste feedback die je kreeg? Wat ga je er concreet mee doen?</p>
+      <div class="write-box write-box-lg"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Communication is the most important skill any leader can possess. I talked to my players like human beings, not pieces on a chess board, and that changed everything."</p>
+      <cite>Doc Rivers — NBA Head Coach</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 4: Communicatie</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 4 COACH ========== -->
+  <div class="page coach-page" id="m4c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 4 — Coachgids</div>
+        <h2>Communicatie</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> (meerdere studies over communicatietraining in sportteams tonen verbeteringen in cohesie — zie Tod et al., 2011)</p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Holt et al. (2020) — gerandomiseerde interventie met NVC in jeugdteams: teams die 8 weken NVC trainden toonden significant hogere sociale cohesie en minder conflicten versus controlegroep. <em>Psychology of Sport &amp; Exercise.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Observationele studie</span> Turnnidge &amp; Côté (2018) — directe observatie van coachcommunicatie: positieve en informatierijke communicatie correleert met hogere sportplezier, motivatie en doorzetting bij jonge atleten.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding Feedbackronde Trio</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p>Verdeel het team in groepen van drie. Rol A: gever, Rol B: ontvanger, Rol C: observator. De gever geeft feedback aan de ontvanger over iets concreet (gedrag in training, houding, samenwerking). De observator let enkel op toon en woordkeuze, niet op inhoud.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p>Na elke ronde (3 minuten) geeft de observator 30 seconden terug: "Je zei... Dat klonk als..." Geen oordeel. Enkel observatie. Dan wissel je van rol.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p>Sluit af met: "Wat was het moeilijkste aan geven? Wat was het moeilijkste aan ontvangen?" Gebruik de antwoorden om het groepsgesprek te leiden.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Introduceer de Ik Boodschap ook in jouw eigen coachingstaal. Stop met "Jij deed dat fout." Begin met "Ik zie dat je de positie verlaat. Ik heb nodig dat je wacht op het signaal." Spelers nemen dit model over als ze het van jou horen.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Maak het moeilijk gesprek concreet begeleidbaar: vraag spelers om een datum te plannen en kom er de week daarna op terug. Accountability is essentieel, anders blijft het bij intenties.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Spelers van U14 tot U16 zijn nog in ontwikkeling qua empathisch vermogen. Wees geduldig. Het doel is bewustwording, niet perfectie. Eén bewuste ik boodschap per maand is al een succes.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Opgelet: de feedbackronde kan intens worden als er onderlinge spanning in het team is. Scan de groepsdynamiek voor je begint. Bij gespannen sfeer: start met positieve feedback (sterke punten) voor je overschakelt naar groeipunten.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Uitleg Ik Boodschap model: 8 minuten</li>
+        <li><div class="checkbox"></div>Individueel oefenen met werkblad: 8 minuten</li>
+        <li><div class="checkbox"></div>Feedbackronde Trio: 15 minuten</li>
+        <li><div class="checkbox"></div>Nabespreking en reflectie: 7 minuten</li>
+        <li><div class="checkbox"></div>Intentie moeilijk gesprek plannen: 2 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 4</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 5 SPELER ========== -->
+  <div class="page premium-locked" id="m5">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="toegang.html" class="lock-cta">Toegangscode invoeren</a></div>
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 5 — Spelerswerkblad</div>
+        <h2>Team Eerst</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 5</div>
+      <ul>
+        <li>Je kan uitleggen wat psychologische veiligheid is en waarom het teamsprestaties beïnvloedt</li>
+        <li>Je draagt actief bij aan een veilig teamklimaat door hulp te vragen en anderen te erkennen</li>
+        <li>Je sluit mee een gezamenlijk team contract af dat het seizoen begeleidt</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">De stap van "ik" naar "wij" is de moeilijkste in de sport. Vandaag onderzoek je wat het echt betekent om het team voorop te stellen, ook als het je iets kost.</div>
+
+    <div class="section-title">Oefening 1 — Team Contract</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Mijn Bijdrage aan het Team Contract</div>
+      <p class="exercise-instruction">Schrijf drie gedragsregels op die jij persoonlijk wil naleven dit seizoen, niet over winnen, maar over hoe je met je teamgenoten omgaat.</p>
+      <div class="write-lines" style="gap:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:20px;align-items:flex-start">
+        <div style="flex:1">
+          <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:6px">Handtekening</div>
+          <div class="write-line"></div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:6px">Datum</div>
+          <div class="write-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Onzichtbare Bijdrage</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Onzichtbare Bijdrage</div>
+      <p class="exercise-instruction">Schrijf één teamgenoot op die iets deed tijdens de laatste wedstrijd of training wat niemand opmerkte maar essentieel was voor het team. Wat deed deze persoon?</p>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">Naam teamgenoot:</div>
+      <div class="write-line"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:10px 0 4px">Wat deed hij of zij?</div>
+      <div class="write-box write-box-lg"></div>
+    </div>
+
+    <div class="section-title">Oefening 3 — Hulp Vragen</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Hulp Logboek</div>
+      <p class="exercise-instruction">Vraag deze maand minstens 3x actief om hulp aan een teamgenoot tijdens training. Schrijf op wat je vroeg en wat het opleverde.</p>
+      <div style="display:grid;grid-template-columns:2fr 2fr 1fr;gap:8px;margin-top:8px">
+        <div style="font-size:0.72rem;font-weight:700;color:var(--gray-400)">WAT VROEG IK?</div>
+        <div style="font-size:0.72rem;font-weight:700;color:var(--gray-400)">WAT LEVERDE HET OP?</div>
+        <div style="font-size:0.72rem;font-weight:700;color:var(--gray-400)">DATUM</div>
+        <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+        <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+        <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"Talent wins games, but teamwork and intelligence win championships. The most important thing in basketball is trust. Trust your teammates. Trust the process."</p>
+      <cite>Michael Jordan — 6x NBA Champion</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 5: Team Eerst</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 5 COACH ========== -->
+  <div class="page coach-page" id="m5c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 5 — Coachgids</div>
+        <h2>Team Eerst</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Frazier et al. (2017) — meta-analyse van 136 steekproeven over psychologische veiligheid: teams met hoge psychologische veiligheid presteren significant beter op creativiteit, leergedrag en interpersoonlijk risico nemen. Effect groter bij jeugd dan bij volwassenen. <em>Personnel Psychology, 70(1), 113–165.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Fransen et al. (2015) — seizoenstudie bij 23 basketbalteams: teams met sterke perceptie van teamidentiteit en "wij" cultuur vertonen hogere prestatiestabiliteit en lagere uitval gedurende het seizoen. <em>Journal of Sport Sciences.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatief onderzoek</span> Edmondson (1999) — observationeel onderzoek in 51 werkeenheden: teams die hulp durven vragen leren sneller en presteren beter op de lange termijn dan teams die fouten verbergen.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding Team Contract</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p>Laat spelers eerst individueel drie persoonlijke beloftes schrijven. Dit duurt 3 minuten. Daarna bespreek je in groepen van drie welke beloftes overlappen. Uit elke groep kiest één belofte om voor te stellen aan het team.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p>Het team stemt over de vijf gedragsregels die in het gezamenlijk Team Contract komen. Iedereen tekent. Hang het op in de kleedkamer of stuur het digitaal in de groepschat.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p>Revisie na 4 weken: "Leven we ons contract na? Wat kunnen we beter doen?" Maak dit een vast ritueel. Contracts die nooit worden geëvalueerd zijn waardeloos.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> De Onzichtbare Bijdrage oefening is krachtig. Lees aan het einde van de maand de aantekeningen voor in de groep (anoniem of met naam, beslis samen). Dit verandert hoe spelers naar elkaar kijken.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Beloon publiekelijk gedrag dat "team eerst" toont. Niet met punten maar met erkenning: "Wat Jonas net deed, dat is wat we bedoelen met team eerst." Gedrag dat gezien wordt, herhaalt zich.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Psychologische veiligheid bouw je door zelf fouten te benoemen als coach. "Ik maakte gisteren een fout in mijn keuze. Hier is wat ik ervan leer." Dit geeft spelers expliciet toestemming om kwetsbaar te zijn.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Let op competitieve spelers die moeite hebben met "team eerst" als ze weinig speeltijd krijgen. Dit thema kan frustraties blootleggen. Gebruik het als aanleiding voor een individueel gesprek, niet als groepsdiscussie.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Uitleg psychologische veiligheid: 5 minuten</li>
+        <li><div class="checkbox"></div>Individueel Team Contract schrijven: 5 minuten</li>
+        <li><div class="checkbox"></div>Groepsproces naar gezamenlijk contract: 15 minuten</li>
+        <li><div class="checkbox"></div>Ondertekening en afsluiting: 5 minuten</li>
+        <li><div class="checkbox"></div>Uitleg Onzichtbare Bijdrage opdracht: 5 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 5</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 6 SPELER ========== -->
+  <div class="page premium-locked" id="m6">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="toegang.html" class="lock-cta">Toegangscode invoeren</a></div>
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 6 — Spelerswerkblad</div>
+        <h2>Veerkracht &amp; Groeimindset</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 6</div>
+      <ul>
+        <li>Je onderscheidt een fixed mindset reactie van een groeimindset reactie bij jezelf</li>
+        <li>Je herschrijft minstens één negatieve zelfgedachte naar een leergerichte formulering</li>
+        <li>Je benoemt drie concrete manieren waarop je gegroeid bent dit seizoen ten opzichte van jezelf</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">Hoe je omgaat met tegenslagen en fouten bepaalt hoe ver je komt in de sport en in het leven. Een groeimindset is niet aangeboren. Je kan het trainen.</div>
+
+    <div class="section-title">Oefening 1 — Herschrijf de Fout</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Herschrijf de Fout</div>
+      <p class="exercise-instruction">Schrijf een recente fout of tegenslag op. Daarna herschrijf je elke gedachte met "ik kan het niet" naar "ik kan het nog niet" en voeg toe wat je ervan leert.</p>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">De situatie of fout:</div>
+      <div class="write-box"></div>
+      <div class="two-col" style="margin-top:10px">
+        <div>
+          <div style="font-size:0.72rem;font-weight:700;color:#c0392b;margin-bottom:5px">WAT IK DACHT (fixed)</div>
+          <div class="write-box"></div>
+        </div>
+        <div>
+          <div style="font-size:0.72rem;font-weight:700;color:#27ae60;margin-bottom:5px">HOE IK HET HERSCHRIJF (growth)</div>
+          <div class="write-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Progressielijst</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>3 Dingen die ik Beter Kan dan Vorige Maand</div>
+      <p class="exercise-instruction">Geen vergelijking met anderen. Enkel met jezelf. Schrijf drie concrete dingen op.</p>
+      <div class="write-lines" style="gap:10px">
+        <div style="display:flex;align-items:center;gap:8px"><div class="exercise-number" style="flex-shrink:0">1</div><div class="write-line" style="flex:1"></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><div class="exercise-number" style="flex-shrink:0">2</div><div class="write-line" style="flex:1"></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><div class="exercise-number" style="flex-shrink:0">3</div><div class="write-line" style="flex:1"></div></div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 3 — Mijn Moeilijkste Moment</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Moeilijkste Moment van dit Seizoen</div>
+      <p class="exercise-instruction">Beschrijf het moeilijkste moment van dit seizoen. Wat deed je? Wat leerde je? Hoe ben je sterker geworden?</p>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">Wat was het moment?</div>
+      <div class="write-box"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:8px 0 4px">Wat leerde ik ervan?</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"I have missed more than 9,000 shots in my career. Twenty six times I have been trusted to take the game winning shot and missed. I have failed over and over again. And that is why I succeed."</p>
+      <cite>Michael Jordan — 6x NBA Champion</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 6: Veerkracht &amp; Groeimindset</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 6 COACH ========== -->
+  <div class="page coach-page" id="m6c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 6 — Coachgids</div>
+        <h2>Veerkracht &amp; Groeimindset</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Burnette et al. (2013) — meta-analyse van 113 studies: groeimindset correleert significant met leergerichte doelen, minder hulpeloosheid na falen en betere prestaties, met sterkste effecten bij adolescenten. <em>Psychological Bulletin.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Systematische Review</span> Meijen et al. (2020) — review van veerkrachtinterventies in sport: cognitieve herframing (het herschrijven van gedachten) is de meest evidence-based strategie voor het verhogen van veerkracht bij jonge atleten. <em>Frontiers in Psychology.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Martin &amp; Marsh (2009) — 2 jaar follow-up bij 3,500 leerlingen: academische veerkracht (doorzetten na tegenslag) is een betere voorspeller van langetermijnsucces dan intelligentiescore of prestatiemotivatie. Resultaten repliceerbaar in sportcontext.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding Herschrijf de Fout</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p>Introduceer het concept fixed vs. growth mindset met een echt voorbeeld uit jouw eigen carrière als speler of coach. "Ik dacht altijd dat ik niet snel genoeg was. Later besefte ik dat ik mijn start nooit echt had getraind."</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p>Laat spelers individueel schrijven. Dit is persoonlijk en mag privé blijven. Vraag daarna wie een voorbeeld wil delen van de "herschreven" versie. Focus het gesprek op de learning, niet op de fout zelf.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Verander jouw eigen taal als coach. Stop met "Dat is niks voor jou." Begin met "Dat heb je nog niet onder de knie. Wat hebben we nodig om dat te trainen?" Dit model is even krachtig voor coaches als voor spelers.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Gebruik de Progressielijst als een vast ritueel aan het begin van elke maandelijkse sessie. Spelers die consistent zichzelf beter zien worden, hebben minder externe bevestiging nodig en zijn stabieler in moeilijke periodes.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Maand 6 valt waarschijnlijk in het midden of einde van het seizoen. Dit is het moment dat spelers het moeilijkst hebben: vermoeidheid, teleurstellingen, motivatiedip. Dit thema is bewust hier geplaatst als heroriëntatie en energieboost.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Groeimindset boodschappen kunnen averechts werken als ze gebruikt worden om gebrek aan steun te camoufleren. "Gewoon harder proberen" is niet genoeg als een speler echt vastloopt. Combineer het thema altijd met concrete handvatten en individuele begeleiding waar nodig.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Introductie fixed vs. growth mindset: 8 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen werkblad: 10 minuten</li>
+        <li><div class="checkbox"></div>Groepsreflectie herschreven fouten: 10 minuten</li>
+        <li><div class="checkbox"></div>Progressielijst en afsluiting: 7 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 6</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 7 SPELER ========== -->
+  <div class="page premium-locked" id="m7">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="toegang.html" class="lock-cta">Toegangscode invoeren</a></div>
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 7 — Spelerswerkblad</div>
+        <h2>Leiderschap van Binnenuit</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 7</div>
+      <ul>
+        <li>Je herkent informeel leiderschap bij jezelf en anderen zonder te kijken naar officiële rollen</li>
+        <li>Je neemt minstens éénmaal per week bewust een leidersmoment in training of wedstrijd</li>
+        <li>Je investeert actief in de ontwikkeling van een jongere of nieuwe teamgenoot</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">Leiderschap gaat niet over de aanvoerdersband. Elke speler kan op elk moment leiden door gedrag, houding en woorden. Jij ook.</div>
+
+    <div class="section-title">Oefening 1 — Wie Volg ik?</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Informele Leiders in ons Team</div>
+      <p class="exercise-instruction">Schrijf twee teamgenoten op die jij volgt, niet omdat ze aanvoerder zijn, maar omdat ze iets uitstralen. Wat doen ze concreet dat invloed heeft?</p>
+      <div style="margin-bottom:12px">
+        <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:4px">Persoon 1 naam:</div>
+        <div class="write-line"></div>
+        <div style="font-size:0.75rem;color:var(--gray-400);margin:6px 0 4px">Wat maakt hem of haar invloedrijk?</div>
+        <div class="write-box"></div>
+      </div>
+      <div>
+        <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:4px">Persoon 2 naam:</div>
+        <div class="write-line"></div>
+        <div style="font-size:0.75rem;color:var(--gray-400);margin:6px 0 4px">Wat maakt hem of haar invloedrijk?</div>
+        <div class="write-box"></div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Mentor een Jongere Speler</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Mijn Mentormoment</div>
+      <p class="exercise-instruction">Kies een jongere speler of nieuwe teamgenoot. Besteed deze maand minstens eenmaal 5 minuten aan hem of haar. Schrijf op wat je wilde meegeven en hoe het ging.</p>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">Met wie?</div>
+      <div class="write-line"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:8px 0 4px">Wat wilde ik meegeven?</div>
+      <div class="write-box"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin:8px 0 4px">Hoe reageerde die persoon?</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="section-title">Oefening 3 — De Eerste Stem</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Mijn Leidersmomenten</div>
+      <p class="exercise-instruction">Schrijf na elke training of wedstrijd op: wanneer was jij de eerste stem? Wanneer nam je een leidersmoment?</p>
+      <div class="write-box write-box-lg"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"I like pressure. I think pressure is an amazing thing. It's a privilege to be in pressure situations."</p>
+      <cite>LeBron James — 4x NBA Champion, Los Angeles Lakers</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 7: Leiderschap van Binnenuit</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 7 COACH ========== -->
+  <div class="page coach-page" id="m7c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 7 — Coachgids</div>
+        <h2>Leiderschap van Binnenuit</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Cotterill &amp; Fransen (2016) — review van teamleiderschapsliteratuur in sport: gedeeld leiderschap (meerdere spelers die leiderschapsgedrag tonen) correleert sterker met teamcohesie en prestatie dan enkelvoudig formeel leiderschap. <em>Psychology of Sport &amp; Exercise.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Multi-seizoenstudie</span> Fransen et al. (2020) — studie over 2 seizoenen bij 34 teams: teams met 3 of meer informele leiders presteren significant stabieler dan teams met slechts 1 formele leider. Effect onafhankelijk van technisch niveau. <em>Journal of Sport Sciences.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Côté &amp; Gilbert (2009) — Integrated Definition of Coaching Effectiveness: effectief leiderschap is niet positiegebonden maar gedragsgebonden; sporters die "servant leadership" tonen verhogen teamvertrouwen significant.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding "De Eerste Stem"</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p>Leg uit wat "De Eerste Stem" betekent: tijdens een time-out, voor een training, na een tegengoal, iemand die als eerste iets constructiefs zegt. Dit is leiderschap in actie.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p>Wijs deze maand bewust af en toe een speler aan als "leider van de dag." Die persoon opent de warming-up, geeft de pre-game motivatiespeech, of leidt de afkoeling. Rotateer zodat elke speler aan de beurt komt.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p>Evalueer kort na elke sessie met de leider van de dag: "Hoe voelde het? Wat was moeilijk? Wat ga je volgende keer anders doen?"</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Verbreed het begrip leider bewust. Spelers die stil zijn maar altijd op tijd komen, altijd klaar staan voor een teamgenoot en nooit opgeven zijn ook leiders. Benoem dit expliciet. Niet elke leider spreekt luid.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Het mentormoment werkt het best als jij het ook doet. Koppel een ervaren speler bewust aan een nieuwere speler en geef hen een gezamenlijke kleine taak (warming-up leiden, tactiekbespreking samenvatten).</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Maand 7 is het moment om aanvoerderschap bespreekbaar te maken voor volgend seizoen. Gebruik de inzichten van dit werkblad als input: "Wie toont leiderschap zonder band? Die persoon heeft misschien de band nodig."</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Vermijd: aanvoerderschap enkel koppelen aan sportieve prestatie. De beste scorer is niet automatisch de beste leider. Gebruik de informatie van 7 maanden om een bewuste, gedragen keuze te maken.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Uitleg informeel leiderschap: 5 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen werkblad: 10 minuten</li>
+        <li><div class="checkbox"></div>Groepsdiscussie: wie zijn de informele leiders?: 10 minuten</li>
+        <li><div class="checkbox"></div>Toewijzen leider van de dag: 2 minuten</li>
+        <li><div class="checkbox"></div>Uitleg mentormoment opdracht: 3 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 7</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 8 SPELER ========== -->
+  <div class="page premium-locked" id="m8">
+    <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium inhoud</p><a href="toegang.html" class="lock-cta">Toegangscode invoeren</a></div>
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 8 — Spelerswerkblad</div>
+        <h2>Nalatenschap &amp; Volgende Stap</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Maand 8</div>
+      <ul>
+        <li>Je reflecteert op je groei als persoon en als ploegmaat over het volledige seizoen</li>
+        <li>Je formuleert drie concrete, gedragsgerichte intenties voor volgend seizoen</li>
+        <li>Je sluit het seizoen af met een bewust gevoel van zingeving en bijdrage aan het team</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">Dit is het laatste werkblad van het seizoen. Je sluit af met reflectie op wie je bent geworden, wat je hebt bijgedragen en welke stap je wil zetten.</div>
+
+    <div class="section-title">Oefening 1 — Mijn Bijdrage dit Seizoen</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>5 Momenten van Karakter</div>
+      <p class="exercise-instruction">Schrijf vijf concrete momenten op dit seizoen waarop jij iets hebt bijgedragen dat het team sterker maakte. Geen statistieken, enkel gedrag en karakter.</p>
+      <div class="write-lines" style="gap:8px">
+        <div style="display:flex;align-items:flex-start;gap:8px"><div class="exercise-number" style="flex-shrink:0;margin-top:2px">1</div><div class="write-box" style="flex:1;height:40px"></div></div>
+        <div style="display:flex;align-items:flex-start;gap:8px"><div class="exercise-number" style="flex-shrink:0;margin-top:2px">2</div><div class="write-box" style="flex:1;height:40px"></div></div>
+        <div style="display:flex;align-items:flex-start;gap:8px"><div class="exercise-number" style="flex-shrink:0;margin-top:2px">3</div><div class="write-box" style="flex:1;height:40px"></div></div>
+        <div style="display:flex;align-items:flex-start;gap:8px"><div class="exercise-number" style="flex-shrink:0;margin-top:2px">4</div><div class="write-box" style="flex:1;height:40px"></div></div>
+        <div style="display:flex;align-items:flex-start;gap:8px"><div class="exercise-number" style="flex-shrink:0;margin-top:2px">5</div><div class="write-box" style="flex:1;height:40px"></div></div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2 — Drie Intenties voor Volgend Seizoen</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Mijn Intenties</div>
+      <p class="exercise-instruction">Schrijf drie concrete intenties voor volgend seizoen. Eén voor jezelf, één voor het team, één voor je coach. Maak ze specifiek in gedrag.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+        <div><div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin-bottom:5px">VOOR MEZELF</div><div class="write-box"></div></div>
+        <div><div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin-bottom:5px">VOOR HET TEAM</div><div class="write-box"></div></div>
+        <div><div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin-bottom:5px">VOOR MIJN COACH</div><div class="write-box"></div></div>
+      </div>
+    </div>
+
+    <div class="section-title">Brief aan Mezelf</div>
+    <div class="exercise-block" style="border:2px dashed var(--orange)">
+      <div class="exercise-title"><div class="exercise-number">3</div>Brief aan Mijn Toekomstige Zelf</div>
+      <p class="exercise-instruction">Schrijf een brief aan jezelf van volgend seizoen. Wat hoop je te hebben geleerd? Welk type ploegmaat wil je zijn? Deze brief wordt bewaard en geopend bij de start van volgend seizoen.</p>
+      <div class="write-box write-box-lg"></div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-top:8px">Datum: _________________ Handtekening: _________________</div>
+    </div>
+
+    <div class="quote-block">
+      <p>"The strength of the team is each individual member. The strength of each member is the team."</p>
+      <cite>Phil Jackson — 11x NBA Champion Coach, Chicago Bulls &amp; LA Lakers</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Maand 8: Nalatenschap &amp; Volgende Stap</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== MAAND 8 COACH ========== -->
+  <div class="page coach-page" id="m8c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Maand 8 — Coachgids</div>
+        <h2>Nalatenschap &amp; Volgende Stap</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis — Evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Henriksen et al. (2020) — review van 44 studies naar talentomgevingen in sport: seizoensafsluitingen met expliciete reflectie op waarden, bijdrage en intenties verhogen identiteitsontwikkeling en langetermijnsport participatie significant. <em>British Journal of Sports Medicine.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> (seizoensafsluitende reflectie op persoonlijke groei is geassocieerd met hogere intrinsieke motivatie het volgend seizoen)</p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Seligman (2011) — PERMA model: meaning (zingeving) en accomplishment (realisatie) zijn de twee meest onderschatte componenten van welzijn bij adolescenten. Bewuste reflectie op bijdrage is een evidence-based strategie voor het activeren van beide.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>De Slotsessie begeleiden</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p>Begin met een terugblik. Breng het werkblad van Maand 1 mee (de Drie Woorden). Laat spelers vergelijken: "Ben je nog steeds die persoon? Ben je gegroeid?" Dit creëert een krachtig gevoel van progressie.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p>Lees de Onzichtbare Bijdragen voor die de spelers doorheen het seizoen hebben geschreven (maand 5). Doe dit met naam, na toestemming van de schrijver. Dit is een emotioneel hoogtepunt van het programma.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p>De brieven aan zichzelf worden dichtgevouwen en verzegeld. Jij bewaart ze als coach en geeft ze terug bij de eerste sessie van volgend seizoen. Dit ritueel heeft grote symbolische waarde.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">4</div>
+        <p>Sluit af met een slotceremonie. Elke speler zegt één ding dat hij of zij dit seizoen heeft geleerd over zichzelf. Niet over basketbal. Over karakter.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Schrijf zelf ook een brief aan je toekomstige versie als coach. Deel een stuk ervan. "Wat hoop ik volgend seizoen beter te doen als coach?" Dit sluit het programma af in de geest waarmee het begon: kwetsbaarheid als kracht.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Stuur aan het einde van het seizoen een persoonlijk berichtje naar elke speler met één specifieke observatie van hun groei. Geen sportieve prestatie. Een moment van karakter dat jij hebt gezien. Dit is de krachtigste feedback die je ooit kan geven.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 3:</strong> Gebruik de intenties van Maand 8 als input voor je gesprekken bij het begin van volgend seizoen. "Je schreef dat je meer de eerste stem wilde zijn. Hoe is dat gegaan?" Continuïteit maakt het programma duurzaam.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Zorg dat de slotsessie genoeg tijd krijgt. Minimum 45 minuten. Dit is geen bijkomende activiteit maar het hoogtepunt van 8 maanden werk. Geef het de ruimte die het verdient.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie Slotsessie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Terugblik op Maand 1 werkbladen: 10 minuten</li>
+        <li><div class="checkbox"></div>Voorlezen Onzichtbare Bijdragen: 10 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen werkblad Maand 8: 15 minuten</li>
+        <li><div class="checkbox"></div>Brieven verzegelen en overhandigen aan coach: 5 minuten</li>
+        <li><div class="checkbox"></div>Slotceremonie: één ding geleerd over karakter: 10 minuten</li>
+        <li><div class="checkbox"></div>Afsluitende woorden van de coach: 5 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First — Coachgids Maand 8</span>
+      <span>VERTROUWELIJK — Enkel voor coaches</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Year — Character First</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1C2433; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+    html { scroll-behavior: smooth; }
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(28,36,51,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--stone); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    #page-header { background: var(--ink); padding: 120px 5% 70px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(1.8rem,3.5vw,2.8rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1.05rem; color: #777; max-width: 580px; line-height: 1.75; }
+    .page-nav { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
+    .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+    #intro { background: var(--canvas); }
+    .intro-highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; margin-top: 2rem; }
+    .highlight-item { background: var(--white); border-radius: 10px; padding: 1.2rem; text-align: center; border: 1px solid var(--line); }
+    .highlight-num { font-size: 2rem; font-weight: 900; color: var(--orange); line-height: 1; }
+    .highlight-label { font-size: .82rem; color: var(--stone); margin-top: .3rem; }
+
+    #program { background: var(--white); }
+    .months-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .month-card { border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+    .month-card:hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(240,90,40,.08); }
+    .month-card-header { background: var(--canvas); padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .month-badge { background: var(--orange); color: var(--white); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; flex-shrink: 0; }
+    .month-num-label { font-size: .68rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; }
+    .month-card-header h3 { font-size: 1.05rem; font-weight: 900; color: var(--ink); line-height: 1.2; }
+    .month-card-body { padding: 1.2rem 1.5rem; }
+    .month-question { font-size: .88rem; font-style: italic; color: var(--stone); margin-bottom: 1rem; padding-left: .8rem; border-left: 3px solid var(--orange); line-height: 1.5; }
+    .month-activities { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+    .month-activities li { font-size: .83rem; color: var(--ink); padding-left: 1.1rem; position: relative; line-height: 1.5; }
+    .month-activities li::before { content: "&#9658;"; color: var(--orange); position: absolute; left: 0; font-size: .65rem; top: 3px; }
+    .month-science { font-size: .75rem; color: #aaa; background: var(--canvas); border-radius: 6px; padding: .4rem .7rem; display: inline-block; }
+    .month-science strong { color: var(--orange); }
+
+    .premium-locked { position: relative; pointer-events: none; }
+    .premium-locked > *:not(.premium-lock) { filter: blur(4px); user-select: none; }
+    .premium-lock {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: rgba(28,36,51,0.7); border-radius: inherit; z-index: 10;
+      pointer-events: all; gap: 0.5rem; color: white; text-align: center;
+    }
+    .premium-lock .lock-icon { font-size: 2rem; }
+    .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+    .premium-lock .lock-cta {
+      background: #f05a28; color: white; padding: 0.5rem 1.25rem;
+      border-radius: 6px; text-decoration: none; font-weight: 600;
+      font-size: 0.875rem; pointer-events: all;
+    }
+
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } .months-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../coach-jaar.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
+<script src="../cf-auth.js"></script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+    <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="program.html">Program</a>
+    <a href="library.html">Library</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="coach-program.html" class="active">Coach Development</a>
+    <a href="../coach-jaar.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="coach-program.html">Coach Development</a> / Coach Year</div>
+  <h1>Coach Year &mdash; 10 Months of Growing as a Coach and Person</h1>
+  <p>For coaches who want lasting, deep growth throughout the full season. One module per month, every theme scientifically grounded, personal and professional.</p>
+  <div class="page-nav">
+    <a href="#intro">Overview</a>
+    <a href="#program">10 Months</a>
+    <a href="#cta-band">Sign Up</a>
+  </div>
+</section>
+
+<section id="intro">
+  <div class="fade-in">
+    <span class="section-tag">What to expect</span>
+    <h2>Depth across a full season</h2>
+    <p class="section-sub">Coach Year is not a course. It is a personal development journey in which you work on one core competency every month &mdash; with concrete exercises, scientific insights and space for reflection.</p>
+  </div>
+  <div class="intro-highlights fade-in">
+    <div class="highlight-item"><div class="highlight-num">10</div><div class="highlight-label">months intensive</div></div>
+    <div class="highlight-item"><div class="highlight-num">10</div><div class="highlight-label">competency domains</div></div>
+    <div class="highlight-item"><div class="highlight-num">30+</div><div class="highlight-label">concrete activities</div></div>
+    <div class="highlight-item"><div class="highlight-num">1</div><div class="highlight-label">personal coaching philosophy</div></div>
+  </div>
+</section>
+
+<section id="program">
+  <div class="fade-in">
+    <span class="section-tag">The program</span>
+    <h2>Month by month</h2>
+    <p class="section-sub">Months 1 and 2 are freely accessible as an introduction. Months 3 to 10 are part of the full Coach Year track.</p>
+  </div>
+  <div class="months-grid fade-in">
+
+    <div class="month-card">
+      <div class="month-card-header"><div class="month-badge">1</div><div><div class="month-num-label">Month 1 &mdash; Free preview</div><h3>Who am I as a coach?</h3></div></div>
+      <div class="month-card-body">
+        <p class="month-question">"What are my deepest values as a coach, and how are they visible in my behaviour?"</p>
+        <ul class="month-activities"><li>Coach identity exercise: three words that define you as a coach</li><li>Write your personal sport history</li><li>Fill in the values compass</li></ul>
+        <span class="month-science"><strong>Scientific foundation:</strong> Cushion et al., 2010</span>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-card-header"><div class="month-badge">2</div><div><div class="month-num-label">Month 2 &mdash; Free preview</div><h3>My relationship with players</h3></div></div>
+      <div class="month-card-body">
+        <p class="month-question">"How do I build genuine trust with every individual in my group?"</p>
+        <ul class="month-activities"><li>Attachment theory in sport</li><li>Set up an individual check-in protocol</li><li>Conduct a psychological safety audit</li></ul>
+        <span class="month-science"><strong>Scientific foundation:</strong> Jowett &amp; Ntoumanis, 2004</span>
+      </div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">3</div><div><div class="month-num-label">Month 3</div><h3>Motivational Climate</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"What climate do I create consciously or unconsciously?"</p><ul class="month-activities"><li>Mastery vs. performance climate self-scan</li><li>Goal-setting conversations</li><li>Autonomy-supportive instruction</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Ames, 1992</span></div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">4</div><div><div class="month-num-label">Month 4</div><h3>Communication</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"When do I ask questions and when do I tell?"</p><ul class="month-activities"><li>Analyse instruction via video</li><li>30-day question challenge</li><li>Design a feedback protocol</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Turnnidge &amp; Côté, 2018</span></div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">5</div><div><div class="month-num-label">Month 5</div><h3>Dealing with parents</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I navigate the coach-parent-athlete triangle?"</p><ul class="month-activities"><li>Map the triangle for your group</li><li>Expectation management conversations</li><li>Script for difficult parent conversations</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Holt et al., 2009</span></div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">6</div><div><div class="month-num-label">Month 6</div><h3>Pressure &amp; Stress as a coach</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I stay myself under pressure?"</p><ul class="month-activities"><li>Coach burnout risk self-scan</li><li>Reframe perfectionism</li><li>Strategy for losing streaks</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Olusoga et al., 2012</span></div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">7</div><div><div class="month-num-label">Month 7</div><h3>Leadership from within</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I lead my team without controlling it?"</p><ul class="month-activities"><li>Servant leadership principles</li><li>Identify and develop leaders</li><li>Team culture audit</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Smith et al., 2013</span></div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">8</div><div><div class="month-num-label">Month 8</div><h3>Positive Youth Development</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"Do I see the whole person, or only the athlete?"</p><ul class="month-activities"><li>Apply LTAD framework</li><li>Age-appropriate expectations</li><li>Individual development plans</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Côté et al., 2007</span></div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">9</div><div><div class="month-num-label">Month 9</div><h3>Reflection as a growth tool</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"How do I turn every session into a learning experience?"</p><ul class="month-activities"><li>Video analysis of your coaching</li><li>Peer coaching setup</li><li>Structured reflection journal</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Knowles et al., 2006</span></div>
+    </div>
+
+    <div class="month-card premium-locked">
+      <div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Year &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="month-card-header"><div class="month-badge">10</div><div><div class="month-num-label">Month 10</div><h3>My coaching legacy</h3></div></div>
+      <div class="month-card-body"><p class="month-question">"What do I want players to remember in 10 years?"</p><ul class="month-activities"><li>Reflection on all 10 modules</li><li>Write your coaching philosophy (500 words)</li><li>Action plan for next season</li></ul><span class="month-science"><strong>Scientific foundation:</strong> Côté &amp; Gilbert, 2009</span></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="cta-band">
+  <h2>Start Coach Year</h2>
+  <p>10 months. 10 themes. 1 deep growth journey that permanently transforms your coaching and yourself.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-white">Sign up for Coach Year</a>
+    <a href="coach-month.html" class="btn-white-outline">Prefer Coach Month?</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-logo">Character <span>First</span></div><p class="footer-desc">Evidence-based character development for athletes from U14 to Senior.</p></div>
+    <div class="footer-col"><h4>Program</h4><a href="program.html">Overview</a><a href="week.html">The Week</a><a href="season.html">The Season</a><a href="week-worksheets.html">Week Worksheets</a></div>
+    <div class="footer-col"><h4>Coach Development</h4><a href="coach-program.html">Overview</a><a href="coach-year.html">Coach Year</a><a href="coach-month.html">Coach Month</a></div>
+    <div class="footer-col"><h4>Tools</h4><a href="planbuilder.html">Plan Builder</a><a href="worksheets.html">Worksheets</a><a href="library.html">Library</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Character First. All rights reserved.</p><p>Evidence-based sport psychology.</p></div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

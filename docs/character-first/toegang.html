@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toegang — Character First</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1C2433; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--ink); line-height: 1.6; min-height: 100vh; }
+    h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 64px; background: rgba(28,36,51,.94);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--orange2) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    /* PAGE LAYOUT */
+    .page-wrap {
+      min-height: 100vh;
+      padding: 100px 5% 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* LOGIN CARD */
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 2.8rem 2.5rem 2.2rem;
+      margin-bottom: 3.5rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,.6);
+    }
+    .login-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(240,90,40,.15); border: 1px solid rgba(240,90,40,.35);
+      color: var(--orange); font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .3rem .85rem; border-radius: 20px; margin-bottom: 1.5rem;
+    }
+    .login-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    .login-card h1 { font-size: 1.6rem; font-weight: 900; color: var(--white); margin-bottom: .5rem; line-height: 1.2; }
+    .login-card p { font-size: .88rem; color: #666; margin-bottom: 2rem; line-height: 1.65; }
+
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: .78rem; font-weight: 700; color: #888; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .45rem; }
+    .form-group input {
+      width: 100%; background: #0d0d0d; border: 1px solid #2a2a2a;
+      color: var(--white); font-size: .95rem; padding: .75rem 1rem;
+      border-radius: 8px; outline: none; transition: border-color .2s;
+      font-family: inherit;
+    }
+    .form-group input:focus { border-color: var(--orange); }
+    .form-group input::placeholder { color: #444; }
+
+    .btn-login {
+      width: 100%; background: var(--orange); color: var(--white);
+      border: none; padding: .9rem 1.5rem; border-radius: 8px;
+      font-size: .95rem; font-weight: 800; cursor: pointer;
+      transition: background .2s, transform .15s; margin-top: .4rem;
+      font-family: inherit; letter-spacing: .02em;
+    }
+    .btn-login:hover { background: var(--orange2); transform: translateY(-1px); }
+    .btn-login:active { transform: none; }
+
+    .error-msg {
+      display: none; background: rgba(220,38,38,.12); border: 1px solid rgba(220,38,38,.3);
+      color: #f87171; font-size: .83rem; padding: .7rem 1rem;
+      border-radius: 7px; margin-top: .9rem; line-height: 1.55;
+    }
+    .error-msg.show { display: block; }
+
+    .login-footer { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid #1e1e1e; text-align: center; }
+    .login-footer p { font-size: .82rem; color: #555; }
+    .login-footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
+    .login-footer a:hover { text-decoration: underline; }
+
+    /* SNEAK PEEK */
+    .sneak-section { width: 100%; max-width: 860px; }
+    .sneak-header { text-align: center; margin-bottom: 2rem; }
+    .sneak-header p { font-size: .78rem; font-weight: 700; color: #444; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
+    .sneak-header h2 { font-size: 1.3rem; font-weight: 900; color: #333; }
+
+    .sneak-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+
+    .sneak-card {
+      background: #0e0e0e; border: 1px solid #1a1a1a;
+      border-radius: 12px; overflow: hidden; position: relative;
+    }
+    .sneak-card-inner { filter: blur(3px); pointer-events: none; user-select: none; padding: 20px; }
+    .sneak-card-theme {
+      font-size: .7rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: .6rem;
+    }
+    .sneak-card-title { font-size: 1rem; font-weight: 900; color: var(--white); margin-bottom: .4rem; }
+    .sneak-card-meta { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .sneak-tag { font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+    .sneak-tag-time { background: #1a1a1a; color: #666; border: 1px solid #222; }
+    .sneak-card-desc { font-size: .82rem; color: #555; line-height: 1.6; margin-top: .7rem; }
+
+    .sneak-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: .5rem;
+      background: rgba(28,36,51,.5);
+    }
+    .lock-icon {
+      width: 36px; height: 36px; background: rgba(240,90,40,.15);
+      border: 1.5px solid rgba(240,90,40,.4); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .sneak-overlay span { font-size: .72rem; font-weight: 700; color: #555; letter-spacing: .07em; text-transform: uppercase; }
+
+    @media (max-width: 600px) {
+      .login-card { padding: 2rem 1.5rem 1.7rem; }
+      .sneak-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='en'){
+      window.location.replace('en/access.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','en');
+      });
+    });
+  })();
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+  <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+  <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+</a>
+  <div class="nav-links" id="nav-links">
+    <a href="programma.html">Programma</a>
+    <a href="library.html">Bibliotheek</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="programma.html#wetenschap">Wetenschap</a>
+    <a href="en/access.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">EN</a>
+    <a href="mailto:info@characterfirst.be?subject=Character First" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- LOGIN CARD -->
+  <div class="login-card">
+    <div class="login-badge">Beveiligd gedeelte</div>
+    <h1>Toegang krijgen</h1>
+    <p>Voer je toegangscode in om de volledige oefeningenbibliotheek te openen.</p>
+
+    <div class="form-group">
+      <label for="pw-input">Toegangscode</label>
+      <input
+        type="password"
+        id="pw-input"
+        placeholder="Voer je code in..."
+        autocomplete="current-password"
+      />
+    </div>
+    <button class="btn-login" id="login-btn">Toegang krijgen</button>
+    <div class="error-msg" id="error-msg">
+      Ongeldige toegangscode. Vraag toegang aan via <a href="mailto:info@characterfirst.be?subject=Character First - Toegang aanvragen" style="color:#f87171;font-weight:700;">info@characterfirst.be</a>
+    </div>
+
+    <div class="login-footer">
+      <p>Nog geen toegang? <a href="mailto:info@characterfirst.be?subject=Character First - Toegang aanvragen">Vraag toegang aan</a></p>
+    </div>
+  </div>
+
+  <!-- SNEAK PEEK -->
+  <div class="sneak-section">
+    <div class="sneak-header">
+      <p>Voorbeeld oefeningen</p>
+      <h2>Zo ziet de bibliotheek eruit</h2>
+    </div>
+    <div class="sneak-grid">
+
+      <div class="sneak-card">
+        <div class="sneak-card-inner">
+          <div class="sneak-card-theme">Druk &amp; Stress</div>
+          <div class="sneak-card-title">Box Breathing</div>
+          <div class="sneak-card-meta">
+            <span class="sneak-tag sneak-tag-time">5 min</span>
+          </div>
+          <div class="sneak-card-desc">Zenuwstelsel kalmeren via gecontroleerde 4-4-4-4 ademhaling. Gebruikt door Navy SEALs en topsporters wereldwijd.</div>
+        </div>
+        <div class="sneak-overlay">
+          <div class="lock-icon">&#128274;</div>
+          <span>Inloggen vereist</span>
+        </div>
+      </div>
+
+      <div class="sneak-card">
+        <div class="sneak-card-inner">
+          <div class="sneak-card-theme">Fysiek</div>
+          <div class="sneak-card-title">Wall Squat Challenge</div>
+          <div class="sneak-card-meta">
+            <span class="sneak-tag sneak-tag-time">15 min</span>
+          </div>
+          <div class="sneak-card-desc">Solo, daarna teamaanmoediging, daarna samen. Het tijdsverschil bewijst de kracht van motivationeel klimaat.</div>
+        </div>
+        <div class="sneak-overlay">
+          <div class="lock-icon">&#128274;</div>
+          <span>Inloggen vereist</span>
+        </div>
+      </div>
+
+      <div class="sneak-card">
+        <div class="sneak-card-inner">
+          <div class="sneak-card-theme">Weerbaarheid</div>
+          <div class="sneak-card-title">Flu Game Mentaliteit</div>
+          <div class="sneak-card-meta">
+            <span class="sneak-tag sneak-tag-time">15 min</span>
+          </div>
+          <div class="sneak-card-desc">Spelers ontdekken hun eigen doorzet-moment en formuleren hun persoonlijke Flu Game zin.</div>
+        </div>
+        <div class="sneak-overlay">
+          <div class="lock-icon">&#128274;</div>
+          <span>Inloggen vereist</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Nav hamburger
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
+  // Multi-client access codes
+  // Format: 'CODE': 'KlantNaam' — voeg nieuwe codes toe als nieuwe klanten starten
+  const CODES = {
+    'CF2026':    'Demo',
+    'WEEK-2026': 'The Week Pilot',
+    'SEA-2026':  'The Season Pilot',
+    // Voeg hier nieuwe klantcodes toe:
+    // 'CLUB-XYZ':  'Club Naam',
+  };
+
+  function attempt() {
+    const val = document.getElementById('pw-input').value.trim().toUpperCase();
+    const errEl = document.getElementById('error-msg');
+    if (CODES[val]) {
+      localStorage.setItem('cf_access', '1');
+      localStorage.setItem('cf_client', CODES[val]);
+      const _r = new URLSearchParams(window.location.search).get('redirect') || 'library.html';
+      const dest = /^[a-z0-9_-]+\.html$/i.test(_r) ? _r : 'library.html';
+      window.location.href = dest;
+    } else {
+      errEl.classList.add('show');
+      document.getElementById('pw-input').focus();
+    }
+  }
+
+  document.getElementById('login-btn').addEventListener('click', attempt);
+  document.getElementById('pw-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') attempt();
+    // Hide error when user starts typing again
+    document.getElementById('error-msg').classList.remove('show');
+  });
+  document.getElementById('pw-input').addEventListener('input', () => {
+    document.getElementById('error-msg').classList.remove('show');
+  });
+</script>
+</body>
+</html>

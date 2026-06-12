@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — Mental Resilience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C2433; --orange: #f05a28; --orange2: #d44a1a;
+    --white: #ffffff; --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+    --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    --gray: #f5f5f5; --light-orange: #fff3ef;
+    --green: #1a7a4a; --blue: #1a4a8a; --purple: #5a1a8a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
+  body { font-family: 'Inter', Arial, sans-serif; background: var(--canvas); color: var(--ink); }
+
+  /* NAV */
+  .top-header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 28px 48px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .logo { width: 52px; height: 52px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; flex-shrink: 0; }
+  .top-header h1 { font-size: 26px; font-weight: 800; }
+  .top-header p { font-size: 13px; opacity: .7; margin-top: 4px; }
+
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 2px solid var(--line);
+    padding: 0 48px;
+    display: flex; gap: 0; overflow-x: auto;
+  }
+  .sticky-nav a {
+    padding: 14px 18px; font-size: 13px; font-weight: 600; color: #666;
+    text-decoration: none; border-bottom: 3px solid transparent; white-space: nowrap;
+  }
+  .sticky-nav a.active, .sticky-nav a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+  /* EXERCISE BLOCK */
+  .exercise-block {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .ex-hero {
+    background: var(--ink);
+    color: var(--white);
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .ex-num {
+    width: 60px; height: 60px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; flex-shrink: 0;
+  }
+  .ex-hero h2 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .ex-hero .subtitle { font-size: 14px; opacity: .7; }
+  .ex-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .tag {
+    padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;
+    border: 1px solid rgba(255,255,255,.3); color: var(--white);
+  }
+  .tag.orange { background: var(--orange); border-color: var(--orange); }
+
+  .ex-body { padding: 0; }
+
+  /* TWO-COL LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .col-mod { border-right: 1px solid var(--line); padding: 32px 36px; }
+  .col-ws { padding: 32px 36px; background: #fafafa; }
+
+  .col-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    color: #888; margin-bottom: 20px;
+  }
+  .col-label .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-mod { background: var(--orange); }
+  .dot-ws { background: var(--ink); }
+
+  h3.section-title {
+    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3.section-title::before {
+    content: ''; display: block; width: 4px; height: 18px;
+    background: var(--orange); border-radius: 2px;
+  }
+
+  .info-box {
+    background: var(--light-orange);
+    border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13px; line-height: 1.7;
+  }
+  .info-box strong { color: var(--orange); }
+
+  .step-list { list-style: none; padding: 0; margin-bottom: 16px; }
+  .step-list li {
+    display: flex; gap: 12px;
+    font-size: 13px; line-height: 1.7; margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: var(--orange); color: var(--white);
+    border-radius: 50%; font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+
+  .timing-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
+  .timing-table th { background: var(--ink); color: var(--white); padding: 7px 12px; text-align: left; }
+  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--line); }
+  .timing-table tr:last-child td { border-bottom: none; }
+  .timing-table tr:nth-child(even) td { background: #f8f8f8; }
+
+  .tips-box {
+    background: #f0faf5;
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+  .tips-box strong { color: var(--green); }
+
+  .warn-box {
+    background: #fff8f0;
+    border-left: 4px solid #e07820;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+
+  /* LITERATURE */
+  .lit-section {
+    padding: 24px 36px;
+    border-top: 1px solid var(--line);
+    background: #f9f9f9;
+  }
+  .lit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .lit-item {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .lit-item .tier {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 10px;
+    font-size: 10px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .tier-sr { background: #d4edda; color: #1a7a4a; }
+  .tier-rct { background: #d0e4f7; color: #1a4a8a; }
+  .tier-qual { background: #e8d5f5; color: #5a1a8a; }
+  .lit-item .ref { font-style: italic; color: #555; margin-top: 4px; font-size: 11px; }
+
+  .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .yt-item {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+  .yt-item .yt-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .yt-item .yt-desc { opacity: .7; font-size: 11px; margin-bottom: 6px; }
+  .yt-item .yt-search {
+    font-size: 11px;
+    background: var(--orange);
+    padding: 3px 8px; border-radius: 4px;
+    display: inline-block; margin-top: 4px;
+  }
+
+  /* WORKSHEET */
+  .ws-intro {
+    font-size: 13px; color: #555; margin-bottom: 16px; font-style: italic;
+    border-bottom: 1px dashed var(--line); padding-bottom: 12px;
+  }
+  .ws-field-label {
+    font-size: 12px; font-weight: 700; color: var(--ink);
+    margin-bottom: 4px; margin-top: 12px;
+  }
+  .ws-lines { margin-bottom: 12px; }
+  .ws-line {
+    border-bottom: 1px solid #ccc;
+    height: 28px; margin-bottom: 4px;
+    border-radius: 0;
+  }
+  .ws-box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-height: 60px;
+    margin-bottom: 12px;
+    padding: 6px;
+    background: var(--white);
+  }
+  .ws-quote {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .ws-quote .quote-text { font-size: 15px; font-style: italic; font-weight: 300; margin-bottom: 4px; }
+  .ws-quote .quote-src { font-size: 11px; opacity: .6; }
+
+  .scale-row {
+    display: flex; gap: 0; margin: 8px 0 16px;
+    border: 1px solid #ccc; border-radius: 6px; overflow: hidden;
+  }
+  .scale-cell {
+    flex: 1; text-align: center; padding: 10px 4px;
+    font-size: 12px; font-weight: 600; border-right: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .scale-cell:last-child { border-right: none; }
+  .scale-cell.lo { background: #e8f5e9; }
+  .scale-cell.hi { background: #fdecea; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; line-height: 1.6; margin-bottom: 8px;
+  }
+  .checkbox {
+    width: 18px; height: 18px; border: 2px solid #ccc; border-radius: 3px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .commit-box {
+    background: var(--light-orange);
+    border: 2px solid var(--orange);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+  .commit-box .commit-label { font-size: 11px; font-weight: 800; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
+  .commit-box .ws-line { border-bottom: 1px solid var(--orange); }
+
+  /* PREMIUM LOCK SYSTEM */
+  .premium-locked {
+    position: relative;
+    pointer-events: none;
+  }
+  .premium-locked > *:not(.premium-lock) {
+    filter: blur(4px);
+    user-select: none;
+  }
+  .premium-lock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(28,36,51,0.7);
+    border-radius: inherit;
+    z-index: 10;
+    pointer-events: all;
+    gap: 0.5rem;
+    color: white;
+    text-align: center;
+  }
+  .premium-lock .lock-icon { font-size: 2rem; }
+  .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+  .premium-lock .lock-cta {
+    background: #f05a28;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    pointer-events: all;
+  }
+
+  /* PRINT */
+  @media print {
+    .top-header, .sticky-nav { display: none; }
+    body { background: white; }
+    .page-body { padding: 0; max-width: 100%; }
+    .exercise-block { page-break-after: always; border: none; border-radius: 0; }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr 1fr; }
+    .ex-hero { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box, .tips-box, .warn-box, .commit-box, .ws-quote { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yt-item { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  @media (max-width: 800px) {
+    .two-col { grid-template-columns: 1fr; }
+    .col-mod { border-right: none; border-bottom: 1px solid var(--line); }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr; }
+    .ex-hero { grid-template-columns: auto 1fr; }
+    .ex-tags { grid-column: 1 / -1; justify-content: flex-start; }
+  }
+</style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../mentale-weerbaarheid.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
+<script src="../cf-auth.js"></script>
+</head>
+<body>
+
+
+
+<header class="top-header">
+  <div class="logo">CF</div>
+  <div>
+    <h1>Character First — Mental Resilience</h1>
+    <p>5 fully developed exercises · moderator guide + worksheet · literature + YouTube</p>
+  </div>
+</header>
+
+<nav class="sticky-nav">
+  <a href="#oe1" class="active">1. Flu Game Mentality</a>
+  <a href="#oe2">2. Reframing Thoughts</a>
+  <a href="#oe3">3. Adversity Ladder</a>
+  <a href="#oe4">4. Pre-Performance Ritual</a>
+  <a href="#oe5">5. Growth After Failure</a>
+  <a href="../mentale-weerbaarheid.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;margin-left:auto;align-self:center;">NL</a>
+</nav>
+
+<div class="page-body">
+
+<!-- ===== EXERCISE 1 ===== -->
+<div class="exercise-block" id="oe1">
+  <div class="ex-hero">
+    <div class="ex-num">01</div>
+    <div>
+      <h2>The Flu Game Mentality</h2>
+      <div class="subtitle">What do you do when everything is working against you? Discover your own limit and surpass it.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Group</span>
+      <span class="tag">Resilience</span>
+      <span class="tag">Identity</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- MODERATOR -->
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderator Guide</div>
+
+      <div class="info-box">
+        <strong>Context for the moderator:</strong> On June 11, 1997, Michael Jordan played Game 5 of the NBA Finals with a fever of 39 degrees Celsius and severe food poisoning. He scored 38 points. This moment is known as the "Flu Game" and is considered the ultimate example of mental resilience. Use this as a starting point for a deep conversation about what players do when everything goes wrong.
+      </div>
+
+      <h3 class="section-title">Preparation</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Show the YouTube video (see below) as an opening, or tell the story of the Flu Game in 2 minutes. Set the atmosphere: dim the lights slightly if possible, speak slowly.</li>
+        <li><span class="step-num">2</span>Ask the opening question verbally before distributing worksheets: "When was the last time you kept going even though everything inside you was telling you to stop?"</li>
+        <li><span class="step-num">3</span>Allow 30 seconds of silence after that question. Let them think.</li>
+      </ul>
+
+      <h3 class="section-title">Step-by-step facilitation</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Part 1 — Individual (4 min):</strong> Players complete Part A of the worksheet. Remind them: it doesn't have to be a big moment. Even a tough practice counts.</li>
+        <li><span class="step-num">2</span><strong>Part 2 — Pairs (4 min):</strong> Players share their moment with a partner. Ask them specifically: "What were you doing inside at that moment?" Not what you did on the court, but what you thought or felt.</li>
+        <li><span class="step-num">3</span><strong>Part 3 — Full group (4 min):</strong> Whoever wants to can share their moment. Coach connects each moment back to the scientific term: "What you're describing is called mental resilience. It's a choice."</li>
+        <li><span class="step-num">4</span><strong>Closing:</strong> Players write their personal "Flu Game phrase" on the worksheet: the phrase they say to themselves when things get hard.</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Phase</th><th>Duration</th></tr>
+        <tr><td>Video / story</td><td>2 min</td></tr>
+        <tr><td>Individual writing</td><td>4 min</td></tr>
+        <tr><td>Pair conversation</td><td>4 min</td></tr>
+        <tr><td>Full group round</td><td>4 min</td></tr>
+        <tr><td>Closing + writing phrase</td><td>2 min</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>16 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tips for the moderator:</strong><br>
+        Allow emotion to surface. If a player shares something that touches them, hold the silence. Don't say anything immediately. Nod. Give space. After an emotional moment, don't rush to the next question — say: "Thank you for sharing." Then continue.
+      </div>
+
+      <div class="warn-box">
+        <strong>Note:</strong> Some players may not have a big "perseverance moment." Let them write about a moment that seemed small but was still difficult. Never devalue any moment.
+      </div>
+    </div>
+
+    <!-- WORKSHEET -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Participant Worksheet</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"Heart is what separates the good from the great."</div>
+        <div class="quote-src">Michael Jordan — 6x NBA Champion, after the Flu Game (1997)</div>
+      </div>
+
+      <p class="ws-intro">Mental resilience is not a talent. It is a choice you make at the moment everything inside you wants to stop. Today you discover your own Flu Game moment.</p>
+
+      <div class="ws-field-label">PART A — Your Flu Game moment</div>
+      <div class="ws-field-label" style="font-weight:400; font-size:12px; color:#666;">Describe a moment in sport where you kept going even though it was difficult.</div>
+      <div class="ws-box" style="min-height:80px;"></div>
+
+      <div class="ws-field-label">What made that moment so difficult?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">What did you say to yourself internally at that moment?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">How did you feel afterwards?</div>
+      <div class="ws-lines"><div class="ws-line"></div></div>
+
+      <div class="ws-field-label" style="margin-top:16px;">PART B — Your Flu Game scale</div>
+      <div class="ws-field-label" style="font-weight:400; font-size:12px; color:#666;">How difficult was this moment for you? (circle)</div>
+      <div class="scale-row">
+        <div class="scale-cell lo">1</div>
+        <div class="scale-cell lo">2</div>
+        <div class="scale-cell lo">3</div>
+        <div class="scale-cell">4</div>
+        <div class="scale-cell">5</div>
+        <div class="scale-cell">6</div>
+        <div class="scale-cell">7</div>
+        <div class="scale-cell hi">8</div>
+        <div class="scale-cell hi">9</div>
+        <div class="scale-cell hi">10</div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">My Flu Game Phrase</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">Write the phrase you say to yourself when things get hard. One powerful phrase. Keep it.</div>
+        <div class="ws-line" style="border-bottom-color: var(--orange);"></div>
+        <div class="ws-line" style="border-bottom-color: var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LITERATURE + YOUTUBE -->
+  <div class="lit-section">
+    <h3 class="section-title">Scientific Foundation</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematic Review</div>
+        <strong>Mental Toughness in Sport: A Meta-Analysis</strong>
+        <div>Gucciardi et al. (2015) analyzed 91 studies on mental toughness in elite athletes. Conclusion: mental toughness is partly innate but 60 to 70% trainable through targeted intervention.</div>
+        <div class="ref">Gucciardi, D.F., Hanton, S., Gordon, S. (2015). Journal of Sport and Exercise Psychology, 37(6).</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Longitudinal</div>
+        <strong>Psychological Hardiness and Athletic Performance</strong>
+        <div>Maddi &amp; Hess (1992) demonstrated that athletes with high "hardiness" (commitment, control, challenge) performed significantly better under pressure than athletes with low hardiness. The ability to view difficulties as a challenge is central.</div>
+        <div class="ref">Maddi, S.R., Hess, M.J. (1992). International Journal of Sport Psychology, 23(4), 360-368.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">RCT Study</div>
+        <strong>Growth Mindset Interventions in Athletes</strong>
+        <div>Dweck &amp; Leggett (1988) demonstrated that athletes with a growth mindset (intelligence and ability are malleable) persevered 40% more often after a failure than athletes with a fixed mindset. Language and self-talk play a crucial role.</div>
+        <div class="ref">Dweck, C.S., Leggett, E.L. (1988). Psychological Review, 95(2), 256-273.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-qual">Qualitative</div>
+        <strong>Elite Athletes on Perseverance</strong>
+        <div>Weinberg et al. (2011) interviewed 16 Olympic athletes about their most challenging moments. Common factor: they all had a pre-formulated mental cue (word or phrase) that they used during difficult moments.</div>
+        <div class="ref">Weinberg, R., Butt, J., Culp, B. (2011). International Journal of Sport and Exercise Psychology, 9(3).</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiration</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Michael Jordan's Flu Game — Full Highlights</div>
+        <div class="yt-desc">Game 5, NBA Finals 1997. Utah Jazz. Jordan plays with a high fever and scores 38 points including the decisive three-pointer. The most cited moment of mental resilience in sports history.</div>
+        <span class="yt-search">Search: "Michael Jordan Flu Game full highlights 1997"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Kobe Bryant — The Mamba Mentality Explained</div>
+        <div class="yt-desc">Kobe explains in his own words what the Mamba Mentality means: preparation, obsession, and the ability to start over after every setback. Ideal as a complement to the Flu Game discussion.</div>
+        <span class="yt-search">Search: "Kobe Bryant Mamba Mentality explanation interview"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 2 ===== -->
+<div class="exercise-block premium-locked" id="oe2">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+  <div class="ex-hero">
+    <div class="ex-num">02</div>
+    <div>
+      <h2>Reframing Thoughts</h2>
+      <div class="subtitle">Learn to transform negative thoughts into constructive fuel — without denying them.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individual</span>
+      <span class="tag">Cognitive</span>
+      <span class="tag">Self-Talk</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderator Guide</div>
+
+      <div class="info-box">
+        <strong>Core principle:</strong> Cognitive restructuring is a technique from cognitive behavioral therapy (CBT) that is also used extensively in sport psychology. The goal is not to deny or dismiss negative thoughts, but to consciously reinterpret them. The aim is for players to learn to use their internal voice as a coach rather than a critic.
+      </div>
+
+      <h3 class="section-title">Opening — Activation (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Ask the group: "Who has ever had the thought during a game: I can't do this?" Hands up. "And who performed something afterwards anyway?" Look around the room. "Then you have already done cognitive restructuring. Today you learn how to do it consciously."</li>
+      </ul>
+
+      <h3 class="section-title">Explaining the ABC model (3 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Write on the board or say verbally: A = Activating situation, B = Thought (Belief), C = Consequence (behavior/feeling).</li>
+        <li><span class="step-num">2</span>Give an example: "A: I miss a free throw. B: I can't do this. C: I lose focus for the rest of the game." Ask: "What if B were different? Suppose B was: 'Next chance.' Then C is different."</li>
+        <li><span class="step-num">3</span>Emphasize: "You don't always choose B consciously. But you can learn to change it."</li>
+      </ul>
+
+      <h3 class="section-title">Exercise (8 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Step 1 (2 min):</strong> Players write down 3 negative thoughts they regularly have in sport. Honest, not a corrected version.</li>
+        <li><span class="step-num">2</span><strong>Step 2 (3 min):</strong> For each thought: write the reframed version. Use the question: "What would a good coach say to me right now?"</li>
+        <li><span class="step-num">3</span><strong>Step 3 (3 min):</strong> Pairs: read your negative thoughts aloud. Partner formulates an alternative thought. Discuss: which alternative feels most believable?</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Phase</th><th>Duration</th></tr>
+        <tr><td>Opening + question</td><td>2 min</td></tr>
+        <tr><td>Explaining ABC model</td><td>3 min</td></tr>
+        <tr><td>Individual writing</td><td>2 min</td></tr>
+        <tr><td>Reframing</td><td>3 min</td></tr>
+        <tr><td>Pair exchange</td><td>3 min</td></tr>
+        <tr><td>Full group closing</td><td>2 min</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Always emphasize that the alternative must be believable. "I am the best" doesn't work if nobody believes it. "I've done this before" does work. Believability is the key.
+      </div>
+
+      <div class="warn-box">
+        <strong>Note:</strong> Avoid positive platitudes ("Just think positive!"). Cognitive restructuring is more nuanced: the new thought must be realistic and personal, not generically positive.
+      </div>
+    </div>
+
+    <!-- WORKSHEET -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Participant Worksheet</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"You have power over your mind, not outside events. Realize this, and you will find strength."</div>
+        <div class="quote-src">Marcus Aurelius — Meditations</div>
+      </div>
+
+      <p class="ws-intro">Your thoughts determine how you respond. Not the situation. Today you learn to train your inner voice as a coach, not a critic.</p>
+
+      <div class="ws-field-label">THE ABC MODEL</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:16px;">
+        <div style="background:#f0f0f0; border-radius:6px; padding:10px; font-size:12px; text-align:center;"><strong>A</strong><br><span style="color:#888;">Situation</span></div>
+        <div style="background:var(--light-orange); border:1px solid var(--orange); border-radius:6px; padding:10px; font-size:12px; text-align:center;"><strong>B</strong><br><span style="color:var(--orange);">Thought</span></div>
+        <div style="background:#f0f0f0; border-radius:6px; padding:10px; font-size:12px; text-align:center;"><strong>C</strong><br><span style="color:#888;">Consequence</span></div>
+      </div>
+
+      <div class="ws-field-label">My 3 negative sport thoughts</div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px; color:#888; margin-bottom:4px;">Thought 1 (honest, not corrected):</div>
+        <div class="ws-line"></div>
+        <div style="font-size:12px; color:var(--orange); margin: 6px 0 4px;">Reframed (what would a good coach say?):</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px; color:#888; margin-bottom:4px;">Thought 2:</div>
+        <div class="ws-line"></div>
+        <div style="font-size:12px; color:var(--orange); margin: 6px 0 4px;">Reframed:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:12px; color:#888; margin-bottom:4px;">Thought 3:</div>
+        <div class="ws-line"></div>
+        <div style="font-size:12px; color:var(--orange); margin: 6px 0 4px;">Reframed:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+
+      <div class="ws-field-label">Which reframed thought feels most believable?</div>
+      <div class="ws-lines"><div class="ws-line"></div></div>
+
+      <div class="commit-box">
+        <div class="commit-label">My ABC for the next game</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">Write down your most likely negative thought in advance and your conscious alternative.</div>
+        <div style="font-size:12px; margin-bottom:4px;">When I think: "<span style="display:inline-block; min-width:160px; border-bottom:1px solid var(--orange);">&nbsp;</span>"</div>
+        <div style="font-size:12px; margin-top:8px;">Then instead I say: "<span style="display:inline-block; min-width:140px; border-bottom:1px solid var(--orange);">&nbsp;</span>"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Scientific Foundation</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematic Review</div>
+        <strong>Cognitive Behavioral Interventions in Sport</strong>
+        <div>Tod et al. (2011) reviewed 47 studies on self-talk interventions in athletes. Positive instructional self-talk improved technical performance by an average of 18% and motivational self-talk significantly increased endurance performance.</div>
+        <div class="ref">Tod, D., Hardy, J., Oliver, E. (2011). Journal of Sport &amp; Exercise Psychology, 33(5), 666-687.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">RCT</div>
+        <strong>Self-Talk and Athletic Performance Under Pressure</strong>
+        <div>Hatzigeorgiadis et al. (2009) demonstrated in a controlled experiment that athletes who received self-talk training performed 17% better under high pressure than the control group. The effect was strongest for technical tasks.</div>
+        <div class="ref">Hatzigeorgiadis, A. et al. (2009). Perspectives on Psychological Science, 6(4), 348-356.</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiration</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Novak Djokovic — The Power of Mind Over Body</div>
+        <div class="yt-desc">Djokovic describes how he transformed his mental self-talk from "I can't do this" to "I choose this." He speaks specifically about cognitive restructuring although he doesn't use that term.</div>
+        <span class="yt-search">Search: "Novak Djokovic mental strength self talk interview"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Simone Biles — Coming Back After Tokyo</div>
+        <div class="yt-desc">Biles speaks candidly about how she transformed her negative thoughts and doubts after the Olympics into strength for her comeback. A powerful example of reframing in the real world.</div>
+        <span class="yt-search">Search: "Simone Biles comeback mental health interview 2023"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 3 ===== -->
+<div class="exercise-block premium-locked" id="oe3">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+  <div class="ex-hero">
+    <div class="ex-num">03</div>
+    <div>
+      <h2>The Adversity Ladder</h2>
+      <div class="subtitle">Every setback is a sport. Learn the rules. Get better at it.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individual + Group</span>
+      <span class="tag">Resilience</span>
+      <span class="tag">Growth Mindset</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderator Guide</div>
+
+      <div class="info-box">
+        <strong>Concept:</strong> Paul Stoltz's Adversity Quotient (AQ) describes how people cope with setbacks. Athletes with a high AQ see difficulties as temporary, manageable and specific. Athletes with a low AQ see them as permanent, uncontrollable and global. In this exercise, players literally build a "ladder" from their own setbacks and learn to recognize the patterns.
+      </div>
+
+      <h3 class="section-title">Opening (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Ask: "Who has had something go wrong this season?" Hands up. "Who learned something from that setback?" Fewer hands. "Exactly. That difference is the difference between an athlete who grows and an athlete who stagnates."</li>
+        <li><span class="step-num">2</span>Briefly explain the AQ concept: setbacks are inevitable. The question is not whether they come, but how you climb.</li>
+      </ul>
+
+      <h3 class="section-title">Building the Adversity Ladder (8 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Step 1 (3 min):</strong> Players write down 3 setbacks from their sports career. For each setback: what was it, how severe (1-10), and how did they respond (flee, freeze, or keep going)?</li>
+        <li><span class="step-num">2</span><strong>Step 2 (3 min):</strong> For each setback: write what you learned. Don't force a positive lesson if there isn't one. But look carefully: was there something, however small, that made you stronger?</li>
+        <li><span class="step-num">3</span><strong>Step 3 (2 min):</strong> Connect the three setbacks with a line. This is your adversity ladder: each rung was a step upward.</li>
+      </ul>
+
+      <h3 class="section-title">Group conversation (5 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Volunteers share their hardest setback AND the lesson they learned.</li>
+        <li><span class="step-num">2</span>Coach reflects back: "You are all here today. That means you survived every setback. 100% success rate."</li>
+        <li><span class="step-num">3</span>Ask the key question: "The next time something difficult comes: what will you consciously do differently?"</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Phase</th><th>Duration</th></tr>
+        <tr><td>Opening + AQ explanation</td><td>2 min</td></tr>
+        <tr><td>Writing setbacks</td><td>3 min</td></tr>
+        <tr><td>Formulating lessons</td><td>3 min</td></tr>
+        <tr><td>Visualizing ladder</td><td>2 min</td></tr>
+        <tr><td>Group conversation</td><td>5 min</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Don't look for "the big moment." Young athletes sometimes feel their setback isn't big enough. Say explicitly: "Every setback counts. Small or large." A 2-week injury can be just as impactful for a 15-year-old as a year of rehabilitation is for a professional.
+      </div>
+    </div>
+
+    <!-- WORKSHEET -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Participant Worksheet</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"I've missed more than 9,000 shots in my career. I've lost almost 300 games. Twenty-six times I've been trusted to take the game-winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed."</div>
+        <div class="quote-src">Michael Jordan</div>
+      </div>
+
+      <p class="ws-intro">Every setback you survived made you stronger. Today you map out your adversity ladder.</p>
+
+      <div class="ws-field-label">MY ADVERSITY LADDER</div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+        <!-- Rung 1 -->
+        <div style="background:#f8f8f8; border:1px solid var(--line); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">RUNG 1</div>
+          <div style="font-size:12px; margin-bottom:4px;">Setback:</div>
+          <div class="ws-line"></div>
+          <div style="display:flex; gap:8px; align-items:center; margin: 8px 0 4px;">
+            <div style="font-size:12px;">Severity (1-10):</div>
+            <div style="border:1px solid #ccc; border-radius:4px; width:36px; height:24px;"></div>
+            <div style="font-size:12px;">Response:</div>
+            <div style="border:1px solid #ccc; border-radius:4px; flex:1; height:24px;"></div>
+          </div>
+          <div style="font-size:12px; color:var(--orange); margin-bottom:4px;">What I learned from this:</div>
+          <div class="ws-line"></div>
+        </div>
+        <!-- Rung 2 -->
+        <div style="background:#f8f8f8; border:1px solid var(--line); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">RUNG 2</div>
+          <div style="font-size:12px; margin-bottom:4px;">Setback:</div>
+          <div class="ws-line"></div>
+          <div style="display:flex; gap:8px; align-items:center; margin: 8px 0 4px;">
+            <div style="font-size:12px;">Severity (1-10):</div>
+            <div style="border:1px solid #ccc; border-radius:4px; width:36px; height:24px;"></div>
+            <div style="font-size:12px;">Response:</div>
+            <div style="border:1px solid #ccc; border-radius:4px; flex:1; height:24px;"></div>
+          </div>
+          <div style="font-size:12px; color:var(--orange); margin-bottom:4px;">What I learned from this:</div>
+          <div class="ws-line"></div>
+        </div>
+        <!-- Rung 3 -->
+        <div style="background:#f8f8f8; border:1px solid var(--line); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; color:var(--orange); margin-bottom:6px;">RUNG 3</div>
+          <div style="font-size:12px; margin-bottom:4px;">Setback:</div>
+          <div class="ws-line"></div>
+          <div style="display:flex; gap:8px; align-items:center; margin: 8px 0 4px;">
+            <div style="font-size:12px;">Severity (1-10):</div>
+            <div style="border:1px solid #ccc; border-radius:4px; width:36px; height:24px;"></div>
+            <div style="font-size:12px;">Response:</div>
+            <div style="border:1px solid #ccc; border-radius:4px; flex:1; height:24px;"></div>
+          </div>
+          <div style="font-size:12px; color:var(--orange); margin-bottom:4px;">What I learned from this:</div>
+          <div class="ws-line"></div>
+        </div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">My pattern</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">What do I see when I look at my three setbacks?</div>
+        <div class="ws-box" style="min-height:50px;"></div>
+        <div style="font-size:12px; margin-top:8px;">The next setback I will consciously:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Scientific Foundation</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematic Review</div>
+        <strong>Resilience in Sport: A Meta-Analytic Review</strong>
+        <div>Fletcher &amp; Sarkar (2012) reviewed 90 studies on resilience in athletes. Key factors: positive personality, motivation, confidence, focus and perceived social support. Resilience was significantly associated with better performance under pressure.</div>
+        <div class="ref">Fletcher, D., Sarkar, M. (2012). Psychology of Sport and Exercise, 13(5), 669-678.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Longitudinal</div>
+        <strong>Adversity Quotient and Elite Athletic Development</strong>
+        <div>Stoltz (1997) introduced the AQ concept and demonstrated in longitudinal research over 8 years that AQ was a stronger predictor of career success in athletes than IQ or technical skill.</div>
+        <div class="ref">Stoltz, P.G. (1997). Adversity Quotient: Turning Obstacles into Opportunities. Wiley.</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiration</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Nick Vujicic — No Arms, No Legs, No Limits</div>
+        <div class="yt-desc">Nick, born without arms and legs, speaks about how he learned to get up after falling. His message about adversity transcends sport but always touches young athletes deeply. Use as an opening clip for discussion about limits that exist only in the mind.</div>
+        <span class="yt-search">Search: "Nick Vujicic motivational speech no arms no legs"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">LeBron James — The Comeback from 3-1</div>
+        <div class="yt-desc">The 2016 NBA Finals: Cleveland Cavaliers come back from a 3-1 deficit. LeBron talks afterwards about his mental process: "We just decided we weren't going to lose." A perfect illustration of the adversity quotient in action.</div>
+        <span class="yt-search">Search: "LeBron James 2016 Finals comeback mentality interview"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 4 ===== -->
+<div class="exercise-block premium-locked" id="oe4">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+  <div class="ex-hero">
+    <div class="ex-num">04</div>
+    <div>
+      <h2>Pre-Performance Ritual</h2>
+      <div class="subtitle">Build a mental routine that brings you back to your best self every time.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individual</span>
+      <span class="tag">Routine</span>
+      <span class="tag">Focus</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderator Guide</div>
+
+      <div class="info-box">
+        <strong>Core principle:</strong> Research shows that pre-performance routines (PPR) reduce anxiety, enhance concentration and protect the automaticity of movement. Nadal's rituals (water bottles, hair tuck, shirt alignment), Ronaldo's specific jump style before kick-off, Federer's calm warm-up: these are not superstitions but conditioned mental triggers. In this exercise, players build their own PPR.
+      </div>
+
+      <h3 class="section-title">Opening (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Ask: "Who has a ritual before a game?" Let them describe it. Ask: "Why do you do that?" Often: "It gives me calm / focus / feeling of being ready."</li>
+        <li><span class="step-num">2</span>Explain: "That ritual is no coincidence. Your brain connects that action to a mental state. Today we build that consciously."</li>
+      </ul>
+
+      <h3 class="section-title">The three layers of a PPR (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Write or say: <strong>Physical</strong> (movement, warm-up, hand gesture), <strong>Mental</strong> (visualization, breathing, mantra), <strong>Emotional</strong> (music, memory, setting intention).</li>
+        <li><span class="step-num">2</span>Emphasize: a good PPR has elements from all three layers. Not just physical.</li>
+      </ul>
+
+      <h3 class="section-title">Building the personal PPR (8 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span><strong>Step 1 (3 min):</strong> Players fill in the three layers on the worksheet. Use questions: "What movement sharpens you? What breathing activates you? What phrase switches you on?"</li>
+        <li><span class="step-num">2</span><strong>Step 2 (3 min):</strong> Players write the sequence of their PPR: 5 to 8 steps, from "leaving the locker room" to "first action on the court."</li>
+        <li><span class="step-num">3</span><strong>Step 3 (2 min):</strong> Players practice their PPR IN SILENCE. They actually perform the steps (mentally and physically where possible).</li>
+      </ul>
+
+      <h3 class="section-title">Closing (3 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>2 to 3 volunteers describe their PPR.</li>
+        <li><span class="step-num">2</span>Coach: "This only works through repetition. Use the same ritual at every practice, every game. Consistently. Then it becomes automatic."</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Phase</th><th>Duration</th></tr>
+        <tr><td>Opening + explanation</td><td>4 min</td></tr>
+        <tr><td>Filling in three layers</td><td>3 min</td></tr>
+        <tr><td>Writing sequence</td><td>3 min</td></tr>
+        <tr><td>Performing in silence</td><td>2 min</td></tr>
+        <tr><td>Sharing + closing</td><td>3 min</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Encourage specific details. "I listen to music" is too vague. "I listen to one specific song on the way to the court and sing along the last 20 seconds" is usable. Specificity = effectiveness.
+      </div>
+    </div>
+
+    <!-- WORKSHEET -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Participant Worksheet</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"I have a ritual before every match. It's not superstition. It's preparation."</div>
+        <div class="quote-src">Rafael Nadal</div>
+      </div>
+
+      <p class="ws-intro">A pre-performance ritual is your mental switch. It brings you back to your sharpest, most focused self every time — consciously and repeatably.</p>
+
+      <div class="ws-field-label">THE THREE LAYERS OF MY PPR</div>
+
+      <div style="display:grid; gap:10px; margin-bottom:16px;">
+        <div style="border:1px solid var(--line); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Physical — movement, hand gesture, warm-up</div>
+          <div class="ws-line"></div>
+          <div class="ws-line"></div>
+        </div>
+        <div style="border:1px solid var(--line); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Mental — breathing, visualization, mantra</div>
+          <div class="ws-line"></div>
+          <div class="ws-line"></div>
+        </div>
+        <div style="border:1px solid var(--line); border-radius:8px; padding:12px;">
+          <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--orange); margin-bottom:6px;">Emotional — music, memory, intention</div>
+          <div class="ws-line"></div>
+          <div class="ws-line"></div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">MY PPR SEQUENCE (step by step)</div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">1</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">2</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">3</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">4</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">5</div><div class="ws-line" style="flex:1;"></div></div>
+        <div style="display:flex; align-items:center; gap:10px;"><div style="background:var(--orange); color:white; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">6</div><div class="ws-line" style="flex:1;"></div></div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">My commitment</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">I will use this PPR at every practice and game starting from:</div>
+        <div class="ws-line" style="border-color:var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Scientific Foundation</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematic Review</div>
+        <strong>Pre-Performance Routines in Sport</strong>
+        <div>Cotterill (2010) reviewed 30 years of research on pre-performance routines. Conclusion: PPRs reduce performance anxiety, enhance concentration and protect automated skills under pressure through conditioning of the prefrontal cortex.</div>
+        <div class="ref">Cotterill, S. (2010). International Review of Sport and Exercise Psychology, 3(2), 132-153.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">RCT</div>
+        <strong>Ritual and Performance Under Pressure</strong>
+        <div>Damisch et al. (2010) demonstrated that athletes who performed a ritual before a task performed 33% better under pressure than the control group. Mechanism: rituals increase self-efficacy and reduce cortisol (stress hormone).</div>
+        <div class="ref">Damisch, L., Stoberock, B., Mussweiler, T. (2010). Psychological Science, 21(7), 1014-1020.</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiration</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Rafael Nadal's Pre-Match Rituals Explained</div>
+        <div class="yt-desc">Detailed analysis of Nadal's rituals: water bottles at exactly the same distance, the hair tuck, the shirt always facing the same way. Sport psychologists explain why this works and how it protects his concentration.</div>
+        <span class="yt-search">Search: "Rafael Nadal rituals explained sport psychology"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Cristiano Ronaldo Pre-Game Routine</div>
+        <div class="yt-desc">Ronaldo's specific warm-up sequence, his jump before kick-off, his gaze direction when entering the pitch. Everything is conscious and repeatable. Ideal as a concrete example for young footballers or basketball players.</div>
+        <span class="yt-search">Search: "Cristiano Ronaldo pre game warm up routine ritual"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== EXERCISE 5 ===== -->
+<div class="exercise-block premium-locked" id="oe5">
+  <div class="premium-lock"><div class="lock-icon">🔒</div><p>Premium content</p><a href="mailto:info@characterfirst.be" class="lock-cta">Request access</a></div>
+  <div class="ex-hero">
+    <div class="ex-num">05</div>
+    <div>
+      <h2>Growth After Failure</h2>
+      <div class="subtitle">How do you turn a loss into a lesson? Posttraumatic growth for athletes.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">Individual + Pairs</span>
+      <span class="tag">Growth</span>
+      <span class="tag">Self-Compassion</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span>Moderator Guide</div>
+
+      <div class="info-box">
+        <strong>Concept:</strong> Posttraumatic Growth (PTG) is the phenomenon whereby people after a significant difficult experience not only recover but become stronger and wiser in certain areas than they were before that experience. In sport this research is strong: athletes who process injuries, major losses or deselections with PTG strategies perform significantly better afterwards than before the setback. Central question in this exercise: "What has my hardest moment as an athlete given me?"
+      </div>
+
+      <h3 class="section-title">Opening — Setting the frame (2 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Share the story of Derrick Rose: in 2012 he tore his ACL at the peak of his career (youngest MVP ever). He returned after almost 1.5 years of rehabilitation. Rose said afterwards: "Whenever I step on the court, I feel like I have to show everyone I'm the best player in the gym."</li>
+        <li><span class="step-num">2</span>Ask: "Has anyone here had a moment where a failure gave something beautiful in hindsight?" Let one person briefly share.</li>
+      </ul>
+
+      <h3 class="section-title">Part 1 — Naming the failure (3 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Players write down their hardest sports moment. Say: "Not the worst thing in their life. The hardest thing in sport. That's enough."</li>
+        <li><span class="step-num">2</span>Three questions: what was it? How did I respond? How long did the impact last?</li>
+      </ul>
+
+      <h3 class="section-title">Part 2 — Seeking the growth (4 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Use the 5 PTG domains (Tedeschi &amp; Calhoun) as structure on the worksheet:</li>
+        <li><span class="step-num">2</span>1. Personal strength. 2. New possibilities. 3. Relationships. 4. Appreciation for life. 5. Spiritual or existential growth.</li>
+        <li><span class="step-num">3</span>Players fill in which domains apply to their situation.</li>
+      </ul>
+
+      <h3 class="section-title">Part 3 — Pairs and full group (6 min)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Pairs (3 min): partner A shares failure and growth domains. B listens and asks one question: "Which of these growth points do you still carry with you today?"</li>
+        <li><span class="step-num">2</span>Full group (3 min): volunteers share their "growth insight." Coach: "You have already grown. Today we name it consciously."</li>
+      </ul>
+
+      <table class="timing-table">
+        <tr><th>Phase</th><th>Duration</th></tr>
+        <tr><td>Opening + Derrick Rose story</td><td>2 min</td></tr>
+        <tr><td>Naming the failure</td><td>3 min</td></tr>
+        <tr><td>Filling in PTG domains</td><td>4 min</td></tr>
+        <tr><td>Pair conversation</td><td>3 min</td></tr>
+        <tr><td>Full group closing</td><td>3 min</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>15 min</strong></td></tr>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip:</strong> Never force the growth. If a player says "I see no growth in what happened," accept that. Say: "Maybe you don't see it yet. That's okay. It can also come later." Forcing PTG has the opposite effect.
+      </div>
+
+      <div class="warn-box">
+        <strong>Important:</strong> If a player shares a very significant moment (serious injury with psychological impact, loss of someone close), do not follow the group into deep emotional territory in a group setting. Discreetly refer to individual counseling. Protect the safety of the space.
+      </div>
+    </div>
+
+    <!-- WORKSHEET -->
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span>Participant Worksheet</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"Whenever I step on the court, I feel like I have to show everyone I'm the best player in the gym."</div>
+        <div class="quote-src">Derrick Rose — NBA Point Guard</div>
+      </div>
+
+      <p class="ws-intro">Posttraumatic growth (PTG) is not positive thinking. It is honestly examining what a difficult moment has given you, despite the pain.</p>
+
+      <div class="ws-field-label">PART A — My hardest sports moment</div>
+      <div class="ws-box" style="min-height:55px;"></div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px;">
+        <div>
+          <div style="font-size:12px; color:#888; margin-bottom:4px;">How did I respond?</div>
+          <div class="ws-box" style="min-height:40px;"></div>
+        </div>
+        <div>
+          <div style="font-size:12px; color:#888; margin-bottom:4px;">How long did the impact last?</div>
+          <div class="ws-box" style="min-height:40px;"></div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">PART B — The 5 PTG Domains (Tedeschi &amp; Calhoun)</div>
+      <div style="font-size:12px; color:#888; margin-bottom:10px;">Check which domains apply and briefly write what you learned from each.</div>
+
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">1. Personal strength</div>
+            <div style="font-size:11px; color:#888;">I discovered I am stronger than I thought.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">2. New possibilities</div>
+            <div style="font-size:11px; color:#888;">It opened a path I would never have seen otherwise.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">3. Relationships</div>
+            <div style="font-size:11px; color:#888;">I saw who was truly there for me.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">4. Appreciation for life / sport</div>
+            <div style="font-size:11px; color:#888;">I realized how much I love doing this.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700;">5. Sense of purpose</div>
+            <div style="font-size:11px; color:#888;">I now better understand why I do what I do.</div>
+            <div class="ws-line" style="margin-top:4px;"></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="commit-box">
+        <div class="commit-label">My growth insight</div>
+        <div style="font-size:12px; color:#888; margin-bottom:8px;">What do I still carry with me today from that difficult moment?</div>
+        <div class="ws-box" style="min-height:50px; border-color:var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <h3 class="section-title">Scientific Foundation</h3>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <div class="tier tier-sr">Systematic Review</div>
+        <strong>Posttraumatic Growth in Sport: A Systematic Review</strong>
+        <div>Howells &amp; Fletcher (2015) reviewed 22 studies on PTG in athletes. 80% of athletes who had experienced a serious injury or sports crisis reported significant personal growth on at least one PTG domain. PTG was positively correlated with later performance motivation.</div>
+        <div class="ref">Howells, K., Fletcher, D. (2015). Psychology of Sport and Exercise, 16(2), 1-9.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Theoretical Framework</div>
+        <strong>The 5 Domains of Posttraumatic Growth</strong>
+        <div>Tedeschi &amp; Calhoun (2004) developed the theoretical framework of PTG with 5 domains. Their Posttraumatic Growth Inventory (PTGI) has been validated in 60+ countries. The framework has since been translated into sport psychology interventions worldwide.</div>
+        <div class="ref">Tedeschi, R.G., Calhoun, L.G. (2004). Psychological Inquiry, 15(1), 1-18.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-qual">Qualitative</div>
+        <strong>Self-Compassion and Athletic Recovery</strong>
+        <div>Mosewich et al. (2013) demonstrated in qualitative research that athletes with higher self-compassion recovered more quickly after a setback and more often experienced PTG. Self-criticism slowed recovery; self-compassion accelerated it.</div>
+        <div class="ref">Mosewich, A.D., et al. (2013). Sport, Exercise and Performance Psychology, 2(2), 165-185.</div>
+      </div>
+      <div class="lit-item">
+        <div class="tier tier-rct">Longitudinal</div>
+        <strong>Resilience and Growth After Athletic Injury</strong>
+        <div>Wadey et al. (2019) followed 40 athletes over 2 years after a serious injury. Athletes who consciously reflected on their experience (via journaling or counseling) showed 3x more PTG than athletes who tried to forget the experience.</div>
+        <div class="ref">Wadey, R., Day, M.C., Cavallerio, F. (2019). Journal of Applied Sport Psychology, 31(4).</div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top:24px;">YouTube Inspiration</h3>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Derrick Rose — The Return (ESPN 30 for 30)</div>
+        <div class="yt-desc">The comeback of Derrick Rose after his ACL injury. His story is one of the most powerful examples of PTG in NBA history. The documentary clip (4 min) about what that injury taught him personally is ideal for this exercise.</div>
+        <span class="yt-search">Search: "Derrick Rose comeback injury ESPN documentary"</span>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Brené Brown — The Power of Vulnerability</div>
+        <div class="yt-desc">Brené Brown's TED Talk on vulnerability and courage. Core message: growth does not begin by avoiding failure but by daring to allow it. Highly relevant for players who struggle with failing and letting go.</div>
+        <span class="yt-search">Search: "Brené Brown power of vulnerability TED talk"</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end page-body -->
+
+<script>
+  const sections = document.querySelectorAll('.exercise-block');
+  const navLinks = document.querySelectorAll('.sticky-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

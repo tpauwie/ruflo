@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Character First</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --ink:#1C2433;--white:#ffffff;--orange:#F05A28;--orange2:#D44A1A;
+      --canvas:#FAF7F2;--mist:#F0ECE4;--stone:#6E6A63;--line:#E4DFD6;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--canvas);line-height:1.6;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;font-weight:900;line-height:1.1}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;background:rgba(28,36,51,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;padding:0 5%;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-logo{text-decoration:none;display:flex;align-items:center;gap:10px}
+    .nav-links{display:flex;gap:1.6rem;align-items:center}
+    .nav-links a{color:#aaa;text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s}
+    .nav-links a:hover{color:#fff}
+    .nav-links a.active{color:#fff}
+    .lang-pill{color:#777 !important;font-size:.78rem !important;border:1px solid #2e3a50;padding:.28rem .7rem;border-radius:4px}
+    .lang-pill:hover{border-color:#F05A28 !important;color:#F05A28 !important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;display:block}
+    @media(max-width:600px){
+      .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--ink);flex-direction:column;padding:20px 5%;gap:1rem;border-bottom:1px solid rgba(255,255,255,.08)}
+      .nav-links.open{display:flex}
+      .hamburger{display:flex}
+    }
+
+    /* PAGE HEADER */
+    .page-header{background:var(--ink);padding:clamp(90px,14vw,120px) 5% clamp(48px,6vw,72px);text-align:center}
+    .page-header .eyebrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,90,40,.8);margin-bottom:.9rem}
+    .page-header h1{font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:.8rem}
+    .page-header p{font-size:1rem;color:#6e7a8e;max-width:480px;margin:0 auto;line-height:1.7}
+
+    /* CONTACT SECTION */
+    .contact-section{padding:clamp(48px,7vw,80px) 5%;background:var(--canvas)}
+    .contact-wrap{max-width:680px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:2.5rem;align-items:start}
+    @media(max-width:680px){.contact-wrap{grid-template-columns:1fr}}
+
+    /* INFO SIDE */
+    .contact-info{}
+    .info-block{margin-bottom:2rem}
+    .info-label{font-family:'Archivo',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
+    .info-val{font-size:.9rem;color:var(--ink);line-height:1.6}
+    .info-val a{color:var(--orange);text-decoration:none;font-weight:600}
+    .info-val a:hover{text-decoration:underline}
+    .response-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.6rem 1rem;font-size:.8rem;color:var(--stone);margin-top:1.5rem}
+    .response-dot{width:8px;height:8px;border-radius:50%;background:#1E8A5B;flex-shrink:0}
+
+    /* FORM CARD */
+    .contact-form-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:2rem;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+    .form-group{margin-bottom:1.2rem}
+    .form-group label{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:.8rem;color:var(--ink);margin-bottom:.4rem}
+    .form-control{width:100%;background:#faf9f7;border:1px solid var(--line);color:var(--ink);font-size:.9rem;padding:.7rem 1rem;border-radius:8px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s,box-shadow .2s}
+    .form-control:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(240,90,40,.08);background:#fff}
+    .form-control::placeholder{color:#b0aba3}
+    select.form-control{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6A63' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+    textarea.form-control{resize:vertical;min-height:120px;line-height:1.6}
+    .submit-btn{width:100%;background:var(--orange);color:#fff;border:none;padding:.85rem 1.5rem;border-radius:8px;font-family:'Archivo',sans-serif;font-weight:800;font-size:.95rem;cursor:pointer;transition:background .2s,transform .15s;margin-top:.4rem}
+    .submit-btn:hover{background:var(--orange2);transform:translateY(-2px)}
+    .form-note{font-size:.75rem;color:var(--stone);text-align:center;margin-top:.9rem;line-height:1.5}
+    .success-msg{display:none;background:#d4edda;border:1px solid #a3d9b1;border-radius:8px;padding:1rem 1.2rem;font-size:.88rem;color:#1a5c33;text-align:center;margin-top:1rem}
+
+    /* FOOTER */
+    footer{background:var(--ink);padding:clamp(40px,6vw,64px) 5% 32px;border-top:1px solid rgba(255,255,255,.06)}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+    .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:.8rem}
+    .footer-brand-txt{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.05rem;color:#fff;letter-spacing:.02em}
+    .footer-brand-txt span{color:var(--orange)}
+    .footer-desc{font-size:.83rem;color:#3a4a60;line-height:1.7;max-width:240px}
+    .footer-col h4{font-family:'Archivo',sans-serif;font-size:.68rem;font-weight:800;color:#2e3a50;text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem}
+    .footer-col a{display:block;font-size:.83rem;color:#3a4a60;text-decoration:none;margin-bottom:.45rem;transition:color .2s}
+    .footer-col a:hover{color:#fff}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+    .footer-bottom p{font-size:.76rem;color:#2e3a50}
+    @media(max-width:780px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:460px){.footer-grid{grid-template-columns:1fr}}
+  </style>
+  <script>
+    (function(){
+      if(localStorage.getItem('cf_lang')==='en') window.location.replace('en/contact.html');
+      document.addEventListener('DOMContentLoaded',function(){
+        document.querySelectorAll('.lang-switch').forEach(function(a){
+          a.addEventListener('click',function(){ localStorage.setItem('cf_lang','en'); });
+        });
+      });
+    })();
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+    <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.05rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html">Home</a>
+    <a href="coach-programma.html">Coaches</a>
+    <a href="index.html#mission">Missie &amp; Visie</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="en/contact.html" class="lang-switch lang-pill">EN</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="eyebrow">Neem contact op</div>
+  <h1>Hoe kunnen we helpen?</h1>
+  <p>Vragen over het programma, premium toegang of een samenwerking? Stuur ons een bericht.</p>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-wrap">
+
+    <!-- LEFT: info -->
+    <div class="contact-info">
+      <div class="info-block">
+        <div class="info-label">E-mail</div>
+        <div class="info-val"><a href="mailto:info@characterfirst.be">info@characterfirst.be</a></div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Gebruik het formulier voor</div>
+        <div class="info-val" style="font-size:.85rem;color:var(--stone);line-height:1.8">
+          &bull; Premium toegang aanvragen<br>
+          &bull; Coach programma informatie<br>
+          &bull; Samenwerking &amp; partnerships<br>
+          &bull; Algemene vragen
+        </div>
+      </div>
+      <div class="response-badge">
+        <span class="response-dot"></span>
+        We antwoorden binnen 1–2 werkdagen
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="contact-form-card">
+      <div class="form-group">
+        <label for="cf-naam">Naam</label>
+        <input class="form-control" type="text" id="cf-naam" placeholder="Jouw naam" autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="cf-email">E-mailadres</label>
+        <input class="form-control" type="email" id="cf-email" placeholder="jouw@email.be" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="cf-onderwerp">Onderwerp</label>
+        <select class="form-control" id="cf-onderwerp">
+          <option value="">Kies een onderwerp&hellip;</option>
+          <option value="Premium toegang aanvragen">Premium toegang aanvragen</option>
+          <option value="Coach programma informatie">Coach programma informatie</option>
+          <option value="Samenwerking / Partnership">Samenwerking / Partnership</option>
+          <option value="Algemene vraag">Algemene vraag</option>
+          <option value="Andere">Andere</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cf-bericht">Bericht</label>
+        <textarea class="form-control" id="cf-bericht" placeholder="Vertel ons meer&hellip;"></textarea>
+      </div>
+      <button class="submit-btn" id="cf-submit">Verstuur bericht</button>
+      <div class="success-msg" id="cf-success">Bedankt! Je e-mailprogramma opent nu om het bericht te versturen naar info@characterfirst.be.</div>
+      <p class="form-note">Door te versturen open je je e-mailprogramma met het bericht vooraf ingevuld.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+        <div class="footer-brand-txt">CHARACTER<span>FIRST</span></div>
+      </div>
+      <p class="footer-desc">Evidence-based karakterontwikkeling voor sporters vanaf 14 jaar. Win the person. Win the team.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programma</h4>
+      <a href="programma.html">Overzicht</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
+      <a href="week-werkbladen.html">Week werkbladen</a>
+      <a href="coach-programma.html">Coach Programma</a>
+    </div>
+    <div class="footer-col">
+      <h4>Oefeningen</h4>
+      <a href="library.html">Bibliotheek</a>
+      <a href="oefeningen.html">50 Oefeningen</a>
+      <a href="mentale-weerbaarheid.html">Mentale weerbaarheid</a>
+      <a href="review-en-taaiheid.html">Fysieke taaiheid</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="werkbladen.html">Werkbladen</a>
+      <a href="toegang.html">Toegangscode</a>
+      <a href="en/index.html">English version</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. Alle rechten voorbehouden.</p>
+    <p>Evidence-based sportpsychologie &middot; characterfirst.be</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click',()=>{
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
+  document.getElementById('cf-submit').addEventListener('click',()=>{
+    const naam = document.getElementById('cf-naam').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const onderwerp = document.getElementById('cf-onderwerp').value;
+    const bericht = document.getElementById('cf-bericht').value.trim();
+
+    if(!email){ alert('Vul je e-mailadres in.'); return; }
+    if(!onderwerp){ alert('Kies een onderwerp.'); return; }
+    if(!bericht){ alert('Schrijf een bericht.'); return; }
+
+    const subject = encodeURIComponent('[Character First] ' + (onderwerp || 'Contactformulier'));
+    const body = encodeURIComponent(
+      'Naam: ' + (naam || '—') + '\n' +
+      'E-mail: ' + email + '\n' +
+      'Onderwerp: ' + onderwerp + '\n\n' +
+      bericht
+    );
+    window.location.href = 'mailto:info@characterfirst.be?subject=' + subject + '&body=' + body;
+    document.getElementById('cf-success').style.display = 'block';
+  });
+</script>
+</body>
+</html>

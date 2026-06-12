@@ -1,0 +1,13 @@
+{
+  "name": "character-first-screenshot",
+  "version": "1.0.0",
+  "description": "Screenshot tool for Character First Instagram posts",
+  "type": "module",
+  "scripts": {
+    "screenshot": "node screenshot-posts.mjs",
+    "screenshot:en": "node screenshot-posts.mjs --lang en"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}

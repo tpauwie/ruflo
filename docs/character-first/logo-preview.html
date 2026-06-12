@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Character First — Logo Preview: Concept 04 Summit CF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:#FAF7F2;color:#1C2433;padding:40px 24px}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(22px,4vw,36px);margin-bottom:8px}
+  h2{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:40px 0 16px;border-bottom:2px solid #E4DFD6;padding-bottom:8px}
+  p{font-size:14px;color:#6E6A63;margin-bottom:24px;max-width:640px;line-height:1.6}
+  .badge{display:inline-block;background:#F05A28;color:#fff;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:.5px;padding:3px 10px;border-radius:3px;margin-bottom:16px}
+
+  /* Grid layouts */
+  .grid{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:32px}
+  .card{background:#fff;border:1px solid #E4DFD6;border-radius:12px;padding:32px 24px;text-align:center;min-width:200px}
+  .card label{display:block;font-size:12px;color:#6E6A63;margin-top:12px;letter-spacing:.5px;text-transform:uppercase}
+  .card em{display:block;font-size:11px;color:#1E8A5B;font-style:normal;margin-top:4px}
+
+  /* Dark card */
+  .card.dark{background:#1C2433}
+  .card.dark label{color:#6E6A63}
+
+  /* Orange card */
+  .card.orange{background:#F05A28}
+  .card.orange label{color:#fff;opacity:.7}
+
+  /* Green card */
+  .card.green{background:#1E8A5B}
+  .card.green label{color:#fff;opacity:.7}
+
+  /* Favicon row */
+  .fav-row{display:flex;align-items:flex-end;gap:24px;padding:24px;background:#fff;border:1px solid #E4DFD6;border-radius:12px;margin-bottom:24px}
+  .fav-item{text-align:center}
+  .fav-item label{display:block;font-size:11px;color:#6E6A63;margin-top:8px}
+
+  /* Wordmark */
+  .wordmark-row{display:flex;align-items:center;gap:12px;padding:24px;background:#1C2433;border-radius:12px;margin-bottom:24px;max-width:400px}
+
+  /* Separator */
+  hr{border:none;border-top:1px solid #E4DFD6;margin:48px 0 0}
+
+  .note{background:#FFF8F5;border-left:3px solid #F05A28;padding:16px 20px;border-radius:0 8px 8px 0;font-size:13px;line-height:1.6;margin-top:32px;max-width:640px}
+  .note strong{color:#F05A28}
+</style>
+</head>
+<body>
+
+<span class="badge">LOGO PREVIEW</span>
+<h1>Concept 04 — Summit CF</h1>
+<p>Een bergpiek die opwaartse beweging, ambitie en doorzettingsvermogen symboliseert. De letters CF zijn geïntegreerd in het silhouet. Twee varianten: <strong>Variant A</strong> — CF op het berglichaam (krachtig, één geheel) · <strong>Variant B</strong> — CF als fundering onder de berg (meer klassiek, leesbaarder op klein formaat).</p>
+
+<!-- VARIANT A -->
+<h2>Variant A — CF op het berglichaam</h2>
+<p>De letters CF zijn gebrand op het berglichaam in wit. Het sneeuwpunt geeft diepte. Leest sterk als icon.</p>
+
+<div class="grid">
+  <!-- Primair Navy -->
+  <div class="card dark">
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#1C2433"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#F05A28"/>
+      <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#FAF7F2"/>
+      <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#fff" letter-spacing="2">CF</text>
+    </svg>
+    <label>Primair — Navy</label>
+    <em>Voorkeur gebruik</em>
+  </div>
+
+  <!-- Op licht -->
+  <div class="card">
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#F0ECE4"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#F05A28"/>
+      <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#FAF7F2"/>
+      <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#1C2433" letter-spacing="2">CF</text>
+    </svg>
+    <label>Op licht</label>
+  </div>
+
+  <!-- Mono zwart -->
+  <div class="card">
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#1C2433"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#fff"/>
+      <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#1C2433"/>
+      <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#1C2433" letter-spacing="2">CF</text>
+    </svg>
+    <label>Mono zwart</label>
+  </div>
+
+  <!-- Mono wit -->
+  <div class="card" style="background:#333">
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#fff"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#1C2433"/>
+      <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#fff"/>
+      <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#fff" letter-spacing="2">CF</text>
+    </svg>
+    <label style="color:#aaa">Mono wit</label>
+  </div>
+</div>
+
+<!-- VARIANT B -->
+<h2>Variant B — CF als fundering</h2>
+<p>De berg staat op de letters CF als fundament. Rustiger, hiërarchischer. De letters ademen meer.</p>
+
+<div class="grid">
+  <!-- Primair Navy -->
+  <div class="card dark">
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#1C2433"/>
+      <path d="M14 62 L50 14 L86 62 Z" fill="#F05A28"/>
+      <path d="M50 14 L38 34 L50 29 L62 34 Z" fill="#FAF7F2"/>
+      <line x1="22" y1="70" x2="78" y2="70" stroke="#F05A28" stroke-width="1.5" opacity=".4"/>
+      <text x="50" y="83" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="18" fill="#fff" letter-spacing="3">CF</text>
+    </svg>
+    <label>Primair — Navy</label>
+    <em>Alternatief</em>
+  </div>
+
+  <!-- Op licht -->
+  <div class="card">
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#F0ECE4"/>
+      <path d="M14 62 L50 14 L86 62 Z" fill="#F05A28"/>
+      <path d="M50 14 L38 34 L50 29 L62 34 Z" fill="#FAF7F2"/>
+      <line x1="22" y1="70" x2="78" y2="70" stroke="#1C2433" stroke-width="1.5" opacity=".2"/>
+      <text x="50" y="83" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="18" fill="#1C2433" letter-spacing="3">CF</text>
+    </svg>
+    <label>Op licht</label>
+  </div>
+</div>
+
+<!-- FAVICON SIZES -->
+<h2>Favicon Schalen — Variant A (primair)</h2>
+<div class="fav-row">
+  <div class="fav-item">
+    <svg width="96" height="96" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#1C2433"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#F05A28"/>
+      <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#FAF7F2"/>
+      <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#fff" letter-spacing="2">CF</text>
+    </svg>
+    <label>96px</label>
+  </div>
+  <div class="fav-item">
+    <svg width="48" height="48" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#1C2433"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#F05A28"/>
+      <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#FAF7F2"/>
+      <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#fff" letter-spacing="2">CF</text>
+    </svg>
+    <label>48px</label>
+  </div>
+  <div class="fav-item">
+    <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#1C2433"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#F05A28"/>
+      <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#FAF7F2"/>
+      <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+            font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#fff" letter-spacing="2">CF</text>
+    </svg>
+    <label>28px</label>
+  </div>
+  <div class="fav-item">
+    <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="50" fill="#1C2433"/>
+      <path d="M12 82 L50 18 L88 82 Z" fill="#F05A28"/>
+    </svg>
+    <label>16px</label>
+  </div>
+</div>
+
+<!-- WORDMARK -->
+<h2>Wordmark Lockup</h2>
+<div class="wordmark-row">
+  <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" fill="#F05A28"/>
+    <path d="M12 82 L50 18 L88 82 Z" fill="#fff"/>
+    <path d="M50 18 L38 40 L50 34 L62 40 Z" fill="#F05A28"/>
+    <text x="50" y="70" text-anchor="middle" dominant-baseline="central"
+          font-family="Archivo,Arial" font-weight="900" font-size="20" fill="#F05A28" letter-spacing="2">CF</text>
+  </svg>
+  <div>
+    <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#fff;letter-spacing:-.5px;line-height:1">Character First</div>
+    <div style="font-family:'Inter',sans-serif;font-size:11px;color:#F05A28;letter-spacing:2px;text-transform:uppercase;margin-top:3px">Karakter boven alles</div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>Kies je variant:</strong><br>
+  <strong>A</strong> — CF op het berglichaam (navy, één sterk symbool — aanbevolen voor icon en app)<br>
+  <strong>B</strong> — CF als fundering onder de berg (meer klassiek, leesbaarder als los woord)<br><br>
+  Na je keuze verwerken we het logo in het brand board en rollen we het uit over de site.
+</div>
+
+</body>
+</html>

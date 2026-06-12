@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character First — The Week: Daily Worksheets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1C2433; --white: #ffffff; --orange: #F05A28; --orange2: #D44A1A;
+      --canvas: #FAF7F2; --mist: #F0ECE4; --stone: #6E6A63; --line: #E4DFD6;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--ink); line-height: 1.6; }
+    h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; font-weight: 900; }
+
+    /* SCREEN NAV BAR */
+    .screen-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 56px; background: rgba(28,36,51,.96);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .screen-bar-logo { font-size: 1rem; font-weight: 900; color: var(--white); letter-spacing: .04em; }
+    .screen-bar-logo span { color: var(--orange); }
+    .screen-bar-sub { font-size: .72rem; color: #555; margin-top: 1px; }
+    .screen-bar-nav { display: flex; gap: 1rem; align-items: center; }
+    .screen-bar-nav a { font-size: .82rem; color: #666; text-decoration: none; font-weight: 600; transition: color .2s; }
+    .screen-bar-nav a:hover { color: var(--white); }
+    .screen-bar-nav a.active { color: var(--orange); }
+    .pgb { background: #0d1320; border-bottom: 1px solid rgba(255,255,255,.06); padding: 10px 5%; display: flex; align-items: center; gap: 1rem; margin-top: 56px; }
+    .pgb-day { font-size: .75rem; font-weight: 800; color: #333; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+    .pgb-bar { flex: 1; height: 3px; background: #1a2235; border-radius: 3px; overflow: hidden; }
+    .pgb-fill { height: 100%; background: var(--orange); border-radius: 3px; transition: width .4s; }
+    .pgb-text { font-size: .72rem; color: #333; white-space: nowrap; }
+    .pgb-text span { font-size: .8rem; color: #8a94a8; }
+    .pgb-btn { background: #F05A28; color: #fff; padding: .65rem 1.5rem; border-radius: 6px; text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: .85rem; white-space: nowrap; transition: background .2s; }
+    .pgb-btn:hover { background: #D44A1A; }
+  </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../week-werkbladen.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
+
+<script src="../cf-auth.js"></script>
+</head>
+<body>
+
+<div class="screen-bar">
+  <div>
+    <div class="screen-bar-logo">Character <span>First</span></div>
+    <div class="screen-bar-sub">The Week — 10 pages: 5 daily worksheets + 5 moderator guides</div>
+  </div>
+  <div class="screen-bar-nav">
+    <a href="index.html">Home</a>
+    <a href="library.html">Library</a>
+    <a href="worksheets.html">All worksheets</a>
+  </div>
+</div>
+
+<div class="pgb">
+  <span class="pgb-day">The Week</span>
+  <div class="pgb-bar"><div class="pgb-fill" id="pgb-fill" style="width:0%"></div></div>
+  <span class="pgb-text">Page <span id="pgb-current">1</span> of 10</span>
+  <a href="worksheets.html" class="pgb-btn">All worksheets</a>
+</div>
+
+<div id="book-root"></div>
+
+<script>
+// ===== WEEK WORKSHEETS DATA =====
+const WEEK_PAGES = [
+  // DAY 1 PLAYER WORKSHEET
+  {
+    day: 1,
+    type: 'player',
+    theme: 'Self-Knowledge',
+    themeColor: '#F05A28',
+    title: 'Who Am I?',
+    subtitle: 'Day 1 — Player Worksheet',
+    intro: 'The first step in character development: knowing yourself. This worksheet helps you explore who you are — not just as an athlete, but as a person.',
+    sections: [
+      {
+        heading: '1. My 5 athlete words',
+        type: 'grid5',
+        label: 'Write 5 words that describe you as an athlete:',
+        placeholders: ['Hard worker', 'Competitive', 'Team player', 'Consistent', 'Passionate']
+      },
+      {
+        heading: '2. My 3 personal strengths',
+        type: 'list3',
+        label: 'Beyond sport: who are you as a person?',
+        placeholders: ['e.g. Loyal', 'e.g. Creative', 'e.g. Empathetic']
+      },
+      {
+        heading: '3. My 1 growth area',
+        type: 'textarea',
+        label: 'What do you want to develop — as an athlete or as a person?',
+        placeholder: 'e.g. I want to become more resilient after mistakes...'
+      },
+      {
+        heading: '4. My values',
+        type: 'values',
+        label: 'Circle your 3 most important values:',
+        values: ['Loyalty', 'Courage', 'Respect', 'Honesty', 'Team spirit', 'Perseverance', 'Excellence', 'Joy', 'Leadership', 'Growth', 'Fairness', 'Passion']
+      },
+      {
+        heading: '5. My reflection',
+        type: 'textarea',
+        label: 'What do you want to take away from this week for yourself?',
+        placeholder: 'Write freely — no wrong answers...'
+      }
+    ]
+  },
+  // DAY 1 MODERATOR GUIDE
+  {
+    day: 1,
+    type: 'moderator',
+    theme: 'Self-Knowledge',
+    themeColor: '#F05A28',
+    title: 'Who Am I? — Moderator Guide',
+    subtitle: 'Day 1 — For coaches and facilitators',
+    intro: 'Goal: Players get to know themselves as athletes and as people. They identify their strengths, values, and growth areas. This creates the basis for everything that follows.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Introduction: why self-knowledge?' },
+          { time: '10 min', desc: 'Individual worksheet (sections 1–4)' },
+          { time: '8 min', desc: 'Pair sharing' },
+          { time: '7 min', desc: 'Group discussion + reflection' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'What surprised you about your own answers?',
+          'Which value is most important to you — and why?',
+          'How do your strengths help the team?',
+          'What does your growth area require of you this week?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Share an example of your own: which values drive you as a coach?',
+          'Create psychological safety: there are no wrong answers.',
+          'Allow for silence — reflecting takes time.',
+          'Link self-knowledge to team culture: how do our individual strengths complement each other?'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Self-knowledge is the basis of emotional intelligence (Goleman, 1995) and is strongly correlated with athletic performance and resilience. Markus\' Self-Schema theory (1977) shows that a clear self-image increases motivation and consistency under pressure.'
+      },
+      {
+        heading: 'Connection to Day 2',
+        type: 'connection',
+        text: 'Tomorrow: Pressure & Stress. The values and strengths from today serve as an anchor for dealing with performance pressure.'
+      }
+    ]
+  },
+  // DAY 2 PLAYER WORKSHEET
+  {
+    day: 2,
+    type: 'player',
+    theme: 'Pressure & Stress',
+    themeColor: '#2F6FB0',
+    title: 'Perform Under Pressure',
+    subtitle: 'Day 2 — Player Worksheet',
+    intro: 'Pressure is not the enemy — how you handle it is. Today you discover your personal signals and learn techniques to perform better under pressure.',
+    sections: [
+      {
+        heading: '1. My pressure moments',
+        type: 'list3',
+        label: 'When do I feel the most pressure as an athlete?',
+        placeholders: ['e.g. Before an important match', 'e.g. After a mistake', 'e.g. Penalty kick']
+      },
+      {
+        heading: '2. My physical stress signals',
+        type: 'body-map',
+        label: 'Mark where you feel stress in your body:',
+        signals: ['Rapid heartbeat', 'Tense shoulders', 'Butterflies in stomach', 'Shallow breathing', 'Sweaty hands', 'Tense jaw', 'Head feels heavy', 'Feet feel heavy']
+      },
+      {
+        heading: '3. Box Breathing — My Practice',
+        type: 'breathing',
+        label: 'Practice the technique and record:',
+        steps: ['Inhale: 4 counts', 'Hold: 4 counts', 'Exhale: 4 counts', 'Hold: 4 counts']
+      },
+      {
+        heading: '4. My personal reset',
+        type: 'textarea',
+        label: 'What is my personal routine after a mistake or setback?',
+        placeholder: 'e.g. Breathe once deeply, say \'reset\', refocus...'
+      },
+      {
+        heading: '5. My focus word',
+        type: 'focus-word',
+        label: 'My word that brings me back to my best version:',
+        placeholder: 'e.g. FOCUS / BELIEVE / BREATHE'
+      }
+    ]
+  },
+  // DAY 2 MODERATOR GUIDE
+  {
+    day: 2,
+    type: 'moderator',
+    theme: 'Pressure & Stress',
+    themeColor: '#2F6FB0',
+    title: 'Perform Under Pressure — Moderator Guide',
+    subtitle: 'Day 2 — For coaches and facilitators',
+    intro: 'Goal: Players learn to recognize and regulate their stress response. They develop concrete tools for peak performance under pressure.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Introduction: pressure as activator vs. blocker' },
+          { time: '8 min', desc: 'Box Breathing together (guided)' },
+          { time: '10 min', desc: 'Individual worksheet' },
+          { time: '7 min', desc: 'Group sharing + debrief' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'When does pressure help you and when does it block you?',
+          'What does your body do that you can actually use as a signal?',
+          'What focus word suits you — and why?',
+          'How can you support each other in pressure moments?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Guide box breathing yourself — model the technique.',
+          'Normalize stress: even the best athletes feel pressure.',
+          'Let players test their focus word aloud.',
+          'Link to team culture: how do we encourage each other in pressure moments?'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Controlled breathing activates the vagus nerve and reduces cortisol by up to 30% (Ma et al., 2017). Reframing pressure as activation (challenge vs. threat) significantly improves performance (Crum et al., 2013). A focus word reduces self-consciousness during performance (Mesagno & Mullane-Grant, 2010).'
+      },
+      {
+        heading: 'Connection to Day 3',
+        type: 'connection',
+        text: 'Tomorrow: Team & Role. The individual pressure techniques are today’s focus — tomorrow we look at how team roles can be a source of both pressure and support.'
+      }
+    ]
+  },
+  // DAY 3 PLAYER WORKSHEET
+  {
+    day: 3,
+    type: 'player',
+    theme: 'Team & Role',
+    themeColor: '#7A52C7',
+    title: 'My Role in the Team',
+    subtitle: 'Day 3 — Player Worksheet',
+    intro: 'Every team needs every role. Today you discover exactly what you contribute — and how that makes the team stronger.',
+    sections: [
+      {
+        heading: '1. My technical role',
+        type: 'textarea',
+        label: 'What is my position and function on the field?',
+        placeholder: 'e.g. Striker — creating chances and scoring goals...'
+      },
+      {
+        heading: '2. My social role',
+        type: 'textarea',
+        label: 'What role do I play off the field?',
+        placeholder: 'e.g. I\'m often the one who keeps spirits up after a loss...'
+      },
+      {
+        heading: '3. What teammates can count on me for',
+        type: 'list3',
+        label: 'My 3 most important contributions to the team:',
+        placeholders: ['e.g. Always give 100%', 'e.g. Encourage others', 'e.g. Stay calm under pressure']
+      },
+      {
+        heading: '4. Encourage a teammate',
+        type: 'letter',
+        label: 'Write a sentence of genuine appreciation for a teammate:',
+        placeholder: 'Dear [name], I want to tell you that I really appreciate...'
+      },
+      {
+        heading: '5. Team reflection',
+        type: 'textarea',
+        label: 'What could our team do better to use each other\'s strengths more?',
+        placeholder: 'Think of communication, role clarity, support...'
+      }
+    ]
+  },
+  // DAY 3 MODERATOR GUIDE
+  {
+    day: 3,
+    type: 'moderator',
+    theme: 'Team & Role',
+    themeColor: '#7A52C7',
+    title: 'My Role in the Team — Moderator Guide',
+    subtitle: 'Day 3 — For coaches and facilitators',
+    intro: 'Goal: Players gain clarity about their role in the team and experience the power of deliberate encouragement. This is the most interactive day of The Week.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Introduction: visible vs. invisible roles' },
+          { time: '10 min', desc: 'Individual worksheet (sections 1–3)' },
+          { time: '10 min', desc: 'Encouragement Challenge (physical exercise)' },
+          { time: '5 min', desc: 'Appreciation letters — share with the group' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'Which roles in our team are undervalued?',
+          'How did encouragement change your performance in the exercise?',
+          'What does your teammate\'s appreciation letter say about their view of you?',
+          'How can we encourage each other more deliberately?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Do the Encouragement Challenge yourself — it\'s the most impactful exercise.',
+          'Read appreciation letters aloud if the group allows it.',
+          'Connect invisible roles to team performance: every role matters.',
+          'Avoid comparing players — every role is valuable.'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Role clarity is one of the strongest predictors of team performance (Carron et al., 2002). Deliberate encouragement increases physical performance by 12–20% (Zajonc, 1965). Appreciation and recognition are the most effective non-financial motivators (Ariely et al., 2008).'
+      },
+      {
+        heading: 'Connection to Day 4',
+        type: 'connection',
+        text: 'Tomorrow: Resilience. After today’s positive team experience, we look at how we deal with setbacks, failure, and adversity — individually and as a team.'
+      }
+    ]
+  },
+  // DAY 4 PLAYER WORKSHEET
+  {
+    day: 4,
+    type: 'player',
+    theme: 'Resilience',
+    themeColor: '#C73F62',
+    title: 'My Flu Game',
+    subtitle: 'Day 4 — Player Worksheet',
+    intro: 'Michael Jordan played the 1997 NBA Finals with high fever and still had the game of his life. Today you discover your own Flu Game mentality.',
+    sections: [
+      {
+        heading: '1. My biggest setback',
+        type: 'textarea',
+        label: 'Describe a moment when everything went against you in sport:',
+        placeholder: 'What happened? How did you feel? What did you do?'
+      },
+      {
+        heading: '2. What I learned from it',
+        type: 'list3',
+        label: 'What did this setback teach you?',
+        placeholders: ['e.g. I\'m stronger than I think', 'e.g. My team was there for me', 'e.g. I learned to ask for help']
+      },
+      {
+        heading: '3. My Flu Game moment',
+        type: 'textarea',
+        label: 'Describe a moment when you kept going despite everything:',
+        placeholder: 'Even though... I still..., because...'
+      },
+      {
+        heading: '4. My Flu Game sentence',
+        type: 'highlight',
+        label: 'Write your personal perseverance sentence:',
+        placeholder: 'e.g. Even when it\'s hard, I choose to give everything — because I\'m a fighter.'
+      },
+      {
+        heading: '5. My resilience anchor',
+        type: 'textarea',
+        label: 'What or who helps you get back up after a setback?',
+        placeholder: 'A person, a memory, a conviction, a routine...'
+      }
+    ]
+  },
+  // DAY 4 MODERATOR GUIDE
+  {
+    day: 4,
+    type: 'moderator',
+    theme: 'Resilience',
+    themeColor: '#C73F62',
+    title: 'My Flu Game — Moderator Guide',
+    subtitle: 'Day 4 — For coaches and facilitators',
+    intro: 'Goal: Players normalize setbacks and build mental resilience through personal stories and the Flu Game metaphor. Most impactful day for creating psychological safety.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Flu Game story — Jordan 1997 (video or telling)' },
+          { time: '5 min', desc: 'Discussion: what made this remarkable?' },
+          { time: '12 min', desc: 'Individual worksheet' },
+          { time: '8 min', desc: 'Share Flu Game sentences in the group' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'What was the hardest moment in your setback story?',
+          'How did you get back up? What helped?',
+          'What does your Flu Game sentence say about who you are?',
+          'How can we use this as a team when things get hard?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Share your own resilience story as a coach — this creates safety.',
+          'Don\'t force sharing: some setbacks are private.',
+          'Celebrate the Flu Game sentences: have everyone say theirs aloud.',
+          'Create a physical reminder: write sentences on a team banner.'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Resilience is trainable through reflection and sharing personal stories (Tedeschi & Calhoun, 1996). Gucciardi\'s Mental Toughness research (2008) shows that self-efficacy — the belief in your own capacity — is the most important predictor of resilience. Bandura (1986): personal resilience examples have a stronger effect than general stories.'
+      },
+      {
+        heading: 'Connection to Day 5',
+        type: 'connection',
+        text: 'Tomorrow: Team First. After four days of individual and team work, we bring it all together: who are we as a team, and what do we commit to?'
+      }
+    ]
+  },
+  // DAY 5 PLAYER WORKSHEET
+  {
+    day: 5,
+    type: 'player',
+    theme: 'Team First',
+    themeColor: '#1E8A5B',
+    title: 'Team First',
+    subtitle: 'Day 5 — Player Worksheet',
+    intro: 'The final day. Everything we\'ve worked on this week comes together in one commitment: who do we want to be as a team?',
+    sections: [
+      {
+        heading: '1. What I take from this week',
+        type: 'list3',
+        label: 'My 3 biggest learnings from The Week:',
+        placeholders: ['e.g. Self-knowledge is the start of everything', 'e.g. Encouragement actually works', 'e.g. My Flu Game sentence gives me strength']
+      },
+      {
+        heading: '2. My commitment to the team',
+        type: 'highlight',
+        label: 'What do I commit to as a teammate this season?',
+        placeholder: 'e.g. I commit to always encouraging my teammates, especially when it\'s hard.'
+      },
+      {
+        heading: '3. Team contract input',
+        type: 'list3',
+        label: 'My 3 proposals for our team agreements:',
+        placeholders: ['e.g. We always encourage each other', 'e.g. We give honest feedback', 'e.g. We support each other after a loss']
+      },
+      {
+        heading: '4. My role this season',
+        type: 'textarea',
+        label: 'How will I contribute to our team culture this season?',
+        placeholder: 'Specific, realistic, personal...'
+      },
+      {
+        heading: '5. Final reflection',
+        type: 'textarea',
+        label: 'What has this week meant to you? What do you want to remember?',
+        placeholder: 'Write freely — this is your reflection, not a test.'
+      }
+    ]
+  },
+  // DAY 5 MODERATOR GUIDE
+  {
+    day: 5,
+    type: 'moderator',
+    theme: 'Team First',
+    themeColor: '#1E8A5B',
+    title: 'Team First — Moderator Guide',
+    subtitle: 'Day 5 — For coaches and facilitators',
+    intro: 'Goal: Bring the week to a close with a team contract and individual commitments. This day is about ownership, celebration and looking forward.',
+    sections: [
+      {
+        heading: 'Timing',
+        type: 'timing',
+        items: [
+          { time: '5 min', desc: 'Recap of the week: what did we do?' },
+          { time: '10 min', desc: 'Individual worksheet' },
+          { time: '10 min', desc: 'Team contract: collect input, vote, formulate' },
+          { time: '5 min', desc: 'Everyone signs — celebration moment' }
+        ]
+      },
+      {
+        heading: 'Key discussion questions',
+        type: 'questions',
+        items: [
+          'What was the most impactful moment of this week for you?',
+          'Which of our proposed agreements are non-negotiable?',
+          'How will we hold each other accountable to these agreements?',
+          'What do we want our team culture to look like at the end of the season?'
+        ]
+      },
+      {
+        heading: 'Facilitation tips',
+        type: 'tips',
+        items: [
+          'Celebrate: this week deserves recognition.',
+          'Display the team contract visibly: changing room, team chat.',
+          'Have everyone sign physically — this creates commitment.',
+          'As a coach: also sign and share your own commitment.'
+        ]
+      },
+      {
+        heading: 'Scientific foundation',
+        type: 'science',
+        text: 'Player-owned team agreements show 3x more adherence than coach-imposed rules (Jowett & Chaundy, 2004). Public commitment increases follow-through by 40% (Cialdini, 2006). Closing rituals strengthen group identity and create a lasting memory of the experience (Kahneman, peak-end rule, 1999).'
+      },
+      {
+        heading: 'After The Week',
+        type: 'connection',
+        text: 'Hang the team contract visibly. Return to it at the start of each month. Plan a check-in after 4 weeks: which agreements are we honoring? Which need more attention? Consider The Season for a year-long continuation.'
+      }
+    ]
+  }
+];
+
+// ===== RENDER ENGINE =====
+let currentPage = 0;
+
+function renderPage(idx) {
+  const p = WEEK_PAGES[idx];
+  if (!p) return;
+  currentPage = idx;
+  const total = WEEK_PAGES.length;
+  const pct = ((idx + 1) / total * 100).toFixed(0);
+  if (document.getElementById('pgb-fill')) document.getElementById('pgb-fill').style.width = pct + '%';
+  if (document.getElementById('pgb-current')) document.getElementById('pgb-current').textContent = idx + 1;
+
+  const isMod = p.type === 'moderator';
+  const bgColor = isMod ? '#0a0f1a' : '#FAF7F2';
+  const textColor = isMod ? '#e0e6f0' : '#1C2433';
+
+  let sectionsHTML = p.sections.map(s => renderSection(s, isMod)).join('');
+
+  document.getElementById('book-root').innerHTML = `
+    <div style="min-height:100vh;background:${bgColor};padding:64px 0 40px;">
+      <div style="max-width:760px;margin:0 auto;padding:40px 5%;">
+
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:${p.themeColor};display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:14px;flex-shrink:0;">D${p.day}</div>
+          <div>
+            <div style="font-size:11px;font-weight:800;color:${p.themeColor};letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;">${p.theme} · Day ${p.day} · ${isMod ? 'Moderator Guide' : 'Player Worksheet'}</div>
+            <h1 style="font-size:clamp(1.4rem,3vw,2rem);color:${isMod ? '#fff' : '#1C2433'};line-height:1.15;font-family:'Archivo',sans-serif;font-weight:900;">${p.title}</h1>
+          </div>
+        </div>
+
+        <div style="background:${isMod ? 'rgba(255,255,255,.05)' : '#fff'};border:1px solid ${isMod ? 'rgba(255,255,255,.08)' : '#E4DFD6'};border-radius:12px;padding:20px 24px;margin-bottom:28px;">
+          <p style="font-size:.92rem;color:${isMod ? '#8a94a8' : '#6E6A63'};line-height:1.75;">${p.intro}</p>
+        </div>
+
+        ${sectionsHTML}
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid ${isMod ? 'rgba(255,255,255,.08)' : '#E4DFD6'};">
+          <button onclick="goPage(${idx - 1})" ${idx === 0 ? 'disabled' : ''} style="background:${isMod ? '#1a2235' : '#fff'};border:1.5px solid ${isMod ? '#2a3550' : '#E4DFD6'};color:${isMod ? '#8a94a8' : '#6E6A63'};padding:.7rem 1.4rem;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.85rem;transition:all .2s;" ${idx === 0 ? 'style="opacity:.3;cursor:not-allowed"' : ''}>← Previous</button>
+          <span style="font-size:.8rem;color:${isMod ? '#555' : '#aaa'};">${idx + 1} / ${total}</span>
+          ${idx < total - 1
+            ? `<button onclick="goPage(${idx + 1})" style="background:#F05A28;color:#fff;border:none;padding:.7rem 1.4rem;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:800;font-size:.85rem;transition:background .2s;">Next →</button>`
+            : `<a href="worksheets.html" style="background:#1E8A5B;color:#fff;border:none;padding:.7rem 1.4rem;border-radius:7px;text-decoration:none;font-family:'Archivo',sans-serif;font-weight:800;font-size:.85rem;">View all worksheets →</a>`
+          }
+        </div>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0, 0);
+}
+
+function renderSection(s, dark) {
+  const bg = dark ? 'rgba(255,255,255,.04)' : '#fff';
+  const border = dark ? '1px solid rgba(255,255,255,.08)' : '1px solid #E4DFD6';
+  const textMain = dark ? '#e0e6f0' : '#1C2433';
+  const textSub = dark ? '#6e7a8e' : '#6E6A63';
+  const orange = '#F05A28';
+
+  let inner = '';
+  switch (s.type) {
+    case 'grid5':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;">${s.placeholders.map(p => `<div style="background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:8px;padding:12px;text-align:center;font-size:.82rem;color:${textSub};">${p}</div>`).join('')}</div>`;
+      break;
+    case 'list3':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:flex;flex-direction:column;gap:8px;">${s.placeholders.map((p,i) => `<div style="display:flex;align-items:center;gap:10px;"><div style="width:24px;height:24px;border-radius:50%;background:${orange};color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;">${i+1}</div><div style="flex:1;background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:7px;padding:10px 14px;font-size:.82rem;color:${textSub};">${p}</div></div>`).join('')}</div>`;
+      break;
+    case 'textarea':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:8px;padding:16px;min-height:80px;font-size:.85rem;color:${textSub};line-height:1.75;">${s.placeholder}</div>`;
+      break;
+    case 'values':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:flex;flex-wrap:wrap;gap:8px;">${s.values.map(v => `<div style="padding:6px 14px;border-radius:20px;border:1.5px solid ${dark?'#2a3550':'#E4DFD6'};font-size:.82rem;font-weight:700;color:${textSub};">${v}</div>`).join('')}</div>`;
+      break;
+    case 'focus-word':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'rgba(240,90,40,.08)':'rgba(240,90,40,.06)'};border:2px dashed ${orange};border-radius:10px;padding:20px;text-align:center;font-size:1.3rem;font-weight:900;color:${orange};letter-spacing:.08em;">${s.placeholder}</div>`;
+      break;
+    case 'highlight':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'rgba(240,90,40,.08)':'rgba(240,90,40,.06)'};border-left:4px solid ${orange};border-radius:0 8px 8px 0;padding:16px 20px;font-size:.92rem;font-style:italic;color:${dark?'#d0d8e8':textMain};line-height:1.75;">${s.placeholder}</div>`;
+      break;
+    case 'letter':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="background:${dark?'#0d1320':'#FAF7F2'};border:1.5px dashed ${dark?'#2a3550':'#E4DFD6'};border-radius:8px;padding:16px;font-size:.85rem;color:${textSub};line-height:1.75;font-style:italic;">${s.placeholder}</div>`;
+      break;
+    case 'timing':
+      inner = `<div style="display:flex;flex-direction:column;gap:6px;">${s.items.map(item => `<div style="display:flex;align-items:center;gap:12px;"><span style="background:${orange};color:#fff;font-size:.72rem;font-weight:800;padding:3px 8px;border-radius:4px;min-width:50px;text-align:center;flex-shrink:0;">${item.time}</span><span style="font-size:.88rem;color:${textMain};">${item.desc}</span></div>`).join('')}</div>`;
+      break;
+    case 'questions':
+      inner = `<div style="display:flex;flex-direction:column;gap:8px;">${s.items.map(q => `<div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:${orange};font-weight:900;margin-top:2px;flex-shrink:0;">?</span><p style="font-size:.88rem;color:${textMain};line-height:1.6;">${q}</p></div>`).join('')}</div>`;
+      break;
+    case 'tips':
+      inner = `<div style="display:flex;flex-direction:column;gap:8px;">${s.items.map(t => `<div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:${orange};font-weight:900;margin-top:2px;flex-shrink:0;">✓</span><p style="font-size:.88rem;color:${textMain};line-height:1.6;">${t}</p></div>`).join('')}</div>`;
+      break;
+    case 'science':
+      inner = `<div style="background:${dark?'rgba(47,111,176,.08)':'rgba(47,111,176,.06)'};border:1.5px solid rgba(47,111,176,.2);border-radius:8px;padding:14px 16px;"><p style="font-size:.85rem;color:${dark?'#8ab0d8':'#2F6FB0'};line-height:1.75;">${s.text}</p></div>`;
+      break;
+    case 'connection':
+      inner = `<div style="background:${dark?'rgba(30,138,91,.08)':'rgba(30,138,91,.06)'};border:1.5px solid rgba(30,138,91,.25);border-radius:8px;padding:14px 16px;"><p style="font-size:.85rem;color:${dark?'#5ab88a':'#1E8A5B'};line-height:1.75;">${s.text}</p></div>`;
+      break;
+    case 'breathing':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">${s.steps.map((step,i) => `<div style="background:${dark?'rgba(47,111,176,.1)':'rgba(47,111,176,.06)'};border:1.5px solid rgba(47,111,176,.2);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:1.4rem;font-weight:900;color:#2F6FB0;">${i+1}</div><div style="font-size:.75rem;color:${dark?'#8ab0d8':'#2F6FB0'};margin-top:4px;font-weight:700;">${step}</div></div>`).join('')}</div>`;
+      break;
+    case 'body-map':
+      inner = `<p style="font-size:.82rem;color:${textSub};margin-bottom:12px;">${s.label}</p><div style="display:flex;flex-wrap:wrap;gap:8px;">${s.signals.map(sig => `<div style="padding:6px 14px;border-radius:20px;border:1.5px solid rgba(47,111,176,.3);background:rgba(47,111,176,.06);font-size:.8rem;color:#2F6FB0;font-weight:700;">${sig}</div>`).join('')}</div>`;
+      break;
+    default:
+      inner = '';
+  }
+
+  return `
+    <div style="background:${bg};border:${border};border-radius:12px;padding:20px 24px;margin-bottom:16px;">
+      <h3 style="font-size:.88rem;font-weight:800;color:${orange};font-family:'Archivo',sans-serif;margin-bottom:14px;">${s.heading}</h3>
+      ${inner}
+    </div>
+  `;
+}
+
+function goPage(idx) {
+  if (idx < 0 || idx >= WEEK_PAGES.length) return;
+  renderPage(idx);
+}
+
+renderPage(0);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program — Character First</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1C2433; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+    html { scroll-behavior: smooth; }
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(28,36,51,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    .section-tag.outline { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--stone); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    #page-header { background: var(--ink); padding: 120px 5% 70px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(2rem,4vw,3.2rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1.1rem; color: #777; max-width: 560px; line-height: 1.75; }
+    .page-nav { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
+    .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+    #problem { background: var(--canvas); }
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .problem-card { background: var(--white); border-left: 4px solid var(--orange); padding: 1.5rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+    .problem-card p { font-size: .92rem; color: var(--ink); font-style: italic; line-height: 1.7; }
+    .problem-card .source { font-size: .78rem; color: var(--stone); margin-top: .6rem; font-style: normal; font-weight: 600; }
+
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-top: 2.5rem; }
+    .pillar-card { background: var(--ink); color: var(--white); padding: 2rem 1.5rem; border-radius: 10px; text-align: center; border: 1px solid #1a1a1a; transition: transform .2s, box-shadow .2s; }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+    .pillar-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+    .pillar-title { font-size: .95rem; font-weight: 800; margin: .4rem 0 .6rem; }
+    .pillar-desc { font-size: .82rem; color: #777; line-height: 1.6; }
+
+    #tracks { background: var(--canvas); }
+    .prog-tabs { display: flex; gap: .8rem; margin-bottom: 2.5rem; }
+    .prog-tab { padding: .6rem 1.6rem; border-radius: 30px; font-weight: 700; font-size: .88rem; cursor: pointer; border: 2px solid var(--line); background: var(--white); color: var(--stone); transition: all .2s; }
+    .prog-tab.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+    .prog-content { display: none; }
+    .prog-content.active { display: block; }
+    .prog-box { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,.07); }
+    .prog-header { background: var(--ink); color: var(--white); padding: 2rem 2.5rem; }
+    .prog-badge { display: inline-block; background: var(--orange); font-size: .72rem; font-weight: 800; padding: .25rem .7rem; border-radius: 3px; margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+    .prog-header h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: .4rem; }
+    .prog-header p { color: #888; font-size: .92rem; }
+    .prog-days { padding: 2rem 2.5rem; }
+    .day-row { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.2rem 0; border-bottom: 1px solid var(--canvas); }
+    .day-row:last-child { border-bottom: none; }
+    .day-num { background: var(--orange); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .88rem; flex-shrink: 0; }
+    .day-content h4 { font-weight: 800; margin-bottom: .2rem; font-size: .95rem; }
+    .day-content p { font-size: .85rem; color: var(--stone); }
+    .day-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .4rem; }
+    .day-tag { font-size: .7rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; background: var(--canvas); color: var(--stone); }
+    .month-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; padding: 2rem 2.5rem; }
+    .month-card { border: 1px solid var(--line); border-radius: 8px; padding: 1.2rem; transition: border-color .2s; }
+    .month-card:hover { border-color: var(--orange); }
+    .month-num { font-size: .72rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .4rem; }
+    .month-title { font-size: .95rem; font-weight: 800; margin-bottom: .3rem; }
+    .month-desc { font-size: .8rem; color: var(--stone); line-height: 1.5; }
+    .prog-cta { padding: 1.5rem 2.5rem; border-top: 1px solid var(--canvas); display: flex; gap: 1rem; flex-wrap: wrap; }
+    .prog-cta a { padding: .65rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .88rem; transition: all .2s; }
+    .prog-cta .btn-a { background: var(--orange); color: var(--white); }
+    .prog-cta .btn-a:hover { background: var(--orange2); }
+    .prog-cta .btn-b { border: 1.5px solid var(--line); color: var(--stone); }
+    .prog-cta .btn-b:hover { border-color: var(--orange); color: var(--orange); }
+
+    #science { background: var(--white); }
+    .science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .science-card { background: var(--canvas); border-radius: 10px; padding: 1.5rem; border: 1px solid var(--line); transition: box-shadow .2s; }
+    .science-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+    .sci-tier { display: inline-block; font-size: .65rem; font-weight: 800; padding: .2rem .6rem; border-radius: 10px; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .06em; }
+    .sci-tier.sr { background: #d4edda; color: #1a7a4a; }
+    .sci-tier.rct { background: #d0e4f7; color: #1a4a8a; }
+    .sci-tier.qual { background: #e8d5f5; color: #5a1a8a; }
+    .sci-author { font-size: .78rem; color: var(--orange); font-weight: 700; margin-bottom: .3rem; }
+    .science-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
+    .science-card p { font-size: .83rem; color: var(--stone); line-height: 1.6; }
+
+    #for-whom { background: var(--canvas); }
+    .forwho-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; margin-top: 2rem; }
+    .forwho-card { border-left: 4px solid var(--orange); padding: 1.5rem; background: var(--white); border-radius: 0 8px 8px 0; transition: box-shadow .2s; }
+    .forwho-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); }
+    .forwho-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+    .forwho-card h4 { font-weight: 800; margin-bottom: .4rem; }
+    .forwho-card p { font-size: .87rem; color: var(--stone); line-height: 1.6; }
+
+    #quotes { background: var(--ink); }
+    #quotes h2 { color: var(--white); }
+    #quotes .section-sub { color: #555; }
+    .quotes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .quote-card { background: #141414; border: 1px solid #1e1e1e; border-radius: 10px; padding: 2rem; transition: border-color .2s; }
+    .quote-card:hover { border-color: rgba(240,90,40,.3); }
+    .quote-text { font-size: .97rem; font-style: italic; color: #ddd; line-height: 1.75; margin-bottom: 1.2rem; position: relative; padding-left: 1.4rem; }
+    .quote-text::before { content: '\201C'; color: var(--orange); font-size: 2.5rem; font-style: normal; position: absolute; left: 0; top: -.3rem; line-height: 1; }
+    .quote-author { display: flex; align-items: center; gap: .8rem; }
+    .quote-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .8rem; flex-shrink: 0; }
+    .quote-name { font-size: .88rem; font-weight: 700; color: var(--white); }
+    .quote-role { font-size: .75rem; color: #555; }
+
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../programma.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+    <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="program.html" class="active">Program</a>
+    <a href="library.html">Library</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="#science">Science</a>
+    <a href="../programma.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Program</div>
+  <h1>The Programs</h1>
+  <p>Everything you need to embed character development structurally in training and season. Backed by scientific research, developed down to the smallest detail.</p>
+  <div class="page-nav">
+    <a href="#problem">Why</a>
+    <a href="#pillars">The 6 Pillars</a>
+    <a href="#tracks">The Week &amp; Season</a>
+    <a href="#science">Science</a>
+    <a href="#for-whom">For whom</a>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="fade-in">
+    <span class="section-tag">Why now</span>
+    <h2>What is at stake</h2>
+    <p class="section-sub">Technical training is everywhere. Mental and character development much less so.</p>
+  </div>
+  <div class="problem-grid fade-in">
+    <div class="problem-card"><p>&#8220;35% of young athletes quit before the age of 15. The main reason: they feel they don&#8217;t belong.&#8221;</p><div class="source">Visek et al., 2015 &#8212; George Washington University</div></div>
+    <div class="problem-card"><p>&#8220;Athletes with high mental resilience perform up to 40% more consistently under pressure than athletes with low resilience.&#8221;</p><div class="source">Gucciardi et al., 2015 &#8212; Journal of Sport and Exercise Psychology</div></div>
+    <div class="problem-card"><p>&#8220;Coaches spend on average less than 2% of training time on mental skills, while 90% acknowledge it is equally important.&#8221;</p><div class="source">Weinberg &amp; Gould, 2019 &#8212; Foundations of Sport Psychology</div></div>
+    <div class="problem-card"><p>&#8220;Teams with high psychological safety perform 26% better than teams with low psychological safety.&#8221;</p><div class="source">Edmondson, 2018 &#8212; Harvard Business School</div></div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="fade-in">
+    <span class="section-tag">How it works</span>
+    <h2>The 6 pillars of Character First</h2>
+    <p class="section-sub">Each theme is backed by scientific literature and translated into practical, actionable exercises.</p>
+  </div>
+  <div class="pillars-grid fade-in">
+    <div class="pillar-card"><div class="pillar-icon">&#128302;</div><div class="pillar-title">Self-Awareness &amp; Identity</div><p class="pillar-desc">Who am I as an athlete and as a person? Values, strengths, patterns.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#9889;</div><div class="pillar-title">Pressure &amp; Stress</div><p class="pillar-desc">Dealing with expectations, nerves and difficult moments.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#129517;</div><div class="pillar-title">My Role</div><p class="pillar-desc">What is my contribution? Leadership, followership and role awareness.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#128172;</div><div class="pillar-title">Communication</div><p class="pillar-desc">Giving and receiving feedback, listening, difficult conversations.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">&#129309;</div><div class="pillar-title">Team First</div><p class="pillar-desc">Building trust, collective responsibility, cohesion.</p></div>
+    <div class="pillar-card" style="border-color:rgba(240,90,40,.25)"><div class="pillar-icon">&#129521;</div><div class="pillar-title">Mental Toughness</div><p class="pillar-desc">Physical and mental challenges, resilience, perseverance.</p></div>
+  </div>
+</section>
+
+<section id="tracks">
+  <div class="fade-in">
+    <span class="section-tag">Tracks</span>
+    <h2>Choose your program</h2>
+    <p class="section-sub">Character First offers two tracks: an intensive five-day week or an in-depth eight-month season.</p>
+  </div>
+  <div class="prog-tabs fade-in">
+    <button class="prog-tab active" data-tab="week">The Week</button>
+    <button class="prog-tab" data-tab="season">The Season</button>
+  </div>
+  <div class="prog-content active fade-in" id="tab-week">
+    <div class="prog-box">
+      <div class="prog-header"><div class="prog-badge">5-day camp</div><h3>The Week &#8212; Intensive character bootcamp</h3><p>Five days fully focused on character, connection and mental strength. Ideal as a season opener or team building.</p></div>
+      <div class="prog-days">
+        <div class="day-row"><div class="day-num">1</div><div class="day-content"><h4>Self-Awareness &amp; Identity</h4><p>Who am I as an athlete? Values, strengths, sports timeline and identity anchors.</p><div class="day-tags"><span class="day-tag">Sports Timeline</span><span class="day-tag">Values Compass</span><span class="day-tag">Identity Anchors</span></div></div></div>
+        <div class="day-row"><div class="day-num">2</div><div class="day-content"><h4>Pressure &amp; Stress</h4><p>Box breathing, stress barometer, reframing ritual and performance mantra.</p><div class="day-tags"><span class="day-tag">Box Breathing</span><span class="day-tag">Stress Barometer</span><span class="day-tag">Performance Mantra</span></div></div></div>
+        <div class="day-row"><div class="day-num">3</div><div class="day-content"><h4>My Role in the Team</h4><p>Role compass, invisible contribution, leader or follower and role promise.</p><div class="day-tags"><span class="day-tag">Role Compass</span><span class="day-tag">Invisible Contribution</span><span class="day-tag">Role Promise</span></div></div></div>
+        <div class="day-row"><div class="day-num">4</div><div class="day-content"><h4>Communication</h4><p>I-message, mirror conversation, encouragement challenge and thank-you card.</p><div class="day-tags"><span class="day-tag">I-Message</span><span class="day-tag">Mirror Conversation</span><span class="day-tag">Encouragement</span></div></div></div>
+        <div class="day-row"><div class="day-num">5</div><div class="day-content"><h4>Team First</h4><p>Wall squat challenge, team contract, trust fall and closing ceremony.</p><div class="day-tags"><span class="day-tag">Wall Squat</span><span class="day-tag">Team Contract</span><span class="day-tag">Closing Ceremony</span></div></div></div>
+      </div>
+      <div class="prog-cta">
+        <a href="week.html" class="btn-a">Detailed daily schedule</a>
+        <a href="week-worksheets.html" class="btn-b">Week worksheets</a>
+        <a href="contact.html" class="btn-b">Request</a>
+      </div>
+    </div>
+  </div>
+  <div class="prog-content fade-in" id="tab-season">
+    <div class="prog-box">
+      <div class="prog-header"><div class="prog-badge">8 months online</div><h3>The Season &#8212; In-depth season program</h3><p>Eight months with one theme per month. Online modules, worksheets and monthly coach check-ins.</p></div>
+      <div class="month-grid">
+        <div class="month-card"><div class="month-num">Month 1</div><div class="month-title">Self-Awareness</div><p class="month-desc">Who am I? Values, identity and sports history.</p></div>
+        <div class="month-card"><div class="month-num">Month 2</div><div class="month-title">Pressure &amp; Stress</div><p class="month-desc">Dealing with expectations and nerves.</p></div>
+        <div class="month-card"><div class="month-num">Month 3</div><div class="month-title">My Role</div><p class="month-desc">Formal and informal contribution to the team.</p></div>
+        <div class="month-card"><div class="month-num">Month 4</div><div class="month-title">Communication</div><p class="month-desc">Feedback, listening and difficult conversations.</p></div>
+        <div class="month-card"><div class="month-num">Month 5</div><div class="month-title">Team First</div><p class="month-desc">Trust, cohesion and collective strength.</p></div>
+        <div class="month-card"><div class="month-num">Month 6</div><div class="month-title">Resilience</div><p class="month-desc">Dealing with setbacks and comeback strength.</p></div>
+        <div class="month-card"><div class="month-num">Month 7</div><div class="month-title">Leadership</div><p class="month-desc">Leading from within, influence without a title.</p></div>
+        <div class="month-card"><div class="month-num">Month 8</div><div class="month-title">Legacy</div><p class="month-desc">What do I leave behind? My character as a legacy.</p></div>
+      </div>
+      <div class="prog-cta">
+        <a href="season.html" class="btn-a">Full season overview</a>
+        <a href="worksheets.html" class="btn-b">Coach worksheets</a>
+        <a href="contact.html" class="btn-b">Request</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="science">
+  <div class="fade-in">
+    <span class="section-tag">Evidence-based</span>
+    <h2>Grounded in science</h2>
+    <p class="section-sub">All exercises are based on peer-reviewed literature from sports psychology, organisational psychology and education.</p>
+  </div>
+  <div class="science-grid fade-in">
+    <div class="science-card"><span class="sci-tier sr">Systematic Review</span><div class="sci-author">Gucciardi et al., 2015</div><h4>Mental Toughness in Sport</h4><p>Mental resilience is 60 to 70% trainable through targeted intervention. Meta-analysis of 91 studies.</p></div>
+    <div class="science-card"><span class="sci-tier rct">RCT Study</span><div class="sci-author">Hatzigeorgiadis et al., 2009</div><h4>Self-Talk and Performance</h4><p>Athletes who received self-talk training performed 17% better under high pressure than the control group.</p></div>
+    <div class="science-card"><span class="sci-tier sr">Systematic Review</span><div class="sci-author">Fletcher &amp; Sarkar, 2012</div><h4>Resilience in Elite Sport</h4><p>Resilience in athletes is strongly associated with positive personality, motivation and social support.</p></div>
+    <div class="science-card"><span class="sci-tier qual">Qualitative</span><div class="sci-author">Visek et al., 2015</div><h4>Fun Integration Theory</h4><p>Belonging and having fun are the strongest predictors of sports participation in young people up to 15 years old.</p></div>
+    <div class="science-card"><span class="sci-tier rct">RCT Study</span><div class="sci-author">Duckworth et al., 2007</div><h4>Grit: Perseverance and Passion</h4><p>Perseverance and passion are stronger predictors of success than intelligence or talent alone.</p></div>
+    <div class="science-card"><span class="sci-tier sr">Systematic Review</span><div class="sci-author">Edmondson, 2018</div><h4>Psychological Safety</h4><p>Teams with high psychological safety innovate more, make fewer mistakes and perform 26% better.</p></div>
+  </div>
+</section>
+
+<section id="for-whom">
+  <div class="fade-in">
+    <span class="section-tag">For whom</span>
+    <h2>Character First is for you if...</h2>
+    <p class="section-sub">We work with coaches, clubs and organisations that want to look beyond the scoreboard.</p>
+  </div>
+  <div class="forwho-grid fade-in">
+    <div class="forwho-card"><div class="forwho-icon">&#127936;</div><h4>Youth coach (U14 to U18)</h4><p>You want to make your players better not just in sport, but also as people. You&#8217;re looking for concrete tools you can use immediately.</p></div>
+    <div class="forwho-card"><div class="forwho-icon">&#127942;</div><h4>Senior or professional coach</h4><p>You notice that technique and tactics are not enough. Mental strength, team cohesion and communication are the missing link.</p></div>
+    <div class="forwho-card"><div class="forwho-icon">&#127963;</div><h4>Sports club or federation</h4><p>You want to build a culture in which character is systematically trained alongside athletic development.</p></div>
+    <div class="forwho-card"><div class="forwho-icon">&#127891;</div><h4>School or sports academy</h4><p>You are looking for a program that connects sport with personal growth, social skills and leadership.</p></div>
+  </div>
+</section>
+
+<section id="quotes">
+  <div class="fade-in">
+    <span class="section-tag outline">Voices</span>
+    <h2>What athletes and coaches say</h2>
+    <p class="section-sub">Experiences from coaches and players who worked with the program.</p>
+  </div>
+  <div class="quotes-grid fade-in">
+    <div class="quote-card"><p class="quote-text">The wall squat exercise changed how my team communicates. They didn&#8217;t just encourage each other during the exercise &#8212; they started doing it in games automatically.</p><div class="quote-author"><div class="quote-avatar">SK</div><div><div class="quote-name">Sarah K.</div><div class="quote-role">U16 basketball coach</div></div></div></div>
+    <div class="quote-card"><p class="quote-text">I never thought about what my role was beyond scoring points. The Role Compass exercise made me realize how much I was already contributing &#8212; and how much more I could give.</p><div class="quote-author"><div class="quote-avatar">JD</div><div><div class="quote-name">Jonas D.</div><div class="quote-role">U18 player</div></div></div></div>
+    <div class="quote-card"><p class="quote-text">The science behind every exercise gives me confidence as a coach. I&#8217;m not just doing team bonding &#8212; I&#8217;m doing evidence-based character development. That matters.</p><div class="quote-author"><div class="quote-avatar">ML</div><div><div class="quote-name">Marc L.</div><div class="quote-role">Head coach seniors</div></div></div></div>
+  </div>
+</section>
+
+<section id="cta-band">
+  <h2>Ready to get started?</h2>
+  <p>Join the coaches and clubs already working on character, not just performance.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-white">Request The Week</a>
+    <a href="contact.html" class="btn-white-outline">Request The Season</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Character <span>First</span></div>
+      <p class="footer-desc">Evidence-based character development for athletes from U14 to Senior.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Program</h4>
+      <a href="program.html">Overview</a>
+      <a href="week.html">The Week</a>
+      <a href="season.html">The Season</a>
+      <a href="week-worksheets.html">Week worksheets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Exercises</h4>
+      <a href="library.html">Library</a>
+      <a href="exercises.html">50 Exercises</a>
+      <a href="resilience.html">Mental resilience</a>
+      <a href="review-toughness.html">Physical toughness</a>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="planbuilder.html">Plan Builder</a>
+      <a href="worksheets.html">Worksheets</a>
+      <a href="#science">Science</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Character First. All rights reserved.</p>
+    <p>Evidence-based sports psychology.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.prog-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.prog-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.prog-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

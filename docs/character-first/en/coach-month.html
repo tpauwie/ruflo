@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Month — Character First</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1C2433; --white: #ffffff; --orange: #f05a28; --orange2: #d44a1a;
+      --canvas: #FAF7F2; --stone: #6E6A63; --line: #E4DFD6;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+    html { scroll-behavior: smooth; }
+    h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;}
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px;
+      background: rgba(28,36,51,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { font-size: 1.15rem; font-weight: 900; color: var(--white); letter-spacing: .04em; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: .45rem 1.2rem; border-radius: 5px; font-weight: 700 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--ink); flex-direction: column; padding: 24px 5%; gap: 1.2rem; border-bottom: 1px solid #222; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    section { padding: clamp(60px,8vw,100px) 5%; }
+    .section-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 3px; margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.7rem,3.5vw,2.6rem); font-weight: 900; line-height: 1.15; margin-bottom: .8rem; }
+    .section-sub { font-size: 1.05rem; color: var(--stone); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    #page-header { background: var(--ink); padding: 120px 5% 70px; }
+    #page-header .breadcrumb { font-size: .78rem; color: #555; margin-bottom: 1rem; }
+    #page-header .breadcrumb a { color: var(--orange); text-decoration: none; }
+    #page-header h1 { font-size: clamp(1.8rem,3.5vw,2.8rem); color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    #page-header p { font-size: 1.05rem; color: #777; max-width: 580px; line-height: 1.75; }
+    .page-nav { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .page-nav a { padding: .5rem 1.2rem; border-radius: 20px; font-size: .82rem; font-weight: 700; text-decoration: none; border: 1.5px solid #2a2a2a; color: #888; transition: all .2s; }
+    .page-nav a:hover { border-color: var(--orange); color: var(--orange); }
+
+    #format { background: var(--canvas); }
+    .format-box { background: var(--white); border-radius: 14px; border: 2px solid var(--line); overflow: hidden; max-width: 720px; margin-top: 2rem; }
+    .format-box-header { background: var(--ink); padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .format-box-header h3 { color: var(--white); font-size: 1.1rem; font-weight: 900; }
+    .format-box-header .badge { background: var(--orange); color: var(--white); font-size: .7rem; font-weight: 800; padding: .2rem .65rem; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; }
+    .format-steps { padding: 1.5rem 2rem; display: flex; flex-direction: column; gap: 0; }
+    .format-step { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1rem 0; border-bottom: 1px solid var(--canvas); }
+    .format-step:last-child { border-bottom: none; }
+    .step-time { background: var(--orange); color: var(--white); font-size: .72rem; font-weight: 900; padding: .3rem .65rem; border-radius: 4px; flex-shrink: 0; min-width: 52px; text-align: center; }
+    .step-content h4 { font-weight: 800; font-size: .92rem; margin-bottom: .2rem; }
+    .step-content p { font-size: .85rem; color: var(--stone); line-height: 1.5; }
+
+    #sessions { background: var(--white); }
+    .sessions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 640px) { .sessions-grid { grid-template-columns: 1fr; } }
+    .session-card { border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+    .session-card:hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(240,90,40,.08); }
+    .session-card-header { background: var(--canvas); padding: 1rem 1.3rem; display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+    .session-header-left { display: flex; align-items: center; gap: .8rem; }
+    .session-badge { background: var(--orange); color: var(--white); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .92rem; flex-shrink: 0; }
+    .session-num-label { font-size: .65rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; }
+    .session-card-header h3 { font-size: .97rem; font-weight: 900; color: var(--ink); line-height: 1.2; }
+    .duration-badge { background: var(--ink); color: var(--white); font-size: .68rem; font-weight: 800; padding: .2rem .6rem; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
+    .session-card-body { padding: 1.1rem 1.3rem; }
+    .session-question { font-size: .85rem; font-style: italic; color: var(--stone); margin-bottom: .9rem; padding-left: .7rem; border-left: 3px solid var(--orange); line-height: 1.5; }
+    .session-activities { list-style: none; display: flex; flex-direction: column; gap: .38rem; }
+    .session-activities li { font-size: .82rem; color: var(--ink); padding-left: 1.1rem; position: relative; line-height: 1.5; }
+    .session-activities li::before { content: "&#9658;"; color: var(--orange); position: absolute; left: 0; font-size: .62rem; top: 3px; }
+
+    .premium-locked { position: relative; pointer-events: none; }
+    .premium-locked > *:not(.premium-lock) { filter: blur(4px); user-select: none; }
+    .premium-lock {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: rgba(28,36,51,0.7); border-radius: inherit; z-index: 10;
+      pointer-events: all; gap: 0.5rem; color: white; text-align: center;
+    }
+    .premium-lock .lock-icon { font-size: 2rem; }
+    .premium-lock p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+    .premium-lock .lock-cta { background: #f05a28; color: white; padding: 0.5rem 1.25rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.875rem; pointer-events: all; }
+
+    #cta-band { background: var(--orange); padding: 70px 5%; text-align: center; }
+    #cta-band h2 { color: var(--white); font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom: .8rem; }
+    #cta-band p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--orange); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: .95rem; transition: all .2s; }
+    .btn-white:hover { background: #f0f0f0; }
+    .btn-white-outline { border: 2px solid rgba(255,255,255,.65); color: var(--white); padding: .9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .95rem; transition: all .2s; }
+    .btn-white-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    footer { background: #050505; padding: 48px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: .85rem; color: #444; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: .85rem; color: #444; text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid #111; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+    .footer-bottom p { font-size: .78rem; color: #333; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../coach-maand.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
+<script src="../cf-auth.js"></script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#1C2433"/><path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/><path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/></svg>
+    <span style="font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.1rem;letter-spacing:.02em">CHARACTER<span style="color:#F05A28">FIRST</span></span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="program.html">Program</a>
+    <a href="library.html">Library</a>
+    <a href="planbuilder.html">Plan Builder</a>
+    <a href="coach-program.html" class="active">Coach Development</a>
+    <a href="../coach-maand.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="coach-program.html">Coach Development</a> / Coach Month</div>
+  <h1>Coach Month &mdash; 8 Contact Sessions per Season</h1>
+  <p>For coaches who want to grow but have little time. One powerful 90-minute session per month &mdash; practical, directly applicable, with immediate impact on your training.</p>
+  <div class="page-nav">
+    <a href="#format">Session Format</a>
+    <a href="#sessions">8 Sessions</a>
+    <a href="#cta-band">Sign Up</a>
+  </div>
+</section>
+
+<section id="format">
+  <div class="fade-in">
+    <span class="section-tag">How it works</span>
+    <h2>Every session, the same rhythm</h2>
+    <p class="section-sub">Consistency makes growth possible. Every contact session follows the same structure so you always know what to expect.</p>
+  </div>
+  <div class="format-box fade-in">
+    <div class="format-box-header"><div class="badge">90 min</div><h3>Fixed session structure &mdash; every month</h3></div>
+    <div class="format-steps">
+      <div class="format-step"><div class="step-time">15 min</div><div class="step-content"><h4>Check-in &amp; Reflection</h4><p>Looking back on the previous month. What did you try? What worked? What was difficult?</p></div></div>
+      <div class="format-step"><div class="step-time">45 min</div><div class="step-content"><h4>Core Theme of the Month</h4><p>A combination of theory (compact and practical) and exercise. Every coach participates actively.</p></div></div>
+      <div class="format-step"><div class="step-time">20 min</div><div class="step-content"><h4>Concrete Application</h4><p>You translate the theme into your own training plan for the coming month.</p></div></div>
+      <div class="format-step"><div class="step-time">10 min</div><div class="step-content"><h4>Personal Action</h4><p>One concrete, measurable action for the coming month. You write it down.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sessions">
+  <div class="fade-in">
+    <span class="section-tag">The program</span>
+    <h2>8 sessions throughout the season</h2>
+    <p class="section-sub">Sessions 1 and 2 are freely accessible. Sessions 3 to 8 are part of the full Coach Month track.</p>
+  </div>
+  <div class="sessions-grid fade-in">
+
+    <div class="session-card">
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">1</div><div><div class="session-num-label">Session 1 &mdash; Free preview</div><h3>Coach Identity</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"Who am I as a coach, and why do I do this?"</p><ul class="session-activities"><li>Identify three core values</li><li>Personal sport history as a mirror</li><li>Action: formulate your coaching credo</li></ul></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">2</div><div><div class="session-num-label">Session 2 &mdash; Free preview</div><h3>Building Relationships</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"How do I build a solid foundation of trust in the first 30 days?"</p><ul class="session-activities"><li>First 30 days protocol</li><li>Trust vs. popularity</li><li>Action: individual check-in with each player</li></ul></div>
+    </div>
+
+    <div class="session-card premium-locked"><div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Month &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">3</div><div><div class="session-num-label">Session 3</div><h3>Motivational Climate</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"Do I use mastery language or performance language?"</p><ul class="session-activities"><li>Mastery vs. performance climate self-scan</li><li>Naming mistakes as learning opportunities</li><li>Action: build in autonomy every session</li></ul></div>
+    </div>
+
+    <div class="session-card premium-locked"><div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Month &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">4</div><div><div class="session-num-label">Session 4</div><h3>Giving Feedback</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"Do I give feedback that promotes growth?"</p><ul class="session-activities"><li>Sandwich vs. direct feedback</li><li>Specific vs. generic feedback</li><li>Action: one growth-focused piece of feedback per player</li></ul></div>
+    </div>
+
+    <div class="session-card premium-locked"><div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Month &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">5</div><div><div class="session-num-label">Session 5</div><h3>Pressure Moments</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"How do I coach in the fourth quarter?"</p><ul class="session-activities"><li>Map your own stress response</li><li>Time-out strategy</li><li>Action: pre-game routine as a coach</li></ul></div>
+    </div>
+
+    <div class="session-card premium-locked"><div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Month &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">6</div><div><div class="session-num-label">Session 6</div><h3>Parents &amp; Environment</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"How do I communicate clearly with parents?"</p><ul class="session-activities"><li>Managing parent expectations</li><li>Setting boundaries as a coach</li><li>Action: create a parent communication protocol</li></ul></div>
+    </div>
+
+    <div class="session-card premium-locked"><div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Month &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">7</div><div><div class="session-num-label">Session 7</div><h3>Team Culture</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"Do we have a real culture, or just rules?"</p><ul class="session-activities"><li>Analyse rituals and team habits</li><li>Identify informal leaders</li><li>Action: introduce one new team ritual</li></ul></div>
+    </div>
+
+    <div class="session-card premium-locked"><div class="premium-lock"><div class="lock-icon">&#128274;</div><p>Coach Month &mdash; Premium</p><a href="contact.html" class="lock-cta">Request access</a></div>
+      <div class="session-card-header"><div class="session-header-left"><div class="session-badge">8</div><div><div class="session-num-label">Session 8</div><h3>Looking Back &amp; Forward</h3></div></div><span class="duration-badge">90 min</span></div>
+      <div class="session-card-body"><p class="session-question">"What have I learned this year as a coach?"</p><ul class="session-activities"><li>Structured review of all eight sessions</li><li>Three biggest growth moments</li><li>Action: concrete plan for next season</li></ul></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="cta-band">
+  <h2>Start Coach Month</h2>
+  <p>8 sessions of 90 minutes. One powerful contact moment per month. Growth you take directly into your next training session.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-white">Sign up for Coach Month</a>
+    <a href="coach-year.html" class="btn-white-outline">Prefer Coach Year?</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-logo">Character <span>First</span></div><p class="footer-desc">Evidence-based character development for athletes from U14 to Senior.</p></div>
+    <div class="footer-col"><h4>Program</h4><a href="program.html">Overview</a><a href="week.html">The Week</a><a href="season.html">The Season</a><a href="week-worksheets.html">Week Worksheets</a></div>
+    <div class="footer-col"><h4>Coach Development</h4><a href="coach-program.html">Overview</a><a href="coach-year.html">Coach Year</a><a href="coach-month.html">Coach Month</a></div>
+    <div class="footer-col"><h4>Tools</h4><a href="planbuilder.html">Plan Builder</a><a href="worksheets.html">Worksheets</a><a href="library.html">Library</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Character First. All rights reserved.</p><p>Evidence-based sport psychology.</p></div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

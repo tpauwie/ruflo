@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character First — Review &amp; Fysieke Mentale Taaiheid</title>
+<style>
+  :root {
+    --ink: #1C2433;
+    --orange: #f05a28;
+    --white: #ffffff;
+    --canvas: #FAF7F2;
+    --line: #E4DFD6;
+    --stone: #6E6A63;
+    --light-orange: #fff3ef;
+    --green: #1a7a4a;
+    --blue: #1a4a8a;
+    --purple: #5a1a8a;
+    --red: #b91c1c;
+    --red-light: #fef2f2;
+    --green-light: #f0faf5;
+    --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', Arial, sans-serif; background: var(--canvas); color: var(--ink); }
+  h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
+
+  /* HEADER */
+  .top-header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 28px 48px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .logo { width: 52px; height: 52px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; flex-shrink: 0; }
+  .top-header h1 { font-size: 26px; font-weight: 800; }
+  .top-header p { font-size: 13px; opacity: .7; margin-top: 4px; }
+
+  /* NAV */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 2px solid var(--line);
+    padding: 0 48px;
+    display: flex; gap: 0; overflow-x: auto;
+  }
+  .sticky-nav a {
+    padding: 14px 18px; font-size: 13px; font-weight: 600; color: #666;
+    text-decoration: none; border-bottom: 3px solid transparent; white-space: nowrap;
+  }
+  .sticky-nav a.active, .sticky-nav a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+  /* ===========================
+     REVIEW SECTION (Part 1)
+     =========================== */
+  .review-banner {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 12px 12px 0 0;
+    padding: 24px 36px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .review-banner .badge {
+    background: var(--red);
+    color: var(--white);
+    font-size: 11px; font-weight: 800;
+    padding: 4px 12px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .review-banner h2 { font-size: 22px; font-weight: 800; }
+  .review-banner p { font-size: 13px; opacity: .7; margin-top: 4px; }
+
+  .review-block {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 0 0 16px 16px;
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+
+  .review-intro {
+    padding: 20px 36px;
+    background: #fffbf0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px; line-height: 1.8;
+    border-left: 4px solid var(--orange);
+  }
+  .review-intro strong { color: var(--orange); }
+
+  /* Category review cards */
+  .review-category {
+    border-bottom: 1px solid var(--line);
+    padding: 28px 36px;
+  }
+  .review-category:last-child { border-bottom: none; }
+
+  .cat-header {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  }
+  .cat-num {
+    width: 40px; height: 40px;
+    background: var(--orange); color: var(--white);
+    border-radius: 50%; font-size: 16px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cat-header h3 { font-size: 18px; font-weight: 800; }
+  .cat-header .cat-sub { font-size: 12px; color: #888; margin-top: 2px; }
+
+  .sim-box {
+    background: #f0f4ff;
+    border-left: 4px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px; line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .sim-box strong { color: var(--blue); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .flags-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .flag-item {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .flag-item .flag-label {
+    font-size: 10px; font-weight: 800; color: var(--red);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .fix-item {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .fix-item .fix-label {
+    font-size: 10px; font-weight: 800; color: var(--green);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .fixes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .section-label-sm {
+    font-size: 11px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.8px; color: #666; margin-bottom: 8px; margin-top: 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .section-label-sm .dot-red { width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+  .section-label-sm .dot-green { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+  /* ===========================
+     EXERCISE BLOCKS (Part 2)
+     =========================== */
+  .section-divider {
+    background: var(--ink);
+    color: var(--white);
+    padding: 20px 36px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-divider h2 { font-size: 20px; font-weight: 800; }
+  .section-divider p { font-size: 13px; opacity: .7; margin-top: 4px; }
+  .section-divider .badge-part {
+    background: var(--orange);
+    font-size: 11px; font-weight: 800;
+    padding: 4px 12px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .exercise-block {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .ex-hero {
+    background: var(--ink);
+    color: var(--white);
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .ex-num {
+    width: 60px; height: 60px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; flex-shrink: 0;
+  }
+  .ex-hero h2 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .ex-hero .subtitle { font-size: 14px; opacity: .7; }
+  .ex-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .tag {
+    padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;
+    border: 1px solid rgba(255,255,255,.3); color: var(--white);
+  }
+  .tag.orange { background: var(--orange); border-color: var(--orange); }
+
+  /* TWO-COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .col-mod { border-right: 1px solid var(--line); padding: 32px 36px; }
+  .col-ws { padding: 32px 36px; background: #fafafa; }
+
+  .col-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    color: #888; margin-bottom: 20px;
+  }
+  .col-label .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-mod { background: var(--orange); }
+  .dot-ws { background: var(--ink); }
+
+  h3.section-title {
+    font-size: 16px; font-weight: 800; margin-bottom: 12px; color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3.section-title::before {
+    content: ''; display: block; width: 4px; height: 18px;
+    background: var(--orange); border-radius: 2px;
+  }
+
+  .info-box {
+    background: var(--light-orange);
+    border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13px; line-height: 1.7;
+  }
+  .info-box strong { color: var(--orange); }
+
+  .step-list { list-style: none; padding: 0; margin-bottom: 16px; }
+  .step-list li {
+    display: flex; gap: 12px;
+    font-size: 13px; line-height: 1.7; margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: var(--orange); color: var(--white);
+    border-radius: 50%; font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .step-phase {
+    flex-shrink: 0;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 800;
+    background: var(--ink); color: var(--white);
+    margin-top: 2px; white-space: nowrap;
+  }
+
+  .timing-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12px; }
+  .timing-table th { background: var(--ink); color: var(--white); padding: 7px 12px; text-align: left; }
+  .timing-table td { padding: 7px 12px; border-bottom: 1px solid var(--line); }
+  .timing-table tr:last-child td { border-bottom: none; }
+  .timing-table tr:nth-child(even) td { background: #f8f8f8; }
+
+  .tips-box {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+  .tips-box strong { color: var(--green); }
+
+  .warn-box {
+    background: #fff8f0;
+    border-left: 4px solid #e07820;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 12px; line-height: 1.7;
+  }
+  .warn-box strong { color: #b45309; }
+
+  .phase-block {
+    background: var(--gray);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border: 1px solid var(--line);
+  }
+  .phase-block .phase-title {
+    font-size: 13px; font-weight: 800; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .phase-block .phase-title .phase-badge {
+    background: var(--orange); color: var(--white);
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    font-weight: 800; text-transform: uppercase;
+  }
+  .phase-block ul {
+    padding-left: 16px; font-size: 12px; line-height: 1.8;
+  }
+  .phase-block ul li { margin-bottom: 4px; }
+
+  /* LITERATURE */
+  .lit-section {
+    padding: 24px 36px;
+    border-top: 1px solid var(--line);
+    background: #f9f9f9;
+  }
+  .lit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .lit-item {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .lit-item .tier {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 10px;
+    font-size: 10px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .tier-sr { background: #d4edda; color: #1a7a4a; }
+  .tier-rct { background: #d0e4f7; color: #1a4a8a; }
+  .tier-qual { background: #e8d5f5; color: #5a1a8a; }
+  .lit-item .ref { font-style: italic; color: #555; margin-top: 4px; font-size: 11px; }
+
+  .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .yt-item {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+  .yt-item .yt-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .yt-item .yt-desc { opacity: .7; font-size: 11px; margin-bottom: 6px; }
+  .yt-item .yt-search {
+    font-size: 11px;
+    background: var(--orange);
+    padding: 3px 8px; border-radius: 4px;
+    display: inline-block; margin-top: 4px;
+  }
+
+  /* WORKSHEET */
+  .ws-intro {
+    font-size: 13px; color: #555; margin-bottom: 16px; font-style: italic;
+    border-bottom: 1px dashed var(--line); padding-bottom: 12px;
+  }
+  .ws-field-label {
+    font-size: 12px; font-weight: 700; color: var(--ink);
+    margin-bottom: 4px; margin-top: 12px;
+  }
+  .ws-lines { margin-bottom: 12px; }
+  .ws-line {
+    border-bottom: 1px solid #ccc;
+    height: 28px; margin-bottom: 4px;
+  }
+  .ws-box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-height: 60px;
+    margin-bottom: 12px;
+    padding: 6px;
+    background: var(--white);
+  }
+  .ws-quote {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .ws-quote .quote-text { font-size: 15px; font-style: italic; font-weight: 300; margin-bottom: 4px; }
+  .ws-quote .quote-src { font-size: 11px; opacity: .6; }
+
+  .data-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .data-cell {
+    background: var(--white);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .data-cell .data-label { font-size: 10px; font-weight: 800; color: #888; text-transform: uppercase; margin-bottom: 6px; }
+  .data-cell .data-value { font-size: 22px; font-weight: 900; color: var(--orange); }
+  .data-cell .data-unit { font-size: 10px; color: #999; }
+  .data-cell.diff { border-color: var(--orange); background: var(--light-orange); }
+  .data-cell.diff .data-value { color: var(--orange); }
+
+  .scale-row {
+    display: flex; gap: 0; margin: 8px 0 16px;
+    border: 1px solid #ccc; border-radius: 6px; overflow: hidden;
+  }
+  .scale-cell {
+    flex: 1; text-align: center; padding: 10px 4px;
+    font-size: 12px; font-weight: 600; border-right: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .scale-cell:last-child { border-right: none; }
+  .scale-cell.lo { background: #e8f5e9; }
+  .scale-cell.hi { background: #fdecea; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; line-height: 1.6; margin-bottom: 8px;
+  }
+  .checkbox {
+    width: 18px; height: 18px; border: 2px solid #ccc; border-radius: 3px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .commit-box {
+    background: var(--light-orange);
+    border: 2px solid var(--orange);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+  .commit-box .commit-label { font-size: 11px; font-weight: 800; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
+  .commit-box .ws-line { border-bottom: 1px solid var(--orange); }
+
+  /* PRINT */
+  @media print {
+    .top-header, .sticky-nav { display: none; }
+    body { background: white; }
+    .page-body { padding: 0; max-width: 100%; }
+    .exercise-block { page-break-after: always; border: none; border-radius: 0; }
+    .review-block { page-break-after: always; }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr 1fr; }
+    .flags-grid, .fixes-grid { grid-template-columns: 1fr 1fr; }
+    .ex-hero { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .review-banner { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .info-box, .tips-box, .warn-box, .commit-box, .ws-quote, .flag-item, .fix-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yt-item { background: var(--ink) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  @media (max-width: 800px) {
+    .two-col { grid-template-columns: 1fr; }
+    .col-mod { border-right: none; border-bottom: 1px solid var(--line); }
+    .lit-grid, .yt-grid { grid-template-columns: 1fr; }
+    .flags-grid, .fixes-grid { grid-template-columns: 1fr; }
+    .ex-hero { grid-template-columns: auto 1fr; }
+    .ex-tags { grid-column: 1 / -1; justify-content: flex-start; }
+    .data-compare { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .top-header { padding: 20px 16px; }
+    .sticky-nav { padding: 0 12px; }
+    .page-body { padding: 24px 12px; }
+    .review-banner { padding: 16px 20px; flex-wrap: wrap; }
+    .review-category { padding: 20px 20px; }
+    .review-intro { padding: 14px 20px; }
+    .col-mod, .col-ws { padding: 20px 16px; }
+    .section-divider { padding: 16px 20px; flex-wrap: wrap; }
+    .lit-section { padding: 16px 20px; }
+    .data-compare { grid-template-columns: 1fr; }
+    .ex-hero { padding: 20px 20px; grid-template-columns: auto 1fr; }
+    .timing-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='en'){
+      window.location.replace('en/review-toughness.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','en');
+      });
+    });
+  })();
+</script>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="logo">CF</div>
+  <div>
+    <h1>Character First — Review &amp; Fysieke Mentale Taaiheid</h1>
+    <p>Kritische simulatiereview van alle oefencategorieën + 4 nieuwe fysieke taaiheidsblokken voor U14 basketbal</p>
+  </div>
+</header>
+
+<nav class="sticky-nav">
+  <a href="#review" class="active">Kritische Review</a>
+  <a href="#oe1">1. Wall Squat Challenge</a>
+  <a href="#oe2">2. Druk Ademhaling</a>
+  <a href="#oe3">3. Comeback Sprint</a>
+  <a href="#oe4">4. Team Plank Hold</a>
+  <a href="en/review-toughness.html" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;margin-left:auto;align-self:center;">EN</a>
+</nav>
+
+<div class="page-body">
+
+<!-- ===========================
+     PART 1: CRITICAL REVIEW
+     =========================== -->
+<div id="review">
+  <div class="review-banner">
+    <div>
+      <div class="badge">Alleen voor coach / moderator</div>
+    </div>
+    <div>
+      <h2>Kritische Simulatiereview</h2>
+      <p>Hypothetische groep: 12 U14 basketbalspelers, gemengde motivatie, eerste sessie samen, lage psychologische veiligheid</p>
+    </div>
+  </div>
+
+  <div class="review-block">
+    <div class="review-intro">
+      <strong>Doel van dit document:</strong> Dit is een eerlijk testrapport. Elke categorie wordt doorgelopen met een realistische mentale simulatie van 12 jonge basketballers die elkaar nauwelijks kennen. Het doel is niet om oefeningen af te schieten, maar om problemen vroeg te zien zodat aanpassingen de impact vergroten. Rode vlaggen zijn kansen, geen vonnissen.
+    </div>
+
+    <!-- CATEGORY 1: ZELFKENNIS -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">01</div>
+        <div>
+          <h3>Zelfkennis Oefeningen</h3>
+          <div class="cat-sub">Drie Woorden, Sportlijn, Waardenkompas, Brief aan Jongere Ik</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulatiescenario</strong><br>
+        Coach legt Drie Woorden uit. De groep is stil. Twee spelers (extraverte types) noemen snel woorden als "snel" en "sterk". Drie spelers schrijven niets en wachten af. Eén speler draait zijn blad om. Vier spelers kijken op hun telefoon. De sportlijn vraagt om een laagtepunt te benoemen. Twee spelers worden zichtbaar ongemakkelijk. Een derde noemt iets triviaals om de oefening te overleven.
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problemen gevonden</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Psychologische veiligheid</div>
+          Drie Woorden vereist zelfopenbaring in een groep die elkaar niet vertrouwt. Bij lage veiligheid kiezen spelers voor sociaal gewenste woorden ("hard werker", "teamspeler") in plaats van echte zelfkennis.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Leeftijdsgeschiktheid</div>
+          De Sportlijn vraagt om herinneringen te ordenen op impact. U14 spelers hebben beperkte metacognitieve ontwikkeling. Abstracte tijdslijn vraagt cognitieve vaardigheden die niet gegarandeerd aanwezig zijn.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Timing</div>
+          Brief aan Jongere Ik: geschatte 15 minuten is te optimistisch. In een echte groep kost alleen het begrijpen van de opdracht al 5 minuten, waarna veel spelers slechts 3 regels schrijven en stoppen.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Abstraktieniveau</div>
+          Waardenkompas veronderstelt begrip van abstracte waarden ("integriteit", "doorzettingsvermogen"). U14 denkt concreet. Verbinding met sport ontbreekt te vaak in de framing.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Voorgestelde aanpassingen</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 1</div>
+          Begin Drie Woorden altijd anoniemer: schrijf eerst individueel op papier zonder te delen. Deel pas nadat iedereen heeft opgeschreven. Optioneel delen in tweetallen voor de groep.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 2</div>
+          Sportlijn: beperk tot sportmomenten, niet persoonlijk leven. Twee momenten per speler maximum. Moderator modelleert zelf eerst met een eerlijk voorbeeld om norm te zetten.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 3</div>
+          Brief aan Jongere Ik: geef drie concrete startszinnen zodat het blinde vel minder intimiderend is. Maximum 5 minuten schrijftijd. Niet verplicht te delen.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 4</div>
+          Waardenkompas: vervang abstracte waarden door "wat doe jij als niemand kijkt tijdens training?" Concreet gedrag als ingang naar waarden werkt beter voor deze leeftijdsgroep.
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 2: DRUK & STRESS -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">02</div>
+        <div>
+          <h3>Druk &amp; Stress Oefeningen</h3>
+          <div class="cat-sub">Box Breathing, Stressbarometer, Worst Case Best Case</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulatiescenario</strong><br>
+        Coach vraagt groep om ogen te sluiten voor Box Breathing. Drie spelers giechelen. Twee weigeren ogen te sluiten. De oefening begint al gebroken. Moderator vraagt na afloop wat ze voelden. "Niks" is het meest gegeven antwoord. Stressbarometer vraagt om persoonlijke stressbronnen te benoemen. Twee spelers schrijven "wedstrijd verliezen". De rest vult niets in of schrijft "weet niet".
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problemen gevonden</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Sociale weerstand</div>
+          Ogen sluiten in een groep die elkaar niet kent voelt kwetsbaar. Dit is de normale reactie van adolescenten, geen teken van slechte groep. De instructie triggert giggelgedrag dat de sfeer breekt.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Transfer probleem</div>
+          Box Breathing in een rustige zaal is nuttig, maar de transfer naar een wedstrijdsituatie wordt zelden expliciet gemaakt. Spelers leren het als ontspanningstechniek, niet als prestatieinstrument.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Worst Case te theoretisch</div>
+          Worst Case Best Case is een cognitieve reframingtechniek die werkt voor volwassenen met zelfregulatie. U14 spelers schieten bij "worst case" denken snel naar catastrofering of humor als afweer.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Timing stressbarometer</div>
+          De stressbarometer werkt alleen als spelers bereid zijn hun stressniveau eerlijk in te schatten. In sessie 1 is de sociale druk om "sterk" te lijken hoog. Resultaten zijn dan sociaal gewenst, niet eerlijk.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Voorgestelde aanpassingen</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 1</div>
+          Box Breathing: begin met open ogen en voeten plat op de grond. Geen ogen sluiten in sessie 1. Zeg expliciet: "dit voelt misschien gek, dat is normaal." Normaliseer de ongemakkelijkheid proactief.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 2</div>
+          Koppel de ademhaling altijd aan een concreet sportmoment: "je staat op de vrijworplijn, het is de laatste seconde." Context maakt de transfer zichtbaar.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 3</div>
+          Worst Case Best Case: verander naar "wat kan er maximaal misgaan vs. wat kan er maximaal goed gaan in de komende wedstrijd?" Concreet sportframe vermindert abstraktieweerstand.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 4</div>
+          Stressbarometer: gebruik fysieke stressindicatoren in plaats van zelfbeoordeling. "Hoe snel klopt je hart nu? Waar voel je spanning in je lijf?" Lichaam als anker is minder bedreigend dan emotie benoemen.
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 3: COMMUNICATIE -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">03</div>
+        <div>
+          <h3>Communicatie Oefeningen</h3>
+          <div class="cat-sub">Feedbackronde Trio, Spiegel Gesprek, Moeilijk Gesprek</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulatiescenario</strong><br>
+        Coach kondigt Feedbackronde Trio aan. Drie spelers die vrienden zijn gaan direct samen zitten. Twee spelers die minder populair zijn staan ongemakkelijk te wachten. De feedback die gegeven wordt is bijna uitsluitend positief: "Je bent een goede speler." Niemand geeft constructieve feedback in sessie 1 aan iemand die ze nauwelijks kennen. Het Moeilijk Gesprek wordt nog meer gemeden.
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problemen gevonden</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Feedbackkwaliteit sessie 1</div>
+          Echte feedback vereist psychologische veiligheid. In sessie 1 is alle feedback sociaal positief en inhoudsloos. De oefening geeft een vals beeld van het kunnen feedbackgeven.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Sociale dynamiek</div>
+          Vrije keuze van feedbackpartners reproduceert de bestaande hiërarchie. Populaire spelers gaan samen. Minder verbonden spelers worden impliciet uitgesloten. Dit vergroot de kloof in plaats van te verkleinen.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Moeilijk Gesprek te vroeg</div>
+          Een oefening gericht op het voeren van moeilijke gesprekken veronderstelt bestaande relaties met genoeg diepgang om wrijving te verdragen. In sessie 1 ontbreekt die relatiebasis volledig.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">Abstractie Spiegel Gesprek</div>
+          Het Spiegel Gesprek vraagt empathisch luisteren en spiegelen van emoties. Dit zijn vaardigheden die zelfs volwassenen oefening voor nodig hebben. De uitvoering met U14 in sessie 1 levert ondiepe parafrasering op.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Voorgestelde aanpassingen</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 1</div>
+          Verdeel trio's altijd zelf als moderator, nooit vrije keuze in sessie 1. Gebruik een expliciete structuur: "ik noem namen, iedereen gaat direct naar zijn trio." Elimineer sociale onzekerheid over de verdeling.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 2</div>
+          Beperk feedback in sessie 1 tot gedragsspecifiek: "noem één moment van vandaag dat je hebt gezien." Geen karakterfeedback, geen persoonlijke feedback. Laagdrempelig observeren als startpunt.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 3</div>
+          Moeilijk Gesprek: plan deze oefening pas na sessie 3 minimaal. Vereis eerst vertrouwen in de groep. Vervang in sessie 1 door een rollenspel met fictieve spelers: "stel je voor dat jouw teamgenoot X..."
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 4</div>
+          Spiegel Gesprek: introduceer via humor als brug. Laat spelers eerst een absurd gesprek spiegelen ("je trainer zegt dat je elke dag een banaan moet eten") voordat echte gesprekken gespiegeld worden.
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 4: MENTALE WEERBAARHEID -->
+    <div class="review-category">
+      <div class="cat-header">
+        <div class="cat-num">04</div>
+        <div>
+          <h3>Mentale Weerbaarheid Oefeningen</h3>
+          <div class="cat-sub">Flu Game, ABC Model, Adversity Ladder, PPR, PTG</div>
+        </div>
+      </div>
+
+      <div class="sim-box">
+        <strong>Simulatiescenario</strong><br>
+        Coach vertelt het Flu Game verhaal van Michael Jordan. Spelers luisteren. Drie spelers kennen het verhaal al en zijn enthousiast. Vier spelers tonen polite interest. De rest haalt schouders op. Bij het ABC model schrijft de groep letters op papier maar gelooft niet dat een gedachte een gevoel kan veranderen. "Dat werkt niet in het echt" zegt iemand hardop. De Adversity Ladder werkt beter: concreet en visueel. De PPR oefening duurt te lang voor de concentratieboog van U14.
+      </div>
+
+      <div class="section-label-sm"><span class="dot-red"></span> Problemen gevonden</div>
+      <div class="flags-grid">
+        <div class="flag-item">
+          <div class="flag-label">Flu Game: relevantie gat</div>
+          Michael Jordan is niet de referentie voor elke U14 speler. Sommigen kennen hem niet. De emotionele impact van het verhaal varieert sterk. Spelers die de NBA cultuur niet kennen, missen de context die het verhaal krachtig maakt.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">ABC Model: cognitieve overload</div>
+          Het ABC model (Activating event, Belief, Consequence) is een therapeutisch cognitief model dat normaal wordt uitgelegd over meerdere sessies. In één oefening van 15 minuten leidt dit tot oppervlakkige behandeling en scepticisme.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">PPR te lang</div>
+          Pre-Performance Ritueel van 15 minuten is 5 minuten te lang voor U14 in sessie 1. Na 10 minuten concentratieverval zichtbaar. De laatste fase van de PPR wordt dan slecht uitgevoerd.
+        </div>
+        <div class="flag-item">
+          <div class="flag-label">PTG te zwaar voor sessie 1</div>
+          Post-Traumatic Growth veronderstelt dat er een echte tegenslag is geweest die besproken kan worden. In sessie 1 heeft de groep geen gedeelde herinneringen. De PTG oefening is krachtig maar behoort thuis in latere sessies.
+        </div>
+      </div>
+
+      <div class="section-label-sm"><span class="dot-green"></span> Voorgestelde aanpassingen</div>
+      <div class="fixes-grid">
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 1</div>
+          Flu Game: voeg altijd een lokale of Europese equivalent toe naast Jordan. Vraag de groep zelf: "ken je iemand die zoiets heeft gedaan?" Eigen voorbeelden activeren meer dan verhalen over helden die ver weg voelen.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 2</div>
+          ABC Model: reduceer tot één concrete wedstrijdsituatie. Geef de A al voor (een scheidsrechtsbeslissing die fout gaat). Focus alleen op B vs. C. Vermijd de meta-uitleg van het model in sessie 1.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 3</div>
+          PPR: reduceer tot maximum 10 minuten. Drie stappen max: adem, zin, beweging. Herhaal de zin niet meer dan drie keer. Kwaliteit boven volledigheid.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Aanpassing 4</div>
+          PTG: plan pas na sessie 4. Vervang in sessie 1 door een kortere "leren van mislukken" oefening: bespreek één verloren wedstrijd als groep, focus op wat je hebt geleerd in maximaal 8 minuten.
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERALL RECOMMENDATIONS -->
+    <div class="review-category" style="background: #fafafa;">
+      <div class="cat-header">
+        <div class="cat-num" style="background: var(--ink);">!</div>
+        <div>
+          <h3>Overkoepelende aanbevelingen voor sessie 1</h3>
+          <div class="cat-sub">Toepassen op alle categorieën</div>
+        </div>
+      </div>
+      <div class="fixes-grid" style="margin-top: 0;">
+        <div class="fix-item">
+          <div class="fix-label">Stel de norm eerst</div>
+          Begin elke eerste sessie met een "groepscontract" van 5 minuten: wat mag je hier zeggen, wat blijft hier, hoe gaan we om met iemand die iets moeilijks deelt. Zonder dit contract is psychologische veiligheid een gok.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Moderator modelleert altijd eerst</div>
+          Voor elke oefening die zelfopenbaring vraagt, deelt de moderator zelf een eerlijk voorbeeld. Dit zet de norm voor kwetsbaarheid en verlaagt de drempel voor de groep.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Lichaam voor geest</div>
+          In sessie 1 werken lichamelijke oefeningen beter dan cognitieve. Beweging, spanning, ademhaling. Denkoefeningen hebben meer vertrouwen nodig. Plan de zware zelfkennisoefeningen na sessie 3.
+        </div>
+        <div class="fix-item">
+          <div class="fix-label">Timing halveren voor sessie 1</div>
+          Alle tijdstiinschattingen zijn gebaseerd op een warme, veilige groep. Vermenigvuldig alle debriefduur met 1,5 voor sessie 1 en 2. Plan minder oefeningen dan je denkt nodig te hebben.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end review-block -->
+</div><!-- end review section -->
+
+
+<!-- ===========================
+     PART 2: PHYSICAL EXERCISES
+     =========================== -->
+<div class="section-divider">
+  <div class="badge-part">Deel 2</div>
+  <div>
+    <h2>Fysieke Mentale Taaiheid</h2>
+    <p>4 oefeningen die mentale weerbaarheid zichtbaar maken via het lichaam</p>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 1: WALL SQUAT CHALLENGE ===== -->
+<div class="exercise-block" id="oe1">
+  <div class="ex-hero">
+    <div class="ex-num">01</div>
+    <div>
+      <h2>Wall Squat Challenge</h2>
+      <div class="subtitle">Drie fasen, één bewijs: hoe een team jou verder brengt dan jij alleen kunt gaan.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Fysiek</span>
+      <span class="tag">Team</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Doel van de oefening:</strong> Spelers ervaren via hun eigen lichaam hoe motivatieklimaat prestaties beïnvloedt. Ze meten het verschil tussen solo, aanmoedigingsondersteuning en collectieve inspanning. Het bewijs staat in hun eigen tijd.
+      </div>
+
+      <h3 class="section-title">Setup (2 min voor aanvang)</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span>Zoek een vrije muur zonder obstakels op minstens 3 meter breedte. Elke speler heeft 60 cm muurruimte nodig voor fase 3 (groep tegelijk).</li>
+        <li><span class="step-num">2</span>Correcte positie: rug volledig plat tegen de muur, voeten 30 cm van de muur, knieën 90 graden, bovenbenen parallel aan de grond. Demonstreer zelf.</li>
+        <li><span class="step-num">3</span>Wie knieproblemen of blessures heeft: stoel squat alternatief (beschreven hieronder). Vraag dit proactief VOOR de oefening, niet tijdens.</li>
+        <li><span class="step-num">4</span>Zeg nog niet wat de drie fasen zijn. Vertel alleen fase 1 op het moment dat je die start. Dit verhoogt de impactbeleving van fase 2 en 3.</li>
+      </ul>
+
+      <h3 class="section-title">Fase 1: Solo (geen steun)</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Fase 1</span> Individueel</div>
+        <ul>
+          <li>Elke speler doet een wall squat, één voor één of in groepen van twee zodat moderator tijd kan noteren.</li>
+          <li>Instructie: "Ga in positie. Ik noteer jouw tijd. Er is geen aanmoediging toegestaan van teamgenoten. Stilte."</li>
+          <li>Handhaveer de stilte actief: als iemand begint aan te moedigen, zeg rustig maar direct "niet nu". Dit is niet streng, dit is fair omdat je iets meet.</li>
+          <li>Noteer de tijd op een vel of whiteboard. Elke speler ziet zijn eigen tijd staan.</li>
+          <li>Wie eerder stopt: geen commentaar, geen reactie van moderator. Zeg alleen "bedankt, ik noteer jouw tijd."</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Fase 2: Solo met teamaanmoediging</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Fase 2</span> Een voor een</div>
+        <ul>
+          <li>Eén speler tegelijk doet een wall squat. Het HELE team staat voor hem/haar en moet ACTIEF aanmoedigen.</li>
+          <li>Cruciale moderatorregel: <strong>vage aanmoediging is niet toegestaan.</strong> "Kom op" mag niet. Spelers moeten SPECIFIEK zijn. Moderator onderbreekt bij vage aanmoediging en vraagt: "Wat zit er achter? Wat zie je precies?"</li>
+          <li>Goede voorbeelden om mee te modelleren: "Jouw benen zijn sterker dan je denkt", "Je hebt dit al meegemaakt in training", "Adem door, je bent meer dan halverwege".</li>
+          <li>Noteer de tijd naast fase 1 op het bord.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Fase 3: Groep tegelijk</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Fase 3</span> Collectief</div>
+        <ul>
+          <li>Iedereen tegelijk in positie. Geen instructie over aanmoedigen: laat de dynamiek spontaan ontstaan.</li>
+          <li>Jij staat voor de groep en zegt niets. Observeer wat er organisch gebeurt. Wie neemt de rol van aanmoediger? Wie kijkt naar anderen voor steun?</li>
+          <li>Als iemand stopt, zeg je zacht: "Kijk naar je team, ze gaan nog." Dit normaliseert doorzetten zonder druk te zetten.</li>
+          <li>Stop de oefening als meer dan de helft is gestopt of na 3 minuten maximum.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Blessuremodificatie</h3>
+      <div class="tips-box">
+        <strong>Stoel squat alternatief:</strong> Speler zit op het puntje van een stoel, rug recht, voeten plat op de grond, handen op knieën. Moderator start timer. Speler houdt houding vast zo lang mogelijk. Identiek protocol, identieke drie fasen. Zeg dit met dezelfde toon als de normale instructie: geen groot drama van maken.
+      </div>
+
+      <h3 class="section-title">Voorkomen dat het een competitie wordt</h3>
+      <div class="warn-box">
+        <strong>Opgelet:</strong> Wall Squat Challenge trekt competitieve spelers naar ego-gedrag ("ik doe het het langst"). Zeg voor aanvang expliciet: "We meten geen winnaar. We meten wat een team doet voor één persoon. De interessante vraag is niet wie het langst kan, maar hoeveel langer jij gaat met steun." Als twee spelers gaan concurreren in fase 3, normaliseer dit humor met: "Dit is goed — maar kijk ook naar je buurman."
+      </div>
+
+      <h3 class="section-title">Iemand stopt vroeg</h3>
+      <div class="tips-box">
+        <strong>Protocol vroeg stopper:</strong> Geen reactie van het team verwacht. Moderator zegt: "Goed dat je je grens kent. We gaan straks kijken wat er verandert." Geen medeleven, geen aanmoediging achteraf. Neutrale toon. Dit normaliseert het stoppen en houdt de focus op de data, niet op de persoon.
+      </div>
+
+      <h3 class="section-title">Timingsoverzicht</h3>
+      <table class="timing-table">
+        <thead><tr><th>Fase</th><th>Activiteit</th><th>Duur</th></tr></thead>
+        <tbody>
+          <tr><td>Setup</td><td>Uitleg + positionering</td><td>2 min</td></tr>
+          <tr><td>Fase 1</td><td>Solo wall squats (12 spelers)</td><td>4 min</td></tr>
+          <tr><td>Fase 2</td><td>Aanmoediging per speler (steekproef van 4)</td><td>3 min</td></tr>
+          <tr><td>Fase 3</td><td>Groep tegelijk</td><td>2 min</td></tr>
+          <tr><td>Debrief</td><td>Discussie + wetenschapslink</td><td>4 min</td></tr>
+          <tr><td><strong>Totaal</strong></td><td></td><td><strong>15 min</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="section-title">Debrief: wetenschap zichtbaar maken</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Schrijf op het bord de gemiddelde solo tijd vs. de gemiddelde teamtijd. Het verschil is de data. Vraag niet "wat vonden jullie ervan" maar: "Wat verklaart dit verschil?"</li>
+        <li><span class="step-num">2</span>Noem dan de naam: dit heet het effect van motivatieklimaat. Robert Zajonc toonde in 1965 aan dat de aanwezigheid van anderen prestaties verandert. Carron et al. (1988) toonden aan dat groepscohesie direct prestatiegerelateerd is in sport.</li>
+        <li><span class="step-num">3</span>Kernvraag: "Welke aanmoedigingswoorden hielpen je het meest?" Laat minstens vier spelers antwoorden. Noteer de woorden op het bord: dit wordt het aanmoediging-vocabulaire van jouw team.</li>
+        <li><span class="step-num">4</span>Sluit af: "Dit is geen trucje. Dit is hoe jullie brein werkt. Gebruik het."</li>
+      </ol>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Werkblad speler</div>
+
+      <div class="ws-intro">Naam: __________________________ &nbsp;&nbsp; Datum: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"You can't always control what goes on outside. But you can always control what goes on inside."</div>
+        <div class="quote-src">Wayne Dyer</div>
+      </div>
+
+      <div class="ws-field-label">Mijn resultaten per fase:</div>
+      <div class="data-compare">
+        <div class="data-cell">
+          <div class="data-label">Fase 1 Solo</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-label">Fase 2 Team</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+        <div class="data-cell diff">
+          <div class="data-label">Verschil</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden meer</div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">Wat ging er door mijn hoofd tijdens fase 1 (solo)?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">Welke aanmoedigingswoorden of zinnen hielpen mij het meest in fase 2 of 3?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Waarom hielpen die woorden? Wat maakte ze anders dan "kom op"?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">Hoe was het om iemand anders aan te moedigen? Wat vond je moeilijk?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Mijn aanmoediger-score voor mezelf vandaag (omcirkel):</div>
+      <div class="scale-row">
+        <div class="scale-cell lo">1</div>
+        <div class="scale-cell lo">2</div>
+        <div class="scale-cell">3</div>
+        <div class="scale-cell">4</div>
+        <div class="scale-cell">5</div>
+        <div class="scale-cell">6</div>
+        <div class="scale-cell hi">7</div>
+        <div class="scale-cell hi">8</div>
+        <div class="scale-cell hi">9</div>
+        <div class="scale-cell hi">10</div>
+      </div>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn concrete commitment</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">In de volgende training ga ik één teamgenoot op dit specifieke moment aanmoedigen:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div style="font-size: 12px; margin: 8px 0 4px;">Met deze specifieke woorden:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Wetenschappelijke basis</div>
+    <div style="font-size: 12px; color: #666; margin-bottom: 12px;">Onderzoek dat deze oefening onderbouwt:</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematische Review</span>
+        <div><strong>Motivatieklimaat in sport</strong></div>
+        <div>Ames (1992) onderscheidde twee klimaten: taakgericht (leren centraal) vs. ego-gericht (winnen centraal). In een taakgericht klimaat duren inspanningen langer en is prestatieangstniveau lager.</div>
+        <div class="ref">Ames, C. (1992). Achievement goals, motivational climate, and motivational processes. In G. Roberts (Ed.), Motivation in Sport and Exercise (pp. 161–176). Human Kinetics.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinaal onderzoek</span>
+        <div><strong>Sociale facilitatie in sport</strong></div>
+        <div>Zajonc (1965) bewees dat de aanwezigheid van anderen de fysiologische opwinding verhoogt. Voor aangeleerde taken leidt dit tot betere prestaties: precies wat een wall squat is na de eerste keer.</div>
+        <div class="ref">Zajonc, R.B. (1965). Social facilitation. Science, 149(3681), 269–274.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT / Experiment</span>
+        <div><strong>Groepscohesie en prestatie</strong></div>
+        <div>Carron, Widmeyer &amp; Brawley (1988) toonden aan dat hogere groepscohesie in sport direct samenhangt met meer individuele inspanning. Leden van hechte teams geven meer omdat ze weten dat het telt voor iedereen.</div>
+        <div class="ref">Carron, A.V., Widmeyer, W.N., &amp; Brawley, L.R. (1988). Group cohesion and individual adherence to physical activity. Journal of Sport &amp; Exercise Psychology, 10(2), 127–138.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Kwalitatief</span>
+        <div><strong>Specifieke vs. algemene aanmoediging</strong></div>
+        <div>Dweck (2006) liet zien dat specifieke procesgerichte feedback meer motiverend is dan algemene lofbetuiging. "Je benen zijn sterker dan je denkt" werkt anders dan "goed bezig" omdat het een intern attribuut activeert.</div>
+        <div class="ref">Dweck, C.S. (2006). Mindset: The New Psychology of Success. Random House.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Zoektermen</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Motivational Climate Sport</div>
+        <div class="yt-desc">Uitleg van het verschil tussen taak- en ego-gericht klimaat voor coaches</div>
+        <div class="yt-search">motivational climate youth sport Ames</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Social Facilitation Zajonc</div>
+        <div class="yt-desc">Klassiek experiment uitgelegd voor leerlingen en coaches</div>
+        <div class="yt-search">social facilitation experiment Zajonc explained</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 2: DRUK ADEMHALING ===== -->
+<div class="exercise-block" id="oe2">
+  <div class="ex-hero">
+    <div class="ex-num">02</div>
+    <div>
+      <h2>Druk Ademhaling</h2>
+      <div class="subtitle">Mentale simulatie van druk: leer het verschil tussen pijn en gevaar terwijl je lichaam werkt.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">12 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Fysiek</span>
+      <span class="tag">Individueel</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Kernboodschap:</strong> Geen koud water. Geen pijn. Wel spanning. Deze oefening gebruikt een korte plankhold als fysiologische stressor terwijl spelers tegelijk ademhalingstechnieken leren toepassen. Ze leren in het moment van ongemak onderscheid te maken tussen "dit doet pijn" (informatie) en "ik ben in gevaar" (alarm).
+      </div>
+
+      <h3 class="section-title">Deel 1: Visualisatie (3 min)</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Laat spelers rechtop zitten, handen op knieën. Zeg: "Ik ga jullie iets vragen wat gek klinkt maar een reden heeft."</li>
+        <li><span class="step-num">2</span>Gebruik deze tekst: "Stel je voor dat je handen in een emmer ijswater gaan. Je ziet het voor je. Hoe voelen je handen nu?" Pauzeer 20 seconden. Vraag twee spelers: "Wat voelde je?" Dit demonstreert dat verbeelding fysiologische respons oproept.</li>
+        <li><span class="step-num">3</span>Leg uit: "Jullie brein maakt geen onderscheid tussen real en verbeelding als het gaat om druk voelen. Dat is nuttig. Dat gaan we nu gebruiken."</li>
+      </ol>
+
+      <h3 class="section-title">Deel 2: Plank met ademhaling (6 min)</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Ronde 1</span> Plank zonder techniek</div>
+        <ul>
+          <li>Iedereen in plankpositie (voor armen op de grond als alternatief). 45 seconden maximum of zo lang als het gaat.</li>
+          <li>Geen instructie over ademhaling. Laat het gewoon gebeuren. Noteer mentaal wie gaat hijgen of ademhaling inhoudt.</li>
+          <li>Na afloop: "Wat deed jullie ademhaling?" Laat spelers zelf beschrijven.</li>
+        </ul>
+      </div>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Ronde 2</span> Plank met box breathing</div>
+        <ul>
+          <li>Leg box breathing uit: inademen 4 tellen, vasthouden 4 tellen, uitademen 4 tellen, vasthouden 4 tellen. Oefen één keer staand.</li>
+          <li>Iedereen in plankpositie. Jij telt hardop: "in 2 3 4, vast 2 3 4, uit 2 3 4, vast 2 3 4."</li>
+          <li>Doe dit twee cycli mee terwijl de plank actief is. Observeer wat er met de lichaamsspanning verandert.</li>
+          <li>Doel is 45 seconden of meer. Vergelijk met ronde 1 onmiddellijk na afloop.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Deel 3: Pijn vs. Gevaar (3 min debrief)</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Schrijf op het bord: PIJN vs. GEVAAR. Vraag: "Deed jouw lichaam iets in de plank wat gevaarlijk was?" Antwoord is nee. "Deed het pijn of was het ongemakkelijk?" Antwoord is ja.</li>
+        <li><span class="step-num">2</span>Zeg: "Jullie brein stuurt bij elke spanning een alarm. Dat alarm hetzij een signaal dat je in gevaar bent, hetzij informatie dat je werkt. Het zijn verschillende berichten die hetzelfde voelen."</li>
+        <li><span class="step-num">3</span>Kernvraag: "In welke sportsituaties stuur jouw brein een vals alarm?" Laat drie spelers antwoorden. Noteer hun antwoorden: dit zijn persoonlijke triggers die later terugkomen in andere oefeningen.</li>
+      </ol>
+
+      <div class="warn-box">
+        <strong>Gezondheidscheck voor aanvang:</strong> Vraag proactief of iemand schouderproblemen, rugproblemen of polsproblemen heeft. Alternatief voor plank is staand persen van twee palmen tegen elkaar op borsthoogte, zo hard mogelijk, 45 seconden. Identiek ademhalingsprotocol. Nooit iemand verplichten in een pijnlijke positie te blijven.
+      </div>
+
+      <table class="timing-table">
+        <thead><tr><th>Deel</th><th>Activiteit</th><th>Duur</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Visualisatie ijswater</td><td>3 min</td></tr>
+          <tr><td>2</td><td>Twee rondes plank</td><td>6 min</td></tr>
+          <tr><td>3</td><td>Debrief pijn vs. gevaar</td><td>3 min</td></tr>
+          <tr><td><strong>Totaal</strong></td><td></td><td><strong>12 min</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Werkblad speler</div>
+
+      <div class="ws-intro">Naam: __________________________ &nbsp;&nbsp; Datum: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"It's supposed to be hard. If it wasn't hard, everyone would do it. The hard is what makes it great."</div>
+        <div class="quote-src">Jimmy Dugan — A League of Their Own</div>
+      </div>
+
+      <div class="ws-field-label">Visualisatie: Wat voelde ik bij het idee van ijswater in mijn handen?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Mijn plank tijden:</div>
+      <div class="data-compare">
+        <div class="data-cell">
+          <div class="data-label">Ronde 1</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-label">Ronde 2</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+        <div class="data-cell diff">
+          <div class="data-label">Verschil</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">Wat veranderde er in mijn ademhaling tussen ronde 1 en ronde 2?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">Mijn persoonlijke "valse alarm" momenten in basketball (wanneer stuurt mijn brein druksignalen die eigenlijk informatie zijn, geen gevaar?):</div>
+      <ul class="checklist" style="margin-bottom: 12px;">
+        <li><span class="checkbox"></span> Vrijworpen in de laatste seconden</li>
+        <li><span class="checkbox"></span> Na een fout van mezelf</li>
+        <li><span class="checkbox"></span> Tegenstander speelt agressief</li>
+        <li><span class="checkbox"></span> Coach kijkt mijn richting op</li>
+        <li><span class="checkbox"></span> Mijn eigen: ______________________________</li>
+      </ul>
+
+      <div class="ws-field-label">Wat is het verschil tussen PIJN en GEVAAR in mijn sport? (in mijn eigen woorden)</div>
+      <div class="ws-box" style="min-height: 60px;"></div>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn commitment</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">De volgende keer dat ik een valse alarm voel, ga ik dit doen:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Wetenschappelijke basis</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematische Review</span>
+        <div><strong>Ademhaling en prestatieregulatie</strong></div>
+        <div>Zaccaro et al. (2018) toonden aan in een systematische review dat langzame gecontroleerde ademhaling het autonome zenuwstelsel moduleert, cortisolniveaus verlaagt en cognitieve prestaties onder stress verbetert.</div>
+        <div class="ref">Zaccaro, A., et al. (2018). How breath-control can change your life: A systematic review on psycho-physiological correlates of slow breathing. Frontiers in Human Neuroscience, 12, 353.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT</span>
+        <div><strong>Cognitieve evaluatie van stress</strong></div>
+        <div>Lazarus en Folkman (1984) introduceerden het appraisal model: stress is geen externe factor maar het product van hoe iemand een situatie beoordeelt. Herkadering van pijn als informatie verandert de stressrespons.</div>
+        <div class="ref">Lazarus, R.S., &amp; Folkman, S. (1984). Stress, Appraisal, and Coping. Springer.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Kwalitatief</span>
+        <div><strong>Mentale beeldvorming en fysiologie</strong></div>
+        <div>Holmes en Collins (2001) lieten zien dat vivid mentale visualisatie identieke neurale activatiepatronen oplevert als daadwerkelijke beweging. De visualisatie-respons in deze oefening heeft directe empirische basis.</div>
+        <div class="ref">Holmes, P.S., &amp; Collins, D.J. (2001). The PETTLEP approach to motor imagery. Journal of Applied Sport Psychology, 13(1), 60–83.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinaal</span>
+        <div><strong>Pijn tolerantie en mentale training</strong></div>
+        <div>Meier et al. (2020) toonden aan dat mentale reframing van pijn als signaal in plaats van bedreiging de tolerantietijd significant verhoogt, ook zonder fysieke training. Exact het mechanisme van deze oefening.</div>
+        <div class="ref">Meier, M., et al. (2020). Reappraisal and suppression mediate the relationship between pain catastrophizing and pain intensity. Pain, 161(3), 605–614.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Zoektermen</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Box Breathing Navy SEAL</div>
+        <div class="yt-desc">Uitleg door Mark Divine over box breathing onder extreme stress</div>
+        <div class="yt-search">box breathing Navy SEAL stress performance</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Pain vs Danger Athlete Mindset</div>
+        <div class="yt-desc">Cognitieve evaluatie van pijn in sporters: training vs. blessure</div>
+        <div class="yt-search">athlete pain vs danger mindset reframing sport</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 3: COMEBACK SPRINT ===== -->
+<div class="exercise-block" id="oe3">
+  <div class="ex-hero">
+    <div class="ex-num">03</div>
+    <div>
+      <h2>De Comeback Sprint</h2>
+      <div class="subtitle">Mentale reset na een fout: het team observeert en scoort jouw herstel, niet jouw snelheid.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">15 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Fysiek</span>
+      <span class="tag">Team</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Kernprincipe:</strong> Elke speler doet vier sprints van 20 meter. Na elke sprint krijgt hij of zij een "slecht nieuws bericht" van de moderator. De speler moet zichtbaar resetten voor de volgende sprint. Het team observeert en scoort de RESET KWALITEIT, niet de sprintsnelheid. Snelheid is irrelevant in deze oefening. Dat gezegd hebben is cruciaal.
+      </div>
+
+      <h3 class="section-title">Setup en voorbereiding</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Markeer een sprintafstand van 20 meter met kegels of lijnen op een veld of zaal.</li>
+        <li><span class="step-num">2</span>Leer de groep eerst drie RESET technieken die ze mogen kiezen voor hun persoonlijke ritueel:</li>
+      </ol>
+
+      <div class="phase-block">
+        <div class="phase-title">Reset Techniek A: Adem + Posture</div>
+        <ul>
+          <li>Één diepe ademhaling in, langzaam uit. Schouders actief omlaag brengen.</li>
+          <li>Lichaamstaal van "ik ben er klaar voor", niet van "ik ben gefrustreerd".</li>
+        </ul>
+      </div>
+      <div class="phase-block">
+        <div class="phase-title">Reset Techniek B: Mantra</div>
+        <ul>
+          <li>Één persoonlijke zin die werkt als herstart signaal. Voorbeelden: "next play", "volgende kans", "dit is mijn moment".</li>
+          <li>Speler kiest zijn eigen zin voor aanvang. Moderator noteert per speler.</li>
+        </ul>
+      </div>
+      <div class="phase-block">
+        <div class="phase-title">Reset Techniek C: Bewegingsritueel</div>
+        <ul>
+          <li>Een korte fysieke handeling: twee handen op knieën, klap in handen, voeten stevig neerzetten.</li>
+          <li>Het gaat om het signaal aan het lichaam: dit hoofdstuk is afgesloten, nieuw hoofdstuk begint.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">De vier slechte nieuws berichten</h3>
+      <div class="warn-box">
+        <strong>Moderatorscript:</strong> Gebruik fictieve sportscenario's, geen persoonlijke aanvallen. Altijd in sportvorm. De speler weet dat het gespeeld is, maar de fysieke staat is echt. Dat is wat telt.
+        <br><br>
+        Bericht 1: "Jouw laatste pass was een turnover. Je gaf het weg."<br>
+        Bericht 2: "De coach heeft je wisselspeler aangewezen. Je staat op de bank voor de volgende drie minuten."<br>
+        Bericht 3: "Je hebt net jouw vijfde fout gemaakt. Eén fout meer en je bent eruit."<br>
+        Bericht 4: "De scheids floot je voor een overtreding die je niet hebt begaan. Geen uitleg."
+      </div>
+
+      <h3 class="section-title">Observatieinstructie voor het team</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Het team staat aan de zijlijn. Ze observeren elke speler die sprint.</li>
+        <li><span class="step-num">2</span>Na de sprint en het slechte nieuws hebben ze 10 seconden om op een kaartje te schrijven: "Zag ik de reset? Ja of Nee. Wat zag ik precies?"</li>
+        <li><span class="step-num">3</span>Geen scoren van snelheid of techniek. Alleen de reset. Dit verandert het kijkframe van het hele team.</li>
+        <li><span class="step-num">4</span>Na afloop van alle spelers: lees drie observaties voor, anoniem. Bespreek: wat viel het team op?</li>
+      </ol>
+
+      <h3 class="section-title">Debrief kernvragen</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>"Welk slecht nieuws bericht was het moeilijkst om los te laten? Waarom?"</li>
+        <li><span class="step-num">2</span>"Wat werkte als reset? Wat werkte niet?"</li>
+        <li><span class="step-num">3</span>"Hoeveel procent van een wedstrijd is eigenlijk het reageren op tegenslag?"</li>
+        <li><span class="step-num">4</span>"Als jij een andere speler observed die een goede reset heeft: wat wil jij hem of haar zeggen?"</li>
+      </ol>
+
+      <table class="timing-table">
+        <thead><tr><th>Fase</th><th>Activiteit</th><th>Duur</th></tr></thead>
+        <tbody>
+          <tr><td>Uitleg</td><td>Techniek kiezen + instructie observatieteam</td><td>4 min</td></tr>
+          <tr><td>Uitvoering</td><td>Sprints + slechte nieuws (alle 12 spelers)</td><td>7 min</td></tr>
+          <tr><td>Debrief</td><td>Observatieresultaten + kernvragen</td><td>4 min</td></tr>
+          <tr><td><strong>Totaal</strong></td><td></td><td><strong>15 min</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="tips-box">
+        <strong>Tip voor de moderator:</strong> Geef het slechte nieuws bericht op een neutrale, niet dramatische toon. Overdrijving haalt de geloofwaardigheid weg. Je bent niet acteur, je bent een stressor die informatie geeft. De speler bepaalt hoe hij of zij ermee omgaat.
+      </div>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Werkblad speler</div>
+
+      <div class="ws-intro">Naam: __________________________ &nbsp;&nbsp; Datum: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"You have power over your mind, not outside events. Realize this, and you will find strength."</div>
+        <div class="quote-src">Marcus Aurelius</div>
+      </div>
+
+      <div class="ws-field-label">Mijn gekozen reset techniek voor vandaag:</div>
+      <ul class="checklist" style="margin-bottom: 12px;">
+        <li><span class="checkbox"></span> Techniek A: Adem en houding</li>
+        <li><span class="checkbox"></span> Techniek B: Mantra (mijn zin: ________________)</li>
+        <li><span class="checkbox"></span> Techniek C: Bewegingsritueel (mijn beweging: ________________)</li>
+      </ul>
+
+      <div class="ws-field-label">Mijn ervaringen per sprint:</div>
+      <table style="width:100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px;">
+        <thead>
+          <tr style="background: var(--ink); color: var(--white);">
+            <th style="padding: 6px 10px; text-align: left;">Bericht</th>
+            <th style="padding: 6px 10px; text-align: left;">Reset gelukt?</th>
+            <th style="padding: 6px 10px; text-align: left;">Wat ik voelde</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 6px 10px;">Turnover</td>
+            <td style="padding: 6px 10px;">Ja / Nee / Half</td>
+            <td style="padding: 6px 10px; min-width: 120px;"></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--line); background: #f8f8f8;">
+            <td style="padding: 6px 10px;">Bank</td>
+            <td style="padding: 6px 10px;">Ja / Nee / Half</td>
+            <td style="padding: 6px 10px;"></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 6px 10px;">Vijfde fout</td>
+            <td style="padding: 6px 10px;">Ja / Nee / Half</td>
+            <td style="padding: 6px 10px;"></td>
+          </tr>
+          <tr style="background: #f8f8f8;">
+            <td style="padding: 6px 10px;">Valse fluit</td>
+            <td style="padding: 6px 10px;">Ja / Nee / Half</td>
+            <td style="padding: 6px 10px;"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ws-field-label">Welk bericht was het moeilijkst om los te laten? Waarom?</div>
+      <div class="ws-box" style="min-height: 50px;"></div>
+
+      <div class="ws-field-label">Wat zag ik bij een teamgenoot die een goede reset had?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Mijn persoonlijke reset ritueel (definitieve keuze na vandaag):</div>
+      <div style="font-size: 12px; margin-bottom: 6px;">Stap 1:</div>
+      <div class="ws-line"></div>
+      <div style="font-size: 12px; margin: 6px 0;">Stap 2:</div>
+      <div class="ws-line"></div>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn commitment</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">Ik ga mijn reset ritueel gebruiken wanneer:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Wetenschappelijke basis</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematische Review</span>
+        <div><strong>Foutherstel in topsport</strong></div>
+        <div>Jordet en Hartman (2008) bestudeerden penaltyschoppen in WK finales: de tijd tussen een gemiste strafschop en de volgende taak was de sterkste voorspeller van vervolgprestaties. Snel resetten, niet verwerken, is de vaardigheid.</div>
+        <div class="ref">Jordet, G., &amp; Hartman, E. (2008). Avoidance motivation and choking under pressure in soccer penalty shootouts. Journal of Sport &amp; Exercise Psychology, 30(4), 450–457.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT</span>
+        <div><strong>Pre-performance routines</strong></div>
+        <div>Moran (1996) toonde aan dat consistente pre-performance rituelen de aandacht richten, onzekerheid reduceren en de cognitieve belasting verlagen. Het ritueel is geen bijgeloof maar een cognitieve ankertechniek.</div>
+        <div class="ref">Moran, A.P. (1996). The Psychology of Concentration in Sport Performers. Psychology Press.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Kwalitatief</span>
+        <div><strong>Zelfgesprek na fouten</strong></div>
+        <div>Hardy, Hall en Alexander (2001) lieten zien dat de inhoud van interne zelfspraak na een fout bepalend is voor hersteltijd. Instructieve zelfspraak ("schouders omlaag, volgende bal") werkt beter dan motivationele slogans.</div>
+        <div class="ref">Hardy, J., Hall, C.R., &amp; Alexander, M.R. (2001). Exploring self-talk and affective states in sport. Journal of Sports Sciences, 19(7), 469–475.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinaal</span>
+        <div><strong>Emotieregulatie en sportprestatie</strong></div>
+        <div>Tamminen en Holt (2012) toonden via longitudinale interviews aan dat jonge atleten die expliciete emotieregulatiestrategieën leren (niet alleen onderdrukking) consistenter presteren in druksituaties dan controlegroepen.</div>
+        <div class="ref">Tamminen, K.A., &amp; Holt, N.L. (2012). Adolescent athletes' learning about coping and the roles of parents and teammates. Journal of Sport Sciences, 30(3), 221–234.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Zoektermen</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">NBA next play mentality</div>
+        <div class="yt-desc">Professionele basketballers over het loslaten van fouten en resetten</div>
+        <div class="yt-search">NBA player next play mentality mistake recovery</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Pre-performance routine sport youth</div>
+        <div class="yt-desc">Hoe jonge atleten een herstelritueel opbouwen</div>
+        <div class="yt-search">pre performance routine youth athlete reset ritual</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== OEFENING 4: TEAM PLANK HOLD ===== -->
+<div class="exercise-block" id="oe4">
+  <div class="ex-hero">
+    <div class="ex-num">04</div>
+    <div>
+      <h2>Team Plank Hold</h2>
+      <div class="subtitle">Collectieve verantwoordelijkheid: als één persoon stopt, stopt het hele team. Samen of niet.</div>
+    </div>
+    <div class="ex-tags">
+      <span class="tag orange">12 min</span>
+      <span class="tag">U14+</span>
+      <span class="tag">Fysiek</span>
+      <span class="tag">Team</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-mod">
+      <div class="col-label"><span class="dot dot-mod"></span> Moderatorhandleiding</div>
+
+      <div class="info-box">
+        <strong>Kernprincipe:</strong> De plank is het medium, maar niet het doel. Het doel is te voelen hoe collectieve verantwoordelijkheid individuele inspanning verandert. Wanneer spelers weten dat hun stoppen het hele team stopt, verandert hun intern gesprek. Dat is de oefening.
+      </div>
+
+      <h3 class="section-title">Ronde 1: Klassieke groepsplank (referentie)</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Iedereen in plankpositie. Geen specifieke regel over stoppen. Gewoon zo lang mogelijk houden. Noteer de tijd tot de eerste persoon stopt en de tijd tot meer dan de helft gestopt is.</li>
+        <li><span class="step-num">2</span>Aanmoediging is VERPLICHT: iedereen die nog staat moet aanmoedigen wie het moeilijk heeft. Dit is geen optie. Moderator intervenieert als iemand stil is: "Jij staat nog, gebruik je stem."</li>
+        <li><span class="step-num">3</span>Noteer de resulterende tijd op het bord.</li>
+      </ol>
+
+      <h3 class="section-title">Ronde 2: Collectieve plank met stopstraf</h3>
+      <div class="phase-block">
+        <div class="phase-title"><span class="phase-badge">Nieuwe regel</span> Als één stopt, stopt iedereen</div>
+        <ul>
+          <li>Leg de regel exact uit: "Als één persoon zijn knieën laat zakken, zeg ik STOP en stopt de timer voor iedereen. We beginnen opnieuw."</li>
+          <li>Dit is geen straf voor de persoon die stopt. Het is een teamregel. Benoem dit expliciet: "Het is niet de schuld van één persoon. Het is een teamsituatie."</li>
+          <li>Geef het team 30 seconden om te overleggen voor de plank begint: "Hoe gaan jullie communiceren? Wie roept een waarschuwing als hij of zij het moeilijk krijgt?"</li>
+          <li>Start de timer. Observeer hoe het communicatiepatroon verandert vergeleken met ronde 1.</li>
+        </ul>
+      </div>
+
+      <h3 class="section-title">Moderatorrollen tijdens de plank</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>Tijdhouder: jij houdt de stopwatch, jij bepaalt wanneer de timer stopt. Toon de tijd elke 20 seconden: "20 seconden, sterk."</li>
+        <li><span class="step-num">2</span>Stimulator: als het stil is, geef je een zachte prompt: "Kijk links en rechts. Jullie team is er nog."</li>
+        <li><span class="step-num">3</span>Na stopper: als iemand stopt, zeg je onmiddellijk STOP in een neutrale toon. Geen drama. "We noteren de tijd. We doen het opnieuw." Geef het team 15 seconden rust en informeel overleg.</li>
+        <li><span class="step-num">4</span>Derde poging max: doe niet meer dan drie pogingen in ronde 2. Vermoeidheid werkt dan tegen de oefening. Eindig altijd op een succesvolle poging als mogelijk.</li>
+      </ol>
+
+      <h3 class="section-title">Debrief kernvragen</h3>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>"Wat veranderde er in hoe je anderen aanmoedigde wanneer je wist dat hun stoppen jouw plank beëindigde?"</li>
+        <li><span class="step-num">2</span>"Wat veranderde er in je eigen hoofdgesprek wanneer je wist dat het team stopt als jij stopt?"</li>
+        <li><span class="step-num">3</span>"Is dit een eerlijke regel? Of is het te hard? Waarom?"</li>
+        <li><span class="step-num">4</span>"In een echte wedstrijd: welke momenten voelen als 'team plank met stopstraf'?"</li>
+        <li><span class="step-num">5</span>"Collectieve verantwoordelijkheid kan zwaar voelen. Wanneer is het krachtig en wanneer is het giftig?"</li>
+      </ol>
+
+      <div class="warn-box">
+        <strong>Belangrijke waarschuwing over collectieve druk:</strong> Collectieve accountability kan omslaan naar sociale druk en schaamte als de moderator dit niet bewaakt. Als de groep na een stop begint te wijzen naar een individu (subtiel of direct), interveneer onmiddellijk: "We wijzen niet. We communiceren. Wat had het team anders kunnen doen?" De focus ligt altijd op het systeem, nooit op de zwakste schakel.
+      </div>
+
+      <div class="tips-box">
+        <strong>Blessuremodificatie:</strong> Iedereen die niet kan planken mag een knie neerzetten (halve plank). De tijdsmeting gaat door. Het principe blijft intact. Zeg dit voor aanvang: niemand hoeft pijn te hebben om mee te doen.
+      </div>
+
+      <table class="timing-table">
+        <thead><tr><th>Ronde</th><th>Activiteit</th><th>Duur</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Referentieplank + aanmoedigen</td><td>3 min</td></tr>
+          <tr><td>2</td><td>Collectieve plank (maximaal 3 pogingen)</td><td>5 min</td></tr>
+          <tr><td>Debrief</td><td>Kernvragen + terugkoppeling</td><td>4 min</td></tr>
+          <tr><td><strong>Totaal</strong></td><td></td><td><strong>12 min</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-ws">
+      <div class="col-label"><span class="dot dot-ws"></span> Werkblad speler</div>
+
+      <div class="ws-intro">Naam: __________________________ &nbsp;&nbsp; Datum: ______________</div>
+
+      <div class="ws-quote">
+        <div class="quote-text">"Individual commitment to a group effort — that is what makes a team work, a company work, a society work, a civilization work."</div>
+        <div class="quote-src">Vince Lombardi</div>
+      </div>
+
+      <div class="ws-field-label">Onze resultaten:</div>
+      <div class="data-compare">
+        <div class="data-cell">
+          <div class="data-label">Ronde 1</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-label">Beste poging R2</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+        <div class="data-cell diff">
+          <div class="data-label">Verschil</div>
+          <div class="data-value">__</div>
+          <div class="data-unit">seconden</div>
+        </div>
+      </div>
+
+      <div class="ws-field-label">Wat veranderde er in jou toen je wist dat stoppen het team stopte?</div>
+      <div class="ws-box" style="min-height: 60px;"></div>
+
+      <div class="ws-field-label">Hoe communiceerde het team in ronde 2 anders dan in ronde 1?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Is collectieve verantwoordelijkheid eerlijk? Omcirkel en leg uit:</div>
+      <ul class="checklist" style="margin-bottom: 8px;">
+        <li><span class="checkbox"></span> Ja, want:</li>
+        <li><span class="checkbox"></span> Nee, want:</li>
+        <li><span class="checkbox"></span> Soms, want:</li>
+      </ul>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">In welke basketbalmoment lijkt dit het meest?</div>
+      <div class="ws-lines"><div class="ws-line"></div><div class="ws-line"></div></div>
+
+      <div class="ws-field-label">Wanneer wordt collectieve verantwoordelijkheid krachtig vs. giftig?</div>
+      <table style="width:100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px;">
+        <thead>
+          <tr style="background: var(--ink); color: var(--white);">
+            <th style="padding: 7px 12px; text-align: left;">Krachtig wanneer...</th>
+            <th style="padding: 7px 12px; text-align: left;">Giftig wanneer...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
+            <td style="padding: 8px 12px; border-bottom: 1px solid var(--line); height: 32px;"></td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 12px; height: 32px;"></td>
+            <td style="padding: 8px 12px; height: 32px;"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="commit-box">
+        <div class="commit-label">Mijn commitment aan het team</div>
+        <div style="font-size: 12px; margin-bottom: 8px;">In de komende wedstrijd ga ik mijn teamgenoten op dit specifieke moment ondersteunen:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div style="font-size: 12px; margin: 8px 0 4px;">Op deze manier:</div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+        <div class="ws-line" style="border-bottom: 1px solid var(--orange);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lit-section">
+    <div style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Wetenschappelijke basis</div>
+    <div class="lit-grid">
+      <div class="lit-item">
+        <span class="tier tier-sr">Systematische Review</span>
+        <div><strong>Collectieve efficacy in sport</strong></div>
+        <div>Bandura (1997) introduceerde collectieve efficacy als teamequivalent van zelfvertrouwen. Hoe hoger het gedeelde geloof dat het team slaagt, hoe meer individuele leden bijdragen. De plankregel activeert dit mechanisme direct.</div>
+        <div class="ref">Bandura, A. (1997). Self-efficacy: The exercise of control. W.H. Freeman.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">RCT</span>
+        <div><strong>Social loafing en identificatie</strong></div>
+        <div>Karau en Williams (1993) toonden aan dat sociale luiheid (minder hard werken in groepen) verdwijnt wanneer individuele bijdrage zichtbaar en meetbaar is. De stopstraf maakt bijdrage maximaal zichtbaar.</div>
+        <div class="ref">Karau, S.J., &amp; Williams, K.D. (1993). Social loafing: A meta-analytic review and theoretical integration. Journal of Personality and Social Psychology, 65(4), 681–706.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-qual">Kwalitatief</span>
+        <div><strong>Gedeelde verantwoordelijkheid in jeugdteams</strong></div>
+        <div>Holt et al. (2008) lieten via kwalitatief onderzoek zien dat jonge atleten in teams met expliciete collectieve normen hoger scoren op doorzettingsvermogen en lagere burnout percentages hebben dan in teams met only-individuele normen.</div>
+        <div class="ref">Holt, N.L., et al. (2008). A grounded theory of positive youth development through sport based on results from a qualitative meta-study. International Review of Sport and Exercise Psychology, 1(2), 113–124.</div>
+      </div>
+      <div class="lit-item">
+        <span class="tier tier-rct">Longitudinaal</span>
+        <div><strong>Aanmoedigen en pijntolerantie</strong></div>
+        <div>Cohen, Ejsmond-Frey, Knight en Dunbar (2010) toonden aan dat teamlidmaatschap en actieve aanmoediging van anderen de pijntolerantie significant verhoogt via endorfineafgifte. Aanmoedigen is geen soft gedrag maar fysiologie.</div>
+        <div class="ref">Cohen, E.E., Ejsmond-Frey, R., Knight, N., &amp; Dunbar, R.I. (2010). Rowers' high: Behavioural synchrony is correlated with elevated pain thresholds. Biology Letters, 6(1), 106–108.</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; font-weight: 800; margin: 20px 0 8px;">YouTube Zoektermen</div>
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-title">Collective accountability team sport</div>
+        <div class="yt-desc">Hoe topteams collectieve verantwoordelijkheid opbouwen zonder schuldcultuur</div>
+        <div class="yt-search">collective accountability team sport culture psychology</div>
+      </div>
+      <div class="yt-item">
+        <div class="yt-title">Social loafing sport tegengaan</div>
+        <div class="yt-desc">Praktische uitleg van sociale luiheid in teams en hoe je het doorbreekt</div>
+        <div class="yt-search">social loafing sport team individual accountability</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end page-body -->
+</body>
+</html>
