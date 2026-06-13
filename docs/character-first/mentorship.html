@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mentorship — Character First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  /* HERO */
+  .m-hero { display: grid; grid-template-columns: 1.05fr .95fr; min-height: 92vh; padding-top: 60px; }
+  .m-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 56px 52px 56px 7%; }
+  .m-hero-left h1 { font-size: clamp(34px, 4vw, 56px); margin-bottom: 18px; }
+  .m-hero-left h1 em { font-style: normal; color: var(--ignite); }
+  .m-hero-left .lead { font-size: 17px; line-height: 1.7; color: var(--stone); max-width: 440px; margin-bottom: 32px; }
+  .m-hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .m-hero-right { position: relative; overflow: hidden; background: #1a1f2b; }
+  .m-hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .m-hero-right::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--ignite); }
+
+  /* RECOGNITION */
+  .recog { padding: 64px 7%; border-bottom: 1px solid var(--line); }
+  .recog h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin-bottom: 8px; }
+  .recog .sub { color: var(--stone); font-size: .98rem; margin-bottom: 36px; max-width: 560px; line-height: 1.7; }
+  .recog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .recog-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .recog-card .rq { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--ink); margin-bottom: 8px; line-height: 1.25; }
+  .recog-card p { font-size: .88rem; color: var(--stone); line-height: 1.65; }
+
+  /* WHAT */
+  .what { padding: 64px 7%; background: var(--mist); border-bottom: 1px solid var(--line); }
+  .what-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+  .what-item { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 24px 20px; }
+  .what-item .wi-icon { width: 38px; height: 38px; border-radius: 9px; background: #FEF0EA; display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 14px; }
+  .what-item h3 { font-size: .98rem; margin-bottom: 6px; }
+  .what-item p { font-size: .84rem; color: var(--stone); line-height: 1.6; }
+
+  /* HOW */
+  .how { padding: 64px 7%; border-bottom: 1px solid var(--line); }
+  .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+  .how-step { position: relative; padding-left: 14px; }
+  .how-step .hs-num { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 2.4rem; color: rgba(240,90,40,.22); line-height: 1; margin-bottom: 10px; }
+  .how-step h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .how-step p { font-size: .9rem; color: var(--stone); line-height: 1.65; }
+
+  /* PRACTICAL */
+  .practical { padding: 56px 7%; border-bottom: 1px solid var(--line); display: flex; gap: 14px; flex-wrap: wrap; }
+  .fact { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 30px; padding: 10px 18px; font-size: .9rem; color: var(--ink-soft); font-weight: 500; }
+  .fact .fi { font-size: 15px; }
+
+  /* CTA */
+  .m-cta { padding: 72px 7%; background: var(--ink); color: #fff; text-align: center; }
+  .m-cta .eyebrow { color: var(--ignite); }
+  .m-cta h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 14px; }
+  .m-cta p { color: #aab4c6; font-size: 1rem; line-height: 1.7; max-width: 480px; margin: 0 auto 28px; }
+  .m-cta .btn-primary { font-size: 15px; padding: 14px 30px; }
+  .m-cta .cta-note { color: #6f7b91; font-size: .82rem; margin-top: 16px; }
+
+  @media(max-width: 860px) {
+    .recog-grid, .what-grid, .how-steps { grid-template-columns: 1fr; }
+    .m-hero { grid-template-columns: 1fr; }
+    .m-hero-right { height: 300px; }
+  }
+</style>
+</head>
+<body>
+<svg style="display:none">
+  <symbol id="mark" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="50" fill="#1C2433"/>
+    <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+    <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+    <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="14" fill="#fff" letter-spacing="3">CF</text>
+  </symbol>
+</svg>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg class="logo-mark"><use href="#mark"/></svg>
+    <span class="wm-text">CHARACTER <span>First</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="methode.html">Methode</a>
+    <a href="aanbod.html">Aanbod</a>
+    <a href="content.html">Content</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="mailto:info@characterfirst.be?subject=Mentorship%20aanvraag" class="nav-cta">Start mentorship</a>
+</nav>
+
+<!-- HERO -->
+<section class="m-hero">
+  <div class="m-hero-left">
+    <span class="eyebrow">Mentorship voor spelers</span>
+    <h1>Word de speler<br>én de <em>mens</em><br>die je wil zijn.</h1>
+    <p class="lead">1-op-1 begeleiding naast het veld. Een persoonlijke mentor die je helpt groeien — in zelfvertrouwen, veerkracht en leiderschap. Voor jou als sporter van 14+.</p>
+    <div class="m-hero-actions">
+      <a href="mailto:info@characterfirst.be?subject=Mentorship%20aanvraag&body=Hoi%2C%20ik%20wil%20graag%20een%20kennismaking%20voor%20mentorship." class="btn-primary">Vraag een kennismaking aan</a>
+      <a href="methode.html" class="btn-ghost">Hoe we werken</a>
+    </div>
+  </div>
+  <div class="m-hero-right">
+    <img src="https://raw.githubusercontent.com/tpauwie/ui-ux-pro-max-skill/main/ChatGPT%20Image%20Jun%2011%2C%202026%2C%2008_07_09%20AM.png" alt="Speler in mentorship traject"/>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<div class="recog">
+  <div class="eyebrow">Herkenbaar?</div>
+  <h2>Sport vraagt meer dan techniek.</h2>
+  <p class="sub">Iedereen ziet je prestaties op het veld. Maar wat je daarbinnen voelt, zie niemand. Daar werken wij aan — samen, in vertrouwen.</p>
+  <div class="recog-grid">
+    <div class="recog-card">
+      <div class="rq">Je twijfelt aan jezelf onder druk.</div>
+      <p>Op belangrijke momenten zakt je hoofd in plaats van dat het je vooruit helpt. We leren je druk omzetten in focus.</p>
+    </div>
+    <div class="recog-card">
+      <div class="rq">Je wil leiden, maar weet niet hoe.</div>
+      <p>Je voelt verantwoordelijkheid voor het team, maar twijfelt over je stem en je rol. We bouwen jouw leiderschap op.</p>
+    </div>
+    <div class="recog-card">
+      <div class="rq">Je wil groeien als mens.</div>
+      <p>Niet alleen beter worden in je sport, maar sterker worden in het leven. Sport is daarvoor het perfecte podium.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT -->
+<div class="what">
+  <div class="eyebrow">Wat mentorship inhoudt</div>
+  <h2 class="sec-title">Een mentor naast je, het hele traject.</h2>
+  <div class="what-grid">
+    <div class="what-item">
+      <div class="wi-icon">💬</div>
+      <h3>1-op-1 gesprekken</h3>
+      <p>Persoonlijke sessies waarin het echt over jou gaat — zonder oordeel, met aandacht.</p>
+    </div>
+    <div class="what-item">
+      <div class="wi-icon">🎯</div>
+      <h3>Persoonlijk groeiplan</h3>
+      <p>Samen bepalen we waar je naartoe wil en welke stappen je daar brengen.</p>
+    </div>
+    <div class="what-item">
+      <div class="wi-icon">🪞</div>
+      <h3>Reflectie &amp; doelen</h3>
+      <p>Je leert jezelf beter kennen en stuurt bewust bij — op en naast het veld.</p>
+    </div>
+    <div class="what-item">
+      <div class="wi-icon">🤝</div>
+      <h3>Vertrouwenspersoon</h3>
+      <p>Iemand naast je coach en je ouders bij wie je altijd terecht kan.</p>
+    </div>
+  </div>
+</div>
+
+<!-- HOW -->
+<div class="how">
+  <div class="eyebrow">Hoe het werkt</div>
+  <h2 class="sec-title">In drie stappen op weg.</h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="hs-num">01</div>
+      <h3>Kennismaking</h3>
+      <p>Een vrijblijvend gesprek waarin we elkaar leren kennen en kijken of het klikt. Geen druk, geen verplichting.</p>
+    </div>
+    <div class="how-step">
+      <div class="hs-num">02</div>
+      <h3>Jouw traject</h3>
+      <p>We stippelen samen een persoonlijk traject uit, afgestemd op jouw doelen en je sportkalender.</p>
+    </div>
+    <div class="how-step">
+      <div class="hs-num">03</div>
+      <h3>Groei</h3>
+      <p>Stap voor stap word je sterker — als speler én als mens. Met je mentor naast je, het hele seizoen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRACTICAL -->
+<div class="practical">
+  <div class="fact"><span class="fi">🎂</span> Vanaf 14 jaar</div>
+  <div class="fact"><span class="fi">👤</span> Individueel, 1-op-1</div>
+  <div class="fact"><span class="fi">🏟️</span> Los van je club</div>
+  <div class="fact"><span class="fi">🗓️</span> Op jouw tempo</div>
+</div>
+
+<!-- CTA -->
+<div class="m-cta">
+  <div class="eyebrow">Klaar om te starten?</div>
+  <h2>Jouw groei begint met<br>één gesprek.</h2>
+  <p>Stuur een bericht en we plannen een vrijblijvende kennismaking. Voor jezelf, of voor een speler die je wil aanmoedigen.</p>
+  <a href="mailto:info@characterfirst.be?subject=Mentorship%20aanvraag&body=Hoi%2C%20ik%20wil%20graag%20een%20kennismaking%20voor%20mentorship." class="btn-primary">Vraag een kennismaking aan</a>
+  <p class="cta-note">of mail rechtstreeks naar info@characterfirst.be</p>
+</div>
+
+<footer>
+  <span class="fl">Character <span>First</span></span>
+  <nav>
+    <a href="methode.html">Methode</a>
+    <a href="aanbod.html">Aanbod</a>
+    <a href="content.html">Content</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <span>© 2026 characterfirst.be</span>
+</footer>
+</body>
+</html>
