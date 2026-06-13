@@ -1,143 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Character First — Social Media Content Package</title>
+<title>Character First — Social Media Content Pakket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --orange: #f05a28;
-    --orange-light: #ff7a48;
-    --orange-dark: #c94415;
-    --black: #0a0a0a;
-    --dark: #111111;
-    --dark2: #1a1a1a;
-    --dark3: #222222;
-    --gray: #888888;
-    --light-gray: #f4f4f4;
-    --white: #ffffff;
-    --card-bg: #ffffff;
-    --border: #e0e0e0;
+    --ignite: #F05A28;
+    --ember:  #D44A1A;
+    --ink:    #1C2433;
+    --ink-soft: #33405A;
+    --growth: #1E8A5B;
+    --focus:  #2F6FB0;
+    --canvas: #FAF7F2;
+    --mist:   #F0ECE4;
+    --white:  #FFFFFF;
+    --stone:  #6E6A63;
+    --line:   #E4DFD6;
+    /* legacy aliases for badge colors */
+    --orange: #F05A28;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #f0f0f0;
-    color: #1a1a1a;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--mist);
+    color: var(--ink);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,h4 {
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -.02em;
   }
 
   /* ---- HEADER ---- */
   .site-header {
-    background: var(--black);
-    padding: 40px 40px 32px;
-    border-bottom: 4px solid var(--orange);
+    background: var(--ink);
+    padding: 40px 7% 32px;
+    border-bottom: 4px solid var(--ignite);
   }
   .site-header .brand {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
   .logo-mark {
-    width: 52px; height: 52px;
-    background: var(--orange);
-    border-radius: 8px;
+    width: 48px; height: 48px;
+    background: var(--ignite);
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 26px; font-weight: 900; color: #fff;
+    font-family: 'Archivo', sans-serif;
+    font-size: 22px; font-weight: 900; color: #fff;
     letter-spacing: -1px;
+    flex-shrink: 0;
   }
   .site-header h1 {
     color: #fff;
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: -0.5px;
+    font-size: 28px;
+    font-family: 'Archivo', sans-serif;
   }
-  .site-header h1 span { color: var(--orange); }
+  .site-header h1 span { color: var(--ignite); }
   .tagline {
-    color: var(--gray);
-    font-size: 14px;
-    letter-spacing: 2px;
+    color: #8893a6;
+    font-size: 12px;
+    letter-spacing: .16em;
     text-transform: uppercase;
-    margin-top: 4px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    margin-top: 3px;
   }
   .header-meta {
     margin-top: 16px;
     display: flex;
-    gap: 24px;
+    gap: 20px;
     flex-wrap: wrap;
   }
   .header-meta span {
-    color: #aaa;
-    font-size: 13px;
+    color: #6f7b91;
+    font-size: 12px;
   }
-  .header-meta strong { color: var(--orange); }
+  .header-meta strong { color: var(--ignite); }
 
   /* ---- NAV ---- */
   .main-nav {
-    background: var(--dark2);
-    padding: 0 40px;
+    background: rgba(250,247,242,.96);
+    backdrop-filter: blur(8px);
+    padding: 0 7%;
     display: flex;
     gap: 4px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--line);
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow-x: auto;
   }
   .main-nav a {
-    color: #888;
+    color: var(--stone);
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Archivo', sans-serif;
     padding: 14px 16px;
-    letter-spacing: 0.5px;
+    letter-spacing: .08em;
     text-transform: uppercase;
     border-bottom: 3px solid transparent;
-    transition: all 0.2s;
+    transition: all 0.15s;
+    white-space: nowrap;
   }
   .main-nav a:hover, .main-nav a.active {
-    color: #fff;
-    border-bottom-color: var(--orange);
+    color: var(--ink);
+    border-bottom-color: var(--ignite);
   }
 
   /* ---- SECTIONS ---- */
   .section {
     display: none;
-    padding: 40px;
+    padding: 40px 7%;
     max-width: 1400px;
     margin: 0 auto;
   }
   .section.active { display: block; }
 
   .section-header {
-    background: var(--dark);
+    background: var(--ink);
     color: #fff;
     padding: 28px 32px;
-    border-radius: 12px;
+    border-radius: 14px;
     margin-bottom: 32px;
-    border-left: 6px solid var(--orange);
+    border-left: 5px solid var(--ignite);
   }
   .section-header h2 {
-    font-size: 24px;
-    font-weight: 900;
+    font-size: 22px;
+    color: #fff;
     margin-bottom: 6px;
   }
   .section-header p {
-    color: #aaa;
-    font-size: 14px;
+    color: #8893a6;
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.6;
   }
   .section-header .month-label {
     display: inline-block;
-    background: var(--orange);
+    background: var(--ignite);
     color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .14em;
     text-transform: uppercase;
     padding: 3px 10px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin-bottom: 10px;
   }
 
@@ -146,20 +168,22 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 32px 0 16px;
+    margin: 36px 0 16px;
   }
   .week-header h3 {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .16em;
     text-transform: uppercase;
-    color: var(--gray);
+    color: var(--stone);
+    white-space: nowrap;
   }
   .week-header::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: #ddd;
+    background: var(--line);
   }
 
   /* ---- POST CARDS ---- */
@@ -171,19 +195,18 @@
   }
 
   .post-card {
-    background: var(--card-bg);
-    border-radius: 12px;
+    background: var(--white);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     transition: box-shadow 0.2s;
   }
   .post-card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 20px rgba(28,36,51,0.10);
   }
 
   .post-card-header {
-    background: var(--black);
+    background: var(--ink);
     padding: 12px 16px;
     display: flex;
     align-items: center;
@@ -197,21 +220,23 @@
   }
 
   .post-type-badge {
+    font-family: 'Archivo', sans-serif;
     font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: .1em;
     text-transform: uppercase;
     padding: 3px 9px;
-    border-radius: 4px;
+    border-radius: 20px;
     white-space: nowrap;
   }
   .badge-exercise { background: #7c3aed; color: #fff; }
-  .badge-science { background: #0891b2; color: #fff; }
-  .badge-coach { background: #059669; color: #fff; }
-  .badge-quote { background: var(--orange); color: #fff; }
-  .badge-bts { background: #d97706; color: #fff; }
-  .badge-story { background: #dc2626; color: #fff; }
-  .badge-faq { background: #374151; color: #fff; }
+  .badge-science  { background: var(--focus); color: #fff; }
+  .badge-coach    { background: var(--growth); color: #fff; }
+  .badge-quote    { background: var(--ignite); color: #fff; }
+  .badge-bts      { background: #d97706; color: #fff; }
+  .badge-story    { background: #dc2626; color: #fff; }
+  .badge-faq      { background: var(--ink-soft); color: #fff; }
+  .badge-teaser   { background: var(--ink-soft); color: #fff; }
 
   .post-meta {
     display: flex;
@@ -223,47 +248,72 @@
     font-size: 10px;
     font-weight: 700;
     padding: 2px 8px;
-    border-radius: 3px;
+    border-radius: 20px;
     letter-spacing: 0.5px;
+    font-family: 'Archivo', sans-serif;
   }
-  .platform-ig { background: #e1306c22; color: #e1306c; border: 1px solid #e1306c55; }
-  .platform-li { background: #0077b522; color: #0077b5; border: 1px solid #0077b555; }
+  .platform-ig { background: rgba(225,48,108,.15); color: #e1306c; border: 1px solid rgba(225,48,108,.3); }
+  .platform-li { background: rgba(0,119,181,.15); color: #0077b5; border: 1px solid rgba(0,119,181,.3); }
   .time-badge {
     font-size: 10px;
-    color: #888;
-    background: #f5f5f5;
-    border-radius: 3px;
-    padding: 2px 7px;
+    color: #8893a6;
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 2px 8px;
   }
 
   .post-card-body {
     padding: 0;
   }
 
+  /* Strategy note */
+  .caption-note {
+    margin: 14px 16px 0;
+    background: var(--mist);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 13px;
+    font-size: 12px;
+    color: var(--stone);
+    line-height: 1.6;
+  }
+  .caption-note strong {
+    color: var(--ignite);
+    font-family: 'Archivo', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+
   /* Tabs inside card */
   .lang-tabs {
     display: flex;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--line);
+    margin-top: 12px;
   }
   .lang-tab {
     flex: 1;
     padding: 10px 16px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    color: #888;
+    color: var(--stone);
     cursor: pointer;
-    background: #fafafa;
+    background: var(--mist);
     border: none;
     border-bottom: 3px solid transparent;
     transition: all 0.15s;
     text-align: center;
   }
   .lang-tab.active {
-    background: #fff;
-    color: var(--orange);
-    border-bottom-color: var(--orange);
+    background: var(--white);
+    color: var(--ignite);
+    border-bottom-color: var(--ignite);
   }
 
   .lang-content { display: none; padding: 16px; }
@@ -272,64 +322,66 @@
   .caption-text {
     font-size: 13.5px;
     line-height: 1.7;
-    color: #333;
+    color: var(--ink);
     white-space: pre-wrap;
     word-break: break-word;
-    background: #f9f9f9;
-    border: 1px solid #eee;
-    border-radius: 6px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: 8px;
     padding: 12px 14px;
     margin-bottom: 12px;
-    font-family: inherit;
+    font-family: 'Inter', inherit;
     max-height: 240px;
     overflow-y: auto;
   }
 
   .copy-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--orange);
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--ignite);
     background: transparent;
-    border: 2px solid var(--orange);
-    border-radius: 6px;
+    border: 2px solid var(--ignite);
+    border-radius: 7px;
     padding: 6px 14px;
     cursor: pointer;
-    letter-spacing: 0.5px;
+    letter-spacing: .08em;
     text-transform: uppercase;
     transition: all 0.15s;
   }
   .copy-btn:hover {
-    background: var(--orange);
+    background: var(--ignite);
     color: #fff;
   }
   .copy-btn.copied {
-    background: #059669;
-    border-color: #059669;
+    background: var(--growth);
+    border-color: var(--growth);
     color: #fff;
   }
 
   /* Visual description */
   .visual-desc {
     margin-top: 12px;
-    background: #fff8f5;
-    border: 1px solid #ffe0d0;
-    border-radius: 6px;
+    background: #FEF0EA;
+    border: 1px solid rgba(240,90,40,.2);
+    border-radius: 8px;
     padding: 10px 12px;
   }
   .visual-desc-label {
+    font-family: 'Archivo', sans-serif;
     font-size: 10px;
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: .14em;
     text-transform: uppercase;
-    color: var(--orange);
+    color: var(--ignite);
     margin-bottom: 4px;
   }
   .visual-desc p {
     font-size: 12px;
-    color: #555;
+    color: var(--stone);
     line-height: 1.5;
   }
 
@@ -516,31 +568,433 @@
   <div class="brand">
     <div class="logo-mark">CF</div>
     <div>
-      <h1>Character <span>First</span></h1>
-      <div class="tagline">Win the person. Win the team.</div>
+      <h1>CHARACTER <span>First</span></h1>
+      <div class="tagline">De mens achter de atleet</div>
     </div>
   </div>
   <div class="header-meta">
-    <span><strong>Program:</strong> Evidence-Based Sports Character Development</span>
-    <span><strong>Sports:</strong> Basketball · Football · Volleyball</span>
-    <span><strong>Age:</strong> U14 → Senior</span>
-    <span><strong>Region:</strong> Belgium</span>
+    <span><strong>Programma:</strong> Karakterontwikkeling via sport</span>
+    <span><strong>Sport:</strong> Basketball · Voetbal · Volleybal</span>
+    <span><strong>Leeftijd:</strong> 14+ → Senior</span>
+    <span><strong>Regio:</strong> België</span>
     <span><strong>Contact:</strong> info@characterfirst.be</span>
   </div>
 </header>
 
 <!-- NAVIGATION -->
 <nav class="main-nav">
-  <a href="#" class="active" onclick="showSection('month1', this)">Month 1 — Awareness</a>
-  <a href="#" onclick="showSection('month2', this)">Month 2 — Education</a>
-  <a href="#" onclick="showSection('month3', this)">Month 3 — Social Proof</a>
-  <a href="#" onclick="showSection('emails', this)">Email Sequences</a>
+  <a href="#" class="active" onclick="showSection('prelaunch', this)">Pre-launch — Teasers</a>
+  <a href="#" onclick="showSection('month1', this)">Maand 1 — Bewustwording</a>
+  <a href="#" onclick="showSection('month2', this)">Maand 2 — Educatie</a>
+  <a href="#" onclick="showSection('month3', this)">Maand 3 — Social Proof</a>
+  <a href="#" onclick="showSection('emails', this)">E-mail Reeksen</a>
+  <a href="#" onclick="downloadCSV(); return false;" style="color:var(--ignite);margin-left:auto">⬇ Download CSV</a>
 </nav>
+
+<!-- ================================================================
+     PRE-LAUNCH: TEASERS (2 weken voor lancering)
+================================================================ -->
+<section id="prelaunch" class="section active">
+  <div class="section-header">
+    <div class="month-label">Pre-launch · Weken -2 tot -1</div>
+    <h2>Teasers — Bouw anticipatie op</h2>
+    <p>Twee weken vóór de lancering. Doel: nieuwsgierigheid wekken, het merk introduceren en een eerste community opbouwen. Geen verkoopboodschappen — enkel herkenning, mysterie en authenticiteit.</p>
+  </div>
+
+  <!-- WEEK -2 -->
+  <div class="week-header"><h3>Week -2 — Er komt iets</h3></div>
+  <div class="posts-grid">
+
+    <!-- Pre-launch Post 1 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-teaser">Teaser</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Di · 18:30</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="caption-note"><strong>Strategie</strong>Eerste post ooit. Doel is niet uitleggen — maar nieuwsgierigheid wekken. Houd het mysterieus. Geen product, geen prijs. Enkel de vraag laten hangen.</div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">Er is iets in de maak.
+
+Iets voor coaches die geloven dat sport meer kan zijn dan winnen.
+Meer dan techniek.
+Meer dan een scorebord.
+
+Voor coaches die 's avonds nadenken over de speler die afhaakt. Over de captain die zijn ploeg verliest. Over de jonge atleet die het potentieel heeft maar zichzelf tegenwerkt.
+
+Wij ook.
+
+Volg ons — het begint binnenkort.
+Character First.
+
+#characterfirst #jeugdsport #coachontwikkeling #karakterontwikkeling #binnenkort</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopieer NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual beschrijving</div>
+            <p>Donker ink-navy achtergrond (#1C2433). CF logo gecentreerd in oranje (#F05A28). Onderaan in klein wit: "Binnenkort · Coming soon". Geen extra tekst — de stilte spreekt.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">Something is coming.
+
+For coaches who believe sport can be more than winning.
+More than technique.
+More than a scoreboard.
+
+For coaches who lie awake thinking about the player who quits. The captain who loses the team. The young athlete who has what it takes but keeps getting in their own way.
+
+Us too.
+
+Follow us — it starts soon.
+Character First.
+
+#characterfirst #youthsport #coaching #characterdevelopment #comingsoon</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual description</div>
+            <p>Dark ink-navy background (#1C2433). CF logo centred in orange (#F05A28). Small white text at bottom: "Binnenkort · Coming soon". No extra text — the silence speaks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-launch Post 2 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-bts">Behind the Scenes</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Do · 12:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="caption-note"><strong>Strategie</strong>LinkedIn-specifiek: persoonlijk verhaal van de oprichter. Coaches op LinkedIn waarderen authenticiteit en vakinhoud. Dit is geen reclame — dit is het "waarom" van het project.</div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">Waarom bouwen we Character First?
+
+Niet omdat er geen goede coaches zijn.
+Maar omdat de beste coaches ons vertelden dat ze willen bouwen aan meer dan prestaties — en de tools niet hadden.
+
+Ze weten dat sport jonge mensen vormt. Ze zien het elke week.
+Maar het systeem geeft hen geen raamwerk. Geen taal. Geen oefeningen.
+
+Dus bouwden we dat.
+
+Een programma voor coaches die al geloven. Maar nu ook kunnen handelen.
+
+Meer volgende week.
+
+#characterfirst #coachontwikkeling #jeugdsport #karakterontwikkeling</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopieer NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual beschrijving</div>
+            <p>Canvas achtergrond (#FAF7F2). Links een schets/notitieboek esthetiek. CF wordmark subtiel rechtsonder. Warme, persoonlijke sfeer — geen polished marketing.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">Why are we building Character First?
+
+Not because there aren't good coaches.
+But because the best coaches told us they want to build more than performance — and didn't have the tools.
+
+They know sport shapes young people. They see it every week.
+But the system gives them no framework. No language. No exercises.
+
+So we built that.
+
+A programme for coaches who already believe. But can now also act.
+
+More next week.
+
+#characterfirst #coaching #youthsport #characterdevelopment</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual description</div>
+            <p>Canvas background (#FAF7F2). Notebook/sketch aesthetic on the left. CF wordmark subtle bottom-right. Warm, personal feel — not polished marketing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-launch Post 3 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-coach">Engagement</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="time-badge">Za · 10:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="caption-note"><strong>Strategie</strong>Stel een vraag — bouw community vóór de lancering. Reacties van coaches zijn goud: ze tonen jou wat leeft, en ze tonen anderen dat Character First voor hen is gemaakt. Reageer op elke reactie persoonlijk.</div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">Aan alle coaches 👇
+
+Wat is het moeilijkste onderdeel van jouw job dat NIETS te maken heeft met techniek, tactiek of fysieke training?
+
+Reacties hieronder. Ik lees ze allemaal.
+
+#characterfirst #jeugdsport #coachontwikkeling #coaching</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopieer NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual beschrijving</div>
+            <p>Lichte canvas achtergrond. De vraag in groot Archivo bold. CF logo klein rechtsonder. Minimalistisch — de vraag is de visual.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">To all coaches 👇
+
+What's the hardest part of your job that has NOTHING to do with technique, tactics or physical training?
+
+Comments below. I read them all.
+
+#characterfirst #youthsport #coaching #characterdevelopment</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual description</div>
+            <p>Light canvas background. Question in large Archivo bold. CF logo small bottom-right. Minimalist — the question is the visual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end posts-grid week -2 -->
+
+  <!-- WEEK -1 -->
+  <div class="week-header"><h3>Week -1 — Dit is Character First</h3></div>
+  <div class="posts-grid">
+
+    <!-- Pre-launch Post 4 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-quote">Merkintroductie</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Di · 18:30</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="caption-note"><strong>Strategie</strong>Eerste officiële merkpost. Vertel wie jullie zijn zonder te verkopen. De slogan "Karakter train je. Net zoals techniek." is de kern van de boodschap. Kort, krachtig, memorabel.</div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">Wij zijn Character First.
+
+We geloven dat sport het perfecte podium is om jongeren te vormen als mens — niet alleen als atleet.
+
+Veerkracht. Zelfkennis. Leiderschap. Communicatie.
+Geen zachte skills. Trainbare vaardigheden.
+
+Karakter train je.
+Net zoals techniek.
+
+Dit is waar we voor staan.
+Morgen starten we.
+
+#characterfirst #karakterontwikkeling #jeugdsport #deмensachterdeatleet #coachontwikkeling</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopieer NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual beschrijving</div>
+            <p>Clean canvas achtergrond (#FAF7F2). CF wordmark groot en gecentreerd. Oranje underlijn onder "CHARACTER". Tagline "Karakter train je. Net zoals techniek." in Archivo bold.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">We are Character First.
+
+We believe sport is the perfect stage to shape young people as human beings — not just as athletes.
+
+Resilience. Self-knowledge. Leadership. Communication.
+Not soft skills. Trainable skills.
+
+Character is trained.
+Just like technique.
+
+This is what we stand for.
+We start tomorrow.
+
+#characterfirst #characterdevelopment #youthsport #coaching #athletedevelopment</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual description</div>
+            <p>Clean canvas background (#FAF7F2). CF wordmark large and centred. Orange underline beneath "CHARACTER". Tagline "Character is trained. Just like technique." in Archivo bold.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-launch Post 5 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-science">Wetenschapsbasis</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Do · 12:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="caption-note"><strong>Strategie</strong>LinkedIn-publiek waardeert onderbouwing. Toon dat Character First geen goed gevoel is — maar wetenschap. Dit bouwt geloofwaardigheid op bij coaches, clubbesturen en beleidsmakers.</div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">🔬 Waarom werkt Character First?
+
+Niet op gevoel. Op wetenschap.
+
+Character First is gebouwd op inzichten uit drie domeinen:
+→ Positieve psychologie (Seligman, Duckworth)
+→ Sportpsychologie (Côté, Fraser-Thomas)
+→ Ervaringsgericht leren (Kolb, Dewey)
+
+De conclusie uit decennia onderzoek: sport vormt karakter — maar alleen als het programma bewust ontworpen is.
+
+Spontane sport: je leert karakter.
+Slecht gecoachte sport: je leert regels te omzeilen.
+Bewust gecoachte sport: je vormt mensen.
+
+Character First geeft coaches het raamwerk om bewust te bouwen.
+
+#characterfirst #sportpsychologie #evidencebased #jeugdsport #coachontwikkeling</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopieer NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual beschrijving</div>
+            <p>Wit/canvas achtergrond. Drie iconen voor de drie onderzoeksdomeinen. Oranje pijlen verbinden de domeinen. CF logo rechtsonder. Grafische, helder leesbare infographic-stijl.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">🔬 Why does Character First work?
+
+Not on feeling. On science.
+
+Character First is built on insights from three domains:
+→ Positive psychology (Seligman, Duckworth)
+→ Sports psychology (Côté, Fraser-Thomas)
+→ Experiential learning (Kolb, Dewey)
+
+The conclusion from decades of research: sport builds character — but only when the programme is intentionally designed.
+
+Unstructured sport: you learn character by chance.
+Poorly coached sport: you learn to bend the rules.
+Intentionally coached sport: you shape people.
+
+Character First gives coaches the framework to build intentionally.
+
+#characterfirst #sportspsychology #evidencebased #youthsport #coaching</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual description</div>
+            <p>White/canvas background. Three icons for the three research domains. Orange arrows connecting the domains. CF logo bottom-right. Graphic, clearly readable infographic style.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-launch Post 6 -->
+    <div class="post-card">
+      <div class="post-card-header">
+        <div class="post-card-header-left">
+          <span class="post-type-badge badge-coach">Programma preview</span>
+        </div>
+        <div class="post-meta">
+          <span class="platform-badge platform-ig">Instagram</span>
+          <span class="platform-badge platform-li">LinkedIn</span>
+          <span class="time-badge">Za · 10:00</span>
+        </div>
+      </div>
+      <div class="post-card-body">
+        <div class="caption-note"><strong>Strategie</strong>Laatste post vóór de lancering. Geef een concrete sneak peek van de 7 thema's. Dit maakt het programma tastbaar en concreet. CTA: volgen voor meer. Morgen gaat het van start.</div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" onclick="switchLang(this, 'nl')">🇧🇪 NL</button>
+          <button class="lang-tab" onclick="switchLang(this, 'en')">🇬🇧 EN</button>
+        </div>
+        <div class="lang-content nl active">
+          <div class="caption-text">Morgen starten we. Hier is een preview.
+
+Het Character First programma werkt met 7 thema's:
+
+01 · Zelfkennis — wie ben jij als sporter en als mens?
+02 · Druk & Stress — druk omzetten in focus
+03 · Communicatie — spreken, luisteren, feedback geven
+04 · Mijn Rol — bijdragen, ook als je niet de ster bent
+05 · Team Eerst — van individu naar collectief
+06 · Veerkracht — opstaan na verlies en teleurstelling
+07 · Leiderschap — leiden vanuit karakter
+
+Ontworpen voor coaches. Gemaakt voor jongeren van 14+.
+
+Volg ons voor de lancering morgen.
+
+#characterfirst #jeugdsport #karakterontwikkeling #coachontwikkeling #7themas</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopieer NL</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual beschrijving</div>
+            <p>7 gekleurde blokken, elk met nummer en thema. Kleuren: oranje, blauw, paars, amber, groen, rood, navy. CF logo bovenaan. Nummering in groot Archivo 900. Strak en overzichtelijk.</p>
+          </div>
+        </div>
+        <div class="lang-content en">
+          <div class="caption-text">We start tomorrow. Here's a preview.
+
+The Character First programme works with 7 themes:
+
+01 · Self-knowledge — who are you as an athlete and as a person?
+02 · Pressure & Stress — converting pressure into focus
+03 · Communication — speaking, listening, giving feedback
+04 · My Role — contributing, even when you're not the star
+05 · Team First — from individual to collective
+06 · Resilience — getting up after loss and disappointment
+07 · Leadership — leading from character
+
+Designed for coaches. Made for young people 14+.
+
+Follow us for tomorrow's launch.
+
+#characterfirst #youthsport #characterdevelopment #coaching #7themes</div>
+          <button class="copy-btn" onclick="copyText(this)">📋 Copy EN</button>
+          <div class="visual-desc">
+            <div class="visual-desc-label">Visual description</div>
+            <p>7 coloured blocks, each with number and theme. Colours: orange, blue, purple, amber, green, red, navy. CF logo at top. Numbering in large Archivo 900. Clean and clear.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end posts-grid week -1 -->
+</section>
 
 <!-- ================================================================
      MONTH 1: AWARENESS
 ================================================================ -->
-<section id="month1" class="section active">
+<section id="month1" class="section">
   <div class="section-header">
     <div class="month-label">Month 1 · Weeks 1–4</div>
     <h2>Awareness — Introduce the Concept</h2>
@@ -4027,6 +4481,56 @@ function copyText(btn) {
     btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
   });
+}
+
+function downloadCSV() {
+  const rows = [['Week', 'Fase', 'Post type', 'Platform', 'Tijdstip', 'Strategie', 'Caption NL', 'Caption EN', 'Visual beschrijving NL']];
+
+  // Loop over every section
+  document.querySelectorAll('.section').forEach(section => {
+    const fase = section.querySelector('.month-label') ? section.querySelector('.month-label').textContent.trim() : section.id;
+
+    let currentWeek = '';
+    section.querySelectorAll('.week-header, .post-card').forEach(el => {
+      if (el.classList.contains('week-header')) {
+        currentWeek = el.querySelector('h3') ? el.querySelector('h3').textContent.trim() : '';
+        return;
+      }
+      // post-card
+      const typeEl = el.querySelector('.post-type-badge');
+      const type = typeEl ? typeEl.textContent.trim() : '';
+
+      const platforms = [...el.querySelectorAll('.platform-badge')].map(p => p.textContent.trim()).join(' + ');
+      const time = el.querySelector('.time-badge') ? el.querySelector('.time-badge').textContent.trim() : '';
+
+      const stratEl = el.querySelector('.caption-note');
+      const strat = stratEl ? stratEl.textContent.replace(/^Strategie\s*/i, '').trim() : '';
+
+      const nlEl = el.querySelector('.lang-content.nl .caption-text');
+      const enEl = el.querySelector('.lang-content.en .caption-text');
+      const visEl = el.querySelector('.lang-content.nl .visual-desc p');
+
+      const nl = nlEl ? nlEl.textContent.trim() : '';
+      const en = enEl ? enEl.textContent.trim() : '';
+      const vis = visEl ? visEl.textContent.trim() : '';
+
+      rows.push([currentWeek, fase, type, platforms, time, strat, nl, en, vis]);
+    });
+  });
+
+  // Build CSV
+  const csv = rows.map(row =>
+    row.map(cell => '"' + String(cell).replace(/"/g, '""') + '"').join(',')
+  ).join('\r\n');
+
+  const bom = '﻿'; // UTF-8 BOM for Excel
+  const blob = new Blob([bom + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'CharacterFirst_SocialMedia_Planning.csv';
+  a.click();
+  URL.revokeObjectURL(url);
 }
 </script>
 </body>
