@@ -44,6 +44,12 @@
   footer{text-align:center;padding:32px;color:var(--stone);font-size:.82rem;border-top:1px solid var(--line)}
   .links{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap}
   .links a{color:var(--orange);text-decoration:none;font-weight:600;font-size:.9rem}
+  .pcard-pdfs{display:flex;gap:7px;margin-top:10px}
+  .pcard-pdf{display:inline-block;font-size:.72rem;font-weight:700;font-family:'Archivo',sans-serif;padding:4px 9px;border-radius:5px;cursor:pointer;text-decoration:none;transition:background .15s}
+  .pcard-pdf-nl{background:rgba(28,36,51,.08);color:var(--ink)}
+  .pcard-pdf-nl:hover{background:rgba(28,36,51,.16)}
+  .pcard-pdf-en{background:rgba(240,90,40,.1);color:var(--orange)}
+  .pcard-pdf-en:hover{background:rgba(240,90,40,.2)}
 </style>
 </head>
 <body>
@@ -66,7 +72,10 @@
         <div class="pcard-en">Self-Knowledge & Identity</div>
         <div class="pcard-sub">SDT, kernwaarden & identiteit</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M1.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M1.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M1_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
       <a class="pcard" href="presentatie-m2.html">
         <div class="pcard-top">
@@ -77,7 +86,10 @@
         <div class="pcard-en">Pressure & Stress</div>
         <div class="pcard-sub">Box breathing & coping</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M2.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M2.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M2_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
       <a class="pcard" href="presentatie-m3.html">
         <div class="pcard-top">
@@ -88,7 +100,10 @@
         <div class="pcard-en">My Role in the Team</div>
         <div class="pcard-sub">Rolhelderheid & bijdrage</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M3.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M3.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M3_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
       <a class="pcard" href="presentatie-m4.html">
         <div class="pcard-top">
@@ -99,7 +114,10 @@
         <div class="pcard-en">Communication</div>
         <div class="pcard-sub">Ik-boodschap & feedback</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M4.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M4.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M4_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
       <a class="pcard" href="presentatie-m5.html">
         <div class="pcard-top">
@@ -110,7 +128,10 @@
         <div class="pcard-en">Team First</div>
         <div class="pcard-sub">Psychologische veiligheid</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M5.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M5.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M5_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
       <a class="pcard" href="presentatie-m6.html">
         <div class="pcard-top">
@@ -121,7 +142,10 @@
         <div class="pcard-en">Resilience & Growth Mindset</div>
         <div class="pcard-sub">Cognitieve herframing</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M6.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M6.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M6_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
       <a class="pcard" href="presentatie-m7.html">
         <div class="pcard-top">
@@ -132,7 +156,10 @@
         <div class="pcard-en">Leadership from Within</div>
         <div class="pcard-sub">Gedeeld leiderschap</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M7.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M7.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M7_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
       <a class="pcard" href="presentatie-m8.html">
         <div class="pcard-top">
@@ -143,7 +170,10 @@
         <div class="pcard-en">Legacy & Next Step</div>
         <div class="pcard-sub">Reflectie & intenties</div>
         <div class="pcard-cta">Open presentatie <span>→</span></div>
-        <span class="pcard-pdf" onclick="event.preventDefault();window.location='presentaties-pdf/CF_Presentatie_M8.pdf'">⬇ PDF (NL)</span>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M8.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M8_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
       </a>
   </div>
 
