@@ -1,62 +1,67 @@
-<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><style>
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { width: 1080px; height: 1080px; overflow: hidden; background: #1C2433; font-family: 'Archivo', Arial Black, sans-serif; }
-.wrap { width: 1080px; height: 1080px; display: flex; }
-.left { width: 420px; background: #F05A28; display: flex; flex-direction: column; justify-content: space-between; padding: 72px 56px; }
-.stat-big { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 140px; line-height: 0.9; color: #fff; }
-.stat-unit { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 40px; color: rgba(255,255,255,.75); margin-top: 8px; }
-.stat-label { font-family: 'Inter', Arial, sans-serif; font-size: 20px; font-weight: 600; color: rgba(255,255,255,.85); line-height: 1.4; margin-top: 24px; }
-.right { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 72px 64px; }
-.top-right { display: flex; justify-content: space-between; align-items: flex-start; }
-.wordmark { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 18px; letter-spacing: .04em; color: #FAF7F2; }
-.wordmark span { color: #F05A28; }
-.mid-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.eyebrow { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #F05A28; margin-bottom: 24px; }
-.fact-title { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 48px; line-height: 1.1; color: #FAF7F2; margin-bottom: 28px; }
-.fact-body { font-family: 'Inter', Arial, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.65; color: rgba(250,247,242,.65); }
-.fact-body strong { color: #FAF7F2; font-weight: 600; }
-.source { font-family: 'Inter', Arial, sans-serif; font-size: 14px; color: rgba(250,247,242,.3); margin-top: 28px; font-style: italic; }
-.bottom-right { display: flex; justify-content: space-between; align-items: center; }
-.tagline { font-family: 'Inter', Arial, sans-serif; font-size: 15px; color: rgba(250,247,242,.3); }
-.divider { width: 4px; height: 100%; background: rgba(240,90,40,.25); position: absolute; }
-</style></head>
-<body><div class="wrap">
+body { -webkit-font-smoothing: antialiased; }
+
+body { width:1080px; height:1080px; overflow:hidden; background:#1C2433; }
+.page { width:1080px; height:1080px; display:flex; }
+/* left orange column */
+.left { width:400px; background:#F05A28; display:flex; flex-direction:column; justify-content:space-between; padding:68px 56px; flex-shrink:0; }
+.stat { display:flex; flex-direction:column; }
+.stat-num { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:164px; line-height:.88; color:#fff; letter-spacing:-.02em; }
+.stat-pct { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:64px; color:rgba(255,255,255,.75); line-height:1; margin-top:-10px; }
+.stat-desc { font-family:Arial,sans-serif; font-size:22px; font-weight:700; color:rgba(255,255,255,.9); line-height:1.45; margin-top:24px; }
+.left-label { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.5); }
+/* right dark column */
+.right { flex:1; display:flex; flex-direction:column; justify-content:space-between; padding:68px 64px; }
+.rtop { display:flex; justify-content:space-between; align-items:center; }
+.wordmark { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:24px; letter-spacing:.03em; color:#FAF7F2; }
+.wordmark em { color:#F05A28; font-style:normal; }
+.rmid { flex:1; display:flex; flex-direction:column; justify-content:center; }
+.eyebrow { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:#F05A28; margin-bottom:24px; }
+.rtitle { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:54px; line-height:1.05; color:#FAF7F2; margin-bottom:30px; }
+.rbody { font-family:Arial,sans-serif; font-weight:400; font-size:24px; line-height:1.65; color:rgba(250,247,242,.6); }
+.rbody strong { color:#FAF7F2; font-weight:700; }
+.source { font-family:Arial,sans-serif; font-size:16px; color:rgba(250,247,242,.3); margin-top:32px; font-style:italic; }
+.rbot { display:flex; justify-content:space-between; align-items:center; }
+.tagline { font-family:Arial,sans-serif; font-size:17px; color:rgba(250,247,242,.3); }
+.hashtags { font-family:Arial,sans-serif; font-size:15px; color:rgba(250,247,242,.22); }
+</style></head><body>
+<div class="page">
   <div class="left">
-    <div>
-      <svg width="64" height="64" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <div><svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <circle cx="50" cy="50" r="50" fill="#F05A28"/>
-  <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
   <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
-  <line x1="18" y1="87" x2="82" y2="87" stroke="#fff" stroke-width="2" opacity=".6"/>
-  <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#fff" letter-spacing="3">CF</text>
-</svg>
+  <line x1="18" y1="87" x2="82" y2="87" stroke="#fff" stroke-width="2.5" opacity=".65"/>
+  <text x="50" y="96" text-anchor="middle" dominant-baseline="central"
+    font-family="Arial Black,Arial,sans-serif" font-weight="900"
+    font-size="13" fill="#fff" letter-spacing="3">CF</text>
+</svg></div>
+    <div class="stat">
+      <div class="stat-num">73</div>
+      <div class="stat-pct">%</div>
+      <div class="stat-desc">van topsporters zegt dat mentale training even belangrijk is als fysieke voorbereiding</div>
     </div>
-    <div>
-      <div class="stat-big">73</div>
-      <div class="stat-unit">%</div>
-      <div class="stat-label">van topsporters zegt dat mentale training net zo belangrijk is als fysieke training</div>
-    </div>
-    <div style="font-family:'Archivo',Arial Black,sans-serif;font-weight:800;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5)">Onderzoek & Wetenschap</div>
+    <div class="left-label">Wetenschap &amp; Onderzoek</div>
   </div>
   <div class="right">
-    <div class="top-right">
-      <div class="wordmark">CHARACTER<span>First</span></div>
+    <div class="rtop">
+      <div class="wordmark">CHARACTER<em>First</em></div>
     </div>
-    <div class="mid-right">
+    <div class="rmid">
       <div class="eyebrow">Wetenschappelijk bewezen</div>
-      <div class="fact-title">Karakter is trainbaar — net als techniek</div>
-      <div class="fact-body">
-        Onderzoek toont aan dat <strong>mentale weerbaarheid, zelfregulatie en teamgedrag</strong> ontwikkelbare vaardigheden zijn. Ze vereisen intentionele training — niet talent.
-        <br><br>
-        Character First biedt coaches een <strong>evidence-based raamwerk</strong> om dit systematisch aan te leren.
+      <div class="rtitle">Karakter is trainbaar —<br>net als techniek</div>
+      <div class="rbody">
+        Onderzoek toont aan dat <strong>mentale weerbaarheid, zelfregulatie en teamgedrag</strong> ontwikkelbare vaardigheden zijn. Ze vereisen intentionele training — niet talent.<br><br>
+        Character First geeft coaches een <strong>evidence-based raamwerk</strong> om dit systematisch te trainen naast techniek.
       </div>
       <div class="source">Bron: Duckworth et al., 2007 · Dweck, 2006 · Luthans et al., 2010</div>
     </div>
-    <div class="bottom-right">
+    <div class="rbot">
       <div class="tagline">Win the person. Win the team.</div>
-      <div style="font-family:'Inter',Arial,sans-serif;font-size:14px;color:rgba(250,247,242,.25)">#sportpsychologie #jeugdbasketbal</div>
+      <div class="hashtags">#sportpsychologie #characterfirst</div>
     </div>
   </div>
-</div></body></html>
+</div>
+</body></html>

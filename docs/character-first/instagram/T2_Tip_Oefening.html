@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-font-smoothing: antialiased; }
+
+body { width:1080px; height:1080px; overflow:hidden; background:#FAF7F2; font-family:"Arial Black",Arial,sans-serif; }
+.page { width:1080px; height:1080px; display:flex; flex-direction:column; padding:68px 80px; }
+.top { display:flex; justify-content:space-between; align-items:center; margin-bottom:48px; }
+.wordmark { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:26px; letter-spacing:.03em; color:#1C2433; }
+.wordmark em { color:#F05A28; font-style:normal; }
+.badge { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:14px; letter-spacing:.16em; text-transform:uppercase; background:rgba(240,90,40,.12); color:#F05A28; border:2px solid rgba(240,90,40,.3); padding:10px 22px; border-radius:8px; }
+/* big watermark number */
+.wm { position:absolute; right:40px; top:80px; font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:340px; color:rgba(240,90,40,.06); line-height:1; pointer-events:none; z-index:0; }
+.content { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
+.eyebrow { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:15px; letter-spacing:.2em; text-transform:uppercase; color:#F05A28; margin-bottom:16px; }
+.title { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:86px; line-height:.95; color:#1C2433; margin-bottom:12px; }
+.title em { color:#F05A28; font-style:normal; }
+.subtitle { font-family:Arial,sans-serif; font-size:24px; color:#6E6A63; margin-bottom:48px; line-height:1.5; max-width:700px; }
+.steps { display:flex; flex-direction:column; gap:22px; }
+.step { display:flex; align-items:center; gap:28px; }
+.snum { width:56px; height:56px; border-radius:50%; background:#F05A28; color:#fff; font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:26px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 16px rgba(240,90,40,.35); }
+.stext { font-family:Arial,sans-serif; font-size:26px; color:#1C2433; font-weight:700; line-height:1.3; }
+.bot { display:flex; justify-content:space-between; align-items:center; border-top:2px solid #E4DFD6; padding-top:28px; margin-top:40px; }
+.tagline { font-family:Arial,sans-serif; font-size:18px; color:#6E6A63; }
+</style></head><body>
+<div class="page" style="position:relative">
+  <div class="wm">1</div>
+  <div class="top">
+    <div class="wordmark">CHARACTER<em>First</em></div>
+    <div class="badge">Mentale oefening</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Maand 2 · Druk &amp; Stress</div>
+    <div class="title">Box<br><em>Breathing</em></div>
+    <div class="subtitle">Gebruik dit vóór elke wedstrijd om je activatieniveau te reguleren.</div>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><div class="stext">Adem 4 sec <strong>IN</strong> door de neus</div></div>
+      <div class="step"><div class="snum">2</div><div class="stext"><strong>HOUD</strong> 4 sec vast</div></div>
+      <div class="step"><div class="snum">3</div><div class="stext">Adem 4 sec <strong>UIT</strong> door de mond</div></div>
+      <div class="step"><div class="snum">4</div><div class="stext"><strong>HOUD</strong> 4 sec vast · Herhaal 3×</div></div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="tagline">info@characterfirst.be · characterfirst.be</div>
+    <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" fill="#FAF7F2"/>
+  <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+  <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+  <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2.5" opacity=".5"/>
+  <text x="50" y="96" text-anchor="middle" dominant-baseline="central"
+    font-family="Arial Black,Arial,sans-serif" font-weight="900"
+    font-size="13" fill="#1C2433" letter-spacing="3">CF</text>
+</svg>
+  </div>
+</div>
+</body></html>

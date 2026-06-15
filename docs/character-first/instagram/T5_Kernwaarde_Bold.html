@@ -1,54 +1,58 @@
-<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><style>
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { width: 1080px; height: 1080px; overflow: hidden; background: #1C2433; font-family: 'Archivo', Arial Black, sans-serif; }
-.wrap { width: 1080px; height: 1080px; display: flex; flex-direction: column; justify-content: space-between; padding: 72px; position: relative; }
-.bg-text { position: absolute; font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 380px; color: rgba(240,90,40,.04); line-height: 1; top: 50%; left: 50%; transform: translate(-50%,-50%); white-space: nowrap; pointer-events: none; letter-spacing: -.02em; }
-.top { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
-.wordmark { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 18px; letter-spacing: .04em; color: #FAF7F2; }
-.wordmark span { color: #F05A28; }
-.mid { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
-.eyebrow { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: #F05A28; margin-bottom: 28px; display: flex; align-items: center; gap: 14px; }
-.eyebrow::before { content: ''; width: 40px; height: 3px; background: #F05A28; border-radius: 2px; }
-.value-word { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 120px; line-height: 0.95; color: #FAF7F2; letter-spacing: -.02em; }
-.value-word .accent { color: #F05A28; }
-.value-def { font-family: 'Inter', Arial, sans-serif; font-weight: 400; font-size: 26px; line-height: 1.6; color: rgba(250,247,242,.55); max-width: 760px; margin-top: 36px; border-left: 4px solid #F05A28; padding-left: 24px; }
-.value-def strong { color: rgba(250,247,242,.85); font-weight: 600; }
-.pillars { display: flex; gap: 16px; margin-top: 44px; }
-.pill { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 10px 22px; border-radius: 100px; }
-.pill-active { background: #F05A28; color: #fff; }
-.pill-ghost { background: rgba(250,247,242,.06); color: rgba(250,247,242,.4); border: 1.5px solid rgba(250,247,242,.1); }
-.bottom { display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 2; }
-.tagline { font-family: 'Inter', Arial, sans-serif; font-size: 16px; color: rgba(250,247,242,.3); }
-</style></head>
-<body><div class="wrap">
-  <div class="bg-text">GROEI</div>
+body { -webkit-font-smoothing: antialiased; }
+
+body { width:1080px; height:1080px; overflow:hidden; background:#1C2433; }
+.page { width:1080px; height:1080px; display:flex; flex-direction:column; justify-content:space-between; padding:70px 80px; position:relative; }
+/* big background word */
+.bgword { position:absolute; font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:260px; color:rgba(240,90,40,.055); line-height:1; top:50%; left:50%; transform:translate(-50%,-50%); white-space:nowrap; pointer-events:none; letter-spacing:-.02em; }
+.top { display:flex; justify-content:space-between; align-items:center; position:relative; z-index:2; }
+.wordmark { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:26px; letter-spacing:.03em; color:#FAF7F2; }
+.wordmark em { color:#F05A28; font-style:normal; }
+.mid { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+.eyebrow { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:15px; letter-spacing:.22em; text-transform:uppercase; color:#F05A28; margin-bottom:28px; display:flex; align-items:center; gap:16px; }
+.eyebrow::before { content:''; width:48px; height:4px; background:#F05A28; border-radius:2px; flex-shrink:0; }
+.kword { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:118px; line-height:.9; color:#FAF7F2; letter-spacing:-.02em; }
+.kword em { color:#F05A28; font-style:normal; }
+.kdef { font-family:Arial,sans-serif; font-weight:400; font-size:28px; line-height:1.6; color:rgba(250,247,242,.55); max-width:800px; margin-top:36px; border-left:5px solid #F05A28; padding-left:28px; }
+.kdef strong { color:rgba(250,247,242,.88); font-weight:700; }
+.pillars { display:flex; gap:16px; margin-top:44px; flex-wrap:wrap; }
+.pill { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:14px; letter-spacing:.1em; text-transform:uppercase; padding:12px 24px; border-radius:100px; }
+.pill-on  { background:#F05A28; color:#fff; }
+.pill-off { background:rgba(250,247,242,.07); color:rgba(250,247,242,.38); border:1.5px solid rgba(250,247,242,.1); }
+.bot { display:flex; justify-content:space-between; align-items:flex-end; position:relative; z-index:2; }
+.tagline { font-family:Arial,sans-serif; font-size:18px; color:rgba(250,247,242,.3); }
+.hashtags { font-family:Arial,sans-serif; font-size:16px; color:rgba(250,247,242,.2); }
+</style></head><body>
+<div class="page">
+  <div class="bgword">GROEI</div>
   <div class="top">
-    <div class="wordmark">CHARACTER<span>First</span></div>
-    <svg width="64" height="64" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <div class="wordmark">CHARACTER<em>First</em></div>
+    <svg width="110" height="110" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <circle cx="50" cy="50" r="50" fill="#1C2433"/>
   <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
   <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
-  <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2" opacity=".45"/>
-  <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#fff" letter-spacing="3">CF</text>
+  <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2.5" opacity=".5"/>
+  <text x="50" y="96" text-anchor="middle" dominant-baseline="central"
+    font-family="Arial Black,Arial,sans-serif" font-weight="900"
+    font-size="13" fill="#fff" letter-spacing="3">CF</text>
 </svg>
   </div>
   <div class="mid">
     <div class="eyebrow">Kernwaarde</div>
-    <div class="value-word">Groei<span class="accent">gericht</span></div>
-    <div class="value-def">
-      <strong>Vooruitgang boven perfectie.</strong> De mens van morgen telt — niet de fout van gisteren. Elke training is een kans om 1% beter te worden als speler én als persoon.
-    </div>
+    <div class="kword">Groei<em>gericht</em></div>
+    <div class="kdef"><strong>Vooruitgang boven perfectie.</strong> De mens van morgen telt — niet de fout van gisteren. Elke training is een kans om 1% beter te worden als speler én als persoon.</div>
     <div class="pillars">
-      <div class="pill pill-ghost">🔥 Moedig</div>
-      <div class="pill pill-active">🌱 Groeigericht</div>
-      <div class="pill pill-ghost">🎯 Onderbouwd</div>
-      <div class="pill pill-ghost">🤝 Samen</div>
+      <div class="pill pill-off">🔥 Moedig</div>
+      <div class="pill pill-on">🌱 Groeigericht</div>
+      <div class="pill pill-off">🎯 Onderbouwd</div>
+      <div class="pill pill-off">🤝 Samen</div>
     </div>
   </div>
-  <div class="bottom">
+  <div class="bot">
     <div class="tagline">Win the person. Win the team. · characterfirst.be</div>
-    <div style="font-family:'Inter',Arial,sans-serif;font-size:15px;color:rgba(250,247,242,.25)">#characterfirst #groeimindset</div>
+    <div class="hashtags">#characterfirst #groeimindset #basketbal</div>
   </div>
-</div></body></html>
+</div>
+</body></html>
