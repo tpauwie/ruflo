@@ -1,28 +1,28 @@
-Onderwerp: Preseason cultuurprogramma: wat we deze weken gaan doen
+Onderwerp: Wil je samen met je team aan teamcultuur werken?
 
 Beste coach,
 
-Voor de start van de competitie werken we dit jaar aan iets dat verder gaat dan techniek en tactiek: onze teamcultuur. Hieronder leggen we kort uit wat dit is en wat we van jou nodig hebben.
+Ik werk aan een preseason cultuurprogramma voor sportteams en zoek coaches die het willen uittesten met hun team. Dit is een vrijblijvende uitnodiging: je beslist zelf of je meedoet, en hoeveel.
 
 **Wat is het?**
-Een reeks van 5 sessies die we de komende weken samen met het team doorlopen. Elke sessie duurt 45 tot 60 minuten en behandelt één thema: onze identiteit, ons teamcontract, vertrouwen en veiligheid, conflict en herstel, en cultuur in actie.
+Een reeks van 5 sessies rond teamcultuur: onze identiteit, ons teamcontract, vertrouwen en veiligheid, conflict en herstel, en cultuur in actie. Elke sessie duurt 45 tot 60 minuten en bestaat uit een werkblad per speler plus een begeleidingsblad voor jou als coach.
 
-**Waarom doen we dit?**
+**Waarom zou je meedoen?**
 Teams die voor het seizoen een sterke cultuur bouwen, presteren beter onder druk en herstellen sneller na een verlies. Cultuur is geen extraatje. Het is de basis waarop de rest van het seizoen verder bouwt.
 
 **Wat krijg je?**
-- Een werkblad per speler, per sessie. Spelers vullen dit individueel in voor de groepsdiscussie.
-- Een begeleidingsblad voor jou als coach, met doelstelling, activiteiten, discussievragen en een afsluiting per sessie.
-- Een handleiding die het hele programma samenvat: zie de bijlage "CF_Cultuur_Handleiding_Coach.pdf".
+- Het volledige materiaal gratis: werkbladen voor je spelers en begeleidingsbladen voor jou, per sessie.
+- Een handleiding die het hele programma uitlegt: zie de bijlage "CF_Cultuur_Handleiding_Coach.pdf".
+- Nederlandse en Engelse versie, afhankelijk van wat past bij je team.
 
-**Wat verwachten we van jou?**
-- Plan de 5 sessies in de 3 tot 4 weken voor de competitiestart, idealiter één per week.
-- Lees het begeleidingsblad van een sessie vooraf door (10 tot 15 minuten).
-- Print de werkbladen en begeleid de sessie zoals beschreven.
+**Wat vragen we in ruil?**
+- Een vermelding op social media als je het programma gebruikt (een story of post is genoeg).
+- Eerlijke feedback op het materiaal: wat werkte, wat kan beter, wat misten je spelers.
 
-In totaal vraagt dit ongeveer 5 tot 6 uur van je tijd over heel het preseason, voor een team dat het hele seizoen sterker en veerkrachtiger speelt.
+**Is dit een grote tijdsinvestering?**
+Niet noodzakelijk. Je kiest zelf hoeveel sessies je doet. Je kan perfect starten met alleen de eerste sessie en zien of het iets voor je team is, voor je beslist om verder te gaan. Eén volledige sessie kost je ongeveer een uur, inclusief voorbereiding.
 
-Heb je vragen over een sessie of wil je even afstemmen? Stuur gerust een mail.
+Heb je interesse of wil je eerst wat meer info? Stuur gerust een mail, dan bezorg ik je het materiaal.
 
 Sportieve groeten,
 Tom Pauwaert
