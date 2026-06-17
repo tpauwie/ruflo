@@ -65,7 +65,8 @@ h2 { font-size: 1.2rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 .quote-block { background:var(--ink); color:#fff; border-radius:8px; padding:12px 16px; border-left:4px solid var(--orange); }
 .quote-block p { font-size:0.82rem; font-style:italic; line-height:1.55; margin-bottom:6px; }
 .quote-block cite { font-size:0.64rem; color:rgba(255,255,255,.6); font-style:normal; }
-.page-footer { display:flex; justify-content:space-between; font-size:0.58rem; color:var(--stone); border-top:1px solid var(--line); padding-top:5px; margin-top:auto; flex-shrink:0; }
+.page-footer { display:flex; justify-content:space-between; align-items:center; font-size:0.58rem; color:var(--stone); border-top:1px solid var(--line); padding-top:5px; margin-top:auto; flex-shrink:0; }
+.page-footer .credit { color:var(--gray-400); }
 .cont-header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--orange); padding-bottom:6px; flex-shrink:0; }
 .cont-title { font-size:0.74rem; font-weight:700; color:var(--stone); }
 .cont-session { font-size:0.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--orange); }
@@ -727,6 +728,7 @@ function buildHTML(data, lang) {
   ${data.page1}
   <div class="page-footer">
     <span>${EMAIL}</span>
+    <span class="credit">Created by Tom Pauwaert</span>
     <span>${data.footer} — ${pg} 1/2</span>
   </div>
 </div>
@@ -744,6 +746,7 @@ function buildHTML(data, lang) {
   </div>
   <div class="page-footer">
     <span>${EMAIL}</span>
+    <span class="credit">Created by Tom Pauwaert</span>
     <span>${data.footer} — ${pg} 2/2</span>
   </div>
 </div>
