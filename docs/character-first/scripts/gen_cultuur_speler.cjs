@@ -20,7 +20,7 @@ body { font-family: Arial, sans-serif; color: var(--ink); font-size: 12px; }
 .page {
   width: 210mm; height: 297mm; overflow: hidden;
   padding: 12mm 14mm 10mm; background: var(--canvas);
-  display: flex; flex-direction: column; gap: 8px;
+  display: flex; flex-direction: column; gap: 14px;
   page-break-after: always; break-after: page;
 }
 .page:last-child { page-break-after: auto; break-after: auto; }
@@ -48,7 +48,7 @@ h2 { font-size: 1.2rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 .line { border-bottom: 1.5px solid var(--gray-300); height: 26px; width: 100%; }
 .lines { display: flex; flex-direction: column; gap: 6px; }
 .box { border: 1.5px solid var(--gray-300); border-radius: 4px; background: #fff; }
-.box-xs { min-height: 40px; } .box-sm { min-height: 56px; } .box-md { min-height: 80px; } .box-lg { min-height: 110px; }
+.box-xs { min-height: 48px; } .box-sm { min-height: 72px; } .box-md { min-height: 100px; } .box-lg { min-height: 140px; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .col-label { font-size: 0.7rem; font-weight: 700; margin-bottom: 4px; }
 .field-label { font-size: 0.73rem; color: var(--gray-400); margin-bottom: 3px; }
@@ -61,7 +61,7 @@ h2 { font-size: 1.2rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 .mental-block { background: linear-gradient(135deg,#1C2433 0%,#2d3a4f 100%); color:#fff; border-radius:8px; padding:10px 14px; border-left:4px solid var(--orange); flex-shrink:0; }
 .mental-label { font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--orange); margin-bottom:5px; }
 .mental-box { border:1.5px solid rgba(255,255,255,.2); border-radius:4px; background:rgba(255,255,255,.06); min-height:52px; }
-.quote-wrap { margin-top:auto; padding-top:6px; flex-shrink:0; }
+.quote-wrap { flex-shrink:0; }
 .quote-block { background:var(--ink); color:#fff; border-radius:8px; padding:12px 16px; border-left:4px solid var(--orange); }
 .quote-block p { font-size:0.82rem; font-style:italic; line-height:1.55; margin-bottom:6px; }
 .quote-block cite { font-size:0.64rem; color:rgba(255,255,255,.6); font-style:normal; }
@@ -76,28 +76,28 @@ h2 { font-size: 1.2rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 
 const NL = [
   {
-    s: 1, title: 'Onze Identiteit',
-    sessionLabel: 'Preseason Sessie 1 — Spelerswerkblad',
-    goalLabel: 'Doelstelling Sessie 1',
+    s: 1, title: 'Onze identiteit',
+    sessionLabel: 'Preseason sessie 1: spelerswerkblad',
+    goalLabel: 'Doelstelling sessie 1',
     goals: [
       'Je kan drie waarden benoemen die jij wil dat ons team uitstraalt dit seizoen',
       'Je begrijpt waarom gedeelde identiteit de basis is van een sterke teamcultuur',
       'Je draagt bij aan een gezamenlijke teamomschrijving die het seizoen begeleidt',
     ],
-    intro: 'Cultuur begint niet met regels — het begint met wie je bent. Wie zijn wij als team? Niet wat we willen winnen, maar hoe we willen zijn. Dit werkblad legt het fundament.',
+    intro: 'Cultuur begint niet met regels. Het begint met wie je bent. Wie zijn wij als team? Niet wat we willen winnen, maar hoe we willen zijn. Dit werkblad legt het fundament.',
     page1: `
-      <div class="section-title">Oefening 1 — Wie Zijn Wij?</div>
+      <div class="section-title">Oefening 1: wie zijn wij?</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Drie Woorden voor ons Team</div>
-        <p class="ex-instr">Schrijf drie woorden op die jij wil dat mensen zeggen over ons team — niet over onze resultaten, maar over ons gedrag en karakter.</p>
+        <div class="ex-title"><div class="ex-num">1</div>Drie woorden voor ons team</div>
+        <p class="ex-instr">Schrijf drie woorden op die jij wil dat mensen zeggen over ons team. Niet over onze resultaten, maar over ons gedrag en karakter.</p>
         <div class="field-label">Mijn drie woorden:</div>
         <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
-        <div class="field-label" style="margin-top:8px">Na de groepsdiscussie — de drie woorden die ons team koos:</div>
+        <div class="field-label" style="margin-top:8px">Na de groepsdiscussie: de drie woorden die ons team koos.</div>
         <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
       </div>
-      <div class="section-title">Oefening 2 — Onze Cultuurankers</div>
+      <div class="section-title">Oefening 2: onze cultuurankers</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Wat houd ik vast? Wat laat ik los?</div>
+        <div class="ex-title"><div class="ex-num">2</div>Wat houd ik vast, wat laat ik los?</div>
         <p class="ex-instr">Denk aan vorig seizoen. Welke gewoontes of gedragingen willen we behouden in onze cultuur? Welke laten we bewust achter?</p>
         <div class="two-col">
           <div>
@@ -111,10 +111,10 @@ const NL = [
         </div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Onze Teamzin</div>
+      <div class="section-title">Oefening 3: onze teamzin</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Eén Zin die Ons Beschrijft</div>
-        <p class="ex-instr">Schrijf samen een zin die beschrijft wie jullie dit seizoen willen zijn — als team, niet als individu. Geen slogan, maar een echte belofte.</p>
+        <div class="ex-title"><div class="ex-num">3</div>Eén zin die ons beschrijft</div>
+        <p class="ex-instr">Schrijf samen een zin die beschrijft wie jullie dit seizoen willen zijn, als team, niet als individu. Geen slogan, maar een echte belofte.</p>
         <div class="field-label">Onze teamzin dit seizoen:</div>
         <div class="box box-sm"></div>
         <div class="field-label" style="margin-top:8px">Wat betekent deze zin concreet voor mij als speler?</div>
@@ -122,17 +122,17 @@ const NL = [
       </div>
       <div class="section-title">Persoonlijke reflectie</div>
       <div class="ex">
-        <p class="ex-instr">Welk gedrag van vorig seizoen — van jezelf of het team — was niet in lijn met de cultuur die we willen zijn? Hoe ga je dat aanpakken?</p>
-        <div class="box box-sm"></div>
+        <p class="ex-instr">Welk gedrag van vorig seizoen, van jezelf of het team, was niet in lijn met de cultuur die we willen zijn? Hoe ga je dat aanpakken?</p>
+        <div class="box box-md"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Identiteitsanker</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: identiteitsanker</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf één zin op die jij tegen jezelf zegt wanneer je onder druk staat om je anders te gedragen dan de teamcultuur vraagt. Jouw anker.</p>
         <div class="mental-box"></div>
       </div>`,
-    quote: '"Culture is not just one aspect of the game — it is the game."',
-    cite: 'Lou Gerstner — CEO IBM',
-    footer: 'Preseason S1: Onze Identiteit',
+    quote: '"Culture is not just one aspect of the game, it is the game."',
+    cite: 'Lou Gerstner, CEO IBM',
+    footer: 'Preseason S1: Onze identiteit',
   },
   {
     s: 2, title: 'Ons Team Contract',
