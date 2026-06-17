@@ -136,32 +136,32 @@ const NL = [
     footer: 'Preseason S1: Onze identiteit',
   },
   {
-    s: 2, title: 'Ons Team Contract',
-    sessionLabel: 'Preseason Sessie 2 — Spelerswerkblad',
-    goalLabel: 'Doelstelling Sessie 2',
+    s: 2, title: 'Ons team contract',
+    sessionLabel: 'Preseason sessie 2: spelerswerkblad',
+    goalLabel: 'Doelstelling sessie 2',
     goals: [
-      'Je co-creëert gedragsnormen die jij persoonlijk onderschrijft en nakomt',
-      'Je begrijpt het verschil tussen regels opgelegd door de coach en normen die het team zelf maakt',
-      'Je tekent bewust een contract als uiting van commitment aan de teamcultuur',
+      'Je helpt gedragsnormen maken die jij persoonlijk wil nakomen',
+      'Je snapt het verschil tussen regels van de coach en normen die het team zelf maakt',
+      'Je tekent bewust een contract als bewijs van je commitment',
     ],
-    intro: 'Een teamcontract werkt niet als de coach het maakt. Het werkt als jullie het zelf schrijven. Vandaag bouwen jullie de gedragscode die dit seizoen jullie cultuur beschermt.',
+    intro: 'Een teamcontract werkt niet als de coach het schrijft. Het werkt als jullie het zelf schrijven. Vandaag bouwen jullie de afspraken die jullie cultuur dit seizoen beschermen.',
     page1: `
-      <div class="section-title">Oefening 1 — Wat Verwachten We van Elkaar?</div>
+      <div class="section-title">Oefening 1: wat verwachten we van elkaar?</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Mijn Top 3 Verwachtingen</div>
-        <p class="ex-instr">Schrijf drie concrete gedragingen op die jij van elke teamgenoot verwacht — niet over prestaties, maar over houding, respect en inzet.</p>
+        <div class="ex-title"><div class="ex-num">1</div>Mijn top 3 verwachtingen</div>
+        <p class="ex-instr">Schrijf drie dingen op die jij van elke teamgenoot verwacht. Niet over prestaties, maar over houding, respect en inzet.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">3</div><div class="line"></div></div>
         </div>
         <div class="field-label" style="margin-top:8px">Welke verwachting ben jij zelf het meest bereid na te komen?</div>
-        <div class="box box-xs"></div>
+        <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Oefening 2 — Mijn Persoonlijke Belofte</div>
+      <div class="section-title">Oefening 2: mijn persoonlijke belofte</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Wat Beloof Ik het Team?</div>
-        <p class="ex-instr">Schrijf drie beloftes op die jij persoonlijk maakt aan het team voor dit seizoen. Maak ze zo concreet dat je ze na het seizoen kan evalueren.</p>
+        <div class="ex-title"><div class="ex-num">2</div>Wat beloof ik het team?</div>
+        <p class="ex-instr">Schrijf drie beloftes op die jij dit seizoen aan het team maakt. Maak ze concreet, zodat je ze later kan checken.</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
           <div class="promise-row"><div class="promise-label">Ik beloof om</div><div class="line" style="flex:1"></div></div>
           <div class="promise-row"><div class="promise-label">Ik beloof om</div><div class="line" style="flex:1"></div></div>
@@ -169,10 +169,10 @@ const NL = [
         </div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Handtekening & Commitment</div>
+      <div class="section-title">Oefening 3: handtekening en commitment</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Het Team Contract</div>
-        <p class="ex-instr">Na de groepsdiscussie: schrijf hieronder de drie gezamenlijke gedragsregels die jullie als team hebben gekozen. Teken daarna bewust als uiting van jouw commitment.</p>
+        <div class="ex-title"><div class="ex-num">3</div>Het teamcontract</div>
+        <p class="ex-instr">Na de groepsdiscussie: schrijf hier de drie gedragsregels die jullie als team kozen. Teken daarna, als bewijs van jouw commitment.</p>
         <div class="field-label">Ons team kiest voor:</div>
         <div class="num-list" style="margin-top:4px">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
@@ -189,160 +189,160 @@ const NL = [
       </div>
       <div class="section-title">Reflectie</div>
       <div class="ex">
-        <p class="ex-instr">Welke belofte zal voor jou het moeilijkst zijn om na te komen? Waarom? En hoe ga je jezelf hierop aanspreken?</p>
+        <p class="ex-instr">Welke belofte wordt voor jou het moeilijkst? Waarom? En hoe hou jij jezelf daaraan?</p>
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Commitment onder druk</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf het scenario op waarbij jij de meeste kans hebt om je belofte te breken (bv. na een verlies, conflict, slechte dag). Wat doe je dan concreet om toch je commitment na te komen?</p>
+        <div class="mental-label">🧠 Mentale weerbaarheid: ons contract verdedigen</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Wat doen we als team wanneer een speler steeds opnieuw het contract breekt? Schrijf op wat jij dan zegt of doet.</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Agreements, not rules. You can break a rule. You own an agreement."',
-    cite: 'Atul Gawande — chirurg & teamonderzoeker',
-    footer: 'Preseason S2: Ons Team Contract',
+    cite: 'Atul Gawande, chirurg en teamonderzoeker',
+    footer: 'Preseason S2: Ons team contract',
   },
   {
-    s: 3, title: 'Vertrouwen & Veiligheid',
-    sessionLabel: 'Preseason Sessie 3 — Spelerswerkblad',
-    goalLabel: 'Doelstelling Sessie 3',
+    s: 3, title: 'Vertrouwen en veiligheid',
+    sessionLabel: 'Preseason sessie 3: spelerswerkblad',
+    goalLabel: 'Doelstelling sessie 3',
     goals: [
-      'Je kan uitleggen wat psychologische veiligheid is en waarom het teamcultuur maakt of breekt',
-      'Je herkent concreet gedrag dat vertrouwen opbouwt of afbreekt in jouw team',
-      'Je neemt een bewuste stap om kwetsbaarheid te tonen aan een teamgenoot',
+      'Je legt uit wat psychologische veiligheid is en waarom het de cultuur maakt of breekt',
+      'Je herkent gedrag dat vertrouwen opbouwt of afbreekt in jouw team',
+      'Je zet een bewuste stap om iets persoonlijks te delen met een teamgenoot',
     ],
-    intro: 'Zonder vertrouwen is er geen echte cultuur — alleen façade. Teams die kwetsbaarheid durven tonen, presteren beter, leren sneller en houden langer vol. Vandaag bouwen we dat fundament.',
+    intro: 'Zonder vertrouwen is er geen echte cultuur, alleen een façade. Teams die durven tonen wie ze zijn, presteren beter en houden het langer samen volhouden. Vandaag bouwen we dat fundament.',
     page1: `
-      <div class="section-title">Oefening 1 — Vertrouwensbarometer</div>
+      <div class="section-title">Oefening 1: vertrouwensbarometer</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Hoe Veilig Voel Ik Me in ons Team?</div>
-        <p class="ex-instr">Geef eerlijk een score van 1 tot 10 voor elk van de onderstaande situaties. Er is geen goed of fout antwoord.</p>
+        <div class="ex-title"><div class="ex-num">1</div>Hoe veilig voel ik me in ons team?</div>
+        <p class="ex-instr">Geef eerlijk een score van 1 tot 10 voor elke situatie. Er is geen goed of fout antwoord.</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
           <div class="field-label">Ik durf fouten toe te geven in ons team: <span style="color:var(--orange);font-weight:700">___/10</span></div>
           <div class="field-label">Ik durf om hulp te vragen zonder me zwak te voelen: <span style="color:var(--orange);font-weight:700">___/10</span></div>
-          <div class="field-label">Ik durf mijn mening te zeggen ook als die verschilt: <span style="color:var(--orange);font-weight:700">___/10</span></div>
+          <div class="field-label">Ik durf mijn mening te zeggen, ook als die anders is: <span style="color:var(--orange);font-weight:700">___/10</span></div>
           <div class="field-label">Ik voel me gesteund na een slechte wedstrijd: <span style="color:var(--orange);font-weight:700">___/10</span></div>
         </div>
-        <div class="field-label" style="margin-top:10px">Wat valt je op aan je scores? Waar zit ruimte voor groei?</div>
+        <div class="field-label" style="margin-top:10px">Wat valt je op aan je scores? Waar zie jij ruimte om te groeien?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Oefening 2 — Vertrouwen Bouwen of Breken</div>
+      <div class="section-title">Oefening 2: vertrouwen bouwen of breken</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Concrete Gedragingen</div>
-        <p class="ex-instr">Schrijf twee concrete gedragingen op die vertrouwen bouwen in een team, en twee die vertrouwen afbreken — uit jouw eigen ervaring.</p>
+        <div class="ex-title"><div class="ex-num">2</div>Wat ik zelf zie gebeuren</div>
+        <p class="ex-instr">Schrijf twee dingen op die vertrouwen bouwen in een team. Schrijf ook twee dingen op die vertrouwen breken. Vanuit je eigen ervaring.</p>
         <div class="two-col">
           <div>
             <div class="col-label" style="color:var(--green)">BOUWT VERTROUWEN</div>
-            <div class="lines"><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
           <div>
             <div class="col-label" style="color:#c0392b">BREEKT VERTROUWEN</div>
-            <div class="lines"><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
         </div>
-        <div class="field-label" style="margin-top:8px">Welk gedrag vertoon ik zelf dat vertrouwen kan afbreken?</div>
-        <div class="box box-xs"></div>
+        <div class="field-label" style="margin-top:8px">Welk eigen gedrag kan vertrouwen breken?</div>
+        <div class="box box-sm"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Kwetsbaarheid in Actie</div>
+      <div class="section-title">Oefening 3: iets delen durven</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Iets dat Ik Nooit Vertel</div>
-        <p class="ex-instr">Schrijf één ding op dat je moeilijk vindt in de sport of in het team maar dat je zelden uitspreekt. Je hoeft dit niet te delen — maar het opschrijven is al een stap.</p>
+        <div class="ex-title"><div class="ex-num">3</div>Iets dat ik nooit vertel</div>
+        <p class="ex-instr">Schrijf één ding op dat je moeilijk vindt in de sport of in het team. Iets dat je zelden uitspreekt. Je hoeft dit niet te delen, het opschrijven is al een stap.</p>
         <div class="box box-md"></div>
-        <div class="field-label" style="margin-top:8px">Aan welke teamgenoot zou je dit het makkelijkst kunnen vertellen? Waarom juist aan die persoon?</div>
+        <div class="field-label" style="margin-top:8px">Aan welke teamgenoot zou je dit het makkelijkst vertellen? Waarom juist die persoon?</div>
         <div class="line"></div>
         <div class="field-label" style="margin-top:8px">Wat zou het opleveren als je het wel deelt?</div>
         <div class="box box-sm"></div>
       </div>
       <div class="section-title">Actie deze week</div>
       <div class="ex">
-        <p class="ex-instr">Welke concrete stap ga je deze week zetten om het vertrouwen in het team te vergroten?</p>
-        <div class="box box-xs"></div>
+        <p class="ex-instr">Welke stap zet je deze week om het vertrouwen in het team te vergroten?</p>
+        <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Vertrouwen herstellen</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf op: wat doe jij als het vertrouwen in het team onder druk staat (na een conflict, verlies of spanning)? Jouw drie stappen om het te herstellen.</p>
+        <div class="mental-label">🧠 Mentale weerbaarheid: vertrouwen herstellen</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Wat doen we als team wanneer het vertrouwen breekt door iets dat een teamgenoot deed? Schrijf op wat jij dan zou zeggen of doen.</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Vulnerability is not weakness. It is our greatest measure of courage."',
-    cite: 'Brené Brown — onderzoeker & auteur',
-    footer: 'Preseason S3: Vertrouwen & Veiligheid',
+    cite: 'Brené Brown, onderzoeker en auteur',
+    footer: 'Preseason S3: Vertrouwen en veiligheid',
   },
   {
-    s: 4, title: 'Conflict & Herstel',
-    sessionLabel: 'Preseason Sessie 4 — Spelerswerkblad',
-    goalLabel: 'Doelstelling Sessie 4',
+    s: 4, title: 'Conflict en herstel',
+    sessionLabel: 'Preseason sessie 4: spelerswerkblad',
+    goalLabel: 'Doelstelling sessie 4',
     goals: [
-      'Je herkent het verschil tussen gezond conflict (dat groei stimuleert) en destructief conflict',
-      'Je kan de stappen van herstel toepassen na een spanning of meningsverschil in het team',
-      'Je durft iemand aanspreken zonder de relatie te beschadigen',
+      'Je herkent het verschil tussen een gezond conflict en een conflict dat schade aanricht',
+      'Je past de stappen van herstel toe na spanning of een meningsverschil',
+      'Je durft iemand aan te spreken zonder de relatie te beschadigen',
     ],
-    intro: 'Conflict vermijden is geen cultuur — het is stagnatie. Sterke teams hebben spanning, maar ze weten hoe ze erdoorheen komen. Vandaag leer je conflict zien als groeikans, niet als bedreiging.',
+    intro: 'Conflict vermijden is geen cultuur, het is stilstand. Sterke teams hebben ook spanning, maar ze weten hoe ze er samen doorheen komen. Vandaag leer je conflict zien als een kans om te groeien.',
     page1: `
-      <div class="section-title">Oefening 1 — Mijn Conflictstijl</div>
+      <div class="section-title">Oefening 1: mijn conflictstijl</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Hoe Reageer Ik op Spanning?</div>
+        <div class="ex-title"><div class="ex-num">1</div>Hoe reageer ik op spanning?</div>
         <p class="ex-instr">Kies de reactie die het meest op jou lijkt als er spanning is in het team. Omcirkel of onderstreep jouw stijl.</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;font-size:0.78rem;color:var(--gray-600)">
-          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Vermijder:</strong> Ik negeer het en hoop dat het vanzelf overgaat</div>
-          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Aanpasser:</strong> Ik ga akkoord om de vrede te bewaren, ook als ik het er niet mee eens ben</div>
-          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Confronteerder:</strong> Ik zeg direct wat ik denk, soms te fel</div>
-          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Bemiddelaar:</strong> Ik zoek naar een oplossing die voor iedereen werkt</div>
+          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Vermijder:</strong> ik negeer het en hoop dat het vanzelf overgaat</div>
+          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Aanpasser:</strong> ik ga akkoord om de vrede te bewaren, ook als ik het er niet mee eens ben</div>
+          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Confronteerder:</strong> ik zeg direct wat ik denk, soms te fel</div>
+          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Bemiddelaar:</strong> ik zoek naar een oplossing die voor iedereen werkt</div>
         </div>
-        <div class="field-label" style="margin-top:8px">Wanneer helpt mijn stijl het team? Wanneer schaadt het?</div>
+        <div class="field-label" style="margin-top:8px">Wanneer helpt jouw stijl het team? Wanneer schaadt het?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Oefening 2 — Het Moeilijke Gesprek</div>
+      <div class="section-title">Oefening 2: het moeilijke gesprek</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Iemand Aanspreken</div>
-        <p class="ex-instr">Gebruik het model: Ik zie… Ik voel… Ik vraag je om… Denk aan een spanning met een teamgenoot en schrijf het uit.</p>
+        <div class="ex-title"><div class="ex-num">2</div>Iemand aanspreken</div>
+        <p class="ex-instr">Gebruik dit model: ik zie, ik voel, ik vraag je om. Denk aan spanning met een teamgenoot en schrijf het uit.</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">IK ZIE...</div><div class="line"></div></div>
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">IK VOEL...</div><div class="line"></div></div>
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">IK VRAAG JE OM...</div><div class="line"></div></div>
+          <div><div class="field-label" style="color:var(--orange);font-weight:700">IK ZIE</div><div class="line"></div></div>
+          <div><div class="field-label" style="color:var(--orange);font-weight:700">IK VOEL</div><div class="line"></div></div>
+          <div><div class="field-label" style="color:var(--orange);font-weight:700">IK VRAAG JE OM</div><div class="line"></div></div>
         </div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Herstelstappen</div>
+      <div class="section-title">Oefening 3: herstelstappen</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Hoe Herstelt ons Team na een Conflict?</div>
-        <p class="ex-instr">Na de groepsdiscussie: schrijf de drie stappen op die jullie als team afspreken om spanning te herstellen — snel, eerlijk en zonder nachtje wachten.</p>
+        <div class="ex-title"><div class="ex-num">3</div>Hoe herstelt ons team na een conflict?</div>
+        <p class="ex-instr">Na de groepsdiscussie: schrijf de drie stappen op die jullie als team afspreken om spanning te herstellen. Snel en eerlijk, zonder een nacht te wachten.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">3</div><div class="line"></div></div>
         </div>
-        <div class="field-label" style="margin-top:10px">Wie is de natuurlijke bemiddelaar in ons team? Wat maakt die persoon geschikt?</div>
+        <div class="field-label" style="margin-top:10px">Wie is de natuurlijke bemiddelaar in ons team? Wat maakt die persoon daar goed in?</div>
         <div class="box box-sm"></div>
       </div>
       <div class="section-title">Persoonlijke reflectie</div>
       <div class="ex">
-        <p class="ex-instr">Schrijf een conflict of spanning uit het verleden op dat onopgelost bleef. Wat had je anders kunnen doen? Wat leer je hieruit voor dit seizoen?</p>
+        <p class="ex-instr">Schrijf een conflict of spanning op uit het verleden die onopgelost bleef. Wat had je anders kunnen doen? Wat leer je daaruit voor dit seizoen?</p>
         <div class="box box-md"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Emotie vs Reactie</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf op: wat voel jij fysiek als er spanning is (hartslag, spanning in lijf, gedachten)? En wat doe je de komende 60 seconden vóór je reageert om niet impulsief te handelen?</p>
+        <div class="mental-label">🧠 Mentale weerbaarheid: conflict in het team opvangen</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Wat doen we als team wanneer twee teamgenoten een conflict hebben dat de sfeer beïnvloedt? Schrijf op wat jij dan zou zeggen of doen.</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Peace is not the absence of conflict. It is the ability to handle conflict by peaceful means."',
     cite: 'Ronald Reagan',
-    footer: 'Preseason S4: Conflict & Herstel',
+    footer: 'Preseason S4: Conflict en herstel',
   },
   {
-    s: 5, title: 'Cultuur in Actie',
-    sessionLabel: 'Preseason Sessie 5 — Spelerswerkblad',
-    goalLabel: 'Doelstelling Sessie 5',
+    s: 5, title: 'Cultuur in actie',
+    sessionLabel: 'Preseason sessie 5: spelerswerkblad',
+    goalLabel: 'Doelstelling sessie 5',
     goals: [
-      'Je formuleert concrete rituelen en gewoontes die onze teamcultuur elke week levend houden',
-      'Je weet hoe je elkaar aanspreekt als de cultuur onder druk staat tijdens het seizoen',
+      'Je formuleert rituelen die onze teamcultuur elke week levend houden',
+      'Je weet hoe je elkaar aanspreekt als de cultuur tijdens het seizoen onder druk staat',
       'Je sluit de preseason af met een gedeeld beeld van de cultuur die jullie willen zijn',
     ],
-    intro: 'Cultuur is niet wat je zegt — het is wat je doet als niemand kijkt. Na vier sessies weet je wie jullie willen zijn. Nu gaat het over hoe jullie dat elke dag waarmaken.',
+    intro: 'Cultuur is niet wat je zegt, het is wat je doet als niemand kijkt. Na vier sessies weet je wie jullie willen zijn. Nu gaat het over hoe jullie dat elke dag waarmaken.',
     page1: `
-      <div class="section-title">Oefening 1 — Onze Rituelen</div>
+      <div class="section-title">Oefening 1: onze rituelen</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Rituelen die onze Cultuur Beschermen</div>
-        <p class="ex-instr">Rituelen zijn kleine herhaalde acties die cultuur levend houden. Schrijf drie rituelen op die jullie dit seizoen gaan invoeren — voor training, na een wedstrijd of tijdens moeilijke momenten.</p>
+        <div class="ex-title"><div class="ex-num">1</div>Rituelen die onze cultuur beschermen</div>
+        <p class="ex-instr">Rituelen zijn kleine, herhaalde acties die cultuur levend houden. Schrijf drie rituelen op die jullie dit seizoen invoeren. Voor training, na een wedstrijd of bij een moeilijk moment.</p>
         <div style="display:flex;flex-direction:column;gap:12px;margin-top:6px">
           <div>
             <div class="field-label" style="color:var(--orange);font-weight:700">VOOR TRAINING</div>
@@ -358,22 +358,22 @@ const NL = [
           </div>
         </div>
         <div class="field-label" style="margin-top:8px">Welk ritueel heeft de meeste impact op de teamsfeer? Waarom?</div>
-        <div class="box box-xs"></div>
+        <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Oefening 2 — De Cultuurwacht</div>
+      <div class="section-title">Oefening 2: de cultuurwacht</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Wie Bewaakt onze Cultuur?</div>
-        <p class="ex-instr">Elke speler is verantwoordelijk voor de cultuur — maar soms helpt een expliciet systeem. Schrijf op hoe jullie elkaar aanspreken als het contract niet nageleefd wordt.</p>
-        <div class="field-label">Ons aanspreekmechanisme (hoe, wanneer, met wie):</div>
+        <div class="ex-title"><div class="ex-num">2</div>Wie bewaakt onze cultuur?</div>
+        <p class="ex-instr">Elke speler is verantwoordelijk voor de cultuur. Soms helpt een duidelijke afspraak. Schrijf op hoe jullie elkaar aanspreken als het contract niet wordt nageleefd.</p>
+        <div class="field-label">Ons aanspreekmechanisme, hoe, wanneer, met wie:</div>
         <div class="box box-md"></div>
         <div class="field-label" style="margin-top:6px">Wat doen we als iemand hetzelfde gedrag blijft vertonen?</div>
-        <div class="box box-xs"></div>
+        <div class="box box-sm"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Cultuurmeting halverwege het Seizoen</div>
+      <div class="section-title">Oefening 3: cultuurmeting halverwege het seizoen</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Onze Cultuur-Check op Maand 4</div>
-        <p class="ex-instr">Schrijf drie vragen op die jullie halverwege het seizoen aan elkaar willen stellen om te meten of de cultuur nog leeft. Plan nu al wanneer jullie dit doen.</div>
+        <div class="ex-title"><div class="ex-num">3</div>Onze cultuur-check op maand 4</div>
+        <p class="ex-instr">Schrijf drie vragen op die jullie halverwege het seizoen aan elkaar willen stellen, om te checken of de cultuur nog leeft. Plan nu al wanneer jullie dit doen.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
@@ -382,9 +382,9 @@ const NL = [
         <div class="field-label" style="margin-top:8px">Datum cultuur-check gepland:</div>
         <div class="line"></div>
       </div>
-      <div class="section-title">Mijn Belofte aan het Seizoen</div>
+      <div class="section-title">Mijn belofte aan het seizoen</div>
       <div class="ex">
-        <p class="ex-instr">Schrijf in één krachtige zin wat jij dit seizoen gaat bijdragen aan de teamcultuur — als belofte aan jezelf én aan het team.</p>
+        <p class="ex-instr">Schrijf in één krachtige zin wat jij dit seizoen bijdraagt aan de teamcultuur. Als belofte aan jezelf en aan het team.</p>
         <div class="box box-sm"></div>
         <div class="sign-row">
           <div class="sign-field"><div class="sign-label">Naam</div><div class="line"></div></div>
@@ -392,13 +392,13 @@ const NL = [
         </div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Cultuur onder competitiedruk</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Wanneer staan cultuurwaarden het meest onder druk? Schrijf het scenario op (verliesreeks, interne competitie, speeltijdconflict) en beschrijf jouw persoonlijke actieplan om de cultuur te verdedigen.</p>
+        <div class="mental-label">🧠 Mentale weerbaarheid: cultuur onder competitiedruk</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Wanneer staat onze cultuur het meest onder druk? Denk aan een verliesreeks, interne competitie of een speeltijdconflict. Schrijf het scenario op en wat jij dan doet om onze cultuur te verdedigen.</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Champions behave like champions before they are champions."',
-    cite: 'Bill Walsh — 3× Super Bowl Champion Coach, San Francisco 49ers',
-    footer: 'Preseason S5: Cultuur in Actie',
+    cite: 'Bill Walsh, 3× Super Bowl Champion Coach, San Francisco 49ers',
+    footer: 'Preseason S5: Cultuur in actie',
   },
 ];
 
