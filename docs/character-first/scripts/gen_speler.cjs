@@ -148,8 +148,8 @@ h2 { font-size: 1.25rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 // ─── NL DATA ────────────────────────────────────────────────────────────────
 const NL = [
   {
-    m: 1, title: 'Zelfkennis & Identiteit',
-    monthLabel: 'Maand 1 — Spelerswerkblad',
+    m: 1, title: 'Zelfkennis & identiteit',
+    monthLabel: 'Maand 1, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 1',
     goals: [
       'Je kan drie kernwaarden benoemen die jou als persoon en ploegmaat definiëren',
@@ -158,9 +158,9 @@ const NL = [
     ],
     intro: 'Wie ben jij als speler en als persoon? Dit werkblad helpt je om je eigen krachten, waarden en motivatie beter te begrijpen. Neem de tijd en wees eerlijk.',
     page1: `
-      <div class="section-title">Oefening 1 — Mijn Drie Woorden</div>
+      <div class="section-title">Oefening 1: mijn drie woorden</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Mijn Drie Woorden</div>
+        <div class="ex-title"><div class="ex-num">1</div>Mijn drie woorden</div>
         <p class="ex-instr">Kies drie woorden die jou het best beschrijven als ploegmaat. Vraag daarna twee teamgenoten om ook drie woorden over jou te schrijven.</p>
         <div class="field-label">Mijn drie woorden:</div>
         <div class="line"></div>
@@ -171,9 +171,9 @@ const NL = [
         <div class="field-label" style="margin-top:6px">Wat valt je op als je de lijsten vergelijkt?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Oefening 2 — Energiegever vs Energieslurper</div>
+      <div class="section-title">Oefening 2: energiegever vs energieslurper</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Energiegever vs Energieslurper</div>
+        <div class="ex-title"><div class="ex-num">2</div>Energiegever vs energieslurper</div>
         <p class="ex-instr">Schrijf drie dingen op die je energie geven en drie dingen die energie kosten tijdens training of wedstrijd.</p>
         <div class="two-col">
           <div>
@@ -189,9 +189,9 @@ const NL = [
         <div class="box box-xs"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Persoonlijk Waardenkompas</div>
+      <div class="section-title">Oefening 3: persoonlijk waardenkompas</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Persoonlijk Waardenkompas</div>
+        <div class="ex-title"><div class="ex-num">3</div>Persoonlijk waardenkompas</div>
         <p class="ex-instr">Rangschik onderstaande waarden van 1 (meest belangrijk) tot 6 (minder belangrijk) voor jou als speler en als persoon.</p>
         <div class="rank-grid">
           <div class="rank-item"><div class="rank-box"></div> Loyaliteit</div>
@@ -210,18 +210,18 @@ const NL = [
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Positieve Zelfpraat</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: positieve zelfpraat</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf één zin op die je tegen jezelf zegt wanneer je twijfelt aan jezelf als speler. Herschrijf ze daarna positief als een kracht.</p>
         <div class="field-label" style="color:rgba(255,255,255,.5)">Mijn krachtzin voor dit seizoen:</div>
         <div class="mental-box"></div>
       </div>`,
     quote: '"The most important thing is to try and inspire people so that they can be great in whatever they want to do."',
-    cite: 'Kobe Bryant — 5× NBA Champion',
-    footer: 'Maand 1: Zelfkennis & Identiteit',
+    cite: 'Kobe Bryant, 5× NBA Champion',
+    footer: 'Maand 1: zelfkennis & identiteit',
   },
   {
-    m: 2, title: 'Druk & Stress',
-    monthLabel: 'Maand 2 — Spelerswerkblad',
+    m: 2, title: 'Druk & stress',
+    monthLabel: 'Maand 2, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 2',
     goals: [
       'Je herkent de fysieke en mentale signalen van stress bij jezelf',
@@ -230,9 +230,9 @@ const NL = [
     ],
     intro: 'Druk voelen is normaal. Elk topsporter voelt het. Wat het verschil maakt is hoe je ermee omgaat. Dit werkblad helpt je ontdekken hoe jouw lichaam en geest reageren op stress.',
     page1: `
-      <div class="section-title">Oefening 1 — Box Breathing Logboek</div>
+      <div class="section-title">Oefening 1: box breathing logboek</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Box Breathing Logboek</div>
+        <div class="ex-title"><div class="ex-num">1</div>Box breathing logboek</div>
         <p class="ex-instr">Oefen Box Breathing minstens 3× deze maand. Noteer datum, situatie en hoe je je voelde voor en na (schaal 1–10).</p>
         <div style="display:grid;grid-template-columns:2.5fr 1fr 1fr;gap:6px;margin-top:4px">
           <div class="field-label">DATUM & SITUATIE</div>
@@ -245,7 +245,7 @@ const NL = [
         <div class="field-label" style="margin-top:6px">Wat merk ik na Box Breathing bij mezelf?</div>
         <div class="box box-xs"></div>
       </div>
-      <div class="section-title">Oefening 2 — Stressdagboek</div>
+      <div class="section-title">Oefening 2: stressdagboek</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>Stressdagboek</div>
         <p class="ex-instr">Schrijf na je volgende wedstrijd op: wat voelde je, wat dacht je, wat deed je?</p>
@@ -257,9 +257,9 @@ const NL = [
         <div class="box box-xs"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Worst Case · Best Case · Meest Waarschijnlijk</div>
+      <div class="section-title">Oefening 3: worst case · best case · meest waarschijnlijk</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Worst Case Best Case</div>
+        <div class="ex-title"><div class="ex-num">3</div>Worst case best case</div>
         <p class="ex-instr">Denk aan een situatie die je zenuwachtig maakt. Schrijf de drie scenario's op en maak een plan.</p>
         <div class="two-col">
           <div>
@@ -277,18 +277,18 @@ const NL = [
         <div class="box box-xs"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Pre-Game Routine</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: pre-game routine</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf je ideale mentale voorbereiding op voor een wedstrijd (3 stappen: ademhaling, focus-zin, actie). Oefen dit minstens 2× deze maand.</p>
         <div class="field-label" style="color:rgba(255,255,255,.5)">Mijn pre-game routine in 3 stappen:</div>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Pressure is a privilege — it only comes to those who earn it."',
-    cite: 'Billie Jean King — 39× Grand Slam Champion',
-    footer: 'Maand 2: Druk & Stress',
+    cite: 'Billie Jean King, 39× Grand Slam Champion',
+    footer: 'Maand 2: druk & stress',
   },
   {
-    m: 3, title: 'Mijn Rol in het Team',
-    monthLabel: 'Maand 3 — Spelerswerkblad',
+    m: 3, title: 'Mijn rol in het team',
+    monthLabel: 'Maand 3, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 3',
     goals: [
       'Je kan jouw huidige rol(len) in het team benoemen met concrete voorbeelden',
@@ -297,7 +297,7 @@ const NL = [
     ],
     intro: 'Je hebt niet één rol in een team. Je hebt er meerdere, en ze veranderen. Dit werkblad helpt je ontdekken welke rollen jij vervult en welke je wil ontwikkelen.',
     page1: `
-      <div class="section-title">Oefening 1 — Rolcompass</div>
+      <div class="section-title">Oefening 1: rolcompass</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>Rolcompass</div>
         <p class="ex-instr">Geef jezelf een score van 0 tot 10 voor elk van de vier rollen.</p>
@@ -1081,14 +1081,15 @@ function buildHTML(data, lang) {
 
   <div class="page-footer">
     <span>${EMAIL}</span>
-    <span>${footer} — ${isEN ? 'Page' : 'Pagina'} 1/2</span>
+    <span>Created by Tom Pauwaert</span>
+    <span>${footer} · ${isEN ? 'Page' : 'Pagina'} 1/2</span>
   </div>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page">
   <div class="cont-header">
-    <div class="cont-title">${title} — ${isEN ? 'Continued' : 'Vervolg'}</div>
+    <div class="cont-title">${title}, ${isEN ? 'continued' : 'vervolg'}</div>
     <div class="cont-month">${mLabel}</div>
   </div>
 
@@ -1097,13 +1098,14 @@ function buildHTML(data, lang) {
   <div class="quote-wrap">
     <div class="quote-block">
       <p>${data.quote}</p>
-      <cite>— ${data.cite}</cite>
+      <cite>${data.cite}</cite>
     </div>
   </div>
 
   <div class="page-footer">
     <span>${EMAIL}</span>
-    <span>${footer} — ${isEN ? 'Page' : 'Pagina'} 2/2</span>
+    <span>Created by Tom Pauwaert</span>
+    <span>${footer} · ${isEN ? 'Page' : 'Pagina'} 2/2</span>
   </div>
 </div>
 

@@ -114,6 +114,7 @@ const CSS = `
     border-top: 1px solid var(--line); padding-top: 4px; flex-shrink: 0;
   }
   .footer span { font-size: 8.5px; color: var(--stone); }
+  .footer .credit { color: var(--stone); }
 
   /* ===== PAGE 2 ===== */
   .resources-grid { display: flex; flex-direction: column; gap: 7px; flex-shrink: 0; }
@@ -158,18 +159,18 @@ const CSS = `
 const modulesNL = [
   {
     num: 1, kleur: '#F05A28',
-    title: 'Zelfkennis als Coach',
-    vraag: 'Wie ben jij als coach — en hoe beïnvloedt dat wat er bij je spelers gebeurt?',
-    theorie: 'Coaches zijn de meest invloedrijke volwassenen in het leven van jonge sporters, na de ouders. Maar die invloed is niet neutraal: het is altijd een weerspiegeling van wie de coach zelf is. Het Johari Window (Luft & Ingham, 1955) toont dat effectieve coaching begint met het verkleinen van je "blinde vlek" — de dingen die anderen zien maar jij niet. Coaches die hoge zelfkennis bezitten, gaan bewuster om met macht, druk en relaties.',
+    title: 'Zelfkennis als coach',
+    vraag: 'Wie ben jij als coach? En hoe beïnvloedt dat wat er bij je spelers gebeurt?',
+    theorie: 'Coaches zijn de meest invloedrijke volwassenen in het leven van jonge sporters, na de ouders. Maar die invloed is niet neutraal. Het is altijd een weerspiegeling van wie de coach zelf is. Het Johari Window (Luft & Ingham, 1955) toont dat effectieve coaching begint met het verkleinen van je "blinde vlek". Dat zijn de dingen die anderen zien maar jij niet. Coaches die hoge zelfkennis bezitten, gaan bewuster om met macht, druk en relaties.',
     bron: 'Luft & Ingham (1955) · Rhind & Jowett (2010) · Côté & Gilbert (2009)',
     quotes: [
-      { text: '"Voordat je een leider bent, draait succes om het groeien van jezelf. Wanneer je een leider wordt, draait succes om het groeien van anderen."', auteur: '— Jack Welch' },
-      { text: '"Je kunt anderen alleen leiden zo ver als je jezelf hebt geleid."', auteur: '— John Maxwell' },
+      { text: '"Voordat je een leider bent, draait succes om het groeien van jezelf. Wanneer je een leider wordt, draait succes om het groeien van anderen."', auteur: 'Jack Welch' },
+      { text: '"Je kunt anderen alleen leiden zo ver als je jezelf hebt geleid."', auteur: 'John Maxwell' },
     ],
     reflectie: [
       'Welke drie waarden definiëren jou als coach? Waar komen die vandaan?',
       'Wanneer was je de afgelopen maand het minst trots op jezelf als coach? Wat zegt dat over jou?',
-      'Welk gedrag van spelers triggert jou het sterkst — en waarom denk je dat dat zo is?',
+      'Welk gedrag van spelers triggert jou het sterkst? En waarom denk je dat dat zo is?',
       'Hoe zou een speler die vorig jaar bij jou speelde jou nu omschrijven? Klopt dat met wie je wil zijn?',
       'Wat is jouw grootste blinde vlek als coach? Wie durft jou dat eerlijk te vertellen?',
     ],
@@ -184,32 +185,32 @@ const modulesNL = [
       { titel: 'How Great Leaders Inspire Action', spreker: 'Simon Sinek (TED Talk)', url: 'ted.com/talks/simon_sinek_how_great_leaders_inspire_action', notitie: 'De "Golden Circle": start met waarom. Wat is jouw waarom als coach?' },
     ],
     podcasts: [
-      { naam: 'Finding Mastery', afl: 'Afl. met Pete Carroll — coaching vanuit waarden en identiteit', url: 'findingmastery.com' },
-      { naam: 'The High Performance Podcast', afl: 'Afl. met Jürgen Klopp — wie je bent maakt wie je coacht', url: 'thehighperformancepodcast.com' },
+      { naam: 'Finding Mastery', afl: 'Afl. met Pete Carroll, coaching vanuit waarden en identiteit', url: 'findingmastery.com' },
+      { naam: 'The High Performance Podcast', afl: 'Afl. met Jürgen Klopp, wie je bent maakt wie je coacht', url: 'thehighperformancepodcast.com' },
     ],
     actie: 'Vraag deze week aan één vertrouwde collega of speler: "Wat zie jij in mij als coach dat ik misschien zelf niet zie?" Schrijf het op zonder te verdedigen.',
     commitment: 'Mijn persoonlijke groeipunt als coach dit seizoen is:',
   },
   {
     num: 2, kleur: '#2F6FB0',
-    title: 'Coachingstijl & Autonomie',
-    vraag: 'Motiveer jij spelers — of leer je hen zichzelf te motiveren?',
+    title: 'Coachingstijl & autonomie',
+    vraag: 'Motiveer jij spelers? Of leer je hen zichzelf te motiveren?',
     theorie: 'De Zelfdeterminatietheorie (Deci & Ryan, 1985) toont aan dat mensen het meest gemotiveerd zijn wanneer drie basisbehoeften vervuld zijn: autonomie (ik heb keuze), competentie (ik kan het), en verbondenheid (ik hoor erbij). Controlerende coaches die alleen via druk en dwang werken, ondermijnen intrinsieke motivatie. Autonomy-supportive coaching leidt aantoonbaar tot betere prestaties, minder burnout en hogere pleziersbeleving op lange termijn.',
     bron: 'Deci & Ryan (1985, 2000) · Mageau & Vallerand (2003) · Amorose & Anderson-Butcher (2007)',
     quotes: [
-      { text: '"De beste coaches creëren omstandigheden waar spelers zichzelf willen overtreffen — niet omdat ze moeten, maar omdat ze willen."', auteur: '— Daniel Pink' },
-      { text: '"Controle is de vijand van autonomie. En autonomie is de motor van groei."', auteur: '— Edward Deci' },
+      { text: '"De beste coaches creëren omstandigheden waar spelers zichzelf willen overtreffen. Niet omdat ze moeten, maar omdat ze willen."', auteur: 'Daniel Pink' },
+      { text: '"Controle is de vijand van autonomie. En autonomie is de motor van groei."', auteur: 'Edward Deci' },
     ],
     reflectie: [
       'Geef spelers bij jou echt inspraak in trainingsinhoud, regels of teamafspraken? Of is dat schijnautonomie?',
       'Wanneer geef jij instructies vs. wanneer stel jij vragen? Wat is de verhouding?',
-      'Welke speler in jouw team heeft de meest controlerende omgeving nodig — en welke de meeste vrijheid? Behandel je hen anders?',
+      'Welke speler in jouw team heeft de meest controlerende omgeving nodig? En welke de meeste vrijheid? Behandel je hen anders?',
       'Hoe reageer jij als een speler iets anders wil proberen dan jij aangeeft? Wat zegt dat over jouw stijl?',
       'Wat zou er veranderen in jouw training als je één sessie volledig door de spelers liet invullen?',
     ],
     boeken: [
       { titel: 'Drive', auteur: 'Daniel Pink', waarom: 'De wetenschap van motivatie in één toegankelijk boek. Intrinsiek vs. extrinsiek, en wat coaches verkeerd doen met beloningen.' },
-      { titel: 'Mindset', auteur: 'Carol Dweck', waarom: 'Fixed vs. growth mindset. Hoe jij als coach een groeiklimaat creëert — of net vernietigt — met woorden en reacties.' },
+      { titel: 'Mindset', auteur: 'Carol Dweck', waarom: 'Fixed vs. growth mindset. Hoe jij als coach een groeiklimaat creëert of net vernietigt, met woorden en reacties.' },
       { titel: 'Why Motivating People Doesn\'t Work and What Does', auteur: 'Susan Fowler', waarom: 'Praktisch boek over optimale motivatie. Vertaalt ZDT direct naar de praktijk van coaches.' },
     ],
     videos: [
@@ -218,20 +219,20 @@ const modulesNL = [
     ],
     podcasts: [
       { naam: 'The Science of Sport', afl: 'Episode over intrinsieke motivatie in jeugdsport', url: 'scienceofsport.com' },
-      { naam: 'Kwame Christian — Negotiate Anything', afl: 'Hoe je mensen beweegt zonder te dwingen', url: 'negotiateanything.com' },
+      { naam: 'Kwame Christian, Negotiate Anything', afl: 'Hoe je mensen beweegt zonder te dwingen', url: 'negotiateanything.com' },
     ],
     actie: 'Observeer jezelf één week lang: noteer elke keer dat je een instructie geeft vs. een vraag stelt. Wat is de verhouding? Wat wil je veranderen?',
     commitment: 'Eén manier waarop ik meer autonomie geef aan mijn spelers:',
   },
   {
     num: 3, kleur: '#1E8A5B',
-    title: 'De Coach-Sporter Relatie',
-    vraag: 'Hoe goed kennen jouw spelers jou — en hoe goed ken jij hen?',
+    title: 'De coach-sporter relatie',
+    vraag: 'Hoe goed kennen jouw spelers jou? En hoe goed ken jij hen?',
     theorie: 'Het 3C+1-model van Jowett (2007) beschrijft de coach-sporter relatie via vier dimensies: Closeness (emotionele nabijheid), Commitment (wederzijdse inzet), Complementarity (samenwerking) en Co-orientation (gedeeld begrip). Onderzoek toont consistent dat de kwaliteit van deze relatie de sterkste enkelvoudige voorspeller is van sportprestaties, welbevinden en plezier. Spelers presteren beter voor coaches die hen kennen als mens, niet alleen als atleet.',
     bron: 'Jowett & Ntoumanis (2004) · Jowett (2007) · Lorimer & Jowett (2009)',
     quotes: [
-      { text: '"Spelers spelen voor coaches die hen kennen als persoon. Ze spelen harder voor coaches die hen respecteren als mens."', auteur: '— John Wooden' },
-      { text: '"De coach-sporter relatie is de meest invloedrijke menselijke relatie in de sport."', auteur: '— Sophia Jowett' },
+      { text: '"Spelers spelen voor coaches die hen kennen als persoon. Ze spelen harder voor coaches die hen respecteren als mens."', auteur: 'John Wooden' },
+      { text: '"De coach-sporter relatie is de meest invloedrijke menselijke relatie in de sport."', auteur: 'Sophia Jowett' },
     ],
     reflectie: [
       'Weet jij van elke speler in jouw team: wat hen echt bezig houdt buiten de sport? Naam één ding per speler.',
@@ -903,6 +904,7 @@ function buildModuleHtml(m, lang) {
 
     <div class="footer">
       <span>characterfirst.be · info@characterfirst.be</span>
+      <span class="credit">Created by Tom Pauwaert</span>
       <span>${labelPag} 1/2 · ${labelModule} ${m.num}: ${m.title}</span>
     </div>
   </div>
@@ -978,6 +980,7 @@ function buildModuleHtml(m, lang) {
 
     <div class="footer">
       <span>characterfirst.be · info@characterfirst.be</span>
+      <span class="credit">Created by Tom Pauwaert</span>
       <span>${labelPag} 2/2 · ${labelModule} ${m.num}: ${m.title}</span>
     </div>
   </div>`;

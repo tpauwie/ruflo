@@ -117,6 +117,7 @@ const CSS_SPELER = `
     border-top: 1px solid var(--line); padding-top: 4px; flex-shrink: 0;
   }
   .footer span { font-size: 8.5px; color: var(--stone); }
+  .footer .credit { color: var(--stone); }
 `;
 
 // ============================================================
@@ -204,6 +205,7 @@ const CSS_MENTOR = `
   /* Footer */
   .footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 4px; flex-shrink: 0; }
   .footer span { font-size: 8.5px; color: var(--stone); }
+  .footer .credit { color: var(--stone); }
 `;
 
 // ============================================================
@@ -214,7 +216,7 @@ const sessionsNL = [
     num: 1,
     title: 'Wie Ben Ik?',
     subtitle: 'Jouw identiteit als sporter en mens',
-    quote: { text: '"Ken jezelf. Zonder zelfkennis is alle andere kennis zinloos."', auteur: '— Socrates' },
+    quote: { text: '"Ken jezelf. Zonder zelfkennis is alle andere kennis zinloos."', auteur: 'Socrates' },
     introQ: 'Wat maakt jou uniek — niet als sporter, maar als persoon?',
     oefening: {
       label: 'Kernwaarden-oefening',
@@ -257,7 +259,7 @@ const sessionsNL = [
     num: 2,
     title: 'Mijn Verhaal',
     subtitle: 'De momenten die mij gevormd hebben',
-    quote: { text: '"Je bent niet je verleden — maar je verleden heeft je gemaakt. Ken het."', auteur: '— Carl Jung (parafrase)' },
+    quote: { text: '"Je bent niet je verleden. Maar je verleden heeft je gemaakt. Ken het."', auteur: 'Carl Jung (parafrase)' },
     introQ: 'Welke momenten in jouw leven hebben gemaakt wie je vandaag bent?',
     oefening: {
       label: 'Mijn sportlijn',
@@ -299,7 +301,7 @@ const sessionsNL = [
     num: 3,
     title: 'Mijn Doelen',
     subtitle: 'Dromen vertalen naar richting',
-    quote: { text: '"Een doel zonder plan is gewoon een wens."', auteur: '— Antoine de Saint-Exupéry' },
+    quote: { text: '"Een doel zonder plan is gewoon een wens."', auteur: 'Antoine de Saint-Exupéry' },
     introQ: 'Wat wil jij echt — als sporter én als mens?',
     oefening: {
       label: 'Droom groot, denk concreet',
@@ -341,7 +343,7 @@ const sessionsNL = [
     num: 4,
     title: 'Mijn Innerlijke Stem',
     subtitle: 'Wat zeg jij tegen jezelf als het moeilijk wordt?',
-    quote: { text: '"Je hebt meer gesprekken met jezelf dan met iedereen anders. Zorg dat ze goed zijn."', auteur: '— Zig Ziglar' },
+    quote: { text: '"Je hebt meer gesprekken met jezelf dan met iedereen anders. Zorg dat ze goed zijn."', auteur: 'Zig Ziglar' },
     introQ: 'Hoe klinkt jouw innerlijke stem — als coach, of als criticus?',
     oefening: {
       label: 'Mijn stemmen in kaart',
@@ -383,7 +385,7 @@ const sessionsNL = [
     num: 5,
     title: 'Omgaan met Tegenslagen',
     subtitle: 'Hoe falen jou vormt',
-    quote: { text: '"Ik heb meer dan 9.000 ballen gemist in mijn carrière. En daardoor heb ik gewonnen."', auteur: '— Michael Jordan' },
+    quote: { text: '"Ik heb meer dan 9.000 ballen gemist in mijn carrière. En daardoor heb ik gewonnen."', auteur: 'Michael Jordan' },
     introQ: 'Wat doet een tegenslag echt met jou — en wat kun jij ermee doen?',
     oefening: {
       label: 'Mijn veerkrachtkaart',
@@ -425,8 +427,8 @@ const sessionsNL = [
     num: 6,
     title: 'Mijn Rolmodellen',
     subtitle: 'Wie je bewondert, zegt wie je wil zijn',
-    quote: { text: '"Show me your heroes and I\'ll show you your future."', auteur: '— Napoleon Hill' },
-    introQ: 'Wie inspireert jou — en wat zegt dat over wie jíj wil worden?',
+    quote: { text: '"Show me your heroes and I\'ll show you your future."', auteur: 'Napoleon Hill' },
+    introQ: 'Wie inspireert jou? En wat zegt dat over wie jíj wil worden?',
     oefening: {
       label: 'Mijn drie rolmodellen',
       tekst: 'Kies drie mensen die jou inspireren (sport, muziek, familie, geschiedenis — alles mag).\n\nVoor elk persoon:\n1. Naam:\n2. Welke eigenschap bewonder ik het meest?\n3. Heb ik dat ook in mij — of is het iets wat ik wil ontwikkelen?\n\nKijk dan naar alle drie: is er een gemeenschappelijk thema in wat jij bewondert?',
@@ -467,7 +469,7 @@ const sessionsNL = [
     num: 7,
     title: 'Mijn Rol in het Team',
     subtitle: 'Hoe ben ik een kracht voor anderen?',
-    quote: { text: '"De sterkste speler maakt het team sterker, niet zichzelf."', auteur: '— Character First' },
+    quote: { text: '"De sterkste speler maakt het team sterker, niet zichzelf."', auteur: 'Character First' },
     introQ: 'Wat draag jij bij aan jouw team — los van wat je scoort of presteert?',
     oefening: {
       label: 'Mijn teamrol',
@@ -509,7 +511,7 @@ const sessionsNL = [
     num: 8,
     title: 'Mijn Toekomst',
     subtitle: 'Wie wil ik zijn — voorbij de sport',
-    quote: { text: '"Het beste is altijd nog voor jou. Maar jij bepaalt waarheen."', auteur: '— Character First' },
+    quote: { text: '"Het beste is altijd nog voor jou. Maar jij bepaalt waarheen."', auteur: 'Character First' },
     introQ: 'Als jij straks terugkijkt op jouw leven — wat wil je dan gezien hebben?',
     oefening: {
       label: 'Brief aan mijn toekomstige zelf',
@@ -557,7 +559,7 @@ const sessionsEN = [
     num: 1,
     title: 'Who Am I?',
     subtitle: 'Your identity as an athlete and person',
-    quote: { text: '"Know yourself. Without self-knowledge, all other knowledge is useless."', auteur: '— Socrates' },
+    quote: { text: '"Know yourself. Without self-knowledge, all other knowledge is useless."', auteur: 'Socrates' },
     introQ: 'What makes you unique — not as an athlete, but as a person?',
     oefening: {
       label: 'Core Values Exercise',
@@ -599,7 +601,7 @@ const sessionsEN = [
     num: 2,
     title: 'My Story',
     subtitle: 'The moments that shaped me',
-    quote: { text: '"You are not your past — but your past has made you. Know it."', auteur: '— Carl Jung (paraphrase)' },
+    quote: { text: '"You are not your past. But your past has made you. Know it."', auteur: 'Carl Jung (paraphrase)' },
     introQ: 'Which moments in your life have made you who you are today?',
     oefening: {
       label: 'My Sport Timeline',
@@ -640,7 +642,7 @@ const sessionsEN = [
     num: 3,
     title: 'My Goals',
     subtitle: 'Translating dreams into direction',
-    quote: { text: '"A goal without a plan is just a wish."', auteur: '— Antoine de Saint-Exupéry' },
+    quote: { text: '"A goal without a plan is just a wish."', auteur: 'Antoine de Saint-Exupéry' },
     introQ: 'What do you really want — as an athlete and as a person?',
     oefening: {
       label: 'Dream Big, Think Concrete',
@@ -681,7 +683,7 @@ const sessionsEN = [
     num: 4,
     title: 'My Inner Voice',
     subtitle: 'What do you say to yourself when things get hard?',
-    quote: { text: '"You have more conversations with yourself than with anyone else. Make sure they\'re good."', auteur: '— Zig Ziglar' },
+    quote: { text: '"You have more conversations with yourself than with anyone else. Make sure they\'re good."', auteur: 'Zig Ziglar' },
     introQ: 'Does your inner voice sound like a coach — or a critic?',
     oefening: {
       label: 'Mapping My Voices',
@@ -722,7 +724,7 @@ const sessionsEN = [
     num: 5,
     title: 'Dealing with Setbacks',
     subtitle: 'How failure shapes you',
-    quote: { text: '"I\'ve missed more than 9,000 shots in my career. That\'s why I won."', auteur: '— Michael Jordan' },
+    quote: { text: '"I\'ve missed more than 9,000 shots in my career. That\'s why I won."', auteur: 'Michael Jordan' },
     introQ: 'What does a setback really do to you — and what can you do with it?',
     oefening: {
       label: 'My Resilience Card',
@@ -763,8 +765,8 @@ const sessionsEN = [
     num: 6,
     title: 'My Role Models',
     subtitle: 'Who you admire reveals who you want to become',
-    quote: { text: '"Show me your heroes and I\'ll show you your future."', auteur: '— Napoleon Hill' },
-    introQ: 'Who inspires you — and what does that say about who YOU want to become?',
+    quote: { text: '"Show me your heroes and I\'ll show you your future."', auteur: 'Napoleon Hill' },
+    introQ: 'Who inspires you? And what does that say about who YOU want to become?',
     oefening: {
       label: 'My Three Role Models',
       tekst: 'Choose three people who inspire you (sport, music, family, history — anything goes).\n\nFor each person:\n1. Name:\n2. Which quality do I admire most?\n3. Do I already have that in me — or is it something I want to develop?\n\nThen look at all three: is there a common theme in what you admire?',
@@ -804,7 +806,7 @@ const sessionsEN = [
     num: 7,
     title: 'My Role in the Team',
     subtitle: 'How am I a force for others?',
-    quote: { text: '"The strongest player makes the team stronger, not themselves."', auteur: '— Character First' },
+    quote: { text: '"The strongest player makes the team stronger, not themselves."', auteur: 'Character First' },
     introQ: 'What do you contribute to your team — beyond what you score or perform?',
     oefening: {
       label: 'My Team Role',
@@ -926,7 +928,7 @@ function buildSpelerPage(s, lang) {
     <div class="section-label">${lSchrijf}</div>
     ${s.schrijfVragen.map((q,i) => `<div style="font-size:10.5px;color:#333;margin-bottom:2px">${i+1}. ${q}</div>${wlines(2)}`).join('')}
     <div class="notes-flex" style="flex:1 1 auto;min-height:0">${wlines(3)}</div>
-    <div class="footer"><span>characterfirst.be · info@characterfirst.be</span><span>${lPag} 1/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
+    <div class="footer"><span>characterfirst.be · info@characterfirst.be</span><span class="credit">Created by Tom Pauwaert</span><span>${lPag} 1/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
   </div>
 
   <!-- SPELER S${s.num} P2 -->
@@ -960,7 +962,7 @@ function buildSpelerPage(s, lang) {
       <div class="c-line"></div><div class="c-line"></div>
     </div>
 
-    <div class="footer"><span>characterfirst.be · info@characterfirst.be</span><span>${lPag} 2/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
+    <div class="footer"><span>characterfirst.be · info@characterfirst.be</span><span class="credit">Created by Tom Pauwaert</span><span>${lPag} 2/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
   </div>`;
 }
 
@@ -1010,7 +1012,7 @@ function buildMentorPage(s, lang) {
     </div>
 
     <div class="notes-flex" style="flex:1 1 auto;min-height:0">${wlines(4)}</div>
-    <div class="footer"><span>characterfirst.be · info@characterfirst.be · CF Intern</span><span>${lPag} 1/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
+    <div class="footer"><span>characterfirst.be · info@characterfirst.be · CF Intern</span><span class="credit">Created by Tom Pauwaert</span><span>${lPag} 1/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
   </div>
 
   <!-- MENTOR S${s.num} P2 -->
@@ -1042,7 +1044,7 @@ function buildMentorPage(s, lang) {
     <div class="section-label" style="margin-top:5px">${lNota}</div>
     <div class="notes-flex" style="flex:1 1 auto;min-height:0">${wlines(12)}</div>
 
-    <div class="footer"><span>characterfirst.be · info@characterfirst.be · CF Intern</span><span>${lPag} 2/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
+    <div class="footer"><span>characterfirst.be · info@characterfirst.be · CF Intern</span><span class="credit">Created by Tom Pauwaert</span><span>${lPag} 2/2 · ${lSessie} ${s.num}: ${s.title}</span></div>
   </div>`;
 }
 

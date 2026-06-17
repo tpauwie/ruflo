@@ -50,9 +50,9 @@ const MONTHS_NL = [
   {
     m: 1, title: 'Zelfkennis & Identiteit',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Ntoumanis et al. (2021) — meta-analyse van 184 studies toont aan dat autonomie en zelfkennis binnen Self Determination Theory de sterkste voorspellers zijn van sportmotivatie en welzijn bij jonge atleten. <em>Psychology of Sport &amp; Exercise.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analyse</span> Zuber &amp; Conzelmann (2014) — analyse van 47 studies bevestigt dat intrinsieke motivatie en zelfconcept direct samenhangen met sportprestatie bij jongeren. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Deci &amp; Ryan (1985, herzien 2017) — Self Determination Theory: autonomie, competentie en verbondenheid als universele basisbehoeften voor optimale ontwikkeling en welzijn in sport.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Ntoumanis et al. (2021), meta-analyse van 184 studies toont aan dat autonomie en zelfkennis binnen Self Determination Theory de sterkste voorspellers zijn van sportmotivatie en welzijn bij jonge atleten. <em>Psychology of Sport &amp; Exercise.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analyse</span> Zuber &amp; Conzelmann (2014), analyse van 47 studies bevestigt dat intrinsieke motivatie en zelfconcept direct samenhangen met sportprestatie bij jongeren. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Deci &amp; Ryan (1985, herzien 2017), Self Determination Theory: autonomie, competentie en verbondenheid als universele basisbehoeften voor optimale ontwikkeling en welzijn in sport.</p>`,
     sectionTitle: 'Begeleiding per oefening',
     steps: [
       '<strong>Mijn Drie Woorden:</strong> Geef spelers 3 minuten solo om hun woorden te schrijven. Laat ze daarna in tweetallen de woorden van de ander opschrijven zonder overleg. Sluit af met een korte groepsdiscussie: "Wie was verrast door de woorden van anderen?" Ga niet dieper in op negatieve verrassingen in de groep, doe dat individueel.',
@@ -72,9 +72,9 @@ const MONTHS_NL = [
   {
     m: 2, title: 'Druk & Stress',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Crocker et al. (2015) — review van 92 studies over coping in jeugdsport bevestigt dat flexibele copingstrategieën (zowel probleem als emotiongericht) de sterkste samenhang tonen met prestatie en welzijn. <em>International Journal of Sport Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Balban et al. (2023) — gerandomiseerde studie toont aan dat cyclische ademhaling (4 sec in, 4 sec vasthouden, 8 sec uit) het stressniveau significant reduceert in vergelijking met mindfulness meditatie. <em>Cell Reports Medicine.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatieve studie</span> Hanton et al. (2009) — ervaringsonderzoek bij elitesporters: angst voor wedstrijden wordt faciliterend of debiliterend op basis van hoe de atleet de stressrespons interpreteert, niet op basis van de intensiteit.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Crocker et al. (2015), review van 92 studies over coping in jeugdsport bevestigt dat flexibele copingstrategieën (zowel probleem als emotiongericht) de sterkste samenhang tonen met prestatie en welzijn. <em>International Journal of Sport Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Balban et al. (2023), gerandomiseerde studie toont aan dat cyclische ademhaling (4 sec in, 4 sec vasthouden, 8 sec uit) het stressniveau significant reduceert in vergelijking met mindfulness meditatie. <em>Cell Reports Medicine.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatieve studie</span> Hanton et al. (2009), ervaringsonderzoek bij elitesporters: angst voor wedstrijden wordt faciliterend of debiliterend op basis van hoe de atleet de stressrespons interpreteert, niet op basis van de intensiteit.</p>`,
     sectionTitle: 'Begeleiding per oefening',
     steps: [
       '<strong>Box Breathing:</strong> Doe dit samen als groep voor de training. Sta in een kring, sluit ogen, en leid het ademhalingsritme. Zeg hardop: "In... 2, 3, 4. Vasthouden... 2, 3, 4. Uit... 2, 3, 4. Wachten... 2, 3, 4." Herhaal 4 keer. Bespreek daarna kort: "Wat merk je?"',
@@ -94,9 +94,9 @@ const MONTHS_NL = [
   {
     m: 3, title: 'Mijn Rol in het Team',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Bruner et al. (2021) — meta-analyse over rolhelderheid en cohesie in jeugdteams: rolhelderheid is de sterkste voorspeller van zowel taakcohesie als sociale cohesie in sportteams, met effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Eys et al. (2015) — meetseizoenstudie bij 248 basketbalspelers: rolambiguïteit is negatief gelinkt aan zelfvertrouwen en positief aan angst gedurende het seizoen. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretische studie</span> Carron &amp; Eys (2012) — Teamcohesiemodel: rolacceptatie en rolprestatie als twee aparte dimensies. Atleten die actief investeren in hun rol presteren significant beter.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Bruner et al. (2021), meta-analyse over rolhelderheid en cohesie in jeugdteams: rolhelderheid is de sterkste voorspeller van zowel taakcohesie als sociale cohesie in sportteams, met effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Eys et al. (2015), meetseizoenstudie bij 248 basketbalspelers: rolambiguïteit is negatief gelinkt aan zelfvertrouwen en positief aan angst gedurende het seizoen. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretische studie</span> Carron &amp; Eys (2012), Teamcohesiemodel: rolacceptatie en rolprestatie als twee aparte dimensies. Atleten die actief investeren in hun rol presteren significant beter.</p>`,
     sectionTitle: 'Begeleiding Rolcirkel (groepsoefening)',
     steps: [
       'Laat het team in een cirkel staan. Leg uit: "We gaan één voor één onze bijdrage aan dit team benoemen. Niet wat we technisch goed kunnen. Maar wat je als persoon bijdraagt."',
@@ -117,9 +117,9 @@ const MONTHS_NL = [
   {
     m: 4, title: 'Communicatie',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Tod et al. (2011) — review van communicatietraining in sportteams: positieve en informatierijke communicatie toont verbeteringen in cohesie en prestatie.</p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Holt et al. (2020) — gerandomiseerde interventie met NVC in jeugdteams: teams die 8 weken NVC trainden toonden significant hogere sociale cohesie en minder conflicten versus controlegroep. <em>Psychology of Sport &amp; Exercise.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Observationele studie</span> Turnnidge &amp; Côté (2018) — directe observatie van coachcommunicatie: positieve en informatierijke communicatie correleert met hogere sportplezier, motivatie en doorzetting bij jonge atleten.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Tod et al. (2011), review van communicatietraining in sportteams: positieve en informatierijke communicatie toont verbeteringen in cohesie en prestatie.</p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Holt et al. (2020), gerandomiseerde interventie met NVC in jeugdteams: teams die 8 weken NVC trainden toonden significant hogere sociale cohesie en minder conflicten versus controlegroep. <em>Psychology of Sport &amp; Exercise.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Observationele studie</span> Turnnidge &amp; Côté (2018), directe observatie van coachcommunicatie: positieve en informatierijke communicatie correleert met hogere sportplezier, motivatie en doorzetting bij jonge atleten.</p>`,
     sectionTitle: 'Begeleiding Feedbackronde Trio',
     steps: [
       'Verdeel het team in groepen van drie. Rol A: gever, Rol B: ontvanger, Rol C: observator. De gever geeft feedback aan de ontvanger over iets concreet (gedrag in training, houding, samenwerking). De observator let enkel op toon en woordkeuze, niet op inhoud.',
@@ -139,9 +139,9 @@ const MONTHS_NL = [
   {
     m: 5, title: 'Team Eerst',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Frazier et al. (2017) — meta-analyse van 136 steekproeven over psychologische veiligheid: teams met hoge psychologische veiligheid presteren significant beter op creativiteit, leergedrag en interpersoonlijk risico nemen. <em>Personnel Psychology, 70(1), 113–165.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Fransen et al. (2015) — seizoenstudie bij 23 basketbalteams: teams met sterke perceptie van teamidentiteit en "wij" cultuur vertonen hogere prestatiestabiliteit en lagere uitval gedurende het seizoen. <em>Journal of Sport Sciences.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatief onderzoek</span> Edmondson (1999) — observationeel onderzoek in 51 werkeenheden: teams die hulp durven vragen leren sneller en presteren beter op de lange termijn dan teams die fouten verbergen.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Frazier et al. (2017), meta-analyse van 136 steekproeven over psychologische veiligheid: teams met hoge psychologische veiligheid presteren significant beter op creativiteit, leergedrag en interpersoonlijk risico nemen. <em>Personnel Psychology, 70(1), 113–165.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Fransen et al. (2015), seizoenstudie bij 23 basketbalteams: teams met sterke perceptie van teamidentiteit en "wij" cultuur vertonen hogere prestatiestabiliteit en lagere uitval gedurende het seizoen. <em>Journal of Sport Sciences.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatief onderzoek</span> Edmondson (1999), observationeel onderzoek in 51 werkeenheden: teams die hulp durven vragen leren sneller en presteren beter op de lange termijn dan teams die fouten verbergen.</p>`,
     sectionTitle: 'Begeleiding Team Contract',
     steps: [
       'Laat spelers eerst individueel drie persoonlijke beloftes schrijven. Dit duurt 3 minuten. Daarna bespreek je in groepen van drie welke beloftes overlappen. Uit elke groep kiest één belofte om voor te stellen aan het team.',
@@ -161,9 +161,9 @@ const MONTHS_NL = [
   {
     m: 6, title: 'Veerkracht & Groeimindset',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Burnette et al. (2013) — meta-analyse van 113 studies: groeimindset correleert significant met leergerichte doelen, minder hulpeloosheid na falen en betere prestaties, met sterkste effecten bij adolescenten. <em>Psychological Bulletin.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Systematische Review</span> Meijen et al. (2020) — review van veerkrachtinterventies in sport: cognitieve herframing (het herschrijven van gedachten) is de meest evidence-based strategie voor het verhogen van veerkracht bij jonge atleten. <em>Frontiers in Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Martin &amp; Marsh (2009) — 2 jaar follow-up bij 3,500 leerlingen: academische veerkracht is een betere voorspeller van langetermijnsucces dan intelligentiescore of prestatiemotivatie. Resultaten repliceerbaar in sportcontext.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Burnette et al. (2013), meta-analyse van 113 studies: groeimindset correleert significant met leergerichte doelen, minder hulpeloosheid na falen en betere prestaties, met sterkste effecten bij adolescenten. <em>Psychological Bulletin.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Systematische Review</span> Meijen et al. (2020), review van veerkrachtinterventies in sport: cognitieve herframing (het herschrijven van gedachten) is de meest evidence-based strategie voor het verhogen van veerkracht bij jonge atleten. <em>Frontiers in Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Martin &amp; Marsh (2009),2 jaar follow-up bij 3,500 leerlingen: academische veerkracht is een betere voorspeller van langetermijnsucces dan intelligentiescore of prestatiemotivatie. Resultaten repliceerbaar in sportcontext.</p>`,
     sectionTitle: 'Begeleiding Herschrijf de Fout',
     steps: [
       'Introduceer het concept fixed vs. growth mindset met een echt voorbeeld uit jouw eigen carrière als speler of coach. "Ik dacht altijd dat ik niet snel genoeg was. Later besefte ik dat ik mijn start nooit echt had getraind."',
@@ -182,9 +182,9 @@ const MONTHS_NL = [
   {
     m: 7, title: 'Leiderschap van Binnenuit',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Cotterill &amp; Fransen (2016) — review van teamleiderschapsliteratuur in sport: gedeeld leiderschap correleert sterker met teamcohesie en prestatie dan enkelvoudig formeel leiderschap. <em>Psychology of Sport &amp; Exercise.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Multi-seizoenstudie</span> Fransen et al. (2020) — studie over 2 seizoenen bij 34 teams: teams met 3 of meer informele leiders presteren significant stabieler dan teams met slechts 1 formele leider. <em>Journal of Sport Sciences.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Côté &amp; Gilbert (2009) — Integrated Definition of Coaching Effectiveness: effectief leiderschap is niet positiegebonden maar gedragsgebonden; sporters die "servant leadership" tonen verhogen teamvertrouwen significant.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Cotterill &amp; Fransen (2016), review van teamleiderschapsliteratuur in sport: gedeeld leiderschap correleert sterker met teamcohesie en prestatie dan enkelvoudig formeel leiderschap. <em>Psychology of Sport &amp; Exercise.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Multi-seizoenstudie</span> Fransen et al. (2020), studie over 2 seizoenen bij 34 teams: teams met 3 of meer informele leiders presteren significant stabieler dan teams met slechts 1 formele leider. <em>Journal of Sport Sciences.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Côté &amp; Gilbert (2009), Integrated Definition of Coaching Effectiveness: effectief leiderschap is niet positiegebonden maar gedragsgebonden; sporters die "servant leadership" tonen verhogen teamvertrouwen significant.</p>`,
     sectionTitle: 'Begeleiding "De Eerste Stem"',
     steps: [
       'Leg uit wat "De Eerste Stem" betekent: tijdens een time-out, voor een training, na een tegengoal, iemand die als eerste iets constructiefs zegt. Dit is leiderschap in actie.',
@@ -204,9 +204,9 @@ const MONTHS_NL = [
   {
     m: 8, title: 'Nalatenschap & Volgende Stap',
     science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Henriksen et al. (2020) — review van 44 studies naar talentomgevingen in sport: seizoensafsluitingen met expliciete reflectie op waarden, bijdrage en intenties verhogen identiteitsontwikkeling en langetermijnsport participatie significant. <em>British Journal of Sports Medicine.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Henriksen et al. (2020), review van 44 studies naar talentomgevingen in sport: seizoensafsluitingen met expliciete reflectie op waarden, bijdrage en intenties verhogen identiteitsontwikkeling en langetermijnsport participatie significant. <em>British Journal of Sports Medicine.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Seizoensafsluitende reflectie op persoonlijke groei is geassocieerd met hogere intrinsieke motivatie het volgend seizoen.</p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Seligman (2011) — PERMA model: meaning (zingeving) en accomplishment (realisatie) zijn de twee meest onderschatte componenten van welzijn bij adolescenten. Bewuste reflectie op bijdrage is een evidence-based strategie voor het activeren van beide.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Seligman (2011), PERMA model: meaning (zingeving) en accomplishment (realisatie) zijn de twee meest onderschatte componenten van welzijn bij adolescenten. Bewuste reflectie op bijdrage is een evidence-based strategie voor het activeren van beide.</p>`,
     sectionTitle: 'De Slotsessie begeleiden',
     steps: [
       'Begin met een terugblik. Breng het werkblad van Maand 1 mee (de Drie Woorden). Laat spelers vergelijken: "Ben je nog steeds die persoon? Ben je gegroeid?" Dit creëert een krachtig gevoel van progressie.',
@@ -230,12 +230,12 @@ const MONTHS_EN = [
   {
     m: 1, title: 'Self-Knowledge & Identity',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Ntoumanis et al. (2021) — meta-analysis of 184 studies shows that autonomy and self-knowledge within Self-Determination Theory are the strongest predictors of sports motivation and well-being in young athletes. <em>Psychology of Sport &amp; Exercise.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analysis</span> Zuber &amp; Conzelmann (2014) — analysis of 47 studies confirms that intrinsic motivation and self-concept are directly linked to sports performance in youth. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinal study</span> Deci &amp; Ryan (1985, revised 2017) — Self-Determination Theory: autonomy, competence, and relatedness as universal basic needs for optimal development and well-being in sport.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Ntoumanis et al. (2021), meta-analysis of 184 studies shows that autonomy and self-knowledge within Self-Determination Theory are the strongest predictors of sports motivation and well-being in young athletes. <em>Psychology of Sport &amp; Exercise.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analysis</span> Zuber &amp; Conzelmann (2014), analysis of 47 studies confirms that intrinsic motivation and self-concept are directly linked to sports performance in youth. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinal study</span> Deci &amp; Ryan (1985, revised 2017), Self-Determination Theory: autonomy, competence, and relatedness as universal basic needs for optimal development and well-being in sport.</p>`,
     sectionTitle: 'Guidance per exercise',
     steps: [
-      '<strong>My Three Words:</strong> Give players 3 minutes to write their words solo. Then have them work in pairs to write three words about the other person without consulting. Close with a brief group discussion: "Who was surprised by others\' words?" Don\'t go deeper on negative surprises in the group — handle those individually.',
+      '<strong>My Three Words:</strong> Give players 3 minutes to write their words solo. Then have them work in pairs to write three words about the other person without consulting. Close with a brief group discussion: "Who was surprised by others\' words?" Don\'t go deeper on negative surprises in the group. Handle those individually.',
       '<strong>Energy Givers vs. Energy Drains:</strong> Have players fill this in individually. Then discuss only the energy givers with the group. Create awareness: "How can we as a team build in more energy givers?" Discuss energy drains individually or confidentially.',
       '<strong>Values Compass:</strong> After filling it in, ask volunteers to share their top value. Create a ranking on the board. Ask: "If these are our team values, how do we see them reflected in behavior?" This becomes the bridge to following months.',
     ],
@@ -252,9 +252,9 @@ const MONTHS_EN = [
   {
     m: 2, title: 'Pressure & Stress',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Crocker et al. (2015) — review of 92 studies on coping in youth sport confirms that flexible coping strategies (both problem- and emotion-focused) show the strongest relationship with performance and well-being. <em>International Journal of Sport Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Balban et al. (2023) — randomized study shows cyclic breathing (4 sec in, 4 sec hold, 8 sec out) significantly reduces stress levels compared to mindfulness meditation. <em>Cell Reports Medicine.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Qualitative study</span> Hanton et al. (2009) — experiential research with elite athletes: pre-competition anxiety becomes facilitating or debilitating based on how the athlete interprets the stress response, not its intensity.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Crocker et al. (2015), review of 92 studies on coping in youth sport confirms that flexible coping strategies (both problem- and emotion-focused) show the strongest relationship with performance and well-being. <em>International Journal of Sport Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Balban et al. (2023), randomized study shows cyclic breathing (4 sec in, 4 sec hold, 8 sec out) significantly reduces stress levels compared to mindfulness meditation. <em>Cell Reports Medicine.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Qualitative study</span> Hanton et al. (2009), experiential research with elite athletes: pre-competition anxiety becomes facilitating or debilitating based on how the athlete interprets the stress response, not its intensity.</p>`,
     sectionTitle: 'Guidance per exercise',
     steps: [
       '<strong>Box Breathing:</strong> Do this together as a group before training. Stand in a circle, close eyes, and lead the breathing rhythm. Say aloud: "In... 2, 3, 4. Hold... 2, 3, 4. Out... 2, 3, 4. Wait... 2, 3, 4." Repeat 4 times. Discuss briefly afterward: "What do you notice?"',
@@ -264,7 +264,7 @@ const MONTHS_EN = [
     tips: [
       '<strong>Tip 1:</strong> Actively normalize stress. Say literally: "Every pro feels this. You too. It\'s not a weakness." Young players often think they\'re the only ones who get nervous.',
       '<strong>Tip 2:</strong> Use Box Breathing in real match situations. During a time-out, give 30 seconds to breathe together before speaking tactically. The result is better information retention.',
-      '<strong>Tip 3:</strong> Watch players who never seem to feel stress. This can be apathy — a defense mechanism. Check in individually: "How is it really going?"',
+      '<strong>Tip 3:</strong> Watch players who never seem to feel stress. This can be apathy, a defense mechanism. Check in individually: "How is it really going?"',
     ],
     warning: 'Beware of increasing pressure by saying "You should be able to handle this." That amplifies exactly the stress you\'re trying to reduce. Use curious questions: "What do you need to stay calm?"',
     timingTitle: 'Timing',
@@ -274,9 +274,9 @@ const MONTHS_EN = [
   {
     m: 3, title: 'My Role in the Team',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Bruner et al. (2021) — meta-analysis on role clarity and cohesion in youth teams: role clarity is the strongest predictor of both task cohesion and social cohesion in sports teams, with effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> Eys et al. (2015) — season-long study with 248 basketball players: role ambiguity is negatively linked to self-confidence and positively linked to anxiety throughout the season. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical study</span> Carron &amp; Eys (2012) — Team Cohesion Model: role acceptance and role performance as two separate dimensions. Athletes who actively invest in their role perform significantly better.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Bruner et al. (2021), meta-analysis on role clarity and cohesion in youth teams: role clarity is the strongest predictor of both task cohesion and social cohesion in sports teams, with effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> Eys et al. (2015), season-long study with 248 basketball players: role ambiguity is negatively linked to self-confidence and positively linked to anxiety throughout the season. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical study</span> Carron &amp; Eys (2012), Team Cohesion Model: role acceptance and role performance as two separate dimensions. Athletes who actively invest in their role perform significantly better.</p>`,
     sectionTitle: 'Guidance Role Circle (group exercise)',
     steps: [
       'Have the team stand in a circle. Explain: "We are going to name our contribution to this team one by one. Not what we can do technically well. But what you contribute as a person."',
@@ -297,9 +297,9 @@ const MONTHS_EN = [
   {
     m: 4, title: 'Communication',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Tod et al. (2011) — review of communication training in sports teams: positive and information-rich communication shows improvements in cohesion and performance.</p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Holt et al. (2020) — randomized intervention with NVC in youth teams: teams trained in NVC for 8 weeks showed significantly higher social cohesion and fewer conflicts vs. control group. <em>Psychology of Sport &amp; Exercise.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Observational study</span> Turnnidge &amp; Côté (2018) — direct observation of coach communication: positive and information-rich communication correlates with higher sport enjoyment, motivation, and persistence in young athletes.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Tod et al. (2011), review of communication training in sports teams: positive and information-rich communication shows improvements in cohesion and performance.</p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Holt et al. (2020), randomized intervention with NVC in youth teams: teams trained in NVC for 8 weeks showed significantly higher social cohesion and fewer conflicts vs. control group. <em>Psychology of Sport &amp; Exercise.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Observational study</span> Turnnidge &amp; Côté (2018), direct observation of coach communication: positive and information-rich communication correlates with higher sport enjoyment, motivation, and persistence in young athletes.</p>`,
     sectionTitle: 'Guidance Feedback Trio Round',
     steps: [
       'Divide the team into groups of three. Role A: giver, Role B: receiver, Role C: observer. The giver gives feedback to the receiver about something concrete (behavior in training, attitude, cooperation). The observer only watches tone and word choice, not content.',
@@ -319,9 +319,9 @@ const MONTHS_EN = [
   {
     m: 5, title: 'Team First',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analysis</span> Frazier et al. (2017) — meta-analysis of 136 samples on psychological safety: teams with high psychological safety perform significantly better on creativity, learning behavior, and interpersonal risk-taking. <em>Personnel Psychology, 70(1), 113–165.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> Fransen et al. (2015) — season-long study with 23 basketball teams: teams with strong perception of team identity and "we" culture show higher performance stability and lower dropout throughout the season. <em>Journal of Sport Sciences.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Qualitative research</span> Edmondson (1999) — observational research in 51 work units: teams that dare to ask for help learn faster and perform better long-term than teams that hide mistakes.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analysis</span> Frazier et al. (2017), meta-analysis of 136 samples on psychological safety: teams with high psychological safety perform significantly better on creativity, learning behavior, and interpersonal risk-taking. <em>Personnel Psychology, 70(1), 113–165.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> Fransen et al. (2015), season-long study with 23 basketball teams: teams with strong perception of team identity and "we" culture show higher performance stability and lower dropout throughout the season. <em>Journal of Sport Sciences.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Qualitative research</span> Edmondson (1999), observational research in 51 work units: teams that dare to ask for help learn faster and perform better long-term than teams that hide mistakes.</p>`,
     sectionTitle: 'Guidance Team Contract',
     steps: [
       'Have players first write three personal promises individually. This takes 3 minutes. Then discuss in groups of three which promises overlap. From each group, one promise is chosen to propose to the whole team.',
@@ -330,7 +330,7 @@ const MONTHS_EN = [
     ],
     tips: [
       '<strong>Tip 1:</strong> The Invisible Contribution exercise is powerful. At the end of the month, read the notes aloud in the group (anonymous or by name, decide together). This changes how players look at each other.',
-      '<strong>Tip 2:</strong> Publicly reward behavior that shows "team first." Not with points but with recognition: "What Jonas just did — that\'s what we mean by team first." Behavior that is seen gets repeated.',
+      '<strong>Tip 2:</strong> Publicly reward behavior that shows "team first." Not with points but with recognition: "What Jonas just did, that\'s what we mean by team first." Behavior that is seen gets repeated.',
       '<strong>Tip 3:</strong> Build psychological safety by naming your own mistakes as a coach. "I made a mistake in my decision yesterday. Here\'s what I learned." This gives players explicit permission to be vulnerable.',
     ],
     warning: 'Watch competitive players who struggle with "team first" when they get little playing time. This theme can expose frustrations. Use it as a reason for an individual conversation, not a group discussion.',
@@ -341,9 +341,9 @@ const MONTHS_EN = [
   {
     m: 6, title: 'Resilience & Growth Mindset',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analysis</span> Burnette et al. (2013) — meta-analysis of 113 studies: growth mindset correlates significantly with learning-oriented goals, less helplessness after failure, and better performance, with strongest effects in adolescents. <em>Psychological Bulletin.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Systematic Review</span> Meijen et al. (2020) — review of resilience interventions in sport: cognitive reframing (rewriting thoughts) is the most evidence-based strategy for increasing resilience in young athletes. <em>Frontiers in Psychology.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinal study</span> Martin &amp; Marsh (2009) — 2-year follow-up with 3,500 students: academic resilience is a better predictor of long-term success than intelligence score or achievement motivation. Results replicable in sports context.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analysis</span> Burnette et al. (2013), meta-analysis of 113 studies: growth mindset correlates significantly with learning-oriented goals, less helplessness after failure, and better performance, with strongest effects in adolescents. <em>Psychological Bulletin.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Systematic Review</span> Meijen et al. (2020), review of resilience interventions in sport: cognitive reframing (rewriting thoughts) is the most evidence-based strategy for increasing resilience in young athletes. <em>Frontiers in Psychology.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinal study</span> Martin &amp; Marsh (2009),2-year follow-up with 3,500 students: academic resilience is a better predictor of long-term success than intelligence score or achievement motivation. Results replicable in sports context.</p>`,
     sectionTitle: 'Guidance Rewrite the Mistake',
     steps: [
       'Introduce the concept of fixed vs. growth mindset with a real example from your own career as a player or coach. "I always thought I wasn\'t fast enough. Later I realized I had never really trained my start."',
@@ -362,9 +362,9 @@ const MONTHS_EN = [
   {
     m: 7, title: 'Leadership from Within',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Cotterill &amp; Fransen (2016) — review of team leadership literature in sport: shared leadership (multiple players showing leadership behavior) correlates more strongly with team cohesion and performance than single formal leadership. <em>Psychology of Sport &amp; Exercise.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-2">Multi-season study</span> Fransen et al. (2020) — study over 2 seasons with 34 teams: teams with 3 or more informal leaders perform significantly more consistently than teams with only 1 formal leader. <em>Journal of Sport Sciences.</em></p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical framework</span> Côté &amp; Gilbert (2009) — Integrated Definition of Coaching Effectiveness: effective leadership is not position-based but behavior-based; athletes who show servant leadership significantly increase team trust.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Cotterill &amp; Fransen (2016), review of team leadership literature in sport: shared leadership (multiple players showing leadership behavior) correlates more strongly with team cohesion and performance than single formal leadership. <em>Psychology of Sport &amp; Exercise.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-2">Multi-season study</span> Fransen et al. (2020), study over 2 seasons with 34 teams: teams with 3 or more informal leaders perform significantly more consistently than teams with only 1 formal leader. <em>Journal of Sport Sciences.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical framework</span> Côté &amp; Gilbert (2009), Integrated Definition of Coaching Effectiveness: effective leadership is not position-based but behavior-based; athletes who show servant leadership significantly increase team trust.</p>`,
     sectionTitle: 'Guidance "The First Voice"',
     steps: [
       'Explain what "The First Voice" means: during a time-out, before training, after a setback, someone who is the first to say something constructive. This is leadership in action.',
@@ -384,9 +384,9 @@ const MONTHS_EN = [
   {
     m: 8, title: 'Legacy & Next Step',
     science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
-<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Henriksen et al. (2020) — review of 44 studies on talent environments in sport: end-of-season sessions with explicit reflection on values, contribution, and intentions significantly increase identity development and long-term sport participation. <em>British Journal of Sports Medicine.</em></p>
+<p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Henriksen et al. (2020), review of 44 studies on talent environments in sport: end-of-season sessions with explicit reflection on values, contribution, and intentions significantly increase identity development and long-term sport participation. <em>British Journal of Sports Medicine.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> End-of-season reflection on personal growth is associated with higher intrinsic motivation the following season.</p>
-<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical framework</span> Seligman (2011) — PERMA model: meaning and accomplishment are the two most underestimated components of well-being in adolescents. Conscious reflection on contribution is an evidence-based strategy for activating both.</p>`,
+<p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical framework</span> Seligman (2011), PERMA model: meaning and accomplishment are the two most underestimated components of well-being in adolescents. Conscious reflection on contribution is an evidence-based strategy for activating both.</p>`,
     sectionTitle: 'Guiding the Closing Session',
     steps: [
       'Begin with a look back. Bring the Month 1 worksheet (the Three Words). Have players compare: "Are you still that person? Have you grown?" This creates a powerful sense of progression.',
@@ -412,9 +412,9 @@ function buildCoachHTML(month, lang) {
   const tips = month.tips.map(t => `<div class="tip-box"><p>${t}</p></div>`).join('\n');
   const timing = month.timing.map(t => `<li><div class="checkbox"></div>${t}</li>`).join('\n');
   const badgeLabel = isEN ? 'Coach' : 'Coach';
-  const monthLabel = isEN ? `Month ${month.m} — Coach Guide` : `Maand ${month.m} — Coachgids`;
-  const confLabel = isEN ? 'CONFIDENTIAL — Coaches only' : 'VERTROUWELIJK — Enkel voor coaches';
-  const cfLabel = isEN ? `Character First — ${month.footer}` : `Character First — ${month.footer}`;
+  const monthLabel = isEN ? `Month ${month.m}, Coach Guide` : `Maand ${month.m}, Coachgids`;
+  const confLabel = isEN ? 'CONFIDENTIAL · Coaches only' : 'VERTROUWELIJK · Enkel voor coaches';
+  const cfLabel = isEN ? `Character First · ${month.footer}` : `Character First · ${month.footer}`;
   return `<!DOCTYPE html>
 <html lang="${isEN ? 'en' : 'nl'}">
 <head><meta charset="UTF-8"/><style>${CSS}</style></head>
@@ -446,6 +446,7 @@ function buildCoachHTML(month, lang) {
   </div>
   <div class="page-footer">
     <span>${cfLabel}</span>
+    <span>Created by Tom Pauwaert</span>
     <span>${confLabel}</span>
   </div>
 </div>
