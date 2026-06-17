@@ -404,83 +404,83 @@ const NL = [
 
 const EN = [
   {
-    s:1, title:'Our Identity',
-    sessionLabel:'Preseason Session 1 — Player Worksheet',
-    goalLabel:'Goals Session 1',
-    goals:['You can name three values you want our team to radiate this season','You understand why shared identity is the foundation of a strong team culture','You contribute to a shared team statement that guides the season'],
-    intro:"Culture doesn't start with rules — it starts with who you are. Who are we as a team? Not what we want to win, but how we want to be. This worksheet lays the foundation.",
+    s:1, title:'Our identity',
+    sessionLabel:'Preseason session 1: player worksheet',
+    goalLabel:'Goals session 1',
+    goals:['You name three values you want our team to show this season','You understand why a shared identity is the foundation of a strong team','You help write one sentence that describes our team this season'],
+    intro:"Culture doesn't start with rules. It starts with who you are. Who are we as a team? Not what we want to win, but how we want to be. This worksheet lays the foundation.",
     page1:`
-      <div class="section-title">Exercise 1 — Who Are We?</div>
+      <div class="section-title">Exercise 1: who are we?</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Three Words for Our Team</div>
-        <p class="ex-instr">Write three words you want people to say about our team — not about our results, but about our behavior and character.</p>
+        <div class="ex-title"><div class="ex-num">1</div>Three words for our team</div>
+        <p class="ex-instr">Which three words do you want people to say about our team? Not about our results, but about our behavior and character.</p>
         <div class="field-label">My three words:</div>
         <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
-        <div class="field-label" style="margin-top:8px">After the group discussion — the three words our team chose:</div>
+        <div class="field-label" style="margin-top:8px">After the group discussion: the three words our team chose.</div>
         <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
       </div>
-      <div class="section-title">Exercise 2 — Our Culture Anchors</div>
+      <div class="section-title">Exercise 2: our culture anchors</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>What Do We Keep? What Do We Let Go?</div>
-        <p class="ex-instr">Think about last season. Which habits or behaviors do we want to keep in our culture? Which do we consciously leave behind?</p>
+        <div class="ex-title"><div class="ex-num">2</div>What do we keep, what do we let go?</div>
+        <p class="ex-instr">Think about last season. What do we want to keep? What do we consciously leave behind?</p>
         <div class="two-col">
           <div>
             <div class="col-label" style="color:var(--green)">WE KEEP ▶</div>
-            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
           <div>
             <div class="col-label" style="color:#c0392b">WE LET GO ✕</div>
-            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
         </div>
       </div>`,
     page2:`
-      <div class="section-title">Exercise 3 — Our Team Statement</div>
+      <div class="section-title">Exercise 3: our team sentence</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>One Sentence That Describes Us</div>
-        <p class="ex-instr">Write together one sentence that describes who you want to be this season — as a team, not as individuals. Not a slogan, but a real promise.</p>
-        <div class="field-label">Our team statement this season:</div>
+        <div class="ex-title"><div class="ex-num">3</div>One sentence that describes us</div>
+        <p class="ex-instr">Write one sentence together. A sentence that says who you want to be this season, as a team. Not a slogan, but a real promise.</p>
+        <div class="field-label">Our team sentence this season:</div>
         <div class="box box-sm"></div>
-        <div class="field-label" style="margin-top:8px">What does this statement mean concretely for me as a player?</div>
+        <div class="field-label" style="margin-top:8px">What does this sentence mean to me as a player?</div>
         <div class="box box-md"></div>
       </div>
-      <div class="section-title">Personal Reflection</div>
+      <div class="section-title">Personal reflection</div>
       <div class="ex">
-        <p class="ex-instr">Which behavior from last season — yours or the team's — was not in line with the culture we want to be? How will you address that?</p>
-        <div class="box box-sm"></div>
+        <p class="ex-instr">Which behavior last season didn't fit the culture we want now? Yours or the team's. What will you do about it?</p>
+        <div class="box box-md"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Identity Anchor</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write one sentence you tell yourself when you're under pressure to behave differently than the team culture requires. Your anchor.</p>
+        <div class="mental-label">🧠 Mental resilience: defending our identity</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Sometimes a player puts our values under pressure, on purpose or not. What do we do then, as a team? Write down what you say or do when this happens.</p>
         <div class="mental-box"></div>
       </div>`,
-    quote:'"Culture is not just one aspect of the game — it is the game."',
-    cite:'Lou Gerstner — CEO IBM',
-    footer:'Preseason S1: Our Identity',
+    quote:'"Culture is not just one aspect of the game, it is the game."',
+    cite:'Lou Gerstner, CEO IBM',
+    footer:'Preseason S1: Our identity',
   },
   {
-    s:2, title:'Our Team Contract',
-    sessionLabel:'Preseason Session 2 — Player Worksheet',
-    goalLabel:'Goals Session 2',
-    goals:['You co-create behavioral norms that you personally endorse and uphold','You understand the difference between rules imposed by the coach and norms the team creates itself','You consciously sign a contract as an expression of commitment to the team culture'],
-    intro:"A team contract doesn't work when the coach makes it. It works when you write it yourselves. Today you build the code of conduct that protects your culture this season.",
+    s:2, title:'Our team contract',
+    sessionLabel:'Preseason session 2: player worksheet',
+    goalLabel:'Goals session 2',
+    goals:['You help create behavioral norms that you personally want to keep','You understand the difference between rules from the coach and norms the team makes itself','You consciously sign a contract as proof of your commitment'],
+    intro:"A team contract doesn't work when the coach writes it. It works when you write it yourselves. Today you build the agreements that protect your culture this season.",
     page1:`
-      <div class="section-title">Exercise 1 — What Do We Expect from Each Other?</div>
+      <div class="section-title">Exercise 1: what do we expect from each other?</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>My Top 3 Expectations</div>
-        <p class="ex-instr">Write three concrete behaviors you expect from every teammate — not about performance, but about attitude, respect, and effort.</p>
+        <div class="ex-title"><div class="ex-num">1</div>My top 3 expectations</div>
+        <p class="ex-instr">Write down three things you expect from every teammate. Not about performance, but about attitude, respect, and effort.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">3</div><div class="line"></div></div>
         </div>
-        <div class="field-label" style="margin-top:8px">Which expectation are you most willing to uphold yourself?</div>
-        <div class="box box-xs"></div>
+        <div class="field-label" style="margin-top:8px">Which expectation are you most willing to keep yourself?</div>
+        <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Exercise 2 — My Personal Promise</div>
+      <div class="section-title">Exercise 2: my personal promise</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>What Do I Promise the Team?</div>
-        <p class="ex-instr">Write three promises you personally make to the team for this season. Make them concrete enough to evaluate at the end of the season.</p>
+        <div class="ex-title"><div class="ex-num">2</div>What do I promise the team?</div>
+        <p class="ex-instr">Write down three promises you make to the team this season. Make them concrete, so you can check them later.</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
           <div class="promise-row"><div class="promise-label">I promise to</div><div class="line" style="flex:1"></div></div>
           <div class="promise-row"><div class="promise-label">I promise to</div><div class="line" style="flex:1"></div></div>
@@ -488,17 +488,17 @@ const EN = [
         </div>
       </div>`,
     page2:`
-      <div class="section-title">Exercise 3 — Signature & Commitment</div>
+      <div class="section-title">Exercise 3: signature and commitment</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>The Team Contract</div>
-        <p class="ex-instr">After the group discussion: write the three behavioral rules you chose as a team. Then sign as an expression of your commitment.</p>
+        <div class="ex-title"><div class="ex-num">3</div>The team contract</div>
+        <p class="ex-instr">After the group discussion: write down the three behavior rules your team chose. Then sign, as proof of your commitment.</p>
         <div class="field-label">Our team chooses:</div>
         <div class="num-list" style="margin-top:4px">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">3</div><div class="line"></div></div>
         </div>
-        <div class="field-label" style="margin-top:10px">What do I do if a teammate doesn't uphold the contract?</div>
+        <div class="field-label" style="margin-top:10px">What do I do if a teammate doesn't keep the contract?</div>
         <div class="box box-sm"></div>
         <div class="sign-row" style="margin-top:8px">
           <div class="sign-field"><div class="sign-label">Name</div><div class="line"></div></div>
@@ -508,181 +508,190 @@ const EN = [
       </div>
       <div class="section-title">Reflection</div>
       <div class="ex">
-        <p class="ex-instr">Which promise will be hardest for you to keep? Why? And how will you hold yourself accountable?</p>
+        <p class="ex-instr">Which promise will be hardest for you to keep? Why? How will you hold yourself to it?</p>
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Commitment under Pressure</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write the scenario where you're most likely to break your promise (e.g. after a loss, conflict, bad day). What do you do concretely to honor your commitment anyway?</p>
+        <div class="mental-label">🧠 Mental resilience: defending our contract</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">What do we do as a team when a player keeps breaking the contract? Write down what you would say or do.</p>
         <div class="mental-box"></div>
       </div>`,
     quote:'"Agreements, not rules. You can break a rule. You own an agreement."',
-    cite:'Atul Gawande — surgeon & team researcher',
-    footer:'Preseason S2: Our Team Contract',
+    cite:'Atul Gawande, surgeon and team researcher',
+    footer:'Preseason S2: Our team contract',
   },
   {
-    s:3, title:'Trust & Safety',
-    sessionLabel:'Preseason Session 3 — Player Worksheet',
-    goalLabel:'Goals Session 3',
-    goals:['You can explain what psychological safety is and why it makes or breaks team culture','You recognize concrete behaviors that build or destroy trust in your team','You take a conscious step to show vulnerability to a teammate'],
-    intro:"Without trust there is no real culture — only façade. Teams that dare to show vulnerability perform better, learn faster and last longer. Today we build that foundation.",
+    s:3, title:'Trust and safety',
+    sessionLabel:'Preseason session 3: player worksheet',
+    goalLabel:'Goals session 3',
+    goals:['You explain what psychological safety is and why it makes or breaks a culture','You recognize behavior that builds or breaks trust in your team','You take a conscious step to share something personal with a teammate'],
+    intro:"Without trust there is no real culture, only a façade. Teams that dare to show who they are perform better and stay together longer. Today we build that foundation.",
     page1:`
-      <div class="section-title">Exercise 1 — Trust Barometer</div>
+      <div class="section-title">Exercise 1: trust barometer</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>How Safe Do I Feel in Our Team?</div>
-        <p class="ex-instr">Give an honest score from 1 to 10 for each situation below. There is no right or wrong answer.</p>
+        <div class="ex-title"><div class="ex-num">1</div>How safe do I feel in our team?</div>
+        <p class="ex-instr">Give an honest score from 1 to 10 for each situation. There is no right or wrong answer.</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
           <div class="field-label">I dare to admit mistakes in our team: <span style="color:var(--orange);font-weight:700">___/10</span></div>
           <div class="field-label">I dare to ask for help without feeling weak: <span style="color:var(--orange);font-weight:700">___/10</span></div>
-          <div class="field-label">I dare to share my opinion even when it differs: <span style="color:var(--orange);font-weight:700">___/10</span></div>
-          <div class="field-label">I feel supported after a bad match: <span style="color:var(--orange);font-weight:700">___/10</span></div>
+          <div class="field-label">I dare to say my opinion, even when it differs: <span style="color:var(--orange);font-weight:700">___/10</span></div>
+          <div class="field-label">I feel supported after a bad game: <span style="color:var(--orange);font-weight:700">___/10</span></div>
         </div>
-        <div class="field-label" style="margin-top:10px">What stands out from your scores? Where is there room to grow?</div>
+        <div class="field-label" style="margin-top:10px">What stands out in your scores? Where do you see room to grow?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Exercise 2 — Building or Breaking Trust</div>
+      <div class="section-title">Exercise 2: building or breaking trust</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Concrete Behaviors</div>
-        <p class="ex-instr">Write two behaviors that build trust in a team, and two that break trust — from your own experience.</p>
+        <div class="ex-title"><div class="ex-num">2</div>What I see happening</div>
+        <p class="ex-instr">Write down two things that build trust in a team. Write down two things that break trust. From your own experience.</p>
         <div class="two-col">
           <div>
             <div class="col-label" style="color:var(--green)">BUILDS TRUST</div>
-            <div class="lines"><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
           <div>
             <div class="col-label" style="color:#c0392b">BREAKS TRUST</div>
-            <div class="lines"><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
         </div>
-        <div class="field-label" style="margin-top:8px">Which behavior of your own could be breaking trust?</div>
-        <div class="box box-xs"></div>
+        <div class="field-label" style="margin-top:8px">Which of your own behaviors could break trust?</div>
+        <div class="box box-sm"></div>
       </div>`,
     page2:`
-      <div class="section-title">Exercise 3 — Vulnerability in Action</div>
+      <div class="section-title">Exercise 3: daring to share</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Something I Never Talk About</div>
-        <p class="ex-instr">Write one thing you find difficult in sports or in the team but rarely say out loud. You don't have to share this — but writing it down is already a step.</p>
+        <div class="ex-title"><div class="ex-num">3</div>Something I never tell</div>
+        <p class="ex-instr">Write down one thing you find hard in sports or in the team. Something you rarely say out loud. You don't have to share this, writing it down is already a step.</p>
         <div class="box box-md"></div>
-        <div class="field-label" style="margin-top:8px">Which teammate could you most easily tell this to? Why that person?</div>
+        <div class="field-label" style="margin-top:8px">Which teammate would you tell this to most easily? Why that person?</div>
         <div class="line"></div>
-        <div class="field-label" style="margin-top:8px">What would sharing it deliver?</div>
+        <div class="field-label" style="margin-top:8px">What would it bring if you did share it?</div>
         <div class="box box-sm"></div>
       </div>
       <div class="section-title">Action this week</div>
       <div class="ex">
-        <p class="ex-instr">What concrete step will you take this week to increase trust in the team?</p>
-        <div class="box box-xs"></div>
+        <p class="ex-instr">What step will you take this week to grow trust in the team?</p>
+        <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Rebuilding Trust</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write: what do you do when trust in the team is under pressure (after conflict, loss, or tension)? Your three steps to restore it.</p>
+        <div class="mental-label">🧠 Mental resilience: rebuilding trust</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">What do we do as a team when trust breaks because of something a teammate did? Write down what you would say or do.</p>
         <div class="mental-box"></div>
       </div>`,
     quote:'"Vulnerability is not weakness. It is our greatest measure of courage."',
-    cite:'Brené Brown — researcher & author',
-    footer:'Preseason S3: Trust & Safety',
+    cite:'Brené Brown, researcher and author',
+    footer:'Preseason S3: Trust and safety',
   },
   {
-    s:4, title:'Conflict & Recovery',
-    sessionLabel:'Preseason Session 4 — Player Worksheet',
-    goalLabel:'Goals Session 4',
-    goals:['You recognize the difference between healthy conflict (that stimulates growth) and destructive conflict','You can apply the steps of recovery after tension or disagreement in the team','You dare to address someone without damaging the relationship'],
-    intro:"Avoiding conflict is not culture — it is stagnation. Strong teams have tension, but they know how to get through it. Today you learn to see conflict as a growth opportunity, not a threat.",
+    s:4, title:'Conflict and recovery',
+    sessionLabel:'Preseason session 4: player worksheet',
+    goalLabel:'Goals session 4',
+    goals:['You recognize the difference between a healthy conflict and a conflict that causes harm','You apply the recovery steps after tension or a disagreement','You dare to address someone without damaging the relationship'],
+    intro:"Avoiding conflict is not culture, it is standing still. Strong teams have tension too, but they know how to work through it together. Today you learn to see conflict as a chance to grow.",
     page1:`
-      <div class="section-title">Exercise 1 — My Conflict Style</div>
+      <div class="section-title">Exercise 1: my conflict style</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>How Do I React to Tension?</div>
-        <p class="ex-instr">Choose the response that most resembles you when there is tension in the team. Circle or underline your style.</p>
+        <div class="ex-title"><div class="ex-num">1</div>How do I react to tension?</div>
+        <p class="ex-instr">Choose the reaction that looks most like you when there is tension in the team. Circle or underline your style.</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;font-size:0.78rem;color:var(--gray-600)">
-          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Avoider:</strong> I ignore it and hope it resolves itself</div>
+          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Avoider:</strong> I ignore it and hope it goes away on its own</div>
           <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Accommodator:</strong> I agree to keep the peace, even if I disagree</div>
-          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Confronter:</strong> I say directly what I think, sometimes too bluntly</div>
+          <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Confronter:</strong> I say directly what I think, sometimes too sharply</div>
           <div style="padding:6px 10px;border:1px solid var(--line);border-radius:4px"><strong style="color:var(--ink)">Mediator:</strong> I look for a solution that works for everyone</div>
         </div>
         <div class="field-label" style="margin-top:8px">When does your style help the team? When does it hurt?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Exercise 2 — The Difficult Conversation</div>
+      <div class="section-title">Exercise 2: the difficult conversation</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Addressing Someone</div>
-        <p class="ex-instr">Use the model: I see… I feel… I ask you to… Think of a tension with a teammate and write it out.</p>
+        <div class="ex-title"><div class="ex-num">2</div>Addressing someone</div>
+        <p class="ex-instr">Use this model: I see, I feel, I ask you to. Think of tension with a teammate and write it out.</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">I SEE...</div><div class="line"></div></div>
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">I FEEL...</div><div class="line"></div></div>
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">I ASK YOU TO...</div><div class="line"></div></div>
+          <div><div class="field-label" style="color:var(--orange);font-weight:700">I SEE</div><div class="line"></div></div>
+          <div><div class="field-label" style="color:var(--orange);font-weight:700">I FEEL</div><div class="line"></div></div>
+          <div><div class="field-label" style="color:var(--orange);font-weight:700">I ASK YOU TO</div><div class="line"></div></div>
         </div>
       </div>`,
     page2:`
-      <div class="section-title">Exercise 3 — Recovery Steps</div>
+      <div class="section-title">Exercise 3: recovery steps</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>How Does Our Team Recover After Conflict?</div>
-        <p class="ex-instr">After the group discussion: write the three steps you agree on as a team to resolve tension — quickly, honestly, and without waiting a night.</p>
+        <div class="ex-title"><div class="ex-num">3</div>How does our team recover after a conflict?</div>
+        <p class="ex-instr">After the group discussion: write down the three steps your team agrees on to recover from tension. Fast and honest, without waiting a night.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">3</div><div class="line"></div></div>
         </div>
-        <div class="field-label" style="margin-top:10px">Who is the natural mediator in our team? What makes them suitable?</div>
+        <div class="field-label" style="margin-top:10px">Who is the natural mediator in our team? What makes them good at it?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Personal Reflection</div>
+      <div class="section-title">Personal reflection</div>
       <div class="ex">
-        <p class="ex-instr">Write a conflict or tension from the past that stayed unresolved. What could you have done differently? What do you learn from this for this season?</p>
+        <p class="ex-instr">Write down a conflict or tension from the past that stayed unresolved. What could you have done differently? What do you learn from it for this season?</p>
         <div class="box box-md"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Emotion vs Reaction</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write: what do you feel physically when there is tension (heart rate, body tension, thoughts)? And what do you do in the next 60 seconds before reacting to avoid acting impulsively?</p>
+        <div class="mental-label">🧠 Mental resilience: handling conflict in the team</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">What do we do as a team when two teammates have a conflict that affects the mood? Write down what you would say or do.</p>
         <div class="mental-box"></div>
       </div>`,
     quote:'"Peace is not the absence of conflict. It is the ability to handle conflict by peaceful means."',
     cite:'Ronald Reagan',
-    footer:'Preseason S4: Conflict & Recovery',
+    footer:'Preseason S4: Conflict and recovery',
   },
   {
-    s:5, title:'Culture in Action',
-    sessionLabel:'Preseason Session 5 — Player Worksheet',
-    goalLabel:'Goals Session 5',
-    goals:['You formulate concrete rituals and habits that keep our team culture alive every week','You know how to hold each other accountable when culture is under pressure during the season','You close the preseason with a shared image of the culture you want to be'],
-    intro:"Culture is not what you say — it is what you do when nobody is watching. After four sessions you know who you want to be. Now it is about how you make that real every single day.",
+    s:5, title:'Culture in action',
+    sessionLabel:'Preseason session 5: player worksheet',
+    goalLabel:'Goals session 5',
+    goals:['You formulate rituals that keep our team culture alive every week','You know how to hold each other accountable when culture comes under pressure during the season','You close the preseason with a shared picture of the culture you want to be'],
+    intro:"Culture is not what you say, it is what you do when nobody is watching. After four sessions you know who you want to be. Now it is about making that real every day.",
     page1:`
-      <div class="section-title">Exercise 1 — Our Rituals</div>
+      <div class="section-title">Exercise 1: our rituals</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Rituals that Protect Our Culture</div>
-        <p class="ex-instr">Rituals are small repeated actions that keep culture alive. Write three rituals you will introduce this season — before training, after a match, or during difficult moments.</p>
+        <div class="ex-title"><div class="ex-num">1</div>Rituals that protect our culture</div>
+        <p class="ex-instr">Rituals are small, repeated actions that keep culture alive. Write down three rituals you will introduce this season. For training, after a game, or in a difficult moment.</p>
         <div style="display:flex;flex-direction:column;gap:12px;margin-top:6px">
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">BEFORE TRAINING</div><div class="line"></div></div>
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">AFTER A MATCH</div><div class="line"></div></div>
-          <div><div class="field-label" style="color:var(--orange);font-weight:700">DURING A DIFFICULT MOMENT</div><div class="line"></div></div>
+          <div>
+            <div class="field-label" style="color:var(--orange);font-weight:700">BEFORE TRAINING</div>
+            <div class="line"></div>
+          </div>
+          <div>
+            <div class="field-label" style="color:var(--orange);font-weight:700">AFTER A GAME</div>
+            <div class="line"></div>
+          </div>
+          <div>
+            <div class="field-label" style="color:var(--orange);font-weight:700">IN A DIFFICULT MOMENT</div>
+            <div class="line"></div>
+          </div>
         </div>
-        <div class="field-label" style="margin-top:8px">Which ritual has the most impact on team atmosphere? Why?</div>
-        <div class="box box-xs"></div>
+        <div class="field-label" style="margin-top:8px">Which ritual has the biggest impact on the team mood? Why?</div>
+        <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Exercise 2 — The Culture Guard</div>
+      <div class="section-title">Exercise 2: the culture guard</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Who Guards Our Culture?</div>
-        <p class="ex-instr">Every player is responsible for culture — but sometimes an explicit system helps. Write how you will hold each other accountable when the contract is not followed.</p>
-        <div class="field-label">Our accountability mechanism (how, when, with whom):</div>
+        <div class="ex-title"><div class="ex-num">2</div>Who guards our culture?</div>
+        <p class="ex-instr">Every player is responsible for the culture. Sometimes a clear agreement helps. Write down how you hold each other accountable when the contract isn't kept.</p>
+        <div class="field-label">Our accountability approach, how, when, with whom:</div>
         <div class="box box-md"></div>
-        <div class="field-label" style="margin-top:6px">What do we do if someone keeps showing the same behavior?</div>
-        <div class="box box-xs"></div>
+        <div class="field-label" style="margin-top:6px">What do we do when someone keeps showing the same behavior?</div>
+        <div class="box box-sm"></div>
       </div>`,
     page2:`
-      <div class="section-title">Exercise 3 — Culture Check Mid-Season</div>
+      <div class="section-title">Exercise 3: culture check midseason</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Our Culture-Check at Month 4</div>
-        <p class="ex-instr">Write three questions you want to ask each other halfway through the season to measure whether the culture is still alive. Schedule when you will do this now.</p>
+        <div class="ex-title"><div class="ex-num">3</div>Our culture check at month 4</div>
+        <p class="ex-instr">Write down three questions you want to ask each other halfway through the season, to check if the culture is still alive. Plan now when you will do this.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">3</div><div class="line"></div></div>
         </div>
-        <div class="field-label" style="margin-top:8px">Scheduled date for culture-check:</div>
+        <div class="field-label" style="margin-top:8px">Date for the culture check planned:</div>
         <div class="line"></div>
       </div>
-      <div class="section-title">My Promise to the Season</div>
+      <div class="section-title">My promise to the season</div>
       <div class="ex">
-        <p class="ex-instr">Write in one powerful sentence what you will contribute to the team culture this season — as a promise to yourself and to the team.</p>
+        <p class="ex-instr">Write one strong sentence about what you will contribute to the team culture this season. As a promise to yourself and to the team.</p>
         <div class="box box-sm"></div>
         <div class="sign-row">
           <div class="sign-field"><div class="sign-label">Name</div><div class="line"></div></div>
@@ -690,13 +699,13 @@ const EN = [
         </div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Culture Under Competition Pressure</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">When is culture most under pressure? Write the scenario (losing streak, internal competition, playing time conflict) and describe your personal action plan to defend the culture.</p>
+        <div class="mental-label">🧠 Mental resilience: culture under competitive pressure</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">When is our culture under the most pressure? Think of a losing streak, internal competition, or a playing time conflict. Write down the scenario and what you do then to defend our culture.</p>
         <div class="mental-box"></div>
       </div>`,
     quote:'"Champions behave like champions before they are champions."',
-    cite:'Bill Walsh — 3× Super Bowl Champion Coach, San Francisco 49ers',
-    footer:'Preseason S5: Culture in Action',
+    cite:'Bill Walsh, three time Super Bowl Champion Coach, San Francisco 49ers',
+    footer:'Preseason S5: Culture in action',
   },
 ];
 
@@ -729,25 +738,25 @@ function buildHTML(data, lang) {
   <div class="page-footer">
     <span>${EMAIL}</span>
     <span class="credit">Created by Tom Pauwaert</span>
-    <span>${data.footer} — ${pg} 1/2</span>
+    <span>${data.footer}, ${pg} 1/2</span>
   </div>
 </div>
 <div class="page">
   <div class="cont-header">
-    <div class="cont-title">${data.title} — ${contd}</div>
+    <div class="cont-title">${data.title}: ${contd}</div>
     <div class="cont-session">${data.sessionLabel}</div>
   </div>
   ${data.page2}
   <div class="quote-wrap">
     <div class="quote-block">
       <p>${data.quote}</p>
-      <cite>— ${data.cite}</cite>
+      <cite>${data.cite}</cite>
     </div>
   </div>
   <div class="page-footer">
     <span>${EMAIL}</span>
     <span class="credit">Created by Tom Pauwaert</span>
-    <span>${data.footer} — ${pg} 2/2</span>
+    <span>${data.footer}, ${pg} 2/2</span>
   </div>
 </div>
 </body></html>`;
