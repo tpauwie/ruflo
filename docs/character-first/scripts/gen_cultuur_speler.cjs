@@ -102,11 +102,11 @@ const NL = [
         <div class="two-col">
           <div>
             <div class="col-label" style="color:var(--green)">WE HOUDEN VAST ▶</div>
-            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
           <div>
             <div class="col-label" style="color:#c0392b">WE LATEN LOS ✕</div>
-            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
           </div>
         </div>
       </div>`,
