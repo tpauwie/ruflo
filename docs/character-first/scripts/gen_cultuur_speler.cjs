@@ -80,16 +80,16 @@ const NL = [
     sessionLabel: 'Preseason sessie 1: spelerswerkblad',
     goalLabel: 'Doelstelling sessie 1',
     goals: [
-      'Je kan drie waarden benoemen die jij wil dat ons team uitstraalt dit seizoen',
-      'Je begrijpt waarom gedeelde identiteit de basis is van een sterke teamcultuur',
-      'Je draagt bij aan een gezamenlijke teamomschrijving die het seizoen begeleidt',
+      'Je benoemt drie waarden die je dit seizoen in ons team wil zien',
+      'Je snapt waarom een gedeelde identiteit de basis is van een sterk team',
+      'Je helpt mee aan één zin die ons team dit seizoen beschrijft',
     ],
-    intro: 'Cultuur begint niet met regels. Het begint met wie je bent. Wie zijn wij als team? Niet wat we willen winnen, maar hoe we willen zijn. Dit werkblad legt het fundament.',
+    intro: 'Cultuur begint niet met regels. Het begint met wie je bent. Wie zijn wij als team? Niet wat we willen winnen, maar hoe we willen zijn. Dit werkblad legt de basis.',
     page1: `
       <div class="section-title">Oefening 1: wie zijn wij?</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>Drie woorden voor ons team</div>
-        <p class="ex-instr">Schrijf drie woorden op die jij wil dat mensen zeggen over ons team. Niet over onze resultaten, maar over ons gedrag en karakter.</p>
+        <p class="ex-instr">Schrijf drie woorden op. Woorden die jij wil dat mensen over ons team zeggen. Niet over de resultaten, maar over ons gedrag.</p>
         <div class="field-label">Mijn drie woorden:</div>
         <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
         <div class="field-label" style="margin-top:8px">Na de groepsdiscussie: de drie woorden die ons team koos.</div>
@@ -98,7 +98,7 @@ const NL = [
       <div class="section-title">Oefening 2: onze cultuurankers</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>Wat houd ik vast, wat laat ik los?</div>
-        <p class="ex-instr">Denk aan vorig seizoen. Welke gewoontes of gedragingen willen we behouden in onze cultuur? Welke laten we bewust achter?</p>
+        <p class="ex-instr">Denk aan vorig seizoen. Wat willen we behouden? Wat laten we bewust achter?</p>
         <div class="two-col">
           <div>
             <div class="col-label" style="color:var(--green)">WE HOUDEN VAST ▶</div>
@@ -114,20 +114,20 @@ const NL = [
       <div class="section-title">Oefening 3: onze teamzin</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>Eén zin die ons beschrijft</div>
-        <p class="ex-instr">Schrijf samen een zin die beschrijft wie jullie dit seizoen willen zijn, als team, niet als individu. Geen slogan, maar een echte belofte.</p>
+        <p class="ex-instr">Schrijf samen één zin. Een zin die zegt wie jullie dit seizoen willen zijn, als team. Geen slogan, maar een echte belofte.</p>
         <div class="field-label">Onze teamzin dit seizoen:</div>
         <div class="box box-sm"></div>
-        <div class="field-label" style="margin-top:8px">Wat betekent deze zin concreet voor mij als speler?</div>
+        <div class="field-label" style="margin-top:8px">Wat betekent deze zin voor mij als speler?</div>
         <div class="box box-md"></div>
       </div>
       <div class="section-title">Persoonlijke reflectie</div>
       <div class="ex">
-        <p class="ex-instr">Welk gedrag van vorig seizoen, van jezelf of het team, was niet in lijn met de cultuur die we willen zijn? Hoe ga je dat aanpakken?</p>
+        <p class="ex-instr">Welk gedrag paste vorig seizoen niet bij de cultuur die we nu willen? Van jezelf of van het team. Wat ga je daaraan doen?</p>
         <div class="box box-md"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale weerbaarheid: identiteitsanker</div>
-        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf één zin op die jij tegen jezelf zegt wanneer je onder druk staat om je anders te gedragen dan de teamcultuur vraagt. Jouw anker.</p>
+        <div class="mental-label">🧠 Mentale weerbaarheid: onze identiteit verdedigen</div>
+        <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Soms zet een speler onze waarden onder druk, met opzet of niet. Wat doen we dan als team? Schrijf op wat jij zegt of doet wanneer dit gebeurt.</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Culture is not just one aspect of the game, it is the game."',
