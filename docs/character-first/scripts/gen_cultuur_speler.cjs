@@ -60,7 +60,7 @@ h2 { font-size: 1.2rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 .sign-label { font-size: 0.68rem; color: var(--gray-400); margin-bottom: 4px; }
 .mental-block { background: linear-gradient(135deg,#1C2433 0%,#2d3a4f 100%); color:#fff; border-radius:8px; padding:10px 14px; border-left:4px solid var(--orange); flex-shrink:0; }
 .mental-label { font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--orange); margin-bottom:5px; }
-.mental-box { border:1.5px solid rgba(255,255,255,.2); border-radius:4px; background:rgba(255,255,255,.06); min-height:52px; }
+.mental-box { border:1.5px solid rgba(255,255,255,.2); border-radius:4px; background:rgba(255,255,255,.06); min-height:156px; }
 .quote-wrap { flex-shrink:0; }
 .quote-block { background:var(--ink); color:#fff; border-radius:8px; padding:12px 16px; border-left:4px solid var(--orange); }
 .quote-block p { font-size:0.82rem; font-style:italic; line-height:1.55; margin-bottom:6px; }
