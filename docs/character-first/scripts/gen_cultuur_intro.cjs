@@ -196,55 +196,57 @@ const CSS = `
     border-top:1px solid var(--line);
   }
   .footer span { font-size:9px; color:var(--stone); }
+  .footer .credit { color:var(--stone); }
 `;
 
 const NL = {
-  badge: 'Handleiding voor Coaches',
+  badge: 'Handleiding voor coaches',
   eyebrow: 'Character First · Preseason',
-  title: 'Cultuur Bouwen\nBegins <span>Vóór</span> de Aftrap',
-  sub: 'Dit document helpt je als coach begrijpen waarom teamcultuur het fundament is van elk succesvol seizoen — en hoe je het Preseason Cultuurprogramma van Character First stap voor stap gebruikt.',
+  title: 'Cultuur bouwen\nbegint <span>vóór</span> de aftrap',
+  sub: 'Dit document legt uit waarom teamcultuur het fundament is van een goed seizoen. En hoe je het Preseason Cultuurprogramma van Character First stap voor stap gebruikt.',
 
   whyTitle: 'Waarom cultuur <span>vóór techniek</span>?',
-  whyText: 'Onderzoek toont keer op keer aan: teams die een sterke cultuur bouwen vóór het seizoen start, presteren beter onder druk, herstellen sneller na verlies en tonen meer eigenaarschap op en naast het veld. Cultuur is geen bijzaak — het is de basis waarop techniek en tactiek kunnen groeien.',
+  whyText: 'Onderzoek toont steeds opnieuw: teams die een sterke cultuur bouwen vóór het seizoen start, presteren beter onder druk. Ze herstellen sneller na een verlies. Ze tonen meer eigenaarschap op en naast het veld. Cultuur is geen bijzaak. Het is de basis waarop techniek en tactiek kunnen groeien.',
 
   stats: [
-    { num: '5', lbl: 'Sessies\nPreseason' },
+    { num: '5', lbl: 'Sessies\npreseason' },
     { num: '60\'', lbl: 'Per sessie\ngemiddeld' },
     { num: '2', lbl: 'Versies\nNL & EN' },
     { num: '100%', lbl: 'Klaar voor\ngebruik' },
   ],
 
-  secSessions: 'De 5 Sessies — Wat Komt aan Bod?',
+  secSessions: 'De 5 sessies: wat komt aan bod?',
   sessions: [
-    { n:'1', t:'Onze Identiteit', d:'Wie zijn wij als team? Waarden, trots en wat ons uniek maakt.', time:'45–60 min' },
-    { n:'2', t:'Ons Teamcontract', d:'Samen afspraken maken die iedereen respecteert en nakomt.', time:'50–60 min' },
-    { n:'3', t:'Vertrouwen & Veiligheid', d:'Een omgeving bouwen waar iedereen zichzelf durft te zijn.', time:'50–60 min' },
-    { n:'4', t:'Conflict & Herstel', d:'Hoe gaan we om met spanningen? Conflict als groeikans.', time:'45–60 min' },
-    { n:'5', t:'Cultuur in Actie', d:'Van woorden naar gedrag — onze cultuur zichtbaar maken.', time:'45–60 min' },
+    { n:'1', t:'Onze identiteit', d:'Wie zijn wij als team? Waarden, trots en wat ons uniek maakt.', time:'45–60 min' },
+    { n:'2', t:'Ons teamcontract', d:'Samen afspraken maken die iedereen respecteert en nakomt.', time:'50–60 min' },
+    { n:'3', t:'Vertrouwen en veiligheid', d:'Een omgeving bouwen waar iedereen zichzelf durft te zijn.', time:'50–60 min' },
+    { n:'4', t:'Conflict en herstel', d:'Hoe gaan we om met spanningen? Conflict als groeikans.', time:'45–60 min' },
+    { n:'5', t:'Cultuur in actie', d:'Van woorden naar gedrag. Onze cultuur zichtbaar maken.', time:'45–60 min' },
   ],
 
   // P2
-  secHow: 'Hoe Gebruik Je Dit Programma?',
+  secHow: 'Hoe gebruik je dit programma?',
   howCards: [
-    { icon:'📋', title:'Werkblad Speler', text:'Elke speler krijgt zijn eigen werkblad. Ze reflecteren individueel vóór de groepsdiscussie. Dit zorgt voor eerlijkere en diepere gesprekken.', cls:'' },
-    { icon:'🎓', title:'Gids Coach', text:'Jij als coach krijgt een aparte begeleidingsgids met doelstelling, activiteiten, discussievragen en een afsluitingsritueel per sessie.', cls:'green' },
-    { icon:'🗓️', title:'Wanneer Starten?', text:'Plan de 5 sessies in de 3–4 weken vóór de competitiestart. Één sessie per week is ideaal. Kan ook tijdens training ingepast worden.', cls:'blue' },
-    { icon:'👥', title:'Groepsgrootte', text:'Werkt voor teams van 8 tot 25 spelers. Bij grotere groepen werk je best in subgroepen voor de reflectie-oefeningen.', cls:'' },
+    { icon:'📋', title:'Werkblad speler', text:'Elke speler krijgt zijn eigen werkblad. Ze denken eerst individueel na, voor de groepsdiscussie. Dat geeft eerlijkere en diepere gesprekken.', cls:'' },
+    { icon:'🎓', title:'Gids coach', text:'Jij krijgt een apart begeleidingsblad per sessie, met doelstelling, activiteiten, discussievragen en een afsluiting.', cls:'green' },
+    { icon:'🗓️', title:'Wanneer starten?', text:'Plan de 5 sessies in de 3 tot 4 weken voor de competitiestart. Eén sessie per week werkt het best. Het kan ook tijdens een training.', cls:'blue' },
+    { icon:'👥', title:'Groepsgrootte', text:'Werkt voor teams van 8 tot 25 spelers. Bij grotere groepen werk je best in kleinere groepjes voor de reflectie-oefeningen.', cls:'' },
   ],
 
-  secTime: 'Tijdsinvestering voor de Coach',
+  secTime: 'Tijdsinvestering voor de coach',
   timeRows: [
-    { chip:'Voorbereiding', chipCls:'', desc:'10–15 minuten per sessie — lees de gids, print de werkbladen en leg het materiaal klaar.' },
-    { chip:'Sessie zelf', chipCls:'', desc:'45–60 minuten per sessie, 5 sessies totaal = ± 4 à 5 uur over het hele preseason.' },
-    { chip:'Nabespreking', chipCls:'green', desc:'Optioneel: 10 min nabespreking met jezelf of assistent-coach na elke sessie.' },
-    { chip:'Totaal', chipCls:'blue', desc:'Investering van ± 5–6 uur preseason voor een sterker, veerkrachtiger team het hele seizoen.' },
+    { chip:'Voorbereiding', chipCls:'', desc:'10 tot 15 minuten per sessie. Lees het blad, print de werkbladen en leg het materiaal klaar.' },
+    { chip:'Sessie zelf', chipCls:'', desc:'45 tot 60 minuten per sessie. Met 5 sessies kom je op ongeveer 4 tot 5 uur over heel het preseason.' },
+    { chip:'Nabespreking', chipCls:'green', desc:'Optioneel: 10 minuten nabespreking met jezelf of een assistent-coach na elke sessie.' },
+    { chip:'Totaal', chipCls:'blue', desc:'Een investering van ongeveer 5 tot 6 uur preseason voor een sterker, veerkrachtiger team het hele seizoen.' },
   ],
 
-  secQuote: 'Het Resultaat',
+  secQuote: 'Het resultaat',
   quote: '"Cultuur is wat je team doet als de coach niet kijkt."',
-  quoteAuth: '— Character First · Win the person. Win the team.',
+  quoteAuth: 'Character First, win the person, win the team.',
 
   footer: 'characterfirst.be · info@characterfirst.be',
+  credit: 'Created by Tom Pauwaert',
   pages: ['Pagina 1 van 2', 'Pagina 2 van 2'],
 };
 
@@ -296,6 +298,7 @@ function buildHtml(c) {
 
     <div class="footer">
       <span>${c.footer}</span>
+      <span class="credit">${c.credit}</span>
       <span>${c.pages[0]}</span>
     </div>
   </div>
@@ -337,6 +340,7 @@ function buildHtml(c) {
 
     <div class="footer">
       <span>${c.footer}</span>
+      <span class="credit">${c.credit}</span>
       <span>${c.pages[1]}</span>
     </div>
   </div>`;
