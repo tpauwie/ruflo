@@ -30,7 +30,7 @@ function logoDark(size = 80) {
   </svg>`;
 }
 
-/* Decorative SVG pattern for cover — abstract triangles */
+/* Decorative SVG pattern for cover, abstract triangles */
 function coverPattern() {
   return `<svg width="210mm" height="170mm" viewBox="0 0 794 643" xmlns="http://www.w3.org/2000/svg"
        style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.07">
@@ -62,7 +62,7 @@ const CSS = `
   }
 
   /* ─────────────────────────────
-     PAGE 1 — COVER
+     PAGE 1: COVER
   ───────────────────────────── */
   .p1-top {
     background: var(--navy);
@@ -161,7 +161,7 @@ const CSS = `
   .p1-footer span { font-size: 9px; color: var(--stone); }
 
   /* ─────────────────────────────
-     PAGE 2 — WHAT WE DO
+     PAGE 2: WHAT WE DO
   ───────────────────────────── */
   .ph {
     flex-shrink: 0; padding: 9mm 14mm 0;
@@ -243,7 +243,7 @@ const CSS = `
   .p2-footer span { font-size: 9px; color: var(--stone); }
 
   /* ─────────────────────────────
-     PAGE 3 — HOW IT WORKS
+     PAGE 3: HOW IT WORKS
   ───────────────────────────── */
   .ev-band {
     background: var(--navy); border-radius: 12px;
@@ -324,7 +324,7 @@ const CSS = `
   .vc-desc { font-size: 8.5px; color: var(--stone); line-height: 1.35; }
 
   /* ─────────────────────────────
-     PAGE 4 — CTA
+     PAGE 4: CTA
   ───────────────────────────── */
   .p4-hero {
     background: var(--orange);
