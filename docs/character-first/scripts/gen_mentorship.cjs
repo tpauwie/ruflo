@@ -804,13 +804,13 @@ const sessionsEN = [
   },
   {
     num: 7,
-    title: 'My Role in the Team',
+    title: 'My role in the team',
     subtitle: 'How am I a force for others?',
     quote: { text: '"The strongest player makes the team stronger, not themselves."', auteur: 'Character First' },
-    introQ: 'What do you contribute to your team — beyond what you score or perform?',
+    introQ: 'What do you contribute to your team, beyond what you score or perform?',
     oefening: {
-      label: 'My Team Role',
-      tekst: 'Think about your team. Answer honestly:\n\n1. What role do you play in the group? (energy-giver, quiet force, connector, strategist, ...)\n2. What do you bring that no one else can?\n3. When have you helped someone on the team — not with a game action, but as a person?\n\nThen write: "My unique contribution to this team is..."',
+      label: 'My team role',
+      tekst: 'Think about your team. Answer honestly:\n\n1. What role do you play in the group? (energy-giver, quiet force, connector, strategist, ...)\n2. What do you bring that no one else can?\n3. When have you helped someone on the team, not with a game action, but as a person?\n\nThen write: "My unique contribution to this team is..."',
     },
     schrijfVragen: [
       'If my team described me as a teammate (not as a player), they would say...',
@@ -818,25 +818,25 @@ const sessionsEN = [
       'One teammate whose relationship I want to strengthen this season is... Why that person?',
     ],
     voorGesprek: [
-      'Observe yourself this week: when do you help someone on the team — not because you have to, but because you want to?',
+      'Observe yourself this week: when do you help someone on the team? Not because you have to, but because you want to.',
       'Is there a teammate who is struggling right now? What can you do?',
     ],
     naGesprek: [
       'What did I learn about my role in the team?',
       'One concrete action I will take to be a positive force:',
     ],
-    actie: 'Do one deliberate act for a teammate this week — not related to sport. Write down afterward how it felt.',
-    doel: 'Help the athlete consciously know and value their team role — and see leadership as character, not status.',
-    mentorFocus: 'Many athletes think leadership is for the stars. Your job: show every athlete they are already leading — in their own way.',
+    actie: 'Do one deliberate act for a teammate this week, not related to sport. Write down afterward how it felt.',
+    doel: 'Help the athlete consciously know and value their team role, and see leadership as character, not status.',
+    mentorFocus: 'Many athletes think leadership is for the stars. Your job: show every athlete they are already leading, in their own way.',
     gesprekStarters: [
-      { fase: 'Opening (5 min)', starter: '"If you didn\'t show up to training tomorrow — what would the team miss? Not technically, but as a person?"', tip: 'Unexpected question that goes straight to contribution.' },
-      { fase: 'Exploring (15 min)', starter: '"What is your role at school, at home, with friends — is that the same role as in the team?"', tip: 'Roles are context-dependent. Helps the athlete broaden self-awareness.' },
-      { fase: 'Deepening (10 min)', starter: '"When have you really helped someone on the team — not with an action, but as a human being?"', tip: 'Concrete memory activates self-worth as a teammate.' },
+      { fase: 'Opening (5 min)', starter: '"If you didn\'t show up to training tomorrow, what would the team miss? Not technically, but as a person?"', tip: 'Unexpected question that goes straight to contribution.' },
+      { fase: 'Exploring (15 min)', starter: '"What is your role at school, at home, with friends? Is that the same role as in the team?"', tip: 'Roles are context-dependent. Helps the athlete broaden self-awareness.' },
+      { fase: 'Deepening (10 min)', starter: '"When have you really helped someone on the team? Not with an action, but as a human being?"', tip: 'Concrete memory activates self-worth as a teammate.' },
       { fase: 'Closing (5 min)', starter: '"What do you want your teammates to remember about you in 5 years?"', tip: 'This is a powerful legacy question that invites big thinking.' },
     ],
     observeer: [
-      'Does the athlete talk easily about themselves as a teammate — or do they always focus on individual performance?',
-      'Do they mention teammates\' names with care and attention — or abstractly ("the team")?',
+      'Does the athlete talk easily about themselves as a teammate, or do they always focus on individual performance?',
+      'Do they mention teammates\' names with care and attention, or abstractly ("the team")?',
       'Is there someone on the team the athlete consciously avoids? That\'s valuable information.',
       'How do they react to the question of what the team would miss without them? Shyness, pride, embarrassment?',
     ],
@@ -845,16 +845,16 @@ const sessionsEN = [
   },
   {
     num: 8,
-    title: 'My Future',
-    subtitle: 'Who do I want to be — beyond sport',
+    title: 'My future',
+    subtitle: 'Who do I want to be, beyond sport',
     quote: { text: '"The best is always still ahead of you. But you decide where."', auteur: 'Character First' },
-    introQ: 'When you look back on your life someday — what do you want to have seen?',
+    introQ: 'When you look back on your life someday, what do you want to have seen?',
     oefening: {
-      label: 'Letter to My Future Self',
+      label: 'Letter to my future self',
       tekst: 'Write a letter to yourself five years from now. Start like this:\n\n"Dear [your name],\n\nLooking back at the past five years, I am most proud of...\n\nI have become the person who...\n\nSport has given me...\n\nBut the most important thing I learned about life is...\n\nThank you for believing in me.\n\nWith love,\n[your name] (now)"',
     },
     schrijfVragen: [
-      'Who do I want to be in 5 years — as an athlete, as a person, in relationships?',
+      'Who do I want to be in 5 years, as an athlete, as a person, in relationships?',
       'Which values from session 1 are still present in my life?',
       'What do I never want to forget from this mentorship journey?',
     ],
@@ -868,12 +868,12 @@ const sessionsEN = [
     ],
     actie: 'Seal your letter to your future self in an envelope. Write "To be opened on [date + 5 years]" on it. Keep it in a special place.',
     doel: 'Close the journey by helping the athlete see their growth and feel a direction for the future. Say goodbye in a meaningful way.',
-    mentorFocus: 'This is the closing session. Your role: let the athlete summarize the journey — not you. You affirm and celebrate.',
+    mentorFocus: 'This is the closing session. Your role: let the athlete summarize the journey, not you. You affirm and celebrate.',
     gesprekStarters: [
-      { fase: 'Opening (5 min)', starter: '"This is our last session. How does that feel for you?"', tip: 'Let the emotion be there. Closing is also letting go — for you and for the athlete.' },
-      { fase: 'Looking Back (15 min)', starter: '"Thinking back on our eight sessions — which moment touched you most? What has changed the most?"', tip: 'Let the athlete summarize the journey. Listen actively, affirm.' },
-      { fase: 'Looking Forward (10 min)', starter: '"Who are you now that you weren\'t 8 sessions ago? What has changed?"', tip: 'Help the athlete name their own growth process — that anchors it.' },
-      { fase: 'Closing (5 min)', starter: '"What do you want me as your mentor to remember about you?"', tip: 'This gives the athlete the feeling they\'ve left something valuable — for you too.' },
+      { fase: 'Opening (5 min)', starter: '"This is our last session. How does that feel for you?"', tip: 'Let the emotion be there. Closing is also letting go, for you and for the athlete.' },
+      { fase: 'Looking back (15 min)', starter: '"Thinking back on our eight sessions, which moment touched you most? What has changed the most?"', tip: 'Let the athlete summarize the journey. Listen actively, affirm.' },
+      { fase: 'Looking forward (10 min)', starter: '"Who are you now that you weren\'t 8 sessions ago? What has changed?"', tip: 'Help the athlete name their own growth process, that anchors it.' },
+      { fase: 'Closing (5 min)', starter: '"What do you want me as your mentor to remember about you?"', tip: 'This gives the athlete the feeling they\'ve left something valuable, for you too.' },
     ],
     observeer: [
       'Does the athlete describe their growth in terms of performance or character?',
@@ -882,7 +882,7 @@ const sessionsEN = [
       'Is there something you as a mentor want to share that you haven\'t said yet?',
     ],
     opgelet: 'Some athletes don\'t want the journey to end. Normalize: "Growth doesn\'t stop here. This journey is a beginning, not an end." Give a concrete referral or next step.',
-    afsluiting: 'Give each athlete a personal moment: "What I see in you after eight sessions is..." — honest, specific, from your heart. This is the most powerful gift you can give as a mentor.',
+    afsluiting: 'Give each athlete a personal moment: "What I see in you after eight sessions is..." Honest, specific, from your heart. This is the most powerful gift you can give as a mentor.',
   },
 ];
 
@@ -991,7 +991,7 @@ function buildMentorPage(s, lang) {
     </div>
     <div class="divider"></div>
     <div>
-      <div class="eyebrow">${lSessie} ${s.num} — ${isNL ? 'Mentorgids' : 'Mentor Guide'}</div>
+      <div class="eyebrow">${lSessie} ${s.num}: ${isNL ? 'Mentorgids' : 'Mentor Guide'}</div>
       <div class="title">${s.title}</div>
       <div class="mentor-focus">${s.mentorFocus}</div>
     </div>
