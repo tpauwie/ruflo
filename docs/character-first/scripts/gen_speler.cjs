@@ -322,10 +322,10 @@ const NL = [
         <div class="field-label" style="margin-top:8px">Mijn sterkste rol is <span style="color:var(--orange);font-weight:700">_________________________</span> omdat:</div>
         <div class="box box-xs"></div>
       </div>
-      <div class="section-title">Oefening 2 — Mijn Top 3 Bijdragen</div>
+      <div class="section-title">Oefening 2: mijn top 3 bijdragen</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Mijn Top 3 Bijdragen deze maand</div>
-        <p class="ex-instr">Geen statistieken — schrijf drie dingen op die jij hebt bijgedragen op het vlak van gedrag, houding of karakter.</p>
+        <div class="ex-title"><div class="ex-num">2</div>Mijn top 3 bijdragen deze maand</div>
+        <p class="ex-instr">Geen statistieken. Schrijf drie dingen op die jij hebt bijgedragen op het vlak van gedrag, houding of karakter.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
@@ -335,9 +335,9 @@ const NL = [
         <div class="box box-xs"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Rolcirkel Reflectie</div>
+      <div class="section-title">Oefening 3: rolcirkel reflectie</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Na de Rolcirkel</div>
+        <div class="ex-title"><div class="ex-num">3</div>Na de rolcirkel</div>
         <p class="ex-instr">Na de groepsoefening: wat heeft je verrast? Welke bijdrage van een teamgenoot had je niet verwacht?</p>
         <div class="box box-lg"></div>
         <div class="field-label" style="margin-top:8px">Welke rol wil ik bewust meer opnemen de komende weken?</div>

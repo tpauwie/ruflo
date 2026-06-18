@@ -352,7 +352,7 @@ const MONTHS_EN = [
     tips: [
       '<strong>Tip 1:</strong> Change your own language as a coach. Stop with "That\'s not for you." Start with "You haven\'t mastered that yet. What do we need to train?" This model is just as powerful for coaches as for players.',
       '<strong>Tip 2:</strong> Use the Progress List as a fixed ritual at the beginning of each monthly session. Players who consistently see themselves improve need less external validation and are more stable in difficult periods.',
-      '<strong>Tip 3:</strong> Month 6 likely falls in the middle or end of the season — the moment players have the hardest time: fatigue, disappointments, motivation dip. This theme is deliberately placed here as reorientation and energy boost.',
+      '<strong>Tip 3:</strong> Month 6 likely falls in the middle or end of the season. This is the moment players have the hardest time: fatigue, disappointments, motivation dip. This theme is deliberately placed here as reorientation and energy boost.',
     ],
     warning: 'Growth mindset messages can backfire when used to mask a lack of support. "Just try harder" is not enough when a player is really stuck. Always combine the theme with concrete tools and individual guidance where needed.',
     timingTitle: 'Timing',

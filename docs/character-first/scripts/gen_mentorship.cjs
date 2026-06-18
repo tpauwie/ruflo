@@ -214,7 +214,7 @@ const CSS_MENTOR = `
 const sessionsNL = [
   {
     num: 1,
-    title: 'Wie Ben Ik?',
+    title: 'Wie ben ik?',
     subtitle: 'Jouw identiteit als sporter en mens',
     quote: { text: '"Ken jezelf. Zonder zelfkennis is alle andere kennis zinloos."', auteur: 'Socrates' },
     introQ: 'Wat maakt jou uniek — niet als sporter, maar als persoon?',
@@ -257,7 +257,7 @@ const sessionsNL = [
   },
   {
     num: 2,
-    title: 'Mijn Verhaal',
+    title: 'Mijn verhaal',
     subtitle: 'De momenten die mij gevormd hebben',
     quote: { text: '"Je bent niet je verleden. Maar je verleden heeft je gemaakt. Ken het."', auteur: 'Carl Jung (parafrase)' },
     introQ: 'Welke momenten in jouw leven hebben gemaakt wie je vandaag bent?',
@@ -299,7 +299,7 @@ const sessionsNL = [
   },
   {
     num: 3,
-    title: 'Mijn Doelen',
+    title: 'Mijn doelen',
     subtitle: 'Dromen vertalen naar richting',
     quote: { text: '"Een doel zonder plan is gewoon een wens."', auteur: 'Antoine de Saint-Exupéry' },
     introQ: 'Wat wil jij echt — als sporter én als mens?',
@@ -341,7 +341,7 @@ const sessionsNL = [
   },
   {
     num: 4,
-    title: 'Mijn Innerlijke Stem',
+    title: 'Mijn innerlijke stem',
     subtitle: 'Wat zeg jij tegen jezelf als het moeilijk wordt?',
     quote: { text: '"Je hebt meer gesprekken met jezelf dan met iedereen anders. Zorg dat ze goed zijn."', auteur: 'Zig Ziglar' },
     introQ: 'Hoe klinkt jouw innerlijke stem — als coach, of als criticus?',
@@ -383,7 +383,7 @@ const sessionsNL = [
   },
   {
     num: 5,
-    title: 'Omgaan met Tegenslagen',
+    title: 'Omgaan met tegenslagen',
     subtitle: 'Hoe falen jou vormt',
     quote: { text: '"Ik heb meer dan 9.000 ballen gemist in mijn carrière. En daardoor heb ik gewonnen."', auteur: 'Michael Jordan' },
     introQ: 'Wat doet een tegenslag echt met jou — en wat kun jij ermee doen?',
@@ -425,7 +425,7 @@ const sessionsNL = [
   },
   {
     num: 6,
-    title: 'Mijn Rolmodellen',
+    title: 'Mijn rolmodellen',
     subtitle: 'Wie je bewondert, zegt wie je wil zijn',
     quote: { text: '"Show me your heroes and I\'ll show you your future."', auteur: 'Napoleon Hill' },
     introQ: 'Wie inspireert jou? En wat zegt dat over wie jíj wil worden?',
@@ -467,7 +467,7 @@ const sessionsNL = [
   },
   {
     num: 7,
-    title: 'Mijn Rol in het Team',
+    title: 'Mijn rol in het team',
     subtitle: 'Hoe ben ik een kracht voor anderen?',
     quote: { text: '"De sterkste speler maakt het team sterker, niet zichzelf."', auteur: 'Character First' },
     introQ: 'Wat draag jij bij aan jouw team — los van wat je scoort of presteert?',
@@ -509,7 +509,7 @@ const sessionsNL = [
   },
   {
     num: 8,
-    title: 'Mijn Toekomst',
+    title: 'Mijn toekomst',
     subtitle: 'Wie wil ik zijn — voorbij de sport',
     quote: { text: '"Het beste is altijd nog voor jou. Maar jij bepaalt waarheen."', auteur: 'Character First' },
     introQ: 'Als jij straks terugkijkt op jouw leven — wat wil je dan gezien hebben?',
@@ -847,7 +847,7 @@ const sessionsEN = [
     num: 8,
     title: 'My Future',
     subtitle: 'Who do I want to be — beyond sport',
-    quote: { text: '"The best is always still ahead of you. But you decide where."', auteur: '— Character First' },
+    quote: { text: '"The best is always still ahead of you. But you decide where."', auteur: 'Character First' },
     introQ: 'When you look back on your life someday — what do you want to have seen?',
     oefening: {
       label: 'Letter to My Future Self',

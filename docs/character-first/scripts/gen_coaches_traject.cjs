@@ -237,7 +237,7 @@ const modulesNL = [
     reflectie: [
       'Weet jij van elke speler in jouw team: wat hen echt bezig houdt buiten de sport? Naam één ding per speler.',
       'Welke spelers in jouw team voelen zich het minst verbonden met jou? Wat doe jij actief om dat te veranderen?',
-      'Hoe toon jij commitment aan jouw spelers — buiten de training en wedstrijd?',
+      'Hoe toon jij commitment aan jouw spelers, buiten de training en wedstrijd?',
       'Wanneer heeft een speler voor het laatst iets persoonlijks met jou gedeeld? Hoe heb jij gereageerd?',
       'Hoe balanced is de relatie: invest jij evenveel in de stille, gemiddelde speler als in de ster?',
     ],
@@ -251,7 +251,7 @@ const modulesNL = [
       { titel: 'Every Kid Needs a Champion', spreker: 'Rita Pierson (TED Talk)', url: 'ted.com/talks/rita_pierson_every_kid_needs_a_champion', notitie: '"Kids don\'t learn from people they don\'t like." Krachtig voor coaches van jeugd.' },
     ],
     podcasts: [
-      { naam: 'Finding Mastery', afl: 'Afl. met Gregg Popovich — relatieopbouw als prestatiedriver', url: 'findingmastery.com' },
+      { naam: 'Finding Mastery', afl: 'Afl. met Gregg Popovich, relatieopbouw als prestatiedriver', url: 'findingmastery.com' },
       { naam: 'The Coach2 Podcast', afl: 'Over individueel verbinding maken in een teamcontext', url: 'coachingforleaders.com' },
     ],
     actie: 'Plan deze week een informeel 1-op-1 gesprek met een speler die je het minst goed kent. Geen sport-agenda — gewoon echt luisteren. Noteer wat je leert.',
