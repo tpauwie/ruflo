@@ -49,7 +49,7 @@ body { font-family: Arial, sans-serif; background: #fff; color: var(--ink); font
 const MONTHS_NL = [
   {
     m: 1, title: 'Zelfkennis & Identiteit',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Ntoumanis et al. (2021), meta-analyse van 184 studies toont aan dat autonomie en zelfkennis binnen Self Determination Theory de sterkste voorspellers zijn van sportmotivatie en welzijn bij jonge atleten. <em>Psychology of Sport &amp; Exercise.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analyse</span> Zuber &amp; Conzelmann (2014), analyse van 47 studies bevestigt dat intrinsieke motivatie en zelfconcept direct samenhangen met sportprestatie bij jongeren. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Deci &amp; Ryan (1985, herzien 2017), Self Determination Theory: autonomie, competentie en verbondenheid als universele basisbehoeften voor optimale ontwikkeling en welzijn in sport.</p>`,
@@ -71,7 +71,7 @@ const MONTHS_NL = [
   },
   {
     m: 2, title: 'Druk & Stress',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Crocker et al. (2015), review van 92 studies over coping in jeugdsport bevestigt dat flexibele copingstrategieën (zowel probleem als emotiongericht) de sterkste samenhang tonen met prestatie en welzijn. <em>International Journal of Sport Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Balban et al. (2023), gerandomiseerde studie toont aan dat cyclische ademhaling (4 sec in, 4 sec vasthouden, 8 sec uit) het stressniveau significant reduceert in vergelijking met mindfulness meditatie. <em>Cell Reports Medicine.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatieve studie</span> Hanton et al. (2009), ervaringsonderzoek bij elitesporters: angst voor wedstrijden wordt faciliterend of debiliterend op basis van hoe de atleet de stressrespons interpreteert, niet op basis van de intensiteit.</p>`,
@@ -93,7 +93,7 @@ const MONTHS_NL = [
   },
   {
     m: 3, title: 'Mijn Rol in het Team',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Bruner et al. (2021), meta-analyse over rolhelderheid en cohesie in jeugdteams: rolhelderheid is de sterkste voorspeller van zowel taakcohesie als sociale cohesie in sportteams, met effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Eys et al. (2015), meetseizoenstudie bij 248 basketbalspelers: rolambiguïteit is negatief gelinkt aan zelfvertrouwen en positief aan angst gedurende het seizoen. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretische studie</span> Carron &amp; Eys (2012), Teamcohesiemodel: rolacceptatie en rolprestatie als twee aparte dimensies. Atleten die actief investeren in hun rol presteren significant beter.</p>`,
@@ -116,7 +116,7 @@ const MONTHS_NL = [
   },
   {
     m: 4, title: 'Communicatie',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Tod et al. (2011), review van communicatietraining in sportteams: positieve en informatierijke communicatie toont verbeteringen in cohesie en prestatie.</p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Holt et al. (2020), gerandomiseerde interventie met NVC in jeugdteams: teams die 8 weken NVC trainden toonden significant hogere sociale cohesie en minder conflicten versus controlegroep. <em>Psychology of Sport &amp; Exercise.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Observationele studie</span> Turnnidge &amp; Côté (2018), directe observatie van coachcommunicatie: positieve en informatierijke communicatie correleert met hogere sportplezier, motivatie en doorzetting bij jonge atleten.</p>`,
@@ -138,7 +138,7 @@ const MONTHS_NL = [
   },
   {
     m: 5, title: 'Team Eerst',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Frazier et al. (2017), meta-analyse van 136 steekproeven over psychologische veiligheid: teams met hoge psychologische veiligheid presteren significant beter op creativiteit, leergedrag en interpersoonlijk risico nemen. <em>Personnel Psychology, 70(1), 113–165.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Fransen et al. (2015), seizoenstudie bij 23 basketbalteams: teams met sterke perceptie van teamidentiteit en "wij" cultuur vertonen hogere prestatiestabiliteit en lagere uitval gedurende het seizoen. <em>Journal of Sport Sciences.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Kwalitatief onderzoek</span> Edmondson (1999), observationeel onderzoek in 51 werkeenheden: teams die hulp durven vragen leren sneller en presteren beter op de lange termijn dan teams die fouten verbergen.</p>`,
@@ -160,7 +160,7 @@ const MONTHS_NL = [
   },
   {
     m: 6, title: 'Veerkracht & Groeimindset',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analyse</span> Burnette et al. (2013), meta-analyse van 113 studies: groeimindset correleert significant met leergerichte doelen, minder hulpeloosheid na falen en betere prestaties, met sterkste effecten bij adolescenten. <em>Psychological Bulletin.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Systematische Review</span> Meijen et al. (2020), review van veerkrachtinterventies in sport: cognitieve herframing (het herschrijven van gedachten) is de meest evidence-based strategie voor het verhogen van veerkracht bij jonge atleten. <em>Frontiers in Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Martin &amp; Marsh (2009),2 jaar follow-up bij 3,500 leerlingen: academische veerkracht is een betere voorspeller van langetermijnsucces dan intelligentiescore of prestatiemotivatie. Resultaten repliceerbaar in sportcontext.</p>`,
@@ -181,7 +181,7 @@ const MONTHS_NL = [
   },
   {
     m: 7, title: 'Leiderschap van Binnenuit',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Cotterill &amp; Fransen (2016), review van teamleiderschapsliteratuur in sport: gedeeld leiderschap correleert sterker met teamcohesie en prestatie dan enkelvoudig formeel leiderschap. <em>Psychology of Sport &amp; Exercise.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Multi-seizoenstudie</span> Fransen et al. (2020), studie over 2 seizoenen bij 34 teams: teams met 3 of meer informele leiders presteren significant stabieler dan teams met slechts 1 formele leider. <em>Journal of Sport Sciences.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Côté &amp; Gilbert (2009), Integrated Definition of Coaching Effectiveness: effectief leiderschap is niet positiegebonden maar gedragsgebonden; sporters die "servant leadership" tonen verhogen teamvertrouwen significant.</p>`,
@@ -203,7 +203,7 @@ const MONTHS_NL = [
   },
   {
     m: 8, title: 'Nalatenschap & Volgende Stap',
-    science: `<strong>Wetenschappelijke basis — Evidence piramide</strong>
+    science: `<strong>Wetenschappelijke basis: evidence piramide</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Henriksen et al. (2020), review van 44 studies naar talentomgevingen in sport: seizoensafsluitingen met expliciete reflectie op waarden, bijdrage en intenties verhogen identiteitsontwikkeling en langetermijnsport participatie significant. <em>British Journal of Sports Medicine.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Seizoensafsluitende reflectie op persoonlijke groei is geassocieerd met hogere intrinsieke motivatie het volgend seizoen.</p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretisch kader</span> Seligman (2011), PERMA model: meaning (zingeving) en accomplishment (realisatie) zijn de twee meest onderschatte componenten van welzijn bij adolescenten. Bewuste reflectie op bijdrage is een evidence-based strategie voor het activeren van beide.</p>`,
@@ -229,7 +229,7 @@ const MONTHS_NL = [
 const MONTHS_EN = [
   {
     m: 1, title: 'Self-Knowledge & Identity',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Ntoumanis et al. (2021), meta-analysis of 184 studies shows that autonomy and self-knowledge within Self-Determination Theory are the strongest predictors of sports motivation and well-being in young athletes. <em>Psychology of Sport &amp; Exercise.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analysis</span> Zuber &amp; Conzelmann (2014), analysis of 47 studies confirms that intrinsic motivation and self-concept are directly linked to sports performance in youth. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinal study</span> Deci &amp; Ryan (1985, revised 2017), Self-Determination Theory: autonomy, competence, and relatedness as universal basic needs for optimal development and well-being in sport.</p>`,
@@ -251,7 +251,7 @@ const MONTHS_EN = [
   },
   {
     m: 2, title: 'Pressure & Stress',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Crocker et al. (2015), review of 92 studies on coping in youth sport confirms that flexible coping strategies (both problem- and emotion-focused) show the strongest relationship with performance and well-being. <em>International Journal of Sport Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Balban et al. (2023), randomized study shows cyclic breathing (4 sec in, 4 sec hold, 8 sec out) significantly reduces stress levels compared to mindfulness meditation. <em>Cell Reports Medicine.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Qualitative study</span> Hanton et al. (2009), experiential research with elite athletes: pre-competition anxiety becomes facilitating or debilitating based on how the athlete interprets the stress response, not its intensity.</p>`,
@@ -273,7 +273,7 @@ const MONTHS_EN = [
   },
   {
     m: 3, title: 'My Role in the Team',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Bruner et al. (2021), meta-analysis on role clarity and cohesion in youth teams: role clarity is the strongest predictor of both task cohesion and social cohesion in sports teams, with effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> Eys et al. (2015), season-long study with 248 basketball players: role ambiguity is negatively linked to self-confidence and positively linked to anxiety throughout the season. <em>Sport, Exercise &amp; Performance Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical study</span> Carron &amp; Eys (2012), Team Cohesion Model: role acceptance and role performance as two separate dimensions. Athletes who actively invest in their role perform significantly better.</p>`,
@@ -296,7 +296,7 @@ const MONTHS_EN = [
   },
   {
     m: 4, title: 'Communication',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Tod et al. (2011), review of communication training in sports teams: positive and information-rich communication shows improvements in cohesion and performance.</p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">RCT</span> Holt et al. (2020), randomized intervention with NVC in youth teams: teams trained in NVC for 8 weeks showed significantly higher social cohesion and fewer conflicts vs. control group. <em>Psychology of Sport &amp; Exercise.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Observational study</span> Turnnidge &amp; Côté (2018), direct observation of coach communication: positive and information-rich communication correlates with higher sport enjoyment, motivation, and persistence in young athletes.</p>`,
@@ -318,7 +318,7 @@ const MONTHS_EN = [
   },
   {
     m: 5, title: 'Team First',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analysis</span> Frazier et al. (2017), meta-analysis of 136 samples on psychological safety: teams with high psychological safety perform significantly better on creativity, learning behavior, and interpersonal risk-taking. <em>Personnel Psychology, 70(1), 113–165.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> Fransen et al. (2015), season-long study with 23 basketball teams: teams with strong perception of team identity and "we" culture show higher performance stability and lower dropout throughout the season. <em>Journal of Sport Sciences.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Qualitative research</span> Edmondson (1999), observational research in 51 work units: teams that dare to ask for help learn faster and perform better long-term than teams that hide mistakes.</p>`,
@@ -340,7 +340,7 @@ const MONTHS_EN = [
   },
   {
     m: 6, title: 'Resilience & Growth Mindset',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Meta-analysis</span> Burnette et al. (2013), meta-analysis of 113 studies: growth mindset correlates significantly with learning-oriented goals, less helplessness after failure, and better performance, with strongest effects in adolescents. <em>Psychological Bulletin.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Systematic Review</span> Meijen et al. (2020), review of resilience interventions in sport: cognitive reframing (rewriting thoughts) is the most evidence-based strategy for increasing resilience in young athletes. <em>Frontiers in Psychology.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinal study</span> Martin &amp; Marsh (2009),2-year follow-up with 3,500 students: academic resilience is a better predictor of long-term success than intelligence score or achievement motivation. Results replicable in sports context.</p>`,
@@ -361,7 +361,7 @@ const MONTHS_EN = [
   },
   {
     m: 7, title: 'Leadership from Within',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Cotterill &amp; Fransen (2016), review of team leadership literature in sport: shared leadership (multiple players showing leadership behavior) correlates more strongly with team cohesion and performance than single formal leadership. <em>Psychology of Sport &amp; Exercise.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Multi-season study</span> Fransen et al. (2020), study over 2 seasons with 34 teams: teams with 3 or more informal leaders perform significantly more consistently than teams with only 1 formal leader. <em>Journal of Sport Sciences.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical framework</span> Côté &amp; Gilbert (2009), Integrated Definition of Coaching Effectiveness: effective leadership is not position-based but behavior-based; athletes who show servant leadership significantly increase team trust.</p>`,
@@ -383,7 +383,7 @@ const MONTHS_EN = [
   },
   {
     m: 8, title: 'Legacy & Next Step',
-    science: `<strong>Scientific Foundation — Evidence Pyramid</strong>
+    science: `<strong>Scientific foundation: evidence pyramid</strong>
 <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Henriksen et al. (2020), review of 44 studies on talent environments in sport: end-of-season sessions with explicit reflection on values, contribution, and intentions significantly increase identity development and long-term sport participation. <em>British Journal of Sports Medicine.</em></p>
 <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal study</span> End-of-season reflection on personal growth is associated with higher intrinsic motivation the following season.</p>
 <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical framework</span> Seligman (2011), PERMA model: meaning and accomplishment are the two most underestimated components of well-being in adolescents. Conscious reflection on contribution is an evidence-based strategy for activating both.</p>`,
