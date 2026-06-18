@@ -18,7 +18,7 @@ const CSS = `
 html, body { background: #fff; }
 body { font-family: Arial, sans-serif; color: var(--ink); font-size: 12px; }
 
-/* EXACT A4 page — no overflow */
+/* EXACT A4 page, no overflow */
 .page {
   width: 210mm;
   height: 297mm;
@@ -75,7 +75,7 @@ h2 { font-size: 1.25rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 }
 .ex-instr { font-size: 0.76rem; color: var(--gray-600); line-height: 1.45; }
 
-/* Writing elements — generous white space */
+/* Writing elements, generous white space */
 .line { border-bottom: 1.5px solid var(--gray-300); height: 26px; width: 100%; }
 .lines { display: flex; flex-direction: column; gap: 6px; }
 .box { border: 1.5px solid var(--gray-300); border-radius: 4px; background: #fff; }
@@ -282,7 +282,7 @@ const NL = [
         <div class="field-label" style="color:rgba(255,255,255,.5)">Mijn pre-game routine in 3 stappen:</div>
         <div class="mental-box"></div>
       </div>`,
-    quote: '"Pressure is a privilege — it only comes to those who earn it."',
+    quote: '"Pressure is a privilege. It only comes to those who earn it."',
     cite: 'Billie Jean King, 39× Grand Slam Champion',
     footer: 'Maand 2: druk & stress',
   },
@@ -349,17 +349,17 @@ const NL = [
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Rolfocus</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: rolfocus</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf één specifieke actie op die jij volgende week bewust gaat doen om je rol te versterken. Maak het zo concreet dat je het achteraf kan evalueren.</p>
         <div class="mental-box"></div>
       </div>`,
-    quote: '"Individual commitment to a group effort — that is what makes a team work, a company work, a society work, a civilization work."',
-    cite: 'Vince Lombardi — 5× NFL Champion Coach',
-    footer: 'Maand 3: Mijn Rol in het Team',
+    quote: '"Individual commitment to a group effort, that is what makes a team work, a company work, a society work, a civilization work."',
+    cite: 'Vince Lombardi, 5× NFL Champion Coach',
+    footer: 'Maand 3: mijn rol in het team',
   },
   {
     m: 4, title: 'Communicatie',
-    monthLabel: 'Maand 4 — Spelerswerkblad',
+    monthLabel: 'Maand 4, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 4',
     goals: [
       'Je kan het Ik-Boodschap model toepassen in een echte situatie uit je sportleven',
@@ -368,10 +368,10 @@ const NL = [
     ],
     intro: 'Hoe je praat bepaalt hoe je samenwerkt. Je leert het verschil tussen reageren en echt communiceren, en hoe je feedback geeft zonder relaties te beschadigen.',
     page1: `
-      <div class="section-title">Oefening 1 — De Ik-Boodschap</div>
+      <div class="section-title">Oefening 1: de ik-boodschap</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>De Ik-Boodschap</div>
-        <p class="ex-instr">Model: "Ik zie… Ik voel… Ik heb nodig… Ik vraag je om…" Denk aan een echte situatie.</p>
+        <div class="ex-title"><div class="ex-num">1</div>De ik-boodschap</div>
+        <p class="ex-instr">Model: "Ik zie. Ik voel. Ik heb nodig. Ik vraag je om." Denk aan een echte situatie.</p>
         <div class="field-label">De situatie:</div>
         <div class="box box-xs"></div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
@@ -381,10 +381,10 @@ const NL = [
           <div><div class="field-label" style="color:var(--orange);font-weight:700">IK VRAAG JE OM...</div><div class="line"></div></div>
         </div>
       </div>
-      <div class="section-title">Oefening 2 — Het Gesprek dat ik Uitstel</div>
+      <div class="section-title">Oefening 2: het gesprek dat ik uitstel</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Het Gesprek dat ik Uitstel</div>
-        <p class="ex-instr">Schrijf een gesprek op dat je al lang wil hebben maar uitstelt — met een coach, teamgenoot of ouder.</p>
+        <div class="ex-title"><div class="ex-num">2</div>Het gesprek dat ik uitstel</div>
+        <p class="ex-instr">Schrijf een gesprek op dat je al lang wil hebben maar uitstelt. Bijvoorbeeld met een coach, teamgenoot of ouder.</p>
         <div class="field-label">Met wie?</div>
         <div class="line"></div>
         <div class="field-label" style="margin-top:6px">Waarom stel ik het uit?</div>
@@ -393,9 +393,9 @@ const NL = [
         <div class="box box-xs"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Na de Feedbackronde</div>
+      <div class="section-title">Oefening 3: na de feedbackronde</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Feedbackronde Reflectie</div>
+        <div class="ex-title"><div class="ex-num">3</div>Feedbackronde reflectie</div>
         <p class="ex-instr">Wat was de beste feedback die je kreeg? Wat ga je er concreet mee doen?</p>
         <div class="field-label">De beste feedback die ik kreeg:</div>
         <div class="box box-md"></div>
@@ -405,17 +405,17 @@ const NL = [
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Luisteren onder druk</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: luisteren onder druk</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Tijdens de volgende kritische moment in training: adem 2× diep in voordat je reageert. Schrijf achteraf op: wat was het moment en hoe reageerde ik anders?</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"The single biggest problem in communication is the illusion that it has taken place."',
-    cite: 'George Bernard Shaw — Nobelprijswinnaar Literatuur',
-    footer: 'Maand 4: Communicatie',
+    cite: 'George Bernard Shaw, Nobelprijswinnaar literatuur',
+    footer: 'Maand 4: communicatie',
   },
   {
-    m: 5, title: 'Team Eerst',
-    monthLabel: 'Maand 5 — Spelerswerkblad',
+    m: 5, title: 'Team eerst',
+    monthLabel: 'Maand 5, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 5',
     goals: [
       'Je kan uitleggen wat psychologische veiligheid is en waarom het teamsprestaties beïnvloedt',
@@ -424,10 +424,10 @@ const NL = [
     ],
     intro: 'De stap van "ik" naar "wij" is de moeilijkste in de sport. Vandaag onderzoek je wat het echt betekent om het team voorop te stellen, ook als het je iets kost.',
     page1: `
-      <div class="section-title">Oefening 1 — Team Contract</div>
+      <div class="section-title">Oefening 1: team contract</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Mijn Bijdrage aan het Team Contract</div>
-        <p class="ex-instr">Schrijf drie gedragsregels op die jij persoonlijk wil naleven dit seizoen — over hoe je met teamgenoten omgaat.</p>
+        <div class="ex-title"><div class="ex-num">1</div>Mijn bijdrage aan het team contract</div>
+        <p class="ex-instr">Schrijf drie gedragsregels op die jij persoonlijk wil naleven dit seizoen. Denk aan hoe je met teamgenoten omgaat.</p>
         <div class="lines" style="gap:12px">
           <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.72rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span><div class="line" style="flex:1"></div></div>
           <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.72rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span><div class="line" style="flex:1"></div></div>
@@ -438,9 +438,9 @@ const NL = [
           <div class="sign-field"><div class="sign-label">Datum</div><div class="line"></div></div>
         </div>
       </div>
-      <div class="section-title">Oefening 2 — Onzichtbare Bijdrage</div>
+      <div class="section-title">Oefening 2: onzichtbare bijdrage</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Onzichtbare Bijdrage</div>
+        <div class="ex-title"><div class="ex-num">2</div>Onzichtbare bijdrage</div>
         <p class="ex-instr">Schrijf één teamgenoot op die iets deed tijdens de laatste wedstrijd of training wat niemand opmerkte maar essentieel was.</p>
         <div class="field-label">Naam teamgenoot:</div>
         <div class="line"></div>
@@ -448,9 +448,9 @@ const NL = [
         <div class="box box-md"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Hulp Logboek</div>
+      <div class="section-title">Oefening 3: hulp logboek</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Hulp Logboek</div>
+        <div class="ex-title"><div class="ex-num">3</div>Hulp logboek</div>
         <p class="ex-instr">Vraag minstens 3× actief om hulp aan een teamgenoot. Schrijf op wat je vroeg, aan wie, en wat het opleverde.</p>
         <div style="display:grid;grid-template-columns:1.8fr 1.8fr 1.2fr 0.8fr;gap:6px;margin-top:4px">
           <div class="field-label">WAT VROEG IK?</div>
@@ -465,28 +465,28 @@ const NL = [
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Ego loslaten</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: ego loslaten</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf één moment op waarbij je iets hebt opgegeven voor het team (speeltijd, positie, aandacht). Hoe voelde je je erna? Wat zegt dat over jouw groei?</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Talent wins games, but teamwork and intelligence win championships."',
-    cite: 'Michael Jordan — 6× NBA Champion, Chicago Bulls',
-    footer: 'Maand 5: Team Eerst',
+    cite: 'Michael Jordan, 6× NBA Champion, Chicago Bulls',
+    footer: 'Maand 5: team eerst',
   },
   {
-    m: 6, title: 'Veerkracht & Groeimindset',
-    monthLabel: 'Maand 6 — Spelerswerkblad',
+    m: 6, title: 'Veerkracht & groeimindset',
+    monthLabel: 'Maand 6, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 6',
     goals: [
       'Je onderscheidt een fixed mindset reactie van een groeimindset reactie bij jezelf',
       'Je herschrijft minstens één negatieve zelfgedachte naar een leergerichte formulering',
       'Je benoemt drie concrete manieren waarop je gegroeid bent dit seizoen',
     ],
-    intro: 'Hoe je omgaat met tegenslagen en fouten bepaalt hoe ver je komt in de sport en in het leven. Een groeimindset is niet aangeboren — je kan het trainen.',
+    intro: 'Hoe je omgaat met tegenslagen en fouten bepaalt hoe ver je komt in de sport en in het leven. Een groeimindset is niet aangeboren. Je kan het trainen.',
     page1: `
-      <div class="section-title">Oefening 1 — Herschrijf de Fout</div>
+      <div class="section-title">Oefening 1: herschrijf de fout</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Herschrijf de Fout</div>
+        <div class="ex-title"><div class="ex-num">1</div>Herschrijf de fout</div>
         <p class="ex-instr">Schrijf een recente fout op. Herschrijf elke "ik kan het niet" gedachte naar "ik kan het nog niet" en voeg toe wat je ervan leert.</p>
         <div class="field-label">De fout of tegenslag:</div>
         <div class="box box-xs"></div>
@@ -501,10 +501,10 @@ const NL = [
           </div>
         </div>
       </div>
-      <div class="section-title">Oefening 2 — Progressielijst</div>
+      <div class="section-title">Oefening 2: progressielijst</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>3 Dingen die ik Beter Kan dan Vorige Maand</div>
-        <p class="ex-instr">Geen vergelijking met anderen — enkel met jezelf.</p>
+        <div class="ex-title"><div class="ex-num">2</div>3 dingen die ik beter kan dan vorige maand</div>
+        <p class="ex-instr">Geen vergelijking met anderen. Enkel met jezelf.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
@@ -512,9 +512,9 @@ const NL = [
         </div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Mijn Moeilijkste Moment</div>
+      <div class="section-title">Oefening 3: mijn moeilijkste moment</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Moeilijkste Moment dit Seizoen</div>
+        <div class="ex-title"><div class="ex-num">3</div>Moeilijkste moment dit seizoen</div>
         <p class="ex-instr">Beschrijf het moeilijkste moment. Wat deed je? Wat leerde je? Hoe ben je sterker geworden?</p>
         <div class="field-label">Wat was het moment?</div>
         <div class="box box-md"></div>
@@ -522,17 +522,17 @@ const NL = [
         <div class="box box-md"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — De 24u-Regel</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: de 24u-regel</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Na een slechte wedstrijd of training: je hebt 24u om te balen. Daarna richt je je blik vooruit. Schrijf op hoe jij de overschakeling maakt van "balen" naar "leren".</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"I have missed more than 9,000 shots in my career. I have failed over and over again in my life. And that is why I succeed."',
-    cite: 'Michael Jordan — 6× NBA Champion',
-    footer: 'Maand 6: Veerkracht & Groeimindset',
+    cite: 'Michael Jordan, 6× NBA Champion',
+    footer: 'Maand 6: veerkracht & groeimindset',
   },
   {
-    m: 7, title: 'Leiderschap van Binnenuit',
-    monthLabel: 'Maand 7 — Spelerswerkblad',
+    m: 7, title: 'Leiderschap van binnenuit',
+    monthLabel: 'Maand 7, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 7',
     goals: [
       'Je herkent informeel leiderschap bij jezelf en anderen zonder te kijken naar officiële rollen',
@@ -541,22 +541,22 @@ const NL = [
     ],
     intro: 'Leiderschap gaat niet over de aanvoerdersband. Elke speler kan op elk moment leiden door gedrag, houding en woorden. Jij ook.',
     page1: `
-      <div class="section-title">Oefening 1 — Informele Leiders in ons Team</div>
+      <div class="section-title">Oefening 1: informele leiders in ons team</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>Informele Leiders</div>
-        <p class="ex-instr">Schrijf twee teamgenoten op die jij volgt — niet omdat ze aanvoerder zijn, maar omdat ze iets uitstralen. Wat doen ze concreet?</p>
-        <div class="field-label">Persoon 1 — naam:</div>
+        <div class="ex-title"><div class="ex-num">1</div>Informele leiders</div>
+        <p class="ex-instr">Schrijf twee teamgenoten op die jij volgt. Niet omdat ze aanvoerder zijn, maar omdat ze iets uitstralen. Wat doen ze concreet?</p>
+        <div class="field-label">Persoon 1, naam:</div>
         <div class="line"></div>
         <div class="field-label" style="margin-top:6px">Wat maakt hem/haar invloedrijk?</div>
         <div class="box box-sm"></div>
-        <div class="field-label" style="margin-top:8px">Persoon 2 — naam:</div>
+        <div class="field-label" style="margin-top:8px">Persoon 2, naam:</div>
         <div class="line"></div>
         <div class="field-label" style="margin-top:6px">Wat maakt hem/haar invloedrijk?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Oefening 2 — Mijn Mentormoment</div>
+      <div class="section-title">Oefening 2: mijn mentormoment</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Mijn Mentormoment</div>
+        <div class="ex-title"><div class="ex-num">2</div>Mijn mentormoment</div>
         <p class="ex-instr">Kies een jongere speler of nieuwe teamgenoot en besteed minstens eenmaal 5 minuten aan hem/haar.</p>
         <div class="two-col">
           <div><div class="field-label">Met wie?</div><div class="line"></div></div>
@@ -566,26 +566,26 @@ const NL = [
         <div class="box box-sm"></div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 3 — Logboek: De Eerste Stem</div>
+      <div class="section-title">Oefening 3: logboek, de eerste stem</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">3</div>Leidersmomenten Logboek</div>
+        <div class="ex-title"><div class="ex-num">3</div>Leidersmomenten logboek</div>
         <p class="ex-instr">Schrijf na elke training of wedstrijd op wanneer jij de eerste stem was of een leidersmoment nam. Wat deed je precies?</p>
         <div class="box box-lg"></div>
         <div class="field-label" style="margin-top:8px">Welk type leiderschap wil ik meer laten zien?</div>
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mentale Weerbaarheid — Druk als leider</div>
+        <div class="mental-label">🧠 Mentale weerbaarheid: druk als leider</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Schrijf op: wat doe jij als leider wanneer het team verliest en de sfeer daalt? Welke drie concrete acties of woorden gebruik jij om het tij te keren?</p>
         <div class="mental-box"></div>
       </div>`,
     quote: '"Leadership is not about being in charge. It is about taking care of those in your charge."',
-    cite: 'Simon Sinek — auteur & leiderschapsexpert',
-    footer: 'Maand 7: Leiderschap van Binnenuit',
+    cite: 'Simon Sinek, auteur & leiderschapsexpert',
+    footer: 'Maand 7: leiderschap van binnenuit',
   },
   {
-    m: 8, title: 'Nalatenschap & Volgende Stap',
-    monthLabel: 'Maand 8 — Spelerswerkblad',
+    m: 8, title: 'Nalatenschap & volgende stap',
+    monthLabel: 'Maand 8, spelerswerkblad',
     goalLabel: 'Doelstelling Maand 8',
     goals: [
       'Je reflecteert op je groei als persoon en als ploegmaat over het volledige seizoen',
@@ -594,9 +594,9 @@ const NL = [
     ],
     intro: 'Dit is het laatste werkblad van het seizoen. Je sluit af met reflectie op wie je bent geworden, wat je hebt bijgedragen en welke stap je wil zetten.',
     page1: `
-      <div class="section-title">Oefening 1 — 5 Momenten van Karakter</div>
+      <div class="section-title">Oefening 1: 5 momenten van karakter</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">1</div>5 Momenten van Karakter</div>
+        <div class="ex-title"><div class="ex-num">1</div>5 momenten van karakter</div>
         <p class="ex-instr">Schrijf vijf concrete momenten op dit seizoen waarop jij iets hebt bijgedragen op vlak van gedrag en karakter.</p>
         <div style="display:flex;flex-direction:column;gap:8px">
           <div><div class="num-item" style="margin-bottom:3px"><div class="ex-num">1</div><div class="line" style="flex:1"></div></div><div class="box box-xs"></div></div>
@@ -607,9 +607,9 @@ const NL = [
         </div>
       </div>`,
     page2: `
-      <div class="section-title">Oefening 2 — Drie Intenties voor Volgend Seizoen</div>
+      <div class="section-title">Oefening 2: drie intenties voor volgend seizoen</div>
       <div class="ex">
-        <div class="ex-title"><div class="ex-num">2</div>Mijn Intenties</div>
+        <div class="ex-title"><div class="ex-num">2</div>Mijn intenties</div>
         <p class="ex-instr">Schrijf drie concrete intenties voor volgend seizoen in gedrag.</p>
         <div class="intentions">
           <div><div class="intent-label">VOOR MEZELF</div><div class="box box-sm"></div></div>
@@ -618,7 +618,7 @@ const NL = [
         </div>
       </div>
       <div class="letter-box" style="margin-top:4px">
-        <div class="ex-title"><div class="ex-num">3</div>Brief aan Mijn Toekomstige Zelf</div>
+        <div class="ex-title"><div class="ex-num">3</div>Brief aan mijn toekomstige zelf</div>
         <p class="ex-instr" style="font-size:0.74rem;color:var(--gray-600)">Schrijf een brief aan jezelf van volgend seizoen. Welk type ploegmaat wil je zijn? Deze brief wordt bewaard en geopend bij de start van volgend seizoen.</p>
         <div class="box box-md"></div>
         <div class="sign-row">
@@ -627,23 +627,23 @@ const NL = [
         </div>
       </div>`,
     quote: '"You are never really playing an opponent. You are playing yourself, your own highest standards, and when you reach your limits, that is real joy."',
-    cite: 'Arthur Ashe — Wimbledon & US Open Champion',
-    footer: 'Maand 8: Nalatenschap & Volgende Stap',
+    cite: 'Arthur Ashe, Wimbledon & US Open Champion',
+    footer: 'Maand 8: nalatenschap & volgende stap',
   },
 ];
 
 // ─── EN DATA ────────────────────────────────────────────────────────────────
 const EN_OVERRIDES = {
-  titles:   { 1:'Self-Knowledge & Identity', 2:'Pressure & Stress', 3:'My Role in the Team', 4:'Communication', 5:'Team First', 6:'Resilience & Growth Mindset', 7:'Leadership from Within', 8:'Legacy & Next Step' },
-  goalLabels: { 1:'Goals Month 1',2:'Goals Month 2',3:'Goals Month 3',4:'Goals Month 4',5:'Goals Month 5',6:'Goals Month 6',7:'Goals Month 7',8:'Goals Month 8' },
-  footers:  { 1:'Month 1: Self-Knowledge & Identity', 2:'Month 2: Pressure & Stress', 3:'Month 3: My Role in the Team', 4:'Month 4: Communication', 5:'Month 5: Team First', 6:'Month 6: Resilience & Growth Mindset', 7:'Month 7: Leadership from Within', 8:'Month 8: Legacy & Next Step' },
+  titles:   { 1:'Self-knowledge & identity', 2:'Pressure & stress', 3:'My role in the team', 4:'Communication', 5:'Team first', 6:'Resilience & growth mindset', 7:'Leadership from within', 8:'Legacy & next step' },
+  goalLabels: { 1:'Goals month 1',2:'Goals month 2',3:'Goals month 3',4:'Goals month 4',5:'Goals month 5',6:'Goals month 6',7:'Goals month 7',8:'Goals month 8' },
+  footers:  { 1:'Month 1: self-knowledge & identity', 2:'Month 2: pressure & stress', 3:'Month 3: my role in the team', 4:'Month 4: communication', 5:'Month 5: team first', 6:'Month 6: resilience & growth mindset', 7:'Month 7: leadership from within', 8:'Month 8: legacy & next step' },
   intros: {
     1:"Who are you as a player and as a person? This worksheet helps you better understand your own strengths, values, and motivation. Take your time and be honest.",
     2:"Feeling pressure is normal. Every top athlete feels it. What makes the difference is how you deal with it. This worksheet helps you discover how your body and mind respond to stress.",
     3:"You don't have one role in a team. You have several, and they change. This worksheet helps you discover which roles you fulfill and which you want to develop.",
     4:"How you speak determines how you work together. You learn the difference between reacting and truly communicating, and how to give feedback without damaging relationships.",
     5:'The step from "I" to "we" is the hardest in sports. Today you explore what it really means to put the team first, even when it costs you something.',
-    6:"How you deal with setbacks and mistakes determines how far you go in sports and in life. A growth mindset is not innate — you can train it.",
+    6:"How you deal with setbacks and mistakes determines how far you go in sports and in life. A growth mindset is not innate. You can train it.",
     7:"Leadership is not about the captain's armband. Every player can lead at any moment through behavior, attitude, and words. You too.",
     8:"This is the last worksheet of the season. You close with reflection on who you have become, what you have contributed, and what step you want to take.",
   },
@@ -657,10 +657,10 @@ const EN_OVERRIDES = {
     7:['You recognize informal leadership in yourself and others without looking at official roles','You deliberately take a leadership moment at least once a week in training or a match','You actively invest in the development of a younger or newer teammate'],
     8:['You reflect on your growth as a person and teammate over the full season','You formulate three concrete, behavior-oriented intentions for next season','You close the season with a conscious feeling of purpose and contribution'],
   },
-  monthLabels: { 1:'Month 1 — Player Worksheet',2:'Month 2 — Player Worksheet',3:'Month 3 — Player Worksheet',4:'Month 4 — Player Worksheet',5:'Month 5 — Player Worksheet',6:'Month 6 — Player Worksheet',7:'Month 7 — Player Worksheet',8:'Month 8 — Player Worksheet' },
+  monthLabels: { 1:'Month 1, player worksheet',2:'Month 2, player worksheet',3:'Month 3, player worksheet',4:'Month 4, player worksheet',5:'Month 5, player worksheet',6:'Month 6, player worksheet',7:'Month 7, player worksheet',8:'Month 8, player worksheet' },
   page1: {
     1:`
-      <div class="section-title">Exercise 1 — My Three Words</div>
+      <div class="section-title">Exercise 1: my three words</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>My Three Words</div>
         <p class="ex-instr">Choose three words that best describe you as a teammate. Then ask two teammates to write three words about you too.</p>
@@ -673,7 +673,7 @@ const EN_OVERRIDES = {
         <div class="field-label" style="margin-top:6px">What stands out when you compare the lists?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Exercise 2 — Energy Givers vs Energy Drains</div>
+      <div class="section-title">Exercise 2: energy givers vs energy drains</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>Energy Givers vs Energy Drains</div>
         <p class="ex-instr">Write three things that give you energy and three that drain your energy during training or a match.</p>
@@ -691,7 +691,7 @@ const EN_OVERRIDES = {
         <div class="box box-xs"></div>
       </div>`,
     2:`
-      <div class="section-title">Exercise 1 — Box Breathing Log</div>
+      <div class="section-title">Exercise 1: box breathing log</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>Box Breathing Log</div>
         <p class="ex-instr">Practice Box Breathing at least 3× this month. Note date, situation and how you felt before and after (scale 1–10).</p>
@@ -706,7 +706,7 @@ const EN_OVERRIDES = {
         <div class="field-label" style="margin-top:6px">What do I notice after Box Breathing in myself?</div>
         <div class="box box-xs"></div>
       </div>
-      <div class="section-title">Exercise 2 — Stress Diary</div>
+      <div class="section-title">Exercise 2: stress diary</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>Stress Diary</div>
         <p class="ex-instr">Write after your next match: what did you feel, what did you think, what did you do?</p>
@@ -718,7 +718,7 @@ const EN_OVERRIDES = {
         <div class="box box-xs"></div>
       </div>`,
     3:`
-      <div class="section-title">Exercise 1 — Role Compass</div>
+      <div class="section-title">Exercise 1: role compass</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>Role Compass</div>
         <p class="ex-instr">Give yourself a score from 0 to 10 for each of the four roles.</p>
@@ -743,10 +743,10 @@ const EN_OVERRIDES = {
         <div class="field-label" style="margin-top:8px">My strongest role is <span style="color:var(--orange);font-weight:700">_________________________</span> because:</div>
         <div class="box box-xs"></div>
       </div>
-      <div class="section-title">Exercise 2 — My Top 3 Contributions</div>
+      <div class="section-title">Exercise 2: my top 3 contributions</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>My Top 3 Contributions This Month</div>
-        <p class="ex-instr">No statistics — write three things you contributed in terms of behavior, attitude, or character.</p>
+        <p class="ex-instr">No statistics. Write three things you contributed in terms of behavior, attitude, or character.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
@@ -756,7 +756,7 @@ const EN_OVERRIDES = {
         <div class="box box-xs"></div>
       </div>`,
     4:`
-      <div class="section-title">Exercise 1 — The I-Message</div>
+      <div class="section-title">Exercise 1: the I-message</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>The I-Message</div>
         <p class="ex-instr">Model: "I see… I feel… I need… I ask you to…" Think of a real situation.</p>
@@ -769,10 +769,10 @@ const EN_OVERRIDES = {
           <div><div class="field-label" style="color:var(--orange);font-weight:700">I ASK YOU TO...</div><div class="line"></div></div>
         </div>
       </div>
-      <div class="section-title">Exercise 2 — The Conversation I Keep Postponing</div>
+      <div class="section-title">Exercise 2: the conversation I keep postponing</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>The Conversation I Keep Postponing</div>
-        <p class="ex-instr">Write a conversation you've wanted to have but keep postponing — with a coach, teammate, or parent.</p>
+        <p class="ex-instr">Write a conversation you've wanted to have but keep postponing. Maybe with a coach, teammate, or parent.</p>
         <div class="field-label">With whom?</div>
         <div class="line"></div>
         <div class="field-label" style="margin-top:6px">Why do I keep postponing it?</div>
@@ -781,10 +781,10 @@ const EN_OVERRIDES = {
         <div class="box box-xs"></div>
       </div>`,
     5:`
-      <div class="section-title">Exercise 1 — Team Contract</div>
+      <div class="section-title">Exercise 1: team contract</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>My Contribution to the Team Contract</div>
-        <p class="ex-instr">Write three behavioral rules you personally want to uphold this season — about how you treat your teammates.</p>
+        <p class="ex-instr">Write three behavioral rules you personally want to uphold this season. Think about how you treat your teammates.</p>
         <div class="lines" style="gap:12px">
           <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.72rem;font-weight:700;color:var(--orange);white-space:nowrap">I promise to</span><div class="line" style="flex:1"></div></div>
           <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.72rem;font-weight:700;color:var(--orange);white-space:nowrap">I promise to</span><div class="line" style="flex:1"></div></div>
@@ -795,7 +795,7 @@ const EN_OVERRIDES = {
           <div class="sign-field"><div class="sign-label">Date</div><div class="line"></div></div>
         </div>
       </div>
-      <div class="section-title">Exercise 2 — Invisible Contribution</div>
+      <div class="section-title">Exercise 2: invisible contribution</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>Invisible Contribution</div>
         <p class="ex-instr">Write one teammate who did something during the last match or training that nobody noticed but was essential for the team.</p>
@@ -805,7 +805,7 @@ const EN_OVERRIDES = {
         <div class="box box-md"></div>
       </div>`,
     6:`
-      <div class="section-title">Exercise 1 — Rewrite the Mistake</div>
+      <div class="section-title">Exercise 1: rewrite the mistake</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>Rewrite the Mistake</div>
         <p class="ex-instr">Write a recent mistake. Rewrite every "I can't" thought to "I can't yet" and add what you learn from it.</p>
@@ -822,10 +822,10 @@ const EN_OVERRIDES = {
           </div>
         </div>
       </div>
-      <div class="section-title">Exercise 2 — Progress List</div>
+      <div class="section-title">Exercise 2: progress list</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>3 Things I Do Better Than Last Month</div>
-        <p class="ex-instr">No comparison with others — only with yourself.</p>
+        <p class="ex-instr">No comparison with others. Only with yourself.</p>
         <div class="num-list">
           <div class="num-item"><div class="ex-num">1</div><div class="line"></div></div>
           <div class="num-item"><div class="ex-num">2</div><div class="line"></div></div>
@@ -833,20 +833,20 @@ const EN_OVERRIDES = {
         </div>
       </div>`,
     7:`
-      <div class="section-title">Exercise 1 — Informal Leaders in Our Team</div>
+      <div class="section-title">Exercise 1: informal leaders in our team</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>Informal Leaders</div>
-        <p class="ex-instr">Write two teammates you follow — not because they are captain, but because they radiate something. What do they concretely do?</p>
-        <div class="field-label">Person 1 — name:</div>
+        <p class="ex-instr">Write two teammates you follow. Not because they are captain, but because they radiate something. What do they concretely do?</p>
+        <div class="field-label">Person 1, name:</div>
         <div class="line"></div>
         <div class="field-label" style="margin-top:6px">What makes him/her influential?</div>
         <div class="box box-sm"></div>
-        <div class="field-label" style="margin-top:8px">Person 2 — name:</div>
+        <div class="field-label" style="margin-top:8px">Person 2, name:</div>
         <div class="line"></div>
         <div class="field-label" style="margin-top:6px">What makes him/her influential?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Exercise 2 — My Mentor Moment</div>
+      <div class="section-title">Exercise 2: my mentor moment</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>My Mentor Moment</div>
         <p class="ex-instr">Choose a younger player or new teammate and spend at least 5 minutes with him/her this month.</p>
@@ -858,7 +858,7 @@ const EN_OVERRIDES = {
         <div class="box box-sm"></div>
       </div>`,
     8:`
-      <div class="section-title">Exercise 1 — 5 Moments of Character</div>
+      <div class="section-title">Exercise 1: 5 moments of character</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">1</div>5 Moments of Character</div>
         <p class="ex-instr">Write five concrete moments this season where you contributed through behavior and character.</p>
@@ -873,7 +873,7 @@ const EN_OVERRIDES = {
   },
   page2: {
     1:`
-      <div class="section-title">Exercise 3 — Personal Values Compass</div>
+      <div class="section-title">Exercise 3: personal values compass</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>Personal Values Compass</div>
         <p class="ex-instr">Rank the values below from 1 (most important) to 6 (least important) for you as a player and person.</p>
@@ -894,13 +894,13 @@ const EN_OVERRIDES = {
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Positive Self-Talk</div>
+        <div class="mental-label">🧠 Mental resilience: positive self-talk</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write one sentence you say to yourself when you doubt yourself as a player. Then rewrite it positively as a strength.</p>
         <div class="field-label" style="color:rgba(255,255,255,.5)">My power sentence for this season:</div>
         <div class="mental-box"></div>
       </div>`,
     2:`
-      <div class="section-title">Exercise 3 — Worst Case · Best Case · Most Likely</div>
+      <div class="section-title">Exercise 3: worst case, best case, most likely</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>Worst Case Best Case</div>
         <p class="ex-instr">Think of a situation that makes you nervous. Write the three scenarios and make a plan.</p>
@@ -920,13 +920,13 @@ const EN_OVERRIDES = {
         <div class="box box-xs"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Pre-Game Routine</div>
+        <div class="mental-label">🧠 Mental resilience: pre-game routine</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write your ideal mental preparation before a match (3 steps: breathing, focus-word, action). Practice this at least 2× this month.</p>
         <div class="field-label" style="color:rgba(255,255,255,.5)">My pre-game routine in 3 steps:</div>
         <div class="mental-box"></div>
       </div>`,
     3:`
-      <div class="section-title">Exercise 3 — Role Circle Reflection</div>
+      <div class="section-title">Exercise 3: role circle reflection</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>After the Role Circle</div>
         <p class="ex-instr">After the group exercise: what surprised you? Which contribution from a teammate did you not expect?</p>
@@ -934,18 +934,18 @@ const EN_OVERRIDES = {
         <div class="field-label" style="margin-top:8px">Which role do I want to consciously take on more in the coming weeks?</div>
         <div class="box box-sm"></div>
       </div>
-      <div class="section-title">Team Reflection</div>
+      <div class="section-title">Team reflection</div>
       <div class="ex">
         <p class="ex-instr">What does this team need from me this season that I'm not giving enough yet?</p>
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Role Focus</div>
+        <div class="mental-label">🧠 Mental resilience: role focus</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write one specific action you will consciously take next week to strengthen your role. Make it concrete enough to evaluate afterward.</p>
         <div class="mental-box"></div>
       </div>`,
     4:`
-      <div class="section-title">Exercise 3 — After the Feedback Round</div>
+      <div class="section-title">Exercise 3: after the feedback round</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>Feedback Round Reflection</div>
         <p class="ex-instr">What was the best feedback you received? What will you concretely do with it?</p>
@@ -957,12 +957,12 @@ const EN_OVERRIDES = {
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Listening under Pressure</div>
+        <div class="mental-label">🧠 Mental resilience: listening under pressure</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">During the next critical moment in training: breathe in 2× deeply before responding. Write afterward: what was the moment and how did I respond differently?</p>
         <div class="mental-box"></div>
       </div>`,
     5:`
-      <div class="section-title">Exercise 3 — Help Log</div>
+      <div class="section-title">Exercise 3: help log</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>Help Log</div>
         <p class="ex-instr">Ask for help actively at least 3× from a teammate. Write what you asked, from whom, and what it delivered.</p>
@@ -979,12 +979,12 @@ const EN_OVERRIDES = {
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Letting Go of Ego</div>
+        <div class="mental-label">🧠 Mental resilience: letting go of ego</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write one moment where you gave something up for the team (playing time, position, spotlight). How did you feel afterward? What does that say about your growth?</p>
         <div class="mental-box"></div>
       </div>`,
     6:`
-      <div class="section-title">Exercise 3 — My Hardest Moment</div>
+      <div class="section-title">Exercise 3: my hardest moment</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>Hardest Moment This Season</div>
         <p class="ex-instr">Describe the hardest moment. What did you do? What did you learn? How did you become stronger?</p>
@@ -994,12 +994,12 @@ const EN_OVERRIDES = {
         <div class="box box-md"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — The 24h Rule</div>
+        <div class="mental-label">🧠 Mental resilience: the 24h rule</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">After a bad match or training: you have 24h to be upset. After that, you look forward. Write how you make the switch from "frustration" to "learning".</p>
         <div class="mental-box"></div>
       </div>`,
     7:`
-      <div class="section-title">Exercise 3 — Log: The First Voice</div>
+      <div class="section-title">Exercise 3: log, the first voice</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">3</div>Leadership Moments Log</div>
         <p class="ex-instr">After each training or match, write when you were the first voice or took a leadership moment. What did you do exactly?</p>
@@ -1008,12 +1008,12 @@ const EN_OVERRIDES = {
         <div class="box box-sm"></div>
       </div>
       <div class="mental-block">
-        <div class="mental-label">🧠 Mental Resilience — Pressure as a Leader</div>
+        <div class="mental-label">🧠 Mental resilience: pressure as a leader</div>
         <p class="ex-instr" style="color:rgba(255,255,255,.8);margin-bottom:6px">Write: what do you do as a leader when the team loses and the atmosphere drops? What three concrete actions or words do you use to turn the tide?</p>
         <div class="mental-box"></div>
       </div>`,
     8:`
-      <div class="section-title">Exercise 2 — Three Intentions for Next Season</div>
+      <div class="section-title">Exercise 2: three intentions for next season</div>
       <div class="ex">
         <div class="ex-title"><div class="ex-num">2</div>My Intentions</div>
         <p class="ex-instr">Write three concrete intentions for next season in behavior.</p>
