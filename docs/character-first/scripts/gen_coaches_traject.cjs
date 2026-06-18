@@ -259,7 +259,7 @@ const modulesNL = [
   },
   {
     num: 4, kleur: '#C7842F',
-    title: 'Feedback & Communicatie',
+    title: 'Feedback en communicatie',
     vraag: 'Hoe geef jij feedback, en wat hoort de speler effectief?',
     theorie: 'Feedback is het krachtigste leerinstrument in de sport. Maar ook het meest misbruikte. Onderzoek van Hattie & Timperley (2007) toont dat effectieve feedback zich richt op de taak en het leerproces, niet op de persoon. Het SBI-model (Situation–Behavior–Impact) geeft structuur: beschrijf de situatie, het specifieke gedrag en de impact. Positief-correctief feedback (niet de sandwichmethode) is 4-5x effectiever dan puur kritisch feedback bij jeugd.',
     bron: 'Hattie & Timperley (2007) · Magill (2011) · Amorose (2007) · Kim Scott (2017)',
@@ -292,7 +292,7 @@ const modulesNL = [
   },
   {
     num: 5, kleur: '#7A52C7',
-    title: 'Motivatieklimaat Bouwen',
+    title: 'Een motivatieklimaat bouwen',
     vraag: 'Wat beloon jij eigenlijk, winnen of leren?',
     theorie: 'De Achievement Goal Theory (Ames, 1992) onderscheidt twee klimaten: een mastery-klimaat (gericht op leren, vooruitgang, inzet) en een performance-klimaat (gericht op winnen, vergelijken, rangschikken). Onderzoek in jeugdsport toont consistent: spelers in een mastery-klimaat hebben meer plezier, persisteren langer, maken minder fouten door angst, en presteren op lange termijn beter. Het klimaat wordt gecreëerd door de coach, via feedback, groepering, evaluatie en tijdsinvestering.',
     bron: 'Ames (1992) · Nicholls (1989) · Smith, Smoll & Cumming (2007) · Ntoumanis & Biddle (1999)',
@@ -325,7 +325,7 @@ const modulesNL = [
   },
   {
     num: 6, kleur: '#C73F62',
-    title: 'Emotieregulatie van de Coach',
+    title: 'Emotieregulatie van de coach',
     vraag: 'Wat doen jouw emoties met je spelers, ook als je denkt dat je niets zegt?',
     theorie: 'Emotionele besmetting (Hatfield, Cacioppo & Rapson, 1994) toont aan dat mensen elkaars emoties onbewust overnemen via micro-expressies, stemtoon en lichaamstaal. Als coach ben jij de dominante emotionele zender in je groep: jouw spanning wordt hun spanning, jouw kalmte wordt hun kalmte. Neuropsychologisch staat dit bekend als limbic resonance. De amygdala van jouw spelers spiegelt letterlijk de jouwe. Zelfregulatie is geen zachte vaardigheid; het is een prestatievariabele.',
     bron: 'Hatfield et al. (1994) · Lewis, Amini & Lannon (2000) · Gross (1998) · Goleman (1995)',
@@ -358,7 +358,7 @@ const modulesNL = [
   },
   {
     num: 7, kleur: '#1C2433',
-    title: 'Teamdynamiek & Cohesie',
+    title: 'Teamdynamiek en cohesie',
     vraag: 'Bouw jij een groep sporters, of een echt team?',
     theorie: 'Groepscohesie in sport heeft twee dimensies (Carron et al., 1985): taakcohesie (samen werken naar een doel) en sociale cohesie (elkaar graag zien). Beide zijn belangrijk, maar taakcohesie is de sterkere voorspeller van prestatie. Tuckman\'s fasenmodel (Forming → Storming → Norming → Performing → Adjourning) beschrijft hoe teams groeien. Coaches die de Storming-fase vermijden of onderdrukken, houden hun team kunstmatig in de Norming-fase, zonder echte verbinding.',
     bron: 'Carron et al. (1985) · Tuckman (1965) · Lencioni (2002) · Festinger et al. (1950)',
@@ -391,7 +391,7 @@ const modulesNL = [
   },
   {
     num: 8, kleur: '#3A8A8A',
-    title: 'Ouders als Partner',
+    title: 'Ouders als partner',
     vraag: 'Hoe maak jij van ouders een kracht voor het team, in plaats van een bedreiging?',
     theorie: 'Ouders zijn de meest onderzochte externe factor in jeugdsport (Côté, 1999; Wuerth et al., 2004). Hun impact is niet neutraal: te weinig betrokkenheid correleert met vroegtijdige uitval, maar overmatige druk correleert met angst, burnout en sportverlating. De Expertise-fase (Bloom, 1985) toont dat succesvolle sporters ouders hadden die in de specialisatiefase bewust meer distantie namen. Coaches die ouders actief informeren, betrekken én begrenzen, presteren aantoonbaar beter.',
     bron: 'Côté (1999) · Wuerth, Lee & Alfermann (2004) · Bloom (1985) · Ginsburg et al. (2014)',
@@ -424,7 +424,7 @@ const modulesNL = [
   },
   {
     num: 9, kleur: '#F05A28',
-    title: 'Mentale Gezondheid & Signalen',
+    title: 'Mentale gezondheid en signalen',
     vraag: 'Herken jij het verschil tussen een sporter die het moeilijk heeft en één die mentaal gevaar loopt?',
     theorie: 'Mentale gezondheidsproblemen komen vaker voor bij sporters dan bij niet-sporters (Gouttebarge et al., 2019). Coaches zijn vaak de eerste volwassenen die signalen opvangen, vóór ouders of school. De Duty of Care-verplichting verplicht coaches actief te zorgen voor het welzijn van hun sporters. Burn-out bij jeugd (Raedeke, 1997) kent drie dimensies: emotionele uitputting, depersonalisatie (sport voelt zinloos), en gereduceerd gevoel van eigenwaarde. Vroeg herkennen is levensreddend.',
     bron: 'Gouttebarge et al. (2019) · Raedeke (1997) · Rice et al. (2016) · UK Sport Duty of Care (2017)',
@@ -457,7 +457,7 @@ const modulesNL = [
   },
   {
     num: 10, kleur: '#1C2433',
-    title: 'De Reflectieve Coach',
+    title: 'De reflectieve coach',
     vraag: 'Hoe leer jij als coach, en hoe weet je of je beter wordt?',
     theorie: 'Donald Schön (1983) onderscheidt twee vormen van professioneel leren: reflection-in-action (tijdens de coaching bijsturen) en reflection-on-action (achteraf analyseren). Deliberate practice (Ericsson, 1993) toont dat expertise niet komt van ervaring alleen, maar van bewuste, gefocuste oefening op zwakke punten met directe feedback. De beste coaches zijn levenslange leerders die systematisch reflecteren, peer-coaching gebruiken en video-analyse inzetten.',
     bron: 'Schön (1983) · Ericsson (1993) · Cushion et al. (2010) · Côté & Gilbert (2009)',
@@ -497,7 +497,7 @@ const modulesNL = [
 const modulesEN = [
   {
     num: 1, kleur: '#F05A28',
-    title: 'Self-Knowledge as a Coach',
+    title: 'Self-knowledge as a coach',
     vraag: 'Who are you as a coach, and how does that affect what happens with your players?',
     theorie: 'Coaches are the most influential adults in young athletes\' lives, after parents. But that influence is never neutral: it always reflects who the coach is as a person. The Johari Window (Luft & Ingham, 1955) shows that effective coaching starts with shrinking your "blind spot": the things others see in you that you don\'t see yourself. Coaches with high self-awareness use power, pressure, and relationships more consciously.',
     bron: 'Luft & Ingham (1955) · Rhind & Jowett (2010) · Côté & Gilbert (2009)',
@@ -531,7 +531,7 @@ const modulesEN = [
   },
   {
     num: 2, kleur: '#2F6FB0',
-    title: 'Coaching Style & Autonomy',
+    title: 'Coaching style and autonomy',
     vraag: 'Do you motivate players, or do you teach them to motivate themselves?',
     theorie: 'Self-Determination Theory (Deci & Ryan, 1985) shows that people are most motivated when three basic needs are met: autonomy (I have choice), competence (I can do it), and relatedness (I belong). Controlling coaches who rely solely on pressure and enforcement undermine intrinsic motivation. Autonomy-supportive coaching demonstrably leads to better performance, less burnout, and higher long-term enjoyment of sport.',
     bron: 'Deci & Ryan (1985, 2000) · Mageau & Vallerand (2003) · Amorose & Anderson-Butcher (2007)',
@@ -564,7 +564,7 @@ const modulesEN = [
   },
   {
     num: 3, kleur: '#1E8A5B',
-    title: 'The Coach-Athlete Relationship',
+    title: 'The coach-athlete relationship',
     vraag: 'How well do your players know you, and how well do you know them?',
     theorie: 'Jowett\'s 3C+1 model (2007) describes the coach-athlete relationship through four dimensions: Closeness (emotional nearness), Commitment (mutual dedication), Complementarity (working together), and Co-orientation (shared understanding). Research consistently shows that the quality of this relationship is the single strongest predictor of athletic performance, wellbeing, and enjoyment. Athletes perform better for coaches who know them as people, not just as athletes.',
     bron: 'Jowett & Ntoumanis (2004) · Jowett (2007) · Lorimer & Jowett (2009)',
@@ -597,7 +597,7 @@ const modulesEN = [
   },
   {
     num: 4, kleur: '#C7842F',
-    title: 'Feedback & Communication',
+    title: 'Feedback and communication',
     vraag: 'How do you give feedback, and what does the player actually hear?',
     theorie: 'Feedback is the most powerful learning tool in sport. But also the most misused. Research by Hattie & Timperley (2007) shows that effective feedback focuses on the task and learning process, not the person. The SBI model (Situation–Behavior–Impact) provides structure: describe the situation, the specific behavior, and the impact. Positive-corrective feedback (not the sandwich method) is 4-5x more effective than purely critical feedback with youth athletes.',
     bron: 'Hattie & Timperley (2007) · Magill (2011) · Amorose (2007) · Kim Scott (2017)',
@@ -630,7 +630,7 @@ const modulesEN = [
   },
   {
     num: 5, kleur: '#7A52C7',
-    title: 'Building a Motivation Climate',
+    title: 'Building a motivation climate',
     vraag: 'What are you actually rewarding, winning or learning?',
     theorie: 'Achievement Goal Theory (Ames, 1992) distinguishes two climates: a mastery climate (focused on learning, progress, effort) and a performance climate (focused on winning, comparing, ranking). Research in youth sport consistently shows: players in a mastery climate have more fun, persist longer, make fewer anxiety-driven errors, and perform better long-term. The climate is created by the coach, through feedback, grouping, evaluation, and time investment.',
     bron: 'Ames (1992) · Nicholls (1989) · Smith, Smoll & Cumming (2007) · Ntoumanis & Biddle (1999)',
@@ -663,7 +663,7 @@ const modulesEN = [
   },
   {
     num: 6, kleur: '#C73F62',
-    title: 'Emotional Self-Regulation',
+    title: 'Emotional self-regulation',
     vraag: 'What do your emotions do to your players, even when you think you\'re saying nothing?',
     theorie: 'Emotional contagion (Hatfield, Cacioppo & Rapson, 1994) shows that people unconsciously adopt each other\'s emotions through micro-expressions, tone of voice, and body language. As a coach you are the dominant emotional broadcaster in your group: your tension becomes their tension, your calm becomes their calm. Neuropsychologically this is known as limbic resonance. Your players\' amygdalae literally mirror yours. Self-regulation is not a soft skill; it is a performance variable.',
     bron: 'Hatfield et al. (1994) · Lewis, Amini & Lannon (2000) · Gross (1998) · Goleman (1995)',
@@ -696,7 +696,7 @@ const modulesEN = [
   },
   {
     num: 7, kleur: '#1C2433',
-    title: 'Team Dynamics & Cohesion',
+    title: 'Team dynamics and cohesion',
     vraag: 'Are you building a group of athletes, or a real team?',
     theorie: 'Group cohesion in sport has two dimensions (Carron et al., 1985): task cohesion (working together toward a goal) and social cohesion (liking each other). Both matter, but task cohesion is the stronger predictor of performance. Tuckman\'s stage model (Forming → Storming → Norming → Performing → Adjourning) describes how teams grow. Coaches who avoid or suppress the Storming phase artificially keep their team in the Norming phase, without real connection.',
     bron: 'Carron et al. (1985) · Tuckman (1965) · Lencioni (2002) · Festinger et al. (1950)',
@@ -729,7 +729,7 @@ const modulesEN = [
   },
   {
     num: 8, kleur: '#3A8A8A',
-    title: 'Parents as Partners',
+    title: 'Parents as partners',
     vraag: 'How do you make parents a strength for the team, instead of a threat?',
     theorie: 'Parents are the most studied external factor in youth sport (Côté, 1999; Wuerth et al., 2004). Their impact is not neutral: too little involvement correlates with early dropout, but excessive pressure correlates with anxiety, burnout, and sport abandonment. Bloom\'s Expertise Phase (1985) shows that successful athletes had parents who consciously stepped back during the specialization phase. Coaches who actively inform, involve, and set boundaries with parents demonstrably perform better.',
     bron: 'Côté (1999) · Wuerth, Lee & Alfermann (2004) · Bloom (1985) · Ginsburg et al. (2014)',
@@ -762,7 +762,7 @@ const modulesEN = [
   },
   {
     num: 9, kleur: '#F05A28',
-    title: 'Mental Health & Warning Signs',
+    title: 'Mental health and warning signs',
     vraag: 'Do you recognize the difference between an athlete who is struggling and one who is in mental danger?',
     theorie: 'Mental health problems are more common in athletes than non-athletes (Gouttebarge et al., 2019). Coaches are often the first adults to pick up signals, before parents or school. The Duty of Care obligation requires coaches to actively ensure the wellbeing of their athletes. Burnout in youth (Raedeke, 1997) has three dimensions: emotional exhaustion, depersonalization (sport feels meaningless), and reduced sense of competence. Early recognition is life-changing.',
     bron: 'Gouttebarge et al. (2019) · Raedeke (1997) · Rice et al. (2016) · UK Sport Duty of Care (2017)',
@@ -795,7 +795,7 @@ const modulesEN = [
   },
   {
     num: 10, kleur: '#1C2433',
-    title: 'The Reflective Coach',
+    title: 'The reflective coach',
     vraag: 'How do you learn as a coach, and how do you know you\'re getting better?',
     theorie: 'Donald Schön (1983) distinguishes two forms of professional learning: reflection-in-action (adjusting during coaching) and reflection-on-action (analyzing afterward). Deliberate practice (Ericsson, 1993) shows that expertise comes not from experience alone, but from conscious, focused practice on weak points with immediate feedback. The best coaches are lifelong learners who systematically reflect, use peer-coaching, and employ video analysis.',
     bron: 'Schön (1983) · Ericsson (1993) · Cushion et al. (2010) · Côté & Gilbert (2009)',
