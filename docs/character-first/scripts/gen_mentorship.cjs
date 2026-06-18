@@ -344,10 +344,10 @@ const sessionsNL = [
     title: 'Mijn innerlijke stem',
     subtitle: 'Wat zeg jij tegen jezelf als het moeilijk wordt?',
     quote: { text: '"Je hebt meer gesprekken met jezelf dan met iedereen anders. Zorg dat ze goed zijn."', auteur: 'Zig Ziglar' },
-    introQ: 'Hoe klinkt jouw innerlijke stem — als coach, of als criticus?',
+    introQ: 'Hoe klinkt jouw innerlijke stem? Als coach, of als criticus?',
     oefening: {
       label: 'Mijn stemmen in kaart',
-      tekst: 'Denk aan een recent moment waarop je een grote fout maakte of teleurstellend presteerde.\n\nSchrijf EXACT op wat er door je hoofd ging:\n— De eerste gedachte (raak, eerlijk):\n— De zin die je het meest herhaalde:\n— Wat je tegen jezelf zei "als innerlijke coach":\n\nVraag jezelf dan: zou ik dit zeggen tegen mijn beste vriend? Wat zou ik hem/haar wél zeggen?',
+      tekst: 'Denk aan een recent moment waarop je een grote fout maakte of teleurstellend presteerde.\n\nSchrijf EXACT op wat er door je hoofd ging:\n- De eerste gedachte (raak, eerlijk):\n- De zin die je het meest herhaalde:\n- Wat je tegen jezelf zei "als innerlijke coach":\n\nVraag jezelf dan: zou ik dit zeggen tegen mijn beste vriend? Wat zou ik hem/haar wél zeggen?',
     },
     schrijfVragen: [
       'Mijn innerlijke criticus zegt het vaakst...',
@@ -362,23 +362,23 @@ const sessionsNL = [
       'Wat heb ik geleerd over de manier waarop ik met mezelf praat?',
       'Welke zin neem ik mee als mijn nieuwe innerlijke coach-stem?',
     ],
-    actie: 'Kies één "anchor-zin" — een zin die jij jezelf zegt als je het moeilijk hebt. Oefen die zin drie keer hardop voor elke training deze week.',
+    actie: 'Kies één "anchor-zin": een zin die jij jezelf zegt als je het moeilijk hebt. Oefen die zin drie keer hardop voor elke training deze week.',
     // MENTOR
     doel: 'De sporter bewust maken van zijn/haar zelfpraat-patronen en ze helpen een constructievere innerlijke stem te ontwikkelen.',
     mentorFocus: 'Dit is een kwetsbare sessie. Veel sporters schamen zich voor negatieve zelfpraat. Normaliseer het actief.',
     gesprekStarters: [
       { fase: 'Openen (5 min)', starter: '"Hoe praat jij met jezelf als je een fout maakt? Mag je me dat eerlijk vertellen?"', tip: 'Ga zelf eerst: "Ik weet dat ik vroeger ook heel hard voor mezelf was..." Dat opent de deur.' },
-      { fase: 'Verkennen (15 min)', starter: '"Is die innerlijke stem er altijd geweest — of heeft iemand je dat op een moment geleerd?"', tip: 'Zelfpraat heeft een oorsprong. Dat ontdekken kan bevrijdend zijn.' },
+      { fase: 'Verkennen (15 min)', starter: '"Is die innerlijke stem er altijd geweest, of heeft iemand je dat op een moment geleerd?"', tip: 'Zelfpraat heeft een oorsprong. Dat ontdekken kan bevrijdend zijn.' },
       { fase: 'Verdiepen (10 min)', starter: '"Wat zou er veranderen in jouw prestaties als die stem vriendelijker werd?"', tip: 'Onderzoek toont: zelfcompassie verhoogt prestaties. Deel dit als het past.' },
-      { fase: 'Afsluiten (5 min)', starter: '"Formuleer samen een anchor-zin. Laat de sporter die kiezen."', tip: 'De zin moet van hen zijn — niet jouw voorstel. Vraag: "Welke zin klinkt als de jouwe?"' },
+      { fase: 'Afsluiten (5 min)', starter: '"Formuleer samen een anchor-zin. Laat de sporter die kiezen."', tip: 'De zin moet van hen zijn, niet jouw voorstel. Vraag: "Welke zin klinkt als de jouwe?"' },
     ],
     observeer: [
-      'Hoe snel erkent de sporter negatieve zelfpraat — of ontkent hij/zij het?',
+      'Hoe snel erkent de sporter negatieve zelfpraat? Of ontkent hij/zij het?',
       'Is er een patroon? (Na fouten? Onder druk? Tegenover bepaalde spelers?)',
-      'Wat is de emotie als hij/zij die innerlijke stem beschrijft — schaamte, humor, pijn?',
+      'Wat is de emotie als hij/zij die innerlijke stem beschrijft? Schaamte, humor, pijn?',
       'Let op: extreme zelfkritiek kan een signaal zijn van iets diepers. Noteer dat.',
     ],
-    opgelet: 'Als zelfkritiek extreem is ("ik ben nutteloos", "ik verdien mijn plek niet") — normaliseer, maar vlag dit intern als een aandachtspunt. Verwijs door als nodig.',
+    opgelet: 'Als zelfkritiek extreem is ("ik ben nutteloos", "ik verdien mijn plek niet"), normaliseer dan, maar vlag dit intern als een aandachtspunt. Verwijs door als nodig.',
     afsluiting: 'Herhaal hun anchor-zin terug: "De zin die jij kiest is..." Maak het concreet: "Wanneer ga je die deze week gebruiken?" Dat verhoogt de kans op transfer.',
   },
   {
@@ -386,10 +386,10 @@ const sessionsNL = [
     title: 'Omgaan met tegenslagen',
     subtitle: 'Hoe falen jou vormt',
     quote: { text: '"Ik heb meer dan 9.000 ballen gemist in mijn carrière. En daardoor heb ik gewonnen."', auteur: 'Michael Jordan' },
-    introQ: 'Wat doet een tegenslag echt met jou — en wat kun jij ermee doen?',
+    introQ: 'Wat doet een tegenslag echt met jou, en wat kun jij ermee doen?',
     oefening: {
       label: 'Mijn veerkrachtkaart',
-      tekst: 'Denk aan de zwaarste tegenslag die je als sporter hebt meegemaakt.\n\n1. Wat was de tegenslag? (kort)\n2. Hoe reageerde jij op dat moment? (eerlijk)\n3. Wat heb je er uiteindelijk uit geleerd?\n4. Zou je het willen wissen — of heb je er iets aan gehad?\n\nSchrijf dan: "Mijn zwaarste tegenslag heeft mij geleerd dat ik..."',
+      tekst: 'Denk aan de zwaarste tegenslag die je als sporter hebt meegemaakt.\n\n1. Wat was de tegenslag? (kort)\n2. Hoe reageerde jij op dat moment? (eerlijk)\n3. Wat heb je er uiteindelijk uit geleerd?\n4. Zou je het willen wissen, of heb je er iets aan gehad?\n\nSchrijf dan: "Mijn zwaarste tegenslag heeft mij geleerd dat ik..."',
     },
     schrijfVragen: [
       'De tegenslag die mij het meest heeft gevormd als sporter is...',
@@ -411,17 +411,17 @@ const sessionsNL = [
     gesprekStarters: [
       { fase: 'Openen (5 min)', starter: '"Iedereen heeft een tegenslag gehad die echt pijn deed. Wat was de jouwe?"', tip: 'Wees geduldig. Dit kan stil worden. Dat is ok.' },
       { fase: 'Verkennen (15 min)', starter: '"Hoe heb jij op dat moment voor jezelf gezorgd? Wat hielp je?"', tip: 'Focus op de veerkracht, niet op het lijden. "Hoe ben JIJ door die periode geraakt?"' },
-      { fase: 'Verdiepen (10 min)', starter: '"Als je terugkijkt — wat heeft die periode jou gegeven dat je anders niet zou hebben?"', tip: 'Post-traumatic growth. Niet opdringen als de sporter er nog niet is. Voel het timing.' },
+      { fase: 'Verdiepen (10 min)', starter: '"Als je terugkijkt, wat heeft die periode jou gegeven dat je anders niet zou hebben?"', tip: 'Post-traumatic growth. Niet opdringen als de sporter er nog niet is. Voel het timing.' },
       { fase: 'Afsluiten (5 min)', starter: '"Wat wil je meenemen uit jouw eigen veerkrachtverhaal voor de volgende keer dat het moeilijk wordt?"', tip: 'Laat de sporter zijn/haar eigen veerkrachtrecept formuleren.' },
     ],
     observeer: [
-      'Hoe praat de sporter over de tegenslag — in de verleden tijd (verwerkt) of de tegenwoordige tijd (nog actief)?',
-      'Is er schuld (intern) of verwijt (extern)? Welke is gezonder — en welke is eerlijker?',
+      'Hoe praat de sporter over de tegenslag? In de verleden tijd (verwerkt) of de tegenwoordige tijd (nog actief)?',
+      'Is er schuld (intern) of verwijt (extern)? Welke is gezonder, en welke is eerlijker?',
       'Heeft de sporter een steunnetwerk gehad? Is dat er nu nog?',
-      'Let op: als iemand er echt niet over kan praten of erg emotioneel wordt, houd dan ruimte — en maak intern een notitie.',
+      'Let op: als iemand er echt niet over kan praten of erg emotioneel wordt, houd dan ruimte en maak intern een notitie.',
     ],
     opgelet: 'Tegenslagen kunnen traumatisch zijn. Jij bent geen therapeut. Als een sporter iets deelt dat buiten jouw competentie valt (mentale gezondheidscrisis, misbruik, ernstig verlies), verwijs door met zorg: "Dit verdient meer aandacht dan wat wij hier kunnen bieden. Ik ken iemand die jou echt kan helpen."',
-    afsluiting: 'Erken de moed: "Dank je dat je dit hebt gedeeld. Dat vraagt lef." Sluit af met de veerkrachtzin van de sporter — laat hem/haar die hardop zeggen.',
+    afsluiting: 'Erken de moed: "Dank je dat je dit hebt gedeeld. Dat vraagt lef." Sluit af met de veerkrachtzin van de sporter, laat hem/haar die hardop zeggen.',
   },
   {
     num: 6,
@@ -431,16 +431,16 @@ const sessionsNL = [
     introQ: 'Wie inspireert jou? En wat zegt dat over wie jíj wil worden?',
     oefening: {
       label: 'Mijn drie rolmodellen',
-      tekst: 'Kies drie mensen die jou inspireren (sport, muziek, familie, geschiedenis — alles mag).\n\nVoor elk persoon:\n1. Naam:\n2. Welke eigenschap bewonder ik het meest?\n3. Heb ik dat ook in mij — of is het iets wat ik wil ontwikkelen?\n\nKijk dan naar alle drie: is er een gemeenschappelijk thema in wat jij bewondert?',
+      tekst: 'Kies drie mensen die jou inspireren (sport, muziek, familie, geschiedenis, alles mag).\n\nVoor elk persoon:\n1. Naam:\n2. Welke eigenschap bewonder ik het meest?\n3. Heb ik dat ook in mij, of is het iets wat ik wil ontwikkelen?\n\nKijk dan naar alle drie: is er een gemeenschappelijk thema in wat jij bewondert?',
     },
     schrijfVragen: [
       'Het gemeenschappelijke in mijn drie rolmodellen is...',
       'De eigenschap van mijn rolmodel die ik het meest mis in mezelf is... Hoe kan ik die ontwikkelen?',
-      'Ben jij zelf een rolmodel voor iemand? Voor wie — en wat zie je in die persoon?',
+      'Ben jij zelf een rolmodel voor iemand? Voor wie, en wat zie je in die persoon?',
     ],
     voorGesprek: [
       'Vraag jezelf: ken ik deze rolmodellen echt, of bewonder ik hun beeld? Wat weet ik over hun moeilijke momenten?',
-      'Wie in je eigen omgeving is een stil rolmodel — iemand die niet beroemd is maar jou inspireert?',
+      'Wie in je eigen omgeving is een stil rolmodel? Iemand die niet beroemd is maar jou inspireert?',
     ],
     naGesprek: [
       'Wat heb ik over mezelf geleerd door te kijken naar wie ik bewonder?',
@@ -448,22 +448,22 @@ const sessionsNL = [
     ],
     actie: 'Zoek één interview, boek of podcast van je rolmodel op en stel jezelf één vraag: "Wat zou hij/zij doen in mijn situatie?"',
     // MENTOR
-    doel: 'Via rolmodellen helpen onthullen wat de sporter diep van zichzelf verlangt — rolmodellen zijn spiegel van innerlijk verlangen.',
+    doel: 'Via rolmodellen helpen onthullen wat de sporter diep van zichzelf verlangt. Rolmodellen zijn een spiegel van innerlijk verlangen.',
     mentorFocus: 'Wie iemand bewondert, vertelt jou meer dan jijzelf kan vragen. Luister naar de eigenschappen, niet de namen.',
     gesprekStarters: [
-      { fase: 'Openen (5 min)', starter: '"Als je aan één persoon denkt die jou echt inspireert — wie is dat meteen?"', tip: 'De spontane naam is de echte. Vraag dan pas: "Wat precies aan die persoon?"' },
+      { fase: 'Openen (5 min)', starter: '"Als je aan één persoon denkt die jou echt inspireert, wie is dat meteen?"', tip: 'De spontane naam is de echte. Vraag dan pas: "Wat precies aan die persoon?"' },
       { fase: 'Verkennen (15 min)', starter: '"Wat is het gemeenschappelijke in de mensen die jij bewondert? Welk thema zie jij?"', tip: 'Laat de sporter zelf het patroon ontdekken. Dat is krachtiger dan jij het benoemen.' },
       { fase: 'Verdiepen (10 min)', starter: '"Heb jij die eigenschap ook al in jezelf? Of is het iets wat je wil worden?"', tip: 'Dit opent een gesprek over aspiratie en identiteitsontwikkeling.' },
       { fase: 'Afsluiten (5 min)', starter: '"Ben jij zelf een rolmodel voor iemand in jouw omgeving? Hoe voelt dat?"', tip: 'Veel sporters denken hier nooit aan. Dit kan een krachtig moment van eigenwaarde zijn.' },
     ],
     observeer: [
-      'Kiest de sporter rolmodellen uit sport — of ook buiten de sport? (Smal vs. breed zelfbeeld)',
+      'Kiest de sporter rolmodellen uit sport, of ook buiten de sport? (Smal vs. breed zelfbeeld)',
       'Zijn de gekozen eigenschappen prestatiegericht (winnen, snel) of karaktergericht (doorzettingsvermogen, eerlijkheid)?',
       'Hoe reageert de sporter op de vraag of hij/zij zelf een rolmodel is? Schroom of trots?',
-      'Welke eigenschappen die de sporter bewondert zie JIJ al in hem/haar — die hij/zij zelf niet ziet?',
+      'Welke eigenschappen die de sporter bewondert zie JIJ al in hem/haar, die hij/zij zelf niet ziet?',
     ],
     opgelet: 'Rolmodellen kunnen ook giftig zijn (perfecte sporters die hun problemen verbergen). Als de sporter een onrealistisch ongenaakbaar beeld heeft, help dat te nuanceren: "Wat weet je over zijn/haar moeilijke momenten?"',
-    afsluiting: '"Wat als ik jou vertel dat ik al [eigenschap X] in jou zie?" — Benoem iets concreets dat jij hebt geobserveerd. Dit is een cadeau dat je geeft als mentor.',
+    afsluiting: '"Wat als ik jou vertel dat ik al [eigenschap X] in jou zie?" Benoem iets concreets dat jij hebt geobserveerd. Dit is een cadeau dat je geeft als mentor.',
   },
   {
     num: 7,
