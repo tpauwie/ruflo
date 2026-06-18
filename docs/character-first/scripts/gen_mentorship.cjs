@@ -470,10 +470,10 @@ const sessionsNL = [
     title: 'Mijn rol in het team',
     subtitle: 'Hoe ben ik een kracht voor anderen?',
     quote: { text: '"De sterkste speler maakt het team sterker, niet zichzelf."', auteur: 'Character First' },
-    introQ: 'Wat draag jij bij aan jouw team — los van wat je scoort of presteert?',
+    introQ: 'Wat draag jij bij aan jouw team, los van wat je scoort of presteert?',
     oefening: {
       label: 'Mijn teamrol',
-      tekst: 'Denk aan jouw team. Beantwoord eerlijk:\n\n1. Welke rol speel jij in de groep? (energiegever, stille kracht, verbinder, strateeg, ...)\n2. Wat brengt jij mee dat een ander niet kan?\n3. Wanneer heb jij iemand in het team geholpen — niet met een actie in de wedstrijd, maar als persoon?\n\nSchrijf dan: "Mijn unieke bijdrage aan dit team is..."',
+      tekst: 'Denk aan jouw team. Beantwoord eerlijk:\n\n1. Welke rol speel jij in de groep? (energiegever, stille kracht, verbinder, strateeg, ...)\n2. Wat brengt jij mee dat een ander niet kan?\n3. Wanneer heb jij iemand in het team geholpen, niet met een actie in de wedstrijd, maar als persoon?\n\nSchrijf dan: "Mijn unieke bijdrage aan dit team is..."',
     },
     schrijfVragen: [
       'Als mijn team mij zou omschrijven als teamlid (niet als speler), zouden ze zeggen...',
@@ -481,26 +481,26 @@ const sessionsNL = [
       'Eén teamlid met wie ik de relatie wil versterken dit seizoen is... Waarom die persoon?',
     ],
     voorGesprek: [
-      'Observeer jezelf de komende week: wanneer help jij iemand in het team — niet omdat het moet, maar omdat je het wil?',
+      'Observeer jezelf de komende week: wanneer help jij iemand in het team? Niet omdat het moet, maar omdat je het wil.',
       'Is er een teamlid die het momenteel moeilijk heeft? Wat kun jij doen?',
     ],
     naGesprek: [
       'Wat heb ik geleerd over mijn rol in het team?',
       'Eén concrete actie die ik neem om een positieve kracht te zijn:',
     ],
-    actie: 'Doe deze week één bewuste daad voor een teamlid — niet gerelateerd aan sport. Schrijf daarna op hoe het voelde.',
+    actie: 'Doe deze week één bewuste daad voor een teamlid, niet gerelateerd aan sport. Schrijf daarna op hoe het voelde.',
     // MENTOR
-    doel: 'De sporter helpen zijn/haar teamrol bewust te kennen en te waarderen — en leiderschap te zien als karakter, niet als status.',
-    mentorFocus: 'Veel sporters denken dat leiderschap voor de sterren is. Jouw taak: elke sporter laten zien dat hij/zij al leidt — op zijn eigen manier.',
+    doel: 'De sporter helpen zijn/haar teamrol bewust te kennen en te waarderen, en leiderschap te zien als karakter, niet als status.',
+    mentorFocus: 'Veel sporters denken dat leiderschap voor de sterren is. Jouw taak: elke sporter laten zien dat hij/zij al leidt, op zijn eigen manier.',
     gesprekStarters: [
-      { fase: 'Openen (5 min)', starter: '"Als jij morgen niet op training komt — wat zou het team missen? Niet technisch, maar als persoon?"', tip: 'Onverwachte vraag die direct naar bijdrage gaat.' },
-      { fase: 'Verkennen (15 min)', starter: '"Wat is jouw rol in de klas, thuis, bij vrienden — is dat dezelfde rol als in het team?"', tip: 'Rollen zijn contextgebonden. Helpt de sporter zijn zelfbewustzijn verbreden.' },
-      { fase: 'Verdiepen (10 min)', starter: '"Wanneer heb jij iemand in het team echt geholpen — niet met een actie, maar als mens?"', tip: 'Concrete herinnering activeert eigenwaarde als teamlid.' },
+      { fase: 'Openen (5 min)', starter: '"Als jij morgen niet op training komt, wat zou het team missen? Niet technisch, maar als persoon?"', tip: 'Onverwachte vraag die direct naar bijdrage gaat.' },
+      { fase: 'Verkennen (15 min)', starter: '"Wat is jouw rol in de klas, thuis, bij vrienden? Is dat dezelfde rol als in het team?"', tip: 'Rollen zijn contextgebonden. Helpt de sporter zijn zelfbewustzijn verbreden.' },
+      { fase: 'Verdiepen (10 min)', starter: '"Wanneer heb jij iemand in het team echt geholpen? Niet met een actie, maar als mens?"', tip: 'Concrete herinnering activeert eigenwaarde als teamlid.' },
       { fase: 'Afsluiten (5 min)', starter: '"Wat wil jij dat je teamgenoten over 5 jaar nog onthouden van jou?"', tip: 'Dit is een krachtige legacy-vraag die de sporter groot laat denken.' },
     ],
     observeer: [
-      'Praat de sporter makkelijk over zichzelf als teamlid — of focust hij/zij steeds op individuele prestaties?',
-      'Noemt hij/zij namen van teamgenoten met zorg en aandacht — of abstract ("het team")?',
+      'Praat de sporter makkelijk over zichzelf als teamlid, of focust hij/zij steeds op individuele prestaties?',
+      'Noemt hij/zij namen van teamgenoten met zorg en aandacht, of abstract ("het team")?',
       'Is er iemand in het team die de sporter bewust vermijdt? Dat is waardevolle informatie.',
       'Hoe reageert hij/zij op de vraag wat het team zou missen zonder hem/haar? Schroom, trots, verlegenheid?',
     ],
@@ -510,15 +510,15 @@ const sessionsNL = [
   {
     num: 8,
     title: 'Mijn toekomst',
-    subtitle: 'Wie wil ik zijn — voorbij de sport',
+    subtitle: 'Wie wil ik zijn, voorbij de sport',
     quote: { text: '"Het beste is altijd nog voor jou. Maar jij bepaalt waarheen."', auteur: 'Character First' },
-    introQ: 'Als jij straks terugkijkt op jouw leven — wat wil je dan gezien hebben?',
+    introQ: 'Als jij straks terugkijkt op jouw leven, wat wil je dan gezien hebben?',
     oefening: {
       label: 'Brief aan mijn toekomstige zelf',
       tekst: 'Schrijf een brief aan jezelf over 5 jaar. Begin zo:\n\n"Beste [jouw naam],\n\nAls ik nu terugkijk op de afgelopen vijf jaar, ben ik het meest trots op...\n\nIk ben de persoon geworden die...\n\nDe sport heeft mij gegeven...\n\nMaar het belangrijkste dat ik heb geleerd over het leven is...\n\nDank je dat je in mij geloofde.\n\nMet liefde,\n[jouw naam] (nu)"',
     },
     schrijfVragen: [
-      'Wie wil ik zijn over 5 jaar — als sporter, als mens, in relaties?',
+      'Wie wil ik zijn over 5 jaar, als sporter, als mens, in relaties?',
       'Welke waarden uit sessie 1 zijn er nog steeds in mijn leven aanwezig?',
       'Wat wil ik nooit vergeten van dit mentorshiptraject?',
     ],
@@ -533,21 +533,21 @@ const sessionsNL = [
     actie: 'Zegel je brief aan je toekomstige zelf in een envelop. Schrijf er "Te openen op [datum + 5 jaar]" op. Bewaar hem op een speciale plek.',
     // MENTOR
     doel: 'Het traject afronden door de sporter te helpen zijn/haar groei te zien en een richting voor de toekomst te voelen. Afscheid nemen op een betekenisvolle manier.',
-    mentorFocus: 'Dit is de afsluitsessie. Jouw rol: de sporter het traject laten samenvatten — niet jij. Jij bevestigt en viert.',
+    mentorFocus: 'Dit is de afsluitsessie. Jouw rol: de sporter het traject laten samenvatten, niet jij. Jij bevestigt en viert.',
     gesprekStarters: [
-      { fase: 'Openen (5 min)', starter: '"Dit is onze laatste sessie. Hoe voelt dat voor jou?"', tip: 'Laat de emotie er zijn. Afsluiten is ook loslaten — voor jou en voor de sporter.' },
-      { fase: 'Terugblik (15 min)', starter: '"Als je terugdenkt aan onze acht sessies — welk moment heeft jou het meest geraakt? Wat heeft het meeste veranderd?"', tip: 'Laat de sporter het traject samenvatten. Luister actief, bevestig.' },
-      { fase: 'Vooruitkijken (10 min)', starter: '"Wie ben jij nu die je 8 sessies geleden niet was? Wat is er veranderd?"', tip: 'Help de sporter het eigen groeiproces te benoemen — dat verankert het.' },
-      { fase: 'Afsluiten (5 min)', starter: '"Wat wil jij dat ik als jouw mentor onthoud van jou?"', tip: 'Dit geeft de sporter het gevoel dat hij/zij iets waardevols heeft nagelaten — ook voor jou.' },
+      { fase: 'Openen (5 min)', starter: '"Dit is onze laatste sessie. Hoe voelt dat voor jou?"', tip: 'Laat de emotie er zijn. Afsluiten is ook loslaten, voor jou en voor de sporter.' },
+      { fase: 'Terugblik (15 min)', starter: '"Als je terugdenkt aan onze acht sessies, welk moment heeft jou het meest geraakt? Wat heeft het meeste veranderd?"', tip: 'Laat de sporter het traject samenvatten. Luister actief, bevestig.' },
+      { fase: 'Vooruitkijken (10 min)', starter: '"Wie ben jij nu die je 8 sessies geleden niet was? Wat is er veranderd?"', tip: 'Help de sporter het eigen groeiproces te benoemen, dat verankert het.' },
+      { fase: 'Afsluiten (5 min)', starter: '"Wat wil jij dat ik als jouw mentor onthoud van jou?"', tip: 'Dit geeft de sporter het gevoel dat hij/zij iets waardevols heeft nagelaten, ook voor jou.' },
     ],
     observeer: [
-      'Hoe beschrijft de sporter zijn/haar groei — in termen van prestaties of in termen van karakter?',
+      'Hoe beschrijft de sporter zijn/haar groei? In termen van prestaties of in termen van karakter?',
       'Is er iets wat hij/zij wil maar nog niet heeft gezegd? (Vraag ernaar.)',
       'Hoe is de sporter in de acht sessies veranderd in hoe hij/zij over zichzelf praat?',
       'Is er iets dat jij als mentor wil meegeven dat je nog niet hebt gezegd?',
     ],
     opgelet: 'Sommige sporters willen het traject niet afsluiten. Normaliseer dat: "Groei stopt hier niet. Dit traject is een begin, geen einde." Geef een concrete doorverwijzing of volgende stap mee.',
-    afsluiting: 'Geef elke sporter een persoonlijk moment: "Wat ik in jou zie na acht sessies is..." — eerlijk, specifiek, vanuit jouw hart. Dit is het meest krachtige cadeau dat je als mentor kan geven.',
+    afsluiting: 'Geef elke sporter een persoonlijk moment: "Wat ik in jou zie na acht sessies is..." Eerlijk, specifiek, vanuit jouw hart. Dit is het meest krachtige cadeau dat je als mentor kan geven.',
   },
 ];
 
