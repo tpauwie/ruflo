@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 1080px; height: 1080px; overflow: hidden; background: #FAF7F2; font-family: 'Archivo', Arial Black, sans-serif; }
+.wrap { width: 1080px; height: 1080px; display: flex; flex-direction: column; }
+.hero { background: #F05A28; height: 480px; display: flex; flex-direction: column; justify-content: space-between; padding: 56px 72px; position: relative; overflow: hidden; }
+.bg-circle { position: absolute; right: -80px; bottom: -80px; width: 380px; height: 380px; border-radius: 50%; border: 60px solid rgba(255,255,255,.08); }
+.bg-circle2 { position: absolute; right: 60px; bottom: 60px; width: 200px; height: 200px; border-radius: 50%; border: 40px solid rgba(255,255,255,.06); }
+.hero-top { display: flex; justify-content: space-between; align-items: center; position: relative; z-index:2; }
+.wordmark-w { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 20px; letter-spacing: .04em; color: #fff; }
+.hero-badge { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .15em; text-transform: uppercase; background: rgba(255,255,255,.18); color: #fff; padding: 8px 18px; border-radius: 6px; }
+.hero-content { position: relative; z-index:2; }
+.hero-eyebrow { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 16px; }
+.hero-title { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 76px; line-height: 1; color: #fff; }
+.body-section { flex: 1; padding: 56px 72px; display: flex; flex-direction: column; justify-content: space-between; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+.info-item { }
+.info-label { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #F05A28; margin-bottom: 8px; }
+.info-value { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 900; font-size: 28px; color: #1C2433; line-height: 1.2; }
+.info-sub { font-family: 'Inter', Arial, sans-serif; font-size: 16px; color: #6E6A63; margin-top: 4px; }
+.description { font-family: 'Inter', Arial, sans-serif; font-size: 22px; line-height: 1.6; color: #6E6A63; max-width: 840px; }
+.description strong { color: #1C2433; }
+.bottom-bar { display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid #E4DFD6; padding-top: 20px; }
+.tagline { font-family: 'Inter', Arial, sans-serif; font-size: 16px; color: #6E6A63; }
+.cta { font-family: 'Archivo', Arial Black, sans-serif; font-weight: 800; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; background: #F05A28; color: #fff; padding: 14px 28px; border-radius: 8px; }
+</style></head>
+<body><div class="wrap">
+  <div class="hero">
+    <div class="bg-circle"></div>
+    <div class="bg-circle2"></div>
+    <div class="hero-top">
+      <div class="wordmark-w">CHARACTER<span style="opacity:.8">First</span></div>
+      <div class="hero-badge">Nieuwe sessie</div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Maand 3 · Mijn Rol in het Team</div>
+      <div class="hero-title">Rolcompass<br>& Rolcirkel</div>
+    </div>
+  </div>
+  <div class="body-section">
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Datum</div>
+        <div class="info-value">15 feb</div>
+        <div class="info-sub">Aanpassen naar jouw datum</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Doelgroep</div>
+        <div class="info-value">U16 – U18</div>
+        <div class="info-sub">& coaches</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Duur</div>
+        <div class="info-value">90 min</div>
+        <div class="info-sub">interactief</div>
+      </div>
+    </div>
+    <div class="description">
+      Ontdek welke <strong>rollen jij vervult</strong> in het team — als leider, motor, denker of stabiele kracht. En leer hoe rolhelderheid de teamcohesie versterkt.
+    </div>
+    <div class="bottom-bar">
+      <div class="tagline">info@characterfirst.be · characterfirst.be</div>
+      <svg width="64" height="64" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" fill="#FAF7F2"/>
+  <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+  <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+  <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2" opacity=".45"/>
+  <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Arial Black,sans-serif" font-weight="900" font-size="14" fill="#1C2433" letter-spacing="3">CF</text>
+</svg>
+    </div>
+  </div>
+</div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-font-smoothing: antialiased; }
+
+body { width:1080px; height:1080px; overflow:hidden; background:#1C2433; font-family:"Arial Black",Arial,sans-serif; }
+.page { width:1080px; height:1080px; display:flex; flex-direction:column; justify-content:space-between; padding:70px 80px; position:relative; }
+/* vertical orange bar */
+.vbar { position:absolute; left:0; top:0; width:10px; height:100%; background:#F05A28; border-radius:0 4px 4px 0; }
+/* subtle grid overlay */
+.grid { position:absolute; inset:0; background-image: repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 80px), repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 80px); pointer-events:none; }
+/* top row */
+.top { display:flex; justify-content:space-between; align-items:center; position:relative; z-index:2; }
+.wordmark { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:26px; letter-spacing:.03em; color:#FAF7F2; }
+.wordmark em { color:#F05A28; font-style:normal; }
+/* middle */
+.mid { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; gap:0; }
+.eyebrow { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:16px; letter-spacing:.22em; text-transform:uppercase; color:#F05A28; margin-bottom:30px; }
+.qmark { font-family:Georgia,serif; font-size:180px; color:#F05A28; line-height:.55; margin-bottom:20px; opacity:.9; }
+.qtext { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:58px; line-height:1.12; color:#FAF7F2; max-width:920px; }
+.qtext em { color:#F05A28; font-style:normal; }
+.cite { font-family:Arial,sans-serif; font-weight:400; font-size:24px; color:rgba(250,247,242,.5); margin-top:40px; letter-spacing:.01em; }
+/* bottom row */
+.bot { display:flex; justify-content:space-between; align-items:flex-end; position:relative; z-index:2; }
+.tagline { font-family:Arial,sans-serif; font-size:18px; color:rgba(250,247,242,.35); }
+.hashtags { font-family:Arial,sans-serif; font-size:16px; color:rgba(250,247,242,.25); }
+</style></head><body>
+<div class="page">
+  <div class="vbar"></div>
+  <div class="grid"></div>
+  <div class="top">
+    <div class="wordmark">CHARACTER<em>First</em></div>
+    <svg width="110" height="110" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" fill="#1C2433"/>
+  <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+  <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+  <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2.5" opacity=".5"/>
+  <text x="50" y="96" text-anchor="middle" dominant-baseline="central"
+    font-family="Arial Black,Arial,sans-serif" font-weight="900"
+    font-size="13" fill="#fff" letter-spacing="3">CF</text>
+</svg>
+  </div>
+  <div class="mid">
+    <div class="eyebrow">Citaat van de week</div>
+    <div class="qmark">"</div>
+    <div class="qtext">Druk is een <em>privilege</em> — het komt alleen bij diegenen die het verdiend hebben.</div>
+    <div class="cite">— Billie Jean King &nbsp;·&nbsp; 39× Grand Slam Champion</div>
+  </div>
+  <div class="bot">
+    <div class="tagline">Win the person. Win the team. &nbsp;·&nbsp; characterfirst.be</div>
+    <div class="hashtags">#characterfirst &nbsp;#basketbal &nbsp;#mentalweerbaarheid</div>
+  </div>
+</div>
+</body></html>

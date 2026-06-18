@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-font-smoothing: antialiased; }
+
+body { width:1080px; height:1080px; overflow:hidden; background:#FAF7F2; }
+.page { width:1080px; height:1080px; display:flex; flex-direction:column; }
+/* orange hero top half */
+.hero { height:500px; background:#F05A28; display:flex; flex-direction:column; justify-content:space-between; padding:60px 80px; position:relative; overflow:hidden; flex-shrink:0; }
+.circle1 { position:absolute; right:-100px; bottom:-100px; width:440px; height:440px; border-radius:50%; border:70px solid rgba(255,255,255,.08); pointer-events:none; }
+.circle2 { position:absolute; right:80px; bottom:60px; width:220px; height:220px; border-radius:50%; border:45px solid rgba(255,255,255,.06); pointer-events:none; }
+.htop { display:flex; justify-content:space-between; align-items:center; position:relative; z-index:2; }
+.wordmark-w { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:26px; letter-spacing:.03em; color:#fff; }
+.hero-badge { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:14px; letter-spacing:.16em; text-transform:uppercase; background:rgba(255,255,255,.2); color:#fff; padding:10px 22px; border-radius:8px; border:1.5px solid rgba(255,255,255,.3); }
+.hcontent { position:relative; z-index:2; }
+.heyebrow { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:15px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.75); margin-bottom:14px; }
+.htitle { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:82px; line-height:.95; color:#fff; }
+/* body section */
+.body-sec { flex:1; padding:52px 80px; display:flex; flex-direction:column; justify-content:space-between; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; }
+.ilabel { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#F05A28; margin-bottom:8px; }
+.ival { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:36px; color:#1C2433; line-height:1.1; }
+.isub { font-family:Arial,sans-serif; font-size:18px; color:#6E6A63; margin-top:4px; }
+.desc { font-family:Arial,sans-serif; font-size:24px; line-height:1.6; color:#6E6A63; max-width:860px; }
+.desc strong { color:#1C2433; font-weight:700; }
+.bot { display:flex; justify-content:space-between; align-items:center; border-top:2px solid #E4DFD6; padding-top:24px; }
+.tagline { font-family:Arial,sans-serif; font-size:18px; color:#6E6A63; }
+</style></head><body>
+<div class="page">
+  <div class="hero">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="htop">
+      <div class="wordmark-w">CHARACTERFirst</div>
+      <div class="hero-badge">Nieuwe sessie</div>
+    </div>
+    <div class="hcontent">
+      <div class="heyebrow">Maand 3 · Mijn Rol in het Team</div>
+      <div class="htitle">Rolcompass<br>&amp; Rolcirkel</div>
+    </div>
+  </div>
+  <div class="body-sec">
+    <div class="info-grid">
+      <div><div class="ilabel">Datum</div><div class="ival">15 feb</div><div class="isub">Pas aan naar jouw datum</div></div>
+      <div><div class="ilabel">Doelgroep</div><div class="ival">U16 – U18</div><div class="isub">&amp; coaches</div></div>
+      <div><div class="ilabel">Duur</div><div class="ival">90 min</div><div class="isub">interactief</div></div>
+    </div>
+    <div class="desc">Ontdek welke <strong>rollen jij vervult</strong> in het team — als leider, motor, denker of stabiele kracht. En leer hoe rolhelderheid de teamcohesie en motivatie versterkt.</div>
+    <div class="bot">
+      <div class="tagline">info@characterfirst.be · characterfirst.be</div>
+      <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" fill="#FAF7F2"/>
+  <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+  <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+  <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2.5" opacity=".5"/>
+  <text x="50" y="96" text-anchor="middle" dominant-baseline="central"
+    font-family="Arial Black,Arial,sans-serif" font-weight="900"
+    font-size="13" fill="#1C2433" letter-spacing="3">CF</text>
+</svg>
+    </div>
+  </div>
+</div>
+</body></html>

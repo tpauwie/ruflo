@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Character First: Presentaties</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1C2433;--canvas:#FAF7F2;--mist:#F0ECE4;--orange:#F05A28;--orange2:#D44A1A;--stone:#6E6A63;--line:#E4DFD6;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--canvas);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Archivo',system-ui,sans-serif;font-weight:900;line-height:1.08}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  header{background:var(--ink);color:var(--canvas);padding:64px 0 72px}
+  .badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(240,90,40,.16);border:1px solid rgba(240,90,40,.34);color:var(--orange);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.34rem .9rem;border-radius:20px;margin-bottom:1.4rem}
+  .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  header h1{font-size:clamp(2.1rem,5vw,3.4rem);margin-bottom:1rem}
+  header h1 em{color:var(--orange);font-style:normal}
+  header p{color:rgba(250,247,242,.62);max-width:600px;font-size:1.05rem}
+  .logo{display:flex;align-items:center;gap:10px;margin-bottom:38px}
+  .logo svg{width:34px;height:34px}
+  .logo span{font-family:'Archivo',sans-serif;font-weight:900;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,247,242,.6)}
+  main{padding:56px 0 80px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 24px 20px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s,border-color .18s}
+  .pcard:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(28,36,51,.12);border-color:rgba(240,90,40,.4)}
+  .pcard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .pcard-num{font-family:'Archivo',sans-serif;font-weight:800;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);background:rgba(240,90,40,.1);padding:4px 9px;border-radius:5px}
+  .pcard-icon{font-size:24px}
+  .pcard-title{font-size:1.18rem;margin-bottom:4px}
+  .pcard-en{font-size:.82rem;color:var(--stone);font-style:italic;margin-bottom:10px}
+  .pcard-sub{font-size:.84rem;color:var(--stone);flex:1;margin-bottom:18px}
+  .pcard-cta{font-family:'Archivo',sans-serif;font-weight:800;font-size:.8rem;color:var(--orange);display:flex;align-items:center;gap:6px}
+  .pcard:hover .pcard-cta span{transform:translateX(4px)}
+  .pcard-cta span{transition:transform .18s}
+  .info{margin-top:46px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 30px}
+  .info h2{font-size:1.15rem;margin-bottom:14px}
+  .info ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .info li{font-size:.92rem;color:var(--stone);padding-left:22px;position:relative}
+  .info li::before{content:'→';position:absolute;left:0;color:var(--orange);font-weight:700}
+  .info strong{color:var(--ink)}
+  footer{text-align:center;padding:32px;color:var(--stone);font-size:.82rem;border-top:1px solid var(--line)}
+  .links{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap}
+  .links a{color:var(--orange);text-decoration:none;font-weight:600;font-size:.9rem}
+  .pcard-pdfs{display:flex;gap:7px;margin-top:10px}
+  .pcard-pdf{display:inline-block;font-size:.72rem;font-weight:700;font-family:'Archivo',sans-serif;padding:4px 9px;border-radius:5px;cursor:pointer;text-decoration:none;transition:background .15s}
+  .pcard-pdf-nl{background:rgba(28,36,51,.08);color:var(--ink)}
+  .pcard-pdf-nl:hover{background:rgba(28,36,51,.16)}
+  .pcard-pdf-en{background:rgba(240,90,40,.1);color:var(--orange)}
+  .pcard-pdf-en:hover{background:rgba(240,90,40,.2)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#F05A28"/><path d="M10 82 L50 10 L90 82 Z" fill="#FAF7F2"/><path d="M50 10 L34 40 L50 32 L66 40 Z" fill="#1C2433"/></svg><span>Character First</span></div>
+    <div class="badge">Moderator presentaties</div>
+    <h1>Sessie<em>presentaties</em></h1>
+    <p>Acht kant-en-klare presentaties, één per maand van het programma. Volledig tweetalig (NL / EN), met moderatornotities, oefeningen, wetenschap en een afsluitend teamritueel. Klik op een maand om de presentatie te openen.</p>
+  </div>
+</header>
+<main class="wrap">
+  <div class="grid">
+      <a class="pcard" href="presentatie-m1.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 1</span>
+          <span class="pcard-icon">🧭</span>
+        </div>
+        <h3 class="pcard-title">Zelfkennis & Identiteit</h3>
+        <div class="pcard-en">Self-Knowledge & Identity</div>
+        <div class="pcard-sub">SDT, kernwaarden & identiteit</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M1.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M1_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+      <a class="pcard" href="presentatie-m2.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 2</span>
+          <span class="pcard-icon">🫁</span>
+        </div>
+        <h3 class="pcard-title">Druk & Stress</h3>
+        <div class="pcard-en">Pressure & Stress</div>
+        <div class="pcard-sub">Box breathing & coping</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M2.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M2_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+      <a class="pcard" href="presentatie-m3.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 3</span>
+          <span class="pcard-icon">🎭</span>
+        </div>
+        <h3 class="pcard-title">Mijn Rol in het Team</h3>
+        <div class="pcard-en">My Role in the Team</div>
+        <div class="pcard-sub">Rolhelderheid & bijdrage</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M3.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M3_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+      <a class="pcard" href="presentatie-m4.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 4</span>
+          <span class="pcard-icon">💬</span>
+        </div>
+        <h3 class="pcard-title">Communicatie</h3>
+        <div class="pcard-en">Communication</div>
+        <div class="pcard-sub">Ik-boodschap & feedback</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M4.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M4_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+      <a class="pcard" href="presentatie-m5.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 5</span>
+          <span class="pcard-icon">🤝</span>
+        </div>
+        <h3 class="pcard-title">Team Eerst</h3>
+        <div class="pcard-en">Team First</div>
+        <div class="pcard-sub">Psychologische veiligheid</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M5.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M5_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+      <a class="pcard" href="presentatie-m6.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 6</span>
+          <span class="pcard-icon">🌱</span>
+        </div>
+        <h3 class="pcard-title">Veerkracht & Groeimindset</h3>
+        <div class="pcard-en">Resilience & Growth Mindset</div>
+        <div class="pcard-sub">Cognitieve herframing</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M6.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M6_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+      <a class="pcard" href="presentatie-m7.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 7</span>
+          <span class="pcard-icon">⭐</span>
+        </div>
+        <h3 class="pcard-title">Leiderschap van Binnenuit</h3>
+        <div class="pcard-en">Leadership from Within</div>
+        <div class="pcard-sub">Gedeeld leiderschap</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M7.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M7_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+      <a class="pcard" href="presentatie-m8.html">
+        <div class="pcard-top">
+          <span class="pcard-num">Maand 8</span>
+          <span class="pcard-icon">🏆</span>
+        </div>
+        <h3 class="pcard-title">Nalatenschap & Volgende Stap</h3>
+        <div class="pcard-en">Legacy & Next Step</div>
+        <div class="pcard-sub">Reflectie & intenties</div>
+        <div class="pcard-cta">Open presentatie <span>→</span></div>
+        <div class="pcard-pdfs">
+          <a class="pcard-pdf pcard-pdf-nl" href="presentaties-pdf/CF_Presentatie_M8.pdf" onclick="event.stopPropagation()">⬇ PDF NL</a>
+          <a class="pcard-pdf pcard-pdf-en" href="presentaties-pdf/CF_Presentatie_M8_EN.pdf" onclick="event.stopPropagation()">⬇ PDF EN</a>
+        </div>
+      </a>
+  </div>
+
+  <div class="info">
+    <h2>Hoe gebruik je deze presentaties?</h2>
+    <ul>
+      <li><strong>Openen & presenteren:</strong> klik een maand aan en gebruik de pijltjestoetsen (← →) of de knoppen om door de dia's te navigeren.</li>
+      <li><strong>Taal wisselen:</strong> druk op de <strong>EN/NL</strong>-knop rechtsonder (of toets <strong>L</strong>) om live tussen Nederlands en Engels te schakelen.</li>
+      <li><strong>Moderatornotities:</strong> klik <strong>📋 Notities</strong> (of toets <strong>N</strong>) voor begeleiding per dia. Die volgen automatisch de gekozen taal.</li>
+      <li><strong>Offline:</strong> elke presentatie is één bestand met ingesloten lettertypes en werkt zonder internet (de video vraagt wel verbinding).</li>
+      <li><strong>Werkbladen:</strong> combineer met de bijhorende <a href="werkbladen.html" style="color:var(--orange)">printbare werkbladen</a> per maand.</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <div>Character First: Karakter eerst, prestatie volgt.</div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="werkbladen.html">Werkbladen</a>
+    <a href="programma.html">Programma</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+</body>
+</html>

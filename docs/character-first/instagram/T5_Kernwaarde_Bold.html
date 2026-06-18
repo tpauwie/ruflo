@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { -webkit-font-smoothing: antialiased; }
+
+body { width:1080px; height:1080px; overflow:hidden; background:#1C2433; }
+.page { width:1080px; height:1080px; display:flex; flex-direction:column; justify-content:space-between; padding:70px 80px; position:relative; }
+/* big background word */
+.bgword { position:absolute; font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:260px; color:rgba(240,90,40,.055); line-height:1; top:50%; left:50%; transform:translate(-50%,-50%); white-space:nowrap; pointer-events:none; letter-spacing:-.02em; }
+.top { display:flex; justify-content:space-between; align-items:center; position:relative; z-index:2; }
+.wordmark { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:26px; letter-spacing:.03em; color:#FAF7F2; }
+.wordmark em { color:#F05A28; font-style:normal; }
+.mid { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; }
+.eyebrow { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:15px; letter-spacing:.22em; text-transform:uppercase; color:#F05A28; margin-bottom:28px; display:flex; align-items:center; gap:16px; }
+.eyebrow::before { content:''; width:48px; height:4px; background:#F05A28; border-radius:2px; flex-shrink:0; }
+.kword { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:118px; line-height:.9; color:#FAF7F2; letter-spacing:-.02em; }
+.kword em { color:#F05A28; font-style:normal; }
+.kdef { font-family:Arial,sans-serif; font-weight:400; font-size:28px; line-height:1.6; color:rgba(250,247,242,.55); max-width:800px; margin-top:36px; border-left:5px solid #F05A28; padding-left:28px; }
+.kdef strong { color:rgba(250,247,242,.88); font-weight:700; }
+.pillars { display:flex; gap:16px; margin-top:44px; flex-wrap:wrap; }
+.pill { font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:14px; letter-spacing:.1em; text-transform:uppercase; padding:12px 24px; border-radius:100px; }
+.pill-on  { background:#F05A28; color:#fff; }
+.pill-off { background:rgba(250,247,242,.07); color:rgba(250,247,242,.38); border:1.5px solid rgba(250,247,242,.1); }
+.bot { display:flex; justify-content:space-between; align-items:flex-end; position:relative; z-index:2; }
+.tagline { font-family:Arial,sans-serif; font-size:18px; color:rgba(250,247,242,.3); }
+.hashtags { font-family:Arial,sans-serif; font-size:16px; color:rgba(250,247,242,.2); }
+</style></head><body>
+<div class="page">
+  <div class="bgword">GROEI</div>
+  <div class="top">
+    <div class="wordmark">CHARACTER<em>First</em></div>
+    <svg width="110" height="110" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" fill="#1C2433"/>
+  <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+  <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+  <line x1="18" y1="87" x2="82" y2="87" stroke="#F05A28" stroke-width="2.5" opacity=".5"/>
+  <text x="50" y="96" text-anchor="middle" dominant-baseline="central"
+    font-family="Arial Black,Arial,sans-serif" font-weight="900"
+    font-size="13" fill="#fff" letter-spacing="3">CF</text>
+</svg>
+  </div>
+  <div class="mid">
+    <div class="eyebrow">Kernwaarde</div>
+    <div class="kword">Groei<em>gericht</em></div>
+    <div class="kdef"><strong>Vooruitgang boven perfectie.</strong> De mens van morgen telt — niet de fout van gisteren. Elke training is een kans om 1% beter te worden als speler én als persoon.</div>
+    <div class="pillars">
+      <div class="pill pill-off">🔥 Moedig</div>
+      <div class="pill pill-on">🌱 Groeigericht</div>
+      <div class="pill pill-off">🎯 Onderbouwd</div>
+      <div class="pill pill-off">🤝 Samen</div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="tagline">Win the person. Win the team. · characterfirst.be</div>
+    <div class="hashtags">#characterfirst #groeimindset #basketbal</div>
+  </div>
+</div>
+</body></html>
