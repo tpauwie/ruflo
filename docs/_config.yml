@@ -1,7 +1,7 @@
-title: RuFlo Marketplace
-description: Claude Code native agents, swarms, workers, and MCP tools
+title: Character First
+description: Character First — teamcultuur en mentorship programma's voor sportteams
 theme: jekyll-theme-minimal
-baseurl: /ruflo
-url: https://ruvnet.github.io
+baseurl: ""
+url: https://www.characterfirst.be
 plugins:
   - jekyll-seo-tag
