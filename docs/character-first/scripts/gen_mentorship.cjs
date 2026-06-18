@@ -557,12 +557,12 @@ const sessionsNL = [
 const sessionsEN = [
   {
     num: 1,
-    title: 'Who Am I?',
+    title: 'Who am I?',
     subtitle: 'Your identity as an athlete and person',
     quote: { text: '"Know yourself. Without self-knowledge, all other knowledge is useless."', auteur: 'Socrates' },
-    introQ: 'What makes you unique — not as an athlete, but as a person?',
+    introQ: 'What makes you unique? Not as an athlete, but as a person.',
     oefening: {
-      label: 'Core Values Exercise',
+      label: 'Core values exercise',
       tekst: 'Choose from this list the 5 values that best describe you: Courage · Honesty · Loyalty · Perseverance · Creativity · Caring · Ambition · Humor · Calm · Leadership · Empathy · Discipline · Freedom · Faithfulness · Curiosity\n\nWrite your top 5 below and explain WHY you chose each one.',
     },
     schrijfVragen: [
@@ -571,7 +571,7 @@ const sessionsEN = [
       'What distinguishes me as a person from who I am as an athlete?',
     ],
     voorGesprek: [
-      'Think about one moment this year when you were truly yourself — what were you doing?',
+      'Think about one moment this year when you were truly yourself. What were you doing?',
       'Bring this completed worksheet to the conversation.',
       'Write down what you want to ask your Character First mentor.',
     ],
@@ -579,33 +579,33 @@ const sessionsEN = [
       'What did the conversation teach me about myself?',
       'Which value do I want to consciously live over the coming month?',
     ],
-    actie: 'Before the next session, write your personal "identity sentence": "I am someone who..." — one sentence that defines you as a person.',
-    doel: 'Help the athlete form a conscious picture of their identity — separate from athletic performance. Build trust as the foundation for the entire journey.',
+    actie: 'Before the next session, write your personal "identity sentence": "I am someone who..." One sentence that defines you as a person.',
+    doel: 'Help the athlete form a conscious picture of their identity, separate from athletic performance. Build trust as the foundation for the entire journey.',
     mentorFocus: 'First session: listening is everything. Your job is not yet to guide but to connect.',
     gesprekStarters: [
-      { fase: 'Opening (5 min)', starter: '"Before we start — how are you really doing? Not as an athlete, but as a person?"', tip: 'Hold long silences. Don\'t fill them in. The athlete gets to search.' },
+      { fase: 'Opening (5 min)', starter: '"Before we start, how are you really doing? Not as an athlete, but as a person?"', tip: 'Hold long silences. Don\'t fill them in. The athlete gets to search.' },
       { fase: 'Exploring (15 min)', starter: '"Which value did you choose and what does it mean for you in daily life?"', tip: 'Ask for concrete examples. "Can you tell me a moment when you lived that?"' },
       { fase: 'Deepening (10 min)', starter: '"Is the person you are at home the same as the athlete on the field? What\'s different?"', tip: 'No one is the same everywhere. That\'s richness, not a problem.' },
       { fase: 'Closing (5 min)', starter: '"What do you take with you from today? One word or sentence."', tip: 'Formulate the action for next session together. Let the athlete phrase it themselves.' },
     ],
     observeer: [
       'How easily does the athlete talk about themselves as a person vs. as an athlete?',
-      'Which values do they name spontaneously — even before the exercise?',
+      'Which values do they name spontaneously, even before the exercise?',
       'Is there tension or hesitation? That\'s normal information, not a problem to solve.',
       'What does body language say when they talk about certain values?',
     ],
-    opgelet: 'First sessions lay the foundation of trust. Don\'t ask difficult questions too soon. If an athlete is reserved, normalize it: "You don\'t have to share everything — take your time."',
-    afsluiting: 'Affirm what you heard: "What I remember about you is..." — this shows the athlete you truly listened. Give the action assignment and confirm the next session.',
+    opgelet: 'First sessions lay the foundation of trust. Don\'t ask difficult questions too soon. If an athlete is reserved, normalize it: "You don\'t have to share everything, take your time."',
+    afsluiting: 'Affirm what you heard: "What I remember about you is..." This shows the athlete you truly listened. Give the action assignment and confirm the next session.',
   },
   {
     num: 2,
-    title: 'My Story',
+    title: 'My story',
     subtitle: 'The moments that shaped me',
     quote: { text: '"You are not your past. But your past has made you. Know it."', auteur: 'Carl Jung (paraphrase)' },
     introQ: 'Which moments in your life have made you who you are today?',
     oefening: {
-      label: 'My Sport Timeline',
-      tekst: 'Draw a timeline of your athletic career below. Mark:\n🔥 Fire moments — when did you feel most alive as an athlete?\n💥 Turning points — moments that changed everything (positive or negative)\n🌱 Growth moments — setbacks that made you stronger',
+      label: 'My sport timeline',
+      tekst: 'Draw a timeline of your athletic career below. Mark:\n🔥 Fire moments: when did you feel most alive as an athlete?\n💥 Turning points: moments that changed everything (positive or negative)\n🌱 Growth moments: setbacks that made you stronger',
     },
     schrijfVragen: [
       'The moment that shaped me most as an athlete is... because...',
@@ -614,7 +614,7 @@ const sessionsEN = [
     ],
     voorGesprek: [
       'Think about one story you always tell about yourself as an athlete. Why that story?',
-      'What moment in your sport do you NEVER want to forget — and why?',
+      'What moment in your sport do you NEVER want to forget? And why?',
     ],
     naGesprek: [
       'Which part of my story had I never told out loud before?',
@@ -624,14 +624,14 @@ const sessionsEN = [
     doel: 'Help the athlete know and appreciate their personal story. Narrative identity is the foundation of resilience.',
     mentorFocus: 'You are the witness of a story the athlete may have never heard themselves tell. Keep the space sacred.',
     gesprekStarters: [
-      { fase: 'Opening (5 min)', starter: '"Tell me — how did you actually get into this sport? Who had an influence?"', tip: 'Let the story come organically. Don\'t interrupt.' },
+      { fase: 'Opening (5 min)', starter: '"Tell me, how did you actually get into this sport? Who had an influence?"', tip: 'Let the story come organically. Don\'t interrupt.' },
       { fase: 'Exploring (15 min)', starter: '"Which moment on your timeline moves you most when you look at it now?"', tip: 'Emotion is welcome. Normalize it: "It\'s okay if something feels." Don\'t solve, just be present.' },
       { fase: 'Deepening (10 min)', starter: '"Who was the most influential person in your athletic career? What did they do that made a difference?"', tip: 'This gives you as mentor insight into what the athlete needs from a mentoring relationship.' },
-      { fase: 'Closing (5 min)', starter: '"If your story had a title — what would it be?"', tip: 'A powerful closer that helps the athlete own their story.' },
+      { fase: 'Closing (5 min)', starter: '"If your story had a title, what would it be?"', tip: 'A powerful closer that helps the athlete own their story.' },
     ],
     observeer: [
-      'Which episodes does the athlete avoid — did they skip over something quickly?',
-      'Which people do they mention — and with what emotion?',
+      'Which episodes does the athlete avoid? Did they skip over something quickly?',
+      'Which people do they mention, and with what emotion?',
       'Is there a pattern in the turning points? (E.g., always external factors, or always personal choices)',
       'How does the athlete talk about their lowest point? Shame? Pride in surviving? Still painful?',
     ],
