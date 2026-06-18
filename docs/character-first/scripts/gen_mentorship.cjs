@@ -217,7 +217,7 @@ const sessionsNL = [
     title: 'Wie ben ik?',
     subtitle: 'Jouw identiteit als sporter en mens',
     quote: { text: '"Ken jezelf. Zonder zelfkennis is alle andere kennis zinloos."', auteur: 'Socrates' },
-    introQ: 'Wat maakt jou uniek — niet als sporter, maar als persoon?',
+    introQ: 'Wat maakt jou uniek? Niet als sporter, maar als persoon.',
     oefening: {
       label: 'Kernwaarden-oefening',
       tekst: 'Kies uit deze lijst de 5 waarden die het best bij jou passen: Moed · Eerlijkheid · Loyaliteit · Doorzettingsvermogen · Creativiteit · Zorgzaamheid · Ambitie · Humor · Rust · Leiderschap · Empathie · Discipline · Vrijheid · Trouw · Nieuwsgierigheid\n\nSchrijf jouw top 5 hieronder en leg uit WAAROM je elke waarde koos.',
@@ -228,7 +228,7 @@ const sessionsNL = [
       'Wat onderscheidt mij als persoon van wie ik ben als sporter?',
     ],
     voorGesprek: [
-      'Denk na over één moment dit jaar waarop je echt jezelf was — wat deed je toen?',
+      'Denk na over één moment dit jaar waarop je echt jezelf was. Wat deed je toen?',
       'Breng dit werkblad ingevuld mee naar het gesprek.',
       'Schrijf op wat je aan het gesprek wil vragen aan jouw Character First mentor.',
     ],
@@ -236,24 +236,24 @@ const sessionsNL = [
       'Wat heeft het gesprek je geleerd over jezelf?',
       'Welke waarde wil je de komende maand bewust leven?',
     ],
-    actie: 'Schrijf voor de volgende sessie je persoonlijke "identiteitszin": "Ik ben iemand die..." — één zin die jou als persoon definieert.',
+    actie: 'Schrijf voor de volgende sessie je persoonlijke "identiteitszin": "Ik ben iemand die..." Eén zin die jou als persoon definieert.',
     // MENTOR DATA
-    doel: 'De sporter helpen een bewust beeld te vormen van zijn/haar identiteit — los van sportprestaties. Vertrouwen opbouwen als basis voor het hele traject.',
+    doel: 'De sporter helpen een bewust beeld te vormen van zijn/haar identiteit, los van sportprestaties. Vertrouwen opbouwen als basis voor het hele traject.',
     mentorFocus: 'Eerste sessie: luisteren is alles. Jouw taak is nog niet begeleiden maar verbinden.',
     gesprekStarters: [
-      { fase: 'Openen (5 min)', starter: '"Voordat we beginnen — hoe gaat het echt? Niet als sporter, maar als persoon?"', tip: 'Houd lange stiltes vol. Niet invullen. De sporter mag zoeken.' },
+      { fase: 'Openen (5 min)', starter: '"Voordat we beginnen, hoe gaat het echt? Niet als sporter, maar als persoon?"', tip: 'Houd lange stiltes vol. Niet invullen. De sporter mag zoeken.' },
       { fase: 'Verkennen (15 min)', starter: '"Welke waarde heb jij gekozen en wat betekent die voor jou in het dagelijks leven?"', tip: 'Vraag naar concrete voorbeelden. "Kun je me een moment vertellen waarop je dat hebt geleefd?"' },
       { fase: 'Verdiepen (10 min)', starter: '"Is de persoon die je thuis bent dezelfde als de sporter op het veld? Wat verschilt er?"', tip: 'Niemand is overal dezelfde. Dat is een rijkdom, geen probleem.' },
       { fase: 'Afsluiten (5 min)', starter: '"Wat neem je mee van vandaag? Eén woord of zin."', tip: 'Formuleer samen de actie voor de volgende sessie. Laat de sporter die zelf verwoorden.' },
     ],
     observeer: [
       'Hoe gemakkelijk praat de sporter over zichzelf als persoon vs. als atleet?',
-      'Welke waarden noemt hij/zij spontaan — nog voor de oefening?',
+      'Welke waarden noemt hij/zij spontaan, nog voor de oefening?',
       'Is er spanning of schroom? Dat is normale informatie, geen probleem om op te lossen.',
       'Wat zegt de lichaamstaal wanneer hij/zij over bepaalde waarden spreekt?',
     ],
-    opgelet: 'Eerste sessies leggen het fundament van vertrouwen. Stel geen moeilijke vragen te vroeg. Als een sporter terughoudend is, normaliseer dat: "Je hoeft niet alles te delen — neem de tijd."',
-    afsluiting: 'Bevestig wat je hebt gehoord: "Wat ik van jou onthoud is..." — dit toont de sporter dat je echt geluisterd hebt. Geef de actieopdracht mee en bevestig de volgende sessie.',
+    opgelet: 'Eerste sessies leggen het fundament van vertrouwen. Stel geen moeilijke vragen te vroeg. Als een sporter terughoudend is, normaliseer dat: "Je hoeft niet alles te delen, neem de tijd."',
+    afsluiting: 'Bevestig wat je hebt gehoord: "Wat ik van jou onthoud is..." Dit toont de sporter dat je echt geluisterd hebt. Geef de actieopdracht mee en bevestig de volgende sessie.',
   },
   {
     num: 2,
@@ -263,7 +263,7 @@ const sessionsNL = [
     introQ: 'Welke momenten in jouw leven hebben gemaakt wie je vandaag bent?',
     oefening: {
       label: 'Mijn sportlijn',
-      tekst: 'Teken hieronder een tijdlijn van jouw sportcarrière. Markeer:\n🔥 Momenten van vuur — wanneer voelde je je het meest levend als sporter?\n💥 Keerpunten — momenten die alles veranderden (positief of negatief)\n🌱 Groeimomenten — tegenslagen die je sterker maakten',
+      tekst: 'Teken hieronder een tijdlijn van jouw sportcarrière. Markeer:\n🔥 Momenten van vuur: wanneer voelde je je het meest levend als sporter?\n💥 Keerpunten: momenten die alles veranderden (positief of negatief)\n🌱 Groeimomenten: tegenslagen die je sterker maakten',
     },
     schrijfVragen: [
       'Het moment dat mij het meest gevormd heeft als sporter is... omdat...',
@@ -272,7 +272,7 @@ const sessionsNL = [
     ],
     voorGesprek: [
       'Denk aan één verhaal dat jij altijd vertelt over jezelf als sporter. Waarom dat verhaal?',
-      'Welk moment in jouw sport wil je NOOIT vergeten — en waarom?',
+      'Welk moment in jouw sport wil je NOOIT vergeten? En waarom?',
     ],
     naGesprek: [
       'Welk deel van mijn verhaal had ik nog nooit hardop verteld?',
@@ -283,14 +283,14 @@ const sessionsNL = [
     doel: 'De sporter helpen zijn/haar persoonlijk verhaal te kennen en te waarderen. Narratieve identiteit is de basis van veerkracht.',
     mentorFocus: 'Jij bent de getuige van een verhaal dat de sporter misschien zelf nog nooit zo gehoord heeft. Houd de ruimte heilig.',
     gesprekStarters: [
-      { fase: 'Openen (5 min)', starter: '"Vertel me eens — hoe ben jij eigenlijk in deze sport beland? Wie had er invloed op?"', tip: 'Laat het verhaal organisch komen. Onderbreek niet.' },
+      { fase: 'Openen (5 min)', starter: '"Vertel me eens, hoe ben jij eigenlijk in deze sport beland? Wie had er invloed op?"', tip: 'Laat het verhaal organisch komen. Onderbreek niet.' },
       { fase: 'Verkennen (15 min)', starter: '"Welk moment op jouw tijdlijn raakt je het meest als je er nu naar kijkt?"', tip: 'Emotie is welkom. Normaliseer: "Het is oké als iets voelt." Niet oplossen, alleen aanwezig zijn.' },
       { fase: 'Verdiepen (10 min)', starter: '"Wie was de meest invloedrijke persoon in jouw sportloopbaan? Wat deed die persoon dat verschil maakte?"', tip: 'Dit geeft jou als mentor inzicht in wat de sporter nodig heeft van een begeleidingsrelatie.' },
-      { fase: 'Afsluiten (5 min)', starter: '"Als jouw verhaal een titel zou hebben — welke zou dat zijn?"', tip: 'Een krachtige afsluiter die de sporter helpt zijn verhaal te bezitten.' },
+      { fase: 'Afsluiten (5 min)', starter: '"Als jouw verhaal een titel zou hebben, welke zou dat zijn?"', tip: 'Een krachtige afsluiter die de sporter helpt zijn verhaal te bezitten.' },
     ],
     observeer: [
-      'Welke episodes vermijdt de sporter — sprong hij/zij er snel overheen?',
-      'Welke mensen noemt hij/zij — en met welke emotie?',
+      'Welke episodes vermijdt de sporter? Sprong hij/zij er snel overheen?',
+      'Welke mensen noemt hij/zij, en met welke emotie?',
       'Is er een patroon in de keerpunten? (bijv. altijd externe factoren, of altijd eigen keuzes)',
       'Hoe praat de sporter over zijn/haar laagste punt? Schaamte? Trots op overleven? Nog pijn?',
     ],
@@ -302,10 +302,10 @@ const sessionsNL = [
     title: 'Mijn doelen',
     subtitle: 'Dromen vertalen naar richting',
     quote: { text: '"Een doel zonder plan is gewoon een wens."', auteur: 'Antoine de Saint-Exupéry' },
-    introQ: 'Wat wil jij echt — als sporter én als mens?',
+    introQ: 'Wat wil jij echt, als sporter én als mens?',
     oefening: {
       label: 'Droom groot, denk concreet',
-      tekst: 'Stap 1 — Schrijf ZONDER filters: wat wil jij bereiken in de sport? (Niets is te groot)\nStap 2 — Schrijf ZONDER filters: wat wil jij bereiken als mens buiten de sport?\nStap 3 — Kies uit beide lijsten jouw TOP 1 doel voor dit seizoen en TOP 1 doel voor over 3 jaar.',
+      tekst: 'Stap 1: schrijf ZONDER filters wat jij wil bereiken in de sport. (Niets is te groot)\nStap 2: schrijf ZONDER filters wat jij wil bereiken als mens buiten de sport.\nStap 3: kies uit beide lijsten jouw TOP 1 doel voor dit seizoen en TOP 1 doel voor over 3 jaar.',
     },
     schrijfVragen: [
       'Mijn grootste sportdroom (zonder rem) is...',
@@ -313,7 +313,7 @@ const sessionsNL = [
       'Mijn doel voor dit seizoen is... Hoe ziet succes er concreet uit? Wat doe ik anders dan nu?',
     ],
     voorGesprek: [
-      'Vraag jezelf: zijn dit MIJN doelen — of de doelen van mijn coach/ouders/omgeving?',
+      'Vraag jezelf: zijn dit MIJN doelen, of de doelen van mijn coach/ouders/omgeving?',
       'Wat zou je doen als niemand je beoordeelde?',
     ],
     naGesprek: [
@@ -325,16 +325,16 @@ const sessionsNL = [
     doel: 'De sporter helpen onderscheid te maken tussen eigen doelen en opgelegde doelen. Intrinsieke motivatie is de enige duurzame motor.',
     mentorFocus: 'Wees alert: veel sporters hebben doelen van anderen overgenomen. Jouw taak is het echte verlangen te achterhalen.',
     gesprekStarters: [
-      { fase: 'Openen (5 min)', starter: '"Als je vandaag kon kiezen zonder enige beperking — wat zou jij willen bereiken?"', tip: 'Merk op hoe spontaan vs. hoe aarzelend het antwoord komt. Dat zegt veel.' },
-      { fase: 'Verkennen (15 min)', starter: '"Is dit doel iets dat jíj wil — of iets wat anderen voor jou willen? Hoe weet je dat?"', tip: 'Geen oordeel. "Beide kan ook." Maar help de sporter het onderscheid voelen.' },
-      { fase: 'Verdiepen (10 min)', starter: '"Stel dat je dit doel haalt — hoe voel jij je dan? Wat verandert er in jouw leven?"', tip: 'Dit raakt de diepere motivatie achter het doel (identiteit, waarde, verbondenheid).' },
-      { fase: 'Afsluiten (5 min)', starter: '"Wat is de éérste concrete stap — niet de grote sprong, maar de eerste stap?"', tip: 'Kleine stappen maken grote doelen geloofwaardig.' },
+      { fase: 'Openen (5 min)', starter: '"Als je vandaag kon kiezen zonder enige beperking, wat zou jij willen bereiken?"', tip: 'Merk op hoe spontaan vs. hoe aarzelend het antwoord komt. Dat zegt veel.' },
+      { fase: 'Verkennen (15 min)', starter: '"Is dit doel iets dat jíj wil, of iets wat anderen voor jou willen? Hoe weet je dat?"', tip: 'Geen oordeel. "Beide kan ook." Maar help de sporter het onderscheid voelen.' },
+      { fase: 'Verdiepen (10 min)', starter: '"Stel dat je dit doel haalt, hoe voel jij je dan? Wat verandert er in jouw leven?"', tip: 'Dit raakt de diepere motivatie achter het doel (identiteit, waarde, verbondenheid).' },
+      { fase: 'Afsluiten (5 min)', starter: '"Wat is de éérste concrete stap? Niet de grote sprong, maar de eerste stap."', tip: 'Kleine stappen maken grote doelen geloofwaardig.' },
     ],
     observeer: [
       'Worden de doelen spontaan of traag geformuleerd? (Snel = eigen. Traag = misschien van anderen.)',
       'Wat is de emotie achter het doel? Enthousiasme, verplichting, angst, trots?',
       'Noemt de sporter anderen bij zijn doelen? ("Mijn coach wil dat ik...", "Mijn ouders denken...")',
-      'Is er een doel dat hij/zij met schroom of fluisterend noemt — dat is vaak het echte doel.',
+      'Is er een doel dat hij/zij met schroom of fluisterend noemt? Dat is vaak het echte doel.',
     ],
     opgelet: 'Als een sporter geen eigen doelen heeft, forceer dan niet. Gebruik: "Wat heeft jou vroeger enthousiast gemaakt?" om terug te gaan naar innerlijke motivatie.',
     afsluiting: 'Benoem het eigenaarschap: "Dit zijn JOUW doelen. Niet die van je coach of je ouders. Wij gaan je helpen die te bereiken." Krachtig moment van agency geven.',
