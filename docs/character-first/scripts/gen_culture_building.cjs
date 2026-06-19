@@ -123,7 +123,8 @@ body { background: #fff; font-family: Arial, sans-serif; }
 .detail-list { display: flex; flex-direction: column; gap: 7px; }
 .detail-card { border: 1.5px solid var(--line); border-radius: 8px; padding: 8px 12px; background: #fff; flex-shrink: 0; }
 .detail-header { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-.detail-title { font-family: Arial Black, Arial, sans-serif; font-size: 12.5px; font-weight: 900; color: var(--navy); }
+.detail-title { font-family: Arial Black, Arial, sans-serif; font-size: 12.5px; font-weight: 900; color: var(--navy); flex: 1; }
+.detail-time { font-size: 9.5px; color: var(--stone); font-weight: 700; white-space: nowrap; }
 .detail-row { display: grid; grid-template-columns: 78px 1fr; gap: 6px; margin-bottom: 4px; }
 .detail-row:last-child { margin-bottom: 0; }
 .detail-key { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--stone); padding-top: 1px; }
@@ -339,29 +340,27 @@ const coachNL = [
       'Hanton et al. (2009): mentale voorbereiding op worst-case scenario\'s vermindert wedstrijdangst',
     ],
     objective: 'Spelers leggen hun persoonlijke waarden vast, herkennen energiebronnen in hun team en bereiden zich mentaal voor op druk. Dit vormt de basis voor de rest van het traject.',
-    activities: [
-      { title: 'Persoonlijk waardenkompas', tijd: '8 min', desc: 'Laat spelers individueel de zes waarden rangschikken. Geen goed of fout antwoord. Vraag na: welke waarde verraste jezelf het meest?' },
-      { title: 'Energiegever vs energieslurper', tijd: '10 min', desc: 'Spelers werken individueel, bespreek nadien in duo\'s. Let op: dit gaat over situaties en gedrag, niet over het afkraken van teamgenoten.' },
-      { title: 'Worst case best case', tijd: '12 min', desc: 'Koppel dit aan een concrete, herkenbare wedstrijdsituatie. Bespreek plenair: wat maakt het meest waarschijnlijke scenario hanteerbaar?' },
-    ],
     tip: 'Geef zelf het goede voorbeeld: deel kort jouw eigen worst case best case voor een belangrijk moment in je coachcarrière.',
     warn: 'Forceer niemand om hardop te delen. Schrijven alleen is al waardevol. Dwing geen kwetsbaarheid af.',
     timing: ['Intro & doel: 5 min', 'Oefening 1: 8 min', 'Oefening 2: 10 min', 'Oefening 3: 12 min', 'Afsluiting: 10 min'],
     exerciseDetails: [
       {
         title: 'Persoonlijk waardenkompas',
+        tijd: '8 min',
         purpose: 'Spelers worden zich bewust van de waarden die hun gedrag écht sturen, niet de waarden die "goed klinken". Dit is de basis voor alle latere gesprekken over gedrag en team.',
         instructions: '"Je krijgt zes waarden. Geef elke waarde een score van 1 tot 5: hoe belangrijk is die waarde voor hoe jij wil spelen en zijn in dit team? Er is geen goed of fout antwoord, en je hoeft niets te delen wat je niet wil delen."',
         example: 'Een speler scoort "moed" een 5 en "loyaliteit" een 2. Vraag door: "Wat betekent moed voor jou op het veld? Een schot durven nemen in de slotseconden, of iets durven zeggen tegen een teamgenoot?" Zo wordt de waarde concreet in plaats van abstract.',
       },
       {
         title: 'Energiegever vs energieslurper',
+        tijd: '10 min',
         purpose: 'Spelers leren het verschil zien tussen situaties/gedrag die energie geven en die energie kosten, zodat ze dit later bewust kunnen sturen in plaats van passief te ondergaan.',
         instructions: '"Denk aan de afgelopen weken op training en in wedstrijden. Schrijf op: welke momenten of gedrag van anderen gaven jou energie? Welke kostten je energie? Het gaat om situaties en gedrag, niet om personen afkraken."',
         example: 'Een speler schrijft "energie van: als iemand me aanmoedigt na een fout" en "kost energie: als er gemopperd wordt na een gemiste kans". Bespreek in duo\'s hoe ze elkaar bewust meer van het eerste en minder van het tweede kunnen geven.',
       },
       {
         title: 'Worst case best case',
+        tijd: '12 min',
         purpose: 'Spelers oefenen mentale voorbereiding op druk door realistisch na te denken over scenario\'s, in plaats van angst te laten groeien door vage onzekerheid.',
         instructions: '"Denk aan een belangrijke wedstrijd die eraan komt. Schrijf het slechtste op wat kan gebeuren, het beste wat kan gebeuren, en wat het meest waarschijnlijke scenario is. Bedenk ook: als het slechtste gebeurt, wat zou je dan doen?"',
         example: 'Worst case: "ik mis de winning shot en het team verliest." Best case: "ik scoor de winning shot." Meest waarschijnlijk: "het wordt een spannende, gelijkopgaande wedstrijd waarin ik goede en mindere momenten heb." Help de speler zien dat dit laatste scenario heel hanteerbaar is.',
@@ -404,36 +403,34 @@ const coachNL = [
       'Tod et al. (2011): publieke commitment, zoals ondertekenen, verhoogt naleving van afspraken',
     ],
     objective: 'Spelers herkennen hun natuurlijke rol, oefenen het geven en ontvangen van feedback, en leggen hun persoonlijke bijdrage aan het teamcontract vast als afsluiter van het traject.',
-    activities: [
-      { title: 'Rolcompass', tijd: '10 min', desc: 'Laat spelers individueel scoren, bespreek daarna in de groep welke rollen oververtegenwoordigd of onderbelicht zijn in het team.' },
-      { title: 'Feedbackronde trio', tijd: '15 min', desc: 'Verdeel in trio\'s. Elke speler krijgt om beurt twee minuten feedback van de andere twee: één sterk punt, één groeipunt. Coach modelleert eerst het format.' },
-      { title: 'Reflectie na feedback', tijd: '5 min', desc: 'Individueel invullen: wat neem je mee, wat ga je ermee doen.' },
-      { title: 'Team contract ondertekenen', tijd: '15 min', desc: 'Elke speler schrijft drie persoonlijke beloftes en ondertekent. Verzamel de blaadjes en maak er één zichtbaar teamdocument van.' },
-    ],
     tip: 'Bewaar de ondertekende contracten en breng ze halverwege het seizoen terug als check-in moment.',
     warn: 'Bij de feedbackronde: koppel trio\'s bewust samen, vermijd combinaties met bestaande spanning zonder begeleiding.',
     timing: ['Intro & doel: 5 min', 'Oefening 1: 10 min', 'Oefening 2: 15 min', 'Oefening 3: 5 min', 'Afsluiting & contract: 15 min'],
     exerciseDetails: [
       {
         title: 'Rolcompass',
+        tijd: '10 min',
         purpose: 'Spelers krijgen taal voor hun natuurlijke bijdrage aan het team, wat rolduidelijkheid en daarmee teamcohesie versterkt.',
         instructions: '"Scoor elke rol van 0 tot 10: hoe sterk herken je dit in jezelf? Er is geen beste rol, een team heeft alle vier nodig."',
         example: 'Bespreek plenair als bijna iedereen hoog scoort op "leider": "Wat mist het team dan misschien? Wie zou de stabiele kracht kunnen zijn deze maand?" Dit maakt rolverdeling een teamgesprek, geen individuele wedstrijd.',
       },
       {
         title: 'Feedbackronde trio',
+        tijd: '15 min',
         purpose: 'Spelers oefenen het geven en ontvangen van constructieve feedback in een veilige, kleine setting, wat zelfinzicht en onderling vertrouwen vergroot.',
         instructions: '"In je trio krijgt elke speler om beurt twee minuten feedback van de andere twee: één sterk punt dat je bij hem/haar ziet, en één groeipunt. Wees concreet en gebruik voorbeelden, geen algemeenheden."',
         example: 'Modelleer eerst zelf: "Jouw sterke punt is dat je altijd communiceert in verdediging. Je groeipunt: je mag wat vaker zelf een schot nemen in plaats van altijd door te spelen." Dat format herhalen spelers dan in hun trio.',
       },
       {
         title: 'Reflectie na feedback',
+        tijd: '5 min',
         purpose: 'Spelers verwerken wat ze net gehoord hebben actief, zodat de feedback niet verdampt maar omgezet wordt in een concrete intentie.',
         instructions: '"Schrijf op: wat heb je gehoord over je sterke punt en je groeipunt? Wat ga je concreet anders doen de komende weken?"',
         example: 'Een speler schrijft: "Ik ga in de komende trainingen bewust 1 schot per training nemen als de kans er is, in plaats van altijd door te spelen." Concreet en meetbaar werkt beter dan een vage intentie.',
       },
       {
         title: 'Team contract ondertekenen',
+        tijd: '15 min',
         purpose: 'Publieke commitment (zoals ondertekenen) verhoogt de kans dat spelers zich echt aan hun beloftes houden, en sluit het traject symbolisch af.',
         instructions: '"Schrijf drie concrete beloftes die jij dit seizoen aan het team doet. Maak ze concreet en haalbaar, geen vage intenties. Onderteken daarna met datum."',
         example: 'In plaats van "ik beloof om een betere teamspeler te zijn", help de speler naar: "ik beloof om elke training op tijd te zijn" of "ik beloof om een teamgenoot aan te moedigen na elke fout die hij maakt."',
@@ -478,29 +475,27 @@ const coachEN = [
       'Hanton et al. (2009): mental preparation for worst-case scenarios reduces competitive anxiety',
     ],
     objective: 'Players record their personal values, recognize energy sources in their team, and mentally prepare for pressure. This forms the foundation for the rest of the track.',
-    activities: [
-      { title: 'Personal values compass', tijd: '8 min', desc: 'Have players individually rank the six values. No right or wrong answer. Ask afterward: which value surprised you the most?' },
-      { title: 'Energy giver vs energy drainer', tijd: '10 min', desc: 'Players work individually, discuss afterward in pairs. Note: this is about situations and behavior, not about tearing down teammates.' },
-      { title: 'Worst case best case', tijd: '12 min', desc: 'Link this to a concrete, recognizable game situation. Discuss as a group: what makes the most likely scenario manageable?' },
-    ],
     tip: 'Lead by example: briefly share your own worst case best case for an important moment in your coaching career.',
     warn: 'Don\'t force anyone to share out loud. Writing alone already has value. Don\'t force vulnerability.',
     timing: ['Intro & goal: 5 min', 'Exercise 1: 8 min', 'Exercise 2: 10 min', 'Exercise 3: 12 min', 'Closing: 10 min'],
     exerciseDetails: [
       {
         title: 'Personal values compass',
+        tijd: '8 min',
         purpose: 'Players become aware of the values that actually drive their behavior, not the values that "sound good". This is the foundation for all later conversations about behavior and team.',
         instructions: '"You\'ll get six values. Give each one a score from 1 to 5: how important is this value for how you want to play and be on this team? There\'s no right or wrong answer, and you don\'t have to share anything you don\'t want to."',
         example: 'A player scores "courage" a 5 and "loyalty" a 2. Ask: "What does courage mean for you on the court? Taking the shot in the final seconds, or saying something to a teammate?" This makes the value concrete instead of abstract.',
       },
       {
         title: 'Energy giver vs energy drainer',
+        tijd: '10 min',
         purpose: 'Players learn to spot the difference between situations/behavior that give energy and that drain it, so they can later steer this consciously instead of passively undergoing it.',
         instructions: '"Think back to the past few weeks at practice and in games. Write down: which moments or behavior from others gave you energy? Which drained your energy? This is about situations and behavior, not about tearing others down."',
         example: 'A player writes "energy from: when someone encourages me after a mistake" and "drains energy: when people grumble after a missed chance." Discuss in pairs how they can consciously give more of the first and less of the second.',
       },
       {
         title: 'Worst case best case',
+        tijd: '12 min',
         purpose: 'Players practice mental preparation for pressure by realistically thinking through scenarios, instead of letting anxiety grow from vague uncertainty.',
         instructions: '"Think of an important upcoming game. Write down the worst that could happen, the best that could happen, and what the most likely scenario is. Also think: if the worst happens, what would you do?"',
         example: 'Worst case: "I miss the winning shot and the team loses." Best case: "I score the winning shot." Most likely: "it\'s a tight, back-and-forth game where I have good and less good moments." Help the player see that this last scenario is very manageable.',
@@ -543,36 +538,34 @@ const coachEN = [
       'Tod et al. (2011): public commitment, such as signing, increases adherence to agreements',
     ],
     objective: 'Players recognize their natural role, practice giving and receiving feedback, and record their personal contribution to the team contract as the closer of the track.',
-    activities: [
-      { title: 'Role compass', tijd: '10 min', desc: 'Have players score individually, then discuss as a group which roles are over- or under-represented in the team.' },
-      { title: 'Feedback round trio', tijd: '15 min', desc: 'Split into trios. Each player gets two minutes of feedback from the other two in turn: one strength, one growth point. Coach models the format first.' },
-      { title: 'Reflection after feedback', tijd: '5 min', desc: 'Individually complete: what do you take with you, what will you do with it.' },
-      { title: 'Sign the team contract', tijd: '15 min', desc: 'Each player writes three personal promises and signs. Collect the sheets and turn them into one visible team document.' },
-    ],
     tip: 'Keep the signed contracts and bring them back midseason as a check-in moment.',
     warn: 'For the feedback round: pair trios deliberately, avoid combinations with existing tension without guidance.',
     timing: ['Intro & goal: 5 min', 'Exercise 1: 10 min', 'Exercise 2: 15 min', 'Exercise 3: 5 min', 'Closing & contract: 15 min'],
     exerciseDetails: [
       {
         title: 'Role compass',
+        tijd: '10 min',
         purpose: 'Players get language for their natural contribution to the team, which strengthens role clarity and, with it, team cohesion.',
         instructions: '"Score each role from 0 to 10: how strongly do you recognize this in yourself? There\'s no best role, a team needs all four."',
         example: 'If almost everyone scores high on "leader," discuss as a group: "What might the team be missing then? Who could be the steady force this month?" This turns role distribution into a team conversation, not an individual contest.',
       },
       {
         title: 'Feedback round trio',
+        tijd: '15 min',
         purpose: 'Players practice giving and receiving constructive feedback in a safe, small setting, which builds self-insight and mutual trust.',
         instructions: '"In your trio, each player gets two minutes of feedback from the other two in turn: one strength you see in them, and one growth point. Be specific and use examples, not generalities."',
         example: 'Model it yourself first: "Your strength is that you always communicate on defense. Your growth point: take the shot yourself a bit more instead of always passing." Players then repeat that format in their trio.',
       },
       {
         title: 'Reflection after feedback',
+        tijd: '5 min',
         purpose: 'Players actively process what they just heard, so the feedback doesn\'t evaporate but turns into a concrete intention.',
         instructions: '"Write down: what did you hear about your strength and your growth point? What will you concretely do differently in the coming weeks?"',
         example: 'A player writes: "In the next few practices I\'ll consciously take 1 shot per practice when the chance is there, instead of always passing." Concrete and measurable works better than a vague intention.',
       },
       {
         title: 'Sign the team contract',
+        tijd: '15 min',
         purpose: 'Public commitment (such as signing) increases the chance that players actually keep their promises, and symbolically closes the track.',
         instructions: '"Write three concrete promises you make to the team this season. Make them specific and achievable, not vague intentions. Then sign with the date."',
         example: 'Instead of "I promise to be a better teammate," help the player toward: "I promise to be on time for every practice" or "I promise to encourage a teammate after every mistake they make."',
@@ -635,13 +628,6 @@ function buildCoachHTML(sessions, isEN) {
   <div class="title-block"><div class="eyebrow">${isEN ? 'COACH GUIDE' : 'COACHGIDS'}</div><div class="title">${d.title}</div></div>
   <div class="science-block"><div class="section-label">${isEN ? 'Scientific basis' : 'Wetenschappelijke basis'}</div><ul>${d.science.map(s => `<li>${s}</li>`).join('')}</ul></div>
   <div class="objective-block"><div class="section-label">${isEN ? 'Objective' : 'Doelstelling'}</div><p>${d.objective}</p></div>
-  <div class="section-label">${isEN ? 'Guidance per exercise' : 'Begeleiding per oefening'}</div>
-  <div class="activities">${d.activities.map((a, i) => `
-    <div class="activity-card">
-      <div class="activity-header"><div class="activity-num">${i + 1}</div><div class="activity-title">${a.title}</div></div>
-      <div class="activity-meta">${a.tijd}</div>
-      <div class="activity-desc">${a.desc}</div>
-    </div>`).join('')}</div>
   <div class="tip-block"><div class="section-label">${isEN ? 'Coach tip' : 'Coach tip'}</div><p>${d.tip}</p></div>
   <div class="warn-block"><div class="section-label">${isEN ? 'Watch out for' : 'Let op'}</div><p>${d.warn}</p></div>
   <div class="footer"><div class="footer-left">${EMAIL}</div><div class="footer-right">${isEN ? 'CONFIDENTIAL, For coaches only' : 'VERTROUWELIJK: enkel voor coaches'} — 1/3</div></div>
@@ -649,10 +635,10 @@ function buildCoachHTML(sessions, isEN) {
 <div class="page">
   <div class="header"><div class="wordmark">CHARACTER <span>First</span></div><div class="session-label">${d.subtitle}</div></div>
   <div class="divider"></div>
-  <div class="title-block"><div class="eyebrow">${isEN ? 'EXERCISES IN DETAIL' : 'OEFENINGEN IN DETAIL'}</div><div class="title" style="font-size:18px">${isEN ? 'Purpose, instructions & examples' : 'Doel, instructies & voorbeelden'}</div></div>
+  <div class="title-block"><div class="eyebrow">${isEN ? 'EXERCISES, ONE BY ONE' : 'OEFENINGEN, EEN VOOR EEN'}</div><div class="title" style="font-size:18px">${isEN ? 'Everything per exercise, in order' : 'Alles per oefening, op volgorde'}</div></div>
   <div class="detail-list">${d.exerciseDetails.map((e, i) => `
     <div class="detail-card">
-      <div class="detail-header"><div class="activity-num">${i + 1}</div><div class="detail-title">${e.title}</div></div>
+      <div class="detail-header"><div class="activity-num">${i + 1}</div><div class="detail-title">${e.title}</div><div class="detail-time">${e.tijd}</div></div>
       <div class="detail-row"><div class="detail-key">${isEN ? 'Purpose' : 'Doel'}</div><div class="detail-val">${e.purpose}</div></div>
       <div class="detail-row"><div class="detail-key">${isEN ? 'Say to players' : 'Zeg tegen spelers'}</div><div class="detail-val script">${e.instructions}</div></div>
       <div class="detail-row"><div class="detail-key">${isEN ? 'Example' : 'Voorbeeld'}</div><div class="detail-val example">${e.example}</div></div>
