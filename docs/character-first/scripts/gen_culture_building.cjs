@@ -105,6 +105,21 @@ body { background: #fff; font-family: Arial, sans-serif; }
 .warn-block p { font-size: 11px; color: var(--navy); line-height: 1.4; }
 .footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 5px; flex-shrink: 0; margin-top: auto; }
 .footer-left, .footer-right { font-size: 9px; color: var(--stone); }
+.help-block { background: rgba(30,138,91,.08); border-left: 3px solid var(--green); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
+.help-block .section-label { color: var(--green); border-color: var(--green); }
+.help-block ol, .help-block ul { padding-left: 16px; }
+.help-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; }
+.question-block { background: rgba(47,111,176,.08); border-left: 3px solid var(--blue); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
+.question-block .section-label { color: var(--blue); border-color: var(--blue); }
+.question-block ol { padding-left: 16px; }
+.question-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; font-style: italic; }
+.followup-block { background: rgba(240,90,40,.07); border-left: 3px solid var(--orange); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
+.followup-block ol { padding-left: 16px; }
+.followup-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; }
+.pitfall-block { background: rgba(192,57,43,.08); border-left: 3px solid #c0392b; border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
+.pitfall-block .section-label { color: #c0392b; border-color: #c0392b; }
+.pitfall-block ul { padding-left: 16px; }
+.pitfall-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; }
 @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 `;
 
@@ -322,6 +337,32 @@ const coachNL = [
     tip: 'Geef zelf het goede voorbeeld: deel kort jouw eigen worst case best case voor een belangrijk moment in je coachcarrière.',
     warn: 'Forceer niemand om hardop te delen. Schrijven alleen is al waardevol. Dwing geen kwetsbaarheid af.',
     timing: ['Intro & doel: 5 min', 'Oefening 1: 8 min', 'Oefening 2: 10 min', 'Oefening 3: 12 min', 'Afsluiting: 10 min'],
+    helpTips: [
+      'Bouw psychologische veiligheid op vóór je dieper gaat: begin met iets luchtigs en benoem expliciet dat er geen foute antwoorden zijn.',
+      'Gebruik de waarden uit oefening 1 de rest van het seizoen actief in je taal op training: "dit is precies wat doorzetting betekent" maakt het tastbaar.',
+      'Check tussendoor non-verbaal gedrag: spelers die wegkijken of stilvallen hebben soms net iets meer tijd of een 1-op-1 nodig.',
+      'Koppel de energiegever/energieslurper-oefening aan concreet teamgedrag dat je zelf observeert op training, niet enkel aan de wedstrijd.',
+      'Sluit de sessie nooit abrupt af. Laat minstens 5 minuten ruimte voor een rustige landing voor je terug naar het sportieve programma gaat.',
+    ],
+    questions: [
+      'Welke waarde verraste jou het meest toen je ze moest rangschikken?',
+      'Wie in het team geeft jou energie zonder dat diegene het weet?',
+      'Wat zou je tegen jezelf zeggen vlak voor een belangrijke wedstrijd, als een goede vriend?',
+      'Wanneer voelde druk de laatste keer overweldigend, en wat hielp toen wél?',
+      'Welke van je waarden zie je nog te weinig terug in je eigen gedrag op het veld?',
+    ],
+    followUp: [
+      'Verwerk de waarden van de groep in een kort, zichtbaar overzicht (bv. op het mededelingenbord) voor de komende weken.',
+      'Check bij de eerstvolgende wedstrijd onder druk kort in bij 2-3 spelers: "hoe voelde dit zich vergeleken met je worst/best case?"',
+      'Plan een korte individuele check-in met spelers die tijdens de oefening duidelijk worstelden of net heel stil waren.',
+      'Neem de energiegevers/energieslurpers-inzichten mee bij het samenstellen van kleine groepjes voor toekomstige oefeningen.',
+    ],
+    pitfalls: [
+      'Te snel doorgaan naar de volgende oefening zonder ruimte voor reflectie ondermijnt het effect van de hele sessie.',
+      'Zelf invullen wat een speler "waarschijnlijk bedoelt" in plaats van echt te luisteren.',
+      'De worst case oefening laten eindigen op het negatieve scenario zonder terug te keren naar het hanteerbare, meest waarschijnlijke scenario.',
+      'Energiegevers/energieslurpers gebruiken als excuus om spelers publiekelijk te bekritiseren.',
+    ],
   },
   {
     s: 2, title: 'Mijn Rol & Team Eerst', subtitle: 'Sessie 2: coachgids',
@@ -342,6 +383,32 @@ const coachNL = [
     tip: 'Bewaar de ondertekende contracten en breng ze halverwege het seizoen terug als check-in moment.',
     warn: 'Bij de feedbackronde: koppel trio\'s bewust samen, vermijd combinaties met bestaande spanning zonder begeleiding.',
     timing: ['Intro & doel: 5 min', 'Oefening 1: 10 min', 'Oefening 2: 15 min', 'Oefening 3: 5 min', 'Afsluiting & contract: 15 min'],
+    helpTips: [
+      'Geef zelf eerst feedback aan een speler volgens het format (één sterk punt, één groeipunt) zodat de trio\'s weten wat je verwacht.',
+      'Bewaak de rolverdeling: als iedereen "leider" scoort, bevraag dan plenair wat het team nog mist en wie dat zou kunnen invullen.',
+      'Herhaal het teamcontract regelmatig terug in je coaching, niet alleen tijdens deze sessie: "weet je nog wat je beloofd hebt?"',
+      'Maak van het ondertekende contract een zichtbaar object (foto, poster in de kleedkamer) zodat het een levend document blijft.',
+      'Vier het wanneer een speler zich zichtbaar aan zijn belofte houdt, in het bijzijn van het team.',
+    ],
+    questions: [
+      'Welke rol herken je het sterkst in jezelf, en welke rol zou je willen groeien?',
+      'Wat was het lastigste om te horen tijdens de feedbackronde, en waarom?',
+      'Welke van je drie beloftes is het moeilijkst om vol te houden over een heel seizoen?',
+      'Wie in het team zou je nu makkelijker feedback durven geven dan voor deze sessie?',
+      'Wat heeft het team nodig van jou, specifiek in jouw rol, om sterker te worden?',
+    ],
+    followUp: [
+      'Hang het ondertekende teamcontract zichtbaar op (kleedkamer, teamapp) en verwijs er actief naar bij evaluatiemomenten.',
+      'Plan een korte check-in halverwege het seizoen: laat spelers hun eigen contract herlezen en aanvullen.',
+      'Gebruik de rolverdeling uit oefening 1 bewust bij het samenstellen van line-ups, kapiteinskeuzes of leiderschapstaken.',
+      'Volg op of de feedback uit de trio\'s ook echt landt: vraag enkele weken later kort terug wat ermee gedaan is.',
+    ],
+    pitfalls: [
+      'De feedbackronde inplannen zonder zelf eerst het format te modelleren leidt vaak tot te vage of te harde feedback.',
+      'Trio\'s willekeurig samenstellen zonder rekening te houden met bestaande spanningen in de groep.',
+      'Het teamcontract na de sessie laten liggen zonder er nog ooit naar terug te keren, waardoor de belofte vervliegt.',
+      'Rolinzichten gebruiken om spelers vast te pinnen op één label in plaats van groei mogelijk te maken.',
+    ],
   },
 ];
 
@@ -363,6 +430,32 @@ const coachEN = [
     tip: 'Lead by example: briefly share your own worst case best case for an important moment in your coaching career.',
     warn: 'Don\'t force anyone to share out loud. Writing alone already has value. Don\'t force vulnerability.',
     timing: ['Intro & goal: 5 min', 'Exercise 1: 8 min', 'Exercise 2: 10 min', 'Exercise 3: 12 min', 'Closing: 10 min'],
+    helpTips: [
+      'Build psychological safety before going deeper: start with something light and explicitly state there are no wrong answers.',
+      'Use the values from exercise 1 actively in your language for the rest of the season: "this is exactly what perseverance means" makes it tangible.',
+      'Check non-verbal cues along the way: players who look away or go quiet sometimes just need a bit more time or a 1-on-1.',
+      'Tie the energy giver/drainer exercise to concrete team behavior you observe yourself at practice, not just in games.',
+      'Never end the session abruptly. Leave at least 5 minutes for a calm landing before returning to the regular program.',
+    ],
+    questions: [
+      'Which value surprised you the most when you had to rank them?',
+      'Who on the team gives you energy without realizing it?',
+      'What would you say to yourself right before an important game, as a good friend would?',
+      'When did pressure last feel overwhelming, and what actually helped then?',
+      'Which of your values do you see too little of in your own behavior on the court?',
+    ],
+    followUp: [
+      'Turn the group\'s values into a short, visible overview (e.g. on the notice board) for the coming weeks.',
+      'At the next high-pressure game, briefly check in with 2-3 players: "how did this compare to your worst/best case?"',
+      'Plan a short individual check-in with players who clearly struggled or went very quiet during the exercise.',
+      'Use the energy giver/drainer insights when forming small groups for future exercises.',
+    ],
+    pitfalls: [
+      'Moving on too quickly to the next exercise without room for reflection undermines the effect of the whole session.',
+      'Filling in yourself what a player "probably means" instead of truly listening.',
+      'Letting the worst case exercise end on the negative scenario without returning to the manageable, most likely scenario.',
+      'Using energy givers/drainers as an excuse to publicly criticize players.',
+    ],
   },
   {
     s: 2, title: 'My Role & Team First', subtitle: 'Session 2: coach guide',
@@ -383,6 +476,32 @@ const coachEN = [
     tip: 'Keep the signed contracts and bring them back midseason as a check-in moment.',
     warn: 'For the feedback round: pair trios deliberately, avoid combinations with existing tension without guidance.',
     timing: ['Intro & goal: 5 min', 'Exercise 1: 10 min', 'Exercise 2: 15 min', 'Exercise 3: 5 min', 'Closing & contract: 15 min'],
+    helpTips: [
+      'Give feedback to one player yourself first using the format (one strength, one growth point) so trios know what\'s expected.',
+      'Watch the role distribution: if everyone scores "leader," ask the group what the team is still missing and who could fill it.',
+      'Keep referencing the team contract in your coaching, not just during this session: "remember what you promised?"',
+      'Turn the signed contract into a visible object (photo, poster in the locker room) so it stays a living document.',
+      'Celebrate when a player visibly lives up to their promise, in front of the team.',
+    ],
+    questions: [
+      'Which role do you recognize most strongly in yourself, and which role would you like to grow into?',
+      'What was hardest to hear during the feedback round, and why?',
+      'Which of your three promises is hardest to keep over a full season?',
+      'Who on the team would you now find it easier to give feedback to than before this session?',
+      'What does the team need from you, specifically in your role, to get stronger?',
+    ],
+    followUp: [
+      'Display the signed team contract visibly (locker room, team app) and actively refer to it during evaluation moments.',
+      'Plan a short check-in midseason: have players reread and add to their own contract.',
+      'Use the role distribution from exercise 1 deliberately when forming line-ups, captain choices, or leadership tasks.',
+      'Follow up on whether the feedback from the trios actually lands: ask briefly a few weeks later what was done with it.',
+    ],
+    pitfalls: [
+      'Scheduling the feedback round without modeling the format yourself first often leads to feedback that\'s too vague or too harsh.',
+      'Forming trios randomly without accounting for existing tension in the group.',
+      'Letting the team contract sit unused after the session, so the promise fades away.',
+      'Using role insights to pin players to one label instead of allowing growth.',
+    ],
   },
 ];
 
@@ -423,7 +542,17 @@ function buildCoachHTML(sessions, isEN) {
     </div>`).join('')}</div>
   <div class="tip-block"><div class="section-label">${isEN ? 'Coach tip' : 'Coach tip'}</div><p>${d.tip}</p></div>
   <div class="warn-block"><div class="section-label">${isEN ? 'Watch out for' : 'Let op'}</div><p>${d.warn}</p></div>
-  <div class="footer"><div class="footer-left">${EMAIL}</div><div class="footer-right">${isEN ? 'CONFIDENTIAL, For coaches only' : 'VERTROUWELIJK: enkel voor coaches'}</div></div>
+  <div class="footer"><div class="footer-left">${EMAIL}</div><div class="footer-right">${isEN ? 'CONFIDENTIAL, For coaches only' : 'VERTROUWELIJK: enkel voor coaches'} — 1/2</div></div>
+</div>
+<div class="page">
+  <div class="header"><div class="wordmark">CHARACTER <span>First</span></div><div class="session-label">${d.subtitle}</div></div>
+  <div class="divider"></div>
+  <div class="title-block"><div class="eyebrow">${isEN ? 'COACHING IN DEPTH' : 'COACHING IN DE DIEPTE'}</div><div class="title" style="font-size:18px">${isEN ? 'How to help your team' : 'Hoe help je je team verder'}</div></div>
+  <div class="help-block"><div class="section-label">${isEN ? 'How to support your team' : 'Hoe ondersteun je je team'}</div><ol>${d.helpTips.map(t => `<li>${t}</li>`).join('')}</ol></div>
+  <div class="question-block"><div class="section-label">${isEN ? 'Discussion questions to ask' : 'Gespreksvragen om te stellen'}</div><ol>${d.questions.map(q => `<li>${q}</li>`).join('')}</ol></div>
+  <div class="followup-block"><div class="section-label">${isEN ? 'Follow-up in the coming weeks' : 'Vervolgstappen de komende weken'}</div><ol>${d.followUp.map(f => `<li>${f}</li>`).join('')}</ol></div>
+  <div class="pitfall-block"><div class="section-label">${isEN ? 'Common pitfalls' : 'Veelvoorkomende valkuilen'}</div><ul>${d.pitfalls.map(p => `<li>${p}</li>`).join('')}</ul></div>
+  <div class="footer"><div class="footer-left">${EMAIL}</div><div class="footer-right">${isEN ? 'CONFIDENTIAL, For coaches only' : 'VERTROUWELIJK: enkel voor coaches'} — 2/2</div></div>
 </div>`).join('');
   return `<!DOCTYPE html><html lang="${isEN ? 'en' : 'nl'}"><head><meta charset="UTF-8"><style>${COACH_CSS}</style></head><body>${pages}</body></html>`;
 }
