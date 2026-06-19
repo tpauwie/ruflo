@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Character First — Versneld Traject / Accelerated Track</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ignite:#F05A28;
+    --ember:#D44A1A;
+    --ink:#1C2433;
+    --ink-soft:#33405A;
+    --growth:#1E8A5B;
+    --focus:#2F6FB0;
+    --canvas:#FAF7F2;
+    --mist:#F0ECE4;
+    --white:#FFFFFF;
+    --stone:#6E6A63;
+    --line:#E4DFD6;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--mist);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.display{font-family:'Archivo',system-ui,sans-serif;font-weight:900;line-height:1.05;letter-spacing:-.01em}
+  .en{color:var(--stone);font-style:italic;font-weight:500}
+
+  .page{width:210mm;min-height:297mm;margin:24px auto;background:var(--canvas);position:relative;overflow:hidden;padding:18mm;page-break-after:always;box-shadow:0 8px 28px rgba(28,36,51,.08)}
+  .page:last-child{page-break-after:auto}
+
+  .mark-bg{position:absolute;right:-60px;bottom:-60px;width:340px;height:340px;opacity:.05;pointer-events:none}
+
+  /* COVER */
+  #cover{background:var(--ink);color:var(--white);display:flex;flex-direction:column;justify-content:space-between}
+  #cover .top{display:flex;justify-content:space-between;align-items:center;font-family:'Archivo';font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#8893a6}
+  #cover .doc-tag{display:inline-block;border:1px solid #38445c;color:#9aa6bc;font-family:'Archivo';font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.4rem 1rem;border-radius:30px;margin-bottom:2rem}
+  #cover h1{font-size:3.6rem;color:var(--white)}
+  #cover h1 .o{color:var(--ignite)}
+  #cover .tagline{font-family:'Archivo';font-weight:600;font-size:1.2rem;color:#aab4c6;margin-top:1.2rem}
+  #cover .tagline .en{display:block;font-family:'Inter';font-weight:400;font-size:.9rem;color:#6f7b91;margin-top:.4rem}
+  #cover .bottom{display:flex;justify-content:space-between;align-items:flex-end;color:#6f7b91;font-size:.8rem;border-top:1px solid #2a3447;padding-top:1.4rem}
+  #cover .logo-mark{width:84px;height:84px}
+
+  /* HEADER STRIP per sheet */
+  .sheet-head{background:var(--ink);color:var(--white);border-radius:14px;padding:1.4rem 1.6rem;margin-bottom:1.6rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+  .sheet-head .tag{font-family:'Archivo';font-weight:800;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ignite);margin-bottom:.3rem}
+  .sheet-head h2{font-size:1.5rem;color:var(--white)}
+  .sheet-head h2 .en{display:block;font-family:'Inter';font-weight:500;font-size:.85rem;color:#aab4c6;font-style:normal;margin-top:.25rem}
+  .sheet-head .session-num{font-family:'Archivo';font-weight:900;font-size:2.4rem;color:rgba(240,90,40,.5)}
+
+  .block{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.5rem;margin-bottom:1rem;position:relative;z-index:1}
+  .block .lbl{font-family:'Archivo';font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ignite);margin-bottom:.5rem}
+  .block h3{font-size:1.05rem;margin-bottom:.3rem}
+  .block h3 .en{display:block;font-family:'Inter';font-weight:600;font-size:.78rem;margin-top:.15rem}
+  .block p{font-size:.87rem;color:var(--ink-soft);margin-bottom:.3rem}
+  .block p.en{font-size:.8rem;margin-bottom:0}
+  .timing{display:inline-flex;align-items:center;gap:.4rem;background:var(--mist);border-radius:30px;padding:.3rem .8rem;font-size:.76rem;font-weight:600;color:var(--ink-soft);margin-top:.5rem}
+
+  .fill-line{border-bottom:1px solid var(--line);height:1.6rem;margin:.3rem 0}
+  .fill-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+  @media print{
+    body{background:var(--white)}
+    .page{box-shadow:none;margin:0 auto;width:auto;min-height:auto}
+  }
+</style>
+</head>
+<body>
+
+<svg style="display:none">
+  <symbol id="mark" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="50" fill="#1C2433"/>
+    <path d="M10 78 L50 14 L90 78 Z" fill="#F05A28"/>
+    <path d="M50 14 L36 38 L50 31 L64 38 Z" fill="#FAF7F2"/>
+    <text x="50" y="96" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="14" fill="#fff" letter-spacing="3">CF</text>
+  </symbol>
+</svg>
+
+<!-- PAGE 1: COVER -->
+<div class="page" id="cover">
+  <div class="top">
+    <span>Character First</span>
+    <span>Coach &amp; Speler materiaal</span>
+  </div>
+  <div class="mid">
+    <div class="doc-tag">Versneld Traject &middot; Accelerated Track</div>
+    <h1>Cultuur<br>bouwen<span class="o">.</span><br>Versneld<span class="o">.</span></h1>
+    <p class="tagline">Teamcultuur opbouwen in 2 sessies in plaats van 5.
+      <span class="en">Building team culture in 2 sessions instead of 5.</span>
+    </p>
+  </div>
+  <div class="bottom">
+    <div>
+      <svg class="logo-mark"><use href="#mark"/></svg>
+    </div>
+    <div style="text-align:right">
+      <div>characterfirst.be</div>
+      <div>Coachblad + Spelersblad &middot; NL / EN</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: COACHBLAD SESSIE 1 -->
+<div class="page">
+  <svg class="mark-bg"><use href="#mark"/></svg>
+  <div class="sheet-head">
+    <div>
+      <div class="tag">Coachblad &middot; Coach sheet</div>
+      <h2>Wie ben ik, hoe ga ik om met druk
+        <span class="en">Who am I, how do I handle pressure</span>
+      </h2>
+    </div>
+    <div class="session-num">01</div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Oefening 1</div>
+    <h3>Persoonlijke Waardenkompas<span class="en">Personal Values Compass</span></h3>
+    <p>Laat spelers 5 waarden kiezen uit een lijst van 12 (loyaliteit, moed, eerlijkheid, discipline...) en rangschikken van meest naar minst belangrijk. Vraag: leef je er ook echt naar?</p>
+    <p class="en">Have players pick 5 values from a list of 12 (loyalty, courage, honesty, discipline...) and rank them from most to least important. Ask: do you actually live by this?</p>
+    <span class="timing">&#9201; 15 min</span>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Oefening 2</div>
+    <h3>Energiegever vs Energieslurper<span class="en">Energy Giver vs Energy Drainer</span></h3>
+    <p>Spelers schrijven op welke momenten in de training energie geven en welke energie kosten. Bespreek kort in duo's, daarna plenair 2-3 voorbeelden.</p>
+    <p class="en">Players write down which moments in training give them energy and which drain it. Discuss briefly in pairs, then share 2-3 examples with the group.</p>
+    <span class="timing">&#9201; 15 min</span>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Oefening 3</div>
+    <h3>Kort drukscenario<span class="en">Short pressure scenario</span></h3>
+    <p>Schets één herkenbare wedstrijdsituatie met druk (mistrap, scheidsrechtsbeslissing). Vraag: hoe reageer jij meestal? Wat zou je willen veranderen?</p>
+    <p class="en">Sketch one recognisable high-pressure match situation (a missed pass, a referee call). Ask: how do you usually react? What would you want to change?</p>
+    <span class="timing">&#9201; 15 min</span>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Afsluiting &middot; Closing</div>
+    <p>Korte kringronde: één woord dat samenvat wie jij bent als speler.</p>
+    <p class="en">Short closing circle: one word that sums up who you are as a player.</p>
+    <span class="timing">&#9201; 5 min &middot; Totaal / Total &#177; 50 min</span>
+  </div>
+</div>
+
+<!-- PAGE 3: SPELERSBLAD SESSIE 1 -->
+<div class="page">
+  <svg class="mark-bg"><use href="#mark"/></svg>
+  <div class="sheet-head">
+    <div>
+      <div class="tag">Spelersblad &middot; Player sheet</div>
+      <h2>Wie ben ik, hoe ga ik om met druk
+        <span class="en">Who am I, how do I handle pressure</span>
+      </h2>
+    </div>
+    <div class="session-num">01</div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Persoonlijke Waardenkompas &middot; Values Compass</div>
+    <p>Mijn top 5 waarden, gerangschikt: <span class="en">My top 5 values, ranked:</span></p>
+    <div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Energiegever vs Energieslurper &middot; Energy Giver vs Drainer</div>
+    <div class="fill-grid">
+      <div>
+        <p>Geeft mij energie: <span class="en">Gives me energy:</span></p>
+        <div class="fill-line"></div><div class="fill-line"></div>
+      </div>
+      <div>
+        <p>Kost mij energie: <span class="en">Drains my energy:</span></p>
+        <div class="fill-line"></div><div class="fill-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Drukscenario &middot; Pressure scenario</div>
+    <p>Hoe reageer ik meestal onder druk, en wat wil ik veranderen?</p>
+    <p class="en">How do I usually react under pressure, and what do I want to change?</p>
+    <div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Mijn woord &middot; My word</div>
+    <div class="fill-line"></div>
+  </div>
+</div>
+
+<!-- PAGE 4: COACHBLAD SESSIE 2 -->
+<div class="page">
+  <svg class="mark-bg"><use href="#mark"/></svg>
+  <div class="sheet-head">
+    <div>
+      <div class="tag">Coachblad &middot; Coach sheet</div>
+      <h2>Mijn rol, mijn stem, ons team
+        <span class="en">My role, my voice, our team</span>
+      </h2>
+    </div>
+    <div class="session-num">02</div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Oefening 1</div>
+    <h3>Rolcompass<span class="en">Role Compass</span></h3>
+    <p>Verken samen vier rollen: Leider, Motor, Denker, Stabiele Kracht. Elke speler herkent zich in één of twee rollen en deelt waarom.</p>
+    <p class="en">Explore four roles together: Leader, Engine, Thinker, Steady Force. Each player identifies with one or two roles and shares why.</p>
+    <span class="timing">&#9201; 15 min</span>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Oefening 2</div>
+    <h3>Feedbackronde Trio<span class="en">Feedback Round Trio</span></h3>
+    <p>Groepen van drie: één geeft feedback, één ontvangt, één observeert. Wissel drie keer zodat iedereen elke rol speelt.</p>
+    <p class="en">Groups of three: one gives feedback, one receives, one observes. Rotate three times so everyone plays every role.</p>
+    <span class="timing">&#9201; 20 min</span>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Oefening 3 &middot; Afsluiter</div>
+    <h3>Team Contract<span class="en">Team Contract</span></h3>
+    <p>Het team stelt samen 5 gedragsregels op die iedereen onderschrijft. Hang het zichtbaar op in de kleedkamer.</p>
+    <p class="en">The team draws up 5 shared behavioural rules together that everyone signs off on. Display it visibly in the locker room.</p>
+    <span class="timing">&#9201; 15 min &middot; Totaal / Total &#177; 50 min</span>
+  </div>
+</div>
+
+<!-- PAGE 5: SPELERSBLAD SESSIE 2 -->
+<div class="page">
+  <svg class="mark-bg"><use href="#mark"/></svg>
+  <div class="sheet-head">
+    <div>
+      <div class="tag">Spelersblad &middot; Player sheet</div>
+      <h2>Mijn rol, mijn stem, ons team
+        <span class="en">My role, my voice, our team</span>
+      </h2>
+    </div>
+    <div class="session-num">02</div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Rolcompass &middot; Role Compass</div>
+    <p>Mijn rol in het team is: <span class="en">My role in the team is:</span></p>
+    <div class="fill-line"></div>
+    <p>Omdat: <span class="en">Because:</span></p>
+    <div class="fill-line"></div><div class="fill-line"></div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Feedbackronde Trio &middot; Feedback Round Trio</div>
+    <p>Feedback die ik kreeg: <span class="en">Feedback I received:</span></p>
+    <div class="fill-line"></div><div class="fill-line"></div>
+  </div>
+
+  <div class="block">
+    <div class="lbl">Team Contract</div>
+    <p>5 gedragsregels van ons team: <span class="en">5 behavioural rules for our team:</span></p>
+    <div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div>
+  </div>
+</div>
+
+</body>
+</html>
