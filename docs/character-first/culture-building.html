@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character First: Cultuur Bouwen, verkort traject</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f05a28;
+      --ink: #1C2433;
+      --canvas: #FAF7F2;
+      --line: #E4DFD6;
+      --stone: #6E6A63;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #999;
+      --gray-600: #555;
+      --gray-800: #222;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f0f0f0;
+      color: var(--ink);
+    }
+    h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
+
+    /* SCREEN: top bar */
+    .screen-bar {
+      background: var(--ink);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .screen-bar h1 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .screen-bar span { color: var(--orange); }
+
+    .print-btn {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+
+    .screen-bar nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .screen-bar nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #333;
+      transition: all 0.15s;
+    }
+
+    .screen-bar nav a:hover { color: white; border-color: var(--orange); }
+
+    /* PAGE WRAPPER */
+    .pages {
+      max-width: 870px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 0 1rem 4rem;
+    }
+
+    /* SINGLE A4 PAGE */
+    .page {
+      background: white;
+      width: 100%;
+      min-height: 1100px;
+      padding: 48px 52px;
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid var(--orange);
+    }
+
+    .page-header-left h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .page-header-left .month-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .page-header-right {
+      text-align: right;
+    }
+
+    .page-type-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-player {
+      background: #fff3ee;
+      color: var(--orange);
+      border: 1.5px solid var(--orange);
+    }
+
+    .badge-coach {
+      background: var(--ink);
+      color: white;
+    }
+
+    .logo-small {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-top: 6px;
+    }
+
+    .logo-small span { color: var(--orange); }
+
+    /* INTRO BOX */
+    .intro-box {
+      background: var(--gray-100);
+      border-left: 4px solid var(--orange);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 22px;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+      margin-top: 22px;
+    }
+
+    /* EXERCISE BLOCK */
+    .exercise-block {
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .exercise-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exercise-number {
+      width: 22px;
+      height: 22px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .exercise-instruction {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
+    /* WRITE LINES */
+    .write-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .write-line {
+      height: 28px;
+      border-bottom: 1.5px solid var(--gray-200);
+      width: 100%;
+    }
+
+    .write-line-sm {
+      height: 22px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    /* WRITE BOX */
+    .write-box {
+      border: 1.5px dashed var(--gray-200);
+      border-radius: 6px;
+      height: 60px;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .write-box-lg {
+      height: 90px;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.5;
+    }
+
+    .checkbox {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--gray-400);
+      border-radius: 3px;
+      margin-top: 2px;
+    }
+
+    /* RATING SCALE */
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    .rating-label {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      min-width: 100px;
+    }
+
+    .rating-circles {
+      display: flex;
+      gap: 5px;
+    }
+
+    .rc {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid var(--gray-400);
+      border-radius: 50%;
+      font-size: 0.65rem;
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* QUOTE */
+    .quote-block {
+      border-left: 4px solid var(--orange);
+      padding: 10px 14px;
+      background: #fff8f5;
+      border-radius: 0 8px 8px 0;
+      margin-top: 18px;
+    }
+
+    .quote-block p {
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .quote-block cite {
+      font-size: 0.72rem;
+      color: var(--orange);
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    /* PAGE FOOTER */
+    .page-footer {
+      position: absolute;
+      bottom: 28px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gray-200);
+      padding-top: 8px;
+    }
+
+    .page-footer span {
+      font-size: 0.68rem;
+      color: var(--gray-400);
+    }
+
+    .page-footer .credit {
+      color: var(--gray-400);
+    }
+
+    /* COACH PAGE SPECIFICS */
+    .coach-page .page-header {
+      border-bottom-color: var(--ink);
+    }
+
+    .coach-section {
+      margin-bottom: 20px;
+    }
+
+    .coach-section h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gray-100);
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .coach-step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--ink);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coach-step p {
+      font-size: 0.83rem;
+      color: var(--gray-800);
+      line-height: 1.55;
+    }
+
+    .coach-step p strong { color: var(--ink); }
+
+    .tip-box {
+      background: #fff8f5;
+      border: 1.5px solid #ffd0bc;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+
+    .tip-box p {
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.55;
+    }
+
+    .tip-box p strong { color: var(--orange); }
+
+    .warning-box {
+      background: #fff9e6;
+      border: 1.5px solid #f0d060;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+
+    .warning-box p {
+      font-size: 0.82rem;
+      color: #7a6000;
+      line-height: 1.55;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .science-box {
+      background: #f0f0f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+    }
+
+    .science-box p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+
+    .science-box strong { color: var(--ink); font-size: 0.78rem; }
+
+    .evidence-tier {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    .tier-1 { background: #1a6b3a; color: white; }
+    .tier-2 { background: #2d7fc1; color: white; }
+    .tier-3 { background: #7a5fc1; color: white; }
+
+    .goal-box {
+      background: #fff8f5;
+      border: 2px solid var(--orange);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .goal-box .goal-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .goal-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .goal-box ul li {
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .goal-box ul li::before {
+      content: "▸";
+      color: var(--orange);
+      position: absolute;
+      left: 0;
+      font-size: 0.7rem;
+      top: 2px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .screen-bar { padding: 0.75rem 1rem; }
+      .screen-bar h1 { font-size: 0.9rem; }
+      .pages { padding: 0 0.5rem 2rem; margin: 1rem auto; }
+      .page { padding: 28px 20px; min-height: auto; }
+      .two-col { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; gap: 8px; }
+      .page-header-right { text-align: left; }
+      .print-btn { min-height: 44px; }
+    }
+
+    /* PRINT */
+    @media print {
+      body { background: white; }
+      .screen-bar { display: none; }
+      .pages { margin: 0; padding: 0; max-width: 100%; gap: 0; }
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 32px 40px;
+        min-height: auto;
+        width: 210mm;
+        min-height: 297mm;
+      }
+    }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='en'){
+      window.location.replace('en/culture-building.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','en');
+      });
+    });
+  })();
+</script>
+<script src="cf-auth.js"></script>
+</head>
+<body>
+
+
+
+<div class="screen-bar">
+  <div>
+    <h1>Cultuur<span>Bouwen</span></h1>
+    <div style="font-size:0.75rem;color:#aaa;margin-top:3px">4 pagina's: 2 spelerswerkbladen + 2 coachgidsen</div>
+  </div>
+  <nav>
+    <a href="#s1">S1</a><a href="#s1c">S1 Coach</a>
+    <a href="#s2">S2</a><a href="#s2c">S2 Coach</a>
+    <a href="en/culture-building.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">EN</a>
+  </nav>
+  <button class="print-btn" onclick="window.print()">&#128438; Print alle werkbladen</button>
+</div>
+
+<div class="pages">
+
+  <!-- ========== SESSIE 1 SPELER ========== -->
+  <div class="page" id="s1">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Sessie 1: Spelerswerkblad</div>
+        <h2>Zelfkennis &amp; Omgaan met Druk</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Sessie 1</div>
+      <ul>
+        <li>Je kan jouw belangrijkste kernwaarden benoemen als persoon en ploegmaat</li>
+        <li>Je herkent wat je energie geeft en wat energie kost in een teamsetting</li>
+        <li>Je kan een spannende situatie relativeren door worst case, best case en meest waarschijnlijk te onderscheiden</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">
+      Wie ben jij als speler en als persoon, en hoe ga je om met druk? Dit werkblad helpt je je eigen waarden, energie en reacties op spanning beter te begrijpen. Neem de tijd en wees eerlijk.
+    </div>
+
+    <div class="section-title">Oefening 1: Persoonlijk waardenkompas</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Persoonlijk Waardenkompas</div>
+      <p class="exercise-instruction">Rangschik onderstaande waarden van 1 (meest belangrijk) tot 5 (minder belangrijk) voor jou als speler en als persoon.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Loyaliteit
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Eerlijkheid
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Moed
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Doorzetting
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Respect
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Teamgeest
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-top:12px">Welke waarde leef jij het minst na? Wat wil je veranderen?</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="section-title">Oefening 2: Energiegever vs energieslurper</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Energiegever vs Energieslurper</div>
+      <p class="exercise-instruction">Schrijf drie dingen op die je energie geven tijdens training of wedstrijd, en drie dingen die je energie kosten.</p>
+      <div class="two-col">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin-bottom:6px">ENERGIEGEVERS &#9654;</div>
+          <div class="write-line"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#999;margin-bottom:6px">ENERGIESLURPERS &#9660;</div>
+          <div class="write-line"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 3: Worst case best case</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Worst Case Best Case</div>
+      <p class="exercise-instruction">Denk aan een aankomende situatie die je zenuwachtig maakt. Schrijf de drie scenario's.</p>
+      <div class="two-col">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#c0392b;margin-bottom:5px">Worst Case</div>
+          <div class="write-box"></div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#27ae60;margin-bottom:5px">Best Case</div>
+          <div class="write-box"></div>
+        </div>
+      </div>
+      <div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin:10px 0 5px">Meest Waarschijnlijk</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"The most important thing is to try and inspire people so that they can be great in whatever they want to do."</p>
+      <cite>Kobe Bryant, 5x NBA Champion, Los Angeles Lakers</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First, Sessie 1: Zelfkennis &amp; Omgaan met Druk</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== SESSIE 1 COACH ========== -->
+  <div class="page coach-page" id="s1c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Sessie 1: Coachgids</div>
+        <h2>Zelfkennis &amp; Omgaan met Druk</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis: evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Ntoumanis et al. (2021): meta-analyse van 184 studies toont aan dat autonomie en zelfkennis binnen Self Determination Theory de sterkste voorspellers zijn van sportmotivatie en welzijn bij jonge atleten. <em>Psychology of Sport &amp; Exercise.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-analyse</span> Zuber &amp; Conzelmann (2014): analyse van 47 studies bevestigt dat intrinsieke motivatie en zelfconcept direct samenhangen met sportprestatie bij jongeren. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinale studie</span> Deci &amp; Ryan (1985, herzien 2017): Self Determination Theory: autonomie, competentie en verbondenheid als universele basisbehoeften voor optimale ontwikkeling en welzijn in sport. Aanvullend toont Hanton et al. (2009) dat hoe een speler de eigen stressrespons interpreteert (faciliterend of debiliterend) belangrijker is dan de intensiteit ervan.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding per oefening</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p><strong>Waardenkompas:</strong> Na het invullen vraag je vrijwilligers om hun topwaarde te delen. Maak een klassement op het bord. Vraag: "Als dit onze teamwaarden zijn, hoe zien we dat terug in gedrag?"</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p><strong>Energiegever vs Energieslurper:</strong> Laat spelers dit individueel invullen. Bespreek daarna in de groep enkel de energiegevers. Creëer bewustzijn: "Hoe kunnen we als team meer energiegevers inbouwen?" De energieslurpers bespreek je individueel of in vertrouwen.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p><strong>Worst Case Best Case:</strong> Dit kan in koppels. Koppel A schrijft, Koppel B luistert. Daarna wissel je. De coach stelt één vraag: "Is jouw Worst Case al ooit echt gebeurd?" Bijna altijd is het antwoord nee. Dit relativeren is het doel.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Vul zelf ook het werkblad in en deel jouw antwoorden. Kwetsbaarheid van de coach verlaagt de drempel voor spelers om eerlijk te zijn.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Normaliseer stress actief. Zeg letterlijk: "Elke prof voelt dit. Jij ook. Het is geen zwakte." Jonge spelers denken vaak dat ze de enige zijn die zenuwachtig zijn.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Vermijd: "Wie wil zijn antwoorden delen?" Direct iemand aanwijzen creëert onveiligheid. Bouw vertrouwen op door eerst zelf te delen en dan vrijwilligers te vragen. Pas ook op voor druk opvoeren door te zeggen "Je moet dit kunnen", dat vergroot precies de stress die je probeert te reduceren.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Introductie thema en uitleg oefeningen: 5 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen Waardenkompas: 10 minuten</li>
+        <li><div class="checkbox"></div>Individueel invullen Energiegever vs Energieslurper: 8 minuten</li>
+        <li><div class="checkbox"></div>Worst Case Best Case in koppels: 12 minuten</li>
+        <li><div class="checkbox"></div>Groepsbespreking en afsluiting met quote: 10 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First: Coachgids Sessie 1</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>VERTROUWELIJK: enkel voor coaches</span>
+    </div>
+  </div>
+
+  <!-- ========== SESSIE 2 SPELER ========== -->
+  <div class="page" id="s2">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Sessie 2: Spelerswerkblad</div>
+        <h2>Mijn Rol &amp; Team Eerst</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Speler</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Doelstelling Sessie 2</div>
+      <ul>
+        <li>Je kan jouw huidige rol(len) in het team benoemen met concrete voorbeelden</li>
+        <li>Je geeft en ontvangt constructieve feedback zonder beschuldiging of defensiviteit op te wekken</li>
+        <li>Je sluit mee een gezamenlijk team contract af dat het team begeleidt</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">Je hebt niet één rol in een team, en de stap van "ik" naar "wij" is een van de moeilijkste in de sport. Dit werkblad helpt je ontdekken welke rol jij vervult, hoe je feedback geeft en ontvangt, en wat jij persoonlijk wil beloven aan je team.</div>
+
+    <div class="section-title">Oefening 1: Rolcompass</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Rolcompass</div>
+      <p class="exercise-instruction">Geef jezelf een score van 0 tot 10 voor elk van de vier rollen hieronder. Kleur de balken in.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:10px">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Leider</strong><span style="color:var(--gray-400);font-size:0.75rem">Geeft richting, spreekt de groep toe</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Motor</strong><span style="color:var(--gray-400);font-size:0.75rem">Geeft energie, trekt het team mee</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Denker</strong><span style="color:var(--gray-400);font-size:0.75rem">Analyseert, stelt vragen, zoekt oplossingen</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Stabiele Kracht</strong><span style="color:var(--gray-400);font-size:0.75rem">Betrouwbaar, consistent, steun voor anderen</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Oefening 2: Feedbackronde trio</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Na de Feedbackronde Trio</div>
+      <p class="exercise-instruction">In groepjes van drie: Rol A geeft feedback, Rol B ontvangt, Rol C observeert toon en woordkeuze. Wat was de beste feedback die je kreeg? Wat ga je er concreet mee doen?</p>
+      <div class="write-box write-box-lg"></div>
+    </div>
+
+    <div class="section-title">Oefening 3: Team contract</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Mijn Bijdrage aan het Team Contract</div>
+      <p class="exercise-instruction">Schrijf drie gedragsregels op die jij persoonlijk wil naleven, niet over winnen, maar over hoe je met je teamgenoten omgaat.</p>
+      <div class="write-lines" style="gap:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">Ik beloof om</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:20px;align-items:flex-start">
+        <div style="flex:1">
+          <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:6px">Handtekening</div>
+          <div class="write-line"></div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:6px">Datum</div>
+          <div class="write-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"The strength of the team is each individual member. The strength of each member is the team. I never tried to be the best player. I tried to be the player we needed."</p>
+      <cite>Phil Jackson, 11x NBA Championship coach</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First, Sessie 2: Mijn Rol &amp; Team Eerst</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== SESSIE 2 COACH ========== -->
+  <div class="page coach-page" id="s2c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Sessie 2: Coachgids</div>
+        <h2>Mijn Rol &amp; Team Eerst</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Wetenschappelijke basis: evidence piramide</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematische Review</span> Bruner et al. (2021): meta-analyse over rolhelderheid en cohesie in jeugdteams: rolhelderheid is de sterkste voorspeller van zowel taakcohesie als sociale cohesie in sportteams, met effect size d=0.62. <em>Journal of Sport Sciences.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinale studie</span> Eys et al. (2015): meetseizoenstudie bij 248 basketbalspelers: rolambiguïteit is negatief gelinkt aan zelfvertrouwen en positief aan angst. <em>Sport, Exercise &amp; Performance Psychology.</em> Aanvullend toont Holt et al. (2020) dat teams die 8 weken Geweldloze Communicatie trainden significant hogere sociale cohesie en minder conflicten vertoonden.</p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretische studie</span> Carron &amp; Eys (2012): Teamcohesiemodel: rolacceptatie en rolprestatie als twee aparte dimensies. Atleten die actief investeren in hun rol presteren significant beter. Ook Tod et al. (2011) bevestigt dat communicatietraining in sportteams cohesie verbetert.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Begeleiding per oefening</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p><strong>Rolcompass:</strong> Na het invullen vraag je vrijwilligers om hun hoogste rolscore te delen. Benadruk dat dit geen ranglijst is: een Stabiele Kracht is net zo waardevol als een Leider.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p><strong>Feedbackronde Trio:</strong> Verdeel het team in groepen van drie. Rol A: gever, Rol B: ontvanger, Rol C: observator. De gever geeft feedback over iets concreets, de observator let enkel op toon en woordkeuze, niet op inhoud. Na elke ronde (3 minuten) geeft de observator 30 seconden terug: "Je zei... Dat klonk als..." Wissel daarna van rol.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p><strong>Team Contract:</strong> Laat spelers eerst individueel drie persoonlijke beloftes schrijven (3 minuten). Bespreek daarna in groepjes van drie welke beloftes overlappen. Het team stemt over de gedragsregels die in het gezamenlijk Team Contract komen. Iedereen tekent.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips voor dit thema</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Gebruik rollen in je dagelijkse coaching taal. "Tom, jij bent onze Motor vandaag." Dit versterkt identiteit en geeft richting zonder hiërarchie.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Hang het Team Contract op in de kleedkamer of stuur het digitaal in de groepschat. Plan een revisiemoment in: contracts die nooit worden geëvalueerd zijn waardeloos.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Opgelet: de Feedbackronde kan intens worden als er onderlinge spanning in het team is. Scan de groepsdynamiek voor je begint. Bij gespannen sfeer: start met positieve feedback voor je overschakelt naar groeipunten. Let ook op spelers die zichzelf laag scoren op alle rollen, plan een individueel gesprek.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Tijdsindicatie</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Introductie vier rollen en invullen Rolcompass: 10 minuten</li>
+        <li><div class="checkbox"></div>Feedbackronde Trio: 15 minuten</li>
+        <li><div class="checkbox"></div>Individueel Team Contract schrijven: 5 minuten</li>
+        <li><div class="checkbox"></div>Groepsproces naar gezamenlijk contract en ondertekening: 15 minuten</li>
+        <li><div class="checkbox"></div>Afsluiting met quote: 5 minuten</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First: Coachgids Sessie 2</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>VERTROUWELIJK: enkel voor coaches</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

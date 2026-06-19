@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character First: Culture Building, accelerated track</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f05a28;
+      --ink: #1C2433;
+      --canvas: #FAF7F2;
+      --line: #E4DFD6;
+      --stone: #6E6A63;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #999;
+      --gray-600: #555;
+      --gray-800: #222;
+      --mist: #F0ECE4; --growth: #1E8A5B; --focus: #2F6FB0;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f0f0f0;
+      color: var(--ink);
+    }
+    h1,h2,h3,h4 { font-family: 'Archivo', system-ui, sans-serif; }
+
+    /* SCREEN: top bar */
+    .screen-bar {
+      background: var(--ink);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .screen-bar h1 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .screen-bar span { color: var(--orange); }
+
+    .print-btn {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+
+    .screen-bar nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .screen-bar nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #333;
+      transition: all 0.15s;
+    }
+
+    .screen-bar nav a:hover { color: white; border-color: var(--orange); }
+
+    /* PAGE WRAPPER */
+    .pages {
+      max-width: 870px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 0 1rem 4rem;
+    }
+
+    /* SINGLE A4 PAGE */
+    .page {
+      background: white;
+      width: 100%;
+      min-height: 1100px;
+      padding: 48px 52px;
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid var(--orange);
+    }
+
+    .page-header-left h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .page-header-left .month-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .page-header-right {
+      text-align: right;
+    }
+
+    .page-type-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-player {
+      background: #fff3ee;
+      color: var(--orange);
+      border: 1.5px solid var(--orange);
+    }
+
+    .badge-coach {
+      background: var(--ink);
+      color: white;
+    }
+
+    .logo-small {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-top: 6px;
+    }
+
+    .logo-small span { color: var(--orange); }
+
+    /* INTRO BOX */
+    .intro-box {
+      background: var(--gray-100);
+      border-left: 4px solid var(--orange);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 22px;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+      margin-top: 22px;
+    }
+
+    /* EXERCISE BLOCK */
+    .exercise-block {
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .exercise-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exercise-number {
+      width: 22px;
+      height: 22px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .exercise-instruction {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
+    /* WRITE LINES */
+    .write-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .write-line {
+      height: 28px;
+      border-bottom: 1.5px solid var(--gray-200);
+      width: 100%;
+    }
+
+    .write-line-sm {
+      height: 22px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    /* WRITE BOX */
+    .write-box {
+      border: 1.5px dashed var(--gray-200);
+      border-radius: 6px;
+      height: 60px;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .write-box-lg {
+      height: 90px;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.5;
+    }
+
+    .checkbox {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--gray-400);
+      border-radius: 3px;
+      margin-top: 2px;
+    }
+
+    /* RATING SCALE */
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    .rating-label {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      min-width: 100px;
+    }
+
+    .rating-circles {
+      display: flex;
+      gap: 5px;
+    }
+
+    .rc {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid var(--gray-400);
+      border-radius: 50%;
+      font-size: 0.65rem;
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* QUOTE */
+    .quote-block {
+      border-left: 4px solid var(--orange);
+      padding: 10px 14px;
+      background: #fff8f5;
+      border-radius: 0 8px 8px 0;
+      margin-top: 18px;
+    }
+
+    .quote-block p {
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .quote-block cite {
+      font-size: 0.72rem;
+      color: var(--orange);
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    /* PAGE FOOTER */
+    .page-footer {
+      position: absolute;
+      bottom: 28px;
+      left: 52px;
+      right: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gray-200);
+      padding-top: 8px;
+    }
+
+    .page-footer span {
+      font-size: 0.68rem;
+      color: var(--gray-400);
+    }
+
+    .page-footer .credit {
+      color: var(--gray-400);
+    }
+
+    /* COACH PAGE SPECIFICS */
+    .coach-page .page-header {
+      border-bottom-color: var(--ink);
+    }
+
+    .coach-section {
+      margin-bottom: 20px;
+    }
+
+    .coach-section h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gray-100);
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .coach-step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--ink);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coach-step p {
+      font-size: 0.83rem;
+      color: var(--gray-800);
+      line-height: 1.55;
+    }
+
+    .coach-step p strong { color: var(--ink); }
+
+    .tip-box {
+      background: #fff8f5;
+      border: 1.5px solid #ffd0bc;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+
+    .tip-box p {
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      line-height: 1.55;
+    }
+
+    .tip-box p strong { color: var(--orange); }
+
+    .warning-box {
+      background: #fff9e6;
+      border: 1.5px solid #f0d060;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+
+    .warning-box p {
+      font-size: 0.82rem;
+      color: #7a6000;
+      line-height: 1.55;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .science-box {
+      background: #f0f0f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+    }
+
+    .science-box p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+
+    .science-box strong { color: var(--ink); font-size: 0.78rem; }
+
+    .evidence-tier {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    .tier-1 { background: #1a6b3a; color: white; }
+    .tier-2 { background: #2d7fc1; color: white; }
+    .tier-3 { background: #7a5fc1; color: white; }
+
+    .goal-box {
+      background: #fff8f5;
+      border: 2px solid var(--orange);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .goal-box .goal-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .goal-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .goal-box ul li {
+      font-size: 0.82rem;
+      color: var(--gray-800);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .goal-box ul li::before {
+      content: "▸";
+      color: var(--orange);
+      position: absolute;
+      left: 0;
+      font-size: 0.7rem;
+      top: 2px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .screen-bar { padding: 0.75rem 1rem; }
+      .screen-bar h1 { font-size: 0.9rem; }
+      .pages { padding: 0 0.5rem 2rem; margin: 1rem auto; }
+      .page { padding: 28px 20px; min-height: auto; }
+      .two-col { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; gap: 8px; }
+      .page-header-right { text-align: left; }
+      .print-btn { min-height: 44px; }
+    }
+
+    /* PRINT */
+    @media print {
+      body { background: white; }
+      .screen-bar { display: none; }
+      .pages { margin: 0; padding: 0; max-width: 100%; gap: 0; }
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 32px 40px;
+        min-height: auto;
+        width: 210mm;
+        min-height: 297mm;
+      }
+    }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>/* cf_lang_persist */
+  (function(){
+    if(localStorage.getItem('cf_lang')==='nl'){
+      window.location.replace('../culture-building.html');
+    }
+    document.querySelectorAll('.lang-switch').forEach(function(a){
+      a.addEventListener('click',function(){
+        localStorage.setItem('cf_lang','nl');
+      });
+    });
+  })();
+</script>
+<script src="../cf-auth.js"></script>
+</head>
+<body>
+
+
+
+<div class="screen-bar">
+  <div>
+    <h1>Culture<span>Building</span></h1>
+    <div style="font-size:0.75rem;color:#aaa;margin-top:3px">4 pages: 2 player worksheets + 2 coach guides</div>
+  </div>
+  <nav>
+    <a href="#s1">S1</a><a href="#s1c">S1 Coach</a>
+    <a href="#s2">S2</a><a href="#s2c">S2 Coach</a>
+    <a href="../culture-building.html" class="lang-switch" style="color:#666;font-size:.8rem;font-weight:700;text-decoration:none;border:1px solid #333;padding:.3rem .7rem;border-radius:4px;">NL</a>
+  </nav>
+  <button class="print-btn" onclick="window.print()">&#128438; Print all worksheets</button>
+</div>
+
+<div class="pages">
+
+  <!-- ========== SESSION 1 PLAYER ========== -->
+  <div class="page" id="s1">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Session 1: Player Worksheet</div>
+        <h2>Self-Knowledge &amp; Handling Pressure</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Player</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Session 1 Objectives</div>
+      <ul>
+        <li>You can name your most important core values as a person and as a teammate</li>
+        <li>You recognize what gives you energy and what costs you energy in a team setting</li>
+        <li>You can put a tense situation into perspective by distinguishing worst case, best case, and most likely</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">
+      Who are you as a player and as a person, and how do you handle pressure? This worksheet helps you better understand your own values, energy, and reactions to stress. Take your time and be honest.
+    </div>
+
+    <div class="section-title">Exercise 1: Personal Values Compass</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Personal Values Compass</div>
+      <p class="exercise-instruction">Rank the values below from 1 (most important) to 5 (less important) for you as a player and as a person.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Loyalty
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Honesty
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Courage
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Perseverance
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Respect
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem">
+          <div class="write-line" style="width:30px;height:22px"></div> Team Spirit
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--gray-400);margin-top:12px">Which value do you live up to the least? What do you want to change?</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="section-title">Exercise 2: Energy Giver vs. Energy Drainer</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>Energy Giver vs. Energy Drainer</div>
+      <p class="exercise-instruction">Write down three things that give you energy during training or a game, and three things that cost you energy.</p>
+      <div class="two-col">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin-bottom:6px">ENERGY GIVERS &#9654;</div>
+          <div class="write-line"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#999;margin-bottom:6px">ENERGY DRAINERS &#9660;</div>
+          <div class="write-line"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+          <div class="write-line" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Exercise 3: Worst Case Best Case</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>Worst Case Best Case</div>
+      <p class="exercise-instruction">Think of an upcoming situation that makes you nervous. Write down the three scenarios.</p>
+      <div class="two-col">
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#c0392b;margin-bottom:5px">Worst Case</div>
+          <div class="write-box"></div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;color:#27ae60;margin-bottom:5px">Best Case</div>
+          <div class="write-box"></div>
+        </div>
+      </div>
+      <div style="font-size:0.75rem;font-weight:700;color:var(--orange);margin:10px 0 5px">Most Likely</div>
+      <div class="write-box"></div>
+    </div>
+
+    <div class="quote-block">
+      <p>"The most important thing is to try and inspire people so that they can be great in whatever they want to do."</p>
+      <cite>Kobe Bryant, 5x NBA Champion, Los Angeles Lakers</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First, Session 1: Self-Knowledge &amp; Handling Pressure</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== SESSION 1 COACH ========== -->
+  <div class="page coach-page" id="s1c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Session 1: Coach Guide</div>
+        <h2>Self-Knowledge &amp; Handling Pressure</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Scientific Foundation: Evidence Pyramid</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Ntoumanis et al. (2021): a meta-analysis of 184 studies shows that autonomy and self-knowledge within Self Determination Theory are the strongest predictors of sport motivation and well-being in young athletes. <em>Psychology of Sport &amp; Exercise.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Meta-Analysis</span> Zuber &amp; Conzelmann (2014): an analysis of 47 studies confirms that intrinsic motivation and self-concept are directly linked to sport performance in youth. <em>International Review of Sport &amp; Exercise Psychology.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Longitudinal Study</span> Deci &amp; Ryan (1985, revised 2017): Self Determination Theory: autonomy, competence, and relatedness as universal basic needs for optimal development and well-being in sport. In addition, Hanton et al. (2009) shows that how a player interprets their own stress response (facilitative or debilitative) matters more than its intensity.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Guidance per exercise</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p><strong>Values Compass:</strong> After filling it in, ask volunteers to share their top value. Build a ranking on the board. Ask: "If these are our team values, how do we see that reflected in behavior?"</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p><strong>Energy Giver vs. Energy Drainer:</strong> Have players fill this in individually. Then discuss only the energy givers as a group. Build awareness: "How can we build more energy givers into our team?" Discuss the energy drainers individually or in confidence.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p><strong>Worst Case Best Case:</strong> This can be done in pairs. Pair A writes, Pair B listens. Then switch. The coach asks one question: "Has your Worst Case ever actually happened?" The answer is almost always no. This reframing is the goal.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips for this theme</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Fill in the worksheet yourself too and share your answers. A coach's vulnerability lowers the threshold for players to be honest.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Actively normalize stress. Say it literally: "Every pro feels this. So do you. It's not a weakness." Young players often think they're the only ones who feel nervous.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Avoid: "Who wants to share their answers?" Directly calling on someone creates a sense of insecurity. Build trust by sharing first yourself, then asking for volunteers. Also be careful not to add pressure by saying "You need to be able to do this" — that only increases the very stress you're trying to reduce.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Time Indication</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Introduce the theme and explain the exercises: 5 minutes</li>
+        <li><div class="checkbox"></div>Individually complete the Values Compass: 10 minutes</li>
+        <li><div class="checkbox"></div>Individually complete Energy Giver vs. Energy Drainer: 8 minutes</li>
+        <li><div class="checkbox"></div>Worst Case Best Case in pairs: 12 minutes</li>
+        <li><div class="checkbox"></div>Group discussion and closing with quote: 10 minutes</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First: Coach Guide Session 1</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>CONFIDENTIAL, For coaches only</span>
+    </div>
+  </div>
+
+  <!-- ========== SESSION 2 PLAYER ========== -->
+  <div class="page" id="s2">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Session 2: Player Worksheet</div>
+        <h2>My Role &amp; Team First</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-player">Player</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="goal-box">
+      <div class="goal-label">Session 2 Objectives</div>
+      <ul>
+        <li>You can name your current role(s) on the team with concrete examples</li>
+        <li>You give and receive constructive feedback without triggering blame or defensiveness</li>
+        <li>You help close a shared team contract that guides the team</li>
+      </ul>
+    </div>
+
+    <div class="intro-box">You don't have just one role on a team, and the step from "I" to "we" is one of the hardest in sport. This worksheet helps you discover which role you fulfill, how you give and receive feedback, and what you personally want to promise to your team.</div>
+
+    <div class="section-title">Exercise 1: Role Compass</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">1</div>Role Compass</div>
+      <p class="exercise-instruction">Give yourself a score from 0 to 10 for each of the four roles below. Color in the bars.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:10px">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Leader</strong><span style="color:var(--gray-400);font-size:0.75rem">Gives direction, speaks to the group</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Engine</strong><span style="color:var(--gray-400);font-size:0.75rem">Brings energy, drives the team forward</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Thinker</strong><span style="color:var(--gray-400);font-size:0.75rem">Analyzes, asks questions, looks for solutions</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:4px">
+            <strong>Steady Force</strong><span style="color:var(--gray-400);font-size:0.75rem">Reliable, consistent, support for others</span>
+          </div>
+          <div style="height:14px;background:var(--gray-200);border-radius:4px;position:relative">
+            <div style="position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:0.65rem;color:var(--gray-400)">Score: ___/10</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Exercise 2: Feedback Round Trio</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">2</div>After the Feedback Round Trio</div>
+      <p class="exercise-instruction">In groups of three: Role A gives feedback, Role B receives, Role C observes tone and word choice. What was the best feedback you received? What will you concretely do with it?</p>
+      <div class="write-box write-box-lg"></div>
+    </div>
+
+    <div class="section-title">Exercise 3: Team Contract</div>
+    <div class="exercise-block">
+      <div class="exercise-title"><div class="exercise-number">3</div>My Contribution to the Team Contract</div>
+      <p class="exercise-instruction">Write down three behavioral rules you personally want to live by — not about winning, but about how you treat your teammates.</p>
+      <div class="write-lines" style="gap:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">I promise to</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">I promise to</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:0.75rem;font-weight:700;color:var(--orange);white-space:nowrap">I promise to</span>
+          <div class="write-line" style="flex:1"></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:20px;align-items:flex-start">
+        <div style="flex:1">
+          <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:6px">Signature</div>
+          <div class="write-line"></div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:6px">Date</div>
+          <div class="write-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"The strength of the team is each individual member. The strength of each member is the team. I never tried to be the best player. I tried to be the player we needed."</p>
+      <cite>Phil Jackson, 11x NBA Championship coach</cite>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First, Session 2: My Role &amp; Team First</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>characterfirstbb@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- ========== SESSION 2 COACH ========== -->
+  <div class="page coach-page" id="s2c">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="month-label">Session 2: Coach Guide</div>
+        <h2>My Role &amp; Team First</h2>
+      </div>
+      <div class="page-header-right">
+        <span class="page-type-badge badge-coach">Coach</span>
+        <div class="logo-small">Character <span>First</span></div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <strong>Scientific Foundation: Evidence Pyramid</strong>
+      <p style="margin-top:6px"><span class="evidence-tier tier-1">Systematic Review</span> Bruner et al. (2021): a meta-analysis on role clarity and cohesion in youth teams: role clarity is the strongest predictor of both task cohesion and social cohesion in sport teams, with an effect size of d=0.62. <em>Journal of Sport Sciences.</em></p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-2">Longitudinal Study</span> Eys et al. (2015): a season-long study of 248 basketball players: role ambiguity is negatively linked to self-confidence and positively linked to anxiety. <em>Sport, Exercise &amp; Performance Psychology.</em> In addition, Holt et al. (2020) shows that teams trained in Nonviolent Communication for 8 weeks showed significantly higher social cohesion and fewer conflicts.</p>
+      <p style="margin-top:6px"><span class="evidence-tier tier-3">Theoretical Study</span> Carron &amp; Eys (2012): Team Cohesion Model: role acceptance and role performance as two separate dimensions. Athletes who actively invest in their role perform significantly better. Tod et al. (2011) also confirms that communication training in sport teams improves cohesion.</p>
+    </div>
+
+    <div class="coach-section">
+      <h3>Guidance per exercise</h3>
+      <div class="coach-step">
+        <div class="step-num">1</div>
+        <p><strong>Role Compass:</strong> After filling it in, ask volunteers to share their highest role score. Emphasize that this is not a ranking: a Steady Force is just as valuable as a Leader.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">2</div>
+        <p><strong>Feedback Round Trio:</strong> Divide the team into groups of three. Role A: giver, Role B: receiver, Role C: observer. The giver gives feedback about something concrete, the observer pays attention only to tone and word choice, not content. After each round (3 minutes) the observer gives 30 seconds of feedback: "You said... That sounded like..." Then switch roles.</p>
+      </div>
+      <div class="coach-step">
+        <div class="step-num">3</div>
+        <p><strong>Team Contract:</strong> First let players individually write three personal promises (3 minutes). Then discuss in groups of three which promises overlap. The team votes on the behavioral rules that go into the shared Team Contract. Everyone signs.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Coach tips for this theme</h3>
+      <div class="tip-box">
+        <p><strong>Tip 1:</strong> Use roles in your daily coaching language. "Tom, you're our Engine today." This reinforces identity and gives direction without hierarchy.</p>
+      </div>
+      <div class="tip-box">
+        <p><strong>Tip 2:</strong> Hang the Team Contract in the locker room or send it digitally in the group chat. Plan a review moment: contracts that are never evaluated are worthless.</p>
+      </div>
+      <div class="warning-box">
+        <p>&#9888; Note: the Feedback Round can become intense if there is tension within the team. Scan the group dynamic before you start. In a tense atmosphere: start with positive feedback before moving to growth points. Also watch for players who score themselves low on all roles, and plan an individual conversation.</p>
+      </div>
+    </div>
+
+    <div class="coach-section">
+      <h3>Time Indication</h3>
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Introduce the four roles and complete the Role Compass: 10 minutes</li>
+        <li><div class="checkbox"></div>Feedback Round Trio: 15 minutes</li>
+        <li><div class="checkbox"></div>Individually write the Team Contract: 5 minutes</li>
+        <li><div class="checkbox"></div>Group process toward a shared contract and signing: 15 minutes</li>
+        <li><div class="checkbox"></div>Closing with quote: 5 minutes</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <span>Character First: Coach Guide Session 2</span>
+      <span class="credit">Created by Tom Pauwaert</span>
+      <span>CONFIDENTIAL, For coaches only</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
