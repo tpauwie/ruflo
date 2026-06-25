@@ -120,9 +120,11 @@ body { background: #fff; font-family: Arial, sans-serif; }
 .program-title { text-align: right; }
 .program-title .pt-main { font-family: Arial Black, Arial, sans-serif; font-size: 17px; font-weight: 900; color: var(--orange); line-height: 1.05; }
 .program-title .pt-sub { font-size: 10px; color: var(--stone); margin-top: 3px; }
+.p1-body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; min-height: 0; }
 .intro-block { flex-shrink: 0; }
 .intro-block .section-label { font-size: 11px; margin-bottom: 6px; }
 .intro-block p { font-size: 12px; color: var(--navy); line-height: 1.62; margin-top: 4px; }
+.intro-block strong { font-weight: 900; color: var(--navy); }
 .objectives-block { background: rgba(240,90,40,.1); border: 1.5px solid var(--orange); border-radius: 8px; padding: 11px 15px; flex-shrink: 0; }
 .objectives-block .section-label { color: var(--orange); border-color: var(--orange); font-size: 11px; margin-bottom: 8px; }
 .objectives-block ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
@@ -475,8 +477,8 @@ const playerEN = [
 // ---------------------------------------------------------------------------
 // SHARED COACH CONTENT (program-level)
 // ---------------------------------------------------------------------------
-const PROGRAM_INTRO_NL = 'Cultuur is wat een team doet als niemand kijkt. Dit verkorte cultuurprogramma helpt je om in twee sessies een sterke teamcultuur te bouwen, ook als je weinig tijd hebt. Het vertrekt vanuit één idee: cultuur ontstaat niet vanzelf, je bouwt ze bewust. In sessie 1 leggen je spelers vast wie ze willen zijn als team en welke beloftes ze aan elkaar doen. In sessie 2 leren ze hoe ze die cultuur levend houden als het moeilijk wordt, door eerlijk te zijn, elkaar aan te spreken en kleine rituelen in te bouwen. Jij als coach bent de sleutel: jij bewaakt de toon, geeft het voorbeeld en zorgt dat afspraken niet vergeten worden. De werkbladen zijn van de spelers, maar de richting komt van jou. Verwacht geen onmiddellijk resultaat, cultuur groeit over weken en maanden. Het doel is niet een perfecte sessie, maar een team dat zich eigenaar voelt van zijn eigen gedrag. Gebruik deze gids als houvast, niet als script, en pas hem aan jouw groep aan.';
-const PROGRAM_INTRO_EN = 'Culture is what a team does when no one is watching. This short culture program helps you build a strong team culture in just two sessions, even when time is limited. It starts from one idea: culture does not appear by itself, you build it on purpose. In session 1, your players define who they want to be as a team and what promises they make to each other. In session 2, they learn how to keep that culture alive when things get hard, by being honest, holding each other accountable, and building in small rituals. You as the coach are the key: you guard the tone, set the example, and make sure agreements are not forgotten. The worksheets belong to the players, but the direction comes from you. Do not expect instant results, culture grows over weeks and months. The goal is not a perfect session, but a team that feels ownership over its own behavior. Use this guide as support, not as a script, and adapt it to your group.';
+const PROGRAM_INTRO_NL = 'Cultuur is <strong>wat een team doet als niemand kijkt</strong>. Dit verkorte cultuurprogramma helpt je om in <strong>twee sessies</strong> een <strong>sterke teamcultuur</strong> te bouwen, ook als je weinig tijd hebt. Het vertrekt vanuit één idee: <strong>cultuur ontstaat niet vanzelf, je bouwt ze bewust</strong>. In sessie 1 leggen je spelers vast <strong>wie ze willen zijn als team</strong> en welke beloftes ze aan elkaar doen. In sessie 2 leren ze hoe ze die cultuur <strong>levend houden als het moeilijk wordt</strong>, door eerlijk te zijn, elkaar aan te spreken en kleine rituelen in te bouwen. <strong>Jij als coach bent de sleutel</strong>: jij bewaakt de toon, geeft het voorbeeld en zorgt dat afspraken niet vergeten worden. De werkbladen zijn van de spelers, maar <strong>de richting komt van jou</strong>. Verwacht geen onmiddellijk resultaat, <strong>cultuur groeit over weken en maanden</strong>. Het doel is niet een perfecte sessie, maar <strong>een team dat zich eigenaar voelt van zijn eigen gedrag</strong>. Gebruik deze gids als houvast, niet als script, en pas hem aan jouw groep aan.';
+const PROGRAM_INTRO_EN = 'Culture is <strong>what a team does when no one is watching</strong>. This short culture program helps you build a <strong>strong team culture</strong> in just <strong>two sessions</strong>, even when time is limited. It starts from one idea: <strong>culture does not appear by itself, you build it on purpose</strong>. In session 1, your players define <strong>who they want to be as a team</strong> and what promises they make to each other. In session 2, they learn how to <strong>keep that culture alive when things get hard</strong>, by being honest, holding each other accountable, and building in small rituals. <strong>You as the coach are the key</strong>: you guard the tone, set the example, and make sure agreements are not forgotten. The worksheets belong to the players, but <strong>the direction comes from you</strong>. Do not expect instant results, <strong>culture grows over weeks and months</strong>. The goal is not a perfect session, but <strong>a team that feels ownership over its own behavior</strong>. Use this guide as support, not as a script, and adapt it to your group.';
 
 const COACH_TIPS_NL = [
   'Ga zelf eerst: deel jouw eigen antwoord voor je het aan de spelers vraagt. Kwetsbaarheid voordoen maakt spelers eerlijker.',
@@ -1103,29 +1105,31 @@ function buildCoachHTML(sessions, isEN) {
   const pages = sessions.map(d => `
 <div class="page">
   ${page1Header(d)}
-  <div class="intro-block">
-    <div class="section-label">${L.introL}</div>
-    <p>${d.intro}</p>
-  </div>
-  <div class="objectives-block">
-    <div class="section-label">${L.objL}</div>
-    <ul>${d.objectives.map(o => `<li>${o}</li>`).join('')}</ul>
-  </div>
-  <div class="overview-block">
-    <div class="section-label">${L.exL}</div>
-    <ol>${d.exerciseDetails.map(e => `<li><strong>${e.title}</strong> &mdash; ${e.tijd}</li>`).join('')}</ol>
-  </div>
-  <div class="coachtips-block">
-    <div class="section-label">${L.tipsL}</div>
-    <ol>${d.coachTips.map(t => `<li>${t}</li>`).join('')}</ol>
-  </div>
-  <div class="watchlist-block">
-    <div class="section-label">${L.watchL}</div>
-    <ul>${d.watchOut.map(w => `<li>${w}</li>`).join('')}</ul>
-  </div>
-  <div class="science-footnote">
-    <div class="sf-label">${L.sciL}</div>
-    <ul>${d.science.map(s => `<li>${s}</li>`).join('')}</ul>
+  <div class="p1-body">
+    <div class="intro-block">
+      <div class="section-label">${L.introL}</div>
+      <p>${d.intro}</p>
+    </div>
+    <div class="objectives-block">
+      <div class="section-label">${L.objL}</div>
+      <ul>${d.objectives.map(o => `<li>${o}</li>`).join('')}</ul>
+    </div>
+    <div class="overview-block">
+      <div class="section-label">${L.exL}</div>
+      <ol>${d.exerciseDetails.map(e => `<li><strong>${e.title}</strong> &mdash; ${e.tijd}</li>`).join('')}</ol>
+    </div>
+    <div class="coachtips-block">
+      <div class="section-label">${L.tipsL}</div>
+      <ol>${d.coachTips.map(t => `<li>${t}</li>`).join('')}</ol>
+    </div>
+    <div class="watchlist-block">
+      <div class="section-label">${L.watchL}</div>
+      <ul>${d.watchOut.map(w => `<li>${w}</li>`).join('')}</ul>
+    </div>
+    <div class="science-footnote">
+      <div class="sf-label">${L.sciL}</div>
+      <ul>${d.science.map(s => `<li>${s}</li>`).join('')}</ul>
+    </div>
   </div>
   ${pageFooter(d.subtitle, 1)}
 </div>
