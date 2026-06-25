@@ -120,7 +120,7 @@ body { background: #fff; font-family: Arial, sans-serif; }
 .program-title { text-align: right; }
 .program-title .pt-main { font-family: Arial Black, Arial, sans-serif; font-size: 17px; font-weight: 900; color: var(--orange); line-height: 1.05; }
 .program-title .pt-sub { font-size: 10px; color: var(--stone); margin-top: 3px; }
-.p1-body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; min-height: 0; }
+.p1-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 14px; min-height: 0; }
 .intro-block { flex-shrink: 0; }
 .intro-block .section-label { font-size: 11px; margin-bottom: 6px; }
 .intro-block p { font-size: 12px; color: var(--navy); line-height: 1.62; margin-top: 4px; }
@@ -1079,10 +1079,13 @@ function buildCoachHTML(sessions, isEN) {
       </div>
     </div>`;
 
-  const pageHeader = (subtitle) => `
+  const pageHeader = (d) => `
   <div class="header">
     <div class="wordmark">CHARACTER <span>First</span></div>
-    <div class="session-label">${subtitle}</div>
+    <div class="program-title">
+      <div class="pt-main">${L.progMain}</div>
+      <div class="pt-sub">${L.progSub} ${d.s} ${L.of2}</div>
+    </div>
   </div>
   <div class="divider"></div>`;
 
@@ -1134,7 +1137,7 @@ function buildCoachHTML(sessions, isEN) {
   ${pageFooter(d.subtitle, 1)}
 </div>
 <div class="page">
-  ${pageHeader(d.subtitle)}
+  ${pageHeader(d)}
   <div class="title-block">
     <div class="eyebrow">${L.exHead}</div>
     <div class="title" style="font-size:18px">${L.exSlug}</div>
@@ -1146,7 +1149,7 @@ function buildCoachHTML(sessions, isEN) {
   ${pageFooter(d.subtitle, 2)}
 </div>
 <div class="page">
-  ${pageHeader(d.subtitle)}
+  ${pageHeader(d)}
   <div class="title-block">
     <div class="eyebrow">${L.wrapHead}</div>
     <div class="title" style="font-size:18px">${L.wrapSlug}</div>
