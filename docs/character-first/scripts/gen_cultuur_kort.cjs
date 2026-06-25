@@ -116,6 +116,33 @@ body { background: #fff; font-family: Arial, sans-serif; }
 .overview-block .section-label { color: var(--orange); border-color: var(--orange); }
 .overview-block ol { padding-left: 16px; }
 .overview-block li { font-size: 10.5px; color: var(--navy); line-height: 1.4; margin-bottom: 2px; }
+.overview-block li strong { color: var(--orange); }
+.program-title { text-align: right; }
+.program-title .pt-main { font-family: Arial Black, Arial, sans-serif; font-size: 17px; font-weight: 900; color: var(--orange); line-height: 1.05; }
+.program-title .pt-sub { font-size: 10px; color: var(--stone); margin-top: 3px; }
+.intro-block { flex-shrink: 0; }
+.intro-block .section-label { font-size: 11px; margin-bottom: 6px; }
+.intro-block p { font-size: 12px; color: var(--navy); line-height: 1.62; margin-top: 4px; }
+.objectives-block { background: rgba(240,90,40,.1); border: 1.5px solid var(--orange); border-radius: 8px; padding: 11px 15px; flex-shrink: 0; }
+.objectives-block .section-label { color: var(--orange); border-color: var(--orange); font-size: 11px; margin-bottom: 8px; }
+.objectives-block ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+.objectives-block li { font-size: 12.5px; color: var(--navy); font-weight: 600; padding-left: 21px; position: relative; line-height: 1.35; }
+.objectives-block li::before { content: '✓'; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
+.coachtips-block { background: rgba(30,138,91,.08); border-left: 3px solid var(--green); border-radius: 6px; padding: 10px 14px; flex-shrink: 0; }
+.coachtips-block .section-label { color: var(--green); border-color: var(--green); font-size: 11px; margin-bottom: 6px; }
+.coachtips-block ol { padding-left: 18px; margin: 0; }
+.coachtips-block li { font-size: 11.5px; color: var(--navy); line-height: 1.5; margin-bottom: 6px; }
+.coachtips-block li:last-child { margin-bottom: 0; }
+.coachtips-block li::marker { font-weight: 900; color: var(--green); }
+.watchlist-block { background: rgba(192,57,43,.08); border-left: 3px solid #c0392b; border-radius: 6px; padding: 10px 14px; flex-shrink: 0; }
+.watchlist-block .section-label { color: #c0392b; border-color: #c0392b; font-size: 11px; margin-bottom: 6px; }
+.watchlist-block ul { padding-left: 17px; margin: 0; }
+.watchlist-block li { font-size: 11.5px; color: var(--navy); line-height: 1.5; margin-bottom: 6px; }
+.watchlist-block li:last-child { margin-bottom: 0; }
+.science-footnote { border-top: 1px dashed var(--line); padding-top: 7px; flex-shrink: 0; }
+.science-footnote .sf-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--stone); margin-bottom: 4px; }
+.science-footnote ul { padding-left: 15px; margin: 0; }
+.science-footnote li { font-size: 8.5px; color: var(--stone); line-height: 1.4; margin-bottom: 2px; }
 .footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 5px; flex-shrink: 0; margin-top: auto; }
 .footer-left, .footer-right { font-size: 9px; color: var(--stone); }
 .question-block { background: rgba(47,111,176,.08); border-left: 3px solid var(--blue); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
@@ -446,6 +473,27 @@ const playerEN = [
 ];
 
 // ---------------------------------------------------------------------------
+// SHARED COACH CONTENT (program-level)
+// ---------------------------------------------------------------------------
+const PROGRAM_INTRO_NL = 'Cultuur is wat een team doet als niemand kijkt. Dit verkorte cultuurprogramma helpt je om in twee sessies een sterke teamcultuur te bouwen, ook als je weinig tijd hebt. Het vertrekt vanuit één idee: cultuur ontstaat niet vanzelf, je bouwt ze bewust. In sessie 1 leggen je spelers vast wie ze willen zijn als team en welke beloftes ze aan elkaar doen. In sessie 2 leren ze hoe ze die cultuur levend houden als het moeilijk wordt, door eerlijk te zijn, elkaar aan te spreken en kleine rituelen in te bouwen. Jij als coach bent de sleutel: jij bewaakt de toon, geeft het voorbeeld en zorgt dat afspraken niet vergeten worden. De werkbladen zijn van de spelers, maar de richting komt van jou. Verwacht geen onmiddellijk resultaat, cultuur groeit over weken en maanden. Het doel is niet een perfecte sessie, maar een team dat zich eigenaar voelt van zijn eigen gedrag. Gebruik deze gids als houvast, niet als script, en pas hem aan jouw groep aan.';
+const PROGRAM_INTRO_EN = 'Culture is what a team does when no one is watching. This short culture program helps you build a strong team culture in just two sessions, even when time is limited. It starts from one idea: culture does not appear by itself, you build it on purpose. In session 1, your players define who they want to be as a team and what promises they make to each other. In session 2, they learn how to keep that culture alive when things get hard, by being honest, holding each other accountable, and building in small rituals. You as the coach are the key: you guard the tone, set the example, and make sure agreements are not forgotten. The worksheets belong to the players, but the direction comes from you. Do not expect instant results, culture grows over weeks and months. The goal is not a perfect session, but a team that feels ownership over its own behavior. Use this guide as support, not as a script, and adapt it to your group.';
+
+const COACH_TIPS_NL = [
+  'Ga zelf eerst: deel jouw eigen antwoord voor je het aan de spelers vraagt. Kwetsbaarheid voordoen maakt spelers eerlijker.',
+  'Laat eerst individueel schrijven (2 min), pas daarna delen. Zo voorkom je dat één luide stem de hele groep bepaalt.',
+  'Veroordeel geen enkel antwoord. Een speler die zich veilig voelt, deelt meer dan een speler die zich beoordeeld voelt.',
+  'Maak alles concreet in gedrag. Vraag bij elk vaag antwoord: "Hoe ziet dat eruit op training?"',
+  'Sluit elke sessie af met één concrete afspraak en een moment van stilte, zodat de betekenis kan landen.',
+];
+const COACH_TIPS_EN = [
+  'Go first: share your own answer before asking the players. Modeling vulnerability makes players more honest.',
+  'Let players write individually first (2 min), then share. This stops one loud voice from setting the tone for the whole group.',
+  'Do not judge any answer. A player who feels safe shares more than a player who feels evaluated.',
+  'Make everything concrete in behavior. For every vague answer ask: "What does that look like at practice?"',
+  'Close every session with one concrete agreement and a moment of quiet, so the meaning can settle.',
+];
+
+// ---------------------------------------------------------------------------
 // COACH CONTENT — NL
 // ---------------------------------------------------------------------------
 const coachNL = [
@@ -453,9 +501,23 @@ const coachNL = [
     s: 1,
     title: 'Wie zijn wij?',
     subtitle: 'Verkorte cultuurreeks: sessie 1 van 2',
-    objective: 'Spelers benoemen wat hen bindt als team. Ze formuleren cultuurankers en leggen hun persoonlijke belofte vast met een handtekening. Dit is de basis voor alle samenwerking die volgt.',
-    generalTip: 'Ga zelf als eerste: deel jouw drie woorden voor het team voordat je de spelers vraagt. Dit normaliseert kwetsbaarheid en verhoogt de kwaliteit van hun antwoorden aanzienlijk.',
-    watch: 'Laat de groepsdiscussie niet vervallen tot een klaagmoment over het vorige seizoen. Stuur actief bij als de toon te negatief wordt. De focus is vooruitkijken.',
+    intro: PROGRAM_INTRO_NL,
+    coachTips: COACH_TIPS_NL,
+    objectives: [
+      'Spelers benoemen drie waarden die het team dit seizoen wil uitstralen',
+      'Spelers bepalen samen wat ze als team behouden en wat ze loslaten',
+      'Elke speler legt een persoonlijke, ondertekende belofte aan het team vast',
+    ],
+    watchOut: [
+      'Laat de discussie niet vervallen tot klagen over vorig seizoen. Stuur bij naar wie jullie willen zijn.',
+      'Forceer niemand om te delen. Vrijwilligheid houdt de veiligheid hoog en de antwoorden eerlijk.',
+      'Bewaak de tijd: elke oefening heeft een richttijd. Liever kort en scherp dan lang en vaag.',
+    ],
+    science: [
+      'Cameron & Quinn (2011): teams die hun cultuur bewust benoemen, presteren stabieler onder druk dan teams die dat niet doen.',
+      'Tod et al. (2011): publieke commitment, zoals ondertekenen, verhoogt de naleving van gedragsafspraken.',
+      'Carron & Eys (2012): gedeelde identiteit is de sterkste voorspeller van teamcohesie over een heel seizoen.',
+    ],
     exerciseDetails: [
       {
         title: 'Drie woorden voor ons team',
@@ -543,9 +605,23 @@ const coachNL = [
     s: 2,
     title: 'Hoe werken wij?',
     subtitle: 'Verkorte cultuurreeks: sessie 2 van 2',
-    objective: 'Spelers leren hoe veilig ze zich voelen in het team, oefenen een concreet aanspreekinstrument en vertalen cultuur naar dagelijkse rituelen. Dit sluit de verkorte reeks af met actie.',
-    generalTip: 'Modelleer de "ik zie, ik voel, ik vraag"-oefening altijd zelf eerst. Geef een volledig fictief voorbeeld voor de hele groep voordat je spelers laat starten. Zo weten ze exact wat je verwacht.',
-    watch: 'De vertrouwensbarometer kan gevoelig liggen als het team net een moeilijke periode doormaakte. Wees klaar om te luisteren. Niemand is verplicht scores te tonen als hij dat niet wil.',
+    intro: PROGRAM_INTRO_NL,
+    coachTips: COACH_TIPS_NL,
+    objectives: [
+      'Spelers brengen in kaart hoe veilig ze zich voelen in het team',
+      'Spelers oefenen hoe ze elkaar aanspreken zonder de relatie te beschadigen',
+      'Spelers kiezen rituelen die de cultuur elke week levend houden',
+    ],
+    watchOut: [
+      'De vertrouwensbarometer kan gevoelig liggen na een moeilijke periode. Luister eerst, stel daarna pas vragen.',
+      'Sla het voordoen van "ik zie, ik voel, ik vraag" niet over. Spelers moeten het format zien voor ze het proberen.',
+      'Hou rituelen klein. Een ritueel dat als last voelt, verdwijnt binnen twee weken.',
+    ],
+    science: [
+      'Edmondson (1999): psychologische veiligheid is een sterke voorspeller van teamprestaties bij onzekerheid.',
+      'Eys et al. (2015): het "ik zie, ik voel, ik vraag"-model vermindert aanvallend taalgebruik in gesprekken.',
+      'Lencioni (2002): conflictvermijding is een disfunctie van teams. Gezond conflict is een teken van vertrouwen.',
+    ],
     exerciseDetails: [
       {
         title: 'Vertrouwensbarometer',
@@ -641,9 +717,23 @@ const coachEN = [
     s: 1,
     title: 'Who are we?',
     subtitle: 'Short culture track: session 1 of 2',
-    objective: 'Players name what binds them as a team. They formulate culture anchors and record their personal promise with a signature. This is the foundation for all the collaboration that follows.',
-    generalTip: 'Go first: share your own three words for the team before asking the players. This normalizes vulnerability and significantly raises the quality of their answers.',
-    watch: 'Do not let the group discussion become a complaint session about last season. Actively redirect if the tone gets too negative. The focus is looking ahead.',
+    intro: PROGRAM_INTRO_EN,
+    coachTips: COACH_TIPS_EN,
+    objectives: [
+      'Players name three values the team wants to show this season',
+      'Players decide together what to keep as a team and what to let go',
+      'Each player records a personal, signed promise to the team',
+    ],
+    watchOut: [
+      'Do not let the discussion slide into complaining about last season. Redirect toward who you want to be.',
+      'Never force anyone to share. Voluntary participation keeps safety high and answers honest.',
+      'Guard the time: each exercise has a target time. Short and sharp beats long and vague.',
+    ],
+    science: [
+      'Cameron & Quinn (2011): teams that consciously name their culture perform more stably under pressure than teams that do not.',
+      'Tod et al. (2011): public commitment, such as signing, increases adherence to behavioral agreements.',
+      'Carron & Eys (2012): shared identity is the strongest predictor of team cohesion across a full season.',
+    ],
     exerciseDetails: [
       {
         title: 'Three words for our team',
@@ -731,9 +821,23 @@ const coachEN = [
     s: 2,
     title: 'How do we work?',
     subtitle: 'Short culture track: session 2 of 2',
-    objective: 'Players learn how safe they feel in the team, practice a concrete accountability tool, and translate culture into daily rituals. This closes the short track with action.',
-    generalTip: 'Always model the "I see, I feel, I ask" exercise yourself first. Give a complete fictional example in front of the whole group before letting players start. This way everyone knows exactly what you expect.',
-    watch: 'The trust barometer can be sensitive if the team has just been through a difficult period. Be ready to listen. No one is required to show their scores if they do not want to.',
+    intro: PROGRAM_INTRO_EN,
+    coachTips: COACH_TIPS_EN,
+    objectives: [
+      'Players map how safe they feel in the team',
+      'Players practice holding each other accountable without damaging the relationship',
+      'Players choose rituals that keep the culture alive every week',
+    ],
+    watchOut: [
+      'The trust barometer can be sensitive after a hard period. Listen first, ask questions later.',
+      'Do not skip modeling the "I see, I feel, I ask" exercise. Players need to see the format before they try it.',
+      'Keep rituals small. A ritual that feels like a burden disappears within two weeks.',
+    ],
+    science: [
+      'Edmondson (1999): psychological safety is a strong predictor of team performance under uncertainty.',
+      'Eys et al. (2015): the "I see, I feel, I ask" model reduces aggressive language in conversations.',
+      'Lencioni (2002): conflict avoidance is a team dysfunction. Healthy conflict is a sign of trust.',
+    ],
     exerciseDetails: [
       {
         title: 'Trust barometer',
@@ -880,6 +984,15 @@ function buildPlayerHTML(data, lang) {
 function buildCoachHTML(sessions, isEN) {
   const L = isEN ? {
     coach:    'COACH GUIDE',
+    progMain: 'Culture program',
+    progSub:  'Coach guide · Session',
+    of2:      'of 2',
+    introL:   'About this program',
+    objL:     'Goals of this session',
+    exL:      'The exercises of this session',
+    tipsL:    '5 tips to help your team in the sessions',
+    watchL:   'Watch out during this session',
+    sciL:     'Research basis (for reference)',
     obj:      'Objective',
     approach: 'Key coaching approach',
     watch:    'Watch out for',
@@ -901,6 +1014,15 @@ function buildCoachHTML(sessions, isEN) {
     conf:     'CONFIDENTIAL — For coaches only',
   } : {
     coach:    'COACHGIDS',
+    progMain: 'Cultuur programma',
+    progSub:  'Coachgids · Sessie',
+    of2:      'van 2',
+    introL:   'Over dit programma',
+    objL:     'Doelstelling van deze sessie',
+    exL:      'De oefeningen van deze sessie',
+    tipsL:    '5 tips om je team te helpen in de sessies',
+    watchL:   'Let op tijdens deze sessie',
+    sciL:     'Wetenschappelijke basis (ter info)',
     obj:      'Doelstelling',
     approach: 'Jouw rol als coach',
     watch:    'Let op',
@@ -968,28 +1090,42 @@ function buildCoachHTML(sessions, isEN) {
     <div class="footer-right">${L.conf} · ${n}/3</div>
   </div>`;
 
+  const page1Header = (d) => `
+  <div class="header">
+    <div class="wordmark">CHARACTER <span>First</span></div>
+    <div class="program-title">
+      <div class="pt-main">${L.progMain}</div>
+      <div class="pt-sub">${L.progSub} ${d.s} ${L.of2}</div>
+    </div>
+  </div>
+  <div class="divider"></div>`;
+
   const pages = sessions.map(d => `
 <div class="page">
-  ${pageHeader(d.subtitle)}
-  <div class="title-block">
-    <div class="eyebrow">${L.coach}</div>
-    <div class="title">${d.title}</div>
+  ${page1Header(d)}
+  <div class="intro-block">
+    <div class="section-label">${L.introL}</div>
+    <p>${d.intro}</p>
   </div>
-  <div class="objective-block">
-    <div class="section-label">${L.obj}</div>
-    <p>${d.objective}</p>
-  </div>
-  <div class="tip-block">
-    <div class="section-label">${L.approach}</div>
-    <p>${d.generalTip}</p>
-  </div>
-  <div class="warn-block">
-    <div class="section-label">${L.watch}</div>
-    <p>${d.watch}</p>
+  <div class="objectives-block">
+    <div class="section-label">${L.objL}</div>
+    <ul>${d.objectives.map(o => `<li>${o}</li>`).join('')}</ul>
   </div>
   <div class="overview-block">
-    <div class="section-label">${L.overview}</div>
+    <div class="section-label">${L.exL}</div>
     <ol>${d.exerciseDetails.map(e => `<li><strong>${e.title}</strong> &mdash; ${e.tijd}</li>`).join('')}</ol>
+  </div>
+  <div class="coachtips-block">
+    <div class="section-label">${L.tipsL}</div>
+    <ol>${d.coachTips.map(t => `<li>${t}</li>`).join('')}</ol>
+  </div>
+  <div class="watchlist-block">
+    <div class="section-label">${L.watchL}</div>
+    <ul>${d.watchOut.map(w => `<li>${w}</li>`).join('')}</ul>
+  </div>
+  <div class="science-footnote">
+    <div class="sf-label">${L.sciL}</div>
+    <ul>${d.science.map(s => `<li>${s}</li>`).join('')}</ul>
   </div>
   ${pageFooter(d.subtitle, 1)}
 </div>
