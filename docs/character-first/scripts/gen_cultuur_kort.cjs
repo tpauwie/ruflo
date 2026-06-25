@@ -82,7 +82,7 @@ h2 { font-size: 1.2rem; font-weight: 900; color: var(--ink); margin-top: 2px; }
 `;
 
 // ---------------------------------------------------------------------------
-// COACH CSS — as gen_culture_building.cjs
+// COACH CSS
 // ---------------------------------------------------------------------------
 const COACH_CSS = `
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -103,10 +103,6 @@ body { background: #fff; font-family: Arial, sans-serif; }
 .title { font-family: Arial Black, Arial, sans-serif; font-size: 22px; font-weight: 900; color: var(--navy); line-height: 1.15; }
 .subtitle { font-size: 13px; color: var(--stone); margin-top: 3px; }
 .section-label { font-family: Arial Black, Arial, sans-serif; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .12em; color: var(--navy); border-left: 3px solid var(--orange); padding-left: 8px; margin-bottom: 4px; }
-.science-block { background: rgba(47,111,176,.08); border-left: 3px solid var(--blue); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
-.science-block .section-label { color: var(--blue); border-color: var(--blue); }
-.science-block ul { padding-left: 16px; }
-.science-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 2px; }
 .objective-block { background: rgba(240,90,40,.07); border-left: 3px solid var(--orange); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
 .objective-block .section-label { color: var(--orange); border-color: var(--orange); }
 .objective-block p { font-size: 12px; color: var(--navy); line-height: 1.45; }
@@ -116,41 +112,43 @@ body { background: #fff; font-family: Arial, sans-serif; }
 .warn-block { background: rgba(192,57,43,.08); border-left: 3px solid #c0392b; border-radius: 6px; padding: 7px 12px; flex-shrink: 0; }
 .warn-block .section-label { color: #c0392b; border-color: #c0392b; }
 .warn-block p { font-size: 11px; color: var(--navy); line-height: 1.4; }
+.overview-block { background: rgba(240,90,40,.05); border-left: 3px solid var(--orange); border-radius: 6px; padding: 7px 12px; flex-shrink: 0; }
+.overview-block .section-label { color: var(--orange); border-color: var(--orange); }
+.overview-block ol { padding-left: 16px; }
+.overview-block li { font-size: 10.5px; color: var(--navy); line-height: 1.4; margin-bottom: 2px; }
 .footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 5px; flex-shrink: 0; margin-top: auto; }
 .footer-left, .footer-right { font-size: 9px; color: var(--stone); }
-.help-block { background: rgba(30,138,91,.08); border-left: 3px solid var(--green); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
-.help-block .section-label { color: var(--green); border-color: var(--green); }
-.help-block ol { padding-left: 16px; }
-.help-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; }
 .question-block { background: rgba(47,111,176,.08); border-left: 3px solid var(--blue); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
 .question-block .section-label { color: var(--blue); border-color: var(--blue); }
 .question-block ol { padding-left: 16px; }
-.question-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; font-style: italic; }
+.question-block li { font-size: 10px; color: var(--navy); line-height: 1.4; margin-bottom: 2px; font-style: italic; }
 .followup-block { background: rgba(240,90,40,.07); border-left: 3px solid var(--orange); border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
 .followup-block .section-label { color: var(--orange); border-color: var(--orange); }
 .followup-block ol { padding-left: 16px; }
-.followup-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; }
-.pitfall-block { background: rgba(192,57,43,.08); border-left: 3px solid #c0392b; border-radius: 6px; padding: 8px 12px; flex-shrink: 0; }
-.pitfall-block .section-label { color: #c0392b; border-color: #c0392b; }
-.pitfall-block ul { padding-left: 16px; }
-.pitfall-block li { font-size: 10.5px; color: var(--navy); line-height: 1.45; margin-bottom: 3px; }
+.followup-block li { font-size: 10px; color: var(--navy); line-height: 1.4; margin-bottom: 2px; }
 .detail-list { display: flex; flex-direction: column; gap: 7px; }
 .detail-card { border: 1.5px solid var(--line); border-radius: 8px; padding: 8px 12px; background: #fff; flex-shrink: 0; }
 .detail-header { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-.detail-title { font-family: Arial Black, Arial, sans-serif; font-size: 12.5px; font-weight: 900; color: var(--navy); flex: 1; }
+.detail-title { font-family: Arial Black, Arial, sans-serif; font-size: 12px; font-weight: 900; color: var(--navy); flex: 1; }
 .detail-time { font-size: 9.5px; color: var(--stone); font-weight: 700; white-space: nowrap; }
-.detail-row { display: grid; grid-template-columns: 78px 1fr; gap: 6px; margin-bottom: 4px; }
+.detail-row { display: grid; grid-template-columns: 72px 1fr; gap: 5px; margin-bottom: 4px; }
 .detail-row:last-child { margin-bottom: 0; }
-.detail-key { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--stone); padding-top: 1px; }
-.detail-val { font-size: 10.3px; color: #333; line-height: 1.4; }
+.detail-key { font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--stone); padding-top: 1px; line-height: 1.3; }
+.detail-val { font-size: 9.8px; color: #333; line-height: 1.38; }
 .detail-val.script { font-style: italic; color: var(--blue); }
-.detail-val.example { color: var(--green); }
+.mini-list { padding-left: 11px; margin: 1px 0; }
+.mini-list li { font-size: 9.3px; line-height: 1.35; margin-bottom: 2px; color: #333; }
+.scenario-list li { color: var(--green); }
+.pitfall-list li { color: #c0392b; }
+.faq-item { margin-bottom: 3px; }
+.faq-q { font-size: 9.2px; font-weight: 700; color: var(--navy); display: block; }
+.faq-a { font-size: 9.2px; color: var(--stone); display: block; padding-left: 8px; line-height: 1.35; }
 .activity-num { width: 21px; height: 21px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: Arial Black, Arial, sans-serif; }
 @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 `;
 
 // ---------------------------------------------------------------------------
-// PLAYER CONTENT — NL
+// PLAYER CONTENT — NL (unchanged)
 // ---------------------------------------------------------------------------
 const playerNL = [
   {
@@ -299,7 +297,7 @@ const playerNL = [
 ];
 
 // ---------------------------------------------------------------------------
-// PLAYER CONTENT — EN
+// PLAYER CONTENT — EN (unchanged)
 // ---------------------------------------------------------------------------
 const playerEN = [
   {
@@ -455,126 +453,182 @@ const coachNL = [
     s: 1,
     title: 'Wie zijn wij?',
     subtitle: 'Verkorte cultuurreeks: sessie 1 van 2',
-    science: [
-      'Cameron & Quinn (2011): teams die hun cultuur bewust benoemen, presteren stabieler onder druk dan teams die dit niet doen',
-      'Baumeister & Leary (1995): sociale verbondenheid is een basisbehoefte. Cultuurafspraken versterken die verbondenheid op teamniveau',
-      'Tod et al. (2011): publieke commitment, zoals ondertekenen, verhoogt naleving van gedragsafspraken met 30-40%',
-      'Carron & Eys (2012): gedeelde identiteit is de sterkste voorspeller van teamcohesie en prestatiemotivatie over een heel seizoen',
-    ],
-    objective: 'Spelers benoemen wat hen bindt als team. Ze formuleren cultuurankers en leggen hun persoonlijke belofte vast. Dit is de basis voor alle samenwerking die volgt.',
-    tip: 'Begin zelf: deel jouw drie woorden voor het team voor je de spelers vraagt. Dit normaliseert kwetsbaarheid en verhoogt de kwaliteit van hun antwoorden aanzienlijk.',
-    warn: 'Laat de groepsdiscussie over cultuurankers niet vervallen tot een klaagmoment over het vorige seizoen. Stuur actief bij als de toon te negatief wordt. De focus is vooruitkijken.',
+    objective: 'Spelers benoemen wat hen bindt als team. Ze formuleren cultuurankers en leggen hun persoonlijke belofte vast met een handtekening. Dit is de basis voor alle samenwerking die volgt.',
+    generalTip: 'Ga zelf als eerste: deel jouw drie woorden voor het team voordat je de spelers vraagt. Dit normaliseert kwetsbaarheid en verhoogt de kwaliteit van hun antwoorden aanzienlijk.',
+    watch: 'Laat de groepsdiscussie niet vervallen tot een klaagmoment over het vorige seizoen. Stuur actief bij als de toon te negatief wordt. De focus is vooruitkijken.',
     exerciseDetails: [
       {
         title: 'Drie woorden voor ons team',
         tijd: '⏱ 10 min',
-        purpose: 'Spelers expliciteren wat cultuur voor hen concreet betekent. Door individueel te starten voor je laat delen, vermijd je groepsdenken. Iedereen hoort zijn eigen stem eerst.',
-        instructions: '"Je krijgt twee minuten om alleen te schrijven. Geen overleg. Schrijf drie woorden op die jij wil dat mensen over ons team zeggen. Niet over het klassement, maar over ons gedrag en karakter. Er is geen goed of fout antwoord."',
-        example: 'Drie spelers schrijven "eerlijkheid", "vechtlust", "plezier". Vraag: "Wanneer hebben we dit het afgelopen jaar getoond?" en "Wanneer niet?" Zo worden de woorden tastbaar in plaats van abstract. Combineer daarna de meest gekozen woorden tot drie teamwoorden.',
+        explanation: 'Spelers expliciteren wat cultuur voor hen concreet betekent. Door individueel te starten voor je laat delen, vermijd je groepsdenken en hoort iedereen zijn eigen stem eerst.',
+        script: '"Je krijgt twee minuten om alleen te schrijven. Geen overleg. Drie woorden die jij wil dat mensen over ons team zeggen. Niet over het klassement, maar over ons gedrag en karakter."',
+        tips: [
+          'Ga zelf als eerste: deel jouw woorden voordat je de groep vraagt. Dit normaliseert het en verhoogt de eerlijkheid.',
+          'Koppel de gekozen woorden aan concrete momenten: "Wanneer zagen jullie dit vorig jaar, en wanneer niet?"',
+          'Combineer de meest gekozen woorden tot drie teamwoorden. Laat kort stemmen met een show of hands.',
+        ],
+        scenarios: [
+          'Scenario A: bijna iedereen kiest hetzelfde woord, bv. "eerlijkheid". Vraag: "Wanneer was dat er echt, en wanneer misten jullie het?" Zo worden woorden levend in plaats van abstract.',
+          'Scenario B: spelers kiezen zeer uiteenlopende woorden. Zeg: "Jullie kiezen andere woorden, maar ze gaan allemaal over hoe jullie met elkaar omgaan." Zoek samen de gemeenschappelijke kern.',
+        ],
+        pitfalls: [
+          'Te snel naar de groepsdiscussie gaan voor iedereen individueel heeft geschreven. Groepsdenken doodt eerlijkheid.',
+          'Woorden accepteren die over resultaten gaan. "Kampioenen" is geen cultuurwoord. Stuur bij naar gedrag: "Hoe gedraag je je als kampioen?"',
+        ],
+        faq: [
+          { q: 'Moeten het echt drie woorden zijn?', a: 'Nee. Als een speler één perfect woord vindt, is dat prima. Het gaat om kwaliteit, niet om het aantal.' },
+          { q: 'Wat als spelers heel verschillende woorden kiezen?', a: 'Dat is waardevol. Laat de verschillen zien en zoek samen wat de woorden in gedrag verbindt.' },
+        ],
       },
       {
         title: 'Cultuurankers',
         tijd: '⏱ 12 min',
-        purpose: 'Teams die bewust benoemen wat ze willen bewaren én loslaten, brengen positief gedrag sneller terug en breken minder snel terug met oud gedrag dat niet diende. Dit maakt de verandering concreet.',
-        instructions: '"Denk aan vorig seizoen. Links: schrijf op wat we willen behouden als team, gedrag, gewoontes, momenten. Rechts: wat laten we bewust achter? Wat paste niet bij wie we willen zijn? Twee minuten schrijven, dan korte bespreking."',
-        example: 'Een team schrijft "houden: we staan voor elkaar na een fout", "loslaten: mopperen op de bank als je niet speelt." Bespreek plenair: "Hoe zorgen we dat we dit loslaten? Wat is onze concrete afspraak?" Maak het niet vaag maar in gedrag.',
+        explanation: 'Teams die bewust benoemen wat ze willen bewaren én loslaten, doorbreken ondienstig gedrag sneller. De twee kolommen sturen het gesprek vooruit en maken verandering concreet.',
+        script: '"Denk aan vorig seizoen. Links: wat willen we bewaren als team — gedrag, gewoontes, momenten. Rechts: wat laten we bewust achter? Twee minuten schrijven, dan korte bespreking."',
+        tips: [
+          'Stuur bij als "loslaten" een klaagfest wordt. Vraag: "Wat spreken we dan af zodat dit dit seizoen anders gaat?"',
+          'Maak elk punt concreet in zichtbaar gedrag: niet "meer discipline", maar "we spreken elkaar aan als iemand te laat komt".',
+        ],
+        scenarios: [
+          'Scenario A: een speler wil "mopperen op de bank" loslaten. Vraag: "Wat doe je dan wél als je gefrustreerd bent?" Zo geef je richting aan het nieuwe gedrag.',
+          'Scenario B: de groep wil bijna alles loslaten en weinig bewaren. Vraag: "Was er echt niets positief vorig jaar?" Dat herbalanceert het gesprek en geeft ook erkenning.',
+        ],
+        pitfalls: [
+          'Loslaten wordt een klaagmoment in plaats van een vooruitkijk. Stuur actief bij als dat gebeurt.',
+          'Cultuurankers blijven vaag. Help elk punt concreet te maken: "Hoe ziet dit eruit als je het in gedrag ziet op training?"',
+        ],
+        faq: [
+          { q: 'Hoe "loslaat" een team iets concreet?', a: 'Door een nieuw gedrag af te spreken dat het oude vervangt. Niet "minder negativiteit", maar "we bouwen elkaar op na elke fout".' },
+          { q: 'Wat als spelers het niet eens zijn over wat we loslaten?', a: 'Laat kort toelichten waarom iemand iets wil bewaren. Stem daarna. Het gesprek zelf is al waardevol.' },
+        ],
       },
       {
         title: 'Teamcontract ondertekenen',
         tijd: '⏱ 8 min',
-        purpose: 'Publieke commitment via handtekening verhoogt de kans dat spelers gedragsafspraken écht nakomen. Een contract dat spelers zelf schreven werkt sterker dan regels van bovenaf. De handtekening maakt het serieus.',
-        instructions: '"Schrijf drie concrete beloftes die jij dit seizoen aan het team doet. Niet vaag, maar meetbaar: iets wat je zelf kunt checken. Onderteken daarna met naam en datum."',
-        example: 'In plaats van "ik beloof een betere teamspeler te zijn", help de speler naar iets concreets: "ik beloof de eerste te zijn die een teamgenoot aanmoedigt na een fout" of "ik beloof altijd op tijd te zijn, ook voor informele trainingen." Vraag na het schrijven aan twee spelers om hun belofte hardop voor te lezen.',
+        explanation: 'Publieke commitment via handtekening verhoogt de kans dat spelers gedragsafspraken écht nakomen. Een contract dat spelers zelf schreven werkt sterker dan regels van bovenaf.',
+        script: '"Schrijf drie concrete beloftes die jij dit seizoen aan het team doet. Maak ze meetbaar: iets wat je zelf kunt checken. Onderteken daarna met naam en datum."',
+        tips: [
+          'Help spelers van vaag naar concreet. "Harder werken" → "Ik ben de eerste die een teamgenoot aanmoedigt na een fout".',
+          'Vraag na het schrijven twee spelers hun belofte hardop voor te lezen. Dit verhoogt het commitment van iedereen.',
+          'Bewaar de contracten en breng ze halverwege het seizoen terug voor een expliciete check-in.',
+        ],
+        scenarios: [
+          'Scenario A: een speler schrijft een vage belofte. Vraag: "Hoe weet je over drie maanden of je dit gedaan hebt?" Help hem concreter maken.',
+          'Scenario B: een speler twijfelt en schrijft niets. Ga naast hem zitten: "Wat is één ding dat jij dit seizoen aan het team wil bijdragen?" Begin klein.',
+        ],
+        pitfalls: [
+          'Beloftes accepteren die niet controleerbaar zijn. "Ik beloof een betere teamspeler te zijn" verdwijnt binnen een week.',
+          'De contracten vergeten op te volgen. Een contract zonder follow-up is decoratie. Plan de check-in nu al in.',
+        ],
+        faq: [
+          { q: 'Wat als ik mijn belofte niet nakom?', a: 'Dat is menselijk. Het gaat erom dat je het erkent en opnieuw start. Spreek erover met je coach of een teamgenoot.' },
+          { q: 'Moet ik echt drie beloftes schrijven?', a: 'Nee. Eén sterke, concrete belofte is meer waard dan drie vage. Kwaliteit gaat boven kwantiteit.' },
+        ],
       },
-    ],
-    helpTips: [
-      'Bouw de groepsdiscussie in twee stappen: eerst individueel schrijven (2 min), dan pas delen. Zo hoort iedereen zijn eigen stem vóór die van de groep, en vermijd je dat één stem de rest bepaalt.',
-      'Gebruik de gekozen cultuurwoorden actief de rest van het seizoen. "Dit is precies wat doorzetting betekent" maakt cultuur tastbaar in het moment. Benoem het concreet als je het ziet.',
-      'Benoem expliciet het verschil tussen een cultuuranker en een wedstrijddoel. Spelers verwarren dit soms. Cultuurankers gaan over gedrag, niet over titels of scores.',
-      'Check bij het ondertekenen of beloftes concreet genoeg zijn. Als je een belofte niet kunt controleren over drie maanden, is ze te vaag. Help de speler haar concreter te maken.',
-      'Laat minstens 5 minuten staan na het ondertekenen voor een rustige landing. Een moment van stilte, voor je verder gaat met het programma. Dit laat de betekenis landen.',
     ],
     questions: [
       'Welk woord koos bijna iedereen, en wat zegt dat over wie jullie al zijn als team?',
       'Wat loslaten is voor jou persoonlijk het moeilijkst dit seizoen, en waarom?',
       'Welke belofte durf je hardop uit te spreken voor het hele team?',
-      'Wanneer was er vorig seizoen een moment dat jullie cultuur écht klopte? Wat maakte dat moment anders?',
-      'Hoe zorg je ervoor dat dit contract niet vergeten wordt na vandaag?',
+      'Hoe zorg je dat dit contract niet vergeten wordt na vandaag?',
     ],
     followUp: [
-      'Verzamel de ondertekende contracten en maak een foto. Breng ze halverwege het seizoen terug bij een expliciete check-in: "wat heb je beloofd, en hoe gaat het?"',
-      'Hang de drie cultuurwoorden zichtbaar op in de kleedkamer of zet ze in de teamapp. Verwijs er actief naar bij evaluatiemomenten.',
-      'Verwijs in de week na de sessie minstens twee keer naar concreet gedrag dat je observeert en dat bij de cultuurankers past. "Dit is precies wat we bedoelden."',
-      'Plan een check-in na zes weken: laat spelers hun eigen belofte herlezen en scoren van 1 tot 10 hoe goed ze die tot nu toe hebben nagekomen.',
-    ],
-    pitfalls: [
-      'De groepsdiscussie te snel starten voordat iedereen individueel heeft nagedacht. Groepsdenken neemt dan de individuele stem over, en je verliest de eerlijkheid die je net nodig hebt.',
-      'Cultuurankers bespreken als een klaagmoment over het vorige seizoen in plaats van een vooruitkijk naar wat jullie willen zijn. Stuur bij als de toon te negatief wordt.',
-      'Beloftes accepteren die te vaag zijn. "Ik beloof harder te werken" is niet meetbaar en zal vervliegen. Help elke speler naar één concrete, zichtbare belofte.',
-      'Het ondertekende contract vergeten op te volgen. Een contract zonder follow-up is een decoratie, geen afspraak. Plan de terugkoppeling nu al in.',
+      'Bewaar de ondertekende contracten en breng ze halverwege het seizoen terug: "Wat beloofde je, en hoe gaat het?"',
+      'Hang de drie cultuurwoorden zichtbaar op in de kleedkamer. Verwijs er actief naar bij evaluatiemomenten.',
+      'Benoem de komende week minstens twee keer concreet gedrag dat bij de cultuurankers past: "Dit is precies wat we bedoelden."',
+      'Plan een check-in na zes weken: spelers herlezen hun belofte en scoren hoe goed ze die nakwamen.',
     ],
   },
   {
     s: 2,
     title: 'Hoe werken wij?',
     subtitle: 'Verkorte cultuurreeks: sessie 2 van 2',
-    science: [
-      'Edmondson (1999): psychologische veiligheid, het gevoel dat je fouten mag maken, is de sterkste voorspeller van teamprestaties in omgevingen met onzekerheid',
-      'Eys et al. (2015): het "ik zie, ik voel, ik vraag"-model vermindert aanvallig taalgebruik en verhoogt de kans op een constructief gesprek significant',
-      'Walsh et al. (2020): rituelen in sportteams verhogen groepscohesie en verminderen prestatieangst bij spelers, ook bij jonge sporters',
-      'Lencioni (2002): conflictvermijding is de tweede disfunctie van teams. Gezond conflict is een teken van vertrouwen, niet van zwakte',
-    ],
-    objective: 'Spelers leren hoe veilig ze zich voelen, oefenen een concreet aanspreekinstrument, en vertalen cultuur naar dagelijkse rituelen. Dit sluit de verkorte reeks af met actie.',
-    tip: 'Modelleer de "ik zie, ik voel, ik vraag"-oefening zelf eerst. Geef een fictief maar herkenbaar voorbeeld voor de hele groep voor je de spelers laat starten. Zo weten ze exact welk format je verwacht.',
-    warn: 'De vertrouwensbarometer kan gevoelig liggen als het team net een moeilijke periode achter de rug heeft. Wees klaar om te luisteren. Wijs erop dat er geen "juiste" score bestaat en dat niemand zijn scores hoeft te tonen.',
+    objective: 'Spelers leren hoe veilig ze zich voelen in het team, oefenen een concreet aanspreekinstrument en vertalen cultuur naar dagelijkse rituelen. Dit sluit de verkorte reeks af met actie.',
+    generalTip: 'Modelleer de "ik zie, ik voel, ik vraag"-oefening altijd zelf eerst. Geef een volledig fictief voorbeeld voor de hele groep voordat je spelers laat starten. Zo weten ze exact wat je verwacht.',
+    watch: 'De vertrouwensbarometer kan gevoelig liggen als het team net een moeilijke periode doormaakte. Wees klaar om te luisteren. Niemand is verplicht scores te tonen als hij dat niet wil.',
     exerciseDetails: [
       {
         title: 'Vertrouwensbarometer',
         tijd: '⏱ 10 min',
-        purpose: 'Spelers expliciteren hoe veilig ze zich voelen in vier concrete situaties. Dit maakt een onzichtbare groepsdynamiek zichtbaar en geeft taal aan iets wat anders onbesproken blijft. Het is een diagnose, geen oordeel.',
-        instructions: '"Geef eerlijk een score van 1 tot 10 voor elke situatie. Er is geen juist of fout. Niemand hoeft zijn scores te tonen als hij dat niet wil. Neem twee minuten om te schrijven. Daarna kan je kort toelichten als je wil, maar het hoeft niet."',
-        example: 'Als de meeste spelers een 4 of lager scoren op "ik durf fouten toe te geven", zeg: "Wat zou er moeten veranderen zodat jullie morgen een 6 scoren?" Zo verschuif je van diagnose naar actie. Zoek naar het eerste kleine stapje, niet de perfecte oplossing.',
+        explanation: 'Spelers expliciteren hoe veilig ze zich voelen in vier concrete situaties. Dit maakt een onzichtbare groepsdynamiek zichtbaar en geeft taal aan wat anders onbesproken blijft.',
+        script: '"Geef eerlijk een score van 1 tot 10 voor elke situatie. Er is geen goed of fout. Niemand hoeft zijn scores te tonen als hij dat niet wil. Twee minuten schrijven."',
+        tips: [
+          'Kalibreer eerst: "Als 10 betekent dat je alles durft te delen, wat is dan een 5 voor jullie?" Zo krijgen scores meer betekenis.',
+          'Verschuif van diagnose naar actie: als veel spelers laag scoren, vraag: "Wat moet er veranderen zodat jullie één punt hoger scoren?"',
+          'Niemand is verplicht scores te tonen. Vrijwilligheid maakt het veiliger om eerlijk te zijn.',
+        ],
+        scenarios: [
+          'Scenario A: bijna iedereen scoort laag op "fouten durven toegeven". Bespreek: "Wat maakt dat het hier niet veilig voelt?" Zoek het eerste kleine stapje, niet de perfecte oplossing.',
+          'Scenario B: één speler deelt een lage score openlijk. Reageer zonder oordeel: "Dank dat je dit deelt. Dit helpt ons als team."',
+          'Scenario C: het team heeft net een slechte wedstrijd gespeeld. Bereid je voor op lage scores. Luister eerst, stel pas daarna vragen.',
+        ],
+        pitfalls: [
+          'De barometer gebruiken om het team te beoordelen in plaats van als startpunt voor gesprek.',
+          'Spelers aanmoedigen scores te tonen als de groep nog niet veilig genoeg voelt. Verplicht delen is fnuikend voor vertrouwen.',
+        ],
+        faq: [
+          { q: 'Wat als niemand zijn scores wil delen?', a: 'Dat is een signaal. Bespreek anoniem: "Wat moet er veranderen zodat we dit wél kunnen delen?" Het gesprek is waardevoller dan de cijfers.' },
+          { q: 'Zijn lage scores erg?', a: 'Nee. Een lage score die uitgesproken wordt, is een kans om te groeien. Scores die nooit besproken worden, zijn het echte probleem.' },
+        ],
       },
       {
         title: 'Het moeilijke gesprek',
         tijd: '⏱ 12 min',
-        purpose: 'Spelers oefenen een concreet communicatiemodel dat observatie, gevoel en verzoek scheidt van aanval en beschuldiging. Zo durven ze moeilijke gesprekken voeren zonder dat die escaleren tot conflict.',
-        instructions: '"Modelleer dit eerst zelf met een fictief voorbeeld. Schrijf daarna: IK ZIE (wat je concreet observeert, zonder interpretatie), IK VOEL (wat dat bij jou doet, zonder beschuldiging), IK VRAAG JE OM (één concrete, uitvoerbare actie). Geen namen nodig op papier."',
-        example: 'Fout: "Je bent altijd te laat." Goed: IK ZIE: "jij komt de laatste weken 10 minuten te laat op training." IK VOEL: "dat maakt me onzeker over onze afspraken als team." IK VRAAG JE OM: "op tijd te komen, of me vooraf te berichten als het niet lukt." Lees dit voor de hele groep voor je ze laat schrijven.',
+        explanation: 'Spelers oefenen een model dat observatie, gevoel en verzoek scheidt van aanval en beschuldiging. Zo durven ze moeilijke gesprekken voeren zonder dat die escaleren.',
+        script: '"Modelleer dit eerst zelf. Schrijf dan: IK ZIE (observatie zonder interpretatie), IK VOEL (wat dit bij jou doet), IK VRAAG JE OM (één concrete actie). Geen namen nodig op papier."',
+        tips: [
+          'Geef altijd een volledig modelvoorbeeld voor je de spelers laat schrijven. Zo weet iedereen exact wat je verwacht.',
+          'Benadruk: IK ZIE gaat over feiten, geen oordelen. "Je bent altijd laat" is een oordeel. "Je was de laatste drie trainingen 10 minuten te laat" is een observatie.',
+          'Vraag na het schrijven of iemand zijn tekst hardop wil lezen. Laat anoniem toe als dat veiliger voelt.',
+        ],
+        scenarios: [
+          'Scenario A: een speler schrijft aanvallende "ik zie"-zinnen. Stop hem vriendelijk: "Dit is een interpretatie. Wat zag je concreet?" Help hem herschrijven zonder oordeel.',
+          'Scenario B: een speler wil het model meteen voor een echte spanning gebruiken. Begeleid dit zorgvuldig: "Is dit iets wat je ook echt wil bespreken, of oefen je alleen?"',
+        ],
+        pitfalls: [
+          '"IK ZIE"-zinnen die eigenlijk oordelen zijn. "Je trekt je niet in" is een oordeel, geen observatie.',
+          'De oefening overslaan omdat "ze dit al kennen". Kennen is niet hetzelfde als kunnen toepassen onder druk.',
+        ],
+        faq: [
+          { q: 'Moet ik dit model altijd gebruiken in echte gesprekken?', a: 'Nee. Het is een oefenhulp. Naarmate het vertrouwd wordt, gebruik je de structuur automatisch zonder het zo strak te volgen.' },
+          { q: 'Wat als de ander boos reageert als ik hem aansprek?', a: 'Vraag rustig: "Ik wou dit zeggen omdat ik om ons team geef. Mag ik uitleggen wat ik bedoelde?" Rustig blijven helpt meer dan je punt herhalen.' },
+        ],
       },
       {
         title: 'Rituelen en cultuurbelofte',
         tijd: '⏱ 10 min',
-        purpose: 'Cultuur zonder rituelen vervliegt. Kleine, herhaalde acties houden cultuur levend, ook als de druk toeneemt. De handtekening sluit de verkorte reeks symbolisch en krachtig af.',
-        instructions: '"Schrijf drie rituelen op: één voor de training, één na een wedstrijd, één bij een moeilijk moment. Daarna: schrijf één zin die zegt wat jij bijdraagt aan de cultuur van dit team. Onderteken met naam en datum."',
-        example: 'Rituelen hoeven klein te zijn: "voor elke training zeggen we één naam die het die week goed deed." Dat kost 30 seconden en creëert verbondenheid. Bespreek plenair welk ritueel de meeste impact zou hebben en prik er één dat jullie volgende week al invoeren.',
+        explanation: 'Cultuur zonder rituelen vervliegt. Kleine, herhaalde acties houden cultuur levend, ook als de druk toeneemt. De handtekening sluit de reeks symbolisch en krachtig af.',
+        script: '"Schrijf drie rituelen op: één voor de training, één na een wedstrijd, één bij een moeilijk moment. Schrijf dan één zin die zegt wat jij bijdraagt aan de cultuur van dit team. Onderteken."',
+        tips: [
+          'Vraag niet welk ritueel het leukst klinkt, maar welk ritueel minstens acht weken vol te houden is. Klein en haalbaar werkt, ambitieus en ingewikkeld niet.',
+          'Introduceer het eerste ritueel op de eerstvolgende training. Eigenaarschap van de spelers verhoogt de kans dat het beklijft.',
+          'Benoem de eerste vier weken actief elk ritueel als je het ziet: "Dit is precies het ritueel dat jullie kozen."',
+        ],
+        scenarios: [
+          'Scenario A: spelers stellen ingewikkelde rituelen voor. Help vereenvoudigen: "Wat is de kern hiervan in 30 seconden?"',
+          'Scenario B: de groep wil geen rituelen ("dat voelt geforceerd"). Laat een klein voorbeeld zien: "Wat als jullie voor elke training één naam noemen van iemand die het die week goed deed? 30 seconden, grote impact."',
+        ],
+        pitfalls: [
+          'Rituelen invoeren die te ingewikkeld of tijdsintensief zijn. Een ritueel dat als last wordt ervaren, verdwijnt binnen twee weken.',
+          'Rituelen niet actief opvolgen. Nieuw gedrag heeft 6-8 weken begeleiding nodig voor het automatisch wordt.',
+        ],
+        faq: [
+          { q: 'Wat als het team het ritueel na een week al vergeet?', a: 'Dat is normaal. Herinner eraan zonder te veroordelen: "We hadden afgesproken om voor de training één naam te noemen. We doen het nu." Zo herstart je zonder drama.' },
+          { q: 'Wie bewaakt de rituelen?', a: 'Aanvankelijk jij, maar de bedoeling is dat spelers het overnemen. Vraag wie dit op zich wil nemen.' },
+        ],
       },
-    ],
-    helpTips: [
-      'Start de vertrouwensbarometer met een kalibratie: "als 10 betekent dat je alles durft delen, wat is dan een 5 voor jullie team?" Zo krijgen de scores meer betekenis en vergelijkbaarheid.',
-      'Modelleer de "ik zie, ik voel, ik vraag"-oefening zelf met een fictief voorbeeld. Gebruik een situatie die herkenbaar is maar niemand rechtstreeks viseert. Dan durven de spelers ook oefenen.',
-      'Bij de rituelen: vraag niet welk ritueel het leukst klinkt, maar welk ritueel het makkelijkst minstens 8 weken vol te houden is. Haalbaar en klein slaat aan, ambitieus en ingewikkeld niet.',
-      'Sluit de sessie af met een cirkel: elke speler zegt in één zin wat hij meeneemt. Geen discussie achteraf, gewoon luisteren. Dit verankert de sessie individueel.',
-      'Volg de rituelen de eerste vier weken actief op. Benoem ze, ook als je ze ziet: "dit is precies het ritueel dat jullie kozen." Rituelen die niet begeleid worden verdwijnen na twee weken.',
     ],
     questions: [
       'Welke van de vier vertrouwensvragen voelde het gevaarlijkst om eerlijk te beantwoorden, en waarom?',
       'Heb je ooit iemand aangesproken op gedrag? Wat werkte en wat werkte niet?',
-      'Welk ritueel zou ons team direct veranderen, ook als het maar 30 seconden duurt per keer?',
-      'Wanneer voelde de sfeer in dit team het best? Wat maakte dat moment anders?',
+      'Welk ritueel zou ons team direct veranderen, ook als het maar 30 seconden duurt?',
       'Wat wil jij dat een nieuw teamlid over vijf jaar over deze groep zegt?',
     ],
     followUp: [
-      'Introduceer het eerste ritueel op de eerstvolgende training. Benoem expliciet dat dit afkomstig is van de spelers zelf, niet van jou als coach. Eigenaarschap zit bij het team.',
-      'Check de rituelenafspraken na vier weken: zijn ze nog actief? Zo niet, wat hield ze tegen? Bespreek dit kort en open, zonder oordeel.',
-      'Gebruik het "ik zie, ik voel, ik vraag"-model zelf als je een moeilijk gesprek hebt met een speler. Zo modelleer je het ook buiten de sessie en maak je het normaal.',
-      'Plan een korte terugblik op de verkorte reeks na zes weken: wat is er veranderd? Wat haalden jullie niet? Plan nu al wanneer je dit doet.',
-    ],
-    pitfalls: [
-      'De vertrouwensbarometer gebruiken als diagnostisch instrument om te oordelen over het team, in plaats van als startpunt voor een gesprek over wat beter kan.',
-      'De "ik zie, ik voel, ik vraag"-oefening overslaan omdat "ze dit al kennen." Kennen is niet hetzelfde als kunnen toepassen onder druk. Oefen het altijd.',
-      'Rituelen invoeren die te ingewikkeld of tijdsintensief zijn. Een ritueel dat spelers als last ervaren, verdwijnt binnen twee weken. Klein en consistent werkt.',
-      'De reeks afsluiten zonder een concrete vervolgstap of datum voor een check-in. Zonder follow-up vervaagt alles wat jullie vandaag gebouwd hebben. Plan het nu al in.',
+      'Introduceer het eerste ritueel op de eerstvolgende training. Benoem expliciet dat het van de spelers zelf komt, niet van jou.',
+      'Check de rituelenafspraken na vier weken: zijn ze nog actief? Zo niet, bespreek dit open en zonder oordeel.',
+      'Gebruik het "ik zie, ik voel, ik vraag"-model zelf in je gesprekken met spelers. Zo normaliseer je het buiten de sessie.',
+      'Plan een korte terugblik op de reeks na zes weken: wat is er veranderd? Wat niet? Plan het nu al in.',
     ],
   },
 ];
@@ -587,126 +641,182 @@ const coachEN = [
     s: 1,
     title: 'Who are we?',
     subtitle: 'Short culture track: session 1 of 2',
-    science: [
-      'Cameron & Quinn (2011): teams that consciously name their culture perform more stably under pressure than teams that do not',
-      'Baumeister & Leary (1995): social belonging is a basic need. Culture agreements strengthen that belonging at the team level',
-      'Tod et al. (2011): public commitment, such as signing, increases adherence to behavioral agreements by 30-40%',
-      'Carron & Eys (2012): shared identity is the strongest predictor of team cohesion and performance motivation across a full season',
-    ],
-    objective: 'Players name what binds them as a team. They formulate culture anchors and record their personal promise. This is the foundation for all the collaboration that follows.',
-    tip: 'Go first: share your own three words for the team before asking the players. This normalizes vulnerability and significantly raises the quality of their answers.',
-    warn: 'Do not let the group discussion on culture anchors become a complaint session about last season. Actively redirect if the tone gets too negative. The focus is looking ahead.',
+    objective: 'Players name what binds them as a team. They formulate culture anchors and record their personal promise with a signature. This is the foundation for all the collaboration that follows.',
+    generalTip: 'Go first: share your own three words for the team before asking the players. This normalizes vulnerability and significantly raises the quality of their answers.',
+    watch: 'Do not let the group discussion become a complaint session about last season. Actively redirect if the tone gets too negative. The focus is looking ahead.',
     exerciseDetails: [
       {
         title: 'Three words for our team',
         tijd: '⏱ 10 min',
-        purpose: 'Players make explicit what culture means to them concretely. By starting individually before sharing, you avoid groupthink. Everyone hears their own voice first.',
-        instructions: '"You have two minutes to write alone. No talking. Write down three words you want people to say about our team. Not about standings, but about our behavior and character. There is no right or wrong answer."',
-        example: 'Three players write "honesty", "fight", "fun". Ask: "When did we show this last year?" and "When did we not?" This makes the words tangible instead of abstract. Then combine the most chosen words into three team words.',
+        explanation: 'Players make explicit what culture means to them in behavior. By starting individually before sharing, you avoid groupthink and everyone hears their own voice first.',
+        script: '"You have two minutes to write alone. No talking. Three words you want people to say about our team. Not about standings, but about our behavior and character."',
+        tips: [
+          'Go first: share your own words before asking the group. This normalizes vulnerability and raises the quality of their answers.',
+          'Link the chosen words to concrete moments: "When did you show this last year, and when did you not?"',
+          'Combine the most chosen words into three team words. Take a quick vote with a show of hands.',
+        ],
+        scenarios: [
+          'Scenario A: almost everyone chooses the same word, e.g. "honesty". Ask: "When was that really there, and when did you miss it?" This brings the word to life instead of keeping it abstract.',
+          'Scenario B: players choose very different words. Say: "You choose different words but they all point to how you treat each other." Find the common thread together.',
+        ],
+        pitfalls: [
+          'Moving too quickly to group discussion before everyone has written individually. Groupthink kills honesty.',
+          'Accepting words about results. "Champions" is not a culture word. Redirect to behavior: "How do you behave like a champion?"',
+        ],
+        faq: [
+          { q: 'Does it have to be exactly three words?', a: 'No. If a player finds one perfect word, that is fine. It is about quality, not quantity.' },
+          { q: 'What if players choose very different words?', a: 'That is valuable. Show the differences and look together for what connects the words in behavior.' },
+        ],
       },
       {
         title: 'Culture anchors',
         tijd: '⏱ 12 min',
-        purpose: 'Teams that consciously name what they want to keep and let go bring positive behavior back faster and break less easily with old behavior that did not serve them. This makes change concrete.',
-        instructions: '"Think about last season. Left side: write what we want to keep as a team, behaviors, habits, moments. Right side: what do we consciously leave behind? What did not fit who we want to be? Two minutes writing, then a short discussion."',
-        example: 'A team writes "keep: we stand up for each other after a mistake", "let go: grumbling on the bench when you do not play." Discuss as a group: "How do we make sure we let this go? What is our concrete agreement?" Keep it in behavior, not vague intention.',
+        explanation: 'Teams that consciously name what they want to keep and let go break unhelpful behavior faster. The two columns make change concrete and steer the conversation forward.',
+        script: '"Think about last season. Left side: what do we want to keep as a team — behaviors, habits, moments. Right side: what do we consciously leave behind? Two minutes writing, then a short discussion."',
+        tips: [
+          'Redirect if "let go" becomes a complaint session. Ask: "What do we agree on so this is different this season?"',
+          'Make each item concrete in visible behavior: not "more discipline," but "we hold each other accountable when someone is late."',
+        ],
+        scenarios: [
+          'Scenario A: a player wants to let go of "grumbling on the bench." Ask: "What do you do instead when you are frustrated?" This gives direction to the new behavior.',
+          'Scenario B: the group wants to let go of almost everything. Ask: "Was there really nothing positive last year?" This rebalances and gives recognition too.',
+        ],
+        pitfalls: [
+          'Letting go becomes a complaint session instead of a forward look. Actively redirect if this happens.',
+          'Culture anchors stay vague. Help make each one concrete: "What does this look like as visible behavior at practice?"',
+        ],
+        faq: [
+          { q: 'How do you "let go" of something as a team concretely?', a: 'By agreeing on a new behavior that replaces the old one. Not "less negativity," but "we build each other up after every mistake."' },
+          { q: 'What if players disagree on what to let go?', a: 'Let them briefly explain why they want to keep something. Then vote. The conversation itself is already valuable.' },
+        ],
       },
       {
         title: 'Sign the team contract',
         tijd: '⏱ 8 min',
-        purpose: 'Public commitment through signing increases the chance that players actually keep their behavioral agreements. A contract players wrote themselves works stronger than rules handed down from above. The signature makes it serious.',
-        instructions: '"Write down three concrete promises you make to the team this season. Not vague, but measurable: something you can check yourself. Then sign with name and date."',
-        example: 'Instead of "I promise to be a better teammate," help the player toward something concrete: "I promise to be the first to encourage a teammate after a mistake" or "I promise to always be on time, even for informal practices." Ask two players to read their promise out loud after writing.',
+        explanation: 'Public commitment through signing increases the chance that players actually follow through. A contract players wrote themselves works stronger than rules handed down from above.',
+        script: '"Write down three concrete promises you make to the team this season. Make them measurable: something you can check yourself. Then sign with name and date."',
+        tips: [
+          'Help players move from vague to concrete. "Work harder" → "I am the first to encourage a teammate after a mistake."',
+          'After writing, ask two players to read their promise out loud. This raises commitment for everyone.',
+          'Keep the contracts and bring them back midseason for an explicit check-in.',
+        ],
+        scenarios: [
+          'Scenario A: a player writes a vague promise. Ask: "How will you know in three months if you did this?" Help make it more specific.',
+          'Scenario B: a player hesitates and writes nothing. Sit next to them: "What is one thing you want to contribute to this team this season?" Start small.',
+        ],
+        pitfalls: [
+          'Accepting promises that cannot be checked. "I promise to be a better teammate" will fade within a week.',
+          'Forgetting to follow up on the contracts. A contract without follow-up is decoration. Plan the check-in now.',
+        ],
+        faq: [
+          { q: 'What if I do not keep my promise?', a: 'That is human. What matters is that you acknowledge it and start again. Talk about it with your coach or a teammate.' },
+          { q: 'Do I really have to write three promises?', a: 'No. One strong, concrete promise is worth more than three vague ones. Quality matters more than quantity.' },
+        ],
       },
-    ],
-    helpTips: [
-      'Build the group discussion in two steps: first individual writing (2 min), then sharing. This way everyone hears their own voice before the group\'s, and you avoid one voice determining the rest.',
-      'Use the chosen culture words actively for the rest of the season. "This is exactly what perseverance means" makes culture tangible in the moment. Name it concretely when you see it.',
-      'Explicitly name the difference between a culture anchor and a match goal. Players sometimes confuse these. Culture anchors are about behavior, not titles or scores.',
-      'When signing, check if promises are concrete enough. If you cannot check a promise three months from now, it is too vague. Help the player make it more specific.',
-      'Leave at least 5 minutes after signing for a calm landing. A moment of quiet before moving on. This lets the meaning settle.',
     ],
     questions: [
       'Which word did almost everyone choose, and what does that say about who you already are as a team?',
       'What is personally hardest for you to let go of this season, and why?',
       'Which promise do you dare to say out loud in front of the whole team?',
-      'When was there a moment last season where your culture really clicked? What made that moment different?',
       'How do you make sure this contract is not forgotten after today?',
     ],
     followUp: [
-      'Collect the signed contracts and take a photo. Bring them back midseason at an explicit check-in: "what did you promise, and how is it going?"',
-      'Display the three culture words visibly in the locker room or put them in the team app. Actively refer to them at evaluation moments.',
-      'In the week after the session, name at least twice concrete behavior you observe that fits the culture anchors. "This is exactly what we meant."',
-      'Plan a check-in after six weeks: have players reread their own promise and score from 1 to 10 how well they have kept it so far.',
-    ],
-    pitfalls: [
-      'Starting the group discussion too quickly before everyone has thought individually. Groupthink then takes over the individual voice, and you lose the honesty you need.',
-      'Discussing culture anchors as a complaint session about last season instead of a forward look at who you want to be. Redirect if the tone gets too negative.',
-      'Accepting promises that are too vague. "I promise to work harder" is not measurable and will fade. Help every player toward one concrete, visible promise.',
-      'Forgetting to follow up on the signed contract. A contract without follow-up is decoration, not an agreement. Plan the follow-up now.',
+      'Keep the signed contracts and bring them back midseason: "What did you promise, and how is it going?"',
+      'Display the three culture words visibly in the locker room. Actively refer to them at evaluation moments.',
+      'In the coming week, name at least twice concrete behavior you observe that fits the culture anchors: "This is exactly what we meant."',
+      'Plan a check-in after six weeks: players reread their promise and score how well they kept it.',
     ],
   },
   {
     s: 2,
     title: 'How do we work?',
     subtitle: 'Short culture track: session 2 of 2',
-    science: [
-      'Edmondson (1999): psychological safety, the feeling that you can make mistakes, is the strongest predictor of team performance in uncertain environments',
-      'Eys et al. (2015): the "I see, I feel, I ask" model significantly reduces aggressive language and raises the chance of a constructive conversation',
-      'Walsh et al. (2020): rituals in sports teams increase group cohesion and reduce performance anxiety in players, including young athletes',
-      'Lencioni (2002): avoidance of conflict is the second dysfunction of teams. Healthy conflict is a sign of trust, not weakness',
-    ],
-    objective: 'Players learn how safe they feel, practice a concrete accountability tool, and translate culture into daily rituals. This closes the short track with action.',
-    tip: 'Model the "I see, I feel, I ask" exercise yourself first. Give a fictional but recognizable example in front of the whole group before letting players start. This way they know exactly what format you expect.',
-    warn: 'The trust barometer can be sensitive if the team has just been through a difficult period. Be ready to listen. Point out that there is no "right" score and that no one has to show their scores.',
+    objective: 'Players learn how safe they feel in the team, practice a concrete accountability tool, and translate culture into daily rituals. This closes the short track with action.',
+    generalTip: 'Always model the "I see, I feel, I ask" exercise yourself first. Give a complete fictional example in front of the whole group before letting players start. This way everyone knows exactly what you expect.',
+    watch: 'The trust barometer can be sensitive if the team has just been through a difficult period. Be ready to listen. No one is required to show their scores if they do not want to.',
     exerciseDetails: [
       {
         title: 'Trust barometer',
         tijd: '⏱ 10 min',
-        purpose: 'Players make explicit how safe they feel in four concrete situations. This makes an invisible group dynamic visible and gives language to something that would otherwise go unspoken. It is a diagnosis, not a judgment.',
-        instructions: '"Give an honest score from 1 to 10 for each situation. No right or wrong. No one has to show their scores if they do not want to. Take two minutes to write. Then you can briefly explain if you want, but you do not have to."',
-        example: 'If most players score a 4 or lower on "I dare to admit mistakes," say: "What would need to change for you to score a 6 tomorrow?" This shifts from diagnosis to action. Look for the first small step, not the perfect solution.',
+        explanation: 'Players make explicit how safe they feel in four concrete situations. This makes an invisible group dynamic visible and gives language to what would otherwise go unspoken.',
+        script: '"Give an honest score from 1 to 10 for each situation. No right or wrong. No one has to show their scores if they do not want to. Two minutes to write."',
+        tips: [
+          'Calibrate first: "If 10 means you dare to share everything, what is a 5 for your team?" This gives scores more meaning.',
+          'Shift from diagnosis to action: if many score low, ask: "What needs to change for you to score one point higher?"',
+          'No one is required to show scores. Voluntary sharing makes it safer to be honest.',
+        ],
+        scenarios: [
+          'Scenario A: almost everyone scores low on "daring to admit mistakes." Ask: "What makes this not feel safe here?" Look for the first small step, not the perfect solution.',
+          'Scenario B: one player openly shares a low score. Respond without judgment: "Thank you for sharing this. It helps us as a team."',
+          'Scenario C: the team just had a bad game. Expect low scores. Listen first, ask questions later.',
+        ],
+        pitfalls: [
+          'Using the barometer to judge the team instead of as a starting point for conversation.',
+          'Encouraging players to show scores when the group does not feel safe enough yet. Compulsory sharing kills trust.',
+        ],
+        faq: [
+          { q: 'What if no one wants to share their scores?', a: 'That is a signal. Discuss anonymously: "What needs to change so we can share this?" The process is more valuable than the numbers.' },
+          { q: 'Are low scores bad?', a: 'No. A low score that gets spoken out loud is an opportunity to grow. Scores that never get discussed are the real problem.' },
+        ],
       },
       {
         title: 'The difficult conversation',
         tijd: '⏱ 12 min',
-        purpose: 'Players practice a concrete communication model that separates observation, feeling, and request from attack and accusation. This way they dare to have difficult conversations without them escalating into conflict.',
-        instructions: '"Model this yourself first with a fictional example. Then write: I SEE (what you concretely observe, without interpretation), I FEEL (what it does to you, without accusation), I ASK YOU TO (one concrete, doable action). No names needed on paper."',
-        example: 'Wrong: "You are always late." Right: I SEE: "you have been 10 minutes late to practice the last few weeks." I FEEL: "that makes me uncertain about our agreements as a team." I ASK YOU TO: "be on time, or let me know in advance if you cannot." Read this out loud to the whole group before they start writing.',
+        explanation: 'Players practice a model that separates observation, feeling, and request from attack and accusation. This way they dare to have difficult conversations without them escalating.',
+        script: '"Model this yourself first with a fictional example. Then write: I SEE (observation without interpretation), I FEEL (what it does to you), I ASK YOU TO (one concrete action). No names needed."',
+        tips: [
+          'Always give a complete model example before letting players write. Everyone needs to know exactly what you expect.',
+          'Emphasize: I SEE is about facts, not judgments. "You are always late" is a judgment. "You were late to the last three practices by 10 minutes" is an observation.',
+          'After writing, ask if anyone wants to read their text out loud. Allow anonymity if that feels safer.',
+        ],
+        scenarios: [
+          'Scenario A: a player writes attacking "I see" statements. Gently stop them: "This is an interpretation. What did you concretely see?" Help them rewrite without judgment.',
+          'Scenario B: a player wants to use the model immediately for a real tension in the team. Guide carefully: "Is this something you actually want to address, or are you just practicing?"',
+        ],
+        pitfalls: [
+          '"I see" statements that are actually judgments. "You do not contribute" is a judgment, not an observation.',
+          'Skipping the exercise because "they already know this." Knowing is not the same as being able to apply it under pressure.',
+        ],
+        faq: [
+          { q: 'Do I always have to use this model in real conversations?', a: 'No. It is a practice tool. As it becomes familiar, you use the structure naturally without following it so strictly.' },
+          { q: 'What if the other person gets angry when I address them?', a: 'Ask calmly: "I said this because I care about our team. Can I explain what I meant?" Staying calm helps more than repeating your point.' },
+        ],
       },
       {
         title: 'Rituals and culture promise',
         tijd: '⏱ 10 min',
-        purpose: 'Culture without rituals fades. Small, repeated actions keep culture alive, even when pressure rises. The signature symbolically and powerfully closes the short track.',
-        instructions: '"Write three rituals: one before training, one after a game, one in a difficult moment. Then write one sentence that says what you contribute to the culture of this team. Sign with name and date."',
-        example: 'Rituals can be tiny: "before every practice we name one person who did something well that week." That takes 30 seconds and creates connection. Discuss as a group which ritual would have the most impact and pick one to start next week.',
+        explanation: 'Culture without rituals fades. Small, repeated actions keep culture alive, even when pressure rises. The signature symbolically and powerfully closes the track.',
+        script: '"Write three rituals: one before training, one after a game, one in a difficult moment. Then write one sentence saying what you contribute to the culture of this team. Sign with name and date."',
+        tips: [
+          'Do not ask which ritual sounds best, but which ritual is easiest to keep up for at least eight weeks. Small and doable works; ambitious and complicated does not.',
+          'Introduce the first ritual at the very next practice. Player ownership increases the chance it sticks.',
+          'Actively name each ritual for the first four weeks when you see it: "This is exactly the ritual you chose."',
+        ],
+        scenarios: [
+          'Scenario A: players propose complex rituals. Help simplify: "What is the essence of this in 30 seconds?"',
+          'Scenario B: the group does not want rituals ("that feels forced"). Show a small example: "What if before every practice you name one person who did something well that week? 30 seconds, big impact."',
+        ],
+        pitfalls: [
+          'Introducing rituals that are too complex or time-consuming. A ritual experienced as a burden disappears within two weeks.',
+          'Not actively following up on rituals. New behavior needs 6-8 weeks of support before it becomes automatic.',
+        ],
+        faq: [
+          { q: 'What if the team already forgets the ritual after a week?', a: 'That is normal. Remind them without judgment: "We agreed to name one person before practice. We do it now." Restart without drama.' },
+          { q: 'Who keeps track of the rituals?', a: 'Initially you, but the aim is for players to take over. Ask who wants to take this on.' },
+        ],
       },
-    ],
-    helpTips: [
-      'Start the trust barometer with a calibration: "if 10 means you dare to share everything, what is a 5 for your team?" This gives scores more meaning and makes them comparable.',
-      'Model the "I see, I feel, I ask" exercise yourself with a fictional example. Use a situation that is recognizable but does not directly target anyone. Then players dare to practice too.',
-      'For rituals: do not ask which ritual sounds best, but which ritual is easiest to keep up for at least 8 weeks. Small and doable lands, ambitious and complicated does not.',
-      'Close the session with a circle: each player says in one sentence what they take away. No discussion afterward, just listening. This anchors the session individually.',
-      'Follow up on rituals actively for the first four weeks. Name them when you see them: "this is exactly the ritual you chose." Rituals that are not supported disappear within two weeks.',
     ],
     questions: [
       'Which of the four trust questions felt most dangerous to answer honestly, and why?',
       'Have you ever addressed someone about their behavior? What worked and what did not?',
-      'Which ritual would immediately change our team, even if it only takes 30 seconds each time?',
-      'When did the atmosphere in this team feel best? What made that moment different?',
+      'Which ritual would immediately change our team, even if it only takes 30 seconds?',
       'What do you want a new teammate to say about this group five years from now?',
     ],
     followUp: [
-      'Introduce the first ritual at the very next practice. Explicitly name that it comes from the players themselves, not from you as coach. Ownership belongs to the team.',
-      'Check the ritual agreements after four weeks: are they still active? If not, what held them back? Discuss this briefly and openly, without judgment.',
-      'Use the "I see, I feel, I ask" model yourself when you have a difficult conversation with a player. This models it outside the session and makes it normal.',
-      'Plan a short look-back on the short track after six weeks: what changed? What did not happen? Plan now when you will do this.',
-    ],
-    pitfalls: [
-      'Using the trust barometer as a diagnostic tool to judge the team, instead of as a starting point for a conversation about what can be better.',
-      'Skipping the "I see, I feel, I ask" exercise because "they already know this." Knowing is not the same as being able to apply it under pressure. Always practice it.',
-      'Introducing rituals that are too complex or time-consuming. A ritual that players experience as a burden disappears within two weeks. Small and consistent works.',
-      'Closing the track without a concrete next step or date for a check-in. Without follow-up, everything you built today will fade. Plan it now.',
+      'Introduce the first ritual at the very next practice. Mention explicitly that it comes from the players themselves, not from you.',
+      'Check the ritual agreements after four weeks: are they still active? If not, discuss this openly and without judgment.',
+      'Use the "I see, I feel, I ask" model yourself in conversations with players. This makes it normal outside the session.',
+      'Plan a short look-back on the track after six weeks: what changed? What did not? Plan it now.',
     ],
   },
 ];
@@ -768,50 +878,51 @@ function buildPlayerHTML(data, lang) {
 }
 
 function buildCoachHTML(sessions, isEN) {
-  const pages = sessions.map(d => `
-<div class="page">
-  <div class="header">
-    <div class="wordmark">CHARACTER <span>First</span></div>
-    <div class="session-label">${d.subtitle}</div>
-  </div>
-  <div class="divider"></div>
-  <div class="title-block">
-    <div class="eyebrow">${isEN ? 'COACH GUIDE' : 'COACHGIDS'}</div>
-    <div class="title">${d.title}</div>
-  </div>
-  <div class="science-block">
-    <div class="section-label">${isEN ? 'Scientific basis' : 'Wetenschappelijke basis'}</div>
-    <ul>${d.science.map(s => `<li>${s}</li>`).join('')}</ul>
-  </div>
-  <div class="objective-block">
-    <div class="section-label">${isEN ? 'Objective' : 'Doelstelling'}</div>
-    <p>${d.objective}</p>
-  </div>
-  <div class="tip-block">
-    <div class="section-label">${isEN ? 'Coach tip' : 'Coach tip'}</div>
-    <p>${d.tip}</p>
-  </div>
-  <div class="warn-block">
-    <div class="section-label">${isEN ? 'Watch out for' : 'Let op'}</div>
-    <p>${d.warn}</p>
-  </div>
-  <div class="footer">
-    <div class="footer-left">${EMAIL}</div>
-    <div class="footer-right">${isEN ? 'CONFIDENTIAL — For coaches only' : 'VERTROUWELIJK — Enkel voor coaches'} · 1/3</div>
-  </div>
-</div>
-<div class="page">
-  <div class="header">
-    <div class="wordmark">CHARACTER <span>First</span></div>
-    <div class="session-label">${d.subtitle}</div>
-  </div>
-  <div class="divider"></div>
-  <div class="title-block">
-    <div class="eyebrow">${isEN ? 'EXERCISES, ONE BY ONE' : 'OEFENINGEN, EEN VOOR EEN'}</div>
-    <div class="title" style="font-size:18px">${isEN ? 'Everything per exercise, in order' : 'Alles per oefening, op volgorde'}</div>
-  </div>
-  <div class="detail-list">
-    ${d.exerciseDetails.map((e, i) => `
+  const L = isEN ? {
+    coach:    'COACH GUIDE',
+    obj:      'Objective',
+    approach: 'Key coaching approach',
+    watch:    'Watch out for',
+    overview: 'Exercise overview',
+    exHead:   'EXERCISES IN DETAIL',
+    exSlug:   'Everything per exercise, in order',
+    wrapHead: 'WRAPPING UP',
+    wrapSlug: 'Questions, follow-up and closing',
+    explain:  'Explain',
+    say:      'Say:',
+    tips:     'Tips',
+    scen:     'Scenarios',
+    pitf:     'Pitfalls',
+    faq:      'FAQ',
+    faqQ:     'Q',
+    faqA:     'A',
+    qs:       'Discussion questions to ask',
+    fu:       'Follow-up in the coming weeks',
+    conf:     'CONFIDENTIAL — For coaches only',
+  } : {
+    coach:    'COACHGIDS',
+    obj:      'Doelstelling',
+    approach: 'Jouw rol als coach',
+    watch:    'Let op',
+    overview: 'Overzicht oefeningen',
+    exHead:   'OEFENINGEN IN DETAIL',
+    exSlug:   'Alles per oefening, op volgorde',
+    wrapHead: 'AFSLUITING EN OPVOLGING',
+    wrapSlug: 'Vragen, vervolgstappen en afsluiting',
+    explain:  'Uitleg',
+    say:      'Zeg:',
+    tips:     'Tips',
+    scen:     "Scenario's",
+    pitf:     'Valkuilen',
+    faq:      'FAQ',
+    faqQ:     'V',
+    faqA:     'A',
+    qs:       'Gespreksvragen om te stellen',
+    fu:       'Vervolgstappen de komende weken',
+    conf:     'VERTROUWELIJK — Enkel voor coaches',
+  };
+
+  const exCard = (e, i) => `
     <div class="detail-card">
       <div class="detail-header">
         <div class="activity-num">${i + 1}</div>
@@ -819,54 +930,99 @@ function buildCoachHTML(sessions, isEN) {
         <div class="detail-time">${e.tijd}</div>
       </div>
       <div class="detail-row">
-        <div class="detail-key">${isEN ? 'Purpose' : 'Doel'}</div>
-        <div class="detail-val">${e.purpose}</div>
+        <div class="detail-key">${L.explain}</div>
+        <div class="detail-val">${e.explanation}</div>
       </div>
       <div class="detail-row">
-        <div class="detail-key">${isEN ? 'Say to players' : 'Zeg tegen spelers'}</div>
-        <div class="detail-val script">${e.instructions}</div>
+        <div class="detail-key">${L.say}</div>
+        <div class="detail-val script">${e.script}</div>
       </div>
       <div class="detail-row">
-        <div class="detail-key">${isEN ? 'Example' : 'Voorbeeld'}</div>
-        <div class="detail-val example">${e.example}</div>
+        <div class="detail-key">${L.tips}</div>
+        <div class="detail-val"><ul class="mini-list">${e.tips.map(t => `<li>${t}</li>`).join('')}</ul></div>
       </div>
-    </div>`).join('')}
-  </div>
-  <div class="footer">
-    <div class="footer-left">${EMAIL}</div>
-    <div class="footer-right">${isEN ? 'CONFIDENTIAL — For coaches only' : 'VERTROUWELIJK — Enkel voor coaches'} · 2/3</div>
-  </div>
-</div>
-<div class="page">
+      <div class="detail-row">
+        <div class="detail-key">${L.scen}</div>
+        <div class="detail-val"><ul class="mini-list scenario-list">${e.scenarios.map(s => `<li>${s}</li>`).join('')}</ul></div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">${L.pitf}</div>
+        <div class="detail-val"><ul class="mini-list pitfall-list">${e.pitfalls.map(p => `<li>${p}</li>`).join('')}</ul></div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">${L.faq}</div>
+        <div class="detail-val">${e.faq.map(f => `<div class="faq-item"><span class="faq-q">${L.faqQ}: ${f.q}</span><span class="faq-a">${L.faqA}: ${f.a}</span></div>`).join('')}</div>
+      </div>
+    </div>`;
+
+  const pageHeader = (subtitle) => `
   <div class="header">
     <div class="wordmark">CHARACTER <span>First</span></div>
-    <div class="session-label">${d.subtitle}</div>
+    <div class="session-label">${subtitle}</div>
   </div>
-  <div class="divider"></div>
+  <div class="divider"></div>`;
+
+  const pageFooter = (subtitle, n) => `
+  <div class="footer">
+    <div class="footer-left">${EMAIL}</div>
+    <div class="footer-right">${L.conf} · ${n}/3</div>
+  </div>`;
+
+  const pages = sessions.map(d => `
+<div class="page">
+  ${pageHeader(d.subtitle)}
   <div class="title-block">
-    <div class="eyebrow">${isEN ? 'COACHING IN DEPTH' : 'COACHING IN DE DIEPTE'}</div>
-    <div class="title" style="font-size:18px">${isEN ? 'How to help your team further' : 'Hoe help je je team verder'}</div>
+    <div class="eyebrow">${L.coach}</div>
+    <div class="title">${d.title}</div>
   </div>
-  <div class="help-block">
-    <div class="section-label">${isEN ? 'How to support your team' : 'Hoe ondersteun je je team'}</div>
-    <ol>${d.helpTips.map(t => `<li>${t}</li>`).join('')}</ol>
+  <div class="objective-block">
+    <div class="section-label">${L.obj}</div>
+    <p>${d.objective}</p>
+  </div>
+  <div class="tip-block">
+    <div class="section-label">${L.approach}</div>
+    <p>${d.generalTip}</p>
+  </div>
+  <div class="warn-block">
+    <div class="section-label">${L.watch}</div>
+    <p>${d.watch}</p>
+  </div>
+  <div class="overview-block">
+    <div class="section-label">${L.overview}</div>
+    <ol>${d.exerciseDetails.map(e => `<li><strong>${e.title}</strong> &mdash; ${e.tijd}</li>`).join('')}</ol>
+  </div>
+  ${pageFooter(d.subtitle, 1)}
+</div>
+<div class="page">
+  ${pageHeader(d.subtitle)}
+  <div class="title-block">
+    <div class="eyebrow">${L.exHead}</div>
+    <div class="title" style="font-size:18px">${L.exSlug}</div>
+  </div>
+  <div class="detail-list">
+    ${exCard(d.exerciseDetails[0], 0)}
+    ${exCard(d.exerciseDetails[1], 1)}
+  </div>
+  ${pageFooter(d.subtitle, 2)}
+</div>
+<div class="page">
+  ${pageHeader(d.subtitle)}
+  <div class="title-block">
+    <div class="eyebrow">${L.wrapHead}</div>
+    <div class="title" style="font-size:18px">${L.wrapSlug}</div>
+  </div>
+  <div class="detail-list">
+    ${exCard(d.exerciseDetails[2], 2)}
   </div>
   <div class="question-block">
-    <div class="section-label">${isEN ? 'Discussion questions to ask' : 'Gespreksvragen om te stellen'}</div>
+    <div class="section-label">${L.qs}</div>
     <ol>${d.questions.map(q => `<li>${q}</li>`).join('')}</ol>
   </div>
   <div class="followup-block">
-    <div class="section-label">${isEN ? 'Follow-up in the coming weeks' : 'Vervolgstappen de komende weken'}</div>
+    <div class="section-label">${L.fu}</div>
     <ol>${d.followUp.map(f => `<li>${f}</li>`).join('')}</ol>
   </div>
-  <div class="pitfall-block">
-    <div class="section-label">${isEN ? 'Common pitfalls' : 'Veelvoorkomende valkuilen'}</div>
-    <ul>${d.pitfalls.map(p => `<li>${p}</li>`).join('')}</ul>
-  </div>
-  <div class="footer">
-    <div class="footer-left">${EMAIL}</div>
-    <div class="footer-right">${isEN ? 'CONFIDENTIAL — For coaches only' : 'VERTROUWELIJK — Enkel voor coaches'} · 3/3</div>
-  </div>
+  ${pageFooter(d.subtitle, 3)}
 </div>`).join('');
 
   return `<!DOCTYPE html><html lang="${isEN ? 'en' : 'nl'}"><head><meta charset="UTF-8"><style>${COACH_CSS}</style></head><body>${pages}</body></html>`;
@@ -880,25 +1036,21 @@ function buildCoachHTML(sessions, isEN) {
   const page = await browser.newPage();
 
   const jobs = [
-    // Player NL — one PDF per session
     ...playerNL.map(d => ({
       name: `CF_Cultuur_Kort_Speler_S${d.s}_NL.pdf`,
       dir: OUT_NL,
       html: buildPlayerHTML(d, 'NL'),
     })),
-    // Player EN — one PDF per session
     ...playerEN.map(d => ({
       name: `CF_Cultuur_Kort_Speler_S${d.s}_EN.pdf`,
       dir: OUT_EN,
       html: buildPlayerHTML(d, 'EN'),
     })),
-    // Coach NL — all sessions in one PDF per language
     {
       name: 'CF_Cultuur_Kort_Coach_NL.pdf',
       dir: OUT_COACH_NL,
       html: buildCoachHTML(coachNL, false),
     },
-    // Coach EN
     {
       name: 'CF_Cultuur_Kort_Coach_EN.pdf',
       dir: OUT_COACH_EN,
@@ -914,5 +1066,5 @@ function buildCoachHTML(sessions, isEN) {
   }
 
   await browser.close();
-  console.log('Done! 8 PDFs generated.');
+  console.log('Done! 6 PDFs generated.');
 })();
