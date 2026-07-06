@@ -248,7 +248,7 @@ const NL = {
   badge: 'Handleiding voor coaches',
   eyebrow: 'Character First · Preseason',
   title: 'Cultuur bouwen\nbegint <span>vóór</span> het seizoen',
-  sub: 'Dit document legt uit waarom teamcultuur het fundament is van een goed seizoen. Het Cultuurprogramma bestaat in twee versies — een verkorte van 2 sessies en een volledige van 5 sessies — zodat je kan kiezen op basis van de tijd die je hebt.',
+  sub: 'Dit document legt uit waarom teamcultuur het fundament is van een goed seizoen. Het Cultuurprogramma bestaat in twee versies — een verkorte van 2 sessies en een volledige van 5 sessies. Bij elke sessie hoort een kant-en-klare coachpresentatie om te projecteren én een handleiding die je als leidraad volgt.',
 
   whyTitle: 'Waarom cultuur <span>vóór techniek</span>?',
   whyText: 'Onderzoek toont steeds opnieuw: teams die een sterke cultuur bouwen vóór het seizoen start, presteren beter onder druk. Ze herstellen sneller na een verlies. Ze tonen meer eigenaarschap op en naast het veld. Cultuur is geen bijzaak. Het is de basis waarop techniek en tactiek kunnen groeien.',
@@ -299,12 +299,12 @@ const NL = {
   ],
 
   // P3 — hoe gebruiken + tijd + quote
-  secHow: 'Hoe gebruik je dit programma?',
+  secHow: 'Het materiaal: alles ligt voor je klaar',
   howCards: [
+    { icon:'🖥️', title:'Coachpresentatie', text:'Per sessie een set slides die je projecteert terwijl je de sessie leidt: doel, oefeningen en de vragen om te stellen. In het Nederlands en Engels.', cls:'blue' },
+    { icon:'🎓', title:'Handleiding coach', text:'Je leidraad per sessie, met doelstelling, activiteiten, discussievragen, aandachtspunten en een afsluiting. Jij hoeft niets voor te bereiden.', cls:'green' },
     { icon:'📋', title:'Werkblad speler', text:'Elke speler krijgt zijn eigen werkblad. Ze denken eerst individueel na, voor de groepsdiscussie. Dat geeft eerlijkere en diepere gesprekken.', cls:'' },
-    { icon:'🎓', title:'Gids coach', text:'Jij krijgt een apart begeleidingsblad per sessie, met doelstelling, activiteiten, discussievragen en een afsluiting.', cls:'green' },
-    { icon:'🗓️', title:'Wanneer starten?', text:'Plan de sessies in de weken voor de competitiestart. Eén sessie per week werkt het best. Het kan ook tijdens een training.', cls:'blue' },
-    { icon:'👥', title:'Groepsgrootte', text:'Werkt voor teams van 8 tot 25 spelers. Bij grotere groepen werk je best in kleinere groepjes voor de reflectie-oefeningen.', cls:'' },
+    { icon:'🗓️', title:'Wanneer & groep', text:'Plan één sessie per week voor de competitiestart. Werkt voor teams van 8 tot 25 spelers; bij grote groepen werk je in kleinere groepjes.', cls:'' },
   ],
 
   secTime: 'Tijdsinvestering voor de coach',
@@ -318,7 +318,7 @@ const NL = {
   secStart: 'Aan de slag in 3 stappen',
   startSteps: [
     { n:'1', t:'Kies je versie', d:'Verkort (2 sessies) of volledig (5 sessies), op basis van je tijd.' },
-    { n:'2', t:'Print de werkbladen', d:'Speler- en coachbladen per sessie staan klaar in het Nederlands en Engels.' },
+    { n:'2', t:'Neem het materiaal', d:'Presentatie, handleiding en spelerwerkbladen per sessie staan klaar in NL en EN.' },
     { n:'3', t:'Plan je sessies', d:'Eén sessie per week in de weken voor de competitiestart.' },
   ],
 
