@@ -1,3 +1,43 @@
+# Character First — Sessie 25/06/2026
+
+## Cultuur Kort — Coach Guide Herontwerp (pagina 1–3)
+
+### Wijzigingen in `gen_cultuur_kort.cjs`
+
+**Pagina 1 — volledig herontworpen:**
+- Header rechts: "Cultuur programma" (oranje, Arial Black) + "Coachgids · Sessie X van 2" (subtitel)
+- Intro: ~10 zinnen over het programma met vetgedrukte kernwoorden
+- Doelstellingen sessie: oranje bordered blok met ✓ checkmarks
+- Oefeningen overzicht: naam + richttijd per oefening
+- 5 concrete coachtips (genummerd, groen blok)
+- 3 aandachtspunten (rood blok)
+- Wetenschappelijke basis: demoted naar footnote onderaan pagina
+- Witruimte: van `justify-content: space-between` naar `justify-content: flex-start; gap: 14px`
+
+**Pagina's 2 & 3 — header aangepast:**
+- Header rechts toont nu ook "Cultuur programma" / "Culture program" + sessienummer
+- Consistent met pagina 1
+
+**Betrokken bestanden:**
+- `docs/character-first/scripts/gen_cultuur_kort.cjs`
+- Uitvoer: `werkbladen-pdf/cultuur-kort/`, `cultuur-kort-en/`, `cultuur-kort-coach/`, `cultuur-kort-coach-en/`
+
+### PDFs geleverd (CF_Cultuur_Programma_Werkbladen.zip)
+
+| Map | Inhoud |
+|-----|--------|
+| `1_Verkorte-Reeks/Speler-NL/` | CF_Cultuur_Kort_Speler_S1_NL.pdf, S2 |
+| `1_Verkorte-Reeks/Speler-EN/` | CF_Cultuur_Kort_Speler_S1_EN.pdf, S2 |
+| `1_Verkorte-Reeks/Coach-NL/` | CF_Cultuur_Kort_Coach_NL.pdf |
+| `1_Verkorte-Reeks/Coach-EN/` | CF_Cultuur_Kort_Coach_EN.pdf |
+| `2_Volledig-Programma/Speler-NL/` | CF_Cultuur_Speler_S1–S5_NL.pdf (5 bestanden) |
+| `2_Volledig-Programma/Speler-EN/` | CF_Cultuur_Speler_S1–S5_EN.pdf (5 bestanden) |
+| `2_Volledig-Programma/Coach-NL/` | CF_Cultuur_Coach_S1–S5_NL.pdf (5 bestanden) |
+| `2_Volledig-Programma/Coach-EN/` | CF_Cultuur_Coach_S1–S5_EN.pdf (5 bestanden) |
+| `Uitleg/` | CF_Company_Document_NL.pdf, EN.pdf, CF_Cultuur_Handleiding_Coach.pdf |
+
+---
+
 # Character First — Sessie 13/06/2026
 
 ## Status GitHub PRs

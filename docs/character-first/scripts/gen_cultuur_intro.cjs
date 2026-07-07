@@ -108,12 +108,57 @@ const CSS = `
     margin-top:4px; line-height:1.3;
   }
 
+  /* ── VERSION CARDS ── */
+  .version-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex-shrink:0; }
+  .version-card {
+    border-radius:12px; padding:14px 15px; border:2px solid;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .version-card.short { border-color:var(--orange); background:rgba(240,90,40,.06); }
+  .version-card.full  { border-color:var(--blue);   background:rgba(47,111,176,.06); }
+  .vc-tag {
+    font-family:"Arial Black",Arial,sans-serif; font-size:8.5px; font-weight:900;
+    text-transform:uppercase; letter-spacing:.12em; padding:3px 10px; border-radius:6px;
+    align-self:flex-start; color:#fff;
+  }
+  .version-card.short .vc-tag { background:var(--orange); }
+  .version-card.full  .vc-tag { background:var(--blue); }
+  .vc-title {
+    font-family:"Arial Black",Arial,sans-serif; font-size:16px; font-weight:900; color:var(--navy);
+    line-height:1;
+  }
+  .vc-meta {
+    font-family:"Arial Black",Arial,sans-serif; font-size:8.5px; font-weight:900;
+    text-transform:uppercase; letter-spacing:.06em; color:var(--stone);
+  }
+  .vc-text { font-size:10px; color:var(--stone); line-height:1.55; }
+  .vc-list { list-style:none; display:flex; flex-direction:column; gap:4px; margin-top:2px; }
+  .vc-list li {
+    font-size:9.5px; color:var(--navy); padding-left:15px; position:relative; line-height:1.4;
+  }
+  .vc-list li::before { content:'✓'; position:absolute; left:0; color:var(--green); font-weight:900; }
+  .vc-when { font-size:9.5px; color:var(--stone); font-style:italic; margin-top:auto; padding-top:6px; }
+
+  /* ── START STEPS ── */
+  .start-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; flex-shrink:0; }
+  .start-card {
+    background:#fff; border:1.5px solid var(--line); border-radius:10px;
+    padding:15px 14px; display:flex; flex-direction:column; gap:7px;
+  }
+  .start-num {
+    width:27px; height:27px; border-radius:50%; background:var(--navy); color:#fff;
+    font-family:"Arial Black",Arial,sans-serif; font-size:12px; font-weight:900;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .start-title { font-family:"Arial Black",Arial,sans-serif; font-size:11px; font-weight:900; color:var(--navy); }
+  .start-text { font-size:9.5px; color:var(--stone); line-height:1.5; }
+
   /* ── SESSION CARDS ── */
-  .sessions-col { display:flex; flex-direction:column; gap:6px; flex-shrink:0; }
+  .sessions-col { display:flex; flex-direction:column; gap:9px; flex-shrink:0; }
   .sess {
     display:flex; align-items:flex-start; gap:12px;
     background:#fff; border:1.5px solid var(--line); border-radius:10px;
-    padding:10px 13px;
+    padding:13px 14px;
   }
   .sess-num {
     width:30px; height:30px; border-radius:50%; flex-shrink:0;
@@ -162,11 +207,11 @@ const CSS = `
   .how-text { font-size:10px; color:var(--stone); line-height:1.55; }
 
   /* ── TIME TABLE ── */
-  .time-table { display:flex; flex-direction:column; gap:5px; flex-shrink:0; }
+  .time-table { display:flex; flex-direction:column; gap:7px; flex-shrink:0; }
   .time-row {
     display:flex; align-items:center; gap:12px;
     background:#fff; border:1.5px solid var(--line); border-radius:8px;
-    padding:8px 13px;
+    padding:11px 13px;
   }
   .time-chip {
     font-family:"Arial Black",Arial,sans-serif; font-size:10px; font-weight:900;
@@ -202,21 +247,50 @@ const CSS = `
 const NL = {
   badge: 'Handleiding voor coaches',
   eyebrow: 'Character First · Preseason',
-  title: 'Cultuur bouwen\nbegint <span>vóór</span> de aftrap',
-  sub: 'Dit document legt uit waarom teamcultuur het fundament is van een goed seizoen. En hoe je het Preseason Cultuurprogramma van Character First stap voor stap gebruikt.',
+  title: 'Cultuur bouwen\nbegint <span>vóór</span> het seizoen',
+  sub: 'Dit document legt uit waarom teamcultuur het fundament is van een goed seizoen. Het Cultuurprogramma bestaat in twee versies — een verkorte van 2 sessies en een volledige van 5 sessies. Bij elke sessie hoort een kant-en-klare coachpresentatie om te projecteren én een handleiding die je als leidraad volgt.',
 
   whyTitle: 'Waarom cultuur <span>vóór techniek</span>?',
   whyText: 'Onderzoek toont steeds opnieuw: teams die een sterke cultuur bouwen vóór het seizoen start, presteren beter onder druk. Ze herstellen sneller na een verlies. Ze tonen meer eigenaarschap op en naast het veld. Cultuur is geen bijzaak. Het is de basis waarop techniek en tactiek kunnen groeien.',
 
   stats: [
-    { num: '5', lbl: 'Sessies\npreseason' },
-    { num: '60\'', lbl: 'Per sessie\ngemiddeld' },
-    { num: '2', lbl: 'Versies\nNL & EN' },
+    { num: '2', lbl: 'Versies\nverkort & volledig' },
+    { num: '2–5', lbl: 'Sessies\nnaar keuze' },
+    { num: '2', lbl: 'Talen\nNL & EN' },
     { num: '100%', lbl: 'Klaar voor\ngebruik' },
   ],
 
-  secSessions: 'De 5 sessies: wat komt aan bod?',
-  sessions: [
+  secVersions: 'Kies jouw versie: hoeveel tijd heb je?',
+  versions: [
+    {
+      cls: 'short', tag: 'Verkort', title: '2 sessies', meta: '± 60 min per sessie · ± 2 uur totaal',
+      text: 'Weinig tijd of een korte preseason? Bouw in twee sessies een stevige basis.',
+      items: [
+        'Wie zijn wij? — identiteit, waarden & teamcontract',
+        'Hoe werken wij? — vertrouwen, aanspreken & rituelen',
+      ],
+      when: 'Ideaal bij tijdsdruk of als eerste kennismaking met cultuurwerk.',
+    },
+    {
+      cls: 'full', tag: 'Volledig', title: '5 sessies', meta: '± 45–60 min per sessie · ± 5 uur totaal',
+      text: 'Meer tijd en ruimte? Ga de diepte in over heel het preseason.',
+      items: [
+        'Identiteit, teamcontract & vertrouwen',
+        'Conflict & herstel, cultuur in actie',
+        'Eén sessie per week, 5 weken lang',
+      ],
+      when: 'Ideaal voor een grondig en stap voor stap opgebouwde cultuur.',
+    },
+  ],
+
+  // P2 — wat komt aan bod per versie
+  secShort: 'Verkorte versie — 2 sessies',
+  shortSessions: [
+    { n:'1', t:'Wie zijn wij?', d:'Identiteit en waarden bepalen, en een persoonlijk teamcontract ondertekenen.', time:'± 60 min' },
+    { n:'2', t:'Hoe werken wij?', d:'Vertrouwen meten, elkaar leren aanspreken en wekelijkse rituelen vastleggen.', time:'± 60 min' },
+  ],
+  secFull: 'Volledige versie — 5 sessies',
+  fullSessions: [
     { n:'1', t:'Onze identiteit', d:'Wie zijn wij als team? Waarden, trots en wat ons uniek maakt.', time:'45–60 min' },
     { n:'2', t:'Ons teamcontract', d:'Samen afspraken maken die iedereen respecteert en nakomt.', time:'50–60 min' },
     { n:'3', t:'Vertrouwen en veiligheid', d:'Een omgeving bouwen waar iedereen zichzelf durft te zijn.', time:'50–60 min' },
@@ -224,21 +298,28 @@ const NL = {
     { n:'5', t:'Cultuur in actie', d:'Van woorden naar gedrag. Onze cultuur zichtbaar maken.', time:'45–60 min' },
   ],
 
-  // P2
-  secHow: 'Hoe gebruik je dit programma?',
+  // P3 — hoe gebruiken + tijd + quote
+  secHow: 'Het materiaal: alles ligt voor je klaar',
   howCards: [
+    { icon:'🖥️', title:'Coachpresentatie', text:'Per sessie een set slides die je projecteert terwijl je de sessie leidt: doel, oefeningen en de vragen om te stellen. In het Nederlands en Engels.', cls:'blue' },
+    { icon:'🎓', title:'Handleiding coach', text:'Je leidraad per sessie, met doelstelling, activiteiten, discussievragen, aandachtspunten en een afsluiting. Jij hoeft niets voor te bereiden.', cls:'green' },
     { icon:'📋', title:'Werkblad speler', text:'Elke speler krijgt zijn eigen werkblad. Ze denken eerst individueel na, voor de groepsdiscussie. Dat geeft eerlijkere en diepere gesprekken.', cls:'' },
-    { icon:'🎓', title:'Gids coach', text:'Jij krijgt een apart begeleidingsblad per sessie, met doelstelling, activiteiten, discussievragen en een afsluiting.', cls:'green' },
-    { icon:'🗓️', title:'Wanneer starten?', text:'Plan de 5 sessies in de 3 tot 4 weken voor de competitiestart. Eén sessie per week werkt het best. Het kan ook tijdens een training.', cls:'blue' },
-    { icon:'👥', title:'Groepsgrootte', text:'Werkt voor teams van 8 tot 25 spelers. Bij grotere groepen werk je best in kleinere groepjes voor de reflectie-oefeningen.', cls:'' },
+    { icon:'🗓️', title:'Wanneer & groep', text:'Plan één sessie per week voor de competitiestart. Werkt voor teams van 8 tot 25 spelers; bij grote groepen werk je in kleinere groepjes.', cls:'' },
   ],
 
   secTime: 'Tijdsinvestering voor de coach',
   timeRows: [
-    { chip:'Voorbereiding', chipCls:'', desc:'10 tot 15 minuten per sessie. Lees het blad, print de werkbladen en leg het materiaal klaar.' },
-    { chip:'Sessie zelf', chipCls:'', desc:'45 tot 60 minuten per sessie. Met 5 sessies kom je op ongeveer 4 tot 5 uur over heel het preseason.' },
-    { chip:'Nabespreking', chipCls:'green', desc:'Optioneel: 10 minuten nabespreking met jezelf of een assistent-coach na elke sessie.' },
-    { chip:'Totaal', chipCls:'blue', desc:'Een investering van ongeveer 5 tot 6 uur preseason voor een sterker, veerkrachtiger team het hele seizoen.' },
+    { chip:'Voorbereiding', chipCls:'', desc:'10 tot 15 minuten per sessie. Lees het coachblad, print de werkbladen en leg het materiaal klaar.' },
+    { chip:'Verkort', chipCls:'', desc:'2 sessies van ± 60 minuten. Samen ongeveer 2 tot 2,5 uur over de hele preseason.' },
+    { chip:'Volledig', chipCls:'green', desc:'5 sessies van 45 tot 60 minuten. Samen ongeveer 5 tot 6 uur, één sessie per week.' },
+    { chip:'Tip', chipCls:'blue', desc:'Twijfel je? Start met de verkorte versie. Je kan later altijd uitbreiden naar de volledige reeks.' },
+  ],
+
+  secStart: 'Aan de slag in 3 stappen',
+  startSteps: [
+    { n:'1', t:'Kies je versie', d:'Verkort (2 sessies) of volledig (5 sessies), op basis van je tijd.' },
+    { n:'2', t:'Neem het materiaal', d:'Presentatie, handleiding en spelerwerkbladen per sessie staan klaar in NL en EN.' },
+    { n:'3', t:'Plan je sessies', d:'Eén sessie per week in de weken voor de competitiestart.' },
   ],
 
   secQuote: 'Het resultaat',
@@ -247,12 +328,33 @@ const NL = {
 
   footer: 'characterfirst.be · info@characterfirst.be',
   credit: 'Created by Tom Pauwaert',
-  pages: ['Pagina 1 van 2', 'Pagina 2 van 2'],
+  pages: ['Pagina 1 van 3', 'Pagina 2 van 3', 'Pagina 3 van 3'],
 };
+
+function sessCard(s) {
+  return `
+        <div class="sess">
+          <div class="sess-num">${s.n}</div>
+          <div class="sess-body">
+            <div class="sess-title">${s.t}</div>
+            <div class="sess-desc">${s.d}</div>
+          </div>
+          <div class="sess-time">⏱ ${s.time}</div>
+        </div>`;
+}
+
+function ph2(c, pageIdx) {
+  return `
+    <div class="ph2">
+      <div class="ph2-left">${logoDark(34)} <div class="ph2-wm">CHARACTER<span>First</span></div></div>
+      <div style="font-size:9px;color:var(--stone)">${c.pages[pageIdx]}</div>
+    </div>
+    <div class="ph2-bar"></div>`;
+}
 
 function buildHtml(c) {
   return `
-  <!-- PAGE 1 -->
+  <!-- PAGE 1 — Waarom + versies -->
   <div class="page">
     <div class="hdr">
       <div class="hdr-top">
@@ -274,24 +376,24 @@ function buildHtml(c) {
         <div class="why-text">${c.whyText}</div>
       </div>
 
+      <div class="sec-label">${c.secVersions}</div>
+      <div class="version-grid">
+        ${c.versions.map(v => `
+        <div class="version-card ${v.cls}">
+          <div class="vc-tag">${v.tag}</div>
+          <div class="vc-title">${v.title}</div>
+          <div class="vc-meta">${v.meta}</div>
+          <div class="vc-text">${v.text}</div>
+          <ul class="vc-list">${v.items.map(i => `<li>${i}</li>`).join('')}</ul>
+          <div class="vc-when">${v.when}</div>
+        </div>`).join('')}
+      </div>
+
       <div class="stat-row" style="margin-top:6mm">
         ${c.stats.map(s => `
         <div class="stat-card">
           <div class="stat-num">${s.num}</div>
           <div class="stat-lbl">${s.lbl.replace('\n','<br>')}</div>
-        </div>`).join('')}
-      </div>
-
-      <div class="sec-label">${c.secSessions}</div>
-      <div class="sessions-col">
-        ${c.sessions.map(s => `
-        <div class="sess">
-          <div class="sess-num">${s.n}</div>
-          <div class="sess-body">
-            <div class="sess-title">${s.t}</div>
-            <div class="sess-desc">${s.d}</div>
-          </div>
-          <div class="sess-time">⏱ ${s.time}</div>
         </div>`).join('')}
       </div>
     </div>
@@ -303,16 +405,16 @@ function buildHtml(c) {
     </div>
   </div>
 
-  <!-- PAGE 2 -->
+  <!-- PAGE 2 — Verkorte versie + hoe gebruiken + tijd -->
   <div class="page">
-    <div class="ph2">
-      <div class="ph2-left">${logoDark(34)} <div class="ph2-wm">CHARACTER<span>First</span></div></div>
-      <div style="font-size:9px;color:var(--stone)">${c.pages[1]}</div>
-    </div>
-    <div class="ph2-bar"></div>
-
+    ${ph2(c, 1)}
     <div class="inner" style="padding-top:7mm">
-      <div class="sec-label" style="margin-top:0">${c.secHow}</div>
+      <div class="sec-label" style="margin-top:0">${c.secShort}</div>
+      <div class="sessions-col">
+        ${c.shortSessions.map(sessCard).join('')}
+      </div>
+
+      <div class="sec-label">${c.secHow}</div>
       <div class="how-grid">
         ${c.howCards.map(h => `
         <div class="how-card${h.cls ? ' '+h.cls : ''}">
@@ -330,6 +432,33 @@ function buildHtml(c) {
           <div class="time-desc">${r.desc}</div>
         </div>`).join('')}
       </div>
+    </div>
+
+    <div class="footer">
+      <span>${c.footer}</span>
+      <span class="credit">${c.credit}</span>
+      <span>${c.pages[1]}</span>
+    </div>
+  </div>
+
+  <!-- PAGE 3 — Volledige versie + aan de slag + resultaat -->
+  <div class="page">
+    ${ph2(c, 2)}
+    <div class="inner" style="padding-top:7mm">
+      <div class="sec-label" style="margin-top:0">${c.secFull}</div>
+      <div class="sessions-col">
+        ${c.fullSessions.map(sessCard).join('')}
+      </div>
+
+      <div class="sec-label">${c.secStart}</div>
+      <div class="start-grid">
+        ${c.startSteps.map(s => `
+        <div class="start-card">
+          <div class="start-num">${s.n}</div>
+          <div class="start-title">${s.t}</div>
+          <div class="start-text">${s.d}</div>
+        </div>`).join('')}
+      </div>
 
       <div class="sec-label">${c.secQuote}</div>
       <div class="quote-bar">
@@ -341,7 +470,7 @@ function buildHtml(c) {
     <div class="footer">
       <span>${c.footer}</span>
       <span class="credit">${c.credit}</span>
-      <span>${c.pages[1]}</span>
+      <span>${c.pages[2]}</span>
     </div>
   </div>`;
 }
@@ -363,4 +492,8 @@ async function generate() {
   console.log(`✓ ${fname} → ${size}KB`);
 }
 
-generate().catch(console.error);
+if (require.main === module) {
+  generate().catch(console.error);
+}
+
+module.exports = { CSS, NL, buildHtml };
