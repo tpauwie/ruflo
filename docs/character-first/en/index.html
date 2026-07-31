@@ -36,10 +36,25 @@
     .fade-in{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
     .fade-in.visible{opacity:1;transform:none}
 
-    #hero{min-height:100vh;background:var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:clamp(100px,14vh,130px) 5% 80px}
+    #hero{position:relative;min-height:100vh;overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 5% 0;background:radial-gradient(120% 85% at 80% 4%,rgba(240,90,40,.55),transparent 52%),linear-gradient(158deg,#26313f 0%,#161d28 42%,#0E121B 100%)}
     .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(240,90,40,.14);border:1px solid rgba(240,90,40,.3);color:var(--orange);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.34rem .9rem;border-radius:20px;margin-bottom:1.6rem}
     .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange)}
-    #hero h1{font-size:clamp(2.4rem,4.5vw,3.8rem);color:#fff;line-height:1.06;margin-bottom:1.3rem}
+    #hero h1{font-size:clamp(2.6rem,7vw,5rem);color:#fff;line-height:.98;letter-spacing:-.025em;margin-bottom:1.4rem;text-wrap:balance}
+    #hero .hero-in{position:relative;z-index:3;max-width:900px;display:flex;flex-direction:column;align-items:center;padding-bottom:120px}
+    #hero .hero-pill{display:inline-flex;align-items:center;gap:8px;background:var(--growth);color:#fff;font-family:'Archivo',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 20px;border-radius:100px;margin-bottom:28px}
+    #hero .hero-sub{font-size:clamp(1.05rem,2vw,1.35rem);color:rgba(255,255,255,.8);max-width:36ch;margin:0 auto 34px;line-height:1.6}
+    #hero .ridge{position:absolute;left:0;right:0;bottom:0;z-index:2;width:100%;display:block}
+    #hero .ridge.back{opacity:.55}
+    #hero .scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);font-family:'Archivo',sans-serif;font-weight:700;text-decoration:none}
+    #hero .scroll-hint:hover{color:#fff}
+    .materials{background:var(--canvas);padding:clamp(38px,5vw,58px) 5%}
+    .mat-in{max-width:840px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);padding-top:clamp(26px,4vw,38px)}
+    .mat{text-align:center;padding:0 18px;border-right:1px solid var(--line)}
+    .mat:last-child{border-right:none}
+    .mat .ic{font-size:1.5rem;margin-bottom:8px}
+    .mat b{display:block;font-family:'Archivo',sans-serif;font-weight:800;font-size:1.05rem;color:var(--ink);margin-bottom:2px}
+    .mat span{font-size:.85rem;color:var(--stone)}
+    @media(max-width:600px){.mat-in{grid-template-columns:1fr}.mat{border-right:none;border-bottom:1px solid var(--line);padding:16px 0}.mat:last-child{border-bottom:none}#hero .hero-in{padding-bottom:88px}}
     #hero h1 em{color:var(--orange);font-style:normal}
     #hero .lead{font-size:1.05rem;color:#8a94a8;max-width:480px;margin-bottom:2rem;line-height:1.75}
     .hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:2.8rem}
@@ -226,39 +241,25 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="fade-in">
-    <div class="hero-badge">Preseason 2026 · New</div>
-    <h1>Build your<br><em>team culture</em><br>before the season.</h1>
-    <p class="lead">Skills and conditioning are already in your plan. Team culture does not train itself. The Character First Culture Programme gives you ready-to-use sessions to build it on purpose this preseason.</p>
-    <div class="hero-btns">
-      <a href="#cultuur" class="btn-primary">Explore the culture programme</a>
-      <a href="mailto:info@characterfirst.be" class="btn-ghost">Request it for free</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">2</div><div class="stat-label">Versions short &amp; full</div></div>
-      <div><div class="stat-num">2–5</div><div class="stat-label">Sessions of choice</div></div>
-      <div><div class="stat-num">NL·EN</div><div class="stat-label">Two languages</div></div>
-      <div><div class="stat-num">Free</div><div class="stat-label">Ready to use</div></div>
-    </div>
+  <div class="hero-in fade-in">
+    <span class="hero-pill">Free · Preseason 2026</span>
+    <h1>They forget the score.<br>Not you.</h1>
+    <p class="hero-sub">Build a team culture that lasts this preseason. We give you the sessions.</p>
+    <a href="mailto:info@characterfirst.be" class="btn-primary" style="padding:15px 34px;font-size:1rem">Start the culture programme</a>
   </div>
-  <div class="hero-cards fade-in" style="transition-delay:.18s">
-    <div class="hcard featured">
-      <div class="hcard-top"><span class="hcard-num">#56</span><span class="hcard-title">Wall Squat Challenge</span></div>
-      <div class="hcard-desc">Solo, then with team encouragement, then together. The time difference proves the power of a motivational climate.</div>
-      <div class="hcard-tags"><span class="htag" style="background:#3A8A8A">Physical</span><span class="htag" style="background:rgba(30,138,91,.15);color:#1E8A5B;border:1px solid rgba(30,138,91,.25)">U14+</span><span class="htag" style="background:var(--mist);color:var(--stone)">15 min</span></div>
-    </div>
-    <div class="hcard">
-      <div class="hcard-top"><span class="hcard-num">#11</span><span class="hcard-title">Box Breathing</span></div>
-      <div class="hcard-desc">Calm the nervous system with controlled 4-4-4-4 breathing. Used by Navy SEALs and elite athletes worldwide.</div>
-      <div class="hcard-tags"><span class="htag" style="background:#2F6FB0">Pressure &amp; Stress</span><span class="htag" style="background:var(--mist);color:var(--stone)">5 min</span></div>
-    </div>
-    <div class="hcard">
-      <div class="hcard-top"><span class="hcard-num">#37</span><span class="hcard-title">Encouragement Challenge</span></div>
-      <div class="hcard-desc">Players learn to encourage deliberately. Proof that the team outperforms the individual.</div>
-      <div class="hcard-tags"><span class="htag" style="background:#C7842F">Communication</span><span class="htag" style="background:var(--mist);color:var(--stone)">7 min</span></div>
-    </div>
-  </div>
+  <svg class="ridge back" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 220 L250 90 L470 175 L720 60 L980 165 L1200 95 L1200 220 Z" fill="#8f2f13"/></svg>
+  <svg class="ridge" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 180 L330 55 L560 140 L820 40 L1050 130 L1200 80 L1200 180 Z" fill="#C0431A"/></svg>
+  <a href="#cultuur" class="scroll-hint">Discover the programme ↓</a>
 </section>
+
+<!-- MATERIALS STRIP -->
+<div class="materials">
+  <div class="mat-in fade-in">
+    <div class="mat"><div class="ic">🖥️</div><b>Presentation</b><span>to project</span></div>
+    <div class="mat"><div class="ic">🎓</div><b>Coach guide</b><span>to lead the session</span></div>
+    <div class="mat"><div class="ic">📋</div><b>Worksheets</b><span>for players</span></div>
+  </div>
+</div>
 
 <!-- CULTURE PROGRAMME (preseason focus) -->
 <section id="cultuur" style="padding:clamp(56px,7vw,96px) 5%;background:var(--canvas)">
@@ -281,12 +282,6 @@
       <div style="color:var(--stone);font-size:.9rem;margin-bottom:.9rem">± 5 hours · one session a week through preseason</div>
       <div style="color:#33404f;font-size:.92rem;line-height:1.6">Identity, team contract, trust &amp; safety, conflict &amp; recovery, and culture in action. The complete build-up.</div>
     </div>
-  </div>
-
-  <div class="fade-in" style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem 2.4rem;max-width:900px;margin:2.2rem auto 0;color:#33404f;font-size:.95rem">
-    <span>🖥️ <strong>Coach presentation</strong> to project</span>
-    <span>🎓 <strong>Coach guide</strong> to lead the session</span>
-    <span>📋 <strong>Player worksheets</strong></span>
   </div>
 
   <div class="fade-in" style="text-align:center;margin-top:2.4rem">
