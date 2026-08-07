@@ -9,6 +9,12 @@ const BASE = '/home/user/ruflo/docs/character-first';
 const OUT = path.join(BASE, 'presentaties-cultuur');
 fs.mkdirSync(OUT, { recursive: true });
 
+// QR codes (feedbackformulieren) — ingebed als data URI
+const QR_DIR = path.join(__dirname, 'qr');
+const qrDataUri = f => 'data:image/png;base64,' + fs.readFileSync(path.join(QR_DIR, f)).toString('base64');
+const QR_SPELER = qrDataUri('qr_speler.png');
+const QR_COACH = qrDataUri('qr_coach.png');
+
 function logo(size = 46) {
   return `<svg width="${size}" height="${size}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <circle cx="50" cy="50" r="50" fill="#0E121B"/>
@@ -94,7 +100,34 @@ function foot(L, s, page, pages){
   return `<div class="foot"><span>characterfirst.be · info@characterfirst.be</span><span>${L.session} ${s.n} · ${page}/${pages}</span></div>`;
 }
 
-function buildDeck(s, L){
+function feedbackSlide(L){
+  const card = (accent, tag, title, sub, qr) => `
+    <div style="flex:1;background:#fff;border:1.5px solid var(--line);border-top:6px solid ${accent};border-radius:18px;
+      padding:26px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+      <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+        color:#fff;background:${accent};padding:6px 16px;border-radius:100px">${tag}</div>
+      <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:24px;color:var(--navy);line-height:1.05">${title}</div>
+      <img src="${qr}" alt="QR" style="width:236px;height:236px;image-rendering:pixelated;border:8px solid #fff;border-radius:10px"/>
+      <div style="font-size:16px;color:var(--stone);line-height:1.5;max-width:34ch">${sub}</div>
+    </div>`;
+  return `<div class="slide">
+    <div class="topbar">
+      <div class="brand">${logo(46)}<div class="wordmark">CHARACTER<span>First</span></div></div>
+      <div class="sesstag">${L.vLabel}<br><b>${L.fbTag}</b></div>
+    </div><div class="rule"></div>
+    <div class="body" style="justify-content:flex-start;padding-top:6px">
+      <div class="eyebrow" style="color:var(--green)">${L.fbEyebrow}</div>
+      <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;color:var(--navy);letter-spacing:-.01em;margin-bottom:20px">${L.fbTitle}</div>
+      <div style="display:flex;gap:22px;align-items:stretch">
+        ${card('#2F6FB0', L.fbSpelerTag, L.fbSpelerTitle, L.fbSpelerSub, QR_SPELER)}
+        ${card('#F05A28', L.fbCoachTag, L.fbCoachTitle, L.fbCoachSub, QR_COACH)}
+      </div>
+    </div>
+    <div class="foot"><span>characterfirst.be · info@characterfirst.be</span><span>${L.fbTag}</span></div>
+  </div>`;
+}
+
+function buildDeck(s, L, withFeedback){
   const slides = [];
   // count total content pages for footer (cover + doel + note + agenda + N exercises + questions + closing + quote)
   const nEx = s.exercises.length;
@@ -189,6 +222,8 @@ function buildDeck(s, L){
     </div>`);
   }
 
+  if (withFeedback) slides.push(feedbackSlide(L));
+
   return slides.join('\n');
 }
 
@@ -196,10 +231,16 @@ function buildDeck(s, L){
 const LABELS = {
   NL: { session:'Sessie', goal:'Doel van deze sessie', coachNote:'Coachnota', agenda:'Overzicht van de sessie',
         exercise:'Oefening', questions:'Discussievragen', closing:'Afsluiting', coachPres:'Coachpresentatie',
-        tagline:'Win the person. Win the team.', thanks:'Bedankt · characterfirst.be' },
+        tagline:'Win the person. Win the team.', thanks:'Bedankt · characterfirst.be',
+        fbTag:'Feedback', fbEyebrow:'Nog even dit', fbTitle:'Scan en geef je feedback',
+        fbSpelerTag:'Spelers', fbSpelerTitle:'Hoe was de sessie?', fbSpelerSub:'Scan met je telefoon. Anoniem en klaar in 2 minuten.',
+        fbCoachTag:'Coach', fbCoachTitle:'Feedback coach', fbCoachSub:'Vul kort in na de sessie. 3 tot 5 minuten.' },
   EN: { session:'Session', goal:'Goal of this session', coachNote:'Coach note', agenda:'Session overview',
         exercise:'Exercise', questions:'Discussion questions', closing:'Closing', coachPres:'Coach presentation',
-        tagline:'Win the person. Win the team.', thanks:'Thank you · characterfirst.be' },
+        tagline:'Win the person. Win the team.', thanks:'Thank you · characterfirst.be',
+        fbTag:'Feedback', fbEyebrow:'One last thing', fbTitle:'Scan and give your feedback',
+        fbSpelerTag:'Players', fbSpelerTitle:'How was the session?', fbSpelerSub:'Scan with your phone. Anonymous and done in 2 minutes.',
+        fbCoachTag:'Coach', fbCoachTitle:'Coach feedback', fbCoachSub:'Fill in briefly after the session. 3 to 5 minutes.' },
 };
 
 // ==========================================================================
@@ -391,7 +432,7 @@ async function render(browser, sessions, L, lang, prefix){
       : (lang==='NL'?'Volledig programma':'Full program')) };
     const html = `<!DOCTYPE html><html><head><meta charset="utf-8">
       <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-      <style>${CSS}</style></head><body>${buildDeck(s, L2)}</body></html>`;
+      <style>${CSS}</style></head><body>${buildDeck(s, L2, prefix==='Kort')}</body></html>`;
     const page = await browser.newPage({ viewport:{width:1280,height:720} });
     await page.setContent(html, { waitUntil:'networkidle' });
     await page.waitForTimeout(300);
