@@ -432,7 +432,7 @@ async function render(browser, sessions, L, lang, prefix){
       : (lang==='NL'?'Volledig programma':'Full program')) };
     const html = `<!DOCTYPE html><html><head><meta charset="utf-8">
       <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-      <style>${CSS}</style></head><body>${buildDeck(s, L2, prefix==='Kort')}</body></html>`;
+      <style>${CSS}</style></head><body>${buildDeck(s, L2, true)}</body></html>`;
     const page = await browser.newPage({ viewport:{width:1280,height:720} });
     await page.setContent(html, { waitUntil:'networkidle' });
     await page.waitForTimeout(300);
